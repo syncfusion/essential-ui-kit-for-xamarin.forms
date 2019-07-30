@@ -92,7 +92,7 @@ We follow the style used by the .NET Foundation, with a few exceptions:
 If you would like to request a new screen or report a bug in existing screens, create a feature request or submit a bug through our [feedback portal](https://www.syncfusion.com/feedback/xamarin-forms).
 
 ## License
-These are samples/templates. The samples/templates may have various licenses but Syncfusion licenses this as [LICENSE](MIT). You may need to obtain additional licenses to use the samples/templates from third parties.
+These are samples/templates. The samples/templates may have various licenses but Syncfusion licenses this as [MIT](LICENSE). You may need to obtain additional licenses to use the samples/templates from third parties.
 
 This project uses Syncfusion controls and FFImageLoading (by Daniel Luberda) libraries.
 
