@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<listView:SfListView
+    x:Class="EssentialUIKit.Views.ECommerce.FilterView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:behaviors="clr-namespace:EssentialUIKit.Behaviors.ECommerce"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:expander="clr-namespace:Syncfusion.XForms.Expander;assembly=Syncfusion.Expander.XForms"
+    xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+    x:Name="ListView"
+    AutoFitMode="DynamicHeight"
+    FooterSize="{OnIdiom Default=88,
+                         Desktop=0}"
+    IsStickyFooter="{OnIdiom Default=True,
+                             Desktop=False}"
+    IsStickyHeader="{OnIdiom Default=True,
+                             Phone=False}"
+    ItemSpacing="1"
+    ItemsSource="{Binding FilterOptions}"
+    Style="{StaticResource SfListViewStyle}"
+    VerticalOptions="{OnIdiom Default=Start,
+                              Desktop=FillAndExpand}">
+
+    <listView:SfListView.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <DataTemplate x:Key="PortraitTemplate">
+                <buttons:SfButton
+                    Margin="40,20"
+                    CornerRadius="24"
+                    HeightRequest="{OnIdiom Default=48,
+                                            Desktop=0}"
+                    HorizontalOptions="Fill"
+                    Style="{StaticResource MagentaButtonStyle}"
+                    Text="APPLY" />
+            </DataTemplate>
+
+            <DataTemplate x:Key="LandscapeTemplate">
+                <buttons:SfButton
+                    Margin="70,20"
+                    CornerRadius="24"
+                    HeightRequest="{OnIdiom Default=48,
+                                            Desktop=0}"
+                    HorizontalOptions="Fill"
+                    Style="{StaticResource MagentaButtonStyle}"
+                    Text="APPLY" />
+            </DataTemplate>
+
+        </ResourceDictionary>
+    </listView:SfListView.Resources>
+
+    <!--  Header  -->
+    <listView:SfListView.HeaderTemplate>
+        <DataTemplate>
+            <StackLayout HeightRequest="{OnIdiom Default=-1, Phone=0}">
+
+                <Label
+                    Margin="{OnIdiom Default=15,
+                                     Phone=0}"
+                    FontFamily="{StaticResource Montserrat-SemiBold}"
+                    FontSize="18"
+                    Style="{StaticResource LabelStyle}"
+                    Text="Filters" />
+
+                <BoxView HeightRequest="1" Style="{StaticResource BoxViewStyle}" />
+
+            </StackLayout>
+        </DataTemplate>
+    </listView:SfListView.HeaderTemplate>
+
+    <listView:SfListView.ItemTemplate>
+        <DataTemplate>
+            <ViewCell>
+                <ViewCell.View>
+                    <Grid RowSpacing="0">
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <expander:SfExpander
+                            Grid.Row="0"
+                            Margin="{OnIdiom Default='15,0',
+                                             Desktop='10,0,0,0'}"
+                            BackgroundColor="Transparent"
+                            HeaderBackgroundColor="Transparent">
+
+                            <!--  Main Category  -->
+                            <expander:SfExpander.Header>
+                                <Label
+                                    Margin="0,10"
+                                    FontFamily="{StaticResource Montserrat-SemiBold}"
+                                    HorizontalOptions="StartAndExpand"
+                                    Style="{StaticResource LabelStyle}"
+                                    Text="{Binding MainCategory}"
+                                    TextColor="{DynamicResource Gray-56}"
+                                    VerticalOptions="Center" />
+                            </expander:SfExpander.Header>
+
+                            <!--  SubCategories  -->
+                            <expander:SfExpander.Content>
+                                <StackLayout Padding="12,10" BindableLayout.ItemsSource="{Binding SubCategories}">
+                                    <BindableLayout.ItemTemplate>
+                                        <DataTemplate>
+                                            <buttons:SfCheckBox
+                                                CheckedColor="{DynamicResource PrimaryColor}"
+                                                FontFamily="{StaticResource Montserrat-Medium}"
+                                                FontSize="14"
+                                                HorizontalOptions="{OnIdiom Default=Fill,
+                                                                            Desktop=Start}"
+                                                Text="{Binding}"
+                                                TextColor="{DynamicResource Gray-56}"
+                                                UncheckedColor="{DynamicResource Gray-E4}"
+                                                VerticalOptions="Center" />
+                                        </DataTemplate>
+                                    </BindableLayout.ItemTemplate>
+                                </StackLayout>
+                            </expander:SfExpander.Content>
+
+                            <expander:SfExpander.Behaviors>
+                                <behaviors:ExpanderBehavior Command="{Binding Path=BindingContext.ExpandingCommand, Source={x:Reference ListView}}" CommandParameter="{x:Reference ListView}" />
+                            </expander:SfExpander.Behaviors>
+
+                        </expander:SfExpander>
+
+                        <BoxView
+                            Grid.Row="1"
+                            HeightRequest="1"
+                            Style="{StaticResource BoxViewStyle}" />
+
+                    </Grid>
+                </ViewCell.View>
+            </ViewCell>
+        </DataTemplate>
+    </listView:SfListView.ItemTemplate>
+
+</listView:SfListView>

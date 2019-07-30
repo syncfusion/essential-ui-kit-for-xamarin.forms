@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="EssentialUIKit.Views.Feedback.FeedbackPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:behavior="clr-namespace:EssentialUIKit.Behaviors.Feedback"
+    xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+    xmlns:local="clr-namespace:EssentialUIKit.Views.Feedback"
+    xmlns:viewmodel="clr-namespace:EssentialUIKit.ViewModels.Feedback"
+    BackgroundColor="{DynamicResource Gray-White}"
+    NavigationPage.HasNavigationBar="False"
+    Shell.NavBarIsVisible="False">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <!--  Binding Context for OverAllFeedback Page  -->
+    <ContentPage.BindingContext>
+        <viewmodel:FeedbackViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <StackLayout Spacing="0">
+
+            <!--  Title  -->
+            <Label
+                Margin="0,16"
+                FontFamily="{StaticResource Montserrat-Medium}"
+                FontSize="16"
+                HorizontalOptions="CenterAndExpand"
+                Style="{StaticResource LabelStyle}"
+                Text="Reviews"
+                TextColor="{DynamicResource Gray-56}" />
+
+            <BoxView Style="{StaticResource BoxViewStyle}" />
+
+            <!--  List view to show the feedback given by the customers  -->
+            <listView:SfListView
+                AutoFitMode="Height"
+                BackgroundColor="{DynamicResource Gray-White}"
+                HeaderTemplate="{StaticResource HeaderTemplate}"
+                IsScrollBarVisible="False"
+                ItemsSource="{Binding FeedbackInfo}"
+                SelectionBackgroundColor="Transparent"
+                TapCommand="{Binding ItemSelectedCommand}"
+                VerticalOptions="FillAndExpand">
+
+                <listView:SfListView.Behaviors>
+                    <behavior:ListViewBehavior />
+                </listView:SfListView.Behaviors>
+
+                <listView:SfListView.ItemTemplate>
+                    <DataTemplate>
+                        <local:FeedbackTemplate />
+                    </DataTemplate>
+                </listView:SfListView.ItemTemplate>
+
+            </listView:SfListView>
+
+        </StackLayout>
+
+    </ContentPage.Content>
+</ContentPage>

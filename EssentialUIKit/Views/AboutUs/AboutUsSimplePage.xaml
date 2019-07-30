@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="EssentialUIKit.Views.AboutUs.AboutUsSimplePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.About"
+    xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
+    Title="About"
+    NavigationPage.HasNavigationBar="False"
+    Shell.NavBarIsVisible="False"
+    BackgroundColor="{DynamicResource Gray-White}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <Grid RowSpacing="0" ColumnSpacing="0">
+            <ScrollView HorizontalOptions="Center" VerticalOptions="Center">
+                <StackLayout
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    Spacing="0">
+
+                    <StackLayout.BindingContext>
+                        <viewModel:AboutUsViewModel />
+                    </StackLayout.BindingContext>
+
+                    <!--  Product image  -->
+                    <ffimageloading:CachedImage
+                        HeightRequest="110" 
+                        LoadingPlaceholder="PlaceHolder.png"
+                        Source="{Binding ProductIcon}"
+                        WidthRequest="124" />
+
+                    <!--  Product version  -->
+                    <Label
+                        HorizontalOptions="CenterAndExpand" 
+                        Margin="0,8.7,0,0"
+                        Style="{StaticResource VersionLabelStyle}"
+                        Text="{Binding ProductVersion, StringFormat='Version {0}'}" />
+
+                    <!--  Product title  -->
+                    <Label
+                        FontFamily="{StaticResource Montserrat-SemiBold}"
+                        HorizontalOptions="CenterAndExpand"
+                        Margin="{core:OnPlatformOrientationThickness 
+                                    Default='0,32,0,8',
+                                    PhonePortrait='0,16,0,16',
+                                    PhoneLandscape='0,16,0,16'}"
+                        Style="{StaticResource HeaderLabelStyle}"
+                        Text="Acme Products" />
+
+                    <!--  Product description  -->
+                    <Label
+                        HorizontalOptions="Center"
+                        HorizontalTextAlignment="Center"
+                        Style="{StaticResource DescriptionLabelStyle}"
+                        Text="{Binding ProductDescription}"
+                        Margin="15,0,15,0"/>
+                </StackLayout>
+            </ScrollView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

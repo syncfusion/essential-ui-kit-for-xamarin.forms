@@ -1,0 +1,177 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="EssentialUIKit.Views.Navigation.AlbumPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
+    xmlns:data="clr-namespace:Syncfusion.DataSource;assembly=Syncfusion.DataSource.Portable"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+    xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Navigation"
+    BackgroundColor="{DynamicResource Gray-White}"
+    NavigationPage.HasNavigationBar="False"
+    Shell.NavBarIsVisible="False">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <!--  Binding context for album page  -->
+    <ContentPage.BindingContext>
+        <viewModel:AlbumViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <Grid Padding="10,10,10,5">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <!--  Title  -->
+                <Label
+                    FontFamily="{StaticResource Montserrat-Medium}"
+                    FontSize="16"
+                    HorizontalOptions="CenterAndExpand"
+                    LineHeight="{OnPlatform Android=1.5,
+                                            Default=-1}"
+                    Text="Albums"
+                    TextColor="{DynamicResource Gray-56}"
+                    VerticalOptions="Center" />
+
+                <!--  Add button  -->
+                <buttons:SfButton
+                    Padding="0"
+                    BackgroundColor="{DynamicResource Gray-White}"
+                    Command="{Binding AddCommand}"
+                    CornerRadius="5"
+                    FontFamily="{StaticResource FontIcons}"
+                    FontSize="18"
+                    HorizontalOptions="End"
+                    Text="{StaticResource Add}"
+                    TextColor="{DynamicResource PrimaryColor}"
+                    VerticalOptions="Center"
+                    WidthRequest="40" />
+
+            </Grid>
+
+            <BoxView Style="{StaticResource BoxViewStyle}" />
+
+            <!--  Album images  -->
+            <listView:SfListView
+                x:Name="ListView"
+                Padding="15,0,15,15"
+                AutoFitMode="Height"
+                IsScrollBarVisible="False"
+                ItemSpacing="{core:OnPlatformOrientationThickness Default='0,0,32,32',
+                                                                  PhonePortrait='0,0,0,16',
+                                                                  PhoneLandscape='0,0,16,16',
+                                                                  Desktop='0,0,24,24'}"
+                ItemsSource="{Binding AlbumInfo}"
+                SelectionBackgroundColor="Transparent"
+                TapCommand="{Binding ImageTapCommand}"
+                VerticalOptions="FillAndExpand">
+
+                <listView:SfListView.DataSource>
+                    <data:DataSource>
+                        <data:DataSource.GroupDescriptors>
+                            <data:GroupDescriptor PropertyName="Category" />
+                        </data:DataSource.GroupDescriptors>
+                    </data:DataSource>
+                </listView:SfListView.DataSource>
+
+                <listView:SfListView.GroupHeaderTemplate>
+                    <DataTemplate>
+
+                        <StackLayout Orientation="Horizontal" Spacing="0">
+
+                            <!--  Group category  -->
+                            <Label
+                                Margin="0,5,0,0"
+                                FontFamily="{StaticResource Montserrat-SemiBold}"
+                                FontSize="12"
+                                HorizontalOptions="StartAndExpand"
+                                LineHeight="{OnPlatform Android=1.25,
+                                                        Default=-1}"
+                                Text="{Binding Key}"
+                                TextColor="{DynamicResource Gray-6F}"
+                                VerticalOptions="Center" />
+
+                            <!--  View all  -->
+                            <buttons:SfButton
+                                Padding="0"
+                                BackgroundColor="{DynamicResource Gray-White}"
+                                Command="{Binding BindingContext.ViewAllCommand, Source={x:Reference ListView}}"
+                                CornerRadius="4"
+                                FontFamily="{StaticResource Montserrat-SemiBold}"
+                                FontSize="12"
+                                HorizontalOptions="End"
+                                Text="VIEW ALL"
+                                TextColor="{DynamicResource HyperLink}" />
+
+                        </StackLayout>
+
+                    </DataTemplate>
+                </listView:SfListView.GroupHeaderTemplate>
+
+                <!--  Layout to customize number of columns in SfListView  -->
+                <listView:SfListView.LayoutManager>
+                    <listView:GridLayout SpanCount="{core:OnPlatformOrientationIntValue PhonePortrait=1, PhoneLandscape=2, TabletPortrait=2, TabletLandscape=2, Desktop=4}" />
+                </listView:SfListView.LayoutManager>
+
+                <listView:SfListView.ItemTemplate>
+                    <DataTemplate>
+
+                        <Frame
+                            Padding="0"
+                            BackgroundColor="{DynamicResource Gray-White}"
+                            BorderColor="{DynamicResource Gray-White}"
+                            CornerRadius="8"
+                            HasShadow="True"
+                            HeightRequest="130"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="FillAndExpand">
+
+                            <Grid BackgroundColor="{DynamicResource Gray-F0}">
+                                <!--  Album cover image  -->
+                                <ffimageloading:CachedImage Aspect="Fill" Source="{Binding AlbumImage}" />
+
+                                <StackLayout
+                                    Padding="24,0,0,16"
+                                    Spacing="2"
+                                    VerticalOptions="End">
+
+                                    <!--  Album name  -->
+                                    <Label
+                                        FontFamily="{StaticResource Montserrat-SemiBold}"
+                                        FontSize="16"
+                                        Text="{Binding AlbumName}"
+                                        TextColor="{DynamicResource Gray-White}" />
+
+                                    <!--  Total number of photos  -->
+                                    <Label
+                                        FontFamily="{StaticResource Montserrat-Medium}"
+                                        FontSize="12"
+                                        Text="{Binding TotalPhotos}"
+                                        TextColor="{DynamicResource Gray-White}" />
+
+                                </StackLayout>
+
+                            </Grid>
+                        </Frame>
+
+                    </DataTemplate>
+                </listView:SfListView.ItemTemplate>
+
+            </listView:SfListView>
+
+        </StackLayout>
+
+    </ContentPage.Content>
+</ContentPage>

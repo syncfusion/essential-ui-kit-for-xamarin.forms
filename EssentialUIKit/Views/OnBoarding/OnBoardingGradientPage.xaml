@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="EssentialUIKit.Views.OnBoarding.OnBoardingGradientPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:button="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
+    xmlns:ffsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+    xmlns:gradient="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
+    xmlns:sfRotator="clr-namespace:Syncfusion.SfRotator.XForms;assembly=Syncfusion.SfRotator.XForms"
+    xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.OnBoarding"
+    NavigationPage.HasNavigationBar="False"
+    Shell.NavBarIsVisible="False">
+
+    <!--  Binding context for on-boarding gradient page  -->
+    <ContentPage.BindingContext>
+        <viewModel:OnBoardingGradientViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <!--  Skip Button  -->
+                <RowDefinition Height="80" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <gradient:SfGradientView Grid.RowSpan="3" Style="{StaticResource SfGradientViewStyle}" />
+
+            <!--  Skip button  -->
+            <button:SfButton
+                Grid.Row="0"
+                Margin="{core:OnPlatformOrientationThickness AndroidPhonePortrait='0,10,10,0',
+                                                             AndroidPhoneLandscape='0,10,10,0',
+                                                             iOSPhonePortrait='0,20,10,0',
+                                                             iOSPhoneLandscape='0,10,10,0'}"
+                BackgroundColor="Transparent"
+                Command="{Binding SkipCommand}"
+                CornerRadius="20"
+                FontFamily="{StaticResource Montserrat-SemiBold}"
+                HeightRequest="40"
+                HorizontalOptions="End"
+                Opacity="{Binding IsSkipButtonVisible}"
+                Text="Skip"
+                TextColor="{x:StaticResource Gray-White}"
+                VerticalOptions="StartAndExpand"
+                WidthRequest="80" />
+
+            <!--  Rotator  -->
+            <sfRotator:SfRotator
+                x:Name="Rotator"
+                Grid.Row="1"
+                Margin="{x:OnIdiom Phone='15,-30,15,0',
+                                   Desktop='0',
+                                   Tablet='0'}"
+                BackgroundColor="Transparent"
+                DotPlacement="None"
+                EnableLooping="False"
+                EnableSwiping="True"
+                HeightRequest="{x:OnIdiom Desktop=450,
+                                          Tablet=450,
+                                          Phone=400}"
+                HorizontalOptions="FillAndExpand"
+                ItemsSource="{Binding Boardings}"
+                NavigationDirection="Horizontal"
+                SelectedIndex="{Binding SelectedIndex, Mode=TwoWay}"
+                VerticalOptions="CenterAndExpand"
+                WidthRequest="{core:OnPlatformOrientationDoubleValue Default=400,
+                                                                     AndroidPhonePortrait=400,
+                                                                     AndroidPhoneLandscape=200,
+                                                                     iOSPhonePortrait=400,
+                                                                     iOSPhoneLandscape=200}">
+
+                <sfRotator:SfRotator.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout
+                            BackgroundColor="Transparent"
+                            Spacing="0"
+                            VerticalOptions="Center">
+
+                            <!--  Image for display svg image  -->
+                            <ffsvg:SvgCachedImage
+                                Margin="{x:OnIdiom Phone='0,0,0,0',
+                                                   Desktop='0',
+                                                   Tablet='0'}"
+                                BackgroundColor="Transparent"
+                                HeightRequest="{core:OnPlatformOrientationDoubleValue Default=300,
+                                                                                      AndroidPhonePortrait=200,
+                                                                                      AndroidPhoneLandscape=140,
+                                                                                      iOSPhonePortrait=200,
+                                                                                      iOSPhoneLandscape=140}"
+                                Source="{Binding ImagePath}"
+                                VerticalOptions="Center"
+                                WidthRequest="{x:OnIdiom Phone=200,
+                                                         Desktop=300,
+                                                         Tablet=300}" />
+
+                            <!--  Label to display header  -->
+                            <Label
+                                Margin="0,30,0,8"
+                                FontFamily="{StaticResource Montserrat-SemiBold}"
+                                FontSize="20"
+                                HorizontalTextAlignment="Center"
+                                Style="{StaticResource LabelStyle}"
+                                Text="{Binding Header}"
+                                VerticalTextAlignment="Center" />
+
+                            <!--  Label to display content  -->
+                            <Label
+                                FontFamily="{StaticResource Montserrat-Medium}"
+                                FontSize="16"
+                                Style="{StaticResource LabelStyle}"
+                                Text="{Binding Content}"
+                                VerticalTextAlignment="Center" />
+                        </StackLayout>
+                    </DataTemplate>
+                </sfRotator:SfRotator.ItemTemplate>
+            </sfRotator:SfRotator>
+
+            <!--  Next button  -->
+            <button:SfButton
+                Grid.Row="2"
+                Command="{Binding NextCommand}"
+                Style="{StaticResource SfButtonStyle}"
+                Text="{Binding NextButtonText}" />
+        </Grid>
+
+    </ContentPage.Content>
+</ContentPage>

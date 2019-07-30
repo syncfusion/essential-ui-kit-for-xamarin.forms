@@ -1,0 +1,214 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="EssentialUIKit.Views.Chat.ChatMessagePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:behavior="clr-namespace:EssentialUIKit.Behaviors.Chat"
+    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:controls="clr-namespace:EssentialUIKit.Controls"
+    xmlns:converter="clr-namespace:EssentialUIKit.Converters"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+    xmlns:local="clr-namespace:EssentialUIKit.Views.Chat"
+    xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Chat"
+    BackgroundImage="ChatMessageBackground.png"
+    NavigationPage.HasNavigationBar="False"
+    Shell.NavBarIsVisible="False">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:DateTimeToStringConverter x:Key="DateTimeToStringConverter" />
+            <local:MessageDataTemplateSelector x:Key="MessageDataTemplateSelector" />
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.BindingContext>
+        <viewModel:ChatMessageViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+
+        <!--  List view to show the recent chat history  -->
+        <listView:SfListView
+            x:Name="ListView"
+            AutoFitMode="Height"
+            BackgroundColor="{StaticResource Transparent}"
+            FocusBorderThickness="0"
+            IsStickyFooter="true"
+            IsStickyHeader="True"
+            ItemTemplate="{StaticResource MessageDataTemplateSelector}"
+            ItemsSource="{Binding ChatMessageInfo}"
+            RowSpacing="12"
+            SelectionMode="None"
+            VerticalOptions="Fill">
+
+            <listView:SfListView.Behaviors>
+                <behavior:ChatMessageListViewBehavior />
+            </listView:SfListView.Behaviors>
+
+            <listView:SfListView.GroupHeaderTemplate>
+                <DataTemplate>
+                    <Label
+                        Margin="0,16,0,0"
+                        FontFamily="{StaticResource Montserrat-Medium}"
+                        FontSize="12"
+                        HorizontalOptions="Center"
+                        HorizontalTextAlignment="Center"
+                        LineHeight="1.5"
+                        Text="{Binding Key, Converter={StaticResource DateTimeToStringConverter}}"
+                        TextColor="{DynamicResource Gray-94}" />
+                </DataTemplate>
+            </listView:SfListView.GroupHeaderTemplate>
+
+            <!--  Navigation bar  -->
+            <listView:SfListView.HeaderTemplate>
+                <DataTemplate>
+                    <StackLayout
+                        Padding="10"
+                        BackgroundColor="{DynamicResource Gray-White}"
+                        HorizontalOptions="FillAndExpand"
+                        Orientation="Horizontal"
+                        Spacing="0"
+                        VerticalOptions="Fill">
+
+                        <!--  Back Button  -->
+                        <buttons:SfButton
+                            Command="{Binding BackCommand}"
+                            Style="{StaticResource NavigationBarButtonStyle}"
+                            Text="{StaticResource Back}" />
+
+                        <!--  Rounded Profile Image  -->
+                        <border:SfBorder
+                            Margin="8,0"
+                            BackgroundColor="{DynamicResource Gray-F0}"
+                            Style="{StaticResource ProfileBorderStyle}">
+                            <ffimageloading:CachedImage
+                                HeightRequest="35"
+                                Source="{Binding ProfileImage}"
+                                WidthRequest="35" />
+                        </border:SfBorder>
+
+                        <!--  Profile Name  -->
+                        <Label
+                            FontFamily="{StaticResource Montserrat-SemiBold}"
+                            FontSize="16"
+                            HorizontalOptions="FillAndExpand"
+                            Text="{Binding ProfileName}"
+                            TextColor="{DynamicResource Gray-56}"
+                            VerticalOptions="Center"
+                            VerticalTextAlignment="Center">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ProfileCommand}" />
+                            </Label.GestureRecognizers>
+                        </Label>
+
+                        <!--  Video call button  -->
+                        <buttons:SfButton
+                            Command="{Binding MakeVideoCall}"
+                            Style="{StaticResource NavigationBarButtonStyle}"
+                            Text="{StaticResource VideoCall}" />
+
+                        <!--  Voice call button  -->
+                        <buttons:SfButton
+                            Command="{Binding MakeVoiceCall}"
+                            Style="{StaticResource NavigationBarButtonStyle}"
+                            Text="{StaticResource VoiceCall}" />
+
+                        <!--  Menu Button  -->
+                        <buttons:SfButton
+                            Command="{Binding MenuCommand}"
+                            Style="{StaticResource NavigationBarButtonStyle}"
+                            Text="{StaticResource Menu}" />
+
+                    </StackLayout>
+                </DataTemplate>
+            </listView:SfListView.HeaderTemplate>
+
+            <!--  New text entry in the chat conversation  -->
+            <listView:SfListView.FooterTemplate>
+                <DataTemplate>
+                    <Grid Padding="16,5,16,24" ColumnSpacing="16">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <!--  Rounded Border  -->
+                        <border:SfBorder Padding="5,0" Style="{DynamicResource SfBorderStyle}">
+
+                            <Grid ColumnSpacing="0">
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+
+                                <!--  Extendable editor  -->
+                                <controls:BorderlessEditor
+                                    Placeholder="Type here"
+                                    Style="{StaticResource ChatMessageEditorStyle}"
+                                    Text="{Binding NewMessage}" />
+
+                                <!--  Camera Button  -->
+                                <buttons:SfButton
+                                    Grid.Column="1"
+                                    Command="{Binding ShowCamera}"
+                                    Style="{StaticResource NavigationBarButtonStyle}"
+                                    Text="{StaticResource Camera}"
+                                    VerticalOptions="End" />
+
+                                <!--  Attachment Button  -->
+                                <buttons:SfButton
+                                    Grid.Column="2"
+                                    Command="{Binding SendAttachment}"
+                                    Style="{StaticResource NavigationBarButtonStyle}"
+                                    Text="{StaticResource Attachment}"
+                                    VerticalOptions="End" />
+
+                            </Grid>
+                        </border:SfBorder>
+
+                        <!--  Send Button  -->
+                        <buttons:SfButton
+                            Grid.Column="1"
+                            BackgroundColor="{DynamicResource PrimaryColor}"
+                            Command="{Binding SendCommand}"
+                            CornerRadius="20"
+                            HeightRequest="40"
+                            HorizontalOptions="End"
+                            Style="{StaticResource NavigationBarButtonStyle}"
+                            VerticalOptions="End"
+                            WidthRequest="40">
+                            <buttons:SfButton.Content>
+                                <Label
+                                    Margin="0,2,2,0"
+                                    FontFamily="{StaticResource FontIcons}"
+                                    FontSize="18"
+                                    HorizontalOptions="Center"
+                                    Text="{StaticResource Send}"
+                                    TextColor="{DynamicResource Gray-White}"
+                                    VerticalOptions="Center"
+                                    VerticalTextAlignment="Center" />
+                            </buttons:SfButton.Content>
+                        </buttons:SfButton>
+
+                    </Grid>
+                </DataTemplate>
+            </listView:SfListView.FooterTemplate>
+        </listView:SfListView>
+
+    </ContentPage.Content>
+</ContentPage>

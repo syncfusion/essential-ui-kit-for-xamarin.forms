@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Samples>
+
+  <Category Icon="log-in.png" Name="Login" Description="Prompt users for their credentials so they can log in to an app.">
+    <Page Name="Simple Login Page" Description="Sign in to browse products and make purchases from this app." PageName="Views.Login.SimpleLoginPage"/>
+    <Page Name="Simple Sign Up Page" Description="Don’t have an account? That’s fine! Creating one is easy." PageName="Views.Login.SimpleSignUpPage"/>
+    <Page Name="Simple Reset Password Page" Description="Change is good. Make your account more secure by periodically resetting your password." PageName="Views.Login.SimpleResetPasswordPage"/>
+    <Page Name="Simple Forgot Password Page" Description="Can’t remember your unforgettable password? No problem! We’ll help you recall." PageName="Views.Login.SimpleForgotPasswordPage"/>
+    <Page Name="Login Page With Gradient" Description="Sign in to browse products and make purchases from this app." PageName="Views.Login.LoginPage"/>
+    <Page Name="Sign Up Page With Gradient" Description="Don’t have an account? That’s fine! Creating one is easy." PageName="Views.Login.SignUpPage"/>
+    <Page Name="Reset Password Page With Gradient" Description="Change is good. Make your account more secure by periodically resetting your password." PageName="Views.Login.ResetPasswordPage"/>
+    <Page Name="Forgot Password Page With Gradient" Description="Can’t remember your unforgettable password? No problem! We’ll help you recall." PageName="Views.Login.ForgotPasswordPage"/>    
+  </Category>
+
+  <Category Icon="ecommerce.png" Name="E-Commerce" Description="Let users browse products and item details, and add them to a wish list or shopping cart.">
+    <Page Name="Category Tile Page" Description="View all product categories as tiles on a page" PageName="Views.ECommerce.CategoryTilePage"/>
+    <Page Name="Catalog Tile Page" Description="View all product catalog as tiles on a page" PageName="Views.ECommerce.CatalogTilePage"/>
+    <Page Name="Catalog List Page" Description="View all product catalog as a list" PageName="Views.ECommerce.CatalogListPage"/>
+    <Page Name="Detail Page" Description="View detailed information regarding your orders" PageName="Views.ECommerce.DetailPage"/>
+    <Page Name="Cart Page" Description="View items in your cart for purchase" PageName="Views.ECommerce.CartPage"/>
+    <Page Name="Checkout Page" Description="Purchase items in your cart" PageName="Views.ECommerce.CheckoutPage"/>
+    <Page Name="Delivery Page" Description="View delivery information like address and price details" PageName="Views.ECommerce.DeliveryPage" Platform="UWP"/>
+    <Page Name="Payment Page" Description="View card and payment details" PageName="Views.ECommerce.PaymentPage" Platform="UWP"/>
+  </Category>
+
+  <Category Icon="chat.png" Name="Chat" Description="Exchange messages with users or customers inside your app and manage multiple conversations at once.">
+    <Page Name="Recent Chat Page" Description="View your recent conversations" PageName="Views.Chat.RecentChatPage" />
+    <Page Name="Chat Conversation Page" Description="See your latest interactions" PageName="Views.Chat.ChatMessagePage" />
+    <Page Name="Contacts Page" Description="Browse your contacts" PageName="Views.Chat.ContactProfilePage" />
+    <Page Name="Profile Page" Description="View and edit your profile" PageName="Views.Chat.ProfilePage" />
+  </Category>
+
+  <Category Icon="feedback.png" Name="Feedback" Description="Let your users provide ratings and text feedback.">
+    <Page Name="Feedback Page" Description="Leave a product rating" PageName="Views.Feedback.FeedbackPage"/>
+    <Page Name="Review Page" Description="Read customer reviews" PageName="Views.Feedback.ReviewPage"/>
+    <Page Name="Detail Page" Description="View aggregated review details" PageName="Views.Feedback.FeedbackDetailPage"/>
+  </Category>
+
+  <Category Icon="contact-us.png" Name="Contact Us" Description="Capture user contact information so you can get in touch with them later.">
+    <Page Name="Contact Us Page" Description="List contact information like email addresses, phone numbers, and more" PageName="Views.ContactUs.ContactUsPage"/>
+  </Category>
+
+  <Category Icon="about-us.png" Name="About Us" Description="Create a simple About Us page that tells users who you are.">
+    <Page Name="Simple About Us Page" Description="Single page of company information" PageName="Views.AboutUs.AboutUsSimplePage" />
+    <Page Name="About Us Page with Cards" Description="Company information divided across cards" PageName="Views.AboutUs.AboutUsWithCardsPage" />
+    <Page Name="About Us Page with Parallax Scrolling" Description="Company information that scrolls at a different speed than background content" PageName="Views.AboutUs.AboutUsWithParallaxScrollPage" />
+  </Category>
+
+  <Category Icon="article.png" Name="Article" Description="Organize blog posts in an easy-to-navigate layout.">
+    <Page Name="Article List Page" Description="View all articles in an easy-to-read list" PageName="Views.Article.ArticleListPage"/>
+    <Page Name="Article Tile Page" Description="View all articles in a tile layout" PageName="Views.Article.ArticleTilePage"/>
+    <Page Name="Bookmarks Page" Description="View articles you’ve bookmarked" PageName="Views.Article.BookmarksPage"/>
+    <Page Name="Profile Page" Description="View author profile pages" PageName="Views.Article.ProfilePage"/>
+    <Page Name="Master Page" Description="Explore article reading options in an interactive burger menu" PageName="Views.Article.MasterPage"/>    
+  </Category>
+  
+  <Category Icon="navigation.png" Name="Navigation" Description="Enable your users to navigate between pages or items at a high level.">
+    <Page Name="Album Page" Description="Presents items and descriptions in a photo album layout." PageName="Views.Navigation.AlbumPage"/>
+    <Page Name="Navigation List Card Page" Description="Presents item cards in a list." PageName="Views.Navigation.NavigationListCardPage"/>
+    <Page Name="Navigation Tile Card Page" Description="Presents item cards in a tile layout." PageName="Views.Navigation.NavigationTileCardPage"/>
+  </Category>
+
+  <Category Icon="on-boarding.png" Name="Onboarding" Description="Get your users started with a new app or experience with step-by--step instructions.">
+    <Page Name="Walkthrough Page" Description="Guide users through a setup process on color gradient pages" PageName="Views.OnBoarding.OnBoardingGradientPage"/>    
+  </Category>
+
+  <Category Icon="error-empty.png" Name="Error and Empty" Description="Alert users to errors, empty shopping carts, task lists, item selections, and more.">
+    <Page Name="Empty Cart Page" Description="Page presented to users with empty shopping carts." PageName="Views.ErrorAndEmpty.EmptyCartPage"/>
+    <Page Name="Location Denied Page" Description="Page presented to users who cannot access a location." PageName="Views.ErrorAndEmpty.LocationDeniedPage"/>
+    <Page Name="No Credits Page" Description="Page presented to users who have no credits." PageName="Views.ErrorAndEmpty.NoCreditsPage"/>    
+    <Page Name="No Internet Connection Page" Description="Page presented to users who do not have an internet connection." PageName="Views.ErrorAndEmpty.NoInternetConnectionPage"/>
+    <Page Name="No Item Page" Description="Page presented to users who haven’t selected any items." PageName="Views.ErrorAndEmpty.NoItemPage"/>
+    <Page Name="No Photos Page" Description="Page presented to users who haven’t selected any photos." PageName="Views.ErrorAndEmpty.NoPhotosPage"/>
+    <Page Name="No Tasks Page" Description="Page presented to users who don’t have any tasks." PageName="Views.ErrorAndEmpty.NoTasksPage"/>
+    <Page Name="Not Enough Credits Page" Description="Page presented to users who don’t have enough credits." PageName="Views.ErrorAndEmpty.NotEnoughCreditPage"/>
+    <Page Name="No Videos Page" Description="Page presented to users haven’t selected any videos." PageName="Views.ErrorAndEmpty.NoVideosPage"/>
+    <Page Name="Payment Failed Page" Description="Page presented to users when their payment fails." PageName="Views.ErrorAndEmpty.PaymentFailedPage"/>
+    <Page Name="Something Went Wrong Page" Description="Page presented to users when an error occurs." PageName="Views.ErrorAndEmpty.SomethingWentWrongPage"/>
+  </Category>
+
+</Samples>

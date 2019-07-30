@@ -1,0 +1,231 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="EssentialUIKit.Views.ContactUs.ContactUsPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:converter="clr-namespace:EssentialUIKit.Converters"
+    xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
+    xmlns:customControls="clr-namespace:EssentialUIKit.Controls"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:maps="clr-namespace:Syncfusion.SfMaps.XForms;assembly=Syncfusion.SfMaps.XForms"
+    xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.ContactUs"
+    BackgroundColor="{DynamicResource Gray-White}"
+    NavigationPage.HasNavigationBar="False"
+    Shell.NavBarIsVisible="False">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <converter:BooleanToColorConverter x:Key="BooleanToColorConverter" />
+            <converter:StringToBooleanConverter x:Key="StringToBooleanConverter" />
+
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <!--  Binding context for contact us page  -->
+    <ContentPage.BindingContext>
+        <viewModel:ContactUsViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <ScrollView>
+
+            <StackLayout x:Name="MainStack" Spacing="0">
+
+                <!--  Map for locating the location  -->
+                <maps:SfMaps
+                    x:Name="Map"
+                    BackgroundColor="{DynamicResource Gray-White}"
+                    HeightRequest="315"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand"
+                    ZoomLevel="15">
+
+                    <maps:SfMaps.Layers>
+                        <maps:ImageryLayer
+                            GeoCoordinates="{Binding GeoCoordinate}"
+                            Markers="{Binding CustomMarkers}"
+                            ResetOnDoubleTap="False">
+
+                            <!--  Template for customizing the address popup  -->
+                            <maps:ImageryLayer.MarkerTemplate>
+                                <DataTemplate>
+                                    <StackLayout>
+
+                                        <Frame
+                                            Margin="0"
+                                            Padding="16,0,9,0"
+                                            BackgroundColor="{DynamicResource Gray-White}"
+                                            BorderColor="{DynamicResource Gray-White}"
+                                            CornerRadius="5"
+                                            HasShadow="True"
+                                            HorizontalOptions="Center"
+                                            VerticalOptions="Start">
+
+                                            <StackLayout
+                                                HorizontalOptions="Center"
+                                                Spacing="0"
+                                                VerticalOptions="Start">
+
+
+                                                <!--  Pin location header  -->
+                                                <Label
+                                                    Margin="0,16,0,4"
+                                                    FontFamily="{StaticResource Montserrat-SemiBold}"
+                                                    FontSize="16"
+                                                    LineHeight="{OnPlatform Android=1.5,
+                                                                            Default=-1}"
+                                                    Text="{Binding Header}"
+                                                    TextColor="{DynamicResource Gray-56}" />
+
+                                                <!--  Pin location address  -->
+                                                <Label
+                                                    FontSize="12"
+                                                    Style="{StaticResource labelStyle}"
+                                                    Text="{Binding Address}" />
+
+                                                <!--  Pin location email id  -->
+                                                <Label
+                                                    FontSize="12"
+                                                    Style="{StaticResource labelStyle}"
+                                                    Text="{Binding EmailId}" />
+
+                                                <!--  Pin location phone number  -->
+                                                <Label
+                                                    Margin="0,0,0,16"
+                                                    FontSize="12"
+                                                    Style="{StaticResource labelStyle}"
+                                                    Text="{Binding PhoneNumber}" />
+                                            </StackLayout>
+                                        </Frame>
+
+                                        <!--  Set pin image  -->
+                                        <ffimageloading:CachedImage
+                                            Margin="10,5,0,0"
+                                            HeightRequest="25"
+                                            HorizontalOptions="StartAndExpand"
+                                            Source="{Binding PinImage}"
+                                            WidthRequest="25" />
+
+                                    </StackLayout>
+                                </DataTemplate>
+                            </maps:ImageryLayer.MarkerTemplate>
+                        </maps:ImageryLayer>
+                    </maps:SfMaps.Layers>
+                </maps:SfMaps>
+
+                <!--  For getting the contact information  -->
+                <Frame
+                    x:Name="MainFrame"
+                    Padding="0"
+                    BackgroundColor="{DynamicResource Gray-White}"
+                    BorderColor="{DynamicResource Gray-White}"
+                    HorizontalOptions="FillAndExpand">
+
+                    <StackLayout
+                        x:Name="MainFrameStack"
+                        Padding="15"
+                        HorizontalOptions="FillAndExpand"
+                        Spacing="16">
+
+                        <!--  Label to display title  -->
+                        <Label
+                            Margin="{core:OnPlatformOrientationThickness Phone='0,16,0,16',
+                                                                         TabletPortrait='0,32,0,16',
+                                                                         TabletLandscape='0,32,0,16',
+                                                                         Desktop='0,48,0,16'}"
+                            FontFamily="{StaticResource Montserrat-SemiBold}"
+                            FontSize="20"
+                            HorizontalOptions="FillAndExpand"
+                            HorizontalTextAlignment="Center"
+                            LineHeight="{OnPlatform Android=1.25,
+                                                    Default=-1}"
+                            Text="Get in Touch"
+                            TextColor="{DynamicResource Gray-56}"
+                            VerticalTextAlignment="Center" />
+
+                        <border:SfBorder Style="{StaticResource SfBorderStyle}">
+                            <!--  Entry to get name from user  -->
+                            <customControls:BorderlessEntry
+                                HeightRequest="40"
+                                Placeholder="Name"
+                                Style="{StaticResource BorderlessEntryStyle}"
+                                VerticalOptions="Center" />
+                        </border:SfBorder>
+
+                        <border:SfBorder
+                            x:Name="EmailBorder"
+                            BorderColor="{Binding Path=IsVisible, Source={x:Reference WarningImage}, Converter={x:StaticResource BooleanToColorConverter}, ConverterParameter=2}"
+                            Style="{x:StaticResource SfBorderStyle}">
+                            <StackLayout Orientation="Horizontal" Spacing="0">
+
+                                <!--  Entry to get email id from user  -->
+                                <customControls:BorderlessEntry
+                                    x:Name="EmailEntry"
+                                    HeightRequest="40"
+                                    HorizontalOptions="FillAndExpand"
+                                    Placeholder="Email"
+                                    Style="{StaticResource BorderlessEntryStyle}"
+                                    VerticalOptions="CenterAndExpand" />
+
+                                <Label
+                                    x:Name="WarningImage"
+                                    Margin="0,0,5,0"
+                                    FontFamily="{StaticResource FontIcons}"
+                                    FontSize="{OnIdiom Desktop=14,
+                                                       Tablet=14,
+                                                       Phone=12}"
+                                    HorizontalOptions="End"
+                                    IsVisible="{Binding Path=IsVisible, Source={x:Reference ValidationLabel}}"
+                                    Text="&#xe707;"
+                                    TextColor="{DynamicResource Red}"
+                                    VerticalOptions="CenterAndExpand" />
+                            </StackLayout>
+                        </border:SfBorder>
+
+                        <Label
+                            x:Name="ValidationLabel"
+                            Margin="0,-10,0,0"
+                            FontSize="12"
+                            HorizontalOptions="FillAndExpand"
+                            IsVisible="{Binding Path=IsFocused, Source={x:Reference EmailEntry}, Converter={StaticResource StringToBooleanConverter}, ConverterParameter={x:Reference EmailEntry}}"
+                            Text="Please enter the valid e-mail"
+                            TextColor="{DynamicResource Red}" />
+
+                        <border:SfBorder HeightRequest="120" Style="{StaticResource SfBorderStyle}">
+                            <!--  Editor to get message from user  -->
+                            <customControls:BorderlessEditor
+                                HeightRequest="120"
+                                Placeholder="Message"
+                                PlaceholderColor="{DynamicResource Gray-94}"
+                                TextColor="{DynamicResource Gray-56}">
+                                <customControls:BorderlessEditor.Margin>
+                                    <OnPlatform
+                                        x:TypeArguments="Thickness"
+                                        Android="0,0,5,0"
+                                        Default="0,0,5,0"
+                                        iOS="-5,0,5,0" />
+                                </customControls:BorderlessEditor.Margin>
+                            </customControls:BorderlessEditor>
+
+                        </border:SfBorder>
+
+                        <!--  Send Button  -->
+                        <buttons:SfButton
+                            Command="{Binding SendCommand}"
+                            Style="{StaticResource SfGradientButtonStyle}"
+                            Text="SEND" />
+
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+
+</ContentPage>

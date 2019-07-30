@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="EssentialUIKit.Views.Navigation.NavigationTileCardPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:EssentialUIKit.Controls"
+    xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+    xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Navigation"
+    BackgroundColor="{DynamicResource Gray-White}"
+    NavigationPage.HasNavigationBar="False"
+    Shell.NavBarIsVisible="False">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.BindingContext>
+        <viewModel:NavigationTileViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!--  Title View  -->
+            <controls:TitleView Title="Home" Grid.Row="0" />
+
+            <listView:SfListView
+                Grid.Row="1"
+                Padding="{core:OnPlatformOrientationThickness Default='16,0,11,0',
+                                                              TabletPortrait='24,16,20,0',
+                                                              TabletLandscape='24,16,20,0',
+                                                              Desktop='24,24,20,0'}"
+                AutoFitMode="Height"
+                IsScrollBarVisible="false"
+                ItemSpacing="{core:OnPlatformOrientationThickness PhonePortrait='0,11,0,0',
+                                                                  PhoneLandscape='0,11,0,0',
+                                                                  Default='0,0,27,27'}"
+                ItemsSource="{Binding NavigationList}"
+                SelectionBackgroundColor="Transparent"
+                TapCommand="{Binding ItemSelectedCommand}">
+                <listView:SfListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <!--  View of each tile item  -->
+                            <controls:CustomShadowFrame
+                                Margin="0,2,5,5"
+                                Padding="0"
+                                BackgroundColor="{DynamicResource Gray-White}"
+                                BorderColor="{DynamicResource Gray-White}"
+                                BorderWidth="1"
+                                CornerRadius="4"
+                                HasShadow="True"
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="FillAndExpand">
+                                <Grid
+                                    BackgroundColor="{DynamicResource PlaceholderColor}"
+                                    ColumnSpacing="0"
+                                    RowSpacing="0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="150" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+
+                                    <!--  Image of an item  -->
+                                    <ffimageloading:CachedImage
+                                        Aspect="Fill"
+                                        BackgroundColor="{DynamicResource Gray-F0}"
+                                        HeightRequest="254"
+                                        LoadingDelay="50"
+                                        Source="{Binding ItemImage}" />
+                                    <StackLayout
+                                        Grid.Row="1"
+                                        Padding="16"
+                                        HorizontalOptions="FillAndExpand"
+                                        Spacing="0"
+                                        VerticalOptions="FillAndExpand">
+
+                                        <!--  Name of an item  -->
+                                        <Label
+                                            FontFamily="{StaticResource Montserrat-SemiBold}"
+                                            FontSize="16"
+                                            LineHeight="{OnPlatform Android=1.5,
+                                                                    Default=-1}"
+                                            Text="{Binding ItemName}"
+                                            TextColor="{DynamicResource Gray-56}" />
+
+                                        <!--  Description about an item  -->
+                                        <Label
+                                            Margin="0,4,0,8"
+                                            FontFamily="{StaticResource Montserrat-Medium}"
+                                            FontSize="12"
+                                            LineHeight="{OnPlatform Android=1.25,
+                                                                    Default=-1}"
+                                            Text="{Binding ItemDescription}"
+                                            TextColor="{DynamicResource Gray-94}" />
+                                        <StackLayout
+                                            HorizontalOptions="FillAndExpand"
+                                            Orientation="Horizontal"
+                                            Spacing="0"
+                                            VerticalOptions="FillAndExpand">
+
+                                            <!--  Average rating from the overall rating  -->
+                                            <Label
+                                                Margin="0,0,4,0"
+                                                HeightRequest="16"
+                                                Style="{StaticResource RatingLabelStyle}"
+                                                WidthRequest="16" />
+                                            <Label
+                                                FontFamily="{StaticResource Montserrat-Regular}"
+                                                FontSize="12"
+                                                LineHeight="{OnPlatform Android=1.5,
+                                                                        Default=-1}"
+                                                Text="{Binding ItemRating}"
+                                                TextColor="{DynamicResource Gray-94}"
+                                                VerticalOptions="Center">
+                                                <Label.Margin>
+                                                    <OnPlatform
+                                                        x:Type="Thickness"
+                                                        Default="0,4,0,0"
+                                                        UWP="0,6,0,0" />
+                                                </Label.Margin>
+
+                                            </Label>
+
+                                            <!--  Navigation icon  -->
+                                            <Label
+                                                HeightRequest="14"
+                                                HorizontalOptions="EndAndExpand"
+                                                Style="{StaticResource RightArrowLabelStyle}" />
+                                        </StackLayout>
+                                    </StackLayout>
+                                </Grid>
+                            </controls:CustomShadowFrame>
+                        </ViewCell>
+                    </DataTemplate>
+                </listView:SfListView.ItemTemplate>
+
+                <!--  Span count to specify in the different layouts  -->
+                <listView:SfListView.LayoutManager>
+                    <listView:GridLayout SpanCount="{OnIdiom Phone=1, Tablet=2, Desktop=3}" />
+                </listView:SfListView.LayoutManager>
+            </listView:SfListView>
+        </Grid>
+
+    </ContentPage.Content>
+</ContentPage>
