@@ -34,8 +34,6 @@ Refer to the [Xamarin system requirements](https://docs.microsoft.com/en-us/xama
 ## The Visual Studio Extension
 The Visual Studio extension allows you to add the required templates quickly through a few clicks. The extension Setup is available in the Visual Studio marketplace with detailed information of how to add the templates.
 
-*VS Item template link*
-
 ## Coding Style
 We follow the style used by the .NET Foundation, with a few exceptions:
 * We use tabs instead of spaces.
@@ -43,7 +41,7 @@ We follow the style used by the .NET Foundation, with a few exceptions:
 
 ## Recent Blogs / News
 * https://blog.syncfusion.com/post/introducing-ui-templates-for-xamarin-forms.aspx
-
+* https://blog.syncfusion.com/post/sneak-peek-new-essential-ui-kit-for-xamarin-forms.aspx
 
 ## Screenshots
 <p align="center">
@@ -95,9 +93,9 @@ This project uses Syncfusion controls and FFImageLoading (by Daniel Luberda) lib
 
 The demo images and illustrations exhibited in this app are obtained from the following website.
 
-https://www.pexels.com/
-https://unsplash.com/
-https://undraw.co/illustrations
+* https://www.pexels.com/
+* https://unsplash.com/
+* https://undraw.co/illustrations
 
 **Note:**  This license by no means modifies the license under which 3rd party intellectual property is provided and that such intellectual property is deemed directly licensed from the 3rd party by the user. You are solely responsible for obtaining all 3rd party licenses directly from the provider. These licenses to any third party intellectual property must be independently obtained by Customer from the provider.
 
