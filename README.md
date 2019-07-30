@@ -36,6 +36,8 @@ Refer to the [Xamarin system requirements](https://docs.microsoft.com/en-us/xama
 ## The Visual Studio Extension
 The Visual Studio extension allows you to add the required templates quickly through a few clicks. The extension Setup is available in the Visual Studio marketplace with detailed information of how to add the templates.
 
+https://marketplace.visualstudio.com/items?itemName=SyncfusionInc.Essential-UI-Kit-Xamarin-Forms
+
 ## Coding Style
 We follow the style used by the .NET Foundation, with a few exceptions:
 * We use tabs instead of spaces.
