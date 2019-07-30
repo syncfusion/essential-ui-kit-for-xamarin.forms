@@ -94,7 +94,7 @@ If you would like to request a new screen or report a bug in existing screens, c
 ## License
 These are samples/templates. The samples/templates may have various licenses but Syncfusion licenses this as [MIT](LICENSE). You may need to obtain additional licenses to use the samples/templates from third parties.
 
-This project uses Syncfusion controls and FFImageLoading (by Daniel Luberda) libraries.
+This project uses [Syncfusion controls](https://www.syncfusion.com/xamarin-ui-controls) and [FFImageLoading](https://github.com/daniel-luberda/FFImageLoading) (by Daniel Luberda) libraries.
 
 The demo images and illustrations exhibited in this app are obtained from the following website.
 
