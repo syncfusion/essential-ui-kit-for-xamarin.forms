@@ -1,5 +1,7 @@
 # Essential UI Kit for Xamarin.Forms
 This repository contains elegantly designed XAML templates for Xamarin.Forms apps. These templates are compatible with Android, iOS, and UWP platforms, and use the MVVM design pattern to provide trouble-free integration.
+<p align="center"> <b> Install the app to preview the templates instantly </b> </p>
+<p align="center"> <a href='https://play.google.com/store/apps/details?id=com.syncfusion.xamarin.uikit&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' width="150" height="55"/></a> </p>
 
 <p align="center">
     <img src="Images/xamarin-forms-ui-template.png" alt="Image"/>
@@ -82,6 +84,9 @@ We follow the style used by the .NET Foundation, with a few exceptions:
 <p align="center">
     <img src="Images/xamarin-forms-ui-template-about-page.jpg" alt="Image"/>
 </p>
+
+<p align="center"> <b> Install the app to preview the templates instantly </b> </p>
+<p align="center"> <a href='https://play.google.com/store/apps/details?id=com.syncfusion.xamarin.uikit&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' width="150" height="55"/></a> </p>
 
 ## Requesting Screens & Reporting Bugs
 If you would like to request a new screen or report a bug in existing screens, create a feature request or submit a bug through our [feedback portal](https://www.syncfusion.com/feedback/xamarin-forms).
