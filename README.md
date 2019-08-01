@@ -10,8 +10,8 @@ This repository contains elegantly designed XAML templates for Xamarin.Forms app
 ## Build Status
 |CI Tool                    |Build Status|
 |---------------------------|---|
-| App Center, iOS | [![Build status](https://build.appcenter.ms/v0.1/apps/ca1f283a-7255-45e4-8cf1-d2ce46cb4a0a/branches/master/badge)](https://appcenter.ms)|
-| App Center, Android | [![Build status](https://build.appcenter.ms/v0.1/apps/4e5e10f9-04aa-48ca-ba31-0a58da0c4c4d/branches/master/badge)](https://appcenter.ms) |
+| App Center, iOS | [![Build status](https://build.appcenter.ms/v0.1/apps/151354d9-ac30-41aa-9426-02df4423fded/branches/master/badge)](https://appcenter.ms)| 
+| App Center, Android | [![Build status](https://build.appcenter.ms/v0.1/apps/b94b713d-c55b-4fd3-9c36-67c5d638a47d/branches/master/badge)](https://appcenter.ms) |
 
 ## Key Features
 * Rich, elegant XAML layouts for most common scenarios.
