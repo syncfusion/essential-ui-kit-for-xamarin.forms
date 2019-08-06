@@ -17,6 +17,9 @@ This repository contains elegantly designed XAML templates for Xamarin.Forms app
 * [Coding Style](#coding-style)
 * [Recent Blogs](#recent-blogs--news)
 * [Screenshots](#screenshots)
+* [Requesting Screens & Reporting Bugs](#requesting-screens--reporting-bugs)
+* [License](#license)
+* [About Syncfusion](#about-syncfusion)
 
 ## Build Status
 |CI Tool                    |Build Status|
