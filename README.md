@@ -7,6 +7,17 @@ This repository contains elegantly designed XAML templates for Xamarin.Forms app
     <img src="Images/xamarin-forms-ui-template.png" alt="Image"/>
 </p>
 
+## Table of Contents
+
+* [Build Status](#buildstatus)
+* [Key Features](#keyfeatures)
+* [Supported Platforms](#supportedplatforms)
+* [System Requirements](#systemrequirements)
+* [The Visual Studio Extension](#thevisualstudioextension)
+* [Coding Style](#codingstyle)
+* [Recent Blogs](#recentblogs)
+* [Screenshots](#screenshots)
+
 ## Build Status
 |CI Tool                    |Build Status|
 |---------------------------|---|
