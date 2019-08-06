@@ -9,13 +9,13 @@ This repository contains elegantly designed XAML templates for Xamarin.Forms app
 
 ## Table of Contents
 
-* [Build Status](#buildstatus)
-* [Key Features](#keyfeatures)
-* [Supported Platforms](#supportedplatforms)
-* [System Requirements](#systemrequirements)
-* [The Visual Studio Extension](#thevisualstudioextension)
-* [Coding Style](#codingstyle)
-* [Recent Blogs](#recentblogs)
+* [Build Status](#build-status)
+* [Key Features](#key-features)
+* [Supported Platforms](#supported-platforms)
+* [System Requirements](#system-requirements)
+* [The Visual Studio Extension](#the-visual-studio-extension)
+* [Coding Style](#coding-style)
+* [Recent Blogs](#recent-blogs--news)
 * [Screenshots](#screenshots)
 
 ## Build Status
