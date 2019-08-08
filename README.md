@@ -59,8 +59,8 @@ We follow the style used by the .NET Foundation, with a few exceptions:
 
 ## Recent Blogs / News
 * https://www.syncfusion.com/blogs/post/the-essential-ui-kit-for-xamarin-forms-is-ready-to-use.aspx
-* https://blog.syncfusion.com/post/sneak-peek-new-essential-ui-kit-for-xamarin-forms.aspx
-* https://blog.syncfusion.com/post/introducing-ui-templates-for-xamarin-forms.aspx
+* https://www.syncfusion.com/blogs/post/sneak-peek-new-essential-ui-kit-for-xamarin-forms.aspx
+* https://www.syncfusion.com/blogs/post/introducing-ui-templates-for-xamarin-forms.aspx
 
 ## Screenshots
 <p align="center">
