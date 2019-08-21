@@ -32,25 +32,8 @@ namespace EssentialUIKit.ViewModels.ContactUs
         public ContactUsViewModel()
         {
             this.SendCommand = new Command(this.Send);
-            this.CustomMarkers = new ObservableCollection<MapMarker>
-            {
-                new LocationMarker
-                {
-                    PinImage = "Pin.png",
-                    Header = "Sipes Inc",
-                    Address = "7654 Cleveland street, Phoenixville, PA 19460",
-                    EmailId = "dopuyi@hostguru.info",
-                    PhoneNumber = "+1-202-555-0101",
-                    CloseImage = "Close.png",
-                    Latitude = "40.133808",
-                    Longitude = "-75.516279"
-                }
-            };
-
-            foreach (var marker in this.CustomMarkers)
-            {
-                this.GeoCoordinate = new Point(Convert.ToDouble(marker.Latitude), Convert.ToDouble(marker.Longitude));
-            }            
+            this.CustomMarkers = new ObservableCollection<MapMarker>();
+            GetPinLocation();
         }
 
         #endregion   
@@ -129,6 +112,30 @@ namespace EssentialUIKit.ViewModels.ContactUs
         private void Send(object obj)
         {
             // Do something
+        }
+
+        /// <summary>
+        /// This method is for getting the pin location detail.
+        /// </summary>
+        public void GetPinLocation()
+        {
+            this.CustomMarkers.Add(
+                new LocationMarker
+                {
+                    PinImage = "Pin.png",
+                    Header = "Sipes Inc",
+                    Address = "7654 Cleveland street, Phoenixville, PA 19460",
+                    EmailId = "dopuyi@hostguru.info",
+                    PhoneNumber = "+1-202-555-0101",
+                    CloseImage = "Close.png",
+                    Latitude = "40.133808",
+                    Longitude = "-75.516279"
+                });
+
+            foreach (var marker in this.CustomMarkers)
+            {
+                this.GeoCoordinate = new Point(Convert.ToDouble(marker.Latitude), Convert.ToDouble(marker.Longitude));
+            }
         }
 
         #endregion

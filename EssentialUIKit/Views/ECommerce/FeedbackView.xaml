@@ -134,6 +134,7 @@
                                     <ffimageloading:CachedImage
                                         Margin="0,8,0,0"
                                         Aspect="AspectFill"
+                                        DownsampleToViewSize="True"
                                         BackgroundColor="{DynamicResource Gray-F0}"
                                         DownsampleUseDipUnits="True"
                                         FadeAnimationEnabled="true"
