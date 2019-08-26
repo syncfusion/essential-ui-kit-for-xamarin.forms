@@ -16,7 +16,7 @@
     <Page Name="Category Tile Page" Description="View all product categories as tiles on a page" PageName="Views.ECommerce.CategoryTilePage"/>
     <Page Name="Catalog Tile Page" Description="View all product catalog as tiles on a page" PageName="Views.ECommerce.CatalogTilePage"/>
     <Page Name="Catalog List Page" Description="View all product catalog as a list" PageName="Views.ECommerce.CatalogListPage"/>
-    <Page Name="Detail Page" Description="View detailed information regarding your orders" PageName="Views.ECommerce.DetailPage"/>
+    <Page Name="Product Detail Page" Description="View detailed information regarding your orders" PageName="Views.ECommerce.DetailPage"/>
     <Page Name="Cart Page" Description="View items in your cart for purchase" PageName="Views.ECommerce.CartPage"/>
     <Page Name="Checkout Page" Description="Purchase items in your cart" PageName="Views.ECommerce.CheckoutPage"/>
     <Page Name="Delivery Page" Description="View delivery information like address and price details" PageName="Views.ECommerce.DeliveryPage" Platform="UWP"/>
@@ -27,13 +27,13 @@
     <Page Name="Recent Chat Page" Description="View your recent conversations" PageName="Views.Chat.RecentChatPage" />
     <Page Name="Chat Conversation Page" Description="See your latest interactions" PageName="Views.Chat.ChatMessagePage" />
     <Page Name="Contacts Page" Description="Browse your contacts" PageName="Views.Chat.ContactProfilePage" />
-    <Page Name="Profile Page" Description="View and edit your profile" PageName="Views.Chat.ProfilePage" />
+    <Page Name="Chat Profile Page" Description="View and edit your profile" PageName="Views.Chat.ProfilePage" />
   </Category>
 
   <Category Icon="feedback.png" Name="Feedback" Description="Let your users provide ratings and text feedback.">
     <Page Name="Feedback Page" Description="Leave a product rating" PageName="Views.Feedback.FeedbackPage"/>
     <Page Name="Review Page" Description="Read customer reviews" PageName="Views.Feedback.ReviewPage"/>
-    <Page Name="Detail Page" Description="View aggregated review details" PageName="Views.Feedback.FeedbackDetailPage"/>
+    <Page Name="Feedback Detail Page" Description="View aggregated review details" PageName="Views.Feedback.FeedbackDetailPage"/>
   </Category>
 
   <Category Icon="contact-us.png" Name="Contact Us" Description="Capture user contact information so you can get in touch with them later.">
@@ -50,7 +50,7 @@
     <Page Name="Article List Page" Description="View all articles in an easy-to-read list" PageName="Views.Article.ArticleListPage"/>
     <Page Name="Article Tile Page" Description="View all articles in a tile layout" PageName="Views.Article.ArticleTilePage"/>
     <Page Name="Bookmarks Page" Description="View articles you’ve bookmarked" PageName="Views.Article.BookmarksPage"/>
-    <Page Name="Profile Page" Description="View author profile pages" PageName="Views.Article.ProfilePage"/>
+    <Page Name="Author Profile Page" Description="View author profile pages" PageName="Views.Article.ProfilePage"/>
     <Page Name="Master Page" Description="Explore article reading options in an interactive burger menu" PageName="Views.Article.MasterPage"/>    
   </Category>
   
