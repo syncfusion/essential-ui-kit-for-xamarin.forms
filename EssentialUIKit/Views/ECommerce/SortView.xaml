@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="EssentialUIKit.Views.ECommerce.SortView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms">
+
+    <ContentView.Resources>
+
+        <ResourceDictionary>
+
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <buttons:SfRadioGroupKey x:Key="SortOptionGroup" />
+
+        </ResourceDictionary>
+
+        <Style TargetType="BoxView">
+            <Setter Property="HeightRequest" Value="1" />
+            <Setter Property="Style" Value="{StaticResource BoxViewStyle}" />
+        </Style>
+
+    </ContentView.Resources>
+
+    <StackLayout Padding="{OnIdiom Phone=0, Tablet='0,16,0,0'}" Spacing="{OnIdiom Default=6, Phone=0}">
+        <!--  Header  -->
+        <Label
+            FontSize="18"
+            IsVisible="{OnIdiom Phone=false,
+                                Tablet=true}"
+            Style="{StaticResource LabelStyle}"
+            Text="Sort By" />
+        <BoxView IsVisible="{OnIdiom Phone=false, Tablet=true}" />
+
+        <!--  Sort Options  -->
+        <buttons:SfRadioGroup BindableLayout.ItemsSource="{Binding SortOptions}">
+            <BindableLayout.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Padding="{OnIdiom Default=0, Phone='0,6,0,0'}">
+                        <buttons:SfRadioButton
+                            FontFamily="{StaticResource Montserrat-SemiBold}"
+                            GroupKey="{StaticResource SortOptionGroup}"
+                            Style="{StaticResource SfRadioButtonStyle}"
+                            Text="{Binding .}" />
+                        <BoxView />
+                    </StackLayout>
+                </DataTemplate>
+            </BindableLayout.ItemTemplate>
+        </buttons:SfRadioGroup>
+
+    </StackLayout>
+
+</ContentView>

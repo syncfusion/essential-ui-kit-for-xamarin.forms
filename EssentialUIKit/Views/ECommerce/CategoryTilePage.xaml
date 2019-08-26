@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="EssentialUIKit.Views.ECommerce.CategoryTilePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:controls="clr-namespace:EssentialUIKit.Controls"
+    xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+    Title="Categories"
+    BackgroundColor="{DynamicResource Gray-White}"
+    NavigationPage.HasNavigationBar="False"
+    Shell.NavBarIsVisible="False">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!--  Title View  -->
+            <controls:TitleView Title="Categories" Grid.Row="0">
+                <controls:TitleView.TrailingView>
+                    <StackLayout HorizontalOptions="End" Orientation="Horizontal">
+                        <buttons:SfButton
+                            Command="{Binding BindingContext.NotificationCommand, Source={x:Reference CategoryTile}}"
+                            CornerRadius="4"
+                            Style="{StaticResource IconButtonStyle}"
+                            Text="{StaticResource Bell}" />
+                    </StackLayout>
+                </controls:TitleView.TrailingView>
+            </controls:TitleView>
+
+            <!--  ListView for Category  -->
+            <listView:SfListView
+                x:Name="CategoryTile"
+                Grid.Row="1"
+                Padding="8"
+                AutoFitMode="Height"
+                HorizontalOptions="FillAndExpand"
+                ItemSpacing="8"
+                ItemsSource="{Binding Categories}"
+                Style="{StaticResource SfListViewStyle}"
+                TapCommand="{Binding ItemSelectedCommand}">
+
+                <listView:SfListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid RowSpacing="8">
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <!--  Category Image  -->
+                            <ffimageloading:CachedImage
+                                Grid.Row="0"
+                                Aspect="AspectFill"
+                                BackgroundColor="{DynamicResource Gray-F0}"
+                                DownsampleUseDipUnits="True"
+                                FadeAnimationEnabled="true"
+                                HeightRequest="{OnIdiom Phone=150,
+                                                        Tablet=240,
+                                                        Desktop=120}"
+                                LoadingDelay="50"
+                                Source="{Binding Icon}"
+                                WidthRequest="{OnIdiom Phone=160,
+                                                       Tablet=224,
+                                                       Desktop=200}" />
+
+                            <!--  Category Name  -->
+                            <Label
+                                Grid.Row="1"
+                                Margin="0,0,0,8"
+                                FontFamily="{StaticResource Montserrat-SemiBold}"
+                                FontSize="14"
+                                HorizontalOptions="Center"
+                                HorizontalTextAlignment="Center"
+                                LineHeight="{OnPlatform Default=-1,
+                                                        Android=1.5}"
+                                Text="{Binding MainCategory}"
+                                TextColor="{DynamicResource Gray-56}" />
+
+                        </Grid>
+                    </DataTemplate>
+                </listView:SfListView.ItemTemplate>
+
+                <!--  Layout to customize no. of columns in SfListView  -->
+                <listView:SfListView.LayoutManager>
+                    <listView:GridLayout SpanCount="{core:OnPlatformOrientationIntValue Desktop=4, PhonePortrait=2, PhoneLandscape=3, TabletPortrait=3, TabletLandscape=4}" />
+                </listView:SfListView.LayoutManager>
+
+            </listView:SfListView>
+
+        </Grid>
+    </ContentPage.Content>
+
+</ContentPage>

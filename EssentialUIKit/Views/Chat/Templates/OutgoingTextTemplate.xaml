@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ViewCell
+    x:Class="EssentialUIKit.Views.Chat.OutgoingTextTemplate"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:cards="clr-namespace:Syncfusion.XForms.Cards;assembly=Syncfusion.Cards.XForms"
+    xmlns:helper="clr-namespace:EssentialUIKit.Helpers">
+
+    <ViewCell.View>
+
+        <cards:SfCardView
+            helper:RTLHelper.CornerRadius="10, 0, 10, 10"
+            helper:RTLHelper.Margin="38, 12, 22, 0"
+            BackgroundColor="{DynamicResource PrimaryLight}"
+            BorderWidth="0"
+            HasShadow="False"
+            HorizontalOptions="End">
+
+            <cards:SfCardView.Resources>
+                <ResourceDictionary>
+                    <ResourceDictionary.MergedDictionaries>
+                        <ResourceDictionary Source="../Styles.xaml" />
+                    </ResourceDictionary.MergedDictionaries>
+                </ResourceDictionary>
+            </cards:SfCardView.Resources>
+
+            <cards:SfCardView.Content>
+                <StackLayout Margin="8" VerticalOptions="FillAndExpand">
+
+                    <!--  Message Text  -->
+                    <Label
+                        FontFamily="{StaticResource Montserrat-Medium}"
+                        FontSize="12"
+                        HorizontalOptions="End"
+                        LineHeight="1.25"
+                        Text="{Binding Message}"
+                        TextColor="{DynamicResource Gray-56}"
+                        VerticalOptions="Center" />
+
+                    <!--  Time  -->
+                    <Label
+                        FontFamily="{StaticResource Montserrat-Medium}"
+                        FontSize="12"
+                        HorizontalOptions="End"
+                        LineHeight="1.25"
+                        Text="{Binding Time, StringFormat='{0:h:mm tt}'}"
+                        TextColor="{DynamicResource Gray-94}"
+                        VerticalOptions="Center" />
+
+                </StackLayout>
+            </cards:SfCardView.Content>
+
+        </cards:SfCardView>
+
+    </ViewCell.View>
+
+</ViewCell>

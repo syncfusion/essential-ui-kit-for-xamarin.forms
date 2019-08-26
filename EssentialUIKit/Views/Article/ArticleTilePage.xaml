@@ -1,0 +1,235 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="EssentialUIKit.Views.Article.ArticleTilePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:controls="clr-namespace:EssentialUIKit.Controls"
+    xmlns:converter="clr-namespace:EssentialUIKit.Converters"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+    xmlns:rotator="clr-namespace:Syncfusion.SfRotator.XForms;assembly=Syncfusion.SfRotator.XForms"
+    xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Article"
+    BackgroundColor="{DynamicResource Gray-White}"
+    NavigationPage.HasNavigationBar="False"
+    Shell.NavBarIsVisible="False">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <converter:BooleanToStringConverter x:Key="BoolToStringConverter" />
+
+            <DataTemplate x:Key="HorizontalArticleView">
+                <Grid RowSpacing="0">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <!--  Article Image  -->
+                    <ffimageloading:CachedImage
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        Aspect="AspectFill"
+                        BackgroundColor="{DynamicResource Gray-F0}"
+                        DownsampleUseDipUnits="True"
+                        FadeAnimationEnabled="true"
+                        HeightRequest="120"
+                        Source="{Binding ImagePath}" />
+
+                    <!--  Label for Article name  -->
+                    <Label
+                        Grid.Row="1"
+                        Grid.ColumnSpan="2"
+                        Margin="0,8"
+                        FontFamily="{StaticResource Montserrat-SemiBold}"
+                        FontSize="14"
+                        HorizontalOptions="Start"
+                        LineBreakMode="TailTruncation"
+                        LineHeight="{OnPlatform Default=-1,
+                                                Android=1.25}"
+                        MaxLines="2"
+                        Text="{Binding Name}"
+                        TextColor="{DynamicResource Gray-56}" />
+
+                    <!--  Label for Article author  -->
+                    <Label
+                        Grid.Row="2"
+                        Grid.ColumnSpan="2"
+                        Margin="0"
+                        FontFamily="{StaticResource Montserrat-Medium}"
+                        FontSize="12"
+                        HorizontalOptions="Start"
+                        LineHeight="{OnPlatform Default=-1,
+                                                Android=1.25}"
+                        Text="{Binding Author}"
+                        TextColor="{DynamicResource Gray-56}" />
+
+                    <!--  Label for Article date  -->
+                    <Label
+                        Grid.Row="3"
+                        Margin="0,2,0,8"
+                        FontFamily="{StaticResource Montserrat-Regular}"
+                        FontSize="12"
+                        HorizontalOptions="Start"
+                        LineHeight="{OnPlatform Default=-1,
+                                                Android=1.25}"
+                        TextColor="{DynamicResource Gray-94}"
+                        VerticalOptions="Center"
+                        VerticalTextAlignment="Center">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{Binding Date}" />
+                                <Span Text=" | " />
+                                <Span Text="{Binding AverageReadingTime}" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+
+                    <buttons:SfButton
+                        Grid.Row="3"
+                        Grid.Column="1"
+                        Margin="0"
+                        Padding="0"
+                        Command="{Binding Path=BindingContext.BookmarkCommand, Source={x:Reference SfListView}}"
+                        CommandParameter="{Binding .}"
+                        CornerRadius="4"
+                        FontSize="16"
+                        Style="{StaticResource NavigationBarButtonStyle}"
+                        Text="{Binding IsBookmarked, Converter={StaticResource BoolToStringConverter}, ConverterParameter=0}"
+                        WidthRequest="32" />
+                </Grid>
+            </DataTemplate>
+
+            <DataTemplate x:Key="HeaderView">
+                <StackLayout Spacing="8">
+                    <!--  Label for featured stories  -->
+                    <Label
+                        Margin="0,8"
+                        FontFamily="{StaticResource Montserrat-SemiBold}"
+                        FontSize="12"
+                        HorizontalOptions="Start"
+                        Text="FEATURED STORIES"
+                        TextColor="{DynamicResource Gray-6F}" />
+
+                    <!--  Rotator view  -->
+                    <rotator:SfRotator
+                        x:Name="Rotator"
+                        BackgroundColor="#FFFFFF}"
+                        DotPlacement="Default"
+                        DotsBorderColor="Transparent"
+                        EnableLooping="False"
+                        HeightRequest="210"
+                        HorizontalOptions="Center"
+                        ItemsSource="{Binding FeaturedStories}"
+                        NavigationStripMode="Dots"
+                        SelectedDotColor="{DynamicResource PrimaryColor}"
+                        UnselectedDotColor="{DynamicResource Gray-White}"
+                        VerticalOptions="Start">
+                        <rotator:SfRotator.ItemTemplate>
+                            <DataTemplate>
+                                <Grid x:Name="Grid">
+                                    <ffimageloading:CachedImage
+                                        Aspect="AspectFill"
+                                        BackgroundColor="{DynamicResource Gray-F0}"
+                                        HeightRequest="210"
+                                        Source="{Binding ImagePath}" />
+
+                                    <border:SfBorder
+                                        BackgroundColor="{DynamicResource PrimaryColor}"
+                                        BorderWidth="0"
+                                        HorizontalOptions="Start"
+                                        Opacity="0.6"
+                                        VerticalOptions="Center">
+                                        <Label
+                                            Margin="16"
+                                            FontFamily="{StaticResource Montserrat-Bold}"
+                                            FontSize="20"
+                                            LineBreakMode="TailTruncation"
+                                            LineHeight="{OnPlatform Default=-1,
+                                                                    Android=1.25}"
+                                            MaxLines="2"
+                                            Text="{Binding Name}"
+                                            TextColor="{DynamicResource Gray-White}"
+                                            WidthRequest="200" />
+                                    </border:SfBorder>
+
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding BindingContext.FeatureStoriesCommand, Source={x:Reference Rotator}}" CommandParameter="{Binding BindingContext, Source={x:Reference Grid}}" />
+                                    </Grid.GestureRecognizers>
+
+                                </Grid>
+                            </DataTemplate>
+                        </rotator:SfRotator.ItemTemplate>
+                    </rotator:SfRotator>
+
+                    <!--  Label for Latest stories  -->
+                    <Label
+                        Margin="0,16,0,0"
+                        FontFamily="{StaticResource Montserrat-SemiBold}"
+                        FontSize="12"
+                        HorizontalOptions="Start"
+                        Text="LATEST STORIES"
+                        TextColor="{DynamicResource Gray-6F}" />
+                </StackLayout>
+            </DataTemplate>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.BindingContext>
+        <viewModel:ArticleListViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!--  Title View  -->
+            <controls:TitleView
+                Title="Blog"
+                Grid.Row="0"
+                BackgroundColor="{DynamicResource Gray-White}" />
+
+            <!--  List out the items for latest stories  -->
+            <listView:SfListView
+                x:Name="SfListView"
+                Grid.Row="1"
+                Margin="8"
+                AutoFitMode="Height"
+                HeaderTemplate="{StaticResource HeaderView}"
+                HorizontalOptions="FillAndExpand"
+                ItemSpacing="8"
+                ItemTemplate="{StaticResource HorizontalArticleView}"
+                ItemsSource="{Binding LatestStories}"
+                SelectionBackgroundColor="Transparent"
+                TapCommand="{Binding ItemSelectedCommand}"
+                VerticalOptions="FillAndExpand">
+
+                <!--  Layout to customize no. of columns in SfListView  -->
+                <listView:SfListView.LayoutManager>
+                    <listView:GridLayout x:Name="GridLayout" SpanCount="{OnIdiom Phone=2, Tablet=3, Desktop=5}" />
+                </listView:SfListView.LayoutManager>
+
+            </listView:SfListView>
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

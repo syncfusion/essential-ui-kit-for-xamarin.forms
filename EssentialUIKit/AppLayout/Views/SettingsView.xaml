@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EssentialUIKit.AppLayout.Views.SettingsView"
+             IsVisible="False"
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             xmlns:segmentControl="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms">
+
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentView.Resources>
+
+    <Grid>
+        <!--Semi transparent view-->
+        <BoxView x:Name="ShadowView"
+                 IsVisible="False" 
+                 BackgroundColor="Gray"
+                 Opacity="0.5">
+            <BoxView.GestureRecognizers>
+                <TapGestureRecognizer Tapped="CloseSettings"/>
+            </BoxView.GestureRecognizers>
+        </BoxView>
+
+        <Grid x:Name="MainContent"
+              BackgroundColor="White"
+              TranslationY="300"
+              VerticalOptions="EndAndExpand"
+              Opacity="0">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="44" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="44" />
+            </Grid.RowDefinitions>
+
+            <Frame
+                Grid.Row="0"
+                Padding="0"
+                BackgroundColor="White"
+                CornerRadius="20"
+                Margin="0,-20,0,0"
+                HasShadow="False" />
+
+            <Label
+                Text="Pick Your Color"
+                TextColor="#333942"
+                FontSize="16"
+                FontFamily="{StaticResource Montserrat-SemiBold}"
+                Grid.Row="0"
+                Margin="16,7,0,0"
+                HorizontalOptions="Start" />
+
+            <!--Close Icon-->
+            <Button
+                Grid.Row="0"
+                Style="{StaticResource CloseIconStyle}"
+                Margin="0,-5,0,0"
+                Clicked="Button_OnClicked"
+                HorizontalOptions="EndAndExpand" />
+
+            <segmentControl:SfSegmentedControl 
+                Grid.Row="1" 
+                x:Name="PrimaryColorsView" 
+                CornerRadius="0" 
+                SegmentHeight="40" 
+                SegmentWidth="40" 
+                Margin="10"
+                Color="Transparent"
+                SegmentBorderThickness="0"
+                SegmentPadding="14"
+                HorizontalOptions="CenterAndExpand"
+                BorderThickness="0"
+                SelectionAnimationDuration="0">
+
+                <segmentControl:SfSegmentedControl.SelectionIndicatorSettings>
+                    <segmentControl:SelectionIndicatorSettings
+                        Color="#f54e5e"
+                        Position="Border"
+                        CornerRadius="20"/>
+                </segmentControl:SfSegmentedControl.SelectionIndicatorSettings>
+
+            </segmentControl:SfSegmentedControl>
+
+            <!--TODO:Apply gradient color-->
+            <buttons:SfButton
+                Text="APPLY"
+                Clicked="ApplySettings"
+                Grid.Row="2"
+                Style="{StaticResource SfGradientButtonStyle}"/>
+
+        </Grid>
+    </Grid>
+</ContentView>

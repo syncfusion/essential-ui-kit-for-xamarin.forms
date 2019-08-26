@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="EssentialUIKit.Views.ErrorAndEmpty.NoItemPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:button="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
+    xmlns:ffsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+    xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.ErrorAndEmpty"
+    BackgroundColor="#fffcfc"
+    NavigationPage.HasNavigationBar="False"
+    Shell.NavBarIsVisible="False">
+
+    <!--  Binding context for NoItem page  -->
+    <ContentPage.BindingContext>
+        <viewModel:NoItemPageViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+
+        <Grid>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+
+            <StackLayout
+                BackgroundColor="Transparent"
+                Spacing="0"
+                VerticalOptions="Center">
+
+                <!--  Image for display svg image  -->
+                <ffsvg:SvgCachedImage
+                    x:Name="ErrorImage"
+                    Margin="{x:OnIdiom Phone='0,0,0,0',
+                                       Desktop='0',
+                                       Tablet='0'}"
+                    BackgroundColor="Transparent"
+                    HeightRequest="{core:OnPlatformOrientationDoubleValue Default=300,
+                                                                          AndroidPhonePortrait=200,
+                                                                          AndroidPhoneLandscape=140,
+                                                                          iOSPhonePortrait=200,
+                                                                          iOSPhoneLandscape=140}"
+                    Source="{Binding ImagePath}"
+                    VerticalOptions="Center"
+                    WidthRequest="{x:OnIdiom Phone=200,
+                                             Desktop=300,
+                                             Tablet=300}" />
+
+                <!--  Label to display header  -->
+                <Label
+                    Margin="0,32,0,8"
+                    FontFamily="{StaticResource Montserrat-SemiBold}"
+                    FontSize="20"
+                    HorizontalTextAlignment="Center"
+                    Style="{StaticResource LabelStyle}"
+                    Text="{Binding Header}"
+                    VerticalTextAlignment="Center" />
+
+                <!--  Label to display content  -->
+                <Label
+                    Margin="8,0,8,0"
+                    FontFamily="{StaticResource Montserrat-Medium}"
+                    FontSize="16"
+                    Style="{StaticResource LabelStyle}"
+                    Text="{Binding Content}"
+                    VerticalTextAlignment="Center" />
+            </StackLayout>
+
+            <!--  Try again button  -->
+            <button:SfButton
+                Grid.Row="1"
+                Command="{Binding GoBackCommand}"
+                Style="{StaticResource SfGradientButtonStyle}"
+                Text="GO BACK" />
+
+        </Grid>
+
+    </ContentPage.Content>
+
+</ContentPage>

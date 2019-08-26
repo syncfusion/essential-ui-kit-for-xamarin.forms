@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="EssentialUIKit.Views.ECommerce.CategoryListPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:behaviors="clr-namespace:EssentialUIKit.Behaviors.ECommerce"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:controls="clr-namespace:EssentialUIKit.Controls"
+    xmlns:expander="clr-namespace:Syncfusion.XForms.Expander;assembly=Syncfusion.Expander.XForms"
+    xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+    Title="Categories"
+    BackgroundColor="{DynamicResource Gray-White}"
+    NavigationPage.HasNavigationBar="False"
+    Shell.NavBarIsVisible="False">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.ControlTemplate>
+        <ControlTemplate>
+
+            <StackLayout Spacing="0">
+
+                <!--  Title View  -->
+                <controls:TitleView Title="Categories">
+                    <controls:TitleView.TrailingView>
+                        <StackLayout HorizontalOptions="End" Orientation="Horizontal">
+                            <buttons:SfButton
+                                Command="{TemplateBinding BindingContext.NotificationCommand}"
+                                Style="{StaticResource IconButtonStyle}"
+                                Text="{StaticResource Bell}" />
+                        </StackLayout>
+                    </controls:TitleView.TrailingView>
+                </controls:TitleView>
+
+                <ContentPresenter />
+
+            </StackLayout>
+        </ControlTemplate>
+    </ContentPage.ControlTemplate>
+
+    <ContentPage.Content>
+        <listView:SfListView
+            x:Name="ListView"
+            AutoFitMode="DynamicHeight"
+            ItemsSource="{Binding Categories}"
+            Style="{StaticResource SfListViewStyle}">
+
+            <listView:SfListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid RowSpacing="0">
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <expander:SfExpander
+                                Grid.Row="0"
+                                Margin="16,0"
+                                BackgroundColor="Transparent"
+                                HeaderBackgroundColor="Transparent">
+
+                                <!--  Main Category  -->
+                                <expander:SfExpander.Header>
+                                    <Grid>
+                                        <Label
+                                            Margin="0,12"
+                                            FontFamily="{StaticResource Montserrat-SemiBold}"
+                                            Style="{StaticResource LabelStyle}"
+                                            Text="{Binding MainCategory}"
+                                            TextColor="{DynamicResource Gray-56}"
+                                            VerticalOptions="Center" />
+                                    </Grid>
+                                </expander:SfExpander.Header>
+
+                                <!--  Subcategories  -->
+                                <expander:SfExpander.Content>
+                                    <StackLayout Padding="0,0,0,10" BindableLayout.ItemsSource="{Binding SubCategories}">
+                                        <BindableLayout.ItemTemplate>
+                                            <DataTemplate>
+                                                <Frame
+                                                    x:Name="Frame"
+                                                    Padding="16,12"
+                                                    BackgroundColor="Transparent"
+                                                    HasShadow="False"
+                                                    HorizontalOptions="FillAndExpand"
+                                                    VerticalOptions="FillAndExpand">
+                                                    <Label
+                                                        Style="{StaticResource LabelStyle}"
+                                                        Text="{Binding}"
+                                                        TextColor="{DynamicResource Gray-56}" />
+
+                                                    <Frame.GestureRecognizers>
+                                                        <TapGestureRecognizer Command="{Binding BindingContext.CategorySelectedCommand, Source={x:Reference ListView}}" CommandParameter="{x:Reference Frame}" />
+                                                    </Frame.GestureRecognizers>
+                                                </Frame>
+
+                                            </DataTemplate>
+                                        </BindableLayout.ItemTemplate>
+                                    </StackLayout>
+                                </expander:SfExpander.Content>
+
+                                <expander:SfExpander.Behaviors>
+                                    <behaviors:ExpanderBehavior Command="{Binding Path=BindingContext.ExpandingCommand, Source={x:Reference ListView}}" CommandParameter="{x:Reference listView}" />
+                                </expander:SfExpander.Behaviors>
+
+                            </expander:SfExpander>
+
+                            <!--  Separator  -->
+                            <BoxView
+                                Grid.Row="1"
+                                HeightRequest="1"
+                                Style="{StaticResource BoxViewStyle}" />
+
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </listView:SfListView.ItemTemplate>
+
+        </listView:SfListView>
+    </ContentPage.Content>
+
+</ContentPage>
