@@ -30,7 +30,7 @@ namespace EssentialUIKit.ViewModels.ECommerce
 
         private double percent;
         
-        private ObservableCollection<Product> produts;
+        private ObservableCollection<Product> products;
         
         private Command placeOrderCommand;
         
@@ -158,15 +158,15 @@ namespace EssentialUIKit.ViewModels.ECommerce
         {
             get
             {
-                return this.produts;
+                return this.products;
             }
             set
             {
-                if (this.produts == value)
+                if (this.products == value)
                 {
                     return;
                 }
-                this.produts = value;
+                this.products = value;
                 this.NotifyPropertyChanged();
                 GetProducts(Products);
                 UpdatePrice();
