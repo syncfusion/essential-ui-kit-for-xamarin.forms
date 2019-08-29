@@ -204,10 +204,7 @@ namespace EssentialUIKit.ViewModels.OnBoarding
         {
             if (ValidateAndUpdateSelectedIndex())
             {
-                Application.Current.MainPage.Navigation.PopAsync();
-            }
-            else
-            {
+                Application.Current.MainPage.Navigation.PopAsync();           
                 MoveToNextPage();
             }
         }

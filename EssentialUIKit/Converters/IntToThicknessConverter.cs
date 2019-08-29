@@ -26,7 +26,7 @@ namespace EssentialUIKit.Converters
             {
                 int itemCount;
                 int.TryParse(value.ToString(), out itemCount);
-                if (itemCount == 0 && itemCount > 0)
+                if (itemCount >= 0)
                     return margin = new Thickness(0, -15, 0, 0);
             }
             return margin;
