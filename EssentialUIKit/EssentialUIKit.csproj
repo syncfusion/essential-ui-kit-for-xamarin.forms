@@ -34,7 +34,7 @@
     <PackageReference Include="Syncfusion.Xamarin.Expander" Version="17.2.0.35" />
     <PackageReference Include="Syncfusion.Xamarin.SfBadgeView" Version="17.2.0.35" />
     <PackageReference Include="Xamarin.FFImageLoading.Svg.Forms" Version="2.4.11.982" />
-    <PackageReference Include="Xamarin.Forms" Version="4.1.0.673156" />
+    <PackageReference Include="Xamarin.Forms" Version="4.2.0.709249" />
     <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
   </ItemGroup>
   <ItemGroup>
