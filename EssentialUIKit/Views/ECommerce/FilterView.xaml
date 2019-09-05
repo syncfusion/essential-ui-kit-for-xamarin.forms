@@ -96,7 +96,7 @@
                                     FontFamily="{StaticResource Montserrat-SemiBold}"
                                     HorizontalOptions="StartAndExpand"
                                     Style="{StaticResource LabelStyle}"
-                                    Text="{Binding MainCategory}"
+                                    Text="{Binding Name}"
                                     TextColor="{DynamicResource Gray-56}"
                                     VerticalOptions="Center" />
                             </expander:SfExpander.Header>

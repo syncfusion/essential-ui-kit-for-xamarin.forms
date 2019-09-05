@@ -25,10 +25,10 @@ namespace EssentialUIKit.Models.ECommerce
         }
 
         /// <summary>
-        /// Gets or sets the property that has been bound with a label in SfExpander header, which displays the main category.
+        /// Gets or sets the property that has been bound with a label in SfExpander header, which displays the category name.
         /// </summary>
-        [DataMember(Name = "maincategory")]
-        public string MainCategory { get; set; }
+        [DataMember(Name = "name")]
+        public string Name { get; set; }
 
         /// <summary>
         /// Gets or sets the property that has been bound with a label in SfExpander content, which displays the sub category.

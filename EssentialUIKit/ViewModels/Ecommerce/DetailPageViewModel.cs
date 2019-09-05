@@ -103,7 +103,7 @@ namespace EssentialUIKit.ViewModels.ECommerce
             {
                 new Category
                 {
-                    MainCategory = "Electronics",
+                    Name = "Electronics",
                     SubCategories = new List<string>
                     {
                         "Laptops", "Mobiles", "Tablets", "Televisions", "Printers and Monitors"
@@ -111,7 +111,7 @@ namespace EssentialUIKit.ViewModels.ECommerce
                 },
                 new Category
                 {
-                    MainCategory = "Fashion",
+                    Name = "Fashion",
                     SubCategories = new List<string>
                     {
                         "Shirts", "Skirts", "Casual Wear", "Jeans", "Kurtis"
@@ -119,7 +119,7 @@ namespace EssentialUIKit.ViewModels.ECommerce
                 },
                 new Category
                 {
-                    MainCategory = "Home and Furniture",
+                    Name = "Home and Furniture",
                     SubCategories = new List<string>
                     {
                         "Diwans", "Sofas", "Curtains"
@@ -127,7 +127,7 @@ namespace EssentialUIKit.ViewModels.ECommerce
                 },
                 new Category
                 {
-                    MainCategory = "Personal Care",
+                    Name = "Personal Care",
                     SubCategories = new List<string>
                     {
                         "Laptops", "Mobiles", "Tablets", "Televisions", "Printers and Monitors"
@@ -135,7 +135,7 @@ namespace EssentialUIKit.ViewModels.ECommerce
                 },
                 new Category
                 {
-                    MainCategory = "Sports and Books",
+                    Name = "Sports and Books",
                     SubCategories = new List<string>
                     {
                         "Laptops", "Mobiles", "Tablets", "Televisions", "Printers and Monitors"
@@ -143,7 +143,7 @@ namespace EssentialUIKit.ViewModels.ECommerce
                 },
                 new Category
                 {
-                    MainCategory = "Grocery",
+                    Name = "Grocery",
                     SubCategories = new List<string>
                     {
                         "Laptops", "Mobiles", "Tablets", "Televisions", "Printers and Monitors"
@@ -151,7 +151,7 @@ namespace EssentialUIKit.ViewModels.ECommerce
                 },
                 new Category
                 {
-                    MainCategory = "Toys and Baby",
+                    Name = "Toys and Baby",
                     SubCategories = new List<string>
                     {
                         "Laptops", "Mobiles", "Tablets", "Televisions", "Printers and Monitors"

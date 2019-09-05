@@ -3,12 +3,14 @@
     x:Class="EssentialUIKit.Views.ECommerce.CategoryTilePage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:commonBehavior="clr-namespace:EssentialUIKit.Behaviors"
     xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
     xmlns:controls="clr-namespace:EssentialUIKit.Controls"
     xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
     xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
     xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
     Title="Categories"
+    x:Name="categoryPage"
     BackgroundColor="{DynamicResource Gray-White}"
     NavigationPage.HasNavigationBar="False"
     Shell.NavBarIsVisible="False">
@@ -51,8 +53,11 @@
                 HorizontalOptions="FillAndExpand"
                 ItemSpacing="8"
                 ItemsSource="{Binding Categories}"
-                Style="{StaticResource SfListViewStyle}"
-                TapCommand="{Binding ItemSelectedCommand}">
+                Style="{StaticResource SfListViewStyle}">
+
+                <listView:SfListView.Behaviors>
+                    <commonBehavior:SfListViewTapBehavior Command="{Binding Path=BindingContext.CategorySelectedCommand, Source={x:Reference categoryPage}}"/>
+                </listView:SfListView.Behaviors>
 
                 <listView:SfListView.ItemTemplate>
                     <DataTemplate>
@@ -89,7 +94,7 @@
                                 HorizontalTextAlignment="Center"
                                 LineHeight="{OnPlatform Default=-1,
                                                         Android=1.5}"
-                                Text="{Binding MainCategory}"
+                                Text="{Binding Name}"
                                 TextColor="{DynamicResource Gray-56}" />
 
                         </Grid>

@@ -148,7 +148,8 @@
                     NavigationStripMode="Dots"
                     SelectedDotColor="{DynamicResource PrimaryColor}"
                     UnselectedDotColor="{DynamicResource Gray-F0}"
-                    VerticalOptions="Start" />
+                    VerticalOptions="Start"
+                    ItemTemplate="{StaticResource PortraitTemplate}"/>
 
                 <ContentView
                     Grid.Row="{OnIdiom Default=1,

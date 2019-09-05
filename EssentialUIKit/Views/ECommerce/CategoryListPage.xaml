@@ -4,11 +4,13 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:behaviors="clr-namespace:EssentialUIKit.Behaviors.ECommerce"
+    xmlns:commonBehavior="clr-namespace:EssentialUIKit.Behaviors"
     xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
     xmlns:controls="clr-namespace:EssentialUIKit.Controls"
     xmlns:expander="clr-namespace:Syncfusion.XForms.Expander;assembly=Syncfusion.Expander.XForms"
     xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
     Title="Categories"
+    x:Name="categoryPage"
     BackgroundColor="{DynamicResource Gray-White}"
     NavigationPage.HasNavigationBar="False"
     Shell.NavBarIsVisible="False">
@@ -51,6 +53,10 @@
             ItemsSource="{Binding Categories}"
             Style="{StaticResource SfListViewStyle}">
 
+            <listView:SfListView.Behaviors>
+                <commonBehavior:SfListViewTapBehavior Command="{Binding Path=BindingContext.CategorySelectedCommand, Source={x:Reference categoryPage}}"/>
+            </listView:SfListView.Behaviors>
+
             <listView:SfListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
@@ -74,7 +80,7 @@
                                             Margin="0,12"
                                             FontFamily="{StaticResource Montserrat-SemiBold}"
                                             Style="{StaticResource LabelStyle}"
-                                            Text="{Binding MainCategory}"
+                                            Text="{Binding Name}"
                                             TextColor="{DynamicResource Gray-56}"
                                             VerticalOptions="Center" />
                                     </Grid>
@@ -97,9 +103,10 @@
                                                         Text="{Binding}"
                                                         TextColor="{DynamicResource Gray-56}" />
 
-                                                    <Frame.GestureRecognizers>
-                                                        <TapGestureRecognizer Command="{Binding BindingContext.CategorySelectedCommand, Source={x:Reference ListView}}" CommandParameter="{x:Reference Frame}" />
-                                                    </Frame.GestureRecognizers>
+                                                    <Frame.Behaviors>
+                                                        <behaviors:FrameTapBehavior CommandParameter="{x:Reference Frame}"/>
+                                                    </Frame.Behaviors>
+                                                    
                                                 </Frame>
 
                                             </DataTemplate>
@@ -108,7 +115,7 @@
                                 </expander:SfExpander.Content>
 
                                 <expander:SfExpander.Behaviors>
-                                    <behaviors:ExpanderBehavior Command="{Binding Path=BindingContext.ExpandingCommand, Source={x:Reference ListView}}" CommandParameter="{x:Reference listView}" />
+                                    <behaviors:ExpanderBehavior Command="{Binding Path=BindingContext.ExpandingCommand, Source={x:Reference ListView}}" CommandParameter="{x:Reference ListView}" />
                                 </expander:SfExpander.Behaviors>
 
                             </expander:SfExpander>
