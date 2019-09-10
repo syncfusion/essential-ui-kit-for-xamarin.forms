@@ -39,19 +39,7 @@ namespace EssentialUIKit.Behaviors.ECommerce
         /// <param name="e">EventArgs</param>
         private void Bindable_Appearing(object sender, EventArgs e)
         {
-            //if (bindablePage != null)
-            //{
-            //    if (bindablePage.BindingContext is DetailPageViewModel)
-            //    {
-            //        //TODO: Manage cart item count for detail page
-            //        //(bindablePage.BindingContext as DetailPageViewModel).CartItemCount
-            //    }
-            //    else if (bindablePage.BindingContext is CatalogPageViewModel)
-            //    {
-            //        //TODO: Manage cart item count for catalog page
-            //        //(bindablePage.BindingContext as CatalogPageViewModel).CartItemCount
-            //    }
-            //}
+           //Do something
         }
 
         /// <summary>

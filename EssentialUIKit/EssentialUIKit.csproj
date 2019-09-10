@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -19,20 +19,20 @@
     <PackageReference Include="NETStandard.Library" Version="2.0.3" />
     <PackageReference Include="Microsoft.AppCenter.Analytics" Version="2.0.0" />
     <PackageReference Include="Microsoft.AppCenter.Crashes" Version="2.0.0" />
-    <PackageReference Include="Syncfusion.Xamarin.Buttons" Version="17.2.0.35" />
-    <PackageReference Include="Syncfusion.Xamarin.Cards" Version="17.2.0.35" />
-    <PackageReference Include="Syncfusion.Xamarin.Core" Version="17.2.0.35" />
-    <PackageReference Include="Syncfusion.Xamarin.DataSource" Version="17.2.0.35" />
-    <PackageReference Include="Syncfusion.Xamarin.GridCommon" Version="17.2.0.35" />
-    <PackageReference Include="Syncfusion.Xamarin.SfComboBox" Version="17.2.0.35" />
-    <PackageReference Include="Syncfusion.Xamarin.SfListView" Version="17.2.0.35" />
-    <PackageReference Include="Syncfusion.Xamarin.SfMaps" Version="17.2.0.35" />
-    <PackageReference Include="Syncfusion.Xamarin.SfParallaxView" Version="17.2.0.35" />
-    <PackageReference Include="Syncfusion.Xamarin.SfRating" Version="17.2.0.35" />
-    <PackageReference Include="Syncfusion.Xamarin.SfRotator" Version="17.2.0.35" />
-    <PackageReference Include="Syncfusion.Xamarin.SfPopupLayout" Version="17.2.0.35" />
-    <PackageReference Include="Syncfusion.Xamarin.Expander" Version="17.2.0.35" />
-    <PackageReference Include="Syncfusion.Xamarin.SfBadgeView" Version="17.2.0.35" />
+    <PackageReference Include="Syncfusion.Xamarin.Buttons" Version="17.2.0.49" />
+    <PackageReference Include="Syncfusion.Xamarin.Cards" Version="17.2.0.49" />
+    <PackageReference Include="Syncfusion.Xamarin.Core" Version="17.2.0.49" />
+    <PackageReference Include="Syncfusion.Xamarin.DataSource" Version="17.2.0.49" />
+    <PackageReference Include="Syncfusion.Xamarin.GridCommon" Version="17.2.0.49" />
+    <PackageReference Include="Syncfusion.Xamarin.SfComboBox" Version="17.2.0.49" />
+    <PackageReference Include="Syncfusion.Xamarin.SfListView" Version="17.2.0.49" />
+    <PackageReference Include="Syncfusion.Xamarin.SfMaps" Version="17.2.0.49" />
+    <PackageReference Include="Syncfusion.Xamarin.SfParallaxView" Version="17.2.0.49" />
+    <PackageReference Include="Syncfusion.Xamarin.SfRating" Version="17.2.0.49" />
+    <PackageReference Include="Syncfusion.Xamarin.SfRotator" Version="17.2.0.49" />
+    <PackageReference Include="Syncfusion.Xamarin.SfPopupLayout" Version="17.2.0.49" />
+    <PackageReference Include="Syncfusion.Xamarin.Expander" Version="17.2.0.49" />
+    <PackageReference Include="Syncfusion.Xamarin.SfBadgeView" Version="17.2.0.49" />
     <PackageReference Include="Xamarin.FFImageLoading.Svg.Forms" Version="2.4.11.982" />
     <PackageReference Include="Xamarin.Forms" Version="4.2.0.709249" />
     <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
