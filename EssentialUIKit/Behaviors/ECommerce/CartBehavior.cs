@@ -24,12 +24,12 @@ namespace EssentialUIKit.Behaviors.ECommerce
         /// <summary>
         /// Invoked when adding catalog page and detail page.
         /// </summary>
-        /// <param name="bindable">ContentPage</param>
-        protected override void OnAttachedTo(ContentPage bindable)
+        /// <param name="bindableContentPage">ContentPage</param>
+        protected override void OnAttachedTo(ContentPage bindableContentPage)
         {
-            base.OnAttachedTo(bindable);
-            bindablePage = bindable;
-            bindable.Appearing += Bindable_Appearing;
+            base.OnAttachedTo(bindableContentPage);
+            bindablePage = bindableContentPage;
+            bindableContentPage.Appearing += BindableContentPage_Appearing;
         }
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace EssentialUIKit.Behaviors.ECommerce
         /// </summary>
         /// <param name="sender">ContentPage</param>
         /// <param name="e">EventArgs</param>
-        private void Bindable_Appearing(object sender, EventArgs e)
+        private void BindableContentPage_Appearing(object sender, EventArgs e)
         {
            //Do something
         }
@@ -45,11 +45,11 @@ namespace EssentialUIKit.Behaviors.ECommerce
         /// <summary>
         /// Invoked when exit from the page.
         /// </summary>
-        /// <param name="bindable">ContentPage</param>
-        protected override void OnDetachingFrom(ContentPage bindable)
+        /// <param name="bindableContentPage">ContentPage</param>
+        protected override void OnDetachingFrom(ContentPage bindableContentPage)
         {
-            base.OnDetachingFrom(bindable);
-            bindable.Appearing -= Bindable_Appearing;
+            base.OnDetachingFrom(bindableContentPage);
+            bindableContentPage.Appearing -= BindableContentPage_Appearing;
         }
 
         #endregion
