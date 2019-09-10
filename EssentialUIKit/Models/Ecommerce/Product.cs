@@ -62,7 +62,7 @@ namespace EssentialUIKit.Models.ECommerce
             {
                 for (var i = 0; i < previewImages.Count; i++)
                 {
-                    previewImages[i] = App.BaseImageUrl + previewImages[i];
+                    previewImages[i] = previewImages[i].Contains(App.BaseImageUrl) ? previewImages[i] : App.BaseImageUrl + previewImages[i];
                 }
 
                 return previewImages;

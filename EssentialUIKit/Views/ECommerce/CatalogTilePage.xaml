@@ -4,6 +4,8 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:badge ="clr-namespace:Syncfusion.XForms.BadgeView;assembly=Syncfusion.SfBadgeView.XForms"
+    xmlns:behavior="clr-namespace:EssentialUIKit.Behaviors.ECommerce"
+    xmlns:commonBehavior="clr-namespace:EssentialUIKit.Behaviors"
     xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
     xmlns:controls="clr-namespace:EssentialUIKit.Controls"
     xmlns:converter="clr-namespace:EssentialUIKit.Converters"
@@ -15,6 +17,10 @@
     NavigationPage.HasNavigationBar="False"
     Shell.NavBarIsVisible="False"
     Style="{StaticResource ContentPageStyle}">
+
+    <ContentPage.Behaviors>
+        <behavior:CartBehavior/>
+    </ContentPage.Behaviors>
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -80,8 +86,11 @@
                 IsStickyHeader="False"
                 ItemSpacing="8"
                 ItemsSource="{Binding Products}"
-                Style="{StaticResource SfListViewStyle}"
-                TapCommand="{Binding ItemSelectedCommand}">
+                Style="{StaticResource SfListViewStyle}">
+
+                <listView:SfListView.Behaviors>
+                    <commonBehavior:SfListViewTapBehavior Command="{Binding Path=BindingContext.ItemSelectedCommand, Source={x:Reference catalogTilePage}}"/>
+                </listView:SfListView.Behaviors>
 
                 <listView:SfListView.ItemTemplate>
                     <DataTemplate>
@@ -105,6 +114,7 @@
                                 Grid.ColumnSpan="2"
                                 Margin="0,0,0,8"
                                 Aspect="Fill"
+                                DownsampleToViewSize="True"
                                 BackgroundColor="{DynamicResource Gray-F0}"
                                 DownsampleUseDipUnits="True"
                                 FadeAnimationEnabled="true"

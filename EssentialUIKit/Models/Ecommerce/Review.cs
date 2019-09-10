@@ -42,7 +42,7 @@ namespace EssentialUIKit.Models.ECommerce
             {
                 for (var i = 0; i < images.Count; i++)
                 {
-                    images[i] = App.BaseImageUrl + images[i];
+                    images[i] = images[i].Contains(App.BaseImageUrl) ? images[i] : App.BaseImageUrl + images[i];
                 }
 
                 return images;

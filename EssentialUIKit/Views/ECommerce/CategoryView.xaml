@@ -29,7 +29,7 @@
                     HorizontalOptions="Center"
                     ShowBorder="False"
                     Style="{StaticResource SfComboBoxStyle}"
-                    Text="{Binding MainCategory}"
+                    Text="{Binding Name}"
                     TextColor="{DynamicResource Gray-56}">
                     <combobox:SfComboBox.DropDownButtonSettings>
                         <combobox:DropDownButtonSettings Width="25" Height="25" />

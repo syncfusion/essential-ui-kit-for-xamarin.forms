@@ -52,7 +52,7 @@ namespace EssentialUIKit.ViewModels.ECommerce
             {
                 new Category
                 {
-                    MainCategory = "Gender",
+                    Name = "Gender",
                     SubCategories = new List<string>
                     {
                         "Men",
@@ -61,7 +61,7 @@ namespace EssentialUIKit.ViewModels.ECommerce
                 },
                 new Category
                 {
-                    MainCategory = "Brand",
+                    Name = "Brand",
                     SubCategories = new List<string>
                     {
                         "Brand A",
@@ -70,7 +70,7 @@ namespace EssentialUIKit.ViewModels.ECommerce
                 },
                 new Category
                 {
-                    MainCategory = "Categories",
+                    Name = "Categories",
                     SubCategories = new List<string>
                     {
                         "Category A",
@@ -79,7 +79,7 @@ namespace EssentialUIKit.ViewModels.ECommerce
                 },
                 new Category
                 {
-                    MainCategory = "Color",
+                    Name = "Color",
                     SubCategories = new List<string>
                     {
                         "Maroon",
@@ -88,7 +88,7 @@ namespace EssentialUIKit.ViewModels.ECommerce
                 },
                 new Category
                 {
-                    MainCategory = "Price",
+                    Name = "Price",
                     SubCategories = new List<string>
                     {
                         "Above 3000",
@@ -98,7 +98,7 @@ namespace EssentialUIKit.ViewModels.ECommerce
                 },
                 new Category
                 {
-                    MainCategory = "Size",
+                    Name = "Size",
                     SubCategories = new List<string>
                     {
                         "S", "M", "L", "XL", "XXL"
@@ -106,7 +106,7 @@ namespace EssentialUIKit.ViewModels.ECommerce
                 },
                 new Category
                 {
-                    MainCategory = "Patterns",
+                    Name = "Patterns",
                     SubCategories = new List<string>
                     {
                         "Pattern 1", "Pattern 2"
@@ -114,7 +114,7 @@ namespace EssentialUIKit.ViewModels.ECommerce
                 },
                 new Category
                 {
-                    MainCategory = "Offers",
+                    Name = "Offers",
                     SubCategories = new List<string>
                     {
                         "Buy 1 Get 1", "Buy 1 Get 2"
@@ -122,7 +122,7 @@ namespace EssentialUIKit.ViewModels.ECommerce
                 },
                 new Category
                 {
-                    MainCategory = "Coupons",
+                    Name = "Coupons",
                     SubCategories = new List<string>
                     {
                         "Coupon 1", "Coupon 2"

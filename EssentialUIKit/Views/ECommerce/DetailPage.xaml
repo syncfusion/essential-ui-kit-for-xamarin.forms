@@ -19,6 +19,10 @@
     Shell.NavBarIsVisible="False"
     Style="{StaticResource ContentPageStyle}">
 
+    <ContentPage.Behaviors>
+        <behavior:CartBehavior/>
+    </ContentPage.Behaviors>
+
     <ContentPage.Resources>
         <ResourceDictionary>
 
@@ -144,7 +148,8 @@
                     NavigationStripMode="Dots"
                     SelectedDotColor="{DynamicResource PrimaryColor}"
                     UnselectedDotColor="{DynamicResource Gray-F0}"
-                    VerticalOptions="Start" />
+                    VerticalOptions="Start"
+                    ItemTemplate="{StaticResource PortraitTemplate}"/>
 
                 <ContentView
                     Grid.Row="{OnIdiom Default=1,
@@ -407,6 +412,7 @@
                                 BorderColor="{DynamicResource PrimaryColor}"
                                 BorderWidth="1"
                                 Command="{Binding AddToCartCommand}"
+                                CommandParameter="{Binding .}"
                                 FontFamily="{StaticResource Montserrat-SemiBold}"
                                 HeightRequest="44"
                                 HorizontalOptions="{OnIdiom Default=Center,

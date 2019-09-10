@@ -205,12 +205,7 @@ namespace EssentialUIKit.ViewModels.ECommerce
         /// <param name="obj">The Object</param>
         private static async void CategorySelected(object obj)
         {
-            Application.Current.Resources.TryGetValue("Gray-F0", out var retVal);
-            ((Frame) obj).BackgroundColor = (Color) retVal;
-
-            await Task.Delay(100);
-
-            ((Frame) obj).BackgroundColor = Color.Transparent;
+            //Do Something
         }
 
         /// <summary>

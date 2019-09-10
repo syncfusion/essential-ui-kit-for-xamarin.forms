@@ -14,11 +14,11 @@ namespace EssentialUIKit.Converters
         /// <summary>
         /// This method is used to convert the integer to thickness.
         /// </summary>
-        /// <param name="value"></param>
-        /// <param name="targetType"></param>
-        /// <param name="parameter"></param>
-        /// <param name="culture"></param>
-        /// <returns></returns>
+        /// <param name="value">Gets the value</param>
+        /// <param name="targetType">Gets the targetType</param>
+        /// <param name="parameter">Gets the parameter</param>
+        /// <param name="culture">Gets the culture</param>
+        /// <returns>Thickness</returns>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             var margin = new Thickness(0);
@@ -26,7 +26,7 @@ namespace EssentialUIKit.Converters
             {
                 int itemCount;
                 int.TryParse(value.ToString(), out itemCount);
-                if (itemCount > 0)
+                if (itemCount >= 0)
                     return margin = new Thickness(0, -15, 0, 0);
             }
             return margin;
@@ -35,11 +35,11 @@ namespace EssentialUIKit.Converters
         /// <summary>
         /// This method is used to convert the thickness to integer.
         /// </summary>
-        /// <param name="value"></param>
-        /// <param name="targetType"></param>
-        /// <param name="parameter"></param>
-        /// <param name="culture"></param>
-        /// <returns></returns>
+        /// <param name="value">Gets the value</param>
+        /// <param name="targetType">Gets the targetType</param>
+        /// <param name="parameter">Gets the parameter</param>
+        /// <param name="culture">Gets the culture</param>
+        /// <returns>true</returns>
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             return true;
