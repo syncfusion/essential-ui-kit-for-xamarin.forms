@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.Serialization;
 using Xamarin.Forms.Internals;
@@ -21,6 +22,8 @@ namespace EssentialUIKit.Models.ECommerce
         private List<string> previewImages;
 
         private int totalQuantity;
+
+        ObservableCollection<Review> reviews = new ObservableCollection<Review>();
 
         #endregion
 
@@ -114,12 +117,20 @@ namespace EssentialUIKit.Models.ECommerce
         /// </summary>
         [DataMember(Name = "overallrating")]
         public double OverallRating { get; set; }
-
+        
         /// <summary>
         /// Gets or sets the property that has been bound with view, which displays the customer review.
         /// </summary>
         [DataMember(Name = "reviews")]
-        public List<Review> Reviews { get; set; }
+        public ObservableCollection<Review> Reviews
+        {
+            get { return reviews; }
+            set
+            {
+                reviews = value;
+                this.NotifyPropertyChanged("Reviews");
+            }
+        }
 
         /// <summary>
         /// Gets or sets the property that has been bound with label, which displays the seller.

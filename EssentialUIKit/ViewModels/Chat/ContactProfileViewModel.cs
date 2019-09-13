@@ -114,7 +114,7 @@ namespace EssentialUIKit.ViewModels.Chat
         /// <param name="obj">The object</param>
         private async void ProfileNameClicked(object obj)
         {
-            Application.Current.Resources.TryGetValue("Gray-F4", out var retVal);
+            Application.Current.Resources.TryGetValue("Gray-100", out var retVal);
             (obj as SfBorder).BackgroundColor = (Color)retVal;
             await Task.Delay(100);
 

@@ -62,6 +62,9 @@ namespace EssentialUIKit.Behaviors.Chat
         /// <param name="e">ListView Loaded Event Args</param>
         private void ListView_Loaded(object sender, ListViewLoadedEventArgs e)
         {
+            ScrollView scrollView = listView.Parent as ScrollView;
+            listView.HeightRequest = scrollView.Height;
+
             ((LinearLayout) this.listView.LayoutManager).ScrollToRowIndex(
                 this.listView.DataSource.DisplayItems.Count - 1, Syncfusion.ListView.XForms.ScrollToPosition.End, true);
         }

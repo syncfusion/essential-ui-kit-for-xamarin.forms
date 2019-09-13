@@ -1,5 +1,4 @@
-﻿using FFImageLoading.Forms.Platform;
-using Syncfusion.ListView.XForms.UWP;
+﻿using Syncfusion.ListView.XForms.UWP;
 
 namespace EssentialUIKit.UWP
 {
@@ -10,7 +9,6 @@ namespace EssentialUIKit.UWP
             this.InitializeComponent();
             SfListViewRenderer.Init();
             new Syncfusion.SfMaps.XForms.UWP.SfMapsRenderer();
-            CachedImageRenderer.Init();
             LoadApplication(new EssentialUIKit.App());
         }
     }

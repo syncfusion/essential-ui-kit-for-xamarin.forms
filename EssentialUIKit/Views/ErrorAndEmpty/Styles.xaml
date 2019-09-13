@@ -11,7 +11,7 @@
         <Setter Property="VerticalOptions" Value="Center" />
         <Setter Property="HorizontalTextAlignment" Value="Center" />
         <Setter Property="LineHeight" Value="{OnPlatform Android=1.25, Default=-1}" />
-        <Setter Property="TextColor" Value="{DynamicResource Gray-56}" />
+        <Setter Property="TextColor" Value="{DynamicResource Gray-900}" />
     </Style>
 
     <!--  Common style for buttons  -->
@@ -28,39 +28,15 @@
         <Setter Property="FontAttributes" Value="Bold" />
         <Setter Property="BorderWidth" Value="0" />
         <Setter Property="VerticalTextAlignment" Value="Center" />
-        <Setter Property="VisualStateManager.VisualStateGroups">
-            <VisualStateGroupList>
-                <VisualStateGroup x:Name="CommonStates">
-                    <VisualState x:Name="Normal">
-                        <VisualState.Setters>
-                            <Setter Property="BackgroundGradient">
-                                <Setter.Value>
-                                    <gradient:SfLinearGradientBrush StartPoint="0, 0" EndPoint="1, 1">
-                                        <gradient:SfLinearGradientBrush.GradientStops>
-                                            <gradient:SfGradientStop Offset="0" Color="{DynamicResource PrimaryColor}" />
-                                            <gradient:SfGradientStop Offset="1" Color="{DynamicResource PrimaryGradient}" />
-                                        </gradient:SfLinearGradientBrush.GradientStops>
-                                    </gradient:SfLinearGradientBrush>
-                                </Setter.Value>
-                            </Setter>
-                        </VisualState.Setters>
-                    </VisualState>
-                    <VisualState x:Name="Pressed">
-                        <VisualState.Setters>
-                            <Setter Property="BackgroundGradient">
-                                <Setter.Value>
-                                    <gradient:SfLinearGradientBrush StartPoint="0, 0" EndPoint="1, 1">
-                                        <gradient:SfLinearGradientBrush.GradientStops>
-                                            <gradient:SfGradientStop Offset="0" Color="{DynamicResource PrimaryColor}" />
-                                            <gradient:SfGradientStop Offset="1" Color="{DynamicResource PrimaryGradient}" />
-                                        </gradient:SfLinearGradientBrush.GradientStops>
-                                    </gradient:SfLinearGradientBrush>
-                                </Setter.Value>
-                            </Setter>
-                        </VisualState.Setters>
-                    </VisualState>
-                </VisualStateGroup>
-            </VisualStateGroupList>
+        <Setter Property="BackgroundGradient">
+            <Setter.Value>
+                <gradient:SfLinearGradientBrush StartPoint="0, 0" EndPoint="1, 1">
+                    <gradient:SfLinearGradientBrush.GradientStops>
+                        <gradient:SfGradientStop Offset="0" Color="{DynamicResource PrimaryColor}" />
+                        <gradient:SfGradientStop Offset="1" Color="{DynamicResource PrimaryGradient}" />
+                    </gradient:SfLinearGradientBrush.GradientStops>
+                </gradient:SfLinearGradientBrush>
+            </Setter.Value>
         </Setter>
     </Style>
 

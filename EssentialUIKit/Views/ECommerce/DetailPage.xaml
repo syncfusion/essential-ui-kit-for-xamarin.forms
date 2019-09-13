@@ -8,7 +8,6 @@
     xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
     xmlns:controls="clr-namespace:EssentialUIKit.Controls"
     xmlns:converter="clr-namespace:EssentialUIKit.Converters"
-    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
     xmlns:helper="clr-namespace:EssentialUIKit.Helpers"
     xmlns:local="clr-namespace:EssentialUIKit.Views.ECommerce"
     xmlns:rating="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms"
@@ -31,30 +30,35 @@
             </ResourceDictionary.MergedDictionaries>
 
             <DataTemplate x:Key="PortraitTemplate">
-                <ffimageloading:CachedImage
+                <Image
                     Margin="3"
                     Aspect="{OnIdiom Default=AspectFill,
                                      Tablet=AspectFit}"
-                    BackgroundColor="{DynamicResource Gray-F0}"
-                    DownsampleUseDipUnits="True"
-                    FadeAnimationEnabled="true"
+                    BackgroundColor="{DynamicResource Gray-200}"
                     HorizontalOptions="Center"
-                    LoadingDelay="50"
-                    Source="{Binding .}"
-                    VerticalOptions="Center" />
+                    VerticalOptions="Center">
+                    <Image.Source>
+                        <UriImageSource Uri="{Binding .}" 
+			                                 CacheValidity="14" 
+			                                 CachingEnabled="true"/>
+                    </Image.Source>
+                </Image>
             </DataTemplate>
 
             <DataTemplate x:Key="LandscapeTemplate">
-                <ffimageloading:CachedImage
+                <Image
                     Margin="3"
                     Aspect="AspectFill"
-                    BackgroundColor="{DynamicResource Gray-F0}"
-                    FadeAnimationEnabled="true"
+                    BackgroundColor="{DynamicResource Gray-200}"
                     HeightRequest="350"
                     HorizontalOptions="Center"
-                    LoadingDelay="50"
-                    Source="{Binding .}"
-                    VerticalOptions="Center" />
+                    VerticalOptions="Center" >
+                    <Image.Source>
+                        <UriImageSource Uri="{Binding .}" 
+			                                 CacheValidity="14" 
+			                                 CachingEnabled="true"/>
+                    </Image.Source>
+                </Image>
             </DataTemplate>
 
             <ControlTemplate x:Key="DefaultTemplate">
@@ -138,7 +142,7 @@
                 <rotator:SfRotator
                     x:Name="Rotator"
                     BackgroundColor="{OnIdiom Default={DynamicResource Gray-White},
-                                              Tablet={DynamicResource Gray-F4},
+                                              Tablet={DynamicResource Gray-100},
                                               Converter={StaticResource DynamicResourceToColorConverter}}"
                     DotPlacement="OutSide"
                     DotsBorderColor="Transparent"
@@ -147,7 +151,7 @@
                     ItemsSource="{Binding ProductDetail.PreviewImages}"
                     NavigationStripMode="Dots"
                     SelectedDotColor="{DynamicResource PrimaryColor}"
-                    UnselectedDotColor="{DynamicResource Gray-F0}"
+                    UnselectedDotColor="{DynamicResource Gray-200}"
                     VerticalOptions="Start"
                     ItemTemplate="{StaticResource PortraitTemplate}"/>
 
@@ -203,7 +207,7 @@
                             MaxLines="1"
                             Style="{StaticResource LabelStyle}"
                             Text="{Binding ProductDetail.Name}"
-                            TextColor="{DynamicResource Gray-56}" />
+                            TextColor="{DynamicResource Gray-900}" />
 
                         <!--  Product Summary  -->
                         <Label
@@ -284,7 +288,7 @@
                             Grid.RowSpan="2"
                             Grid.Column="3"
                             BackgroundColor="Transparent"
-                            BorderColor="{DynamicResource Gray-E4}"
+                            BorderColor="{DynamicResource Gray-300}"
                             BorderWidth="1"
                             Command="{Binding BindingContext.AddFavouriteCommand, Source={x:Reference detailPage}}"
                             CommandParameter="{Binding .}"
@@ -308,7 +312,7 @@
                             Grid.Column="3"
                             Margin="0,5,0,0"
                             BackgroundColor="Transparent"
-                            BorderColor="{DynamicResource Gray-E4}"
+                            BorderColor="{DynamicResource Gray-300}"
                             BorderWidth="1"
                             Command="{Binding BindingContext.ShareCommand, Source={x:Reference detailPage}}"
                             CommandParameter="{Binding}"
@@ -331,7 +335,7 @@
                                                     Desktop=8,
                                                     Phone=16}"
                             Style="{StaticResource BoxViewStyle}"
-                            Color="{OnIdiom Default={DynamicResource Gray-F4},
+                            Color="{OnIdiom Default={DynamicResource Gray-100},
                                             Desktop={DynamicResource Gray-White},
                                             Converter={StaticResource DynamicResourceToColorConverter}}" />
 
@@ -347,7 +351,7 @@
                             FontSize="16"
                             Style="{StaticResource LabelStyle}"
                             Text="Select Size"
-                            TextColor="{DynamicResource Gray-56}" />
+                            TextColor="{DynamicResource Gray-900}" />
 
                         <!--  Size variant buttons  -->
                         <buttons:SfSegmentedControl
@@ -371,7 +375,7 @@
                             HeightRequest="{OnIdiom Tablet=24,
                                                     Default=0}"
                             Style="{StaticResource BoxViewStyle}"
-                            Color="{OnIdiom Default={DynamicResource Gray-F4},
+                            Color="{OnIdiom Default={DynamicResource Gray-100},
                                             Desktop={DynamicResource Gray-White},
                                             Converter={StaticResource DynamicResourceToColorConverter}}" />
 
@@ -384,7 +388,7 @@
                                                       Phone=5}"
                             Padding="0,16"
                             BackgroundColor="{OnIdiom Default={DynamicResource Gray-White},
-                                                      Phone={DynamicResource Gray-F4},
+                                                      Phone={DynamicResource Gray-100},
                                                       Converter={StaticResource DynamicResourceToColorConverter}}"
                             Orientation="Horizontal"
                             Spacing="10">
@@ -434,7 +438,7 @@
                             FontSize="16"
                             Style="{StaticResource LabelStyle}"
                             Text="Product Description"
-                            TextColor="{DynamicResource Gray-56}"
+                            TextColor="{DynamicResource Gray-900}"
                             VerticalOptions="Start" />
 
                         <Label
@@ -456,7 +460,7 @@
                             HeightRequest="{OnIdiom Tablet=24,
                                                     Default=16}"
                             Style="{StaticResource BoxViewStyle}"
-                            Color="{OnIdiom Default={DynamicResource Gray-F4},
+                            Color="{OnIdiom Default={DynamicResource Gray-100},
                                             Desktop={DynamicResource Gray-White},
                                             Converter={StaticResource DynamicResourceToColorConverter}}" />
 
@@ -473,7 +477,7 @@
                             HorizontalOptions="CenterAndExpand"
                             IsVisible="{Binding IsReviewVisible}"
                             Text="Be the 1st one to review"
-                            TextColor="{DynamicResource Gray-56}"
+                            TextColor="{DynamicResource Gray-900}"
                             VerticalOptions="CenterAndExpand" />
 
                     </Grid>

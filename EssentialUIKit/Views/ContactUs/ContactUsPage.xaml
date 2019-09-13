@@ -8,7 +8,6 @@
     xmlns:converter="clr-namespace:EssentialUIKit.Converters"
     xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
     xmlns:customControls="clr-namespace:EssentialUIKit.Controls"
-    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
     xmlns:maps="clr-namespace:Syncfusion.SfMaps.XForms;assembly=Syncfusion.SfMaps.XForms"
     xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.ContactUs"
     BackgroundColor="{DynamicResource Gray-White}"
@@ -82,7 +81,7 @@
                                                     LineHeight="{OnPlatform Android=1.5,
                                                                             Default=-1}"
                                                     Text="{Binding Header}"
-                                                    TextColor="{DynamicResource Gray-56}" />
+                                                    TextColor="{DynamicResource Gray-900}" />
 
                                                 <!--  Pin location address  -->
                                                 <Label
@@ -106,13 +105,12 @@
                                         </Frame>
 
                                         <!--  Set pin image  -->
-                                        <ffimageloading:CachedImage
+                                        <Image
                                             Margin="10,5,0,0"
                                             HeightRequest="25"
                                             HorizontalOptions="StartAndExpand"
-                                            Source="{Binding PinImage}"
-                                            WidthRequest="25" />
-
+                                            WidthRequest="25" 
+                                            Source="{Binding PinImage}" />
                                     </StackLayout>
                                 </DataTemplate>
                             </maps:ImageryLayer.MarkerTemplate>
@@ -147,7 +145,7 @@
                             LineHeight="{OnPlatform Android=1.25,
                                                     Default=-1}"
                             Text="Get in Touch"
-                            TextColor="{DynamicResource Gray-56}"
+                            TextColor="{DynamicResource Gray-900}"
                             VerticalTextAlignment="Center" />
 
                         <border:SfBorder Style="{StaticResource SfBorderStyle}">
@@ -203,8 +201,8 @@
                             <customControls:BorderlessEditor
                                 HeightRequest="120"
                                 Placeholder="Message"
-                                PlaceholderColor="{DynamicResource Gray-94}"
-                                TextColor="{DynamicResource Gray-56}">
+                                PlaceholderColor="{DynamicResource Gray-700}"
+                                TextColor="{DynamicResource Gray-900}">
                                 <customControls:BorderlessEditor.Margin>
                                     <OnPlatform
                                         x:TypeArguments="Thickness"

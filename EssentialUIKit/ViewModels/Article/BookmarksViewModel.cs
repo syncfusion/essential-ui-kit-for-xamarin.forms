@@ -164,7 +164,7 @@ namespace EssentialUIKit.ViewModels.Article
         {
             if (obj is Model article)
             {
-                article.IsBookmarked = !article.IsBookmarked;
+                LatestStories.Remove(article);
             }
         }
 

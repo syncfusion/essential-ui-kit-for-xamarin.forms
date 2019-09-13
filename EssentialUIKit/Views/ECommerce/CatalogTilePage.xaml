@@ -10,7 +10,6 @@
     xmlns:controls="clr-namespace:EssentialUIKit.Controls"
     xmlns:converter="clr-namespace:EssentialUIKit.Converters"
     xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
-    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
     xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
     x:Name="catalogTilePage"
     Title="Catalog Tile page"
@@ -108,16 +107,13 @@
                             </Grid.ColumnDefinitions>
 
                             <!--  Product Image  -->
-                            <ffimageloading:CachedImage
+                            <Image
                                 Grid.Row="0"
                                 Grid.Column="0"
                                 Grid.ColumnSpan="2"
                                 Margin="0,0,0,8"
                                 Aspect="Fill"
-                                DownsampleToViewSize="True"
-                                BackgroundColor="{DynamicResource Gray-F0}"
-                                DownsampleUseDipUnits="True"
-                                FadeAnimationEnabled="true"
+                                BackgroundColor="{DynamicResource Gray-200}"
                                 HeightRequest="200"
                                 HorizontalOptions="{core:OnPlatformOrientationLayoutOptions AndroidPhonePortrait=FillAndExpand,
                                                                                             AndroidPhoneLandscape=StartAndExpand,
@@ -127,13 +123,17 @@
                                                                                             AndroidTabletLandscape=StartAndExpand,
                                                                                             iOSTabletPortrait=FillAndExpand,
                                                                                             iOSTabletLandscape=StartAndExpand}"
-                                LoadingDelay="50"
-                                Source="{Binding PreviewImage}"
                                 WidthRequest="{OnIdiom Phone=183,
                                                        Tablet=224,
-                                                       Desktop=224}" />
+                                                       Desktop=224}">
+                                <Image.Source>
+                                    <UriImageSource Uri="{Binding PreviewImage}" 
+			                                 CacheValidity="14" 
+			                                 CachingEnabled="true"/>
+                                </Image.Source>
+                            </Image>
 
-                            <!--  Product Name  -->
+                                <!--  Product Name  -->
                             <Label
                                 Grid.Row="1"
                                 Grid.Column="0"
@@ -148,7 +148,7 @@
                                 MaxLines="1"
                                 Style="{StaticResource LabelStyle}"
                                 Text="{Binding Name}"
-                                TextColor="{DynamicResource Gray-56}" />
+                                TextColor="{DynamicResource Gray-900}" />
 
                             <StackLayout
                                 Grid.Row="2"

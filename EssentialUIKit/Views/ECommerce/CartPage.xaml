@@ -3,17 +3,16 @@
     x:Class="EssentialUIKit.Views.ECommerce.CartPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:behaviors="clr-namespace:EssentialUIKit.Behaviors.ECommerce"
+    xmlns:behaviors="clr-namespace:EssentialUIKit.Behaviors"
     xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
     xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
     xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms"
     xmlns:controls="clr-namespace:EssentialUIKit.Controls"
-    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
     xmlns:helper="clr-namespace:EssentialUIKit.Helpers"
     xmlns:local="clr-namespace:EssentialUIKit.Views.ECommerce"
     xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.ECommerce"
     Title="Cart"
-    BackgroundColor="{DynamicResource Gray-F4}"
+    BackgroundColor="{DynamicResource Gray-100}"
     NavigationPage.HasNavigationBar="False"
     Shell.NavBarIsVisible="False">
 
@@ -76,7 +75,7 @@
                         FontFamily="{StaticResource Montserrat-SemiBold}"
                         Style="{StaticResource LabelStyle}"
                         Text="My Cart"
-                        TextColor="{DynamicResource Gray-56}" />
+                        TextColor="{DynamicResource Gray-900}" />
 
                     <Label
                         BackgroundColor="{DynamicResource Gray-White}"
@@ -126,16 +125,21 @@
                                 </Grid.ColumnDefinitions>
 
                                 <!--  Product image  -->
-                                <ffimageloading:CachedImage
+                                <Image
                                     Grid.Row="0"
                                     Grid.RowSpan="4"
                                     Grid.Column="0"
                                     Margin="16"
                                     Aspect="Fill"
-                                    BackgroundColor="{DynamicResource Gray-F0}"
+                                    BackgroundColor="{DynamicResource Gray-200}"
                                     HeightRequest="140"
-                                    Source="{Binding PreviewImage}"
-                                    WidthRequest="120" />
+                                    WidthRequest="120">
+                                    <Image.Source>
+                                        <UriImageSource Uri="{Binding PreviewImage}" 
+			                                 CacheValidity="14" 
+			                                 CachingEnabled="true"/>
+                                    </Image.Source>
+                                </Image>
 
                                 <!--  Product name  -->
                                 <Label
@@ -149,7 +153,7 @@
                                     MaxLines="1"
                                     Style="{StaticResource LabelStyle}"
                                     Text="{Binding Name}"
-                                    TextColor="{DynamicResource Gray-56}" />
+                                    TextColor="{DynamicResource Gray-900}" />
 
                                 <!--  Product summary  -->
                                 <Label
@@ -215,7 +219,7 @@
                                     <border:SfBorder
                                         Margin="0"
                                         Padding="0"
-                                        BorderColor="{DynamicResource Gray-E4}"
+                                        BorderColor="{DynamicResource Gray-300}"
                                         CornerRadius="3"
                                         HasShadow="False"
                                         HeightRequest="32"
@@ -224,7 +228,7 @@
                                         <!--  Product quantity dropdown  -->
                                         <combobox:SfComboBox
                                             x:Name="QuantityComboBox"
-                                            BorderColor="{DynamicResource Gray-E4}"
+                                            BorderColor="{DynamicResource Gray-300}"
                                             DataSource="{Binding Quantities}"
                                             HorizontalOptions="StartAndExpand"
                                             MaximumDropDownHeight="200"
@@ -254,14 +258,14 @@
                                                             FontSize="25"
                                                             HorizontalTextAlignment="Center"
                                                             Text="{StaticResource DropDownButtonIcon}"
-                                                            TextColor="{DynamicResource Gray-AB}"
+                                                            TextColor="{DynamicResource Gray-600}"
                                                             VerticalTextAlignment="Center" />
                                                     </combobox:DropDownButtonSettings.View>
                                                 </combobox:DropDownButtonSettings>
                                             </combobox:SfComboBox.DropDownButtonSettings>
 
                                             <combobox:SfComboBox.Behaviors>
-                                                <behaviors:DropDownBehavior Command="{Binding Source={x:Reference CartLayout}, Path=BindingContext.QuantitySelectedCommand}" />
+                                                <behaviors:SfComboBoxDropDownBehavior Command="{Binding Source={x:Reference CartLayout}, Path=BindingContext.QuantitySelectedCommand}" />
                                             </combobox:SfComboBox.Behaviors>
                                         </combobox:SfComboBox>
 
@@ -306,7 +310,7 @@
                     VerticalOptions="Fill"
                     WidthRequest="{OnIdiom Default=0,
                                            Desktop=16}"
-                    Color="{DynamicResource Gray-F4}" />
+                    Color="{DynamicResource Gray-100}" />
 
                 <!--  Price Details  -->
                 <local:PriceDetailView
@@ -321,7 +325,7 @@
                     Margin="{OnIdiom Default='0,16,0,0',
                                      Desktop=0}"
                     ActionText="PLACE ORDER"
-                    BackgroundColor="{DynamicResource Gray-F4}"
+                    BackgroundColor="{DynamicResource Gray-100}"
                     HorizontalOptions="{OnIdiom Default=Fill,
                                                 Desktop=End}" />
 

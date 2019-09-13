@@ -4,7 +4,6 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
-    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
     xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
     xmlns:parallax="clr-namespace:Syncfusion.XForms.ParallaxView;assembly=Syncfusion.SfParallaxView.XForms"
     xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.About"
@@ -31,10 +30,10 @@
             </Grid.RowDefinitions>
 
             <!--  Background image  -->
-            <ffimageloading:CachedImage
+            <Image
                 Grid.Row="0"
                 Aspect="Fill"
-                BackgroundColor="{DynamicResource Gray-F0}"
+                BackgroundColor="{DynamicResource Gray-200}"
                 BindingContext="{x:Reference AboutUs}"
                 HeightRequest="{Binding Height}"
                 Source="About.png" />
@@ -66,9 +65,9 @@
                 Speed="0.5">
                 <parallax:SfParallaxView.Content>
                     <!--  Background image  -->
-                    <ffimageloading:CachedImage
+                    <Image
                         Aspect="AspectFill"
-                        BackgroundColor="{DynamicResource Gray-F0}"
+                        BackgroundColor="{DynamicResource Gray-200}"
                         HorizontalOptions="Fill"
                         Source="OurTeam.png"
                         VerticalOptions="Fill" />
@@ -110,10 +109,15 @@
                                 CornerRadius="32"
                                 HorizontalOptions="Center"
                                 VerticalOptions="Center">
-                                <ffimageloading:CachedImage
-                                    BackgroundColor="{DynamicResource Gray-F0}"
-                                    Source="{Binding Image}"
-                                    Style="{StaticResource AboutUsImageStyle}" />
+                                <Image
+                                    BackgroundColor="{DynamicResource Gray-200}"
+                                    Style="{StaticResource AboutUsImageStyle}" >
+                                    <Image.Source>
+                                        <UriImageSource Uri="{Binding Image}" 
+			                                 CacheValidity="14" 
+			                                 CachingEnabled="true"/>
+                                    </Image.Source>
+                                </Image>
                             </border:SfBorder>
 
                             <!--  Employee name  -->

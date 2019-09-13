@@ -3,11 +3,10 @@
     x:Class="EssentialUIKit.Views.ECommerce.PaymentView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:behavior="clr-namespace:EssentialUIKit.Behaviors.ECommerce"
+    xmlns:behavior="clr-namespace:EssentialUIKit.Behaviors"
     xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
     xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
     xmlns:control="clr-namespace:EssentialUIKit.Controls"
-    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
     xmlns:templateSelector="clr-namespace:EssentialUIKit.Helpers"
     x:Name="paymentView"
     BackgroundColor="{DynamicResource Gray-White}">
@@ -52,7 +51,7 @@
                         FontSize="12"
                         HorizontalOptions="StartAndExpand"
                         Text="{Binding CardNumber}"
-                        TextColor="{DynamicResource Gray-94}" />
+                        TextColor="{DynamicResource Gray-700}" />
 
                     <border:SfBorder
                         Grid.Row="2"
@@ -60,7 +59,7 @@
                         Padding="{OnPlatform Default='12,0',
                                              iOS='12,8'}"
                         templateSelector:RTLHelper.Margin="42,8,16,0"
-                        BorderColor="{DynamicResource Gray-E4}"
+                        BorderColor="{DynamicResource Gray-300}"
                         CornerRadius="4">
                         <control:BorderlessEntry
                             FontFamily="{StaticResource Montserrat-Regular}"
@@ -72,25 +71,25 @@
                             Keyboard="Numeric"
                             MaxLength="3"
                             Placeholder="CVV"
-                            PlaceholderColor="{DynamicResource Gray-94}"
-                            TextColor="{DynamicResource Gray-94}"
+                            PlaceholderColor="{DynamicResource Gray-700}"
+                            TextColor="{DynamicResource Gray-700}"
                             WidthRequest="100">
                             <control:BorderlessEntry.Behaviors>
-                                <behavior:BorderlessEntryBehavior />
+                                <behavior:BorderlessEntryCVVBehavior />
                             </control:BorderlessEntry.Behaviors>
                         </control:BorderlessEntry>
 
                     </border:SfBorder>
 
-                    <ffimageloading:CachedImage
+                    <Image
                         Grid.Row="2"
                         Grid.Column="1"
                         Margin="0,0,0,0"
                         HeightRequest="45"
                         HorizontalOptions="StartAndExpand"
-                        Source="{Binding CardTypeIcon}"
                         VerticalOptions="CenterAndExpand"
-                        WidthRequest="45" />
+                        WidthRequest="45" 
+                        Source="{Binding CardTypeIcon}" />
 
                     <!--  Separator  -->
                     <BoxView
@@ -154,7 +153,7 @@
                                     Default=-1}"
             Style="{StaticResource PriceLabelStyle}"
             Text="Payment Option"
-            TextColor="{DynamicResource Gray-56}" />
+            TextColor="{DynamicResource Gray-900}" />
 
         <!--  Separator  -->
         <BoxView HeightRequest="1" Style="{StaticResource BoxViewStyle}" />

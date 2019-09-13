@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
-using FFImageLoading.Forms.Platform;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation.Metadata;
@@ -47,7 +46,6 @@ namespace EssentialUIKit.UWP
             }
 
             Frame rootFrame = Window.Current.Content as Frame;
-            CachedImageRenderer.Init();
 
             // Do not repeat app initialization when the Window already has content,
             // just ensure that the window is active

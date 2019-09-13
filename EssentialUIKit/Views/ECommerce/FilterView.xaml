@@ -97,7 +97,7 @@
                                     HorizontalOptions="StartAndExpand"
                                     Style="{StaticResource LabelStyle}"
                                     Text="{Binding Name}"
-                                    TextColor="{DynamicResource Gray-56}"
+                                    TextColor="{DynamicResource Gray-900}"
                                     VerticalOptions="Center" />
                             </expander:SfExpander.Header>
 
@@ -113,8 +113,8 @@
                                                 HorizontalOptions="{OnIdiom Default=Fill,
                                                                             Desktop=Start}"
                                                 Text="{Binding}"
-                                                TextColor="{DynamicResource Gray-56}"
-                                                UncheckedColor="{DynamicResource Gray-E4}"
+                                                TextColor="{DynamicResource Gray-900}"
+                                                UncheckedColor="{DynamicResource Gray-300}"
                                                 VerticalOptions="Center" />
                                         </DataTemplate>
                                     </BindableLayout.ItemTemplate>

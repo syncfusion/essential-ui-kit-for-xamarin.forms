@@ -60,7 +60,7 @@ namespace EssentialUIKit.ViewModels.Chat
         /// <param name="obj">The object</param>
         private async void AvailableStatusClicked(object obj)
         {
-            Application.Current.Resources.TryGetValue("Gray-F4", out var retVal);
+            Application.Current.Resources.TryGetValue("Gray-100", out var retVal);
             (obj as Grid).BackgroundColor = (Color)retVal;
             await Task.Delay(100);
             (obj as Grid).BackgroundColor = Color.Transparent;
@@ -72,7 +72,7 @@ namespace EssentialUIKit.ViewModels.Chat
         /// <param name="obj">The object</param>
         private async void NotificationOptionClicked(object obj)
         {
-            Application.Current.Resources.TryGetValue("Gray-F4", out var retVal);
+            Application.Current.Resources.TryGetValue("Gray-100", out var retVal);
             (obj as Grid).BackgroundColor = (Color)retVal;
             await Task.Delay(100);
             (obj as Grid).BackgroundColor = Color.Transparent;

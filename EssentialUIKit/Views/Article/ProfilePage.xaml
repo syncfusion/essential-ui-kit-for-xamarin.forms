@@ -6,9 +6,8 @@
     xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
     xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
     xmlns:controls="clr-namespace:EssentialUIKit.Controls"
-    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
     xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Article"
-    BackgroundColor="{DynamicResource Gray-F4}"
+    BackgroundColor="{DynamicResource Gray-100}"
     NavigationPage.HasNavigationBar="False"
     Shell.NavBarIsVisible="False">
 
@@ -37,7 +36,7 @@
     <ContentPage.Content>
         <ScrollView>
 
-            <StackLayout BackgroundColor="{DynamicResource Gray-F4}" Spacing="0">
+            <StackLayout BackgroundColor="{DynamicResource Gray-100}" Spacing="0">
 
                 <Grid
                     Margin="0,16,0,0"
@@ -61,12 +60,17 @@
                     <!--  Rounded Profile Image  -->
                     <border:SfBorder
                         Grid.RowSpan="2"
-                        BackgroundColor="{DynamicResource Gray-F0}"
+                        BackgroundColor="{DynamicResource Gray-200}"
                         Style="{StaticResource ProfileBorderStyle}">
-                        <ffimageloading:CachedImage
+                        <Image
                             HeightRequest="48"
-                            Source="{Binding ProfileImage}"
-                            WidthRequest="48" />
+                            WidthRequest="48">
+                            <Image.Source>
+                                <UriImageSource Uri="{Binding ProfileImage}" 
+			                                 CacheValidity="14" 
+			                                 CachingEnabled="true"/>
+                            </Image.Source>
+                        </Image>
                     </border:SfBorder>
 
                     <!--  Profile Name  -->
@@ -81,7 +85,7 @@
                                                 Android=1.25}"
                         MaxLines="2"
                         Text="{Binding ProfileName}"
-                        TextColor="{DynamicResource Gray-56}" />
+                        TextColor="{DynamicResource Gray-900}" />
 
                     <!--  Email  -->
                     <Label
@@ -95,7 +99,7 @@
                                                 Android=1.25}"
                         MaxLines="2"
                         Text="{Binding Email}"
-                        TextColor="{DynamicResource Gray-94}" />
+                        TextColor="{DynamicResource Gray-700}" />
 
                     <!--  Edit button  -->
                     <buttons:SfButton
@@ -112,7 +116,7 @@
 
                 <BoxView Style="{StaticResource SeparatorStyle}" />
 
-                <BoxView BackgroundColor="{DynamicResource Gray-F4}" HeightRequest="16" />
+                <BoxView BackgroundColor="{DynamicResource Gray-100}" HeightRequest="16" />
 
                 <!--  Grid for Night mode label and switch  -->
                 <Grid BackgroundColor="{DynamicResource Gray-White}">
@@ -140,9 +144,9 @@
                                             <Setter.Value>
                                                 <buttons:CupertinoSwitchSettings
                                                     x:TypeArguments="buttons:OnState"
-                                                    ThumbBorderColor="{DynamicResource Gray-F0}"
+                                                    ThumbBorderColor="{DynamicResource Gray-200}"
                                                     ThumbColor="{DynamicResource Gray-White}"
-                                                    TrackBorderColor="{DynamicResource Gray-F0}"
+                                                    TrackBorderColor="{DynamicResource Gray-200}"
                                                     TrackColor="{DynamicResource PrimaryColor}" />
                                             </Setter.Value>
                                         </Setter>
@@ -154,9 +158,9 @@
                                             <Setter.Value>
                                                 <buttons:CupertinoSwitchSettings
                                                     x:TypeArguments="buttons:OffState"
-                                                    ThumbBorderColor="{DynamicResource Gray-F0}"
+                                                    ThumbBorderColor="{DynamicResource Gray-200}"
                                                     ThumbColor="{DynamicResource Gray-White}"
-                                                    TrackBorderColor="{DynamicResource Gray-F0}"
+                                                    TrackBorderColor="{DynamicResource Gray-200}"
                                                     TrackColor="{DynamicResource Gray-White}" />
                                             </Setter.Value>
                                         </Setter>

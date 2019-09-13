@@ -5,7 +5,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
     xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
-    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
     xmlns:rating="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms"
     BackgroundColor="{DynamicResource Gray-White}"
     Spacing="0"
@@ -29,11 +28,13 @@
                 HorizontalOptions="StartAndExpand"
                 Style="{StaticResource LabelStyle}"
                 Text="Rating and Reviews"
-                TextColor="{DynamicResource Gray-56}" />
+                TextColor="{DynamicResource Gray-900}" />
 
             <buttons:SfButton
+                x:Name="ShowButton"
                 Padding="0"
                 Command="{Binding LoadMoreCommand}"
+                CommandParameter="{x:Reference ShowButton}"
                 CornerRadius="4"
                 FontFamily="{StaticResource Montserrat-SemiBold}"
                 FontSize="{OnIdiom Default=12,
@@ -42,9 +43,18 @@
                 IsVisible="{OnIdiom Default=True,
                                     Desktop=False}"
                 Style="{StaticResource SfButtonStyle}"
-                Text="SHOW ALL"
+                Text="SHOW LESS"
                 TextColor="{DynamicResource HyperLink}"
-                VerticalOptions="Center" />
+                VerticalOptions="Center">
+                <buttons:SfButton.Triggers>
+                    <DataTrigger
+                        Binding="{Binding ProductDetail.Reviews.Count}"
+                        TargetType="buttons:SfButton"
+                        Value="1">
+                        <Setter Property="Text" Value="SHOW ALL" />
+                    </DataTrigger>
+                </buttons:SfButton.Triggers>
+            </buttons:SfButton>
 
         </StackLayout>
         <BoxView HeightRequest="{OnIdiom Default=1, Desktop=0}" Style="{StaticResource BoxViewStyle}" />
@@ -74,13 +84,15 @@
                             HeightRequest="48"
                             Style="{StaticResource SfBorderStyle}"
                             WidthRequest="48">
-                            <ffimageloading:CachedImage
+                            <Image
                                 Aspect="AspectFill"
-                                BackgroundColor="{DynamicResource Gray-F0}"
-                                DownsampleUseDipUnits="True"
-                                FadeAnimationEnabled="true"
-                                LoadingDelay="50"
-                                Source="{Binding ProfileImage}" />
+                                BackgroundColor="{DynamicResource Gray-200}">
+                                <Image.Source>
+                                    <UriImageSource Uri="{Binding ProfileImage}" 
+			                                 CacheValidity="14" 
+			                                 CachingEnabled="true"/>
+                                </Image.Source>
+                            </Image>
                         </border:SfBorder>
 
                         <StackLayout
@@ -101,7 +113,7 @@
                                     FontFamily="{StaticResource Montserrat-SemiBold}"
                                     Style="{StaticResource LabelStyle}"
                                     Text="{Binding CustomerName}"
-                                    TextColor="{DynamicResource Gray-56}" />
+                                    TextColor="{DynamicResource Gray-900}" />
 
                                 <!--  Commented Date  -->
                                 <Label
@@ -131,17 +143,18 @@
                             Spacing="8">
                             <BindableLayout.ItemTemplate>
                                 <DataTemplate>
-                                    <ffimageloading:CachedImage
+                                    <Image
                                         Margin="0,8,0,0"
                                         Aspect="AspectFill"
-                                        DownsampleToViewSize="True"
-                                        BackgroundColor="{DynamicResource Gray-F0}"
-                                        DownsampleUseDipUnits="True"
-                                        FadeAnimationEnabled="true"
+                                        BackgroundColor="{DynamicResource Gray-200}"
                                         HeightRequest="50"
-                                        LoadingDelay="50"
-                                        Source="{Binding .}"
-                                        WidthRequest="60" />
+                                        WidthRequest="60" >
+                                        <Image.Source>
+                                            <UriImageSource Uri="{Binding .}" 
+			                                 CacheValidity="14" 
+			                                 CachingEnabled="true"/>
+                                        </Image.Source>
+                                    </Image>
                                 </DataTemplate>
                             </BindableLayout.ItemTemplate>
                         </StackLayout>

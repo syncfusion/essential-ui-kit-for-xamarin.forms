@@ -5,7 +5,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
     xmlns:button="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
-    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
     xmlns:helper="clr-namespace:EssentialUIKit.Helpers"
     xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Chat"
     Title="Contact Profile Page"
@@ -37,12 +36,12 @@
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
 
-                    <ffimageloading:CachedImage
+                    <Image
                         x:Name="ProfileImage"
                         Grid.Row="0"
                         Grid.ColumnSpan="3"
                         Aspect="AspectFill"
-                        BackgroundColor="{DynamicResource Gray-F0}"
+                        BackgroundColor="{DynamicResource Gray-200}"
                         HeightRequest="{OnIdiom Default=480,
                                                 Phone=330}" />
 
@@ -114,7 +113,7 @@
                                     LineHeight="{OnPlatform Android=1.5,
                                                             Default=-1}"
                                     Text="Julia Grant"
-                                    TextColor="{DynamicResource Gray-56}"
+                                    TextColor="{DynamicResource Gray-900}"
                                     VerticalOptions="Center"
                                     VerticalTextAlignment="Center" />
 
@@ -202,7 +201,7 @@
                         HorizontalOptions="StartAndExpand"
                         LineHeight="1.5"
                         Text="MEDIA"
-                        TextColor="{DynamicResource Gray-6F}"
+                        TextColor="{DynamicResource Gray-800}"
                         VerticalOptions="Center" />
 
                     <!--  View all label  -->
@@ -231,15 +230,19 @@
                         Spacing="16">
                         <BindableLayout.ItemTemplate>
                             <DataTemplate>
-                                <ffimageloading:CachedImage
-                                    BackgroundColor="{DynamicResource Gray-F0}"
+                                <Image
+                                    BackgroundColor="{DynamicResource Gray-200}"
                                     HeightRequest="100"
-                                    Source="{Binding ImagePath}"
                                     WidthRequest="100">
-                                    <ffimageloading:CachedImage.GestureRecognizers>
+                                    <Image.GestureRecognizers>
                                         <TapGestureRecognizer Command="{Binding Path=BindingContext.MediaImageCommand, Source={x:Reference ScrollView}}" CommandParameter="{Binding .}" />
-                                    </ffimageloading:CachedImage.GestureRecognizers>
-                                </ffimageloading:CachedImage>
+                                    </Image.GestureRecognizers>
+                                    <Image.Source>
+                                        <UriImageSource Uri="{Binding ImagePath}" 
+			                                 CacheValidity="14" 
+			                                 CachingEnabled="true"/>
+                                    </Image.Source>
+                                </Image>
                             </DataTemplate>
                         </BindableLayout.ItemTemplate>
                     </StackLayout>

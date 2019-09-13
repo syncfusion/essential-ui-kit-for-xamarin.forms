@@ -53,6 +53,11 @@ namespace EssentialUIKit.Models.Article
         public string AverageReadingTime { get; set; }
 
         /// <summary>
+        /// Gets or sets the article description
+        /// </summary>
+        public string Description{ get; set; }
+
+        /// <summary>
         /// Gets or sets the property that has been bound with view, which displays the bookmark icon.
         /// </summary>
         public bool IsBookmarked

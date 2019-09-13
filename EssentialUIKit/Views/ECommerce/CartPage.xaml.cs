@@ -17,7 +17,7 @@ namespace EssentialUIKit.Views.ECommerce
         public CartPage()
         {
             this.InitializeComponent();
-            this.BindingContext = ECommerceDataService.Instance.CartPageViewModel;
+            this.BindingContext = CartDataService.Instance.CartPageViewModel;
         }
     }
 }

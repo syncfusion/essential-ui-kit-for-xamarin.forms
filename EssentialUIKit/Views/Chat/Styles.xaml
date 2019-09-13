@@ -38,7 +38,7 @@
 
     <!--  Common style for Navigation bar SfButton  -->
     <Style x:Key="NavigationBarButtonStyle" TargetType="buttons:SfButton">
-        <Setter Property="TextColor" Value="{DynamicResource Gray-AB}" />
+        <Setter Property="TextColor" Value="{DynamicResource Gray-600}" />
         <Setter Property="FontSize" Value="18" />
         <Setter Property="WidthRequest" Value="38" />
         <Setter Property="HeightRequest" Value="38" />
@@ -73,9 +73,9 @@
 
     <!--  Common style for entries  -->
     <Style x:Key="ChatSearchEntryStyle" TargetType="control:BorderlessEntry">
-        <Setter Property="PlaceholderColor" Value="{DynamicResource Gray-94}" />
+        <Setter Property="PlaceholderColor" Value="{DynamicResource Gray-700}" />
         <Setter Property="BackgroundColor" Value="Transparent" />
-        <Setter Property="TextColor" Value="{DynamicResource Gray-56}" />
+        <Setter Property="TextColor" Value="{DynamicResource Gray-900}" />
         <Setter Property="FontSize" Value="16" />
         <Setter Property="VerticalOptions" Value="Center" />
         <Setter Property="ReturnType" Value="Done" />
@@ -100,7 +100,7 @@
 
     <!--  Common style for message icon  -->
     <Style x:Key="MessageIconStyle" TargetType="Label">
-        <Setter Property="TextColor" Value="{DynamicResource Gray-AB}" />
+        <Setter Property="TextColor" Value="{DynamicResource Gray-600}" />
         <Setter Property="FontSize" Value="18" />
         <Setter Property="VerticalOptions" Value="Center" />
         <Setter Property="LineBreakMode" Value="NoWrap" />
@@ -110,7 +110,7 @@
 
     <!--  Common style for message text  -->
     <Style x:Key="MessageTextStyle" TargetType="Label">
-        <Setter Property="TextColor" Value="{DynamicResource Gray-6F}" />
+        <Setter Property="TextColor" Value="{DynamicResource Gray-800}" />
         <Setter Property="VerticalOptions" Value="Center" />
         <Setter Property="LineBreakMode" Value="TailTruncation" />
         <Setter Property="FontSize" Value="12" />
@@ -120,7 +120,7 @@
 
     <!--  Common style for show time  -->
     <Style x:Key="TimeTextStyle" TargetType="Label">
-        <Setter Property="TextColor" Value="{DynamicResource Gray-94}" />
+        <Setter Property="TextColor" Value="{DynamicResource Gray-700}" />
         <Setter Property="HorizontalOptions" Value="Center" />
         <Setter Property="LineBreakMode" Value="NoWrap" />
         <Setter Property="FontSize" Value="12" />
@@ -130,7 +130,7 @@
 
     <!--  Common style for Notification icon label  -->
     <Style x:Key="NotificationIconStyle" TargetType="Label">
-        <Setter Property="TextColor" Value="{DynamicResource Gray-AB}" />
+        <Setter Property="TextColor" Value="{DynamicResource Gray-600}" />
         <Setter Property="HorizontalOptions" Value="End" />
         <Setter Property="HorizontalTextAlignment" Value="End" />
         <Setter Property="FontSize" Value="18" />
@@ -139,17 +139,17 @@
 
     <!--  Common style for chat message editor  -->
     <Style x:Key="ChatMessageEditorStyle" TargetType="control:BorderlessEditor">
-        <Setter Property="TextColor" Value="{DynamicResource Gray-56}" />
+        <Setter Property="TextColor" Value="{DynamicResource Gray-900}" />
         <Setter Property="HorizontalOptions" Value="FillAndExpand" />
         <Setter Property="FontSize" Value="14" />
         <Setter Property="Margin" Value="5,0" />
-        <Setter Property="PlaceholderColor" Value="{DynamicResource Gray-94}" />
+        <Setter Property="PlaceholderColor" Value="{DynamicResource Gray-700}" />
     </Style>
 
     <Style x:Key="ProfileLabelStyle" TargetType="Label">
         <Setter Property="FontFamily" Value="{StaticResource Montserrat-Medium}" />
         <Setter Property="FontSize" Value="16" />
-        <Setter Property="TextColor" Value="{DynamicResource Gray-56}" />
+        <Setter Property="TextColor" Value="{DynamicResource Gray-900}" />
         <Setter Property="VerticalOptions" Value="Center" />
         <Setter Property="HorizontalOptions" Value="Start" />
         <Setter Property="HorizontalTextAlignment" Value="Start" />
@@ -157,7 +157,7 @@
     </Style>
 
     <Style x:Key="ProfileIconLabelStyle" TargetType="Label">
-        <Setter Property="TextColor" Value="{DynamicResource Gray-AB}" />
+        <Setter Property="TextColor" Value="{DynamicResource Gray-600}" />
         <Setter Property="FontSize" Value="18" />
         <Setter Property="HorizontalOptions" Value="Center" />
         <Setter Property="VerticalOptions" Value="Center" />
@@ -167,7 +167,7 @@
 
     <Style x:Key="SeparatorStyle" TargetType="BoxView">
         <Setter Property="HeightRequest" Value="1" />
-        <Setter Property="BackgroundColor" Value="{DynamicResource Gray-F0}" />
+        <Setter Property="BackgroundColor" Value="{DynamicResource Gray-200}" />
     </Style>
 
     <Style x:Key="GradientViewStyle" TargetType="gradient:SfGradientView">

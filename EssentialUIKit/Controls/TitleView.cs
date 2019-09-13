@@ -80,7 +80,7 @@ namespace EssentialUIKit.Controls
                 new RowDefinition {Height = 1}
             };
 
-            var boxView = new BoxView {Color = (Color) Application.Current.Resources["Gray-F0"]};
+            var boxView = new BoxView {Color = (Color) Application.Current.Resources["Gray-200"]};
 
             Children.Add(this.LeadingView, 1, 0);
             Children.Add(this.Content, 2, 0);
@@ -223,7 +223,7 @@ namespace EssentialUIKit.Controls
                 titleView.titleLabel = new Label
                 {
                     Text = newText,
-                    TextColor = (Color)Application.Current.Resources["Gray-56"],
+                    TextColor = (Color)Application.Current.Resources["Gray-900"],
                     FontSize = 16,
                     Margin = new Thickness(0,8),
                     FontFamily = Device.RuntimePlatform == Device.Android

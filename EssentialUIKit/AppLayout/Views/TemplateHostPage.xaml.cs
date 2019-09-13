@@ -85,6 +85,7 @@ namespace EssentialUIKit.AppLayout.Views
             var page = (Page)Activator.CreateInstance(assembly.GetType($"EssentialUIKit.{pageURL}"));
 
             TemplateHostView.Template = new NavigationPage(page);
+
         }
 
         private void BackButtonPressed(object sender, EventArgs e)

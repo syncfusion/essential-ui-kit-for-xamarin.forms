@@ -7,7 +7,6 @@
     xmlns:cards="clr-namespace:Syncfusion.XForms.Cards;assembly=Syncfusion.Cards.XForms"
     xmlns:controls="clr-namespace:EssentialUIKit.Controls"
     xmlns:converter="clr-namespace:EssentialUIKit.Converters"
-    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
     xmlns:helper="clr-namespace:EssentialUIKit.Helpers"
     xmlns:syncfusion="clr-namespace:Syncfusion.SfRotator.XForms;assembly=Syncfusion.SfRotator.XForms"
     xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Article"
@@ -62,7 +61,7 @@
                     LineHeight="{OnPlatform Default=-1,
                                             Android=1.25}"
                     Text="FEATURED STORIES"
-                    TextColor="{DynamicResource Gray-6F}" />
+                    TextColor="{DynamicResource Gray-800}" />
 
                 <!--<Rotator for featured blog stories>-->
                 <syncfusion:SfRotator
@@ -76,7 +75,7 @@
                     NavigationDirection="Horizontal"
                     NavigationStripMode="Dots"
                     SelectedDotColor="{DynamicResource PrimaryColor}"
-                    UnselectedDotColor="{DynamicResource Gray-F0}"
+                    UnselectedDotColor="{DynamicResource Gray-200}"
                     VerticalOptions="Start">
                     <syncfusion:SfRotator.ItemTemplate>
                         <DataTemplate>
@@ -89,11 +88,16 @@
                                         <StackLayout Spacing="0">
 
                                             <!--  Image of the blog  -->
-                                            <ffimageloading:CachedImage
+                                            <Image
                                                 Aspect="AspectFill"
-                                                BackgroundColor="{DynamicResource Gray-F0}"
-                                                HeightRequest="140"
-                                                Source="{Binding ImagePath}" />
+                                                BackgroundColor="{DynamicResource Gray-200}"
+                                                HeightRequest="140">
+                                                <Image.Source>
+                                                    <UriImageSource Uri="{Binding ImagePath}" 
+			                                              CacheValidity="14" 
+			                                              CachingEnabled="true"/>
+                                                </Image.Source>
+                                            </Image>
 
                                             <!--  Blog tile  -->
                                             <Label
@@ -105,7 +109,7 @@
                                                                         Android=1.25}"
                                                 MaxLines="1"
                                                 Text="{Binding Name}"
-                                                TextColor="{DynamicResource Gray-56}" />
+                                                TextColor="{DynamicResource Gray-900}" />
 
                                             <!--  Author name  -->
                                             <Label
@@ -115,7 +119,7 @@
                                                 LineHeight="{OnPlatform Default=-1,
                                                                         Android=1.5}"
                                                 Text="{Binding Author}"
-                                                TextColor="{DynamicResource Gray-56}"
+                                                TextColor="{DynamicResource Gray-900}"
                                                 VerticalOptions="End" />
 
                                             <!--  Published date and average reading time  -->
@@ -125,7 +129,7 @@
                                                 FontSize="12"
                                                 LineHeight="{OnPlatform Default=-1,
                                                                         Android=1.5}"
-                                                TextColor="{DynamicResource Gray-94}">
+                                                TextColor="{DynamicResource Gray-700}">
                                                 <Label.FormattedText>
                                                     <FormattedString>
                                                         <Span Text="{Binding Date}" />
@@ -153,7 +157,7 @@
                     LineHeight="{OnPlatform Default=-1,
                                             Android=1.25}"
                     Text="LATEST STORIES"
-                    TextColor="{DynamicResource Gray-6F}" />
+                    TextColor="{DynamicResource Gray-800}" />
 
                 <!--  Featured blog list  -->
                 <StackLayout
@@ -184,10 +188,10 @@
                                 </Grid.ColumnDefinitions>
 
                                 <!--  Blog image  -->
-                                <ffimageloading:CachedImage
+                                <Image
                                     Grid.RowSpan="3"
                                     Aspect="Fill"
-                                    BackgroundColor="{DynamicResource Gray-F0}"
+                                    BackgroundColor="{DynamicResource Gray-200}"
                                     HeightRequest="110"
                                     Source="{Binding ImagePath}"
                                     VerticalOptions="Center"
@@ -205,7 +209,7 @@
                                                             iOS=1.25}"
                                     MaxLines="2"
                                     Text="{Binding Name}"
-                                    TextColor="{DynamicResource Gray-56}" />
+                                    TextColor="{DynamicResource Gray-900}" />
 
                                 <!--  Author name  -->
                                 <Label
@@ -217,7 +221,7 @@
                                     LineHeight="{OnPlatform Default=-1,
                                                             Android=1.5}"
                                     Text="{Binding Author}"
-                                    TextColor="{DynamicResource Gray-56}" />
+                                    TextColor="{DynamicResource Gray-900}" />
 
                                 <!--  Published date and Average reading time  -->
                                 <Label
@@ -228,7 +232,7 @@
                                     FontSize="12"
                                     LineHeight="{OnPlatform Default=-1,
                                                             Android=1.5}"
-                                    TextColor="{DynamicResource Gray-94}">
+                                    TextColor="{DynamicResource Gray-700}">
                                     <Label.FormattedText>
                                         <FormattedString>
                                             <Span Text="{Binding Date}" />

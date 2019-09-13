@@ -3,8 +3,8 @@
     x:Class="EssentialUIKit.Views.ECommerce.CategoryTilePage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:commonBehavior="clr-namespace:EssentialUIKit.Behaviors"
     xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:behavior="clr-namespace:EssentialUIKit.Behaviors"
     xmlns:controls="clr-namespace:EssentialUIKit.Controls"
     xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
     xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
@@ -56,7 +56,7 @@
                 Style="{StaticResource SfListViewStyle}">
 
                 <listView:SfListView.Behaviors>
-                    <commonBehavior:SfListViewTapBehavior Command="{Binding Path=BindingContext.CategorySelectedCommand, Source={x:Reference categoryPage}}"/>
+                    <behavior:SfListViewTapBehavior Command="{Binding Path=BindingContext.CategorySelectedCommand, Source={x:Reference categoryPage}}"/>
                 </listView:SfListView.Behaviors>
 
                 <listView:SfListView.ItemTemplate>
@@ -69,20 +69,22 @@
                             </Grid.RowDefinitions>
 
                             <!--  Category Image  -->
-                            <ffimageloading:CachedImage
+                            <Image
                                 Grid.Row="0"
                                 Aspect="AspectFill"
-                                BackgroundColor="{DynamicResource Gray-F0}"
-                                DownsampleUseDipUnits="True"
-                                FadeAnimationEnabled="true"
+                                BackgroundColor="{DynamicResource Gray-200}"
                                 HeightRequest="{OnIdiom Phone=150,
                                                         Tablet=240,
-                                                        Desktop=120}"
-                                LoadingDelay="50"
-                                Source="{Binding Icon}"
+                                                        Desktop=120}"                              
                                 WidthRequest="{OnIdiom Phone=160,
                                                        Tablet=224,
-                                                       Desktop=200}" />
+                                                       Desktop=200}">
+                                <Image.Source>
+                                    <UriImageSource Uri="{Binding Icon}" 
+			                                 CacheValidity="14" 
+			                                 CachingEnabled="true"/>
+                                </Image.Source>
+                            </Image>
 
                             <!--  Category Name  -->
                             <Label
@@ -95,7 +97,7 @@
                                 LineHeight="{OnPlatform Default=-1,
                                                         Android=1.5}"
                                 Text="{Binding Name}"
-                                TextColor="{DynamicResource Gray-56}" />
+                                TextColor="{DynamicResource Gray-900}" />
 
                         </Grid>
                     </DataTemplate>

@@ -62,7 +62,7 @@ namespace EssentialUIKit.Droid.Renderers
 
             if (nativePage != null)
             {
-                this.SetNativeControl(nativePage as View);
+                this.SetNativeControl(nativePage.View);
             }
             else
             {

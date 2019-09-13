@@ -81,7 +81,7 @@
                                             FontFamily="{StaticResource Montserrat-SemiBold}"
                                             Style="{StaticResource LabelStyle}"
                                             Text="{Binding Name}"
-                                            TextColor="{DynamicResource Gray-56}"
+                                            TextColor="{DynamicResource Gray-900}"
                                             VerticalOptions="Center" />
                                     </Grid>
                                 </expander:SfExpander.Header>
@@ -101,12 +101,12 @@
                                                     <Label
                                                         Style="{StaticResource LabelStyle}"
                                                         Text="{Binding}"
-                                                        TextColor="{DynamicResource Gray-56}" />
+                                                        TextColor="{DynamicResource Gray-900}" />
 
                                                     <Frame.Behaviors>
                                                         <behaviors:FrameTapBehavior CommandParameter="{x:Reference Frame}"/>
-                                                    </Frame.Behaviors>
-                                                    
+                                                    </Frame.Behaviors>                                                    
+                                                   
                                                 </Frame>
 
                                             </DataTemplate>

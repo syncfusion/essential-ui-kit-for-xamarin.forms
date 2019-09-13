@@ -23,7 +23,7 @@ namespace EssentialUIKit.Behaviors.ECommerce
         /// Gets or sets the CommandParameterProperty, and it is a bindable property.
         /// </summary>
         public static readonly BindableProperty CommandParameterProperty =
-            BindableProperty.Create("CommandParameter", typeof(object), typeof(FrameTapBehavior));
+            BindableProperty.Create("CommandParameter", typeof(object), typeof(FrameTapBehavior));        
 
         /// <summary>
         /// Gets or sets the CommandParameter.
@@ -77,5 +77,4 @@ namespace EssentialUIKit.Behaviors.ECommerce
 
         #endregion
     }
-
 }

@@ -34,7 +34,7 @@ namespace EssentialUIKit.Converters
                     break;
                 case "Received":
                 case "Sent":
-                    Application.Current.Resources.TryGetValue("Gray-AB", out var colorVal);
+                    Application.Current.Resources.TryGetValue("Gray-600", out var colorVal);
                     ((Label)parameter).TextColor = (Color)colorVal;
                     break;
                 case "Audio":
