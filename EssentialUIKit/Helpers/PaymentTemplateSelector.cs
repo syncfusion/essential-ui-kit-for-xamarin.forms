@@ -1,6 +1,6 @@
 ﻿using Xamarin.Forms;
 using Xamarin.Forms.Internals;
-using EssentialUIKit.Models.ECommerce;
+using EssentialUIKit.Models.Transaction;
 
 namespace EssentialUIKit.Helpers
 {

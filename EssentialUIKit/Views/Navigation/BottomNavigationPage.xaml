@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:EssentialUIKit.Views.Navigation"
+             x:Class="EssentialUIKit.Views.Navigation.BottomNavigationPage"
+             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+             android:TabbedPage.ToolbarPlacement="Bottom"
+             android:TabbedPage.BarSelectedItemColor="{DynamicResource PrimaryColor}"
+             android:TabbedPage.BarItemColor="{DynamicResource Gray-600}"
+             BarBackgroundColor="White"
+             NavigationPage.HasNavigationBar="False">
+    <TabbedPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </TabbedPage.Resources>
+    <local:PhotosPage Title="Photos">
+        <local:PhotosPage.IconImageSource>
+            <FontImageSource FontFamily="{StaticResource FontIcons}"
+                                 Glyph="{StaticResource PhotosIcon}"
+                                 Size="16"/>
+        </local:PhotosPage.IconImageSource>
+    </local:PhotosPage>
+    <local:AlbumPage Title="Album">
+        <local:AlbumPage.IconImageSource>
+            <FontImageSource FontFamily="{StaticResource FontIcons}"
+                                 Glyph="{StaticResource AlbumsIcon}"
+                                 Size="16"/>
+        </local:AlbumPage.IconImageSource>
+    </local:AlbumPage>
+    <local:SettingsPage Title="Settings">
+        <local:SettingsPage.IconImageSource>
+            <FontImageSource FontFamily="{StaticResource FontIcons}"
+                                 Glyph="{StaticResource SettingsIcon}"
+                                 Size="16"/>
+        </local:SettingsPage.IconImageSource>
+    </local:SettingsPage>
+</TabbedPage>
