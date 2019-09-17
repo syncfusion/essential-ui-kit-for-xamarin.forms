@@ -104,7 +104,6 @@
     <Compile Include="Renderers\BorderlessEntryRenderer.cs" />
     <Compile Include="Renderers\FrameShadowRenderer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Effects\BorderlessEffect.cs" />
     <Compile Include="Renderers\ParallaxListViewRenderer.cs" />
     <Compile Include="Renderers\TemplateHostViewRenderer.cs" />
     <BundleResource Include="Resources\Splash.png" />

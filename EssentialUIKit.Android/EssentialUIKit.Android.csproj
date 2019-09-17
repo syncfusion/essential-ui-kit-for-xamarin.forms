@@ -93,7 +93,6 @@
     <PackageReference Include="Xamarin.Android.Support.CustomTabs" Version="28.0.0.1" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Effects\BorderlessEffect.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Renderers\ParallaxListViewRenderer.cs" />
     <Compile Include="Renderers\BorderlessEditorRenderer.cs" />
