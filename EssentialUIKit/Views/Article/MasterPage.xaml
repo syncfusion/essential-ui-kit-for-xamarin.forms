@@ -4,7 +4,6 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
-    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
     xmlns:helper="clr-namespace:EssentialUIKit.Helpers"
     xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Article"
     BackgroundColor="{DynamicResource Gray-White}"
@@ -47,11 +46,16 @@
 
                     <!--  Rounded Profile Image  -->
                     <border:SfBorder Grid.RowSpan="2" Style="{StaticResource ProfileBorderStyle}">
-                        <ffimageloading:CachedImage
-                            BackgroundColor="{DynamicResource Gray-F0}"
+                        <Image
+                            BackgroundColor="{DynamicResource Gray-200}"
                             HeightRequest="48"
-                            Source="{Binding ProfileImage}"
-                            WidthRequest="48" />
+                            WidthRequest="48">
+                            <Image.Source>
+                                <UriImageSource Uri="{Binding ProfileImage}" 
+			                                 CacheValidity="14" 
+			                                 CachingEnabled="true"/>
+                            </Image.Source>
+                        </Image>
                     </border:SfBorder>
 
                     <!--  Profile Name  -->
@@ -66,7 +70,7 @@
                                                 Android=1.25}"
                         MaxLines="2"
                         Text="{Binding ProfileName}"
-                        TextColor="{DynamicResource Gray-56}" />
+                        TextColor="{DynamicResource Gray-900}" />
 
                     <!--  Email  -->
                     <Label
@@ -80,7 +84,7 @@
                                                 Android=1.25}"
                         MaxLines="2"
                         Text="{Binding Email}"
-                        TextColor="{DynamicResource Gray-94}" />
+                        TextColor="{DynamicResource Gray-700}" />
                 </Grid>
 
                 <BoxView Margin="0,0,0,8" Style="{StaticResource SeparatorStyle}" />

@@ -3,7 +3,6 @@
     x:Class="EssentialUIKit.Views.AboutUs.AboutUsSimplePage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
     xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.About"
     xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
     Title="About"
@@ -31,11 +30,15 @@
                     </StackLayout.BindingContext>
 
                     <!--  Product image  -->
-                    <ffimageloading:CachedImage
-                        HeightRequest="110" 
-                        LoadingPlaceholder="PlaceHolder.png"
-                        Source="{Binding ProductIcon}"
-                        WidthRequest="124" />
+                    <Image
+                        HeightRequest="110"
+                        WidthRequest="124">
+                        <Image.Source>
+                            <UriImageSource Uri="{Binding ProductIcon}" 
+			                                 CacheValidity="14" 
+			                                 CachingEnabled="true"/>
+                        </Image.Source>
+                    </Image>
 
                     <!--  Product version  -->
                     <Label

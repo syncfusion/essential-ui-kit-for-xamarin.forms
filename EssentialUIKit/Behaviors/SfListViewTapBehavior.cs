@@ -68,5 +68,4 @@ namespace EssentialUIKit.Behaviors
 
         #endregion
     }
-
 }

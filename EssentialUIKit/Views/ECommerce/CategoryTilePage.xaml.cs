@@ -17,7 +17,7 @@ namespace EssentialUIKit.Views.ECommerce
         public CategoryTilePage()
         {
             this.InitializeComponent();
-            this.BindingContext = ECommerceDataService.Instance.CategoryPageViewModel;
+            this.BindingContext = CategoryDataService.Instance.CategoryPageViewModel;
         }
     }
 }

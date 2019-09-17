@@ -3,13 +3,12 @@
     x:Class="EssentialUIKit.Views.ECommerce.CatalogListPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:badge ="clr-namespace:Syncfusion.XForms.BadgeView;assembly=Syncfusion.SfBadgeView.XForms"
+    xmlns:badge="clr-namespace:Syncfusion.XForms.BadgeView;assembly=Syncfusion.SfBadgeView.XForms"
     xmlns:behavior="clr-namespace:EssentialUIKit.Behaviors.ECommerce"
-    xmlns:commonBehavior="clr-namespace:EssentialUIKit.Behaviors"
     xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:commonBehavior="clr-namespace:EssentialUIKit.Behaviors"
     xmlns:controls="clr-namespace:EssentialUIKit.Controls"
     xmlns:converter="clr-namespace:EssentialUIKit.Converters"
-    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
     xmlns:helper="clr-namespace:EssentialUIKit.Helpers"
     xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
     xmlns:rating="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms"
@@ -20,14 +19,14 @@
     Style="{StaticResource ContentPageStyle}">
 
     <ContentPage.Behaviors>
-        <behavior:CartBehavior/>
+        <behavior:CartBehavior />
     </ContentPage.Behaviors>
 
     <ContentPage.Resources>
         <ResourceDictionary>
             <converter:BooleanToColorConverter x:Key="boolToColorConverter" />
             <converter:BooleanToStringConverter x:Key="boolToStringConverter" />
-            <converter:IntToThicknessConverter x:Key="intToThicknessConverter"/>
+            <converter:IntToThicknessConverter x:Key="intToThicknessConverter" />
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
@@ -47,12 +46,12 @@
                 <controls:TitleView.TrailingView>
                     <StackLayout HorizontalOptions="End" Orientation="Horizontal">
                         <badge:SfBadgeView
-                            HorizontalOptions="End" 
-                            VerticalOptions="Center"
-                            BadgeText="{Binding Path=BindingContext.CartItemCount, Source={x:Reference catalogListPage}, Mode=TwoWay}" 
-                            Padding="0" 
                             Margin="{Binding Path=BindingContext.CartItemCount, Source={x:Reference catalogListPage}, Converter={x:StaticResource intToThicknessConverter}}"
+                            Padding="0"
+                            BadgeText="{Binding Path=BindingContext.CartItemCount, Source={x:Reference catalogListPage}, Mode=TwoWay}"
                             HeightRequest="42"
+                            HorizontalOptions="End"
+                            VerticalOptions="Center"
                             WidthRequest="40">
                             <badge:SfBadgeView.Content>
                                 <buttons:SfButton
@@ -62,11 +61,11 @@
                                     Text="{StaticResource Cart}" />
                             </badge:SfBadgeView.Content>
                             <badge:SfBadgeView.BadgeSettings>
-                                <badge:BadgeSetting 
-                                    FontSize="9" 
-                                    BadgeType="None" 
-                                    Offset="-5,10" 
-                                    BackgroundColor="{DynamicResource PrimaryColor}"/>
+                                <badge:BadgeSetting
+                                    BackgroundColor="{DynamicResource PrimaryColor}"
+                                    BadgeType="None"
+                                    FontSize="9"
+                                    Offset="-5,10" />
                             </badge:SfBadgeView.BadgeSettings>
                         </badge:SfBadgeView>
                     </StackLayout>
@@ -89,9 +88,8 @@
                 Style="{StaticResource SfListViewStyle}">
 
                 <listView:SfListView.Behaviors>
-                    <commonBehavior:SfListViewTapBehavior Command="{Binding Path=BindingContext.ItemSelectedCommand, Source={x:Reference catalogListPage}}"/>
+                    <commonBehavior:SfListViewTapBehavior Command="{Binding Path=BindingContext.ItemSelectedCommand, Source={x:Reference catalogListPage}}" />
                 </listView:SfListView.Behaviors>
-
 
                 <listView:SfListView.ItemTemplate>
                     <DataTemplate>
@@ -116,17 +114,22 @@
                             </Grid.ColumnDefinitions>
 
                             <!--  Product Image  -->
-                            <ffimageloading:CachedImage
+                            <Image
                                 Grid.RowSpan="4"
                                 Margin="8,0,16,0"
                                 Aspect="Fill"
-                                DownsampleToViewSize="True"
                                 BackgroundColor="{DynamicResource Gray-F0}"
                                 HeightRequest="{OnIdiom Default=150,
                                                         Desktop=120}"
-                                Source="{Binding PreviewImage}"
                                 WidthRequest="{OnIdiom Default=140,
-                                                       Desktop=200}" />
+                                                       Desktop=200}">
+                                <Image.Source>
+                                    <UriImageSource
+                                        CacheValidity="14"
+                                        CachingEnabled="true"
+                                        Uri="{Binding PreviewImage}" />
+                                </Image.Source>
+                            </Image>
 
                             <!--  Product Name  -->
                             <Label
@@ -137,7 +140,7 @@
                                 MaxLines="1"
                                 Style="{StaticResource LabelStyle}"
                                 Text="{Binding Name}"
-                                TextColor="{DynamicResource Gray-56}" />
+                                TextColor="{DynamicResource Gray-900}" />
 
                             <!--  Favourite Icon  -->
                             <Button
@@ -145,7 +148,7 @@
                                 Margin="0,0,0,8"
                                 Padding="0"
                                 helper:RTLHelper.Margin="{OnIdiom Phone='0,0,0,0',
-                                                                  Tablet='0,0,24,0',
+                                                                  Tablet='0,0,4,0',
                                                                   Desktop='0,0,8,0'}"
                                 Command="{Binding BindingContext.AddFavouriteCommand, Source={x:Reference ListViewList}}"
                                 CommandParameter="{Binding}"

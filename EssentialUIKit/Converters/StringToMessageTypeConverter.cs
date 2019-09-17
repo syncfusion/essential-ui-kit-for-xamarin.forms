@@ -41,7 +41,7 @@ namespace EssentialUIKit.Converters
 
             if (!string.IsNullOrEmpty((string)messageType) && ((ChatDetail)bindingContext).NotificationType == "New")
             {
-                Application.Current.Resources.TryGetValue("Gray-56", out var returnColor);
+                Application.Current.Resources.TryGetValue("Gray-900", out var returnColor);
 
                 ((Label)parameter).FontFamily = Device.RuntimePlatform == Device.Android
                     ? "Montserrat-SemiBold.ttf#Montserrat-SemiBold"
@@ -53,7 +53,7 @@ namespace EssentialUIKit.Converters
             }
             else 
             {
-                Application.Current.Resources.TryGetValue("Gray-AB", out var returnColor);
+                Application.Current.Resources.TryGetValue("Gray-600", out var returnColor);
 
                 ((Label)parameter).FontFamily = Device.RuntimePlatform == Device.Android
                     ? "Montserrat-Medium.ttf#Montserrat-Medium"

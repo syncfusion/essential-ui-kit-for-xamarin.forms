@@ -1,0 +1,192 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EssentialUIKit.Views.Forms.AddContactPage"
+             Title="Details Form"  
+             xmlns:control="clr-namespace:EssentialUIKit.Controls"
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             xmlns:ListCollection="clr-namespace:System.Collections.Generic;assembly=netstandard"
+             xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms"
+             xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+             xmlns:calender="clr-namespace:Syncfusion.SfCalendar.XForms;assembly=Syncfusion.SfCalendar.XForms"
+             xmlns:converter="clr-namespace:EssentialUIKit.Converters"
+             BackgroundColor="{DynamicResource Gray-100}"
+             NavigationPage.HasNavigationBar="False"
+             Shell.NavBarIsVisible="False">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:BooleanToColorConverter x:Key="ColorConverter" />
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Padding="16">
+                <Label Text="General Information" Style="{StaticResource HeaderLabelStyle}"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="4"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="56"/>
+                        <RowDefinition Height="56"/>
+                    </Grid.RowDefinitions>
+                    <border:SfBorder Style="{StaticResource FormBorderStyle}" 
+                                     BorderColor="{Binding Source={x:Reference FirstNameEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}">
+                        <control:BorderlessEntry x:Name="FirstNameEntry" Style="{StaticResource EntryTextStyle}" Placeholder="First Name">
+                        </control:BorderlessEntry>
+                    </border:SfBorder>
+                    <border:SfBorder Style="{StaticResource FormBorderStyle}" 
+                                     BorderColor="{Binding Source={x:Reference LastNameEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}" Grid.Column="2">
+                        <control:BorderlessEntry x:Name="LastNameEntry" Style="{StaticResource EntryTextStyle}" Placeholder="Last Name" >
+                        </control:BorderlessEntry>
+                    </border:SfBorder>
+                    <border:SfBorder Style="{StaticResource FormBorderStyle}" Padding="6,0,0,0" Grid.Row="1" 
+                                     BorderColor="{Binding Source={x:Reference CustomDatePicker}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}">
+                        <combobox:SfComboBox x:Name="CustomDatePicker" 
+                                             Watermark="DD/MM/YY" 
+                                             DropDownItemHeight="0"
+                                             DropDownFooterViewHeight="0"
+                                             ShowDropDownFooterView="False" 
+                                             ShowDropDownHeaderView="True"
+                                             DropDownHeaderViewHeight="300"
+                                             DropDownWidth="{OnPlatform Default=300,UWP=700}"
+                                             Style="{StaticResource ComboBoxStyle}" >
+                           
+                            <combobox:SfComboBox.DropDownHeaderView>
+                                <calender:SfCalendar x:Name="Calendar" 
+                                                     SelectionChanged="Calendar_SelectionChanged"  
+                                                     HeightRequest="300" >
+                                    <calender:SfCalendar.MonthViewSettings>
+                                        <calender:MonthViewSettings SelectionRadius="15"/>
+                                    </calender:SfCalendar.MonthViewSettings>
+                                </calender:SfCalendar>
+                            </combobox:SfComboBox.DropDownHeaderView>
+                            <combobox:SfComboBox.DropDownButtonSettings>
+                                <combobox:DropDownButtonSettings Width="30" Height="30">
+                                    <combobox:DropDownButtonSettings.View>
+                                        <Label Margin="0"
+                                               FontFamily="{StaticResource FontIcons}"
+                                               FontSize="25"
+                                               HorizontalTextAlignment="Center"
+                                               Text="{StaticResource DropDownButtonIcon}"
+                                               TextColor="{DynamicResource Gray-600}"
+                                               VerticalTextAlignment="Center" />
+                                    </combobox:DropDownButtonSettings.View>
+                                </combobox:DropDownButtonSettings>
+                            </combobox:SfComboBox.DropDownButtonSettings>
+                        </combobox:SfComboBox>
+                       
+                    </border:SfBorder>
+                    <border:SfBorder Style="{StaticResource FormBorderStyle}" 
+                                     BorderColor="{Binding Source={x:Reference GenderPicker}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}"
+                                     Padding="6,0,0,0" 
+                                     Grid.Row="1" Grid.Column="2">
+                        <combobox:SfComboBox x:Name="GenderPicker" 
+                                             Watermark="Gender" 
+                                             Style="{StaticResource ComboBoxStyle}" >
+                            <combobox:SfComboBox.ComboBoxSource>
+                                <ListCollection:List x:TypeArguments="x:String">
+                                    <x:String>Male</x:String>
+                                    <x:String>Female</x:String>
+                                </ListCollection:List>
+                            </combobox:SfComboBox.ComboBoxSource>
+                            <combobox:SfComboBox.DropDownButtonSettings>
+                                <combobox:DropDownButtonSettings Width="30" Height="30">
+                                    <combobox:DropDownButtonSettings.View>
+                                        <Label Margin="0"
+                                               FontFamily="{StaticResource FontIcons}"
+                                               FontSize="25"
+                                               HorizontalTextAlignment="Center"
+                                               Text="{StaticResource DropDownButtonIcon}"
+                                               TextColor="{DynamicResource Gray-600}"
+                                               VerticalTextAlignment="Center" />
+                                    </combobox:DropDownButtonSettings.View>
+                                </combobox:DropDownButtonSettings>
+                            </combobox:SfComboBox.DropDownButtonSettings>
+                        </combobox:SfComboBox>
+                    </border:SfBorder>
+                </Grid>
+                <Label Margin="0,16,0,0" Text="Contact Information" Style="{StaticResource HeaderLabelStyle}"/>
+                <border:SfBorder Style="{StaticResource FormBorderStyle}" 
+                                 BorderColor="{Binding Source={x:Reference ValidatedEmailEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}">
+                    <control:BorderlessEntry x:Name="ValidatedEmailEntry" Style="{StaticResource EntryTextStyle}" Placeholder="Email">
+                    </control:BorderlessEntry>
+                </border:SfBorder>
+                <border:SfBorder Style="{StaticResource FormBorderStyle}" 
+                                 BorderColor="{Binding Source={x:Reference PhoneNoEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}">
+                    <control:BorderlessEntry x:Name="PhoneNoEntry" Style="{StaticResource EntryTextStyle}" Placeholder="Phone Number">
+                    </control:BorderlessEntry>
+                </border:SfBorder>
+                <border:SfBorder Style="{StaticResource FormBorderStyle}" 
+                                 BorderColor="{Binding Source={x:Reference AddressEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}">
+                    <control:BorderlessEntry x:Name="AddressEntry" Style="{StaticResource EntryTextStyle}" Placeholder="Address">
+                    </control:BorderlessEntry>
+                </border:SfBorder>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="4"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <border:SfBorder Style="{StaticResource FormBorderStyle}" 
+                                     BorderColor="{Binding Source={x:Reference CityEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}">
+                        <control:BorderlessEntry x:Name="CityEntry" Style="{StaticResource EntryTextStyle}" Placeholder="City">
+                        </control:BorderlessEntry>
+                    </border:SfBorder>
+                    <border:SfBorder Grid.Column="2"
+                                     BorderColor="{Binding Source={x:Reference StatePicker}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}"
+                                     Padding="6,0,0,0"
+                                     Style="{StaticResource FormBorderStyle}">
+                        <combobox:SfComboBox x:Name="StatePicker" 
+                                             Watermark="State"
+                                             Style="{StaticResource ComboBoxStyle}" >
+                            <combobox:SfComboBox.DropDownButtonSettings>
+                                <combobox:DropDownButtonSettings >
+                                    <combobox:DropDownButtonSettings.View>
+                                        <Label Margin="0"
+                                               FontFamily="{StaticResource FontIcons}"
+                                               FontSize="25"
+                                               HorizontalTextAlignment="Center"
+                                               Text="{StaticResource DropDownButtonIcon}"
+                                               TextColor="{DynamicResource Gray-600}"
+                                               VerticalTextAlignment="Center" />
+                                    </combobox:DropDownButtonSettings.View>
+                                </combobox:DropDownButtonSettings>
+                            </combobox:SfComboBox.DropDownButtonSettings>
+                        </combobox:SfComboBox>
+                    </border:SfBorder>
+                </Grid>
+                <border:SfBorder Style="{StaticResource FormBorderStyle}" 
+                                 BorderColor="{Binding Source={x:Reference CountryPicker}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}"
+                                 HeightRequest="40" Padding="6,0,0,0">
+                    <combobox:SfComboBox x:Name="CountryPicker" 
+                                             Watermark="Country"
+                                             Style="{StaticResource ComboBoxStyle}" >
+                        <combobox:SfComboBox.DropDownButtonSettings>
+                            <combobox:DropDownButtonSettings Width="30" Height="30">
+                                <combobox:DropDownButtonSettings.View>
+                                    <Label Margin="0"
+                                               FontFamily="{StaticResource FontIcons}"
+                                               FontSize="25"
+                                               HorizontalTextAlignment="Center"
+                                               Text="{StaticResource DropDownButtonIcon}"
+                                               TextColor="{DynamicResource Gray-600}"
+                                               VerticalTextAlignment="Center" />
+                                </combobox:DropDownButtonSettings.View>
+                            </combobox:DropDownButtonSettings>
+                        </combobox:SfComboBox.DropDownButtonSettings>
+                    </combobox:SfComboBox>
+                </border:SfBorder>
+                <buttons:SfButton Style="{StaticResource SfButtonStyle}" 
+                                  Text="SUBMIT" 
+                                  HorizontalOptions="Center"
+                                  WidthRequest="200"/>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

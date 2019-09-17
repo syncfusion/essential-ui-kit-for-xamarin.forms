@@ -6,7 +6,6 @@
     xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
     xmlns:controls="clr-namespace:EssentialUIKit.Controls"
     xmlns:converter="clr-namespace:EssentialUIKit.Converters"
-    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
     xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Article"
     BackgroundColor="{DynamicResource Gray-White}"
     NavigationPage.HasNavigationBar="False"
@@ -70,14 +69,19 @@
                             </Grid.ColumnDefinitions>
 
                             <!--  Blog image  -->
-                            <ffimageloading:CachedImage
+                            <Image
                                 Grid.RowSpan="3"
                                 Aspect="Fill"
-                                BackgroundColor="{DynamicResource Gray-F0}"
+                                BackgroundColor="{DynamicResource Gray-200}"
                                 HeightRequest="110"
-                                Source="{Binding ImagePath}"
                                 VerticalOptions="Center"
-                                WidthRequest="120" />
+                                WidthRequest="120">
+                                <Image.Source>
+                                    <UriImageSource Uri="{Binding ImagePath}" 
+			                                 CacheValidity="14" 
+			                                 CachingEnabled="true"/>
+                                </Image.Source>
+                            </Image>
 
                             <!--  Blog title  -->
                             <Label
@@ -91,7 +95,7 @@
                                                         iOS=1.25}"
                                 MaxLines="2"
                                 Text="{Binding Name}"
-                                TextColor="{DynamicResource Gray-56}" />
+                                TextColor="{DynamicResource Gray-900}" />
 
                             <!--  Author name  -->
                             <Label
@@ -103,7 +107,7 @@
                                 LineHeight="{OnPlatform Default=-1,
                                                         Android=1.5}"
                                 Text="{Binding Author}"
-                                TextColor="{DynamicResource Gray-56}" />
+                                TextColor="{DynamicResource Gray-900}" />
 
                             <!--  Published date and Average reading time  -->
                             <Label
@@ -114,7 +118,7 @@
                                 FontSize="12"
                                 LineHeight="{OnPlatform Default=-1,
                                                         Android=1.5}"
-                                TextColor="{DynamicResource Gray-94}">
+                                TextColor="{DynamicResource Gray-700}">
                                 <Label.FormattedText>
                                     <FormattedString>
                                         <Span Text="{Binding Date}" />

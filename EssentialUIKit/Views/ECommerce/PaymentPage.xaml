@@ -7,7 +7,7 @@
     xmlns:local="clr-namespace:EssentialUIKit.Views.ECommerce"
     xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.ECommerce"
     Title="Payment"
-    BackgroundColor="{DynamicResource Gray-F4}"
+    BackgroundColor="{DynamicResource Gray-100}"
     NavigationPage.HasNavigationBar="False"
     Shell.NavBarIsVisible="False">
 

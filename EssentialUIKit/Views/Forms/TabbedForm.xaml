@@ -1,0 +1,213 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:control="clr-namespace:EssentialUIKit.Controls"
+             xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+             xmlns:local="clr-namespace:EssentialUIKit.Views.Forms"
+             xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Login"
+             xmlns:converter="clr-namespace:EssentialUIKit.Converters"
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             xmlns:tabView="clr-namespace:Syncfusion.XForms.TabView;assembly=Syncfusion.SfTabView.XForms"
+             x:Class="EssentialUIKit.Views.Forms.TabbedForm" 
+             Title="Tabbed Form"
+             BackgroundColor="{DynamicResource Gray-200}"
+             NavigationPage.HasNavigationBar="False"
+             Shell.NavBarIsVisible="False">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:BooleanToColorConverter x:Key="ColorConverter" />
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <ScrollView Padding="0,16">
+            <ScrollView.HorizontalOptions>
+                <OnIdiom
+                    x:TypeArguments="LayoutOptions"
+                    Default="Center"
+                    Phone="FillAndExpand" />
+            </ScrollView.HorizontalOptions>
+            <ScrollView.VerticalOptions>
+                <OnIdiom
+                    x:TypeArguments="LayoutOptions"
+                    Default="CenterAndExpand"
+                    Phone="FillAndExpand" />
+            </ScrollView.VerticalOptions>
+            <StackLayout WidthRequest="{OnIdiom Phone='-1', Default='550'}">
+                <StackLayout.BindingContext>
+                    <viewModel:LoginPageViewModel/>
+                </StackLayout.BindingContext>
+                <control:CustomShadowFrame Margin="24,8" Padding="0">
+                    <tabView:SfTabView VisibleHeaderCount="2" >
+                        <tabView:SfTabView.SelectionIndicatorSettings>
+                            <tabView:SelectionIndicatorSettings Color="{DynamicResource PrimaryColor}"
+                                                            StrokeThickness="3"/>
+
+                        </tabView:SfTabView.SelectionIndicatorSettings>
+                        <tabView:SfTabItem Title="Login" SelectionColor="{DynamicResource PrimaryColor}" 
+                                           TitleFontFamily="{StaticResource Montserrat-Regular}"
+                                           TitleFontSize="14"
+                                           TitleFontColor="{DynamicResource Gray-700}">
+                            <tabView:SfTabItem.BindingContext>
+                                <viewModel:LoginPageViewModel/>
+                            </tabView:SfTabItem.BindingContext>
+                            <tabView:SfTabItem.Content>
+                                <Grid VerticalOptions="Center">
+                                    <StackLayout Padding="16" HorizontalOptions="Center" 
+                                             VerticalOptions="Center">
+                                        <local:SimpleEmailEntry Padding="0,24" />
+
+                                        <!--  Entry to get password from user  -->
+                                        <border:SfBorder
+                                    BackgroundColor="{DynamicResource Gray-White}"
+                                    BorderColor="{Binding Source={x:Reference PasswordEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}"
+                                    Style="{StaticResource SfBorderStyle}">
+                                            <control:BorderlessEntry
+                                        x:Name="PasswordEntry"
+                                        IsPassword="True"
+                                        Placeholder="Password"
+                                        PlaceholderColor="{DynamicResource Gray-700}"
+                                        Style="{StaticResource EntryStyle}"
+                                        Text="{Binding Password}"
+                                        TextColor="{DynamicResource Gray-900}" />
+                                        </border:SfBorder>
+
+                                        <!--  Forgot password link  -->
+                                        <Label
+                                    x:Name="ForgotPasswordLabel"
+                                    Margin="0,16"
+                                    FontFamily="{StaticResource Montserrat-SemiBold}"
+                                    FontSize="12"                        
+                                    HorizontalOptions="End"                        
+                                    Text="Forgot Password?"
+                                    TextColor="{DynamicResource Gray-800}">
+                                            <Label.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding ForgotPasswordCommand}" CommandParameter="{x:Reference ForgotPasswordLabel}" />
+                                            </Label.GestureRecognizers>
+                                        </Label>
+
+                                        <!--  Login button  -->
+                                        <buttons:SfButton
+                                    HorizontalOptions="Center"
+                                    WidthRequest="245"
+                                    Margin="0,16"
+                                    Command="{Binding LoginCommand}"
+                                    Style="{StaticResource SfButtonStyle}"
+                                    Text="LOGIN" />
+
+                                    </StackLayout>
+                                </Grid>
+                            </tabView:SfTabItem.Content>
+                        </tabView:SfTabItem>
+                        <tabView:SfTabItem Title="Sign Up" SelectionColor="{DynamicResource PrimaryColor}"
+                                           TitleFontFamily="{StaticResource Montserrat-Regular}"
+                                           TitleFontSize="14"
+                                           TitleFontColor="{DynamicResource Gray-700}">
+                            <tabView:SfTabItem.BindingContext>
+                                <viewModel:SignUpPageViewModel/>
+                            </tabView:SfTabItem.BindingContext>
+                            <tabView:SfTabItem.Content>
+                                <StackLayout Padding="16,16,16,36" Spacing="24" HorizontalOptions="Center">
+                                    <!--  Entry to get username from user  -->
+                                    <border:SfBorder
+                                    BackgroundColor="{DynamicResource Gray-White}"
+                                    BorderColor="{Binding Source={x:Reference NameEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}"
+                                    Style="{StaticResource SfBorderStyle}">
+                                        <control:BorderlessEntry
+                                        x:Name="NameEntry"
+                                        Placeholder="Name"
+                                        PlaceholderColor="{DynamicResource Gray-700}"
+                                        Style="{StaticResource EntryStyle}"
+                                        Text="{Binding Name}"
+                                        TextColor="{DynamicResource Gray-900}" />
+                                    </border:SfBorder>
+
+                                    <!--  Entry to get email ID from user  -->
+                                    <local:SimpleEmailEntry />
+
+                                    <!--  Entry to get password from user  -->
+                                    <border:SfBorder                        
+                                    BackgroundColor="{DynamicResource Gray-White}"
+                                    BorderColor="{Binding Source={x:Reference SignupPasswordEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}"
+                                    Style="{StaticResource SfBorderStyle}">
+                                        <control:BorderlessEntry
+                                        x:Name="SignupPasswordEntry"
+                                        IsPassword="true"
+                                        Placeholder="Password"
+                                        PlaceholderColor="{DynamicResource Gray-700}"
+                                        Style="{StaticResource EntryStyle}"
+                                        Text="{Binding Password}"
+                                        TextColor="{DynamicResource Gray-900}" />
+                                    </border:SfBorder>
+
+                                    <!--  Entry to get the confirm password from user  -->
+                                    <border:SfBorder
+                                    BackgroundColor="{DynamicResource Gray-White}"
+                                    BorderColor="{Binding Source={x:Reference ConfirmPasswordEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}"
+                                    Style="{StaticResource SfBorderStyle}">
+                                        <control:BorderlessEntry
+                                        x:Name="ConfirmPasswordEntry"
+                                        IsPassword="true"
+                                        Placeholder="Confirm Password"
+                                        PlaceholderColor="{DynamicResource Gray-700}"
+                                        Style="{StaticResource EntryStyle}"
+                                        Text="{Binding ConfirmPassword}"
+                                        TextColor="{DynamicResource Gray-900}" />
+                                    </border:SfBorder>
+
+                                    <!--  Sign-up button  -->
+                                    <buttons:SfButton
+                                    HorizontalOptions="Center"
+                                    Command="{Binding SignUpCommand}"
+                                    CornerRadius="20"
+                                    WidthRequest="245"
+                                    FontFamily="{StaticResource Montserrat-SemiBold}"
+                                    Style="{StaticResource SfButtonStyle}"
+                                    Text="SIGN UP" />
+                                </StackLayout>
+                            </tabView:SfTabItem.Content>
+                        </tabView:SfTabItem>
+                    </tabView:SfTabView>
+                </control:CustomShadowFrame>
+                <Label Grid.Row="6"
+                       Margin="0,20,0,0"
+                        FontFamily="{StaticResource Montserrat-Medium}"
+                        HorizontalTextAlignment="Center"
+                        Style="{StaticResource LabelStyle}"
+                        Text="Or create an account using social media"
+                        TextColor="{DynamicResource Gray-800}" />
+
+                <!--  Login through facebook account  -->
+                <buttons:SfButton
+                    HorizontalOptions="Center"
+                        Margin="0,16,0,16"
+                        BackgroundColor="{DynamicResource FacebookBlue}"
+                        Command="{Binding SocialMediaLoginCommand}"
+                        CornerRadius="20"
+                        HeightRequest="40"
+                        WidthRequest="325">
+                    <buttons:SfButton.Content>
+                        <StackLayout
+                                HorizontalOptions="CenterAndExpand"
+                                Orientation="Horizontal"
+                                VerticalOptions="Center">
+                            <Label
+                                    FontFamily="{StaticResource FontIcons}"
+                                    FontSize="18"
+                                    Text="&#xe735;"
+                                    TextColor="{DynamicResource Gray-White}"
+                                    VerticalTextAlignment="Center" />
+                            <Label
+                                    FontFamily="{StaticResource Montserrat-Medium}"
+                                    FontSize="16"
+                                    Text="Facebook"
+                                    TextColor="{DynamicResource Gray-White}" />
+                        </StackLayout>
+                    </buttons:SfButton.Content>
+                </buttons:SfButton>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

@@ -29,7 +29,7 @@ namespace EssentialUIKit.Behaviors.ECommerce
         {
             base.OnAttachedTo(bindableContentPage);
             bindablePage = bindableContentPage;
-            bindableContentPage.Appearing += BindableContentPage_Appearing;
+            bindableContentPage.Appearing += Bindable_Appearing;
         }
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace EssentialUIKit.Behaviors.ECommerce
         /// </summary>
         /// <param name="sender">ContentPage</param>
         /// <param name="e">EventArgs</param>
-        private void BindableContentPage_Appearing(object sender, EventArgs e)
+        private void Bindable_Appearing(object sender, EventArgs e)
         {
            //Do something
         }
@@ -49,7 +49,7 @@ namespace EssentialUIKit.Behaviors.ECommerce
         protected override void OnDetachingFrom(ContentPage bindableContentPage)
         {
             base.OnDetachingFrom(bindableContentPage);
-            bindableContentPage.Appearing -= BindableContentPage_Appearing;
+            bindableContentPage.Appearing -= Bindable_Appearing;
         }
 
         #endregion

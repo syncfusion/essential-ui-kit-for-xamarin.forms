@@ -46,7 +46,7 @@
                 Style="{StaticResource PriceLabelStyle}"
                 Text="{OnIdiom Default='Delivery Address',
                                Phone='Deliver To'}"
-                TextColor="{DynamicResource Gray-56}" />
+                TextColor="{DynamicResource Gray-900}" />
 
             <!--  Total Price Label  -->
             <Label
@@ -59,7 +59,7 @@
                                     Phone=False}"
                 Style="{StaticResource PriceLabelStyle}"
                 Text="{Binding TotalPrice, StringFormat='Total: ${0}'}"
-                TextColor="{DynamicResource Gray-56}" />
+                TextColor="{DynamicResource Gray-900}" />
 
             <!--  Separator  -->
             <BoxView
@@ -105,7 +105,7 @@
                             HorizontalOptions="Center"
                             IsVisible="{OnIdiom Default=True,
                                                 Phone=False}"
-                            UncheckedColor="{DynamicResource Gray-E4}"
+                            UncheckedColor="{DynamicResource Gray-300}"
                             VerticalOptions="Center"
                             WidthRequest="{OnIdiom Default=30,
                                                    Phone=0}" />
@@ -122,11 +122,11 @@
                             Style="{StaticResource LabelStyle}">
                             <Label.FormattedText>
                                 <FormattedString>
-                                    <Span Text="{Binding CustomerName}" TextColor="{DynamicResource Gray-56}" />
+                                    <Span Text="{Binding CustomerName}" TextColor="{DynamicResource Gray-900}" />
                                     <Span
                                         FontSize="12"
                                         Text="{Binding AddressType, StringFormat={OnIdiom Default=' ', Tablet='  {0}'}}"
-                                        TextColor="{DynamicResource Gray-94}" />
+                                        TextColor="{DynamicResource Gray-700}" />
                                 </FormattedString>
                             </Label.FormattedText>
                         </Label>
@@ -164,7 +164,7 @@
                                                     Default=-1}"
                             Style="{StaticResource LabelStyle}"
                             Text="{Binding Address}"
-                            TextColor="{DynamicResource Gray-94}" />
+                            TextColor="{DynamicResource Gray-700}" />
 
                         <!--  Mobile Number  -->
                         <Label
@@ -179,7 +179,7 @@
                             <Label.FormattedText>
                                 <FormattedString>
                                     <Span Text="Mobile: " />
-                                    <Span Text="{Binding MobileNumber}" TextColor="{DynamicResource Gray-56}" />
+                                    <Span Text="{Binding MobileNumber}" TextColor="{DynamicResource Gray-900}" />
                                 </FormattedString>
                             </Label.FormattedText>
                         </Label>

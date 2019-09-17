@@ -60,7 +60,8 @@
                 Style="{StaticResource CloseIconStyle}"
                 Margin="0,-5,0,0"
                 Clicked="Button_OnClicked"
-                HorizontalOptions="EndAndExpand" />
+                HorizontalOptions="EndAndExpand"
+                WidthRequest="50"/>
 
             <segmentControl:SfSegmentedControl 
                 Grid.Row="1" 

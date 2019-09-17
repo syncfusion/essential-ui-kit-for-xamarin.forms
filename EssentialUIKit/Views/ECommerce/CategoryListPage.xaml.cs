@@ -17,7 +17,7 @@ namespace EssentialUIKit.Views.ECommerce
         public CategoryListPage()
         {
             this.InitializeComponent();
-            this.BindingContext = ECommerceDataService.Instance.CategoryPageViewModel;
+            this.BindingContext = CategoryDataService.Instance.CategoryPageViewModel;
         }
     }
 }

@@ -4,7 +4,6 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
-    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
     xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Chat"
     Title="Profile Page"
     BackgroundColor="{DynamicResource Gray-White}"
@@ -54,10 +53,10 @@
                     <buttons:SfButton.Content>
                         <Grid HeightRequest="120" WidthRequest="120">
 
-                            <ffimageloading:CachedImage
+                            <Image
                                 x:Name="ProfileImage"
                                 Aspect="AspectFill"
-                                BackgroundColor="{DynamicResource Gray-F0}" />
+                                BackgroundColor="{DynamicResource Gray-200}" />
                             <BoxView
                                 BackgroundColor="{DynamicResource Gray-Black}"
                                 HeightRequest="32"
@@ -83,7 +82,7 @@
                     FontSize="16"
                     HorizontalOptions="Center"
                     Text="Julia Grant"
-                    TextColor="{DynamicResource Gray-56}"
+                    TextColor="{DynamicResource Gray-900}"
                     VerticalOptions="Center" />
 
                 <!--  Grid for available label and navigation icon  -->

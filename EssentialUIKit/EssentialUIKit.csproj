@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -19,11 +19,15 @@
     <PackageReference Include="NETStandard.Library" Version="2.0.3" />
     <PackageReference Include="Microsoft.AppCenter.Analytics" Version="2.0.0" />
     <PackageReference Include="Microsoft.AppCenter.Crashes" Version="2.0.0" />
+    <PackageReference Include="SkiaSharp.Extended" Version="1.60.0" />
+    <PackageReference Include="SkiaSharp.Svg" Version="1.60.0" />
+    <PackageReference Include="SkiaSharp.Views.Forms" Version="1.68.0" />
     <PackageReference Include="Syncfusion.Xamarin.Buttons" Version="17.2.0.49" />
     <PackageReference Include="Syncfusion.Xamarin.Cards" Version="17.2.0.49" />
     <PackageReference Include="Syncfusion.Xamarin.Core" Version="17.2.0.49" />
     <PackageReference Include="Syncfusion.Xamarin.DataSource" Version="17.2.0.49" />
     <PackageReference Include="Syncfusion.Xamarin.GridCommon" Version="17.2.0.49" />
+    <PackageReference Include="Syncfusion.Xamarin.SfCalendar" Version="17.2.0.49" />
     <PackageReference Include="Syncfusion.Xamarin.SfComboBox" Version="17.2.0.49" />
     <PackageReference Include="Syncfusion.Xamarin.SfListView" Version="17.2.0.49" />
     <PackageReference Include="Syncfusion.Xamarin.SfMaps" Version="17.2.0.49" />
@@ -33,30 +37,77 @@
     <PackageReference Include="Syncfusion.Xamarin.SfPopupLayout" Version="17.2.0.49" />
     <PackageReference Include="Syncfusion.Xamarin.Expander" Version="17.2.0.49" />
     <PackageReference Include="Syncfusion.Xamarin.SfBadgeView" Version="17.2.0.49" />
-    <PackageReference Include="Xamarin.FFImageLoading.Svg.Forms" Version="2.4.11.982" />
+    <PackageReference Include="Syncfusion.Xamarin.SfTabView" Version="17.2.0.49" />
     <PackageReference Include="Xamarin.Forms" Version="4.2.0.709249" />
-    <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Remove="Models\ECommerce\Filter.cs" />
-  </ItemGroup>
-  <ItemGroup>
+    <None Remove="AppLayout\Icons\bookmark.png" />
+    <None Remove="AppLayout\Icons\catalog.png" />
+    <None Remove="AppLayout\Icons\detail.png" />
+    <None Remove="AppLayout\Icons\details.png" />
+    <None Remove="AppLayout\Icons\forms.png" />
+    <None Remove="AppLayout\Icons\history.png" />
+    <None Remove="AppLayout\Icons\profile.png" />
+    <None Remove="AppLayout\Icons\social.png" />
+    <None Remove="AppLayout\Icons\transaction.png" />
     <None Remove="AppLayout\TemplateList.xml" />
     <None Remove="Data\ecommerce.json" />
+    <None Remove="Data\navigation.json" />
+    <None Remove="Images\ChooseGradient.svg" />
+    <None Remove="Images\ConfirmGradient.svg" />
+    <None Remove="Images\DeliverGradient.svg" />
+    <None Remove="Images\EmptyCart.svg" />
+    <None Remove="Images\LocationAccessDenied.svg" />
+    <None Remove="Images\NoCredits.svg" />
+    <None Remove="Images\NoInternet.svg" />
+    <None Remove="Images\NoItem.svg" />
+    <None Remove="Images\NoPhotos.svg" />
+    <None Remove="Images\NoTasks.svg" />
+    <None Remove="Images\NotEnoughCredit.svg" />
+    <None Remove="Images\NoVideos.svg" />
+    <None Remove="Images\PaymentFailed.svg" />
+    <None Remove="Images\PaymentFailure.svg" />
+    <None Remove="Images\PaymentSuccess.svg" />
+    <None Remove="Images\SomethingWentWrong.svg" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="AppLayout\Icons\about-us.png" />
     <EmbeddedResource Include="AppLayout\Icons\article.png" />
+    <EmbeddedResource Include="AppLayout\Icons\bookmark.png" />
+    <EmbeddedResource Include="AppLayout\Icons\catalog.png" />
     <EmbeddedResource Include="AppLayout\Icons\chat.png" />
     <EmbeddedResource Include="AppLayout\Icons\contact-us.png" />
+    <EmbeddedResource Include="AppLayout\Icons\detail.png" />
     <EmbeddedResource Include="AppLayout\Icons\ecommerce.png" />
     <EmbeddedResource Include="AppLayout\Icons\error-empty.png" />
     <EmbeddedResource Include="AppLayout\Icons\feedback.png" />
+    <EmbeddedResource Include="AppLayout\Icons\forms.png" />
+    <EmbeddedResource Include="AppLayout\Icons\history.png" />
     <EmbeddedResource Include="AppLayout\Icons\log-in.png" />
     <EmbeddedResource Include="AppLayout\Icons\navigation.png" />
     <EmbeddedResource Include="AppLayout\Icons\on-boarding.png" />
+    <EmbeddedResource Include="AppLayout\Icons\profile.png" />
+    <EmbeddedResource Include="AppLayout\Icons\social.png" />
+    <EmbeddedResource Include="AppLayout\Icons\transaction.png" />
     <EmbeddedResource Include="AppLayout\TemplateList.xml" />
     <EmbeddedResource Include="Data\ecommerce.json" />
+    <EmbeddedResource Include="Data\navigation.json" />
+    <EmbeddedResource Include="Images\ChooseGradient.svg" />
+    <EmbeddedResource Include="Images\ConfirmGradient.svg" />
+    <EmbeddedResource Include="Images\DeliverGradient.svg" />
+    <EmbeddedResource Include="Images\EmptyCart.svg" />
+    <EmbeddedResource Include="Images\LocationAccessDenied.svg" />
+    <EmbeddedResource Include="Images\NoCredits.svg" />
+    <EmbeddedResource Include="Images\NoInternet.svg" />
+    <EmbeddedResource Include="Images\NoItem.svg" />
+    <EmbeddedResource Include="Images\NoPhotos.svg" />
+    <EmbeddedResource Include="Images\NoTasks.svg" />
+    <EmbeddedResource Include="Images\NotEnoughCredit.svg" />
+    <EmbeddedResource Include="Images\NoVideos.svg" />
+    <EmbeddedResource Include="Images\PaymentFailed.svg" />
+    <EmbeddedResource Include="Images\PaymentFailure.svg" />
+    <EmbeddedResource Include="Images\PaymentSuccess.svg" />
+    <EmbeddedResource Include="Images\SomethingWentWrong.svg" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="AppLayout\Views\Styles.xaml.cs">
@@ -80,8 +131,17 @@
     <Compile Update="Views\Article\MasterPage.xaml.cs">
       <DependentUpon>MasterPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\Article\ProfilePage.xaml.cs">
-      <DependentUpon>ProfilePage.xaml</DependentUpon>
+    <Compile Update="Views\Article\AuthorProfilePage.xaml.cs">
+      <DependentUpon>AuthorProfilePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Bookmarks\PriceDetailView.xaml.cs">
+      <DependentUpon>%(Filename)</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Bookmarks\WishlistPage.xaml.cs">
+      <DependentUpon>WishlistPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Catalog\Styles.xaml.cs">
+      <DependentUpon>%(Filename)</DependentUpon>
     </Compile>
     <Compile Update="Views\Chat\ContactProfilePage.xaml.cs">
       <DependentUpon>ContactProfilePage.xaml</DependentUpon>
@@ -98,30 +158,57 @@
     <Compile Update="Views\Chat\RecentChatPage.xaml.cs">
       <DependentUpon>RecentChatPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\Detail\FeedbackView.xaml.cs">
+      <DependentUpon>%(Filename)</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Detail\Styles.xaml.cs">
+      <DependentUpon>%(Filename)</DependentUpon>
+    </Compile>
     <Compile Update="Views\ErrorAndEmpty\Styles.xaml.cs">
       <DependentUpon>%(Filename)</DependentUpon>
     </Compile>
     <Compile Update="Views\Feedback\FeedbackPage.xaml.cs">
       <DependentUpon>FeedbackPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\Login\SimpleEmailEntry.xaml.cs">
+    <Compile Update="Views\Forms\AddContactPage.xaml.cs">
+      <DependentUpon>AddContactPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Forms\SimpleEmailEntry.xaml.cs">
       <DependentUpon>SimpleEmailEntry.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\Login\SimpleForgotPasswordPage.xaml.cs">
+    <Compile Update="Views\Forms\SimpleForgotPasswordPage.xaml.cs">
       <DependentUpon>SimpleForgotPasswordPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\Login\SimpleLoginPage.xaml.cs">
+    <Compile Update="Views\Forms\SimpleLoginPage.xaml.cs">
       <DependentUpon>SimpleLoginPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\Login\SimpleResetPasswordPage.xaml.cs">
+    <Compile Update="Views\Forms\SimpleResetPasswordPage.xaml.cs">
       <DependentUpon>SimpleResetPasswordPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\Login\SimpleSignUpPage.xaml.cs">
+    <Compile Update="Views\Forms\SimpleSignUpPage.xaml.cs">
       <DependentUpon>SimpleSignUpPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\History\MyOrdersView.xaml.cs">
+      <DependentUpon>MyOrdersView.xaml</DependentUpon>
     </Compile>
 	<Compile Update="Views\OnBoarding\Styles.xaml.cs">
       <DependentUpon>%(Filename)</DependentUpon>
     </Compile>
+	<Compile Update="Views\OnBoarding\WalkthroughItemPage.xaml.cs">
+	  <DependentUpon>WalkthroughItemPage.xaml</DependentUpon>
+	</Compile>
+	<Compile Update="Views\Social\Styles.xaml.cs">
+	  <DependentUpon>%(Filename)</DependentUpon>
+	</Compile>
+	<Compile Update="Views\Social\Templates\ProfileTemplate.xaml.cs">
+	  <DependentUpon>ProfileTemplate.xaml</DependentUpon>
+	</Compile>
+	<Compile Update="Views\Transaction\PaymentView.xaml.cs">
+	  <DependentUpon>%(Filename)</DependentUpon>
+	</Compile>
+	<Compile Update="Views\Transaction\PriceDetailView.xaml.cs">
+	  <DependentUpon>%(Filename)</DependentUpon>
+	</Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -146,8 +233,20 @@
     <EmbeddedResource Update="Views\Article\MasterPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Article\ProfilePage.xaml">
+    <EmbeddedResource Update="Views\Article\AuthorProfilePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Bookmarks\PriceDetailView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Bookmarks\Styles.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Bookmarks\WishlistPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Catalog\Styles.xaml">
+      <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Chat\ContactProfilePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
@@ -170,61 +269,34 @@
     <EmbeddedResource Update="Views\Chat\Templates\OutgoingTextTemplate.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\ECommerce\CartPage.xaml">
+    <EmbeddedResource Update="Views\Detail\FeedbackView.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\ECommerce\CatalogListPage.xaml">
+    <EmbeddedResource Update="Views\Detail\Styles.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\ECommerce\CatalogTilePage.xaml">
+    <EmbeddedResource Update="Views\Bookmarks\CartPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\ECommerce\CategoryListPage.xaml">
+    <EmbeddedResource Update="Views\Catalog\CatalogListPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\ECommerce\CategoryTilePage.xaml">
+    <EmbeddedResource Update="Views\Catalog\CatalogTilePage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\ECommerce\CategoryView.xaml">
+    <EmbeddedResource Update="Views\Catalog\CategoryTilePage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\ECommerce\CheckoutPage.xaml">
+    <EmbeddedResource Update="Views\Transaction\CheckoutPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\ECommerce\DeliveryPage.xaml">
+    <EmbeddedResource Update="Views\Transaction\DeliveryPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\ECommerce\DeliveryView.xaml">
+    <EmbeddedResource Update="Views\Transaction\DeliveryView.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\ECommerce\DetailPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\ECommerce\FeedbackView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\ECommerce\FilterPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\ECommerce\FilterView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\ECommerce\PaymentPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\ECommerce\PaymentView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\ECommerce\PriceDetailView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\ECommerce\SortPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\ECommerce\SortView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\ECommerce\Styles.xaml">
+    <EmbeddedResource Update="Views\Transaction\PaymentPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\ErrorAndEmpty\EmptyCartPage.xaml">
@@ -278,7 +350,31 @@
     <EmbeddedResource Update="Views\Feedback\Templates\TabletView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
 	</EmbeddedResource>
+	<EmbeddedResource Update="Views\Forms\AddCardPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Forms\TabbedForm.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\History\MyOrdersPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\History\MyOrdersView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\History\TransactionHistoryPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\Navigation\AlbumPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Navigation\BottomNavigationPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Navigation\PhotosPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Navigation\SettingsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Navigation\Styles.xaml">
@@ -290,6 +386,36 @@
 	<EmbeddedResource Update="Views\OnBoarding\OnBoardingGradientPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+	<EmbeddedResource Update="Views\OnBoarding\OnBoaringAnimationPage.xaml">
+	  <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+	</EmbeddedResource>
+	<EmbeddedResource Update="Views\OnBoarding\WalkthroughItemPage.xaml">
+	  <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+	</EmbeddedResource>
+	<EmbeddedResource Update="Views\Transaction\PaymentFailurePage.xaml">
+	  <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+	</EmbeddedResource>
+	<EmbeddedResource Update="Views\Transaction\PaymentSuccessPage.xaml">
+	  <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+	</EmbeddedResource>
+	<EmbeddedResource Update="Views\Transaction\PaymentView.xaml">
+	  <Generator>MSBuild:Compile</Generator>
+	</EmbeddedResource>
+	<EmbeddedResource Update="Views\Transaction\PriceDetailView.xaml">
+	  <Generator>MSBuild:Compile</Generator>
+	</EmbeddedResource>
+	<EmbeddedResource Update="Views\Transaction\Styles.xaml">
+	  <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+	</EmbeddedResource>
+	<EmbeddedResource Update="Views\Social\SocialProfileWithCardPage.xaml">
+	  <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+	</EmbeddedResource>
+	<EmbeddedResource Update="Views\Social\SocialProfileWithConnectionsPage.xaml">
+	  <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+	</EmbeddedResource>
+	<EmbeddedResource Update="Views\Social\Templates\ProfileTemplate.xaml">
+	  <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+	</EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
@@ -392,63 +518,6 @@
     <None Update="Views\ContactUs\Styles.xaml">
       <Generator>MSBuild:Compile</Generator>
     </None>
-    <None Update="Views\ECommerce\CartPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Update="Views\ECommerce\CatalogListPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Update="Views\ECommerce\CatalogTilePage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Update="Views\ECommerce\CategoryListPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Update="Views\ECommerce\CategoryTilePage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Update="Views\ECommerce\CategoryView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Update="Views\ECommerce\CheckoutPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Update="Views\ECommerce\DeliveryPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Update="Views\ECommerce\DeliveryView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Update="Views\ECommerce\DetailPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Update="Views\ECommerce\FeedbackView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Update="Views\ECommerce\FilterPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Update="Views\ECommerce\FilterView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Update="Views\ECommerce\PaymentPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Update="Views\ECommerce\PaymentView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Update="Views\ECommerce\PriceDetailView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Update="Views\ECommerce\SortPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Update="Views\ECommerce\SortView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Update="Views\ECommerce\Styles.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
     <None Update="Views\ErrorAndEmpty\EmptyCartPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </None>
@@ -506,46 +575,58 @@
     <None Update="Views\Feedback\Templates\TabletView.xaml">
       <Generator>MSBuild:Compile</Generator>
     </None>
-    <None Update="Views\Login\EmailEntry.xaml">
+    <None Update="Views\Forms\DetailsFormPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </None>
-    <None Update="Views\Login\ForgotPasswordPage.xaml">
+    <None Update="Views\Forms\EmailEntry.xaml">
       <Generator>MSBuild:Compile</Generator>
     </None>
-    <None Update="Views\Login\LoginPage.xaml">
+    <None Update="Views\Forms\ForgotPasswordPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </None>
-    <None Update="Views\Login\ResetPasswordPage.xaml">
+    <None Update="Views\Forms\LoginPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </None>
-    <None Update="Views\Login\SignUpPage.xaml">
+    <None Update="Views\Forms\ResetPasswordPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </None>
-    <None Update="Views\Login\SimpleEmailEntry.xaml">
+    <None Update="Views\Forms\SignUpPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </None>
-    <None Update="Views\Login\SimpleForgotPasswordPage.xaml">
+    <None Update="Views\Forms\SimpleEmailEntry.xaml">
       <Generator>MSBuild:Compile</Generator>
     </None>
-    <None Update="Views\Login\SimpleLoginPage.xaml">
+    <None Update="Views\Forms\SimpleForgotPasswordPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </None>
-    <None Update="Views\Login\SimpleResetPasswordPage.xaml">
+    <None Update="Views\Forms\SimpleLoginPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </None>
-    <None Update="Views\Login\SimpleSignUpPage.xaml">
+    <None Update="Views\Forms\SimpleResetPasswordPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </None>
-    <None Update="Views\Login\Styles.xaml">
+    <None Update="Views\Forms\SimpleSignUpPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Forms\Styles.xaml">
       <Generator>MSBuild:Compile</Generator>
     </None>
     <None Update="Views\Navigation\AlbumPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Navigation\BottomNavigationPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </None>
     <None Update="Views\Navigation\NavigationListCardPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </None>
     <None Update="Views\Navigation\NavigationTileCardPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Navigation\PhotosPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Navigation\SettingsPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </None>
     <None Update="Views\Navigation\Styles.xaml">

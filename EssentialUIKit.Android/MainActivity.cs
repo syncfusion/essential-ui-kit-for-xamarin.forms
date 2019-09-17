@@ -2,7 +2,6 @@
 using Android.Content.PM;
 using Android.OS;
 using Android.Views;
-using FFImageLoading.Forms.Platform;
 using Xamarin.Forms.PlatformConfiguration.AndroidSpecific;
 
 namespace EssentialUIKit.Droid
@@ -20,9 +19,6 @@ namespace EssentialUIKit.Droid
             Xamarin.Forms.Forms.Init(this, savedInstanceState);
 
             Syncfusion.XForms.Android.Core.Core.Init(this);
-
-            // FFImageLoading library
-            CachedImageRenderer.Init(true);
 
             this.LoadApplication(new App());
 

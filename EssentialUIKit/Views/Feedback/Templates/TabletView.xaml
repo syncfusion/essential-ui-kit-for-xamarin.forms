@@ -4,7 +4,6 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
-    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
     xmlns:rating="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms"
     BackgroundColor="#4C000000">
 
@@ -43,11 +42,11 @@
                 </Grid.ColumnDefinitions>
 
                 <!--  Product Image  -->
-                <ffimageloading:CachedImage
+                <Image
                     x:Name="ProductImage"
                     Grid.RowSpan="2"
                     Aspect="AspectFill"
-                    BackgroundColor="{DynamicResource Gray-F0}"
+                    BackgroundColor="{DynamicResource Gray-200}"
                     HeightRequest="385"
                     WidthRequest="315" />
 
@@ -66,7 +65,7 @@
                             FontSize="16"
                             Style="{StaticResource LabelStyle}"
                             Text="Jane Deo"
-                            TextColor="{DynamicResource Gray-56}">
+                            TextColor="{DynamicResource Gray-900}">
                             <Label.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding ProfileCommand}" CommandParameter="{Binding .}" />
                             </Label.GestureRecognizers>
@@ -83,7 +82,7 @@
                             HeightRequest="32"
                             HorizontalOptions="EndAndExpand"
                             Text="{StaticResource Close}"
-                            TextColor="{DynamicResource Gray-AB}"
+                            TextColor="{DynamicResource Gray-600}"
                             WidthRequest="32" />
 
                     </StackLayout>
@@ -123,12 +122,17 @@
                         VerticalOptions="Start">
                         <BindableLayout.ItemTemplate>
                             <DataTemplate>
-                                <ffimageloading:CachedImage
+                                <Image
                                     Aspect="Fill"
-                                    BackgroundColor="{DynamicResource Gray-F0}"
+                                    BackgroundColor="{DynamicResource Gray-200}"
                                     HeightRequest="50"
-                                    Source="{Binding .}"
-                                    WidthRequest="60" />
+                                    WidthRequest="60">
+                                    <Image.Source>
+                                        <UriImageSource Uri="{Binding .}" 
+			                                 CacheValidity="14" 
+			                                 CachingEnabled="true"/>
+                                    </Image.Source>
+                                </Image>
                             </DataTemplate>
                         </BindableLayout.ItemTemplate>
                     </StackLayout>

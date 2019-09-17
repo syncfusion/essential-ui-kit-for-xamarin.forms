@@ -5,7 +5,6 @@ using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using EssentialUIKit.Models.ECommerce;
 using System.Runtime.Serialization;
-using EssentialUIKit.DataService;
 
 namespace EssentialUIKit.ViewModels.ECommerce
 {
@@ -18,8 +17,6 @@ namespace EssentialUIKit.ViewModels.ECommerce
     {
         #region Fields
 
-        private ECommerceDataService dataService = ECommerceDataService.Instance;
-
         private ObservableCollection<Product> cartDetails;
 
         private double totalPrice;
@@ -30,7 +27,7 @@ namespace EssentialUIKit.ViewModels.ECommerce
 
         private double percent;
         
-        private ObservableCollection<Product> products;
+        private ObservableCollection<Product> produts;
         
         private Command placeOrderCommand;
         
@@ -158,15 +155,15 @@ namespace EssentialUIKit.ViewModels.ECommerce
         {
             get
             {
-                return this.products;
+                return this.produts;
             }
             set
             {
-                if (this.products == value)
+                if (this.produts == value)
                 {
                     return;
                 }
-                this.products = value;
+                this.produts = value;
                 this.NotifyPropertyChanged();
                 GetProducts(Products);
                 UpdatePrice();
@@ -296,7 +293,10 @@ namespace EssentialUIKit.ViewModels.ECommerce
         /// <param name="obj">The Object</param>
         private void RemoveClicked(object obj)
         {
-            // Do something
+            if (obj is Product product)
+            {
+                CartDetails.Remove(product);
+            }
         }
 
         /// <summary>

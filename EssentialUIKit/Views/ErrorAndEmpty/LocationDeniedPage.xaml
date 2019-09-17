@@ -5,9 +5,9 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:button="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
     xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
-    xmlns:ffsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+    xmlns:svg="clr-namespace:EssentialUIKit.Controls"
     xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.ErrorAndEmpty"
-    BackgroundColor="#fffcfc"
+    BackgroundColor="{StaticResource Gray-White}"
     NavigationPage.HasNavigationBar="False"
     Shell.NavBarIsVisible="False">
 
@@ -39,13 +39,12 @@
                 Spacing="0"
                 VerticalOptions="Center">
 
-                <!--  Image for display svg image  -->
-                <ffsvg:SvgCachedImage
+                <!--  Display the svg illustration image  -->
+                <svg:SVGImage
                     x:Name="ErrorImage"
                     Margin="{x:OnIdiom Phone='0,0,0,0',
                                        Desktop='0',
                                        Tablet='0'}"
-                    BackgroundColor="Transparent"
                     HeightRequest="{core:OnPlatformOrientationDoubleValue Default=300,
                                                                           AndroidPhonePortrait=200,
                                                                           AndroidPhoneLandscape=140,

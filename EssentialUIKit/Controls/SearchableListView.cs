@@ -81,7 +81,7 @@ namespace EssentialUIKit.Controls
         /// <param name="e">Item selection changed event args</param>
         private async void CustomListView_SelectionChanged(object sender, ItemSelectionChangedEventArgs e)
         {
-            if (Application.Current.Resources.TryGetValue("Gray-F4", out var retVal))
+            if (Application.Current.Resources.TryGetValue("Gray-100", out var retVal))
             {
             }
 

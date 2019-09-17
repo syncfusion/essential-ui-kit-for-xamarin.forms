@@ -19,10 +19,11 @@
     <x:String x:Key="Interests">&#xe701;</x:String>
     <x:String x:Key="Profile">&#xe70e;</x:String>
     <x:String x:Key="Activity">&#xe700;</x:String>
+    <x:String x:Key="Favourite">&#xe701;</x:String>
 
     <!--  Common style for Navigation bar SfButton  -->
     <Style x:Key="NavigationBarButtonStyle" TargetType="buttons:SfButton">
-        <Setter Property="TextColor" Value="{DynamicResource Gray-AB}" />
+        <Setter Property="TextColor" Value="{DynamicResource Gray-600}" />
         <Setter Property="FontSize" Value="18" />
         <Setter Property="VerticalOptions" Value="Center" />
         <Setter Property="HorizontalOptions" Value="Fill" />
@@ -34,7 +35,7 @@
 
     <!--  Common style for Navigation bar SfButton  -->
     <Style x:Key="BookmarkIconStyle" TargetType="buttons:SfButton">
-        <Setter Property="TextColor" Value="{DynamicResource Gray-AB}" />
+        <Setter Property="TextColor" Value="{DynamicResource Gray-600}" />
         <Setter Property="FontSize" Value="16" />
         <Setter Property="VerticalOptions" Value="Center" />
         <Setter Property="BackgroundColor" Value="Transparent" />
@@ -54,7 +55,7 @@
     <Style x:Key="ProfileLabelStyle" TargetType="Label">
         <Setter Property="FontFamily" Value="{StaticResource Montserrat-Medium}" />
         <Setter Property="FontSize" Value="16" />
-        <Setter Property="TextColor" Value="{DynamicResource Gray-56}" />
+        <Setter Property="TextColor" Value="{DynamicResource Gray-900}" />
         <Setter Property="VerticalOptions" Value="Center" />
         <Setter Property="HorizontalOptions" Value="Start" />
         <Setter Property="HorizontalTextAlignment" Value="Center" />
@@ -69,7 +70,7 @@
     <Style x:Key="ProfileButtonStyle" TargetType="buttons:SfButton">
         <Setter Property="FontFamily" Value="{StaticResource FontIcons}" />
         <Setter Property="FontSize" Value="14" />
-        <Setter Property="TextColor" Value="{DynamicResource Gray-AB}" />
+        <Setter Property="TextColor" Value="{DynamicResource Gray-600}" />
         <Setter Property="VerticalOptions" Value="Center" />
         <Setter Property="HorizontalOptions" Value="Fill" />
         <Setter Property="HorizontalTextAlignment" Value="Center" />
@@ -80,7 +81,7 @@
 
     <Style x:Key="ProfileIconLabelStyle" TargetType="Label">
         <Setter Property="Margin" Value="16,8" />
-        <Setter Property="TextColor" Value="{DynamicResource Gray-AB}" />
+        <Setter Property="TextColor" Value="{DynamicResource Gray-600}" />
         <Setter Property="FontSize" Value="18" />
         <Setter Property="HorizontalOptions" Value="Center" />
         <Setter Property="VerticalOptions" Value="Center" />
@@ -91,7 +92,7 @@
     <!--  Common style for separator BoxView  -->
     <Style x:Key="SeparatorStyle" TargetType="BoxView">
         <Setter Property="HeightRequest" Value="1" />
-        <Setter Property="BackgroundColor" Value="{DynamicResource Gray-F0}" />
+        <Setter Property="BackgroundColor" Value="{DynamicResource Gray-200}" />
     </Style>
 
 </ResourceDictionary>

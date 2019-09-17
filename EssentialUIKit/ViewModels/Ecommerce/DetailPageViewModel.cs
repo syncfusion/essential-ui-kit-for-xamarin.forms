@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using EssentialUIKit.Models.ECommerce;
+using System.Linq;
 
 namespace EssentialUIKit.ViewModels.ECommerce
 {
@@ -23,6 +24,8 @@ namespace EssentialUIKit.ViewModels.ECommerce
 
         private ObservableCollection<Category> categories;
 
+        private ObservableCollection<Review> reviews;
+
         private bool isFavourite;
 
         private bool isReviewVisible;
@@ -37,6 +40,39 @@ namespace EssentialUIKit.ViewModels.ECommerce
         /// </summary>
         public DetailPageViewModel()
         {
+            reviews = new ObservableCollection<Review>
+            {
+                new Review
+                {
+                    ProfileImage = "ProfileImage10.png",
+                    CustomerName = "Serina Williams",
+                    Comment = "Greatest purchase I have ever made in my life.",
+                    ReviewedDate = new DateTime(2019, 12, 29),
+                    Rating = 5,
+                    Images = new List<string>
+                    {
+                        "Image1.png",
+                        "Image1.png",
+                        "Image1.png",
+                        "Image1.png"
+                    }
+                },
+                new Review
+                {
+                    ProfileImage = "ProfileImage11.png",
+                    CustomerName = "Alise Valasquez",
+                    Comment = "Absolutely love them! Can't stop wearing!",
+                    ReviewedDate = new DateTime(2019, 12, 29),
+                    Rating = 3,
+                    Images = new List<string>
+                    {
+                       "Image1.png",
+                       "Image1.png",
+                       "Image1.png"
+                    }
+                }
+            };
+
             this.ProductDetail = new Product
             {
                 Name = "Full-Length Skirt",
@@ -52,42 +88,14 @@ namespace EssentialUIKit.ViewModels.ECommerce
                     "Image1.png",
                     "Image1.png",
                 },
-                Reviews = new List<Review>
-                {
-                    new Review
-                    {
-                        ProfileImage = "ProfileImage10.png",
-                        CustomerName = "Serina Williams",
-                        Comment = "Greatest purchase I have ever made in my life.",
-                        ReviewedDate = new DateTime(2019, 12, 29),
-                        Rating = 5,
-                        Images = new List<string>
-                        {
-                            "Image1.png",
-                            "Image1.png",
-                            "Image1.png",
-                            "Image1.png"
-                        }
-                    },
-                    new Review
-                    {
-                        ProfileImage = "ProfileImage11.png",
-                        CustomerName = "Alise Valasquez",
-                        Comment = "Absolutely love them! Can't stop wearing!",
-                        ReviewedDate = new DateTime(2019, 12, 29),
-                        Rating = 3,
-                        Images = new List<string>
-                        {
-                           "Image1.png",
-                           "Image1.png",
-                           "Image1.png"
-                        }
-                    }
-                }
+
+                Reviews = new ObservableCollection<Review>(reviews.Take(1))
             };
 
             if (ProductDetail.Reviews == null || ProductDetail.Reviews.Count == 0)
+            {
                 this.IsReviewVisible = true;
+            }
             else
             {
                 foreach (var review in this.ProductDetail.Reviews)
@@ -96,7 +104,7 @@ namespace EssentialUIKit.ViewModels.ECommerce
                 }
             }
 
-            if(this.productRating > 0)
+            if (this.productRating > 0)
                 this.ProductDetail.OverallRating = this.productRating / this.ProductDetail.Reviews.Count;
 
             this.Categories = new ObservableCollection<Category>
@@ -367,7 +375,10 @@ namespace EssentialUIKit.ViewModels.ECommerce
         /// <param name="obj">The Object</param>
         private void LoadMoreClicked(object obj)
         {
-            // Do something
+            if (productDetail.Reviews.Count == 1)
+                productDetail.Reviews = reviews;
+            else
+                productDetail.Reviews = new ObservableCollection<Review>(reviews.Take(1));
         }
 
         /// <summary>

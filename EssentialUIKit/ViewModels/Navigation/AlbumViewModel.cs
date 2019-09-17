@@ -5,6 +5,7 @@ using System.Runtime.CompilerServices;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using EssentialUIKit.Models.Navigation;
+using System.Runtime.Serialization;
 
 namespace EssentialUIKit.ViewModels.Navigation
 {
@@ -12,49 +13,18 @@ namespace EssentialUIKit.ViewModels.Navigation
     /// ViewModel for album page.
     /// </summary>
     [Preserve(AllMembers = true)]
+    [DataContract]
     public class AlbumViewModel : INotifyPropertyChanged
     {
         #region Fields
 
         private ObservableCollection<Album> albumInfo;
 
-        #endregion
+        private Command addCommand;
 
-        #region Constructor
+        private Command viewAllCommand;
 
-        public AlbumViewModel()
-        {
-            this.AlbumInfo = new ObservableCollection<Album>();
-            var randomNum = new Random(0123456789);
-            var albumNames = new[]
-                {"Favourites", "WhatsApp", "Work", "Facebook", "People", "Place", "Wildlife", "Food"};
-
-            for (var i = 0; i < albumNames.Length; i++)
-            {
-                var review = new Album
-                {
-                    AlbumName = albumNames[i],
-                    AlbumImage = App.BaseImageUrl + "Album" + (i + 1) + ".png",
-                    TotalPhotos = randomNum.Next(50, 500) + " Photos",
-                    Category = i < 4 ? "MY ALBUM" : "OTHER ALBUM",
-                };
-
-                this.AlbumInfo.Add(review);
-            }
-
-            this.AddCommand = new Command(this.AddButtonClicked);
-            this.ViewAllCommand = new Command(this.ViewAllButtonClicked);
-            this.ImageTapCommand = new Command<object>(this.OnImageTapped);
-        }
-
-        #endregion
-
-        #region Event
-
-        /// <summary>
-        /// The declaration of the property changed event.
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
+        private Command imageTapCommand;
 
         #endregion
 
@@ -63,6 +33,7 @@ namespace EssentialUIKit.ViewModels.Navigation
         /// <summary>
         /// Gets or sets the value for the album info.
         /// </summary>
+        [DataMember(Name = "albumInfos")]
         public ObservableCollection<Album> AlbumInfo
         {
             get { return this.albumInfo; }
@@ -81,22 +52,52 @@ namespace EssentialUIKit.ViewModels.Navigation
 
         #endregion
 
+        #region Constructor
+
+        public AlbumViewModel()
+        {
+            
+        }
+
+        #endregion
+
+        #region Event
+
+        /// <summary>
+        /// The declaration of the property changed event.
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        #endregion
+
         #region Command
 
         /// <summary>
         /// Gets or sets the command that is executed when the Add button is clicked.
         /// </summary>
-        public Command AddCommand { get; set; }
+        public Command AddCommand
+        {
+            get
+            {
+                return this.addCommand ?? (this.addCommand = new Command(this.AddButtonClicked));
+            }
+        }
 
         /// <summary>
         /// Gets or sets the command that is executed when the View all button is clicked.
         /// </summary>
-        public Command ViewAllCommand { get; set; }
+        public Command ViewAllCommand
+        {
+            get { return this.viewAllCommand ?? (this.viewAllCommand = new Command(this.ViewAllButtonClicked)); }
+        }
 
         /// <summary>
         /// Gets or sets the image tap command.
         /// </summary>
-        public Command<object> ImageTapCommand { get; set; }
+        public Command ImageTapCommand
+        {
+            get { return this.imageTapCommand ?? (this.imageTapCommand = new Command(this.OnImageTapped)); }
+        }
 
         #endregion
 

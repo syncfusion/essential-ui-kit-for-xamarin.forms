@@ -5,10 +5,10 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:button="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
     xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
-    xmlns:ffsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
     xmlns:gradient="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
     xmlns:sfRotator="clr-namespace:Syncfusion.SfRotator.XForms;assembly=Syncfusion.SfRotator.XForms"
     xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.OnBoarding"
+    xmlns:svg="clr-namespace:EssentialUIKit.Controls"
     NavigationPage.HasNavigationBar="False"
     Shell.NavBarIsVisible="False">
 
@@ -89,8 +89,8 @@
                             VerticalOptions="Center">
 
                             <!--  Image for display svg image  -->
-                            <ffsvg:SvgCachedImage
-                                Margin="{x:OnIdiom Phone='0,0,0,0',
+                          <svg:SVGImage
+                              Margin="{x:OnIdiom Phone='0,0,0,0',
                                                    Desktop='0',
                                                    Tablet='0'}"
                                 BackgroundColor="Transparent"
@@ -99,7 +99,7 @@
                                                                                       AndroidPhoneLandscape=140,
                                                                                       iOSPhonePortrait=200,
                                                                                       iOSPhoneLandscape=140}"
-                                Source="{Binding ImagePath}"
+                                Source ="{Binding ImagePath}"
                                 VerticalOptions="Center"
                                 WidthRequest="{x:OnIdiom Phone=200,
                                                          Desktop=300,

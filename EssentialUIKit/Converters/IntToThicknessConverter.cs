@@ -18,7 +18,7 @@ namespace EssentialUIKit.Converters
         /// <param name="targetType">Gets the targetType</param>
         /// <param name="parameter">Gets the parameter</param>
         /// <param name="culture">Gets the culture</param>
-        /// <returns>Thickness</returns>
+        /// <returns>The thickness</returns>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             var margin = new Thickness(0);
@@ -39,7 +39,7 @@ namespace EssentialUIKit.Converters
         /// <param name="targetType">Gets the targetType</param>
         /// <param name="parameter">Gets the parameter</param>
         /// <param name="culture">Gets the culture</param>
-        /// <returns>true</returns>
+        /// <returns>A boolean value</returns>
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             return true;

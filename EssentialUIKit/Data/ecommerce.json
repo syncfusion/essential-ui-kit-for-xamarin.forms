@@ -210,5 +210,30 @@
 
       ]
     }
+  ],
+
+  "orders": [
+    {
+      "orderid": "83533963",
+      "productimage": "Image1.png",
+      "name": "Full-Length Skirt",
+      "description": "Delivery expected on 10 Aug 2019.",
+      "status": "Dispatched"
+    },
+    {
+      "orderid": "63428737",
+      "productimage": "Image2.png",
+      "name": "Peasant Blouse",
+      "description": "Order was cancelled.",
+      "status": "Cancelled"
+    },
+    {
+      "orderid": "83658319",
+      "productimage": "Image3.png",
+      "name": "High-Waisted Skirt",
+      "description": "Delivered on 04 Aug 2019.",
+      "status": "Completed"
+    }
+
   ]
 }

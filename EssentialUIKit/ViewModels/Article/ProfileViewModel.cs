@@ -164,7 +164,7 @@ namespace EssentialUIKit.ViewModels.Article
         private async void TextSizeOptionClicked(object obj)
         {
             var grid = obj as Grid;
-            Application.Current.Resources.TryGetValue("Gray-F4", out var retVal);            
+            Application.Current.Resources.TryGetValue("Gray-100", out var retVal);            
             grid.BackgroundColor = (Color)retVal;
             //To make the selected item color changes for 100 milliseconds.
             await Task.Delay(100);
@@ -179,7 +179,7 @@ namespace EssentialUIKit.ViewModels.Article
         private async void SettingsOptionClicked(object obj)
         {
             var grid = obj as Grid;
-            Application.Current.Resources.TryGetValue("Gray-F4", out var retVal);
+            Application.Current.Resources.TryGetValue("Gray-100", out var retVal);
             grid.BackgroundColor = (Color)retVal;
             //To make the selected item color changes for 100 milliseconds.
             await Task.Delay(100);

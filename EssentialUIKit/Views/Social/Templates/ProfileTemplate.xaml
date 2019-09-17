@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ViewCell
+    x:Class="EssentialUIKit.Views.Social.Templates.ProfileTemplate"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+    >
+
+    <ViewCell.View>
+        
+        <StackLayout Margin="0,16,16,0" Spacing="0">       
+
+            <border:SfBorder
+                BorderColor="Transparent"
+                BorderWidth="0"
+                CornerRadius="35"
+                HeightRequest="64"                
+                Margin="0,0,0,4"
+                HorizontalOptions="Center"
+                WidthRequest="64">
+
+                <!--  Image of the profile  -->
+                <Image
+                    Aspect="AspectFill"
+                    BackgroundColor="{DynamicResource Gray-200}"
+                    HeightRequest="64"
+                    HorizontalOptions="Center"
+                    WidthRequest="64">
+                    <Image.Source>
+                        <UriImageSource Uri="{Binding ImagePath}" 
+			                                 CacheValidity="14" 
+			                                 CachingEnabled="true"/>
+                    </Image.Source>
+                </Image>
+            </border:SfBorder>
+
+            <!--  Profile name  -->
+            <Label
+                FontFamily="{StaticResource Montserrat-Medium}"
+                FontSize="12"
+                HorizontalOptions="Center"
+                HorizontalTextAlignment="Center"
+                LineHeight="{OnPlatform Default=-1}"
+                Text="{Binding Name}"
+                TextColor="{DynamicResource Gray-900}"
+                VerticalOptions="Center" />
+
+        </StackLayout>
+    </ViewCell.View>
+</ViewCell>
