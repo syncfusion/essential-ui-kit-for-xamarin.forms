@@ -97,88 +97,34 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <None Include="Entitlements.plist" />
+    <None Include="Info.plist" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <Compile Include="Renderers\BorderlessEntryRenderer.cs" />
     <Compile Include="Renderers\FrameShadowRenderer.cs" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <None Include="Entitlements.plist" />
-    <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <BundleResource Include="Resources\UIFontIcons.ttf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </BundleResource>
+    <Compile Include="Effects\BorderlessEffect.cs" />
+    <Compile Include="Renderers\ParallaxListViewRenderer.cs" />
+    <Compile Include="Renderers\TemplateHostViewRenderer.cs" />
     <BundleResource Include="Resources\Splash.png" />
     <BundleResource Include="Resources\Splash%402x.png" />
     <BundleResource Include="Resources\Splash%403x.png" />
     <BundleResource Include="Resources\Splash~ipad.png" />
     <BundleResource Include="Resources\About.png" />
     <BundleResource Include="Resources\OurTeam.png" />
-    <Compile Include="Renderers\ParallaxListViewRenderer.cs" />
     <BundleResource Include="Resources\HeaderTriangle.png" />
     <BundleResource Include="Resources\InvertedTriangle.png" />
-    <Compile Include="Renderers\TemplateHostViewRenderer.cs" />
     <BundleResource Include="Resources\Montserrat-Bold.ttf" />
     <BundleResource Include="Resources\Montserrat-Medium.ttf" />
     <BundleResource Include="Resources\Montserrat-Regular.ttf" />
     <BundleResource Include="Resources\Montserrat-SemiBold.ttf" />
-    <Compile Include="Effects\BorderlessEffect.cs" />
+    <BundleResource Include="Resources\UIFontIcons.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </BundleResource>
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon1201.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon1203.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon1521.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon1672.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon1802.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon202.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon291.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon404.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon405.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon406.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon584.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon585.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon602.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon761.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon801.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon802.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon871.png">
       <Visible>false</Visible>
     </ImageAsset>
   </ItemGroup>
