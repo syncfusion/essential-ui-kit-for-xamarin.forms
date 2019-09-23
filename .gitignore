@@ -1,0 +1,9 @@
+EssentialUIKit/obj/
+EssentialUIKit.UWP/obj/
+EssentialUIKit/bin/
+EssentialUIKit.iOS/obj/
+EssentialUIKit.Android/Resources/Resource.designer.cs
+EssentialUIKit.Android/obj/
+EssentialUIKit.Android/bin/
+.vs/
+EssentialUIKit.UWP/bin/
