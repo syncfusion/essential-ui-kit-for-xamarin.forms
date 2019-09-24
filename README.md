@@ -61,6 +61,7 @@ We follow the style used by the .NET Foundation, with a few exceptions:
 * https://www.syncfusion.com/blogs/post/the-essential-ui-kit-for-xamarin-forms-is-ready-to-use.aspx
 * https://www.syncfusion.com/blogs/post/sneak-peek-new-essential-ui-kit-for-xamarin-forms.aspx
 * https://www.syncfusion.com/blogs/post/introducing-ui-templates-for-xamarin-forms.aspx
+* https://www.syncfusion.com/blogs/post/create-beautiful-mobile-apps-in-20-minutes-with-the-new-xamarin-ui-kit-webinar-qa.aspx
 
 ## Screenshots
 <p align="center">
