@@ -1,0 +1,202 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="EssentialUIKit.Views.History.MyOrdersPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+    xmlns:converter="clr-namespace:EssentialUIKit.Converters"
+    xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+    xmlns:tabView="clr-namespace:Syncfusion.XForms.TabView;assembly=Syncfusion.SfTabView.XForms"
+    xmlns:view="clr-namespace:EssentialUIKit.Views.History"
+    BackgroundColor="{DynamicResource Gray-100}"
+    NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:StringToColorConverter x:Key="StringToColorConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+
+        <tabView:SfTabView BackgroundColor="{DynamicResource Gray-White}" VisibleHeaderCount="4">
+            <tabView:SfTabView.SelectionIndicatorSettings>
+                <tabView:SelectionIndicatorSettings StrokeThickness="3" Color="{DynamicResource PrimaryColor}" />
+
+            </tabView:SfTabView.SelectionIndicatorSettings>
+            <tabView:SfTabItem
+                Title="All Orders"
+                SelectionColor="{DynamicResource PrimaryColor}"
+                TitleFontColor="{DynamicResource Gray-700}"
+                TitleFontFamily="{StaticResource Montserrat-Medium}"
+                TitleFontSize="14">
+                <tabView:SfTabItem.Content>
+
+                    <!--  My Order list  -->
+                    <listView:SfListView
+                        x:Name="myOrderList"
+                        AutoFitMode="DynamicHeight"
+                        BackgroundColor="{DynamicResource Gray-100}"
+                        ItemsSource="{Binding OrderDetails}"
+                        SelectionMode="None"
+                        TapCommand="{Binding ItemSelectedCommand}"
+                        VerticalOptions="Start">
+
+                        <listView:SfListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid
+                                    Margin="0,16,0,0"
+                                    BackgroundColor="{DynamicResource Gray-White}"
+                                    ColumnSpacing="0"
+                                    RowSpacing="0">
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="{OnIdiom Default=1, Phone=0}" />
+                                    </Grid.RowDefinitions>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <!--  Product image  -->
+                                    <Image
+                                        Grid.Row="0"
+                                        Grid.RowSpan="4"
+                                        Grid.Column="0"
+                                        Margin="16,8,16,16"
+                                        Aspect="Fill"
+                                        BackgroundColor="{DynamicResource Gray-200}"
+                                        HeightRequest="80"
+                                        WidthRequest="80">
+                                        <Image.Source>
+                                            <UriImageSource
+                                                CacheValidity="14"
+                                                CachingEnabled="true"
+                                                Uri="{Binding ProductImage}" />
+                                        </Image.Source>
+                                    </Image>
+
+                                    <!--  Product name  -->
+                                    <Label
+                                        Grid.Row="0"
+                                        Grid.Column="1"
+                                        Margin="0,8,0,4"
+                                        FontFamily="{StaticResource Montserrat-SemiBold}"
+                                        FontSize="14"
+                                        HorizontalOptions="StartAndExpand"
+                                        LineBreakMode="TailTruncation"
+                                        LineHeight="1.5"
+                                        MaxLines="1"
+                                        Text="{Binding Name}"
+                                        TextColor="{DynamicResource Gray-900}" />
+
+                                    <!--  Description label  -->
+                                    <Label
+                                        Grid.Row="1"
+                                        Grid.Column="1"
+                                        Margin="0,0,0,8"
+                                        FontFamily="{StaticResource Montserrat-Medium}"
+                                        FontSize="12"
+                                        HorizontalOptions="StartAndExpand"
+                                        LineHeight="1.5"
+                                        Text="{Binding Description}"
+                                        TextColor="{DynamicResource Gray-700}" />
+
+                                    <StackLayout
+                                        Grid.Row="2"
+                                        Grid.Column="1"
+                                        Margin="0,4,0,0"
+                                        Padding="0"
+                                        HorizontalOptions="Start"
+                                        Orientation="Horizontal"
+                                        Spacing="0"
+                                        VerticalOptions="Start">
+
+                                        <!--  Order ID  -->
+                                        <Label
+                                            Margin="0"
+                                            FontFamily="{StaticResource Montserrat-Medium}"
+                                            FontSize="12"
+                                            Text="{Binding OrderID, StringFormat='Order ID: {0}'}"
+                                            VerticalOptions="Center" />
+
+                                        <!--  Order status  -->
+
+                                        <border:SfBorder
+                                            Margin="8,0"
+                                            Padding="0"
+                                            BorderColor="Transparent"
+                                            CornerRadius="12"
+                                            HasShadow="False"
+                                            HeightRequest="24"
+                                            HorizontalOptions="Start"
+                                            WidthRequest="96">
+
+                                            <border:SfBorder.Content>
+                                                <Grid>
+                                                    <BoxView BackgroundColor="{Binding Status, Converter={x:StaticResource StringToColorConverter}, ConverterParameter=0}" Opacity="0.07" />
+
+                                                    <Label
+                                                        FontFamily="{StaticResource Montserrat-SemiBold}"
+                                                        FontSize="12"
+                                                        HorizontalOptions="CenterAndExpand"
+                                                        Text="{Binding Status}"
+                                                        TextColor="{Binding Status, Converter={x:StaticResource StringToColorConverter}, ConverterParameter=0}"
+                                                        VerticalOptions="Center" />
+                                                </Grid>
+                                            </border:SfBorder.Content>
+                                        </border:SfBorder>
+
+                                    </StackLayout>
+
+                                </Grid>
+                            </DataTemplate>
+                        </listView:SfListView.ItemTemplate>
+
+                    </listView:SfListView>
+                </tabView:SfTabItem.Content>
+            </tabView:SfTabItem>
+
+            <tabView:SfTabItem
+                Title="Requested"
+                SelectionColor="{DynamicResource PrimaryColor}"
+                TitleFontColor="{DynamicResource Gray-700}"
+                TitleFontFamily="{StaticResource Montserrat-Medium}"
+                TitleFontSize="14">
+                <tabView:SfTabItem.Content>
+                    <view:MyOrdersView />
+                </tabView:SfTabItem.Content>
+            </tabView:SfTabItem>
+
+            <tabView:SfTabItem
+                Title="Complete"
+                SelectionColor="{DynamicResource PrimaryColor}"
+                TitleFontColor="{DynamicResource Gray-700}"
+                TitleFontFamily="{StaticResource Montserrat-Medium}"
+                TitleFontSize="14">
+                <tabView:SfTabItem.Content>
+                    <view:MyOrdersView />
+                </tabView:SfTabItem.Content>
+            </tabView:SfTabItem>
+
+            <tabView:SfTabItem
+                Title="Cancelled"
+                SelectionColor="{DynamicResource PrimaryColor}"
+                TitleFontColor="{DynamicResource Gray-700}"
+                TitleFontFamily="{StaticResource Montserrat-Medium}"
+                TitleFontSize="14">
+                <tabView:SfTabItem.Content>
+                    <view:MyOrdersView />
+                </tabView:SfTabItem.Content>
+
+            </tabView:SfTabItem>
+
+        </tabView:SfTabView>
+
+    </ContentPage.Content>
+</ContentPage>

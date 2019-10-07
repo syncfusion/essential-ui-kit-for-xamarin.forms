@@ -6,12 +6,9 @@
     xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
     xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
     xmlns:data="clr-namespace:Syncfusion.DataSource;assembly=Syncfusion.DataSource.Portable"
-    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
     xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
-    xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Navigation"
     BackgroundColor="{DynamicResource Gray-White}"
-    NavigationPage.HasNavigationBar="False"
-    Shell.NavBarIsVisible="False">
+    NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -20,11 +17,6 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </ContentPage.Resources>
-
-    <!--  Binding context for album page  -->
-    <ContentPage.BindingContext>
-        <viewModel:AlbumViewModel />
-    </ContentPage.BindingContext>
 
     <ContentPage.Content>
         <StackLayout>
@@ -42,7 +34,7 @@
                     LineHeight="{OnPlatform Android=1.5,
                                             Default=-1}"
                     Text="Albums"
-                    TextColor="{DynamicResource Gray-56}"
+                    TextColor="{DynamicResource Gray-900}"
                     VerticalOptions="Center" />
 
                 <!--  Add button  -->
@@ -100,7 +92,7 @@
                                 LineHeight="{OnPlatform Android=1.25,
                                                         Default=-1}"
                                 Text="{Binding Key}"
-                                TextColor="{DynamicResource Gray-6F}"
+                                TextColor="{DynamicResource Gray-800}"
                                 VerticalOptions="Center" />
 
                             <!--  View all  -->
@@ -138,9 +130,16 @@
                             HorizontalOptions="FillAndExpand"
                             VerticalOptions="FillAndExpand">
 
-                            <Grid BackgroundColor="{DynamicResource Gray-F0}">
+                            <Grid>
+                                
                                 <!--  Album cover image  -->
-                                <ffimageloading:CachedImage Aspect="Fill" Source="{Binding AlbumImage}" />
+                                <Image Aspect="AspectFill">
+                                    <Image.Source>
+                                        <UriImageSource Uri="{Binding AlbumImage}" 
+			                                 CacheValidity="14" 
+			                                 CachingEnabled="true"/>
+                                    </Image.Source>
+                                </Image>
 
                                 <StackLayout
                                     Padding="24,0,0,16"
@@ -158,7 +157,7 @@
                                     <Label
                                         FontFamily="{StaticResource Montserrat-Medium}"
                                         FontSize="12"
-                                        Text="{Binding TotalPhotos}"
+                                        Text="{Binding PhotosCount}"
                                         TextColor="{DynamicResource Gray-White}" />
 
                                 </StackLayout>

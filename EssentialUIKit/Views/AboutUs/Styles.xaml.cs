@@ -7,7 +7,7 @@ namespace EssentialUIKit.Views.AboutUs
     {
         public Styles()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
     }
 }

@@ -15,7 +15,7 @@ namespace EssentialUIKit.Views.ECommerce
         /// </summary>
         public SortPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
     }
 }

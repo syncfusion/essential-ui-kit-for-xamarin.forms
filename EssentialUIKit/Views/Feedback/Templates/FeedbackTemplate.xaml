@@ -4,7 +4,6 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
-    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
     xmlns:rating="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms">
 
     <StackLayout.Resources>
@@ -37,7 +36,13 @@
             HeightRequest="48"
             Style="{StaticResource SfBorderStyle}"
             WidthRequest="48">
-            <ffimageloading:CachedImage BackgroundColor="{DynamicResource Gray-F0}" Source="{Binding ProfileImage}" />
+            <Image BackgroundColor="{DynamicResource Gray-200}" >
+                <Image.Source>
+                    <UriImageSource Uri="{Binding ProfileImage}" 
+			                                 CacheValidity="14" 
+			                                 CachingEnabled="true"/>
+                </Image.Source>
+            </Image>
         </border:SfBorder>
 
         <StackLayout
@@ -58,7 +63,7 @@
                     FontFamily="{StaticResource Montserrat-SemiBold}"
                     Style="{StaticResource LabelStyle}"
                     Text="{Binding CustomerName}"
-                    TextColor="{DynamicResource Gray-56}" />
+                    TextColor="{DynamicResource Gray-900}" />
 
                 <!--  Commented Date  -->
                 <Label
@@ -98,10 +103,10 @@
             Spacing="8">
             <BindableLayout.ItemTemplate>
                 <DataTemplate>
-                    <ffimageloading:CachedImage
+                    <Image
                         Margin="0,8,0,0"
                         Aspect="Fill"
-                        BackgroundColor="{DynamicResource Gray-F0}"
+                        BackgroundColor="{DynamicResource Gray-200}"
                         HeightRequest="50"
                         Source="{Binding .}"
                         WidthRequest="60" />

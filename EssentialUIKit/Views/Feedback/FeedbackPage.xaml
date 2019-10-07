@@ -8,8 +8,7 @@
     xmlns:local="clr-namespace:EssentialUIKit.Views.Feedback"
     xmlns:viewmodel="clr-namespace:EssentialUIKit.ViewModels.Feedback"
     BackgroundColor="{DynamicResource Gray-White}"
-    NavigationPage.HasNavigationBar="False"
-    Shell.NavBarIsVisible="False">
+    NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -35,7 +34,7 @@
                 HorizontalOptions="CenterAndExpand"
                 Style="{StaticResource LabelStyle}"
                 Text="Reviews"
-                TextColor="{DynamicResource Gray-56}" />
+                TextColor="{DynamicResource Gray-900}" />
 
             <BoxView Style="{StaticResource BoxViewStyle}" />
 

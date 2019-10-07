@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="EssentialUIKit.Views.Social.SocialProfileWithCardPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:control="clr-namespace:EssentialUIKit.Controls"
+    xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+    xmlns:local="clr-namespace:EssentialUIKit.Views.Social.Templates"
+    xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Social"
+    BackgroundColor="{DynamicResource Gray-White}"
+    NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <!--  Binding context for social profile with card page  -->
+    <ContentPage.BindingContext>
+        <viewModel:SocialProfileViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid RowSpacing="0">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <control:CustomShadowFrame
+                    Grid.Row="0"
+                    Margin="16,16,16,32"
+                    Style="{StaticResource ShadowFrameStyle}">
+
+                    <border:SfBorder
+                        BorderColor="Transparent"
+                        BorderWidth="0"
+                        CornerRadius="12">
+
+                        <StackLayout Spacing="0">
+
+                            <!--  Header image path  -->
+                            <Image
+                                Aspect="Fill"
+                                BackgroundColor="{DynamicResource Gray-200}"
+                                HeightRequest="120"
+                                HorizontalOptions="Fill">
+                                <Image.Source>
+                                    <UriImageSource Uri="{Binding HeaderImagePath}" 
+			                                 CacheValidity="14" 
+			                                 CachingEnabled="true"/>
+                                </Image.Source>
+                            </Image>
+
+                            <border:SfBorder
+                                Margin="0,-60,0,16"
+                                BackgroundColor="{DynamicResource Gray-100}"
+                                BorderColor="{DynamicResource Gray-White}"
+                                BorderWidth="2"
+                                CornerRadius="10"
+                                HasShadow="True"
+                                HeightRequest="80"
+                                HorizontalOptions="CenterAndExpand"
+                                WidthRequest="80">
+
+                                <!--  Profile image  -->
+                                <Image
+                                    Aspect="Fill"
+                                    BackgroundColor="{DynamicResource Gray-200}"
+                                    HeightRequest="80"
+                                    WidthRequest="80">
+                                    <Image.Source>
+                                        <UriImageSource Uri="{Binding ProfileImage}" 
+			                                 CacheValidity="14" 
+			                                 CachingEnabled="true"/>
+                                    </Image.Source>
+                                </Image>
+
+                            </border:SfBorder>
+
+                            <!--  Profile name  -->
+                            <Label Style="{StaticResource HeaderLabelStyle}" Text="{Binding ProfileName}" />
+
+                            <StackLayout
+                                Margin="0,0,0,16"
+                                HorizontalOptions="CenterAndExpand"
+                                Orientation="Horizontal"
+                                Spacing="5">
+
+                                <!--  Designation label  -->
+                                <Label Style="{StaticResource ContentLabelStyle}" Text="{Binding Designation}" />
+
+                                <BoxView Style="{StaticResource BoxViewStyle}" />
+
+                                <!--  state and country label  -->
+                                <Label Style="{StaticResource ContentLabelStyle}">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="{Binding State}" />
+                                            <Span Text=" " />
+                                            <Span Text="{Binding Country}" />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+
+                            </StackLayout>
+
+                            <!--  Follow button  -->
+                            <buttons:SfButton
+                                Margin="0,0,0,16"
+                                Command="{Binding FollowCommand}"
+                                Style="{StaticResource SfGradientButtonStyle}"
+                                Text="FOLLOW" />
+
+                            <!--  About title label  -->
+                            <Label
+                                Margin="{OnPlatform Default='16,0,0,4',
+                                                    UWP='0,0,0,4'}"
+                                FontFamily="{StaticResource Montserrat-SemiBold}"
+                                FontSize="14"
+                                HorizontalOptions="StartAndExpand"
+                                HorizontalTextAlignment="Start"
+                                LineHeight="{OnPlatform Default=-1,
+                                                        Android=1.5}"
+                                Text="About"
+                                TextColor="{DynamicResource Gray-900}" />
+
+                            <!--  About label  -->
+                            <Label
+                                Margin="{OnPlatform Default='16,0,16,24',
+                                                    UWP='0,0,16,24'}"
+                                HorizontalOptions="Start"
+                                HorizontalTextAlignment="Start"
+                                Style="{StaticResource ContentLabelStyle}"
+                                Text="{Binding About}" />
+
+                        </StackLayout>
+                    </border:SfBorder>
+                </control:CustomShadowFrame>
+
+                <!--  Interest title label  -->
+                <Label
+                    Grid.Row="1"
+                    Margin="16,0,0,0"
+                    FontFamily="{StaticResource Montserrat-SemiBold}"
+                    FontSize="12"
+                    HorizontalOptions="Start"
+                    HorizontalTextAlignment="Start"
+                    LineHeight="{OnPlatform Default=-1,
+                                            Android=1.5}"
+                    Text="INTERESTS"
+                    TextColor="{DynamicResource Gray-800}" />
+
+                <listView:SfListView
+                    Grid.Row="2"
+                    Margin="0"                    
+                    Padding="0"
+                    AutoFitMode="DynamicHeight"
+                    ColumnSpacing="0"
+                    HeightRequest="200"
+                    HorizontalOptions="FillAndExpand"
+                    IsScrollBarVisible="False"
+                    ItemSpacing="0"
+                    ItemsSource="{Binding Interests}"
+                    Orientation="Horizontal"
+                    RowSpacing="0"
+                    SelectionBackgroundColor="Transparent"
+                    TapCommand="{Binding ProfileSelectedCommand}">
+
+                    <listView:SfListView.ItemTemplate>
+                        <DataTemplate>
+                            <local:ProfileTemplate />
+                        </DataTemplate>
+                    </listView:SfListView.ItemTemplate>
+                </listView:SfListView>
+
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+
+</ContentPage>

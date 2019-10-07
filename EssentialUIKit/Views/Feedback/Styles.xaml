@@ -23,7 +23,7 @@
 
     <!--  Common style for font icons  -->
     <Style x:Key="CommonIconStyle" TargetType="Label">
-        <Setter Property="TextColor" Value="{DynamicResource Gray-AB}" />
+        <Setter Property="TextColor" Value="{DynamicResource Gray-600}" />
         <Setter Property="FontSize" Value="18" />
         <Setter Property="VerticalOptions" Value="Center" />
         <Setter Property="HorizontalOptions" Value="Fill" />
@@ -34,7 +34,7 @@
     <!--  Common style for labels  -->
     <Style x:Key="LabelStyle" TargetType="Label">
         <Setter Property="LineHeight" Value="{OnPlatform Android=1.25,Default=-1}" />
-        <Setter Property="TextColor" Value="{DynamicResource Gray-94}" />
+        <Setter Property="TextColor" Value="{DynamicResource Gray-700}" />
         <Setter Property="FontSize" Value="14" />
         <Setter Property="HorizontalTextAlignment" Value="Start" />
         <Setter Property="VerticalTextAlignment" Value="Center" />
@@ -54,7 +54,7 @@
     <!--  Common style for BoxView  -->
     <Style x:Key="BoxViewStyle" TargetType="BoxView">
         <Setter Property="HeightRequest" Value="1" />
-        <Setter Property="Color" Value="{DynamicResource Gray-F0}" />
+        <Setter Property="Color" Value="{DynamicResource Gray-200}" />
         <Setter Property="VerticalOptions" Value="Center" />
     </Style>
 
@@ -62,8 +62,8 @@
         x:Key="RatingSettings"
         RatedFill="{StaticResource Gold}"
         RatedStroke="{StaticResource Gold}"
-        UnRatedStroke="{DynamicResource Gray-AB}"
-        UnRatedStrokeWidth="2" />
+        UnRatedStroke="{DynamicResource Gray-600}"
+        UnRatedStrokeWidth="1" />
 
     <!--  Common style for SfRating  -->
     <Style x:Key="SfRatingStyle" TargetType="rating:SfRating">
@@ -79,7 +79,7 @@
     <Style x:Key="SfButtonStyle" TargetType="buttons:SfButton">
         <Setter Property="BackgroundColor" Value="{DynamicResource Gray-White}" />
         <Setter Property="BorderWidth" Value="2" />
-        <Setter Property="BorderColor" Value="{DynamicResource Gray-E4}" />
+        <Setter Property="BorderColor" Value="{DynamicResource Gray-300}" />
         <Setter Property="HorizontalOptions" Value="Center" />
         <Setter Property="VerticalOptions" Value="Center" />
         <Setter Property="CornerRadius" Value="4" />

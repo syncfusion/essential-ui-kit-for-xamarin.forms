@@ -34,7 +34,7 @@
                         HorizontalOptions="End"
                         LineHeight="1.25"
                         Text="{Binding Message}"
-                        TextColor="{DynamicResource Gray-56}"
+                        TextColor="{DynamicResource Gray-900}"
                         VerticalOptions="Center" />
 
                     <!--  Time  -->
@@ -44,7 +44,7 @@
                         HorizontalOptions="End"
                         LineHeight="1.25"
                         Text="{Binding Time, StringFormat='{0:h:mm tt}'}"
-                        TextColor="{DynamicResource Gray-94}"
+                        TextColor="{DynamicResource Gray-700}"
                         VerticalOptions="Center" />
 
                 </StackLayout>

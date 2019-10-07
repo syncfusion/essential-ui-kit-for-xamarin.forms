@@ -25,19 +25,28 @@ namespace EssentialUIKit.Converters
             {
                 if (parameter.ToString() == "0")
                 {
-                    if((bool)value)
+                    if ((bool)value)
+                    {
                         return "\ue72f";
+                    }
                     else
+                    {
                         return "\ue734";
+                    }
                 }
-                else if(parameter.ToString() == "1")
+                else if (parameter.ToString() == "1")
                 {
                     if ((bool)value)
+                    {
                         return "\ue732";
+                    }
                     else
+                    {
                         return "\ue701";
+                    }
                 }
             }
+
             return string.Empty;
         }
 

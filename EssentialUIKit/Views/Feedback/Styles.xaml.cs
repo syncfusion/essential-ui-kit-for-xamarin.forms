@@ -15,7 +15,7 @@ namespace EssentialUIKit.Views.Feedback
         /// </summary>
         public Styles()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
     }
 }

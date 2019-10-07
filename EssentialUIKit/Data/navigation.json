@@ -1,0 +1,172 @@
+{
+  "albumInfos": [
+    {
+      "albumName": "Favourites",
+      "albumImage": "Album1.png",
+      "photosCount": "178",
+      "category": "MY ALBUM"
+    },
+    {
+      "albumName": "WhatsApp",
+      "albumImage": "Album2.png",
+      "photosCount": "187",
+      "category": "MY ALBUM"
+    },
+    {
+      "albumName": "Work",
+      "albumImage": "Album3.png",
+      "photosCount": "156",
+      "category": "MY ALBUM"
+    },
+    {
+      "albumName": "Facebook",
+      "albumImage": "Album4.png",
+      "photosCount": "67",
+      "category": "MY ALBUM"
+    },
+    {
+      "albumName": "People",
+      "albumImage": "Album5.png",
+      "photosCount": "18",
+      "category": "OTHER ALBUM"
+    },
+    {
+      "albumName": "Place",
+      "albumImage": "Album6.png",
+      "photosCount": "96",
+      "category": "OTHER ALBUM"
+    },
+    {
+      "albumName": "Wildlife",
+      "albumImage": "Album7.png",
+      "photosCount": "134",
+      "category": "OTHER ALBUM"
+    },
+    {
+      "albumName": "Food",
+      "albumImage": "Album8.png",
+      "photosCount": "104",
+      "category": "OTHER ALBUM"
+    }
+  ],
+  "navigationList": [
+    {
+      "itemName": "Hamburger",
+      "itemDescription": "Classic hamburger with Angus beef grilled to perfection",
+      "itemImage": "Recipe19.png",
+      "itemRating": 4.5
+    },
+    {
+      "itemName": "Black Bean Burger",
+      "itemDescription": "Our signature black bean burger on a whole-grain bun",
+      "itemImage": "Recipe8.png",
+      "itemRating": 4.5
+    },
+    {
+      "itemName": "Macarons",
+      "itemDescription": "Eight colorful flavors of macarons, fresh daily",
+      "itemImage": "Recipe3.png",
+      "itemRating": 4.5
+    },
+    {
+      "itemName": "Egg on Toast",
+      "itemDescription": "A sunny-side up egg on toast, just like grandma used to make",
+      "itemImage": "Recipe9.png",
+      "itemRating": 4.5
+    },
+    {
+      "itemName": "Chocolate Caramel Cake",
+      "itemDescription": "Rich dark chocolate cake layered with caramel icing",
+      "itemImage": "Recipe13.png",
+      "itemRating": 4.5
+    },
+    {
+      "itemName": "Red Velvet Cake",
+      "itemDescription": "Classic red velvet cake with rich, cream cheese frosting and dark chocolate shavings",
+      "itemImage": "Recipe4.png",
+      "itemRating": 4.5
+    }
+  ],
+  "photos": [
+    {
+      "imageURL": "ProfileImage1.png",
+      "updatedDate": "2019-06-22"
+    },
+    {
+      "imageURL": "ProfileImage2.png",
+      "updatedDate": "2019-06-20"
+    },
+    {
+      "imageURL": "ProfileImage3.png",
+      "updatedDate": "2019-06-21"
+    },
+    {
+      "imageURL": "ProfileImage4.png",
+      "updatedDate": "2019-06-23"
+    },
+    {
+      "imageURL": "ProfileImage5.png",
+      "updatedDate": "2019-06-22"
+    },
+    {
+      "imageURL": "ProfileImage6.png",
+      "updatedDate": "2019-06-21"
+    },
+    {
+      "imageURL": "ProfileImage7.png",
+      "updatedDate": "2019-06-20"
+    },
+    {
+      "imageURL": "ProfileImage8.png",
+      "updatedDate": "2019-06-23"
+    },
+    {
+      "imageURL": "ProfileImage9.png",
+      "updatedDate": "2019-06-20"
+    },
+    {
+      "imageURL": "ProfileImage10.png",
+      "updatedDate": "2019-06-21"
+    },
+    {
+      "imageURL": "ProfileImage11.png",
+      "updatedDate": "2019-06-22"
+    },
+    {
+      "imageURL": "ProfileImage12.png",
+      "updatedDate": "2019-06-20"
+    },
+    {
+      "imageURL": "ProfileImage13.png",
+      "updatedDate": "2019-06-21"
+    },
+    {
+      "imageURL": "ProfileImage14.png",
+      "updatedDate": "2019-06-23"
+    },
+    {
+      "imageURL": "ProfileImage15.png",
+      "updatedDate": "2019-06-22"
+    },
+    {
+      "imageURL": "ProfileImage16.png",
+      "updatedDate": "2019-06-21"
+    },
+    {
+      "imageURL": "ProfileImage17.png",
+      "updatedDate": "2019-06-20"
+    },
+    {
+      "imageURL": "ProfileImage18.png",
+      "updatedDate": "2019-06-22"
+    },
+    {
+      "imageURL": "ProfileImage19.png",
+      "updatedDate": "2019-06-20"
+    },
+    {
+      "imageURL": "ProfileImage20.png",
+      "updatedDate": "2019-06-23"
+    }
+  ]
+}

@@ -12,7 +12,7 @@ namespace EssentialUIKit.Views.Navigation
     {
         public Styles()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
     }
 }

@@ -40,7 +40,7 @@ namespace EssentialUIKit.Behaviors.ECommerce
         /// </summary>
         public object CommandParameter
         {
-            get { return GetValue(CommandParameterProperty); }
+            get { return this.GetValue(CommandParameterProperty); }
             set { this.SetValue(CommandParameterProperty, value); }
         }
 

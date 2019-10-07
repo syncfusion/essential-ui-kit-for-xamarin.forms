@@ -15,7 +15,7 @@ namespace EssentialUIKit.Views.Chat
         /// </summary>
         public Styles()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
     }
 }

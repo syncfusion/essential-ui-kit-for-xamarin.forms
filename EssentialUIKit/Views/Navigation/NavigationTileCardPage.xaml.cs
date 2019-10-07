@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms.Internals;
+﻿using EssentialUIKit.DataService;
+using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
 
 namespace EssentialUIKit.Views.Navigation
@@ -9,7 +10,8 @@ namespace EssentialUIKit.Views.Navigation
     {
         public NavigationTileCardPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
+            this.BindingContext = NavigationDataService.Instance.NavigationViewModel;
         }
     }
 }

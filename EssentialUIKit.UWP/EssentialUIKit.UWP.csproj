@@ -100,6 +100,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Renderers\BorderlessEditorRenderer.cs" />
     <Compile Include="Renderers\BorderlessEntryRenderer.cs" />
+    <Compile Include="Renderers\CalenderDatePickerRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -117,16 +118,11 @@
     <Content Include="scale-100\About.png" />
     <Content Include="scale-100\Card.png" />
     <Content Include="scale-100\ChatMessageBackground.png" />
-    <Content Include="scale-100\ChooseGradient.svg" />
     <Content Include="scale-100\Close.png" />
-    <Content Include="scale-100\ConfirmGradient.svg" />
-    <Content Include="scale-100\DeliverGradient.svg" />
-    <Content Include="scale-100\EmptyCart.svg" />
     <Content Include="scale-100\HeaderIcon.png" />
     <Content Include="scale-100\HeaderTriangle.png" />
     <Content Include="scale-100\Icon.png" />
     <Content Include="scale-100\InvertedTriangle.png" />
-    <Content Include="scale-100\LocationAccessDenied.svg" />
     <Content Include="scale-100\LoginBackground.scale-200.png" />
     <Content Include="scale-100\LoginBackground.scale-400.png" />
     <Content Include="scale-100\LoginBackground.scale-100.png" />
@@ -152,19 +148,10 @@
     <Content Include="Assets\Wide310x150Logo.scale-100.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
     <Content Include="Assets\Wide310x150Logo.scale-400.png" />
-    <Content Include="scale-100\NoCredits.svg" />
-    <Content Include="scale-100\NoInternet.svg" />
-    <Content Include="scale-100\NoItem.svg" />
-    <Content Include="scale-100\NoPhotos.svg" />
-    <Content Include="scale-100\NoTasks.svg" />
-    <Content Include="scale-100\NotEnoughCredit.svg" />
-    <Content Include="scale-100\NoVideos.svg" />
     <Content Include="scale-100\OurTeam.png" />
-    <Content Include="scale-100\PaymentFailed.svg" />
     <Content Include="scale-100\Pin.png" />
     <Content Include="scale-100\PlaceHolder.png" />
     <Content Include="scale-100\PlaceHolderRectangle.png" />
-    <Content Include="scale-100\SomethingWentWrong.svg" />
     <Content Include="Properties\Default.rd.xml" />
   </ItemGroup>
   <ItemGroup>
@@ -178,18 +165,33 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="SkiaSharp.Extended">
+      <Version>1.60.0</Version>
+    </PackageReference>
+    <PackageReference Include="SkiaSharp.Svg">
+      <Version>1.60.0</Version>
+    </PackageReference>
+    <PackageReference Include="SkiaSharp.Views.Forms">
+      <Version>1.68.0</Version>
+    </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.Buttons" Version="17.2.0.49" />
     <PackageReference Include="Syncfusion.Xamarin.Cards" Version="17.2.0.49" />
-    <PackageReference Include="Syncfusion.Xamarin.Core" Version="17.2.0.49" />
+    <PackageReference Include="Syncfusion.Xamarin.Core" Version="17.3.0.9-beta" />
     <PackageReference Include="Syncfusion.Xamarin.DataSource">
       <Version>17.2.0.49</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.GridCommon">
       <Version>17.2.0.49</Version>
     </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.SfCalendar">
+      <Version>17.2.0.49</Version>
+    </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfComboBox" Version="17.2.0.49" />
     <PackageReference Include="Syncfusion.Xamarin.SfMaps" Version="17.2.0.49" />
     <PackageReference Include="Syncfusion.Xamarin.SfParallaxView">
+      <Version>17.2.0.49</Version>
+    </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.SfProgressBar">
       <Version>17.2.0.49</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfRating" Version="17.2.0.49" />
@@ -198,11 +200,10 @@
     <PackageReference Include="Syncfusion.Xamarin.Expander" Version="17.2.0.49" />
     <PackageReference Include="Syncfusion.Xamarin.SfListView" Version="17.2.0.49" />
     <PackageReference Include="Syncfusion.Xamarin.SfBadgeView" Version="17.2.0.49" />
-    <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
-    <PackageReference Include="Xamarin.FFImageLoading.Svg.Forms">
-      <Version>2.4.11.982</Version>
+    <PackageReference Include="Syncfusion.Xamarin.SfTabView">
+      <Version>17.2.0.49</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.Forms" Version="4.2.0.709249" />
+    <PackageReference Include="Xamarin.Forms" Version="4.3.0.778476-pre1" />
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.1.5" />
   </ItemGroup>
   <ItemGroup>

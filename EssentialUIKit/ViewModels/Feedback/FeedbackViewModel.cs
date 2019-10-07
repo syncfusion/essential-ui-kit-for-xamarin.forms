@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using EssentialUIKit.Models.Feedback;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
-using EssentialUIKit.Models.Feedback;
 
 namespace EssentialUIKit.ViewModels.Feedback
 {

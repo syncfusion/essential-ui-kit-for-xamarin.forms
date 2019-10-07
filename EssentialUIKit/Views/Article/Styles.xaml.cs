@@ -15,7 +15,7 @@ namespace EssentialUIKit.Views.Article
         /// </summary>
         public Styles()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
     }
 }

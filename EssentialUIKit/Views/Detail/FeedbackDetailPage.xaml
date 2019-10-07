@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="EssentialUIKit.Views.Detail.FeedbackDetailPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:content="clr-namespace:EssentialUIKit.Views.Detail.Templates"
+    xmlns:viewmodel="clr-namespace:EssentialUIKit.ViewModels.Detail"
+    NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <content:MobileView x:Key="MobileView" />
+
+            <content:TabletView x:Key="TabletView" />
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <!--  Binding Context for OverAllFeedback Page  -->
+    <ContentPage.BindingContext>
+        <viewmodel:DetailViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <OnIdiom Default="{StaticResource TabletView}" Phone="{StaticResource MobileView}" />
+    </ContentPage.Content>
+</ContentPage>

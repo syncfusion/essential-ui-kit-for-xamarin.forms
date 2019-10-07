@@ -62,14 +62,17 @@ namespace EssentialUIKit.Behaviors.Feedback
         /// Invoked when the container property is changed.
         /// </summary>
         /// <param name="sender">The VisualContainer</param>
-        /// <param name="e">The property changed event args</param>
-        private async void Container_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        /// <param name="eventArgs">The property changed event args</param>
+        private async void Container_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs eventArgs)
         {
-            await Task.Delay(200);
-            var extent = (double)this.container.GetType().GetRuntimeProperties()
-                .FirstOrDefault(container => container.Name == "TotalExtent").GetValue(this.container);
+            if (eventArgs.PropertyName == "Height")
+            {
+                await Task.Delay(500);
+                var extent = (double)this.container.GetType().GetRuntimeProperties()
+                    .FirstOrDefault(container => container.Name == "TotalExtent").GetValue(this.container);
 
-            this.ListView.HeightRequest = extent;
+                this.ListView.HeightRequest = extent;
+            }
         }
 
         #endregion

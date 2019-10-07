@@ -16,7 +16,7 @@ namespace EssentialUIKit.Views.ErrorAndEmpty
         /// </summary>
         public PaymentFailedPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         /// <summary>

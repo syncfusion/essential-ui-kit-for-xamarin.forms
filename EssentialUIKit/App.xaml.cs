@@ -1,4 +1,5 @@
-﻿#if EnableAppCenterAnalytics
+﻿using EssentialUIKit.AppLayout.Views;
+#if EnableAppCenterAnalytics
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
@@ -6,7 +7,6 @@ using Microsoft.AppCenter.Crashes;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
-using EssentialUIKit.AppLayout.Views;
 
 namespace EssentialUIKit
 {
@@ -31,7 +31,7 @@ namespace EssentialUIKit
             //    typeof(Crashes));
 #endif
 
-            this.InitializeComponent();
+            InitializeComponent();
 
             // this.MainPage = new AppShell();
             this.MainPage = new NavigationPage(new HomePage());

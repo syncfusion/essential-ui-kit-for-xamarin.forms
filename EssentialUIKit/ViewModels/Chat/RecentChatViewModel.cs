@@ -1,9 +1,9 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using EssentialUIKit.Models.Chat;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
-using EssentialUIKit.Models.Chat;
 
 namespace EssentialUIKit.ViewModels.Chat
 {
@@ -263,11 +263,11 @@ namespace EssentialUIKit.ViewModels.Chat
         public Command MenuCommand { get; set; }
 
         /// <summary>
-        /// Gets or sets the command that is executed when an item is selected.
+        /// Gets the command that is executed when an item is selected.
         /// </summary>
         public Command ItemSelectedCommand
         {
-            get { return itemSelectedCommand ?? (itemSelectedCommand = new Command(this.ItemSelected)); }
+            get { return this.itemSelectedCommand ?? (this.itemSelectedCommand = new Command(this.ItemSelected)); }
         }
 
         /// <summary>
@@ -278,15 +278,7 @@ namespace EssentialUIKit.ViewModels.Chat
         #endregion
 
         #region Methods
-
-        /// <summary>
-        /// Invoked when an item is selected.
-        /// </summary>
-        private void ItemSelected(object selectedItem)
-        {
-            // Do something
-        }
-
+         
         /// <summary>
         /// The PropertyChanged event occurs when changing the value of property.
         /// </summary>
@@ -294,6 +286,14 @@ namespace EssentialUIKit.ViewModels.Chat
         public void NotifyPropertyChanged([CallerMemberName]string propertyName = null)
         {
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        /// <summary>
+        /// Invoked when an item is selected.
+        /// </summary>
+        private void ItemSelected(object selectedItem)
+        {
+            // Do something
         }
 
         /// <summary>

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.Serialization;
 using Xamarin.Forms.Internals;
@@ -21,6 +22,8 @@ namespace EssentialUIKit.Models.ECommerce
         private List<string> previewImages;
 
         private int totalQuantity;
+
+        ObservableCollection<Review> reviews = new ObservableCollection<Review>();
 
         #endregion
 
@@ -47,9 +50,8 @@ namespace EssentialUIKit.Models.ECommerce
         [DataMember(Name = "previewimage")]
         public string PreviewImage
         {
-            get { return App.BaseImageUrl + previewImage; }
-
-            set { previewImage = value; }
+            get { return App.BaseImageUrl + this.previewImage; }
+            set { this.previewImage = value; }
         }
 
         /// <summary>
@@ -60,15 +62,18 @@ namespace EssentialUIKit.Models.ECommerce
         {
             get
             {
-                for (var i = 0; i < previewImages.Count; i++)
+                for (var i = 0; i < this.previewImages.Count; i++)
                 {
-                    previewImages[i] = previewImages[i].Contains(App.BaseImageUrl) ? previewImages[i] : App.BaseImageUrl + previewImages[i];
+                    this.previewImages[i] = this.previewImages[i].Contains(App.BaseImageUrl) ? this.previewImages[i] : App.BaseImageUrl + this.previewImages[i];
                 }
 
-                return previewImages;
+                return this.previewImages;
             }
 
-            set { previewImages = value; }
+            set
+            {
+                this.previewImages = value;
+            }
         }
 
         /// <summary>
@@ -100,7 +105,10 @@ namespace EssentialUIKit.Models.ECommerce
         /// </summary>
         public double DiscountPrice
         {
-            get { return this.ActualPrice - (this.ActualPrice * (this.DiscountPercent / 100)); }
+            get
+            {
+                return this.ActualPrice - (this.ActualPrice * (this.DiscountPercent / 100));
+            }
         }
 
         /// <summary>
@@ -114,12 +122,24 @@ namespace EssentialUIKit.Models.ECommerce
         /// </summary>
         [DataMember(Name = "overallrating")]
         public double OverallRating { get; set; }
-
+        
         /// <summary>
         /// Gets or sets the property that has been bound with view, which displays the customer review.
         /// </summary>
         [DataMember(Name = "reviews")]
-        public List<Review> Reviews { get; set; }
+        public ObservableCollection<Review> Reviews
+        {
+            get
+            {
+                return this.reviews;
+            }
+
+            set
+            {
+                reviews = value;
+                this.NotifyPropertyChanged("Reviews");
+            }
+        }
 
         /// <summary>
         /// Gets or sets the property that has been bound with label, which displays the seller.
@@ -144,8 +164,16 @@ namespace EssentialUIKit.Models.ECommerce
         [DataMember(Name = "isfavourite")]
         public bool IsFavourite
         {
-            get { return this.isFavourite; }
-            set { this.isFavourite = value; this.NotifyPropertyChanged("IsFavourite"); }
+            get
+            {
+                return this.isFavourite;
+            }
+
+            set
+            {
+                this.isFavourite = value;
+                this.NotifyPropertyChanged("IsFavourite");
+            }
         }
 
         /// <summary>
@@ -154,8 +182,16 @@ namespace EssentialUIKit.Models.ECommerce
         [DataMember(Name = "totalquantity")]
         public int TotalQuantity
         {
-            get { return totalQuantity; }
-            set { totalQuantity = value; NotifyPropertyChanged("TotalQuantity"); }
+            get
+            {
+                return this.totalQuantity;
+            }
+
+            set
+            {
+                this.totalQuantity = value;
+                this.NotifyPropertyChanged("TotalQuantity");
+            }
         }
 
         #endregion

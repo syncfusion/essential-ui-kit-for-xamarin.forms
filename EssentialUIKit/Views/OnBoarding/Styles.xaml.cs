@@ -15,7 +15,7 @@ namespace EssentialUIKit.Views.OnBoarding
         /// </summary>
         public Styles()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
     }
 }

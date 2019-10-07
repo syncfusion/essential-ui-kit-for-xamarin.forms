@@ -22,19 +22,19 @@ namespace EssentialUIKit.Converters
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             var text = value;
-            switch ((string) text)
+            switch ((string)text)
             {
                 case "Text":
-                    ((Label) parameter).IsVisible = false;
+                    ((Label)parameter).IsVisible = false;
                     return text;
                 case "Viewed":
                 case "New":
                     Application.Current.Resources.TryGetValue("PrimaryColor", out var retVal);
-                    ((Label) parameter).TextColor = (Color) retVal;
+                    ((Label)parameter).TextColor = (Color)retVal;
                     break;
                 case "Received":
                 case "Sent":
-                    Application.Current.Resources.TryGetValue("Gray-AB", out var colorVal);
+                    Application.Current.Resources.TryGetValue("Gray-600", out var colorVal);
                     ((Label)parameter).TextColor = (Color)colorVal;
                     break;
                 case "Audio":
@@ -45,7 +45,7 @@ namespace EssentialUIKit.Converters
                     break;
             }
 
-            ((Label) parameter).Resources.TryGetValue((string) value, out text);
+            ((Label)parameter).Resources.TryGetValue((string)value, out text);
             return text;
         }
 

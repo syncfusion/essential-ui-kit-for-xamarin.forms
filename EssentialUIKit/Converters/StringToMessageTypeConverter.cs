@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Globalization;
+using EssentialUIKit.Models.Chat;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
-using EssentialUIKit.Models.Chat;
 
 namespace EssentialUIKit.Converters
 {
@@ -25,23 +25,23 @@ namespace EssentialUIKit.Converters
             object messageType;
             var bindingContext = (parameter as Label)?.BindingContext;
 
-            switch ((string) value)
+            switch ((string)value)
             {
                 case "Contact":
                     messageType = "John Deo Sync";
                     break;
                 case "Text":                   
-                    var message = bindingContext != null ? ((ChatDetail) bindingContext).Message : string.Empty;                    
+                    var message = bindingContext != null ? ((ChatDetail)bindingContext).Message : string.Empty;                    
                     messageType = message;
                     break;
                 default:
-                    messageType = (string) value;
+                    messageType = (string)value;
                     break;
             }
 
             if (!string.IsNullOrEmpty((string)messageType) && ((ChatDetail)bindingContext).NotificationType == "New")
             {
-                Application.Current.Resources.TryGetValue("Gray-56", out var returnColor);
+                Application.Current.Resources.TryGetValue("Gray-900", out var returnColor);
 
                 ((Label)parameter).FontFamily = Device.RuntimePlatform == Device.Android
                     ? "Montserrat-SemiBold.ttf#Montserrat-SemiBold"
@@ -53,7 +53,7 @@ namespace EssentialUIKit.Converters
             }
             else 
             {
-                Application.Current.Resources.TryGetValue("Gray-AB", out var returnColor);
+                Application.Current.Resources.TryGetValue("Gray-600", out var returnColor);
 
                 ((Label)parameter).FontFamily = Device.RuntimePlatform == Device.Android
                     ? "Montserrat-Medium.ttf#Montserrat-Medium"

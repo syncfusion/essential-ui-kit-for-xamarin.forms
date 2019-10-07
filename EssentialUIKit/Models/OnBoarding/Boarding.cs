@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms.Internals;
+﻿using Xamarin.Forms;
+using Xamarin.Forms.Internals;
 
 namespace EssentialUIKit.Models.OnBoarding
 {
@@ -7,7 +8,7 @@ namespace EssentialUIKit.Models.OnBoarding
     /// </summary>
     [Preserve(AllMembers = true)]
     public class Boarding
-    {
+    {       
         #region Properties
 
         /// <summary>
@@ -24,6 +25,11 @@ namespace EssentialUIKit.Models.OnBoarding
         /// Gets or sets the content.
         /// </summary>
         public string Content { get; set; }
+
+        /// <summary>
+        /// Gets or sets the view.
+        /// </summary>
+        public View RotatorItem { get; set; }
 
         #endregion
     }

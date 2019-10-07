@@ -1,7 +1,7 @@
-﻿using Xamarin.Forms;
+﻿using EssentialUIKit.Models.Chat;
+using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
-using EssentialUIKit.Models.Chat;
 
 namespace EssentialUIKit.Views.Chat
 {

@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="EssentialUIKit.Views.Detail.Templates.TabletView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:rating="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms"
+    BackgroundColor="#4C000000">
+
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentView.Resources>
+
+    <ContentView.Content>
+
+        <Frame
+            Margin="0"
+            Padding="0"
+            CornerRadius="4"
+            HasShadow="True"
+            HeightRequest="386"
+            HorizontalOptions="CenterAndExpand"
+            VerticalOptions="CenterAndExpand"
+            WidthRequest="632">
+
+            <Grid
+                BackgroundColor="{DynamicResource Gray-White}"
+                ColumnSpacing="16"
+                HeightRequest="386"
+                HorizontalOptions="CenterAndExpand"
+                RowSpacing="0"
+                VerticalOptions="CenterAndExpand"
+                WidthRequest="632">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <!--  Product Image  -->
+                <Image
+                    x:Name="ProductImage"
+                    Grid.RowSpan="2"
+                    Aspect="AspectFill"
+                    BackgroundColor="{DynamicResource Gray-200}"
+                    HeightRequest="385"
+                    WidthRequest="315" />
+
+                <StackLayout
+                    Grid.Column="1"
+                    Padding="0,16"
+                    Spacing="0"
+                    VerticalOptions="Start">
+
+                    <StackLayout Orientation="Horizontal" VerticalOptions="Start">
+
+                        <!--  Customer Name  -->
+                        <Label
+                            Margin="0,0,16,4"
+                            FontFamily="{StaticResource Montserrat-SemiBold}"
+                            FontSize="16"
+                            Style="{StaticResource CommonLabelStyle}"
+                            Text="Jane Deo"
+                            TextColor="{DynamicResource Gray-900}">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ProfileCommand}" CommandParameter="{Binding .}" />
+                            </Label.GestureRecognizers>
+                        </Label>
+
+                        <!--  Close button  -->
+                        <buttons:SfButton
+                            Margin="0,0,8,0"
+                            Padding="0"
+                            BackgroundColor="Transparent"
+                            Command="{Binding CloseCommand}"
+                            FontFamily="{StaticResource FontIcons}"
+                            FontSize="18"
+                            HeightRequest="32"
+                            HorizontalOptions="EndAndExpand"
+                            Text="{StaticResource Close}"
+                            TextColor="{DynamicResource Gray-600}"
+                            WidthRequest="32" />
+
+                    </StackLayout>
+
+                    <!--  Product Review  -->
+                    <Label
+                        FontFamily="{StaticResource Montserrat-Medium}"
+                        FontSize="14"
+                        Style="{StaticResource CommonLabelStyle}"
+                        Text="These boots are stunning and I look stunning in them." />
+
+                    <!--  Product Rating and Total Reviews  -->
+                    <StackLayout
+                        Padding="0,8,0,16"
+                        IsVisible="{OnIdiom Phone=False,
+                                            Default=True}"
+                        Orientation="Horizontal">
+
+                        <rating:SfRating
+                            RatingSettings="{StaticResource CommonRatingSettings}"
+                            Style="{StaticResource CommonSfRatingStyle}"
+                            Value="5" />
+                        <Label
+                            Margin="2,0,0,0"
+                            FontFamily="{StaticResource Montserrat-Medium}"
+                            FontSize="12"
+                            Style="{StaticResource CommonLabelStyle}"
+                            Text="534 Ratings" />
+                    </StackLayout>
+
+                    <!--  Product images  -->
+                    <StackLayout
+                        BindableLayout.ItemsSource="{Binding Images}"
+                        HeightRequest="60"
+                        Orientation="Horizontal"
+                        Spacing="10"
+                        VerticalOptions="Start">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <Image
+                                    Aspect="Fill"
+                                    BackgroundColor="{DynamicResource Gray-200}"
+                                    HeightRequest="50"
+                                    WidthRequest="60">
+                                    <Image.Source>
+                                        <UriImageSource
+                                            CacheValidity="14"
+                                            CachingEnabled="true"
+                                            Uri="{Binding .}" />
+                                    </Image.Source>
+                                </Image>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </StackLayout>
+
+                </StackLayout>
+
+            </Grid>
+        </Frame>
+
+    </ContentView.Content>
+</ContentView>

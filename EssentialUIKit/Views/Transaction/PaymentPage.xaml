@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="EssentialUIKit.Views.Transaction.PaymentPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:EssentialUIKit.Controls"
+    xmlns:local="clr-namespace:EssentialUIKit.Views.Transaction"
+    xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Transaction"
+    Title="Payment"
+    BackgroundColor="{DynamicResource Gray-100}"
+    NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <!--  Binding context for Payment Page  -->
+    <ContentPage.BindingContext>
+        <viewModel:CheckoutPageViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.ControlTemplate>
+        <ControlTemplate>
+            <StackLayout Spacing="0">
+
+                <!--  Title View  -->
+                <controls:TitleView Title="Payment" BackgroundColor="{DynamicResource Gray-White}" />
+
+                <ContentPresenter />
+
+            </StackLayout>
+        </ControlTemplate>
+    </ContentPage.ControlTemplate>
+
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid
+                Padding="{OnIdiom Desktop='15,15,15,0',
+                                  Tablet='0,24'}"
+                ColumnSpacing="{OnIdiom Tablet=0,
+                                        Desktop=15}"
+                RowSpacing="{OnIdiom Tablet=24,
+                                     Desktop=0}">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="{OnIdiom Tablet=Auto, Desktop=0}" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="{OnIdiom Tablet=*, Desktop=0.7*}" />
+                    <ColumnDefinition Width="{OnIdiom Tablet=0, Desktop=0.3*}" />
+                </Grid.ColumnDefinitions>
+
+                <!--  ListView for Payment  -->
+                <local:PaymentView />
+
+                <!--  Price Details  -->
+                <local:PriceDetailView
+                    Grid.Row="{OnIdiom Tablet=1,
+                                       Desktop=0}"
+                    Grid.Column="{OnIdiom Tablet=0,
+                                          Desktop=1}"
+                    ActionText="PAY NOW" />
+
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+
+</ContentPage>

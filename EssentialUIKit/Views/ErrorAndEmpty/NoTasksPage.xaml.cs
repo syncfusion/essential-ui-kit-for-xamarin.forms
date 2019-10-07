@@ -16,7 +16,7 @@ namespace EssentialUIKit.Views.ErrorAndEmpty
         /// </summary>
         public NoTasksPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         /// <summary>

@@ -11,7 +11,6 @@ namespace EssentialUIKit.Models.ECommerce
     [DataContract]
     public class Category
     {
-
         private string icon;
 
         /// <summary>
@@ -20,8 +19,8 @@ namespace EssentialUIKit.Models.ECommerce
         [DataMember(Name = "icon")]
         public string Icon
         {
-            get { return App.BaseImageUrl + icon; }
-            set { icon = value; }
+            get { return App.BaseImageUrl + this.icon; }
+            set { this.icon = value; }
         }
 
         /// <summary>

@@ -10,7 +10,7 @@ namespace EssentialUIKit.Views.ContactUs
     {
         public Styles()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
     }
 }

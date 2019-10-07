@@ -3,13 +3,10 @@
     x:Class="EssentialUIKit.Views.AboutUs.AboutUsSimplePage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
     xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.About"
-    xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
     Title="About"
-    NavigationPage.HasNavigationBar="False"
-    Shell.NavBarIsVisible="False"
-    BackgroundColor="{DynamicResource Gray-White}">
+    BackgroundColor="{DynamicResource Gray-White}"
+    NavigationPage.HasNavigationBar="False">
     <ContentPage.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -19,28 +16,31 @@
     </ContentPage.Resources>
 
     <ContentPage.Content>
-        <Grid RowSpacing="0" ColumnSpacing="0">
+        <Grid ColumnSpacing="0" RowSpacing="0">
             <ScrollView HorizontalOptions="Center" VerticalOptions="Center">
                 <StackLayout
                     HorizontalOptions="Center"
-                    VerticalOptions="Center"
-                    Spacing="0">
+                    Spacing="0"
+                    VerticalOptions="Center">
 
                     <StackLayout.BindingContext>
                         <viewModel:AboutUsViewModel />
                     </StackLayout.BindingContext>
 
                     <!--  Product image  -->
-                    <ffimageloading:CachedImage
-                        HeightRequest="110" 
-                        LoadingPlaceholder="PlaceHolder.png"
-                        Source="{Binding ProductIcon}"
-                        WidthRequest="124" />
+                    <Image HeightRequest="110" WidthRequest="124">
+                        <Image.Source>
+                            <UriImageSource
+                                CacheValidity="14"
+                                CachingEnabled="true"
+                                Uri="{Binding ProductIcon}" />
+                        </Image.Source>
+                    </Image>
 
                     <!--  Product version  -->
                     <Label
-                        HorizontalOptions="CenterAndExpand" 
                         Margin="0,8.7,0,0"
+                        HorizontalOptions="CenterAndExpand"
                         Style="{StaticResource VersionLabelStyle}"
                         Text="{Binding ProductVersion, StringFormat='Version {0}'}" />
 
@@ -48,20 +48,23 @@
                     <Label
                         FontFamily="{StaticResource Montserrat-SemiBold}"
                         HorizontalOptions="CenterAndExpand"
-                        Margin="{core:OnPlatformOrientationThickness 
-                                    Default='0,32,0,8',
-                                    PhonePortrait='0,16,0,16',
-                                    PhoneLandscape='0,16,0,16'}"
                         Style="{StaticResource HeaderLabelStyle}"
-                        Text="Acme Products" />
+                        Text="Acme Products">
+                        <Label.Margin>
+                            <OnIdiom
+                                x:TypeArguments="Thickness"
+                                Default="0, 32, 0, 8"
+                                Phone="0, 16, 0, 16" />
+                        </Label.Margin>
+                    </Label>
 
                     <!--  Product description  -->
                     <Label
+                        Margin="15,0,15,0"
                         HorizontalOptions="Center"
                         HorizontalTextAlignment="Center"
                         Style="{StaticResource DescriptionLabelStyle}"
-                        Text="{Binding ProductDescription}"
-                        Margin="15,0,15,0"/>
+                        Text="{Binding ProductDescription}" />
                 </StackLayout>
             </ScrollView>
         </Grid>

@@ -17,7 +17,7 @@ namespace EssentialUIKit.Views.Chat
         /// </summary>
         public RecentChatPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         /// <summary>
@@ -45,7 +45,6 @@ namespace EssentialUIKit.Views.Chat
         /// <param name="e">Event Args</param>
         private void BackButton_Clicked(object sender, EventArgs e)
         {
-
             if (this.TitleBar != null)
             {
                 double opacity;
@@ -56,9 +55,9 @@ namespace EssentialUIKit.Views.Chat
                     SearchBox.WidthRequest = property;
                     opacity = property / TitleBar.Width;
                     SearchBox.Opacity = opacity;
-                }, TitleBar.Width, 0, Easing.Linear);
-                shrinkAnimation.Commit(SearchBox, "Shrink", 16, 250, Easing.Linear,
-                    (p, q) => this.SearchBoxAnimationCompleted());
+                },
+                TitleBar.Width, 0, Easing.Linear);
+                shrinkAnimation.Commit(SearchBox, "Shrink", 16, 250, Easing.Linear, (p, q) => this.SearchBoxAnimationCompleted());
             }
 
             SearchEntry.Text = string.Empty;
@@ -80,7 +79,6 @@ namespace EssentialUIKit.Views.Chat
         /// <param name="e">Event Args</param>
         private void SearchButton_Clicked(object sender, EventArgs e)
         {
-
             this.SearchBox.IsVisible = true;
             this.ProfileView.IsVisible = false;
 
@@ -89,12 +87,13 @@ namespace EssentialUIKit.Views.Chat
                 double opacity;
 
                 // Animating Width of the search box, from 0 to full width when it added to the view.
-                var expandAnimation = new Animation(property =>
-                {
-                    SearchBox.WidthRequest = property;
-                    opacity = property / TitleBar.Width;
-                    SearchBox.Opacity = opacity;
-                }, 0, TitleBar.Width, Easing.Linear);
+                var expandAnimation = new Animation(
+                    property =>
+                    {
+                        SearchBox.WidthRequest = property;
+                        opacity = property / TitleBar.Width;
+                        SearchBox.Opacity = opacity;
+                    }, 0, TitleBar.Width, Easing.Linear);
                 expandAnimation.Commit(SearchBox, "Expand", 16, 250, Easing.Linear);
             }
 

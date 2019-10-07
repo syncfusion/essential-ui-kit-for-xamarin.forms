@@ -1,0 +1,244 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="EssentialUIKit.Views.Forms.AddCardPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:behavior="clr-namespace:EssentialUIKit.Behaviors"
+    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+    xmlns:button="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:calender="clr-namespace:Syncfusion.SfCalendar.XForms;assembly=Syncfusion.SfCalendar.XForms"
+    xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms"
+    xmlns:control="clr-namespace:EssentialUIKit.Controls"
+    xmlns:converter="clr-namespace:EssentialUIKit.Converters"
+    xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Forms"
+    Title="Add Card"
+    BackgroundColor="{DynamicResource Gray-100}"
+    NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:BooleanToColorConverter x:Key="ColorConverter" />
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <!--  Binding Context for add card Page  -->
+    <ContentPage.BindingContext>
+        <viewModel:AddCardViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <ScrollView>
+
+            <ScrollView.HorizontalOptions>
+                <OnIdiom
+                    x:TypeArguments="LayoutOptions"
+                    Default="Center"
+                    Phone="FillAndExpand" />
+            </ScrollView.HorizontalOptions>
+            <ScrollView.VerticalOptions>
+                <OnIdiom
+                    x:TypeArguments="LayoutOptions"
+                    Default="CenterAndExpand"
+                    Phone="FillAndExpand" />
+            </ScrollView.VerticalOptions>
+
+            <Grid>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <control:CustomShadowFrame
+                    Margin="16,24,16,32"
+                    Padding="16"
+                    BackgroundColor="{DynamicResource Gray-White}"
+                    BorderColor="{DynamicResource Gray-White}"
+                    CornerRadius="4"
+                    HasShadow="True"
+                    HorizontalOptions="Center"
+                    WidthRequest="{OnIdiom Default='550',
+                                           Phone='-1'}">
+
+                    <StackLayout BackgroundColor="{DynamicResource Gray-White}" Spacing="0">
+
+                        <Label
+                            FontFamily="{StaticResource Montserrat-Medium}"
+                            FontSize="12"
+                            Text="Card Number"
+                            TextColor="{DynamicResource Gray-800}" />
+
+                        <!--  Card number entry and card image  -->
+                        <border:SfBorder
+                            Margin="0,4"
+                            BackgroundColor="{DynamicResource Gray-White}"
+                            BorderColor="{Binding Source={x:Reference cardNumberEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}"
+                            CornerRadius="4">
+
+                            <Grid>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+
+                                <control:BorderlessEntry
+                                    x:Name="cardNumberEntry"
+                                    Grid.Column="0"
+                                    Margin="12,0"
+                                    FontSize="16"
+                                    HeightRequest="40"
+                                    Keyboard="Numeric"
+                                    MaxLength="19"
+                                    Placeholder="Enter Card Number"
+                                    PlaceholderColor="{DynamicResource Gray-700}"
+                                    Text="{Binding CardNumber}"
+                                    TextColor="{DynamicResource Gray-900}">
+                                    <control:BorderlessEntry.Behaviors>
+                                        <behavior:PaymentCardNumberEntryBehavior />
+                                    </control:BorderlessEntry.Behaviors>
+                                </control:BorderlessEntry>
+
+                                <Image
+                                    Grid.Column="1"
+                                    Margin="12,0"
+                                    HeightRequest="40"
+                                    HorizontalOptions="StartAndExpand"
+                                    Source="Card.png"
+                                    VerticalOptions="CenterAndExpand"
+                                    WidthRequest="40" />
+
+                            </Grid>
+
+                        </border:SfBorder>
+
+                        <Grid
+                            Margin="0,12,0,16"
+                            Padding="0"
+                            ColumnSpacing="16"
+                            RowSpacing="4">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                FontFamily="{StaticResource Montserrat-Medium}"
+                                FontSize="12"
+                                Text="Expire Date"
+                                TextColor="{DynamicResource Gray-800}" />
+
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                FontFamily="{StaticResource Montserrat-Medium}"
+                                FontSize="12"
+                                Text="CVV"
+                                TextColor="{DynamicResource Gray-800}" />
+
+                            <!--  Combobox with calendar to pick the expire date of the card  -->
+                            <border:SfBorder
+                                Grid.Row="1"
+                                Margin="0"
+                                Style="{StaticResource FormBorderStyle}">
+
+                                <control:CalenderDatePicker
+                                    x:Name="CustomDatePicker"
+                                    FontSize="16"
+                                    Format="MM/yy"
+                                    PlaceHolderText="MM/YY"
+                                    TextColor="{DynamicResource Gray-900}" />
+
+                            </border:SfBorder>
+
+                            <!--  Entry for cvv number  -->
+                            <border:SfBorder
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                BackgroundColor="{DynamicResource Gray-White}"
+                                BorderColor="{Binding Source={x:Reference cvvEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}"
+                                CornerRadius="4">
+
+                                <control:BorderlessEntry
+                                    x:Name="cvvEntry"
+                                    Margin="12,0"
+                                    FontSize="16"
+                                    HeightRequest="40"
+                                    IsPassword="True"
+                                    Keyboard="Numeric"
+                                    MaxLength="3"
+                                    Placeholder="Enter CVV"
+                                    PlaceholderColor="{DynamicResource Gray-700}"
+                                    Text="{Binding CVV}"
+                                    TextColor="{DynamicResource Gray-900}">
+                                    <control:BorderlessEntry.Behaviors>
+                                        <behavior:BorderlessEntryCVVBehavior />
+                                    </control:BorderlessEntry.Behaviors>
+                                </control:BorderlessEntry>
+                            </border:SfBorder>
+
+                        </Grid>
+
+                        <Label
+                            FontFamily="{StaticResource Montserrat-Medium}"
+                            FontSize="12"
+                            Text="Name on Card"
+                            TextColor="{DynamicResource Gray-800}" />
+
+                        <!--  Entry for card holder name  -->
+                        <border:SfBorder
+                            Margin="0,4"
+                            BackgroundColor="{DynamicResource Gray-White}"
+                            BorderColor="{Binding Source={x:Reference nameEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}"
+                            CornerRadius="4">
+
+                            <control:BorderlessEntry
+                                x:Name="nameEntry"
+                                Margin="12,0"
+                                FontSize="16"
+                                HeightRequest="40"
+                                Placeholder="Enter Name"
+                                PlaceholderColor="{DynamicResource Gray-700}"
+                                Text="{Binding Name}"
+                                TextColor="{DynamicResource Gray-900}" />
+                        </border:SfBorder>
+
+                        <!--  Checkbox to save the card  -->
+                        <button:SfCheckBox
+                            Margin="4,16,0,4"
+                            CornerRadius="2"
+                            FontFamily="{StaticResource Montserrat-Medium}"
+                            FontSize="16"
+                            IsChecked="{Binding IsChecked}"
+                            Text="Save this card"
+                            TextColor="{DynamicResource Gray-900}"
+                            VerticalOptions="Center" />
+
+                    </StackLayout>
+
+                </control:CustomShadowFrame>
+
+                <button:SfButton
+                    Grid.Row="1"
+                    Command="{Binding AddCardCommand}"
+                    CommandParameter="{Binding .}"
+                    HorizontalOptions="Center"
+                    Style="{StaticResource SfButtonStyle}"
+                    Text="ADD CARD"
+                    WidthRequest="245" />
+
+            </Grid>
+        </ScrollView>
+
+    </ContentPage.Content>
+</ContentPage>

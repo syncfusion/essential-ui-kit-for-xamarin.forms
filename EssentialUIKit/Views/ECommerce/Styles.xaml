@@ -3,7 +3,7 @@
     x:Class="EssentialUIKit.Views.ECommerce.Styles"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:behavior="clr-namespace:EssentialUIKit.Behaviors.ECommerce"
+    xmlns:behavior="clr-namespace:EssentialUIKit.Behaviors"
     xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
     xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
     xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms"
@@ -29,7 +29,7 @@
 
     <!--  Common style for Content pages  -->
     <Style x:Key="ContentPageStyle" TargetType="ContentPage">
-        <Setter Property="BackgroundColor" Value="{OnIdiom Default={DynamicResource Gray-White}, Desktop={DynamicResource Gray-F4}, Converter={StaticResource DynamicResourceToColorConverter}}" />
+        <Setter Property="BackgroundColor" Value="{OnIdiom Default={DynamicResource Gray-White}, Desktop={DynamicResource Gray-100}, Converter={StaticResource DynamicResourceToColorConverter}}" />
     </Style>
 
     <Style TargetType="control:TitleView">
@@ -38,7 +38,7 @@
 
     <!--  Common style for Title label  -->
     <Style x:Key="TitleLabelStyle" TargetType="Label">
-        <Setter Property="TextColor" Value="{DynamicResource Gray-56}" />
+        <Setter Property="TextColor" Value="{DynamicResource Gray-900}" />
         <Setter Property="FontFamily" Value="Helvetica" />
         <Setter Property="FontSize" Value="16" />
         <Setter Property="HorizontalTextAlignment" Value="Center" />
@@ -49,7 +49,7 @@
 
     <!--  Common style for icon buttons  -->
     <Style x:Key="IconButtonStyle" TargetType="buttons:SfButton">
-        <Setter Property="TextColor" Value="{DynamicResource Gray-AB}" />
+        <Setter Property="TextColor" Value="{DynamicResource Gray-600}" />
         <Setter Property="BackgroundColor" Value="{StaticResource Transparent}" />
         <Setter Property="FontFamily" Value="{StaticResource FontIcons}" />
         <Setter Property="FontSize" Value="18" />
@@ -63,7 +63,7 @@
 
     <!--  Common style for labels  -->
     <Style x:Key="LabelStyle" TargetType="Label">
-        <Setter Property="TextColor" Value="{DynamicResource Gray-94}" />
+        <Setter Property="TextColor" Value="{DynamicResource Gray-700}" />
         <Setter Property="FontFamily" Value="Montserrat-Regular" />
         <Setter Property="FontSize" Value="14" />
         <Setter Property="LineHeight" Value="{OnPlatform Android=1.5, Default=-1}" />
@@ -86,7 +86,7 @@
     <!--  Common style for SfButtons  -->
     <Style x:Key="SfButtonStyle" TargetType="buttons:SfButton">
         <Setter Property="BackgroundColor" Value="Transparent" />
-        <Setter Property="TextColor" Value="{DynamicResource Gray-94}" />
+        <Setter Property="TextColor" Value="{DynamicResource Gray-700}" />
         <Setter Property="FontFamily" Value="Montserrat-Regular" />
         <Setter Property="FontSize" Value="16" />
     </Style>
@@ -105,7 +105,7 @@
         x:Key="RoundButtonStyle"
         BasedOn="{StaticResource SfButtonStyle}"
         TargetType="buttons:SfButton">
-        <Setter Property="BorderColor" Value="{DynamicResource Gray-E4}" />
+        <Setter Property="BorderColor" Value="{DynamicResource Gray-300}" />
         <Setter Property="BorderWidth" Value="1" />
         <Setter Property="CornerRadius" Value="22" />
         <Setter Property="WidthRequest" Value="44" />
@@ -126,7 +126,7 @@
 
     <!--  Common style for Icon Labels  -->
     <Style x:Key="IconLabelStyle" TargetType="Label">
-        <Setter Property="TextColor" Value="{DynamicResource Gray-AB}" />
+        <Setter Property="TextColor" Value="{DynamicResource Gray-600}" />
         <Setter Property="BackgroundColor" Value="Transparent" />
         <Setter Property="FontFamily" Value="{StaticResource FontIcons}" />
         <Setter Property="FontSize" Value="18" />
@@ -149,7 +149,7 @@
         x:Key="IconBorderStyle"
         BasedOn="{StaticResource SfBorderStyle}"
         TargetType="border:SfBorder">
-        <Setter Property="BorderColor" Value="{DynamicResource Gray-E4}" />
+        <Setter Property="BorderColor" Value="{DynamicResource Gray-300}" />
         <Setter Property="WidthRequest" Value="40" />
         <Setter Property="HeightRequest" Value="40" />
         <Setter Property="CornerRadius" Value="20" />
@@ -183,12 +183,12 @@
     <Style x:Key="SfSegmentedControlStyle" TargetType="buttons:SfSegmentedControl">
         <Setter Property="FontSize" Value="16" />
         <Setter Property="FontFamily" Value="Montserrat-Medium" />
-        <Setter Property="FontColor" Value="{DynamicResource Gray-94}" />
+        <Setter Property="FontColor" Value="{DynamicResource Gray-700}" />
         <Setter Property="SelectionTextColor" Value="{DynamicResource Gray-White}" />
         <Setter Property="BackgroundColor" Value="Transparent" />
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="SegmentBackgroundColor" Value="{DynamicResource Gray-White}" />
-        <Setter Property="SegmentBorderColor" Value="{DynamicResource Gray-E4}" />
+        <Setter Property="SegmentBorderColor" Value="{DynamicResource Gray-300}" />
         <Setter Property="SegmentBorderThickness" Value="1" />
         <Setter Property="SegmentCornerRadius" Value="20" />
         <Setter Property="SegmentHeight" Value="40" />
@@ -218,7 +218,7 @@
 
     <!--  Common style for BoxView  -->
     <Style x:Key="BoxViewStyle" TargetType="BoxView">
-        <Setter Property="Color" Value="{DynamicResource Gray-F0}" />
+        <Setter Property="Color" Value="{DynamicResource Gray-200}" />
         <Setter Property="VerticalOptions" Value="Center" />
     </Style>
 
@@ -239,7 +239,7 @@
 
     <!--  Common style for SfComboBox  -->
     <Style x:Key="SfComboBoxStyle" TargetType="combobox:SfComboBox">
-        <Setter Property="DropDownTextColor" Value="{DynamicResource Gray-56}" />
+        <Setter Property="DropDownTextColor" Value="{DynamicResource Gray-900}" />
         <Setter Property="TextSize" Value="16" />
         <Setter Property="DropDownTextSize" Value="16" />
         <Setter Property="VerticalOptions" Value="Center" />
@@ -253,7 +253,7 @@
         BasedOn="{StaticResource SfComboBoxStyle}"
         TargetType="combobox:SfComboBox">
         <Setter Property="HorizontalOptions" Value="Start" />
-        <Setter Property="BorderColor" Value="{DynamicResource Gray-E4}" />
+        <Setter Property="BorderColor" Value="{DynamicResource Gray-300}" />
         <Setter Property="HeightRequest" Value="40" />
         <Setter Property="WidthRequest" Value="246" />
     </Style>
@@ -277,9 +277,9 @@
         <Setter Property="HorizontalTextAlignment" Value="Start" />
         <Setter Property="HorizontalOptions" Value="Start" />
         <Setter Property="CheckedColor" Value="{DynamicResource PrimaryColor}" />
-        <Setter Property="TextColor" Value="{DynamicResource Gray-56}" />
+        <Setter Property="TextColor" Value="{DynamicResource Gray-900}" />
         <Setter Property="FontSize" Value="16" />
-        <Setter Property="UncheckedColor" Value="{DynamicResource Gray-E4}" />
+        <Setter Property="UncheckedColor" Value="{DynamicResource Gray-300}" />
         <Setter Property="Margin" Value="16,0" />
     </Style>
 
@@ -374,7 +374,7 @@
             </combobox:SfComboBox.CustomView>
 
             <combobox:SfComboBox.Behaviors>
-                <behavior:DropDownBehavior Command="{Binding SortCommand}" />
+                <behavior:SfComboBoxDropDownBehavior Command="{Binding SortCommand}" />
             </combobox:SfComboBox.Behaviors>
 
         </combobox:SfComboBox>
@@ -395,12 +395,12 @@
                         FontSize="16"
                         Style="{StaticResource LabelStyle}"
                         Text="{Binding Source={x:Reference comboBox}, Path=SelectedValue, StringFormat='Sort by: {0}'}"
-                        TextColor="{DynamicResource Gray-56}" />
+                        TextColor="{DynamicResource Gray-900}" />
                 </Grid>
             </combobox:SfComboBox.CustomView>
 
             <combobox:SfComboBox.Behaviors>
-                <behavior:DropDownBehavior Command="{Binding SortCommand}" />
+                <behavior:SfComboBoxDropDownBehavior Command="{Binding SortCommand}" />
             </combobox:SfComboBox.Behaviors>
 
         </combobox:SfComboBox>

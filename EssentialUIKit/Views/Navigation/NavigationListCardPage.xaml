@@ -4,12 +4,10 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:controls="clr-namespace:EssentialUIKit.Controls"
-    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
     xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
     xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Navigation"
     BackgroundColor="{DynamicResource Gray-White}"
-    NavigationPage.HasNavigationBar="False"
-    Shell.NavBarIsVisible="False">
+    NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -18,11 +16,7 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </ContentPage.Resources>
-
-    <ContentPage.BindingContext>
-        <viewModel:NavigationListViewModel />
-    </ContentPage.BindingContext>
-
+    
     <ContentPage.Content>
 
         <Grid>
@@ -66,13 +60,17 @@
                                         </Grid.ColumnDefinitions>
 
                                         <!--  Image to display the Item  -->
-                                        <ffimageloading:CachedImage
-                                            Aspect="Fill"
-                                            BackgroundColor="{DynamicResource Gray-F0}"
+                                        <Image
+                                            Aspect="AspectFill"
+                                            BackgroundColor="{DynamicResource Gray-200}"
                                             HeightRequest="120"
-                                            LoadingDelay="50"
-                                            Source="{Binding ItemImage}"
-                                            WidthRequest="120" />
+                                            WidthRequest="120" >
+                                            <Image.Source>
+                                                <UriImageSource Uri="{Binding ItemImage}" 
+			                                 CacheValidity="14" 
+			                                 CachingEnabled="true"/>
+                                            </Image.Source>
+                                        </Image>
                                         <StackLayout
                                             Grid.Column="1"
                                             Padding="16"
@@ -87,7 +85,7 @@
                                                 LineHeight="{OnPlatform Android=1.5,
                                                                         Default=-1}"
                                                 Text="{Binding ItemName}"
-                                                TextColor="{DynamicResource Gray-56}" />
+                                                TextColor="{DynamicResource Gray-900}" />
 
                                             <!--  Description about the item  -->
                                             <Label
@@ -97,7 +95,7 @@
                                                 LineHeight="{OnPlatform Android=1.25,
                                                                         Default=-1}"
                                                 Text="{Binding ItemDescription}"
-                                                TextColor="{DynamicResource Gray-94}" />
+                                                TextColor="{DynamicResource Gray-700}" />
 
                                             <!--  Average rating from the overall rating  -->
                                             <StackLayout
@@ -116,7 +114,7 @@
                                                     LineHeight="{OnPlatform Android=1.5,
                                                                             Default=-1}"
                                                     Text="{Binding ItemRating}"
-                                                    TextColor="{DynamicResource Gray-94}"
+                                                    TextColor="{DynamicResource Gray-700}"
                                                     VerticalOptions="Center">
                                                     <Label.Margin>
                                                         <OnPlatform

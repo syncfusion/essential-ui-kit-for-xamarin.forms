@@ -15,7 +15,7 @@ namespace EssentialUIKit.Views.AboutUs
         /// </summary>
         public AboutUsSimplePage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
     }
 }

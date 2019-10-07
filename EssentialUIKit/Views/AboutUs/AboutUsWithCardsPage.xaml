@@ -6,13 +6,11 @@
     xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
     xmlns:control="clr-namespace:EssentialUIKit.Controls"
     xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
-    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
     xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
     xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.About"
     Title="About Us"
     BackgroundColor="{DynamicResource Gray-White}"
-    NavigationPage.HasNavigationBar="False"
-    Shell.NavBarIsVisible="False">
+    NavigationPage.HasNavigationBar="False">
     <ContentPage.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -50,15 +48,19 @@
                 </Grid.BindingContext>
 
                 <!--  First half background image for the screen  -->
-                <ffimageloading:CachedImage
+                <Image
                     Grid.Row="0"
                     Grid.ColumnSpan="3"
                     Aspect="Fill"
-                    BackgroundColor="{DynamicResource Gray-F0}"
+                    BackgroundColor="{DynamicResource Gray-200}"
                     HeightRequest="253"
-                    HorizontalOptions="Fill"
-                    LoadingPlaceholder="PlaceHolderRectangle.png"
-                    Source="{Binding CardsTopImage}" />
+                    HorizontalOptions="Fill">
+                      <Image.Source>
+                         <UriImageSource Uri="{Binding CardsTopImage}"
+                                 CacheValidity="14"
+                                 CachingEnabled="true"/>
+                      </Image.Source>
+                </Image>
 
                 <!--  Product name and description  -->
                 <control:CustomShadowFrame
@@ -154,8 +156,8 @@
                                         CornerRadius="32"
                                         HorizontalOptions="Center"
                                         VerticalOptions="Center">
-                                        <ffimageloading:CachedImage
-                                            BackgroundColor="{DynamicResource Gray-F0}"
+                                        <Image
+                                            BackgroundColor="{DynamicResource Gray-200}"
                                             Source="{Binding Image}"
                                             Style="{StaticResource AboutUsImageStyle}" />
                                     </border:SfBorder>
@@ -166,7 +168,7 @@
                                         HorizontalOptions="Center"
                                         Style="{StaticResource DescriptionLabelStyle}"
                                         Text="{Binding EmployeeName}"
-                                        TextColor="{DynamicResource Gray-56}" />
+                                        TextColor="{DynamicResource Gray-900}" />
 
                                     <!--  Designation  -->
                                     <Label

@@ -12,7 +12,7 @@ namespace EssentialUIKit.Views.Feedback
     {
         public FeedbackPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
     }
 }

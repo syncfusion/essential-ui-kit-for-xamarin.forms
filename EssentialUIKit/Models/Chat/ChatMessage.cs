@@ -83,7 +83,7 @@ namespace EssentialUIKit.Models.Chat
         }
 
         /// <summary>
-        /// Gets or sets a value that indicates whether the message is received or sent.
+        /// Gets or sets a value indicating whether the message is received or sent.
         /// </summary>
         public bool IsReceived { get; set; }
 

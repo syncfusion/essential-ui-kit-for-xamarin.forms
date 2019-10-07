@@ -5,7 +5,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
     xmlns:cards="clr-namespace:Syncfusion.XForms.Cards;assembly=Syncfusion.Cards.XForms"
-    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
     xmlns:helper="clr-namespace:EssentialUIKit.Helpers">
 
     <ViewCell.View>
@@ -34,11 +33,11 @@
 
                     <border:SfBorder BorderWidth="0" CornerRadius="5">
                         <!--  Image  -->
-                        <ffimageloading:CachedImage
+                        <Image
                             Aspect="Fill"
                             HeightRequest="150"
                             HorizontalOptions="Start"
-							BackgroundColor="{DynamicResource Gray-F0}"
+							BackgroundColor="{DynamicResource Gray-200}"
                             Source="{Binding ImagePath}"
                             VerticalOptions="Start"
                             WidthRequest="200" />

@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="EssentialUIKit.Views.History.TransactionHistoryPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+    xmlns:control="clr-namespace:EssentialUIKit.Controls"
+    xmlns:converter="clr-namespace:EssentialUIKit.Converters"
+    xmlns:helper="clr-namespace:EssentialUIKit.Helpers"
+    xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.History"
+    Title="Payment History"
+    BackgroundColor="{DynamicResource Gray-100}"
+    NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.BindingContext>
+        <viewModel:TransactionHistoryViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:BooleanToColorConverter x:Key="BooleanToColorConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+
+        <ScrollView>
+
+            <StackLayout
+                x:Name="transactionList"
+                Padding="16"
+                BindableLayout.ItemsSource="{Binding TransactionDetails}"
+                Spacing="16">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <control:CustomShadowFrame
+                            Margin="0"
+                            Padding="0"
+                            BackgroundColor="{DynamicResource Gray-White}"
+                            BorderColor="{DynamicResource Gray-White}"
+                            CornerRadius="4"
+                            HasShadow="True"
+                            HeightRequest="80">
+                            <control:CustomShadowFrame.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Path=BindingContext.ItemSelectedCommand, Source={x:Reference transactionList}}" CommandParameter="{Binding .}" />
+                            </control:CustomShadowFrame.GestureRecognizers>
+
+                            <Grid ColumnSpacing="0" RowSpacing="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <!--  Profile image  -->
+                                <border:SfBorder
+                                    Grid.RowSpan="2"
+                                    Margin="16"
+                                    BorderWidth="0"
+                                    CornerRadius="24"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center">
+                                    <Image
+                                        BackgroundColor="{DynamicResource Gray-200}"
+                                        HeightRequest="48"
+                                        WidthRequest="48" >
+                                        <Image.Source>
+                                            <UriImageSource Uri="{Binding Image}" 
+			                                 CacheValidity="14" 
+			                                 CachingEnabled="true"/>
+                                        </Image.Source>
+                                    </Image>
+                                </border:SfBorder>
+
+                                <!--  Customer name and transactiona amount label  -->
+                                <StackLayout
+                                    Grid.Row="0"
+                                    Grid.Column="1"
+                                    Padding="0"
+                                    helper:RTLHelper.Margin="0,16,16,4"
+                                    Orientation="Horizontal"
+                                    Spacing="0">
+                                    <Label
+                                        FontFamily="{StaticResource Montserrat-SemiBold}"
+                                        FontSize="14"
+                                        HorizontalOptions="StartAndExpand"
+                                        Text="{Binding CustomerName}"
+                                        TextColor="{DynamicResource Gray-900}" />
+
+                                    <Label
+                                        FontFamily="{StaticResource Montserrat-SemiBold}"
+                                        FontSize="14"
+                                        HorizontalOptions="End"
+                                        HorizontalTextAlignment="End"
+                                        Text="{Binding TransactionAmount}"
+                                        TextColor="{Binding IsCredited, Converter={x:StaticResource BooleanToColorConverter}, ConverterParameter=5}" />
+                                </StackLayout>
+
+                                <!--  Transaction description and date  -->
+                                <StackLayout
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    Padding="0"
+                                    helper:RTLHelper.Margin="0,0,16,0"
+                                    Orientation="Horizontal"
+                                    Spacing="0">
+                                    <Label
+                                        FontFamily="{StaticResource Montserrat-Medium}"
+                                        FontSize="12"
+                                        HorizontalOptions="StartAndExpand"
+                                        Text="{Binding TransactionDescription}"
+                                        TextColor="{DynamicResource Gray-700}" />
+
+                                    <Label
+                                        FontFamily="{StaticResource Montserrat-Medium}"
+                                        FontSize="12"
+                                        HorizontalOptions="End"
+                                        HorizontalTextAlignment="End"
+                                        Text="{Binding Date, StringFormat='{}{0:dd MMM yyyy}'}"
+                                        TextColor="{DynamicResource Gray-700}" />
+                                </StackLayout>
+
+                            </Grid>
+                        </control:CustomShadowFrame>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </StackLayout>
+        </ScrollView>
+
+    </ContentPage.Content>
+</ContentPage>

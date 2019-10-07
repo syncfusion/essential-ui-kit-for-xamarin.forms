@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="EssentialUIKit.Views.Transaction.DeliveryPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:EssentialUIKit.Controls"
+    xmlns:local="clr-namespace:EssentialUIKit.Views.Transaction"
+    xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Transaction"
+    Title="Delivery"
+    BackgroundColor="{DynamicResource Gray-100}"
+    NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <!--  Binding context for Delivery Page  -->
+    <ContentPage.BindingContext>
+        <viewModel:CheckoutPageViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.ControlTemplate>
+        <ControlTemplate>
+            <StackLayout Spacing="0">
+
+                <!--  Title View  -->
+                <controls:TitleView Title="Delivery" BackgroundColor="{DynamicResource Gray-White}" />
+
+                <ContentPresenter />
+
+            </StackLayout>
+        </ControlTemplate>
+    </ContentPage.ControlTemplate>
+
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid
+                Padding="{OnIdiom Tablet='0,15',
+                                  Desktop='15,15,15,0'}"
+                ColumnSpacing="{OnIdiom Tablet=0,
+                                        Desktop=15}"
+                RowSpacing="{OnIdiom Tablet=15,
+                                     Desktop=0}">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="{OnIdiom Tablet=Auto, Desktop=*}" />
+                    <RowDefinition Height="{OnIdiom Tablet=Auto, Desktop=0}" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="{OnIdiom Tablet=*, Desktop=0.7*}" />
+                    <ColumnDefinition Width="{OnIdiom Tablet=0, Desktop=0.3*}" />
+                </Grid.ColumnDefinitions>
+
+                <!--  ListView for Delivery  -->
+                <local:DeliveryView />
+
+                <!--  Price Details  -->
+                <local:PriceDetailView
+                    Grid.Row="{OnIdiom Tablet=1,
+                                       Desktop=0}"
+                    Grid.Column="{OnIdiom Tablet=0,
+                                          Desktop=1}"
+                    ActionText="CONTINUE" />
+
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+
+</ContentPage>

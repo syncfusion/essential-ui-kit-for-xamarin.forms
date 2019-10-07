@@ -5,12 +5,10 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
     xmlns:control="clr-namespace:EssentialUIKit.Controls"
-    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
     xmlns:rating="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms"
     xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Feedback"
-    BackgroundColor="{DynamicResource Gray-F4}"
-    NavigationPage.HasNavigationBar="False"
-    Shell.NavBarIsVisible="False">
+    BackgroundColor="{DynamicResource Gray-100}"
+    NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -39,7 +37,7 @@
                         HorizontalOptions="CenterAndExpand"
                         Style="{StaticResource LabelStyle}"
                         Text="Write A Review"
-                        TextColor="{DynamicResource Gray-56}" />
+                        TextColor="{DynamicResource Gray-900}" />
 
                 </StackLayout>
 
@@ -58,11 +56,11 @@
                     </Grid.RowDefinitions>
 
                     <!--  Product image  -->
-                    <ffimageloading:CachedImage
+                    <Image
                         x:Name="ProductImage"
                         Grid.RowSpan="2"
                         Aspect="AspectFill"
-                        BackgroundColor="{DynamicResource Gray-F0}"
+                        BackgroundColor="{DynamicResource Gray-200}"
                         HeightRequest="120"
                         WidthRequest="100" />
 
@@ -74,7 +72,7 @@
                         FontSize="16"
                         Style="{StaticResource LabelStyle}"
                         Text="Full-Length Skirt"
-                        TextColor="{DynamicResource Gray-56}" />
+                        TextColor="{DynamicResource Gray-900}" />
 
                     <!--  Rating for the product  -->
                     <rating:SfRating
@@ -104,7 +102,7 @@
                         FontSize="16"
                         Style="{StaticResource LabelStyle}"
                         Text="Add Photo or Video"
-                        TextColor="{DynamicResource Gray-56}" />
+                        TextColor="{DynamicResource Gray-900}" />
 
                     <BoxView Grid.Row="1" Style="{StaticResource BoxViewStyle}" />
 
@@ -144,7 +142,7 @@
                         FontFamily="{StaticResource Montserrat-SemiBold}"
                         Style="{StaticResource LabelStyle}"
                         Text="Write your Review"
-                        TextColor="{DynamicResource Gray-56}" />
+                        TextColor="{DynamicResource Gray-900}" />
 
                     <BoxView Grid.Row="1" Style="{StaticResource BoxViewStyle}" />
 
@@ -157,8 +155,8 @@
                         HeightRequest="100"
                         HorizontalOptions="FillAndExpand"
                         Placeholder="Description"
-                        PlaceholderColor="{DynamicResource Gray-94}"
-                        TextColor="{DynamicResource Gray-94}"
+                        PlaceholderColor="{DynamicResource Gray-700}"
+                        TextColor="{DynamicResource Gray-700}"
                         VerticalOptions="StartAndExpand" />
 
                 </Grid>

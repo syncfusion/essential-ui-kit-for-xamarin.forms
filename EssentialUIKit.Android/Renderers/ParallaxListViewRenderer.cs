@@ -1,8 +1,8 @@
 ﻿using Android.Content;
-using Xamarin.Forms;
-using Xamarin.Forms.Platform.Android;
 using EssentialUIKit.AppLayout.Controls;
 using EssentialUIKit.Droid;
+using Xamarin.Forms;
+using Xamarin.Forms.Platform.Android;
 
 [assembly: ExportRenderer(typeof(ParallaxListView), typeof(ParallaxListViewRenderer))]
 

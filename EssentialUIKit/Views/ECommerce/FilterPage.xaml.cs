@@ -15,7 +15,7 @@ namespace EssentialUIKit.Views.ECommerce
         /// </summary>
         public FilterPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
     }
 }
