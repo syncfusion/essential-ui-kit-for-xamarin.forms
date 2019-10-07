@@ -8,13 +8,14 @@ namespace EssentialUIKit.AppLayout.Models
     {
         #region Constructor
 
-        public Category(string name, string icon, string description)
+        public Category(string name, string icon, string description, string updateType, bool isUpdate)
         {
             this.Pages = new List<Template>();
-
             this.Name = name;
             this.Icon = icon;
             this.Description = description;
+            this.UpdateType = updateType;
+            this.IsUpdate = isUpdate;
         }
 
         #endregion
@@ -37,6 +38,9 @@ namespace EssentialUIKit.AppLayout.Models
             }
         }
 
+        public string UpdateType { get; set; }
+
+        public bool IsUpdate { get; set; }
         #endregion
     }
 }

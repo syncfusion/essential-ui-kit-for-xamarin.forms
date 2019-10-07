@@ -1,28 +1,29 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:viewModels="clr-namespace:EssentialUIKit.AppLayout.ViewModels;assembly=EssentialUIKit"
-             xmlns:graphics="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
-             xmlns:controls="clr-namespace:EssentialUIKit.AppLayout.Controls;assembly=EssentialUIKit"
-             xmlns:views="clr-namespace:EssentialUIKit.AppLayout.Views;assembly=EssentialUIKit"
-             xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
-             x:Class="EssentialUIKit.AppLayout.Views.TemplatePage"
-             Title="{Binding SelectedCategory.Name}"
-             Style="{StaticResource ContentPageStyle}">
+<ContentPage
+    x:Class="EssentialUIKit.AppLayout.Views.TemplatePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+    xmlns:controls="clr-namespace:EssentialUIKit.AppLayout.Controls;assembly=EssentialUIKit"
+    xmlns:graphics="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
+    xmlns:viewModels="clr-namespace:EssentialUIKit.AppLayout.ViewModels;assembly=EssentialUIKit"
+    xmlns:views="clr-namespace:EssentialUIKit.AppLayout.Views;assembly=EssentialUIKit"
+    Title="{Binding SelectedCategory.Name}"
+    Style="{StaticResource ContentPageStyle}">
 
     <ContentPage.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
-            
-            <Style  TargetType="graphics:SfGradientView">
+
+            <Style TargetType="graphics:SfGradientView">
                 <Setter Property="BackgroundBrush">
                     <Setter.Value>
                         <graphics:SfLinearGradientBrush>
                             <graphics:SfLinearGradientBrush.GradientStops>
-                                <graphics:SfGradientStop Offset="0" Color="{DynamicResource PrimaryColor}"/>
-                                <graphics:SfGradientStop Offset="1" Color="{DynamicResource PrimaryGradient}"/>
+                                <graphics:SfGradientStop Offset="0" Color="{DynamicResource PrimaryColor}" />
+                                <graphics:SfGradientStop Offset="1" Color="{DynamicResource PrimaryGradient}" />
                             </graphics:SfLinearGradientBrush.GradientStops>
                         </graphics:SfLinearGradientBrush>
                     </Setter.Value>
@@ -32,75 +33,93 @@
     </ContentPage.Resources>
 
     <ContentPage.BindingContext>
-        <viewModels:TemplatePageViewModel/>
+        <viewModels:TemplatePageViewModel />
     </ContentPage.BindingContext>
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="0" x:Name="iOSSafeArea"/>
+            <RowDefinition x:Name="iOSSafeArea" Height="0" />
             <RowDefinition Height="50" />
             <RowDefinition Height="10" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <graphics:SfGradientView Grid.Row="0" Grid.RowSpan="3"/>
+        <graphics:SfGradientView Grid.Row="0" Grid.RowSpan="3" />
 
         <StackLayout
             x:Name="ActionBarContent"
             Grid.Row="1"
+            HorizontalOptions="FillAndExpand"
             Orientation="Horizontal"
-            VerticalOptions="FillAndExpand" 
-            HorizontalOptions="FillAndExpand">
+            VerticalOptions="FillAndExpand">
 
-            <Button
-                Style="{StaticResource ActionBarBackButtonStyle}"
-                Clicked="BackButtonPressed"/>
+            <Button Clicked="BackButtonPressed" Style="{StaticResource ActionBarBackButtonStyle}" />
 
             <Label
-                Style="{StaticResource ActionBarLabelStyle}"
                 Margin="-10,0,0,0"
-                Text="{Binding SelectedCategory.Name}"
                 HorizontalOptions="StartAndExpand"
+                Style="{StaticResource ActionBarLabelStyle}"
+                Text="{Binding SelectedCategory.Name}"
                 VerticalOptions="CenterAndExpand" />
 
-            <Button Style="{StaticResource ActionBarSettingIconStyle}"
-                    Clicked="ShowSettings"
-                    VerticalOptions="CenterAndExpand" 
-                    HorizontalOptions="EndAndExpand"/>
+            <Button
+                Clicked="ShowSettings"
+                HorizontalOptions="EndAndExpand"
+                Style="{StaticResource ActionBarSettingIconStyle}"
+                VerticalOptions="CenterAndExpand" />
         </StackLayout>
 
         <border:SfBorder
             Grid.Row="2"
             Grid.RowSpan="2"
-            CornerRadius="10,10,0,0"
             Padding="0,10,0,0"
+            BackgroundColor="{DynamicResource Gray-White}"
             BorderWidth="0"
-            BackgroundColor="{DynamicResource Gray-White}">
+            CornerRadius="10,10,0,0">
 
             <controls:ParallaxListView
-            x:Name="ListView"
-            RowHeight="96"
-            HasUnevenRows="True"
-            SeparatorVisibility="None"
-            SelectionChanged="ListView_OnSelectionChanged"
-            ItemsSource="{Binding SelectedCategory.Pages}">
+                x:Name="ListView"
+                HasUnevenRows="True"
+                ItemsSource="{Binding SelectedCategory.Pages}"
+                RowHeight="96"
+                SelectionChanged="ListView_OnSelectionChanged"
+                SeparatorVisibility="None">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <Grid Margin="16" VerticalOptions="CenterAndExpand">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
 
-                                <Label 
-                                    Style="{StaticResource ItemTitleStyle}"
-                                    VerticalOptions="StartAndExpand" HorizontalOptions="StartAndExpand" />
+                                <StackLayout Orientation="Horizontal">
 
-                                <Label 
+                                    <Label Style="{StaticResource ItemTitleStyle}" VerticalOptions="StartAndExpand" />
+
+                                    <Frame
+                                        Margin="0"
+                                        Padding="0"
+                                        BackgroundColor="#04B875"
+                                        CornerRadius="10"
+                                        HasShadow="False"
+                                        IsVisible="{Binding IsUpdate}">
+                                        <Frame.Content>
+                                            <Label
+                                                Margin="5,1"
+                                                FontFamily="{StaticResource Montserrat-Medium}"
+                                                FontSize="10"
+                                                Text="{Binding UpdateType}"
+                                                TextColor="{DynamicResource Gray-White}" />
+                                        </Frame.Content>
+                                    </Frame>
+                                </StackLayout>
+
+                                <Label
                                     Grid.Row="1"
+                                    HorizontalOptions="StartAndExpand"
                                     Style="{StaticResource ItemDescriptionStyle}"
-                                    VerticalOptions="StartAndExpand" HorizontalOptions="StartAndExpand" />
+                                    VerticalOptions="StartAndExpand" />
 
                             </Grid>
                         </ViewCell>
@@ -111,9 +130,7 @@
 
         </border:SfBorder>
 
-        <views:SettingsView
-            x:Name="SettingsView"
-            Grid.RowSpan="4"/>
+        <views:SettingsView x:Name="SettingsView" Grid.RowSpan="4" />
 
     </Grid>
 

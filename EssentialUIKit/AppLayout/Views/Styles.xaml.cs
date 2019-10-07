@@ -15,7 +15,7 @@ namespace EssentialUIKit.AppLayout.Views
         /// </summary>
         public Styles()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
     }
 }

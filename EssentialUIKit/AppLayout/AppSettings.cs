@@ -1,6 +1,6 @@
-﻿using Xamarin.Forms;
+﻿using EssentialUIKit.AppLayout;
+using Xamarin.Forms;
 using Xamarin.Forms.Internals;
-using EssentialUIKit.AppLayout;
 
 namespace EssentialUIKit
 {

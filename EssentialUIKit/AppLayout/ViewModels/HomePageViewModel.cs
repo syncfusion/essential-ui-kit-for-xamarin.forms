@@ -34,10 +34,12 @@ namespace EssentialUIKit.AppLayout.ViewModels
             }
         }
 
+        /// <summary>
+        /// Initializes a new instance for the <see cref="HomePageViewModel" /> class.
+        /// </summary>
         public HomePageViewModel()
         {
             Templates = new List<Category>();
-
             PopulateList();
         }
 
@@ -70,15 +72,36 @@ namespace EssentialUIKit.AppLayout.ViewModels
                             }
 
                             var platform = GetDataFromXmlReader(xmlReader, "Platform");
-                            if (string.IsNullOrEmpty(platform) || platform.ToLower().Contains(runtimePlatform))
-                            {
-                                var categoryName = GetDataFromXmlReader(xmlReader, "Name");
-                                var description = GetDataFromXmlReader(xmlReader, "Description");
-                                var icon =
-                                    $"EssentialUIKit.AppLayout.Icons.{GetDataFromXmlReader(xmlReader, "Icon")}";
+                                if (string.IsNullOrEmpty(platform) || platform.ToLower().Contains(runtimePlatform))
+                                {
+                                    var categoryName = GetDataFromXmlReader(xmlReader, "Name");
+                                    var description = GetDataFromXmlReader(xmlReader, "Description");
+                                    var icon =
+                                        $"EssentialUIKit.AppLayout.Icons.{GetDataFromXmlReader(xmlReader, "Icon")}";
 
-                                category = new Category(categoryName, icon, description);
-                            }
+                                    string updateType = string.Empty;
+                                    bool isUpdate = false;
+
+                                    if (null != xmlReader.GetAttribute("IsUpdated"))
+                                    {
+                                        if (GetDataFromXmlReader(xmlReader, "IsUpdated") == "True")
+                                        {
+                                            updateType = "Updated";
+                                            isUpdate = true;
+                                        }
+                                    }
+
+                                    if (null != xmlReader.GetAttribute("IsNew"))
+                                    {
+                                        if (GetDataFromXmlReader(xmlReader, "IsNew") == "True")
+                                        {
+                                            updateType = "New";
+                                            isUpdate = true;
+                                        }
+                                    }
+                                    
+                                    category = new Category(categoryName, icon, description, updateType, isUpdate);
+                                }
 
                             break;
                         }
@@ -94,8 +117,28 @@ namespace EssentialUIKit.AppLayout.ViewModels
                                 var pageName = GetDataFromXmlReader(xmlReader, "PageName");
                                 bool.TryParse(GetDataFromXmlReader(xmlReader, "LayoutFullscreen"),
                                     out var layoutFullScreen);
+                                    string updateType = string.Empty;
+                                    bool isUpdate = false;
 
-                                var template = new Template(templateName, description, pageName, layoutFullScreen);
+                                    if (null != xmlReader.GetAttribute("IsUpdated"))
+                                    {
+                                        if (GetDataFromXmlReader(xmlReader, "IsUpdated") == "True")
+                                        {
+                                            updateType = "Updated";
+                                            isUpdate = true;
+                                        }
+                                    }
+
+                                    if (null != xmlReader.GetAttribute("IsNew"))
+                                    {
+                                        if (GetDataFromXmlReader(xmlReader, "IsNew") == "True")
+                                        {
+                                            updateType = "New";
+                                            isUpdate = true;
+                                        }
+                                    }
+
+                                    var template = new Template(templateName, description, pageName, layoutFullScreen, updateType, isUpdate);
                                 Routing.RegisterRoute(templateName,
                                     assembly.GetType($"EssentialUIKit.{pageName}"));
 
@@ -122,5 +165,21 @@ namespace EssentialUIKit.AppLayout.ViewModels
             reader.MoveToAttribute(attribute);
             return reader.Value;
         }
+
+        private string GetUpdateType(string value, string type)
+        {
+            if (value == "true" && (type == "IsNew" || type == "IsPreview"))
+            {
+                return (Device.RuntimePlatform == Device.iOS) ? "Tags/newimage.png" : "Tags/preview.png";
+            }
+
+            if (value == "true" && type == "IsUpdated")
+            {
+                return "Tags/updated.png";
+            }
+
+            return string.Empty;
+        }
+
     }
 }

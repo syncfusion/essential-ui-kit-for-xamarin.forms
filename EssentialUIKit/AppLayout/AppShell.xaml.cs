@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using Microsoft.AppCenter.Analytics;
 #endif
 using System;
+using EssentialUIKit.AppLayout.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
-using EssentialUIKit.AppLayout.Views;
 
 namespace EssentialUIKit.AppLayout
 {
@@ -16,7 +16,7 @@ namespace EssentialUIKit.AppLayout
     {
         public AppShell()
         {
-            this.InitializeComponent();
+            InitializeComponent();
 
             this.Navigating += this.AppShell_Navigating;
 

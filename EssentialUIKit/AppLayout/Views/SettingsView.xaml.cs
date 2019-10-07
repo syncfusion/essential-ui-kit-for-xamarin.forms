@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 using Syncfusion.XForms.Border;
+using Xamarin.Forms;
 using Xamarin.Forms.Internals;
+using Xamarin.Forms.Xaml;
 
 namespace EssentialUIKit.AppLayout.Views
 {
