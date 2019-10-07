@@ -124,10 +124,7 @@
                         VerticalOptions="End">
 
                         <StackLayout.Padding>
-                            <OnIdiom
-                                x:DataType="Thickness"
-                                Default="0, 48, 0, 0"
-                                Phone="0" />
+                            <OnIdiom x:TypeArguments="Thickness" Default="0, 48, 0, 0" Phone="0"/>
                         </StackLayout.Padding>
 
                         <Label
