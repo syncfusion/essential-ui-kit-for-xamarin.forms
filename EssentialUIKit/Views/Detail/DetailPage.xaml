@@ -106,7 +106,6 @@
                                     StrokeWidth="1"
                                     BadgeType="None"
                                     FontSize="10"
-                                    FontFamily="{StaticResource Montserrat-Medium}"
                                     Offset="-10,10"/>
                             </badge:SfBadgeView.BadgeSettings>
                         </badge:SfBadgeView>

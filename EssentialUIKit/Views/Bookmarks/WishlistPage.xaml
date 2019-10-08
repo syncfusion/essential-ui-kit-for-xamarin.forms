@@ -62,7 +62,6 @@
                                 <badge:BadgeSetting
                                     BackgroundColor="{DynamicResource PrimaryColor}"
                                     Stroke="{DynamicResource Gray-White}"
-                                    FontFamily="{StaticResource Montserrat-Medium}"
                                     FontSize="10"
                                     BadgeAnimation="None"
                                     StrokeWidth="1"
