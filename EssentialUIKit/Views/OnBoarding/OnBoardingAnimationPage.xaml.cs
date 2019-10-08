@@ -9,12 +9,12 @@ namespace EssentialUIKit.Views.OnBoarding
     /// </summary>
     [Preserve(AllMembers = true)]
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class OnBoaringAnimationPage : ContentPage
+    public partial class OnBoardingAnimationPage 
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="OnBoaringAnimationPage" /> class.
+        /// Initializes a new instance of the <see cref="OnBoardingAnimationPage" /> class.
         /// </summary>
-        public OnBoaringAnimationPage()
+        public OnBoardingAnimationPage()
         {
             InitializeComponent();
         }
