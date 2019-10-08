@@ -1,0 +1,217 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="EssentialUIKit.Views.Shopping.DeliveryView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:helper="clr-namespace:EssentialUIKit.Helpers"
+    BackgroundColor="{DynamicResource Gray-White}">
+
+    <ContentView.Resources>
+        <ResourceDictionary>
+
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <buttons:SfRadioGroupKey x:Key="DeliveryAddressGroup" />
+
+        </ResourceDictionary>
+    </ContentView.Resources>
+
+    <StackLayout Spacing="0">
+
+        <!--  Header  -->
+        <Grid
+            Padding="0,16,0,0"
+            BackgroundColor="{DynamicResource Gray-White}"
+            RowSpacing="16">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="1" />
+            </Grid.RowDefinitions>
+
+            <Label
+                Grid.Column="0"
+                FontFamily="{StaticResource Montserrat-SemiBold}"
+                FontSize="16"
+                LineHeight="{OnPlatform Android=1.25,
+                                        Default=-1}"
+                Style="{StaticResource PriceLabelStyle}"
+                Text="{OnIdiom Default='Delivery Address',
+                               Phone='Deliver To'}"
+                TextColor="{DynamicResource Gray-900}" />
+
+            <!--  Total Price Label  -->
+            <Label
+                Grid.Column="1"
+                FontFamily="{StaticResource Montserrat-SemiBold}"
+                FontSize="16"
+                HorizontalOptions="EndAndExpand"
+                HorizontalTextAlignment="End"
+                IsVisible="{OnIdiom Default=True,
+                                    Phone=False}"
+                Style="{StaticResource PriceLabelStyle}"
+                Text="{Binding TotalPrice, StringFormat='Total: ${0}'}"
+                TextColor="{DynamicResource Gray-900}" />
+
+            <!--  Separator  -->
+            <BoxView
+                Grid.Row="1"
+                Grid.ColumnSpan="2"
+                HeightRequest="1"
+                Style="{StaticResource BoxViewStyle}" />
+
+        </Grid>
+
+        <!--  Delivery Address  -->
+        <buttons:SfRadioGroup
+            x:Name="RadioGroup"
+            BindableLayout.ItemsSource="{Binding DeliveryAddress}"
+            Spacing="0">
+            <BindableLayout.ItemTemplate>
+                <DataTemplate>
+                    <Grid RowSpacing="0" VerticalOptions="{OnIdiom Default=Start, Desktop=Fill}">
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="1" />
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="{OnIdiom Default=*, Phone=0}" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <buttons:SfRadioButton
+                            Grid.Row="0"
+                            helper:RTLHelper.Margin="16,16,8,0"
+                            BackgroundColor="Transparent"
+                            CheckedColor="{DynamicResource PrimaryColor}"
+                            GroupKey="{StaticResource DeliveryAddressGroup}"
+                            HeightRequest="{OnIdiom Desktop=27,
+                                                    Tablet=-1,
+                                                    Phone=0}"
+                            HorizontalOptions="Center"
+                            IsVisible="{OnIdiom Default=True,
+                                                Phone=False}"
+                            UncheckedColor="{DynamicResource Gray-300}"
+                            VerticalOptions="Center"
+                            WidthRequest="{OnIdiom Default=30,
+                                                   Phone=0}" />
+
+                        <!--  Customer Name  -->
+                        <Label
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            helper:RTLHelper.Margin="{OnIdiom Default='0,16,0,0',
+                                                              Phone='10,2,0,2'}"
+                            FontFamily="{StaticResource Montserrat-Medium}"
+                            FontSize="14"
+                            HorizontalOptions="StartAndExpand"
+                            Style="{StaticResource LabelStyle}">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{Binding CustomerName}" TextColor="{DynamicResource Gray-900}" />
+                                    <Span
+                                        FontSize="12"
+                                        Text="{Binding AddressType, StringFormat={OnIdiom Default=' ', Tablet='  {0}'}}"
+                                        TextColor="{DynamicResource Gray-700}" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+
+                        <!--  Edit/Change button  -->
+                        <buttons:SfButton
+                            Grid.Row="0"
+                            Grid.Column="3"
+                            Margin="{OnIdiom Default='16,16,16,0',
+                                             Phone='16,2,16,2'}"
+                            BorderWidth="0"
+                            Command="{Binding BindingContext.EditCommand, Source={x:Reference RadioGroup}}"
+                            CornerRadius="4"
+                            FontFamily="{StaticResource Montserrat-SemiBold}"
+                            FontSize="14"
+                            HeightRequest="{OnIdiom Desktop=18,
+                                                    Default=35}"
+                            HorizontalOptions="End"
+                            Style="{StaticResource SfButtonStyle}"
+                            Text="{OnIdiom Default=Edit,
+                                           Phone=Change}"
+                            TextColor="{StaticResource HyperLink}"
+                            WidthRequest="{OnIdiom Desktop=50,
+                                                   Default=80}" />
+
+                        <!--  Address Label  -->
+                        <Label
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            helper:RTLHelper.Margin="{OnIdiom Default='0',
+                                                              Phone='10,0,0,0'}"
+                            FontFamily="{StaticResource Montserrat-Medium}"
+                            FontSize="12"
+                            LineHeight="{OnPlatform Android=1.25,
+                                                    Default=-1}"
+                            Style="{StaticResource LabelStyle}"
+                            Text="{Binding Address}"
+                            TextColor="{DynamicResource Gray-700}" />
+
+                        <!--  Mobile Number  -->
+                        <Label
+                            Grid.Row="2"
+                            Grid.Column="1"
+                            helper:RTLHelper.Margin="{OnIdiom Default='0',
+                                                              Phone='10,8,0,16'}"
+                            FontFamily="{StaticResource Montserrat-Medium}"
+                            FontSize="12"
+                            HorizontalOptions="StartAndExpand"
+                            Style="{StaticResource LabelStyle}">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Mobile: " />
+                                    <Span Text="{Binding MobileNumber}" TextColor="{DynamicResource Gray-900}" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+
+                        <!--  Separator  -->
+                        <BoxView
+                            Grid.Row="3"
+                            Grid.ColumnSpan="4"
+                            Style="{StaticResource BoxViewStyle}"
+                            VerticalOptions="End" />
+
+                    </Grid>
+                </DataTemplate>
+            </BindableLayout.ItemTemplate>
+        </buttons:SfRadioGroup>
+
+        <!--  Add New Address Button  -->
+        <buttons:SfButton
+            Margin="{OnIdiom Default=16,
+                             Phone=0}"
+            Padding="{OnIdiom Default='20,10',
+                              Phone=0}"
+            Command="{Binding AddAddressCommand}"
+            CornerRadius="24"
+            HeightRequest="{OnIdiom Default=-1,
+                                    Phone=0}"
+            HorizontalOptions="Start"
+            Style="{StaticResource MagentaButtonStyle}"
+            Text="ADD NEW ADDRESS"
+            WidthRequest="{OnIdiom Default=240,
+                                   Phone=0}" />
+
+    </StackLayout>
+
+</ContentView>

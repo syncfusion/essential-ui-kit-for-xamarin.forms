@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 
 namespace EssentialUIKit.ViewModels.Transaction
@@ -9,11 +6,11 @@ namespace EssentialUIKit.ViewModels.Transaction
     /// <summary>
     /// ViewModel for Payment page.
     /// </summary>
-	[Preserve(AllMembers = true)]
+    [Preserve(AllMembers = true)]
     public class PaymentViewModel
     {
         #region Fields
-        
+
         private string paymentSuccessIcon;
         private string paymentFailureIcon;
 
@@ -54,7 +51,10 @@ namespace EssentialUIKit.ViewModels.Transaction
         /// </summary>
         public string PaymentSuccessIcon
         {
-            get { return this.paymentSuccessIcon; }
+            get
+            {
+                return this.paymentSuccessIcon;
+            }
 
             set
             {
@@ -67,7 +67,10 @@ namespace EssentialUIKit.ViewModels.Transaction
         /// </summary>
         public string PaymentFailureIcon
         {
-            get { return this.paymentFailureIcon; }
+            get
+            {
+                return this.paymentFailureIcon;
+            }
 
             set
             {

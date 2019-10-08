@@ -15,7 +15,7 @@ namespace EssentialUIKit.Views.Transaction
         /// </summary>
         public CheckoutPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
     }
 }

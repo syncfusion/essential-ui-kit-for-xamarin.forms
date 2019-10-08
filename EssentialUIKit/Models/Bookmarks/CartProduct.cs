@@ -23,7 +23,13 @@ namespace EssentialUIKit.Models.Bookmarks
 
         private int totalQuantity;
 
-        ObservableCollection<Review> reviews = new ObservableCollection<Review>();
+        private double actualPrice;
+
+        private double discountPrice;
+
+        private double discountPercent;
+
+        private ObservableCollection<Review> reviews = new ObservableCollection<Review>();
 
         #endregion
 
@@ -50,9 +56,8 @@ namespace EssentialUIKit.Models.Bookmarks
         [DataMember(Name = "previewimage")]
         public string PreviewImage
         {
-            get { return App.BaseImageUrl + previewImage; }
-
-            set { previewImage = value; }
+            get { return App.BaseImageUrl + this.previewImage; }
+            set { this.previewImage = value; }
         }
 
         /// <summary>
@@ -63,15 +68,18 @@ namespace EssentialUIKit.Models.Bookmarks
         {
             get
             {
-                for (var i = 0; i < previewImages.Count; i++)
+                for (var i = 0; i < this.previewImages.Count; i++)
                 {
-                    previewImages[i] = previewImages[i].Contains(App.BaseImageUrl) ? previewImages[i] : App.BaseImageUrl + previewImages[i];
+                    this.previewImages[i] = this.previewImages[i].Contains(App.BaseImageUrl) ? this.previewImages[i] : App.BaseImageUrl + this.previewImages[i];
                 }
 
-                return previewImages;
+                return this.previewImages;
             }
 
-            set { previewImages = value; }
+            set
+            {
+                this.previewImages = value;
+            }
         }
 
         /// <summary>
@@ -96,21 +104,54 @@ namespace EssentialUIKit.Models.Bookmarks
         /// Gets or sets the property that has been bound with a label, which displays the actual price of the product.
         /// </summary>
         [DataMember(Name = "actualprice")]
-        public double ActualPrice { get; set; }
+        public double ActualPrice
+        {
+            get
+            {
+                return this.actualPrice;
+            }
+
+            set
+            {
+                this.actualPrice = value;
+                this.NotifyPropertyChanged("ActualPrice");
+            }
+        }
 
         /// <summary>
-        /// Gets the property that has been bound with a label, which displays the discounted price of the product.
+        /// Gets or sets the property that has been bound with a label, which displays the discounted price of the product.
         /// </summary>
         public double DiscountPrice
         {
-            get { return this.ActualPrice - (this.ActualPrice * (this.DiscountPercent / 100)); }
+            get
+            {
+                return this.ActualPrice - (this.ActualPrice * (this.DiscountPercent / 100));
+            }
+
+            set
+            {
+                this.discountPrice = value;
+                this.NotifyPropertyChanged("DiscountPrice");
+            }
         }
 
         /// <summary>
         /// Gets or sets the property that has been bound with a label, which displays the discounted percent of the product.
         /// </summary>
         [DataMember(Name = "discountpercent")]
-        public double DiscountPercent { get; set; }
+        public double DiscountPercent
+        {
+            get
+            {
+                return this.discountPercent;
+            }
+
+            set
+            {
+                this.discountPercent = value;
+                this.NotifyPropertyChanged("DiscountPercent");
+            }
+        }
 
         /// <summary>
         /// Gets or sets the property that has been bound with label, which displays the overall rating of the product.
@@ -124,10 +165,14 @@ namespace EssentialUIKit.Models.Bookmarks
         [DataMember(Name = "reviews")]
         public ObservableCollection<Review> Reviews
         {
-            get { return reviews; }
+            get
+            {
+                return this.reviews;
+            }
+
             set
             {
-                reviews = value;
+                this.reviews = value;
                 this.NotifyPropertyChanged("Reviews");
             }
         }
@@ -150,13 +195,21 @@ namespace EssentialUIKit.Models.Bookmarks
         public List<string> SizeVariants { get; set; } = new List<string> { "XS", "S", "M", "L", "XL" };
 
         /// <summary>
-        /// Gets or sets the property that has been bound with button, which displays the isfavorite.
+        /// Gets or sets a value indicating whether the cart is favorite.
         /// </summary>
         [DataMember(Name = "isfavourite")]
         public bool IsFavourite
         {
-            get { return this.isFavourite; }
-            set { this.isFavourite = value; this.NotifyPropertyChanged("IsFavourite"); }
+            get
+            {
+                return this.isFavourite;
+            }
+
+            set
+            {
+                this.isFavourite = value;
+                this.NotifyPropertyChanged("IsFavourite");
+            }
         }
 
         /// <summary>
@@ -165,8 +218,16 @@ namespace EssentialUIKit.Models.Bookmarks
         [DataMember(Name = "totalquantity")]
         public int TotalQuantity
         {
-            get { return totalQuantity; }
-            set { totalQuantity = value; NotifyPropertyChanged("TotalQuantity"); }
+            get
+            {
+                return this.totalQuantity;
+            }
+        
+            set
+            {
+                this.totalQuantity = value;
+                this.NotifyPropertyChanged("TotalQuantity");
+            }
         }
 
         #endregion

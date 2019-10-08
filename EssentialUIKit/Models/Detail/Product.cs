@@ -23,7 +23,7 @@ namespace EssentialUIKit.Models.Detail
 
         private int totalQuantity;
 
-        ObservableCollection<Review> reviews = new ObservableCollection<Review>();
+        private ObservableCollection<Review> reviews = new ObservableCollection<Review>();
 
         #endregion
 
@@ -50,9 +50,8 @@ namespace EssentialUIKit.Models.Detail
         [DataMember(Name = "previewimage")]
         public string PreviewImage
         {
-            get { return App.BaseImageUrl + previewImage; }
-
-            set { previewImage = value; }
+            get { return App.BaseImageUrl + this.previewImage; }
+            set { this.previewImage = value; }
         }
 
         /// <summary>
@@ -63,15 +62,18 @@ namespace EssentialUIKit.Models.Detail
         {
             get
             {
-                for (var i = 0; i < previewImages.Count; i++)
+                for (var i = 0; i < this.previewImages.Count; i++)
                 {
-                    previewImages[i] = previewImages[i].Contains(App.BaseImageUrl) ? previewImages[i] : App.BaseImageUrl + previewImages[i];
+                    this.previewImages[i] = this.previewImages[i].Contains(App.BaseImageUrl) ? this.previewImages[i] : App.BaseImageUrl + this.previewImages[i];
                 }
 
-                return previewImages;
+                return this.previewImages;
             }
 
-            set { previewImages = value; }
+            set
+            {
+                this.previewImages = value;
+            }
         }
 
         /// <summary>
@@ -103,7 +105,10 @@ namespace EssentialUIKit.Models.Detail
         /// </summary>
         public double DiscountPrice
         {
-            get { return this.ActualPrice - (this.ActualPrice * (this.DiscountPercent / 100)); }
+            get
+            {
+                return this.ActualPrice - (this.ActualPrice * (this.DiscountPercent / 100));
+            }
         }
 
         /// <summary>
@@ -124,10 +129,14 @@ namespace EssentialUIKit.Models.Detail
         [DataMember(Name = "reviews")]
         public ObservableCollection<Review> Reviews
         {
-            get { return reviews; }
+            get
+            {
+                return this.reviews;
+            }
+
             set
             {
-                reviews = value;
+                this.reviews = value;
                 this.NotifyPropertyChanged("Reviews");
             }
         }
@@ -147,16 +156,24 @@ namespace EssentialUIKit.Models.Detail
         /// Gets or sets the property that has been bound with SfCombobox, which displays the product variants.
         /// </summary>
         [DataMember(Name = "sizevariants")]
-        public List<string> SizeVariants { get; set; } = new List<string> {"XS", "S", "M", "L", "XL"};
+        public List<string> SizeVariants { get; set; } = new List<string> { "XS", "S", "M", "L", "XL" };
 
         /// <summary>
-        /// Gets or sets the property that has been bound with button, which displays the isfavorite.
+        /// Gets or sets a value indicating whether the item is favorite.
         /// </summary>
         [DataMember(Name = "isfavourite")]
         public bool IsFavourite
         {
-            get { return this.isFavourite; }
-            set { this.isFavourite = value; this.NotifyPropertyChanged("IsFavourite"); }
+            get
+            {
+                return this.isFavourite;
+            }
+
+            set
+            {
+                this.isFavourite = value;
+                this.NotifyPropertyChanged("IsFavourite");
+            }
         }
 
         /// <summary>
@@ -165,8 +182,16 @@ namespace EssentialUIKit.Models.Detail
         [DataMember(Name = "totalquantity")]
         public int TotalQuantity
         {
-            get { return totalQuantity; }
-            set { totalQuantity = value; NotifyPropertyChanged("TotalQuantity"); }
+            get
+            {
+                return this.totalQuantity;
+            }
+
+            set
+            {
+                this.totalQuantity = value;
+                this.NotifyPropertyChanged("TotalQuantity");
+            }
         }
 
         #endregion

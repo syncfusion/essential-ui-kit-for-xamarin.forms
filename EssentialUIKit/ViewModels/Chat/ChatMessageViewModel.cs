@@ -2,9 +2,9 @@ using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using EssentialUIKit.Models.Chat;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
-using EssentialUIKit.Models.Chat;
 
 namespace EssentialUIKit.ViewModels.Chat
 {
@@ -16,6 +16,19 @@ namespace EssentialUIKit.ViewModels.Chat
     {
         #region Fields
 
+        /// <summary>
+        /// Stores the message text in an array. 
+        /// </summary>
+        private readonly string[] descriptions = { "Hi, can you tell me the specifications of the Dell Inspiron 5370 laptop?",
+            " * Processor: Intel Core i5-8250U processor " +
+            "\n" + " * OS: Pre-loaded Windows 10 with lifetime validity" +
+            "\n" + " * Display: 13.3-inch FHD (1920 x 1080) LED display" +
+            "\n" + " * Memory: 8GB DDR RAM with Intel UHD 620 Graphics" +
+            "\n" + " * Battery: Lithium battery",
+            "How much battery life does it have with wifi and without?",
+            "Approximately 5 hours with wifi. About 7 hours without.",
+        };
+
         private string profileName = "Alex Russell";
 
         private string newMessage;
@@ -23,20 +36,7 @@ namespace EssentialUIKit.ViewModels.Chat
         private string profileImage = App.BaseImageUrl + "ProfileImage3.png";
 
         private ObservableCollection<ChatMessage> chatMessageInfo = new ObservableCollection<ChatMessage>();
-
-        /// <summary>
-        /// Stores the message text in an array. 
-        /// </summary>
-        private readonly string[] descriptions = {
-            "Hi, can you tell me the specifications of the Dell Inspiron 5370 laptop?",
-            " * Processor: Intel Core i5-8250U processor " +
-            "\n" + " * OS: Pre-loaded Windows 10 with lifetime validity" +
-            "\n" + " * Display: 13.3-inch FHD (1920 x 1080) LED display" +
-            "\n" + " * Memory: 8GB DDR RAM with Intel UHD 620 Graphics" +
-            "\n" + " * Battery: Lithium battery",
-            "How much battery life does it have with wifi and without?",
-            "Approximately 5 hours with wifi. About 7 hours without.",  
-        };
+                
         #endregion
 
         #region Constructor

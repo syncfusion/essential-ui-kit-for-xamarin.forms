@@ -9,13 +9,13 @@ namespace EssentialUIKit.Views.Transaction
     [Preserve(AllMembers = true)]
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Styles
-	{
+    {
         /// <summary>
         /// Initializes a new instance of the <see cref="Styles" /> class.
         /// </summary>
-		public Styles ()
-		{
-			InitializeComponent ();
-		}
-	}
+        public Styles()
+        {
+            InitializeComponent();
+        }
+    }
 }

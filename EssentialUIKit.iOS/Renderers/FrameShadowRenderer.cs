@@ -1,8 +1,8 @@
-﻿using CoreGraphics;
+﻿using EssentialUIKit.Controls;
+using EssentialUIKit.iOS;
+using CoreGraphics;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
-using EssentialUIKit.Controls;
-using EssentialUIKit.iOS;
 
 [assembly: ExportRenderer(typeof(CustomShadowFrame), typeof(FrameShadowRenderer))]
 

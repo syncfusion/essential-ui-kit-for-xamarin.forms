@@ -3,10 +3,10 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
+using EssentialUIKit.Models.ContactUs;
 using Syncfusion.SfMaps.XForms;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
-using EssentialUIKit.Models.ContactUs;
 
 namespace EssentialUIKit.ViewModels.ContactUs
 {
@@ -33,7 +33,7 @@ namespace EssentialUIKit.ViewModels.ContactUs
         {
             this.SendCommand = new Command(this.Send);
             this.CustomMarkers = new ObservableCollection<MapMarker>();
-            GetPinLocation();
+            this.GetPinLocation();
         }
 
         #endregion   
@@ -117,7 +117,7 @@ namespace EssentialUIKit.ViewModels.ContactUs
         /// <summary>
         /// This method is for getting the pin location detail.
         /// </summary>
-        public void GetPinLocation()
+        private void GetPinLocation()
         {
             this.CustomMarkers.Add(
                 new LocationMarker

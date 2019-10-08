@@ -100,6 +100,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Renderers\BorderlessEditorRenderer.cs" />
     <Compile Include="Renderers\BorderlessEntryRenderer.cs" />
+    <Compile Include="Renderers\CalenderDatePickerRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -175,7 +176,7 @@
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.Buttons" Version="17.2.0.49" />
     <PackageReference Include="Syncfusion.Xamarin.Cards" Version="17.2.0.49" />
-    <PackageReference Include="Syncfusion.Xamarin.Core" Version="17.2.0.49" />
+    <PackageReference Include="Syncfusion.Xamarin.Core" Version="17.3.0.9-beta" />
     <PackageReference Include="Syncfusion.Xamarin.DataSource">
       <Version>17.2.0.49</Version>
     </PackageReference>
@@ -190,6 +191,9 @@
     <PackageReference Include="Syncfusion.Xamarin.SfParallaxView">
       <Version>17.2.0.49</Version>
     </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.SfProgressBar">
+      <Version>17.2.0.49</Version>
+    </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfRating" Version="17.2.0.49" />
     <PackageReference Include="Syncfusion.Xamarin.SfRotator" Version="17.2.0.49" />
     <PackageReference Include="Syncfusion.Xamarin.SfPopupLayout" Version="17.2.0.49" />
@@ -199,7 +203,7 @@
     <PackageReference Include="Syncfusion.Xamarin.SfTabView">
       <Version>17.2.0.49</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.Forms" Version="4.2.0.709249" />
+    <PackageReference Include="Xamarin.Forms" Version="4.3.0.778476-pre1" />
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.1.5" />
   </ItemGroup>
   <ItemGroup>

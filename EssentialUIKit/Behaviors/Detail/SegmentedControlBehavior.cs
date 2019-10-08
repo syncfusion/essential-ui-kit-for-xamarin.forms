@@ -31,7 +31,7 @@ namespace EssentialUIKit.Behaviors.Detail
         /// </summary>
         public ICommand Command
         {
-            get { return (ICommand) GetValue(CommandProperty); }
+            get { return (ICommand)GetValue(CommandProperty); }
             set { this.SetValue(CommandProperty, value); }
         }
 
@@ -40,7 +40,7 @@ namespace EssentialUIKit.Behaviors.Detail
         /// </summary>
         public object CommandParameter
         {
-            get { return GetValue(CommandParameterProperty); }
+            get { return this.GetValue(CommandParameterProperty); }
             set { this.SetValue(CommandParameterProperty, value); }
         }
 

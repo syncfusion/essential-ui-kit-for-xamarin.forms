@@ -10,15 +10,15 @@ namespace EssentialUIKit.Views.History
     /// </summary>
     [Preserve(AllMembers = true)]
     [XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class MyOrdersPage : ContentPage
-	{
+    public partial class MyOrdersPage : ContentPage
+    {
         /// <summary>
         /// Initializes a new instance of the <see cref="MyOrdersPage" /> class.
         /// </summary>
-		public MyOrdersPage ()
-		{
-			InitializeComponent ();
+        public MyOrdersPage()
+        {
+            InitializeComponent();
             this.BindingContext = MyOrdersDataService.Instance.MyOrdersPageViewModel;
         }
-	}
+    }
 }

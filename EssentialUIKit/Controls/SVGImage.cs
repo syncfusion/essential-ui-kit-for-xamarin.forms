@@ -1,8 +1,8 @@
-﻿using SkiaSharp;
-using SkiaSharp.Views.Forms;
-using System;
+﻿using System;
 using System.IO;
 using System.Reflection;
+using SkiaSharp;
+using SkiaSharp.Views.Forms;
 using Xamarin.Forms;
 
 namespace EssentialUIKit.Controls
@@ -11,28 +11,28 @@ namespace EssentialUIKit.Controls
     /// This is a helper class to render the SVG files. 
     /// </summary>
     public class SVGImage : ContentView
-    {
-        private readonly SKCanvasView canvasView = new SKCanvasView();
-
+    {       
         // Bindable property to set the SVG image path
         public static readonly BindableProperty SourceProperty = BindableProperty.Create(
           nameof(Source), typeof(string), typeof(SVGImage), default(string), propertyChanged: RedrawCanvas);
 
+        private readonly SKCanvasView canvasView = new SKCanvasView();
+
+        public SVGImage()
+        {
+            this.Padding = new Thickness(0);
+            this.BackgroundColor = Color.Transparent;
+            this.Content = this.canvasView;
+            this.canvasView.PaintSurface += this.CanvasView_PaintSurface;
+        }
+
         // Property to set the SVG image path
         public string Source
         {
-            get => (string)GetValue(SourceProperty);
-            set => SetValue(SourceProperty, value);
+            get => (string)this.GetValue(SourceProperty);
+            set => this.SetValue(SourceProperty, value);
         }
-        
-        public SVGImage()
-        {
-            Padding = new Thickness(0);
-            BackgroundColor = Color.Transparent;
-            Content = canvasView;
-            canvasView.PaintSurface += CanvasView_PaintSurface;
-        }
-
+            
         /// <summary>
         /// Method to invaldate the canvas to update the image
         /// </summary>
@@ -41,8 +41,8 @@ namespace EssentialUIKit.Controls
         /// <param name="newValue">Updated state</param>
         public static void RedrawCanvas(BindableObject bindable, object oldValue, object newValue)
         {
-            SVGImage SVGImage = bindable as SVGImage;
-            SVGImage?.canvasView.InvalidateSurface();
+            SVGImage sVGImage = bindable as SVGImage;
+            sVGImage?.canvasView.InvalidateSurface();
         }
 
         /// <summary>
@@ -55,8 +55,10 @@ namespace EssentialUIKit.Controls
             SKCanvas skCanvas = args.Surface.Canvas;
             skCanvas.Clear();
 
-            if (string.IsNullOrEmpty(Source))
+            if (string.IsNullOrEmpty(this.Source))
+            {
                 return;
+            }
 
             // Get the assembly information to access the local image
             var assembly = typeof(SVGImage).GetTypeInfo().Assembly.GetName();

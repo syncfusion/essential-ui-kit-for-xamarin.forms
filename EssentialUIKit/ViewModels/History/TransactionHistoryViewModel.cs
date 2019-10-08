@@ -1,6 +1,6 @@
-﻿using EssentialUIKit.Models.History;
-using System;
+﻿using System;
 using System.Collections.ObjectModel;
+using EssentialUIKit.Models.History;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 
@@ -22,42 +22,41 @@ namespace EssentialUIKit.ViewModels.History
                 {
                      CustomerName = "Alice",
                      TransactionDescription = "Cashback",
-                     Image= App.BaseImageUrl + "ProfileImage15.png",
+                     Image = App.BaseImageUrl + "ProfileImage15.png",
                      TransactionAmount = "+ $70",
                      Date = DateTime.Now.AddDays(randomNum.Next(-1000, 0)),
-                     IsCredited= true
+                     IsCredited = true
                 },
                 new Transactions
                 {
                      CustomerName = "Jessica Park",
                      TransactionDescription = "XXXXXXX6585",
-                     Image= App.BaseImageUrl + "ProfileImage10.png",
+                     Image = App.BaseImageUrl + "ProfileImage10.png",
                      TransactionAmount = "+ $80",
                      Date = DateTime.Now.AddDays(randomNum.Next(-1000, 0)),
-                     IsCredited= true
+                     IsCredited = true
                 },
                 new Transactions
                 {
                      CustomerName = "Lisa",
                      TransactionDescription = "Recharge",
-                     Image= App.BaseImageUrl + "ProfileImage11.png",
+                     Image = App.BaseImageUrl + "ProfileImage11.png",
                      TransactionAmount = "- $50",
                      Date = DateTime.Now.AddDays(randomNum.Next(-1000, 0)),
-                     IsCredited= false
+                     IsCredited = false
                 },
                 new Transactions
                 {
                      CustomerName = "Rebecca",
                      TransactionDescription = "Credit Card Bill",
-                     Image= App.BaseImageUrl + "ProfileImage12.png",
+                     Image = App.BaseImageUrl + "ProfileImage12.png",
                      TransactionAmount = "- $180",
                      Date = DateTime.Now.AddDays(randomNum.Next(-1000, 0)),
-                     IsCredited= false
+                     IsCredited = false
                 },
             };
 
             this.ItemSelectedCommand = new Command(this.ItemSelected);
-
         }
         #endregion
 

@@ -24,7 +24,7 @@ namespace EssentialUIKit.Views.Transaction
         /// </summary>
         public PriceDetailView()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         #endregion

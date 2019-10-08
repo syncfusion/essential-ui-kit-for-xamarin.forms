@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -13,10 +11,10 @@ namespace EssentialUIKit.Behaviors.ECommerce
     {
         #region Fields
 
-        TapGestureRecognizer tapGestureRecognizer;
+        private TapGestureRecognizer tapGestureRecognizer;
 
         #endregion
-
+        
         #region Properties
 
         /// <summary>
@@ -30,12 +28,12 @@ namespace EssentialUIKit.Behaviors.ECommerce
         /// </summary>
         public object CommandParameter
         {
-            get { return GetValue(CommandParameterProperty); }
+            get { return this.GetValue(CommandParameterProperty); }
             set { this.SetValue(CommandParameterProperty, value); }
         }
 
         #endregion
-
+                
         #region Methods
 
         /// <summary>
@@ -45,24 +43,9 @@ namespace EssentialUIKit.Behaviors.ECommerce
         protected override void OnAttachedTo(Frame bindableFrame)
         {
             base.OnAttachedTo(bindableFrame);
-            tapGestureRecognizer = new TapGestureRecognizer();
-            tapGestureRecognizer.Tapped += TapGestureRecognizer_Tapped;
-            bindableFrame.GestureRecognizers.Add(tapGestureRecognizer);
-        }
-
-        /// <summary>
-        /// Invoked when frame is tapped.
-        /// </summary>
-        /// <param name="sender">The sender</param>
-        /// <param name="e">EventArgs</param>
-        private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
-        {
-            Application.Current.Resources.TryGetValue("Gray-200", out var retVal);
-            ((Frame)sender).BackgroundColor = (Color)retVal;
-
-            await Task.Delay(100);
-
-            ((Frame)sender).BackgroundColor = Color.Transparent;
+            this.tapGestureRecognizer = new TapGestureRecognizer();
+            this.tapGestureRecognizer.Tapped += this.TapGestureRecognizer_Tapped;
+            bindableFrame.GestureRecognizers.Add(this.tapGestureRecognizer);
         }
 
         /// <summary>
@@ -72,8 +55,23 @@ namespace EssentialUIKit.Behaviors.ECommerce
         protected override void OnDetachingFrom(Frame bindableFrame)
         {
             base.OnDetachingFrom(bindableFrame);
-            tapGestureRecognizer.Tapped -= TapGestureRecognizer_Tapped;
+            this.tapGestureRecognizer.Tapped -= this.TapGestureRecognizer_Tapped;
         }
+
+        /// <summary>
+        /// Invoked when frame is tapped.
+        /// </summary>
+        /// <param name="sender">The sender</param>
+        /// <param name="e">Event Args</param>
+        private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+            Application.Current.Resources.TryGetValue("Gray-200", out var retVal);
+            ((Frame)sender).BackgroundColor = (Color)retVal;
+
+            await Task.Delay(100);
+
+            ((Frame)sender).BackgroundColor = Color.Transparent;
+        }        
 
         #endregion
     }

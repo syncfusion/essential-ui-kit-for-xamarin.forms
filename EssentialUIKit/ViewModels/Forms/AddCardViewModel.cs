@@ -33,16 +33,7 @@ namespace EssentialUIKit.ViewModels.Forms
         }
 
         #endregion
-
-        #region Command
-
-        /// <summary>
-        /// Gets or sets the command that is executed when the add card button is clicked.
-        /// </summary>
-        public Command AddCardCommand { get; set; }
-
-        #endregion
-
+        
         #region Event
 
         /// <summary>
@@ -140,11 +131,10 @@ namespace EssentialUIKit.ViewModels.Forms
                 this.name = value;
                 this.NotifyPropertyChanged();
             }
-
         }
 
         /// <summary>
-        /// Gets or sets the property that bounds with a checkbox that gets the checked value from user.
+        /// Gets or sets a value indicating whether the item is checked.
         /// </summary>
         public bool IsChecked
         {
@@ -163,8 +153,16 @@ namespace EssentialUIKit.ViewModels.Forms
                 this.isChecked = value;
                 this.NotifyPropertyChanged();
             }
-
         }
+
+        #endregion
+        
+        #region Command
+
+        /// <summary>
+        /// Gets or sets the command that is executed when the add card button is clicked.
+        /// </summary>
+        public Command AddCardCommand { get; set; }
 
         #endregion
 

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Reflection;
+using EssentialUIKit.AppLayout.Models;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
-using EssentialUIKit.AppLayout.Models;
 
 namespace EssentialUIKit.AppLayout.Views
 {
@@ -85,7 +85,6 @@ namespace EssentialUIKit.AppLayout.Views
             var page = (Page)Activator.CreateInstance(assembly.GetType($"EssentialUIKit.{pageURL}"));
 
             TemplateHostView.Template = new NavigationPage(page);
-
         }
 
         private void BackButtonPressed(object sender, EventArgs e)

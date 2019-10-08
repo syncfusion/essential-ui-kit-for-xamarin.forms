@@ -15,7 +15,7 @@ namespace EssentialUIKit.Views.Social
         /// </summary>
         public Styles()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
     }
 }

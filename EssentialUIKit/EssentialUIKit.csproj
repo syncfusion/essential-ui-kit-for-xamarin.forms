@@ -24,7 +24,6 @@
     <PackageReference Include="SkiaSharp.Views.Forms" Version="1.68.0" />
     <PackageReference Include="Syncfusion.Xamarin.Buttons" Version="17.2.0.49" />
     <PackageReference Include="Syncfusion.Xamarin.Cards" Version="17.2.0.49" />
-    <PackageReference Include="Syncfusion.Xamarin.Core" Version="17.2.0.49" />
     <PackageReference Include="Syncfusion.Xamarin.DataSource" Version="17.2.0.49" />
     <PackageReference Include="Syncfusion.Xamarin.GridCommon" Version="17.2.0.49" />
     <PackageReference Include="Syncfusion.Xamarin.SfCalendar" Version="17.2.0.49" />
@@ -32,13 +31,15 @@
     <PackageReference Include="Syncfusion.Xamarin.SfListView" Version="17.2.0.49" />
     <PackageReference Include="Syncfusion.Xamarin.SfMaps" Version="17.2.0.49" />
     <PackageReference Include="Syncfusion.Xamarin.SfParallaxView" Version="17.2.0.49" />
+    <PackageReference Include="Syncfusion.Xamarin.SfProgressBar" Version="17.2.0.49" />
     <PackageReference Include="Syncfusion.Xamarin.SfRating" Version="17.2.0.49" />
     <PackageReference Include="Syncfusion.Xamarin.SfRotator" Version="17.2.0.49" />
     <PackageReference Include="Syncfusion.Xamarin.SfPopupLayout" Version="17.2.0.49" />
     <PackageReference Include="Syncfusion.Xamarin.Expander" Version="17.2.0.49" />
     <PackageReference Include="Syncfusion.Xamarin.SfBadgeView" Version="17.2.0.49" />
     <PackageReference Include="Syncfusion.Xamarin.SfTabView" Version="17.2.0.49" />
-    <PackageReference Include="Xamarin.Forms" Version="4.2.0.709249" />
+    <PackageReference Include="Xamarin.Forms" Version="4.3.0.778476-pre1" />
+    <PackageReference Include="Syncfusion.Xamarin.Core" Version="17.3.0.9-beta" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="AppLayout\Icons\bookmark.png" />
@@ -51,6 +52,8 @@
     <None Remove="AppLayout\Icons\social.png" />
     <None Remove="AppLayout\Icons\transaction.png" />
     <None Remove="AppLayout\TemplateList.xml" />
+    <None Remove="Data\deliverytracking.json" />
+    <None Remove="DataService\trainstatus.json" />
     <None Remove="Data\ecommerce.json" />
     <None Remove="Data\navigation.json" />
     <None Remove="Images\ChooseGradient.svg" />
@@ -90,6 +93,8 @@
     <EmbeddedResource Include="AppLayout\Icons\social.png" />
     <EmbeddedResource Include="AppLayout\Icons\transaction.png" />
     <EmbeddedResource Include="AppLayout\TemplateList.xml" />
+    <EmbeddedResource Include="Data\deliverytracking.json" />
+    <EmbeddedResource Include="Data\trainstatus.json" />
     <EmbeddedResource Include="Data\ecommerce.json" />
     <EmbeddedResource Include="Data\navigation.json" />
     <EmbeddedResource Include="Images\ChooseGradient.svg" />
@@ -119,20 +124,26 @@
     <Compile Update="Views\AboutUs\AboutUsWithParallaxScrollPage.xaml.cs">
       <DependentUpon>AboutUsWithParallaxScrollPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\Article\ArticleListPage.xaml.cs">
+    <Compile Update="Views\Article\MyArticlePage.xaml.cs">
+      <DependentUpon>MyArticlePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Article\ArticleWithCommentsPage.xaml.cs">
+      <DependentUpon>ArticleWithCommentsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Article\Styles.xaml.cs">
+      <DependentUpon>%(Filename)</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Catalog\ArticleListPage.xaml.cs">
       <DependentUpon>ArticleListPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\Article\ArticleTilePage.xaml.cs">
+    <Compile Update="Views\Catalog\ArticleTilePage.xaml.cs">
       <DependentUpon>ArticleTilePage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\Article\BookmarksPage.xaml.cs">
+    <Compile Update="Views\Bookmarks\BookmarksPage.xaml.cs">
       <DependentUpon>BookmarksPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\Article\MasterPage.xaml.cs">
+    <Compile Update="Views\Profile\MasterPage.xaml.cs">
       <DependentUpon>MasterPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Views\Article\AuthorProfilePage.xaml.cs">
-      <DependentUpon>AuthorProfilePage.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\Bookmarks\PriceDetailView.xaml.cs">
       <DependentUpon>%(Filename)</DependentUpon>
@@ -140,14 +151,14 @@
     <Compile Update="Views\Bookmarks\WishlistPage.xaml.cs">
       <DependentUpon>WishlistPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\Catalog\ProductHomePage.xaml.cs">
+      <DependentUpon>ProductHomePage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\Catalog\Styles.xaml.cs">
       <DependentUpon>%(Filename)</DependentUpon>
     </Compile>
-    <Compile Update="Views\Chat\ContactProfilePage.xaml.cs">
+    <Compile Update="Views\Profile\ContactProfilePage.xaml.cs">
       <DependentUpon>ContactProfilePage.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Views\Chat\ProfilePage.xaml.cs">
-      <DependentUpon>ProfilePage.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\ContactUs\Styles.xaml.cs">
       <DependentUpon>%(Filename)</DependentUpon>
@@ -191,11 +202,59 @@
     <Compile Update="Views\History\MyOrdersView.xaml.cs">
       <DependentUpon>MyOrdersView.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\OnBoarding\OnBoardingAnimationPage.xaml.cs">
+      <DependentUpon>OnBoardingAnimationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\OnBoarding\OnBoardingAnimationPage.xaml.cs">
+      <DependentUpon>OnBoardingAnimationPage.xaml</DependentUpon>
+    </Compile>
 	<Compile Update="Views\OnBoarding\Styles.xaml.cs">
       <DependentUpon>%(Filename)</DependentUpon>
     </Compile>
 	<Compile Update="Views\OnBoarding\WalkthroughItemPage.xaml.cs">
 	  <DependentUpon>WalkthroughItemPage.xaml</DependentUpon>
+	</Compile>
+	<Compile Update="Views\Shopping\CartPage.xaml.cs">
+	  <DependentUpon>%(Filename)</DependentUpon>
+	</Compile>
+	<Compile Update="Views\Shopping\CatalogListPage.xaml.cs">
+	  <DependentUpon>%(Filename)</DependentUpon>
+	</Compile>
+	<Compile Update="Views\Shopping\CheckoutPage.xaml.cs">
+	  <DependentUpon>%(Filename)</DependentUpon>
+	</Compile>
+	<Compile Update="Views\Shopping\DeliveryView.xaml.cs">
+	  <DependentUpon>%(Filename)</DependentUpon>
+	</Compile>
+	<Compile Update="Views\Shopping\DetailPage.xaml.cs">
+	  <DependentUpon>%(Filename)</DependentUpon>
+	</Compile>
+	<Compile Update="Views\Shopping\EmailEntry.xaml.cs">
+	  <DependentUpon>%(Filename)</DependentUpon>
+	</Compile>
+	<Compile Update="Views\Shopping\FeedbackView.xaml.cs">
+	  <DependentUpon>%(Filename)</DependentUpon>
+	</Compile>
+	<Compile Update="Views\Shopping\LoginPage.xaml.cs">
+	  <DependentUpon>%(Filename)</DependentUpon>
+	</Compile>
+	<Compile Update="Views\Shopping\OnBoardingAnimationPage.xaml.cs">
+	  <DependentUpon>%(Filename)</DependentUpon>
+	</Compile>
+	<Compile Update="Views\Shopping\PaymentSuccessPage.xaml.cs">
+	  <DependentUpon>%(Filename)</DependentUpon>
+	</Compile>
+	<Compile Update="Views\Shopping\PaymentView.xaml.cs">
+	  <DependentUpon>%(Filename)</DependentUpon>
+	</Compile>
+	<Compile Update="Views\Shopping\PriceDetailView.xaml.cs">
+	  <DependentUpon>%(Filename)</DependentUpon>
+	</Compile>
+	<Compile Update="Views\Shopping\Styles.xaml.cs">
+	  <DependentUpon>%(Filename)</DependentUpon>
+	</Compile>
+	<Compile Update="Views\Shopping\WalkthroughItemPage.xaml.cs">
+	  <DependentUpon>%(Filename)</DependentUpon>
 	</Compile>
 	<Compile Update="Views\Social\Styles.xaml.cs">
 	  <DependentUpon>%(Filename)</DependentUpon>
@@ -230,10 +289,19 @@
     <EmbeddedResource Update="AppLayout\Views\TemplatePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Article\MasterPage.xaml">
+    <EmbeddedResource Update="Views\Article\Styles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Detail\ArticleDetailPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Article\AuthorProfilePage.xaml">
+    <EmbeddedResource Update="Views\Forms\AddProfilePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Profile\ChatProfilePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Profile\MasterPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Bookmarks\PriceDetailView.xaml">
@@ -248,10 +316,7 @@
     <EmbeddedResource Update="Views\Catalog\Styles.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Chat\ContactProfilePage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\Chat\ProfilePage.xaml">
+    <EmbeddedResource Update="Views\Profile\ContactProfilePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\ContactUs\ContactUsPage.xaml">
@@ -287,11 +352,38 @@
     <EmbeddedResource Update="Views\Catalog\CategoryTilePage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\Profile\Styles.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Shopping\CartPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Shopping\CatalogListPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Shopping\CheckoutPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Shopping\DeliveryView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Shopping\FeedbackView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Shopping\PaymentView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Shopping\PriceDetailView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\Transaction\CheckoutPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Transaction\DeliveryPage.xaml">
       <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Catalog\ProductHomePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Transaction\DeliveryView.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -329,7 +421,7 @@
     <EmbeddedResource Update="Views\ErrorAndEmpty\SomethingWentWrongPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Feedback\FeedbackDetailPage.xaml">
+    <EmbeddedResource Update="Views\Detail\FeedbackDetailPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Feedback\FeedbackPage.xaml">
@@ -341,30 +433,12 @@
     <EmbeddedResource Update="Views\Feedback\Styles.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Feedback\Templates\FeedbackTemplate.xaml">
+    <EmbeddedResource Update="Views\Detail\Templates\MobileView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Feedback\Templates\MobileView.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\Feedback\Templates\TabletView.xaml">
+    <EmbeddedResource Update="Views\Detail\Templates\TabletView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
 	</EmbeddedResource>
-	<EmbeddedResource Update="Views\Forms\AddCardPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\Forms\TabbedForm.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\History\MyOrdersPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\History\MyOrdersView.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\History\TransactionHistoryPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Update="Views\Navigation\AlbumPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -386,10 +460,19 @@
 	<EmbeddedResource Update="Views\OnBoarding\OnBoardingGradientPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-	<EmbeddedResource Update="Views\OnBoarding\OnBoaringAnimationPage.xaml">
+	<EmbeddedResource Update="Views\OnBoarding\OnBoardingAnimationPage.xaml">
 	  <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
 	</EmbeddedResource>
 	<EmbeddedResource Update="Views\OnBoarding\WalkthroughItemPage.xaml">
+	  <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+	</EmbeddedResource>
+	<EmbeddedResource Update="Views\Tracking\ProductDeliveryTrackingPage.xaml">
+	  <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+	</EmbeddedResource>
+	<EmbeddedResource Update="Views\Tracking\TrainStatusPage.xaml">
+	  <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+	</EmbeddedResource>
+	<EmbeddedResource Update="Views\Tracking\Styles.xaml">
 	  <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
 	</EmbeddedResource>
 	<EmbeddedResource Update="Views\Transaction\PaymentFailurePage.xaml">
@@ -411,6 +494,9 @@
 	  <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
 	</EmbeddedResource>
 	<EmbeddedResource Update="Views\Social\SocialProfileWithConnectionsPage.xaml">
+	  <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+	</EmbeddedResource>
+	<EmbeddedResource Update="Views\Social\SocialProfileWithInterestsPage.xaml">
 	  <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
 	</EmbeddedResource>
 	<EmbeddedResource Update="Views\Social\Templates\ProfileTemplate.xaml">
@@ -456,24 +542,6 @@
       <Generator>MSBuild:Compile</Generator>
     </None>
     <None Update="Views\AboutUs\Styles.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Update="Views\Article\ArticleListPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Update="Views\Article\ArticleTilePage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Update="Views\Article\BookmarksPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Update="Views\Article\MasterPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Update="Views\Article\ProfilePage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Update="Views\Article\Styles.xaml">
       <Generator>MSBuild:Compile</Generator>
     </None>
     <None Update="Views\Chat\ChatMessage.xaml">
@@ -564,15 +632,6 @@
       <Generator>MSBuild:Compile</Generator>
     </None>
     <None Update="Views\Feedback\Styles.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Update="Views\Feedback\Templates\FeedbackTemplate.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Update="Views\Feedback\Templates\MobileView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Update="Views\Feedback\Templates\TabletView.xaml">
       <Generator>MSBuild:Compile</Generator>
     </None>
     <None Update="Views\Forms\DetailsFormPage.xaml">

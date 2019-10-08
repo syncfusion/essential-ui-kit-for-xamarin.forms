@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="EssentialUIKit.Views.Article.MyArticlePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:behavior="clr-namespace:EssentialUIKit.Behaviors"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:controls="clr-namespace:EssentialUIKit.Controls"
+    xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
+    xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+    xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Article"
+    x:Name="myArticlePage"
+    BackgroundColor="{DynamicResource Gray-White}"
+    NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.BindingContext>
+        <viewModel:MyArticlePageViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.ControlTemplate>
+        <ControlTemplate>
+            <StackLayout>
+
+                <!--  Title View  -->
+                <controls:TitleView Title="My Books" Grid.Row="0">
+                    <controls:TitleView.TrailingView>
+                        <buttons:SfButton
+                            Command="{TemplateBinding BindingContext.SearchCommand}"
+                            CornerRadius="4"
+                            Style="{StaticResource IconButtonStyle}"
+                            Text="{StaticResource Search}" />
+                    </controls:TitleView.TrailingView>
+                </controls:TitleView>
+
+                <ContentPresenter />
+
+            </StackLayout>
+
+        </ControlTemplate>
+    </ContentPage.ControlTemplate>
+
+
+    <ContentPage.Content>
+        <listView:SfListView
+            x:Name="CategoryTile"
+            Padding="8"
+            AutoFitMode="Height"
+            HorizontalOptions="FillAndExpand"
+            ItemSpacing="8"
+            ItemsSource="{Binding ArticleList}"
+            Style="{StaticResource SfListViewStyle}">
+
+            <listView:SfListView.Behaviors>
+                <behavior:SfListViewTapBehavior Command="{Binding Path=BindingContext.ArticleListIteSelectionCommand, Source={x:Reference myArticlePage}}" />
+            </listView:SfListView.Behaviors>
+
+            <listView:SfListView.ItemTemplate>
+                <DataTemplate>
+                    <!--  Category Image  -->
+                    <Image
+                        Aspect="AspectFill"
+                        BackgroundColor="{DynamicResource Gray-200}"
+                        HeightRequest="{OnIdiom Phone=160,
+                                                Tablet=240,
+                                                Desktop=200}"
+                        Source="{Binding ImagePath}"
+                        WidthRequest="{OnIdiom Phone=112,
+                                               Tablet=224,
+                                               Desktop=120}" />
+                </DataTemplate>
+            </listView:SfListView.ItemTemplate>
+
+            <!--  Layout to customize no. of columns in SfListView  -->
+            <listView:SfListView.LayoutManager>
+                <listView:GridLayout SpanCount="{core:OnPlatformOrientationIntValue Desktop=5, PhonePortrait=3, PhoneLandscape=4, TabletPortrait=4, TabletLandscape=5}" />
+            </listView:SfListView.LayoutManager>
+
+        </listView:SfListView>
+    </ContentPage.Content>
+</ContentPage>

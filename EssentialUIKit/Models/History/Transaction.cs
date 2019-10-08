@@ -106,7 +106,7 @@ namespace EssentialUIKit.Models.History
         }
 
         /// <summary>
-        /// Gets or sets the transaction type.
+        /// Gets or sets a value indicating whether the transaction type is credit.
         /// </summary>
         public bool IsCredited
         {

@@ -21,7 +21,7 @@ namespace EssentialUIKit.Models.Navigation
         /// <summary>
         /// Gets or sets the name of an item.
         /// </summary>
-        [DataMember(Name ="itemName")]
+        [DataMember(Name = "itemName")]
         public string ItemName { get; set; }
 
         /// <summary>
@@ -38,11 +38,12 @@ namespace EssentialUIKit.Models.Navigation
         {
             get
             {
-                return App.BaseImageUrl + itemImage;
+                return App.BaseImageUrl + this.itemImage;
             }
+
             set
             {
-                itemImage = value;
+                this.itemImage = value;
             }
         }
 

@@ -15,8 +15,7 @@
     x:Name="wishlistPage"
     Title="Wishlist"
     BackgroundColor="{DynamicResource Gray-100}"
-    NavigationPage.HasNavigationBar="False"
-    Shell.NavBarIsVisible="False">
+    NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -62,9 +61,13 @@
                             <badge:SfBadgeView.BadgeSettings>
                                 <badge:BadgeSetting
                                     BackgroundColor="{DynamicResource PrimaryColor}"
+                                    Stroke="{DynamicResource Gray-White}"
+                                    FontSize="10"
+                                    BadgeAnimation="None"
+                                    StrokeWidth="1"
+                                    BadgeIcon="None"
                                     BadgeType="None"
-                                    FontSize="9"
-                                    Offset="-5,10" />
+                                    Offset="-10,10" />
                             </badge:SfBadgeView.BadgeSettings>
                         </badge:SfBadgeView>
                     </StackLayout>
@@ -117,10 +120,11 @@
                                 HeightRequest="120"
                                 WidthRequest="120">
                                 <Image.Source>
-                                    <UriImageSource Uri="{Binding PreviewImage}" 
-			                                 CacheValidity="14" 
-			                                 CachingEnabled="true"/>
-                                </Image.Source>                                
+                                    <UriImageSource
+                                        CacheValidity="14"
+                                        CachingEnabled="true"
+                                        Uri="{Binding PreviewImage}" />
+                                </Image.Source>
                             </Image>
 
                             <!--  Product name  -->

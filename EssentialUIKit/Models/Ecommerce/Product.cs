@@ -50,9 +50,8 @@ namespace EssentialUIKit.Models.ECommerce
         [DataMember(Name = "previewimage")]
         public string PreviewImage
         {
-            get { return App.BaseImageUrl + previewImage; }
-
-            set { previewImage = value; }
+            get { return App.BaseImageUrl + this.previewImage; }
+            set { this.previewImage = value; }
         }
 
         /// <summary>
@@ -63,15 +62,18 @@ namespace EssentialUIKit.Models.ECommerce
         {
             get
             {
-                for (var i = 0; i < previewImages.Count; i++)
+                for (var i = 0; i < this.previewImages.Count; i++)
                 {
-                    previewImages[i] = previewImages[i].Contains(App.BaseImageUrl) ? previewImages[i] : App.BaseImageUrl + previewImages[i];
+                    this.previewImages[i] = this.previewImages[i].Contains(App.BaseImageUrl) ? this.previewImages[i] : App.BaseImageUrl + this.previewImages[i];
                 }
 
-                return previewImages;
+                return this.previewImages;
             }
 
-            set { previewImages = value; }
+            set
+            {
+                this.previewImages = value;
+            }
         }
 
         /// <summary>
@@ -103,7 +105,10 @@ namespace EssentialUIKit.Models.ECommerce
         /// </summary>
         public double DiscountPrice
         {
-            get { return this.ActualPrice - (this.ActualPrice * (this.DiscountPercent / 100)); }
+            get
+            {
+                return this.ActualPrice - (this.ActualPrice * (this.DiscountPercent / 100));
+            }
         }
 
         /// <summary>
@@ -124,7 +129,11 @@ namespace EssentialUIKit.Models.ECommerce
         [DataMember(Name = "reviews")]
         public ObservableCollection<Review> Reviews
         {
-            get { return reviews; }
+            get
+            {
+                return this.reviews;
+            }
+
             set
             {
                 reviews = value;
@@ -155,8 +164,16 @@ namespace EssentialUIKit.Models.ECommerce
         [DataMember(Name = "isfavourite")]
         public bool IsFavourite
         {
-            get { return this.isFavourite; }
-            set { this.isFavourite = value; this.NotifyPropertyChanged("IsFavourite"); }
+            get
+            {
+                return this.isFavourite;
+            }
+
+            set
+            {
+                this.isFavourite = value;
+                this.NotifyPropertyChanged("IsFavourite");
+            }
         }
 
         /// <summary>
@@ -165,8 +182,16 @@ namespace EssentialUIKit.Models.ECommerce
         [DataMember(Name = "totalquantity")]
         public int TotalQuantity
         {
-            get { return totalQuantity; }
-            set { totalQuantity = value; NotifyPropertyChanged("TotalQuantity"); }
+            get
+            {
+                return this.totalQuantity;
+            }
+
+            set
+            {
+                this.totalQuantity = value;
+                this.NotifyPropertyChanged("TotalQuantity");
+            }
         }
 
         #endregion

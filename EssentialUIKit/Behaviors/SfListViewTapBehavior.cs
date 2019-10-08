@@ -1,8 +1,5 @@
-﻿using Syncfusion.ListView.XForms;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows.Input;
+﻿using System.Windows.Input;
+using Syncfusion.ListView.XForms;
 using Xamarin.Forms;
 
 namespace EssentialUIKit.Behaviors
@@ -40,22 +37,9 @@ namespace EssentialUIKit.Behaviors
         protected override void OnAttachedTo(SfListView bindableListView)
         {
             base.OnAttachedTo(bindableListView);
-            bindableListView.ItemTapped += BindableListView_ItemTapped;
+            bindableListView.ItemTapped += this.BindableListView_ItemTapped;
         }
-
-        /// <summary>
-        /// Invoked when tapping the listview item.
-        /// </summary>
-        /// <param name="sender">The Sender</param>
-        /// <param name="e">ItemTappedEventArgs</param>
-        private void BindableListView_ItemTapped(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
-        {
-            if (this.Command == null)
-                return;
-            if (this.Command.CanExecute(e.ItemData))
-                this.Command.Execute((e.ItemData));
-        }
-
+            
         /// <summary>
         /// Invoked when exit from the page.
         /// </summary>
@@ -63,7 +47,25 @@ namespace EssentialUIKit.Behaviors
         protected override void OnDetachingFrom(SfListView bindableListView)
         {
             base.OnDetachingFrom(bindableListView);
-            bindableListView.ItemTapped -= BindableListView_ItemTapped;
+            bindableListView.ItemTapped -= this.BindableListView_ItemTapped;
+        }
+
+        /// <summary>
+        /// Invoked when tapping the listview item.
+        /// </summary>
+        /// <param name="sender">The Sender</param>
+        /// <param name="e">ItemTapped EventArgs</param>
+        private void BindableListView_ItemTapped(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
+        {
+            if (this.Command == null)
+            {
+                return;
+            }
+
+            if (this.Command.CanExecute(e.ItemData))
+            {
+                this.Command.Execute(e.ItemData);
+            }
         }
 
         #endregion

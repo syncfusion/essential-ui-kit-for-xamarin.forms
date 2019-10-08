@@ -10,7 +10,6 @@ namespace EssentialUIKit.Models.Navigation
     [DataContract]
     public class Album
     {
-
         private string albumImage;
 
         /// <summary>
@@ -22,29 +21,30 @@ namespace EssentialUIKit.Models.Navigation
         /// <summary>
         /// Gets or sets the album image.
         /// </summary>
-        [DataMember(Name ="albumImage")]
+        [DataMember(Name = "albumImage")]
         public string AlbumImage
         {
             get
             {
-                return App.BaseImageUrl + albumImage;
+                return App.BaseImageUrl + this.albumImage;
             }
+
             set
             {
-                albumImage = value;
+                this.albumImage = value;
             }
         }
 
         /// <summary>
         /// Gets the total photos.
         /// </summary>
-        [DataMember(Name ="photosCount")]
+        [DataMember(Name = "photosCount")]
         public string PhotosCount { get; internal set; }
 
         /// <summary>
         /// Gets or sets the category.
         /// </summary>
-        [DataMember(Name ="category")]
+        [DataMember(Name = "category")]
         public string Category { get; set; }
     }
 }

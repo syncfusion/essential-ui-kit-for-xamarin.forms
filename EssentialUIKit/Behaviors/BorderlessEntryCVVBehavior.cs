@@ -1,6 +1,6 @@
-﻿using EssentialUIKit.Controls;
-using System;
+﻿using System;
 using System.Linq;
+using EssentialUIKit.Controls;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 

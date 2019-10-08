@@ -4,9 +4,9 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
 using Syncfusion.ListView.XForms;
+using EssentialUIKit.Models.Catalog;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
-using EssentialUIKit.Models.Catalog;
 
 namespace EssentialUIKit.ViewModels.Catalog
 {

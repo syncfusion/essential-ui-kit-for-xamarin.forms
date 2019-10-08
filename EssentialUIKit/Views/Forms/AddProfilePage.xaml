@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="EssentialUIKit.Views.Forms.AddProfilePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:badge="clr-namespace:Syncfusion.XForms.BadgeView;assembly=Syncfusion.SfBadgeView.XForms"
+    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:control="clr-namespace:EssentialUIKit.Controls"
+    xmlns:converter="clr-namespace:EssentialUIKit.Converters"
+    xmlns:sfavatar="clr-namespace:Syncfusion.XForms.AvatarView;assembly=Syncfusion.Core.XForms"
+    Title="New Contact"
+    BackgroundColor="{DynamicResource Gray-White}"
+    NavigationPage.HasNavigationBar="False">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:BooleanToColorConverter x:Key="ColorConverter" />
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Padding="16" Spacing="16">
+
+                <!--  To display the Avatar with add icon  -->
+                <badge:SfBadgeView
+                    Padding="0"
+                    HeightRequest="90"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    WidthRequest="90">
+                    <badge:SfBadgeView.Content>
+
+                        <!--  Avatar view to display the profile picture  -->
+                        <sfavatar:SfAvatarView
+                            Padding="13"
+                            BackgroundColor="{DynamicResource Gray-200}"
+                            BorderWidth="0"
+                            ContentType="Custom"
+                            CornerRadius="45"
+                            HeightRequest="90"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                            WidthRequest="90">
+                            <sfavatar:SfAvatarView.ImageSource>
+                                <FontImageSource
+                                    FontFamily="{StaticResource FontIcons}"
+                                    Glyph="{StaticResource AvatarIcon}"
+                                    Size="29"
+                                    Color="{DynamicResource Gray-600}" />
+                            </sfavatar:SfAvatarView.ImageSource>
+                        </sfavatar:SfAvatarView>
+                    </badge:SfBadgeView.Content>
+
+                    <!--  Badge setting to display the add icon above the profile picture  -->
+                    <badge:SfBadgeView.BadgeSettings>
+                        <badge:BadgeSetting
+                            BackgroundColor="{DynamicResource Gray-100}"
+                            BadgeAnimation="None"
+                            BadgeIcon="Add"
+                            BadgePosition="BottomRight"
+                            BadgeType="None"
+                            FontSize="15"
+                            Stroke="{DynamicResource Gray-White}"
+                            StrokeWidth="4"
+                            TextColor="{DynamicResource Gray-600}"
+                            TextPadding="7"
+                            Offset="-5,-10" />
+                    </badge:SfBadgeView.BadgeSettings>
+                </badge:SfBadgeView>
+
+                <!--  Displaying the label of Add profile picture below to the badgeview  -->
+                <Label
+                    FontFamily="{DynamicResource Montserrat-Medium}"
+                    FontSize="14"
+                    HorizontalOptions="Center"
+                    Text="Add Profile Picture"
+                    TextColor="{DynamicResource Gray-700}" />
+
+                <!--  First name entry with border  -->
+                <border:SfBorder BorderColor="{Binding Source={x:Reference FirstNameEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}" Style="{StaticResource FormBorderStyle}">
+                    <control:BorderlessEntry
+                        x:Name="FirstNameEntry"
+                        Placeholder="First Name"
+                        Style="{StaticResource EntryTextStyle}" />
+                </border:SfBorder>
+
+                <!--  Last name entry with border  -->
+                <border:SfBorder
+                    Grid.Column="2"
+                    BorderColor="{Binding Source={x:Reference LastNameEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}"
+                    Style="{StaticResource FormBorderStyle}">
+                    <control:BorderlessEntry
+                        x:Name="LastNameEntry"
+                        Placeholder="Last Name"
+                        Style="{StaticResource EntryTextStyle}" />
+                </border:SfBorder>
+
+                <!--  Phone number entry with border  -->
+                <border:SfBorder
+                    Grid.Column="2"
+                    BorderColor="{Binding Source={x:Reference PhoneNoEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}"
+                    Style="{StaticResource FormBorderStyle}">
+                    <control:BorderlessEntry
+                        x:Name="PhoneNoEntry"
+                        Keyboard="Numeric"
+                        Placeholder="Phone Number"
+                        Style="{StaticResource EntryTextStyle}" />
+                </border:SfBorder>
+
+                <buttons:SfButton
+                    Margin="0,16,0,0"
+                    HorizontalOptions="Center"
+                    Style="{StaticResource SfButtonStyle}"
+                    Text="ADD CONTACT"
+                    WidthRequest="200" />
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

@@ -8,8 +8,7 @@
     xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Transaction"
     Title="Payment"
     BackgroundColor="{DynamicResource Gray-100}"
-    NavigationPage.HasNavigationBar="False"
-    Shell.NavBarIsVisible="False">
+    NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Resources>
         <ResourceDictionary>

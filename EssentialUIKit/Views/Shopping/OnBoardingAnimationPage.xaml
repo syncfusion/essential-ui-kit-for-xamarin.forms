@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="EssentialUIKit.Views.Shopping.OnBoardingAnimationPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:behavior="clr-namespace:EssentialUIKit.Behaviors.Shopping"
+    xmlns:button="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
+    xmlns:gradient="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
+    xmlns:rotator="clr-namespace:Syncfusion.SfRotator.XForms;assembly=Syncfusion.SfRotator.XForms"
+    xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Shopping"
+    NavigationPage.HasNavigationBar="False">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <DataTemplate x:Key="ItemTemplate">
+                <ContentPresenter Content="{Binding RotatorItem}" />
+            </DataTemplate>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.BindingContext>
+        <viewModel:OnBoardingAnimationViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <!--  Skip Button  -->
+                <RowDefinition Height="50" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <!--  Gradient view  -->
+            <gradient:SfGradientView Grid.RowSpan="3" Style="{StaticResource CommonSfGradientViewStyle}" />
+
+            <!--  Skip button  -->
+            <button:SfButton
+                x:Name="SkipButton"
+                Grid.Row="0"
+                Margin="{core:OnPlatformOrientationThickness AndroidPhonePortrait='0,10,10,0',
+                                                             AndroidPhoneLandscape='0,10,10,0',
+                                                             iOSPhonePortrait='0,20,10,0',
+                                                             iOSPhoneLandscape='0,10,10,0'}"
+                BackgroundColor="Transparent"
+                Command="{Binding SkipCommand}"
+                CornerRadius="20"
+                FontFamily="{StaticResource Montserrat-SemiBold}"
+                HeightRequest="40"
+                HorizontalOptions="End"
+                IsVisible="{Binding IsSkipButtonVisible}"
+                Text="Skip"
+                TextColor="{x:StaticResource Gray-White}"
+                VerticalOptions="StartAndExpand"
+                WidthRequest="80" />
+
+            <!--  Rotator used to navigate the view  -->
+            <rotator:SfRotator
+                x:Name="Rotator"
+                Grid.Row="1"
+                Margin="{x:OnIdiom Phone='15,0,15,0',
+                                   Desktop='0',
+                                   Tablet='0'}"
+                BackgroundColor="Transparent"
+                DotPlacement="None"
+                EnableLooping="False"
+                EnableSwiping="True"
+                HorizontalOptions="FillAndExpand"
+                ItemTemplate="{StaticResource ItemTemplate}"
+                ItemsSource="{Binding Boardings}"
+                NavigationDirection="Horizontal"
+                SelectedIndex="{Binding SelectedIndex, Mode=TwoWay}"
+                VerticalOptions="CenterAndExpand"
+                WidthRequest="{core:OnPlatformOrientationDoubleValue Default=400,
+                                                                     AndroidPhonePortrait=400,
+                                                                     AndroidPhoneLandscape=200,
+                                                                     iOSPhonePortrait=400,
+                                                                     iOSPhoneLandscape=200}">
+                <rotator:SfRotator.Behaviors>
+                    <behavior:SfRotatorBehavior />
+                </rotator:SfRotator.Behaviors>
+            </rotator:SfRotator>
+
+            <!--  Next button  -->
+            <button:SfButton
+                x:Name="NextButtonText"
+                Grid.Row="2"
+                Command="{Binding NextCommand}"
+                CommandParameter="{x:Reference Rotator}"
+                Style="{StaticResource OnboardingSfButtonStyle}"
+                Text="{Binding NextButtonText}" />
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

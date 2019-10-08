@@ -3,9 +3,9 @@ using System.IO;
 using System.Runtime.CompilerServices;
 using System.Web;
 using System.Xml.Serialization;
+using EssentialUIKit.AppLayout.Models;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
-using EssentialUIKit.AppLayout.Models;
 
 namespace EssentialUIKit.AppLayout.ViewModels
 {
@@ -32,7 +32,7 @@ namespace EssentialUIKit.AppLayout.ViewModels
         #region Public Properties
 
         /// <summary>
-        /// Gets or sets the query data.
+        /// Sets the query data.
         /// </summary>
         public string QueryData
         {
@@ -57,7 +57,11 @@ namespace EssentialUIKit.AppLayout.ViewModels
             get => this.selectedCategory;
             set
             {
-                if (Equals(value, this.selectedCategory)) return;
+                if (TemplatePageViewModel.Equals(value, this.selectedCategory))
+                {
+                    return;
+                }
+
                 this.selectedCategory = value;
                 this.OnPropertyChanged();
             }

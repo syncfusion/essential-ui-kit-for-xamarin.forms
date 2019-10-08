@@ -1,5 +1,5 @@
-﻿using EssentialUIKit.Controls;
-using System;
+﻿using System;
+using EssentialUIKit.Controls;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 

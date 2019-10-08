@@ -10,8 +10,7 @@
     xmlns:local="clr-namespace:EssentialUIKit.Views.Social.Templates"
     xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Social"
     BackgroundColor="{DynamicResource Gray-White}"
-    NavigationPage.HasNavigationBar="False"
-    Shell.NavBarIsVisible="False">
+    NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -28,7 +27,7 @@
 
     <ContentPage.Content>
         <ScrollView>
-            <Grid Margin="16,16,0,0" RowSpacing="0" ColumnSpacing="0">
+            <Grid Margin="0,16,0,0" RowSpacing="0" ColumnSpacing="0">
 
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
@@ -48,7 +47,7 @@
                 <border:SfBorder
                     Grid.Row="0"
                     Grid.Column="0"
-                    Margin="0,0,0,24"
+                    Margin="16,0,0,24"
                     BackgroundColor="{DynamicResource Gray-100}"
                     BorderColor="White"
                     BorderWidth="2"
@@ -179,7 +178,7 @@
                     Grid.ColumnSpan="2"
                     Text="About" 
                     FontSize="14"                     
-                    Margin="0,0,0,4" 
+                    Margin="16,0,0,4" 
                     Style="{StaticResource TitleLabelStyle}"/>
 
                 <!--  About label  -->
@@ -190,7 +189,7 @@
                     FontSize="12" 
                     FontFamily="{StaticResource Montserrat-Medium}"
                     LineHeight="{OnPlatform Default=-1, Android=1.5}"
-                    Margin="0,0,16,24" 
+                    Margin="16,0,16,24" 
                     HorizontalOptions="Start" 
                     HorizontalTextAlignment="Start" 
                     TextColor="{DynamicResource Gray-700}" />
@@ -201,7 +200,7 @@
                     Grid.ColumnSpan="2"
                     Text="CONNECTIONS"
                     FontSize="12"                     
-                    Margin="0" 
+                    Margin="16,0,0,0" 
                     Style="{StaticResource TitleLabelStyle}"/>              
 
                     <listView:SfListView
@@ -255,13 +254,13 @@
                     Grid.ColumnSpan="2"
                     Text="PHOTOS"
                     FontSize="12"                     
-                    Margin="0,0,0,16" 
+                    Margin="16,0,0,16" 
                     Style="{StaticResource TitleLabelStyle}"/>
 
                 <listView:SfListView
                     Grid.Row="6"
                     Grid.ColumnSpan="2"
-                    Margin="0,0,0,16"
+                    Margin="16,0,0,16"
                     Padding="0,0,16,0"
                     AutoFitMode="Height"
                     IsScrollBarVisible="False"

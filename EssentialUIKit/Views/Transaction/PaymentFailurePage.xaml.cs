@@ -9,14 +9,14 @@ namespace EssentialUIKit.Views.Transaction
     /// </summary>
     [Preserve(AllMembers = true)]
     [XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class PaymentFailurePage : ContentPage
-	{
+    public partial class PaymentFailurePage : ContentPage
+    {
         /// <summary>
         /// Initializes a new instance of the <see cref="PaymentFailurePage" /> class.
         /// </summary>
-		public PaymentFailurePage ()
-		{
-			InitializeComponent ();
-		}
-	}
+        public PaymentFailurePage()
+        {
+            InitializeComponent();
+        }
+    }
 }

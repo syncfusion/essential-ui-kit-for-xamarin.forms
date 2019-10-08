@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
+using EssentialUIKit.Models.Chat;
 using Syncfusion.ListView.XForms;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
-using EssentialUIKit.Models.Chat;
 
 namespace EssentialUIKit.Controls
 {
@@ -88,7 +88,7 @@ namespace EssentialUIKit.Controls
             this.SelectionBackgroundColor = (Color)retVal;
             await Task.Delay(100);
             this.SelectionBackgroundColor = Color.Transparent;
-            SelectedItems.Clear();
+            this.SelectedItems.Clear();
         }
 
         /// <summary>

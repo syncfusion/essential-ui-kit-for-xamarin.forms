@@ -4,7 +4,6 @@
              xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
              x:Class="EssentialUIKit.Views.Navigation.SettingsPage" 
              BackgroundColor="{DynamicResource Gray-White}"
-             Shell.NavBarIsVisible="False"
              NavigationPage.HasNavigationBar="False">
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -30,7 +29,8 @@
           <Label Grid.Row="0"
                   FontFamily="{StaticResource Montserrat-Medium}"
                   FontSize="16"
-                  HeightRequest="48"
+                  Margin="0,4,0,0"
+                  HeightRequest="45"  
                   VerticalTextAlignment="Center"
                   HorizontalOptions="CenterAndExpand"
                   LineHeight="{OnPlatform Android=1.5,
@@ -41,7 +41,7 @@
 
           <BoxView Grid.Row="1" Style="{StaticResource BoxViewStyle}" />
 
-          <Label Grid.Row="2" Style="{StaticResource SettingsLabelStyle}" Text="Back up automatically"/>
+          <Label Grid.Row="2" Style="{StaticResource SettingsLabelStyle}" Text="Backup automatically"/>
 
           <buttons:SfSwitch Grid.Row="2"
                       HorizontalOptions="EndAndExpand"

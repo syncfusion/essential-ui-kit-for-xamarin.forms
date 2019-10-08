@@ -24,9 +24,8 @@ namespace EssentialUIKit.Models.History
         [DataMember(Name = "productimage")]
         public string ProductImage
         {
-            get { return App.BaseImageUrl + productImage; }
-
-            set { productImage = value; }
+            get { return App.BaseImageUrl + this.productImage; }
+            set { this.productImage = value; }
         }
 
         /// <summary>
@@ -54,6 +53,5 @@ namespace EssentialUIKit.Models.History
         public string OrderID { get; set; }
 
         #endregion
-
     }
 }

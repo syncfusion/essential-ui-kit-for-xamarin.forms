@@ -1,6 +1,6 @@
-﻿using EssentialUIKit.ViewModels.Navigation;
-using System.Reflection;
+﻿using System.Reflection;
 using System.Runtime.Serialization.Json;
+using EssentialUIKit.ViewModels.Navigation;
 
 namespace EssentialUIKit.DataService
 {

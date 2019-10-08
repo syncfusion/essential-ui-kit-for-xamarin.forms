@@ -1,0 +1,28 @@
+{
+  "productname": "Women's cotton skirt",
+  "productimage": "Image1.png",
+  "description": "Delivery expected on 10 Aug 2019.",
+  "orderid": "83533963",
+  "productdeliverytrackings": [
+    {
+      "title": "Ordered and Approved",
+      "titlestatus": "Your order has been placed.",
+      "date": "Sat, 27th Oct 2018 - 10:40pm",
+      "orderstatus": "Seller has processed your order.",
+      "orderdate": "Sun, 28th Oct 2018 - 11:13am"
+    },
+    {
+      "title": "Packed",
+      "titlestatus": "Your item has been picked up by courier partner.",
+      "date": "Tue, 30th Oct 2018 - 9:24pm",
+      "progressvalue": "100",
+      "stepstatus": "InProgress"
+    },
+    {
+      "title": "Shipped"
+    },
+    {
+      "title": "Delivered"
+    }
+  ]
+}

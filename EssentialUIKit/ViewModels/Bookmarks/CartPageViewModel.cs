@@ -1,9 +1,9 @@
-﻿using System.Collections.ObjectModel;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using EssentialUIKit.Models.Bookmarks;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
-using EssentialUIKit.Models.Bookmarks;
 using System.Runtime.Serialization;
 
 namespace EssentialUIKit.ViewModels.Bookmarks
@@ -157,6 +157,7 @@ namespace EssentialUIKit.ViewModels.Bookmarks
             {
                 return this.produts;
             }
+
             set
             {
                 if (this.produts == value)
@@ -165,8 +166,8 @@ namespace EssentialUIKit.ViewModels.Bookmarks
                 }
                 this.produts = value;
                 this.NotifyPropertyChanged();
-                GetProducts(Products);
-                UpdatePrice();
+                this.GetProducts(Products);
+                this.UpdatePrice();
             }
         }
 
@@ -295,17 +296,24 @@ namespace EssentialUIKit.ViewModels.Bookmarks
         {
             if (obj is CartProduct product)
             {
-                CartDetails.Remove(product);
+                this.CartDetails.Remove(product);
+                this.UpdatePrice();
             }
         }
 
         /// <summary>
         /// Invoked when the quantity is selected.
         /// </summary>
-        /// <param name="obj">The Object</param>
-        private void QuantitySelected(object obj)
+        /// <param name="selectedItem">The Object</param>
+        private void QuantitySelected(object selectedItem)
         {
-            // Do something
+            //Incident - 249030 - Issue in ComboBox Slection changed event.
+
+            //var item = selectedItem as CartProduct;
+
+            //this.UpdatePrice();
+            //item.ActualPrice = item.ActualPrice * item.TotalQuantity;
+            //item.DiscountPrice = item.DiscountPrice * item.TotalQuantity;
         }
 
         /// <summary>
@@ -329,7 +337,7 @@ namespace EssentialUIKit.ViewModels.Bookmarks
         /// <summary>
         /// This method is used to get the products from json.
         /// </summary>
-        /// <param name="Products"></param>
+        /// <param name="Products">The Products</param>
         private void GetProducts(ObservableCollection<CartProduct> Products)
         {
             this.CartDetails = new ObservableCollection<CartProduct>();
@@ -342,7 +350,7 @@ namespace EssentialUIKit.ViewModels.Bookmarks
         /// </summary>
         private void UpdatePrice()
         {
-            ResetPriceValue();
+            this.ResetPriceValue();
 
             if (this.CartDetails != null && this.CartDetails.Count > 0)
             {

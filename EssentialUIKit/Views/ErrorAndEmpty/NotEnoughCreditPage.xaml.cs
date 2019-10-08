@@ -16,7 +16,7 @@ namespace EssentialUIKit.Views.ErrorAndEmpty
         /// </summary>
         public NotEnoughCreditPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         /// <summary>

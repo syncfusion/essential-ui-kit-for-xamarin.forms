@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Runtime.Serialization;
+using EssentialUIKit.Models.Navigation;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
-using EssentialUIKit.Models.Navigation;
-using System.Runtime.Serialization;
 
 namespace EssentialUIKit.ViewModels.Navigation
 {
@@ -28,6 +27,23 @@ namespace EssentialUIKit.ViewModels.Navigation
 
         #endregion
 
+        #region Constructor
+
+        public AlbumViewModel()
+        {
+        }
+
+        #endregion
+
+        #region Event
+
+        /// <summary>
+        /// The declaration of the property changed event.
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        #endregion
+
         #region Properties
 
         /// <summary>
@@ -36,7 +52,10 @@ namespace EssentialUIKit.ViewModels.Navigation
         [DataMember(Name = "albumInfos")]
         public ObservableCollection<Album> AlbumInfo
         {
-            get { return this.albumInfo; }
+            get
+            {
+                return this.albumInfo;
+            }
 
             set
             {
@@ -52,28 +71,10 @@ namespace EssentialUIKit.ViewModels.Navigation
 
         #endregion
 
-        #region Constructor
-
-        public AlbumViewModel()
-        {
-            
-        }
-
-        #endregion
-
-        #region Event
-
-        /// <summary>
-        /// The declaration of the property changed event.
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        #endregion
-
         #region Command
 
         /// <summary>
-        /// Gets or sets the command that is executed when the Add button is clicked.
+        /// Gets the command that is executed when the Add button is clicked.
         /// </summary>
         public Command AddCommand
         {
@@ -84,7 +85,7 @@ namespace EssentialUIKit.ViewModels.Navigation
         }
 
         /// <summary>
-        /// Gets or sets the command that is executed when the View all button is clicked.
+        /// Gets the command that is executed when the View all button is clicked.
         /// </summary>
         public Command ViewAllCommand
         {
@@ -92,7 +93,7 @@ namespace EssentialUIKit.ViewModels.Navigation
         }
 
         /// <summary>
-        /// Gets or sets the image tap command.
+        /// Gets the image tap command.
         /// </summary>
         public Command ImageTapCommand
         {

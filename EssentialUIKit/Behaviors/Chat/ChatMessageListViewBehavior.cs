@@ -48,10 +48,9 @@ namespace EssentialUIKit.Behaviors.Chat
         /// </summary>
         /// <param name="sender">The SfListView</param>
         /// <param name="e">Collection changed Event Args</param>
-        private void DataSource_SourceCollectionChanged(object sender,
-            System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        private void DataSource_SourceCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            ((LinearLayout) this.listView.LayoutManager).ScrollToRowIndex(
+            ((LinearLayout)this.listView.LayoutManager).ScrollToRowIndex(
                 this.listView.DataSource.DisplayItems.Count - 1, Syncfusion.ListView.XForms.ScrollToPosition.End, true);
         }
 
@@ -62,10 +61,10 @@ namespace EssentialUIKit.Behaviors.Chat
         /// <param name="e">ListView Loaded Event Args</param>
         private void ListView_Loaded(object sender, ListViewLoadedEventArgs e)
         {
-            ScrollView scrollView = listView.Parent as ScrollView;
-            listView.HeightRequest = scrollView.Height;
+            ScrollView scrollView = this.listView.Parent as ScrollView;
+            this.listView.HeightRequest = scrollView.Height;
 
-            ((LinearLayout) this.listView.LayoutManager).ScrollToRowIndex(
+            ((LinearLayout)this.listView.LayoutManager).ScrollToRowIndex(
                 this.listView.DataSource.DisplayItems.Count - 1, Syncfusion.ListView.XForms.ScrollToPosition.End, true);
         }
 

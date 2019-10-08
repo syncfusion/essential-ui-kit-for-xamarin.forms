@@ -5,8 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
     xmlns:svg="clr-namespace:EssentialUIKit.Controls"
-    NavigationPage.HasNavigationBar="False"
-    Shell.NavBarIsVisible="False">
+    NavigationPage.HasNavigationBar="False">
     <ContentView.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -28,7 +27,8 @@
                                                                       AndroidPhoneLandscape=140,
                                                                       iOSPhonePortrait=200,
                                                                       iOSPhoneLandscape=140}"
-                Opacity="0"
+                Opacity="{OnPlatform Default=0,
+                                     UWP=1}"
                 Source="{Binding ImagePath}"
                 VerticalOptions="Center"
                 WidthRequest="{x:OnIdiom Phone=200,
@@ -42,10 +42,12 @@
                 FontSize="14"
                 HorizontalOptions="Center"
                 HorizontalTextAlignment="Center"
-                Opacity="0"
+                Opacity="{OnPlatform Default=0,
+                                     UWP=1}"
                 Style="{StaticResource LabelStyle}"
                 Text="{Binding Header}"
-                TranslationY="60"
+                TranslationY="{OnPlatform Default=60,
+                                          UWP=0}"
                 VerticalTextAlignment="Center" />
 
             <!--  Label to display content  -->
@@ -53,9 +55,12 @@
                 FontFamily="{StaticResource Montserrat-Medium}"
                 FontSize="16"
                 HorizontalOptions="Center"
-                Opacity="0"
+                Opacity="{OnPlatform Default=0,
+                                     UWP=1}"
                 Style="{StaticResource LabelStyle}"
-                Text="{Binding Content}" />
+                Text="{Binding Content}"
+                TranslationY="{OnPlatform Default=60,
+                                          UWP=0}" />
 
         </StackLayout>
     </ContentView.Content>

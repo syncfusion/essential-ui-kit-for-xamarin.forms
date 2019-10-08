@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Globalization;
+using EssentialUIKit.Models.Chat;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
-using EssentialUIKit.Models.Chat;
 
 namespace EssentialUIKit.Converters
 {
@@ -25,17 +25,17 @@ namespace EssentialUIKit.Converters
             object messageType;
             var bindingContext = (parameter as Label)?.BindingContext;
 
-            switch ((string) value)
+            switch ((string)value)
             {
                 case "Contact":
                     messageType = "John Deo Sync";
                     break;
                 case "Text":                   
-                    var message = bindingContext != null ? ((ChatDetail) bindingContext).Message : string.Empty;                    
+                    var message = bindingContext != null ? ((ChatDetail)bindingContext).Message : string.Empty;                    
                     messageType = message;
                     break;
                 default:
-                    messageType = (string) value;
+                    messageType = (string)value;
                     break;
             }
 

@@ -15,7 +15,6 @@
     x:Name="catalogListPage"
     Title="Catalog List page"
     NavigationPage.HasNavigationBar="False"
-    Shell.NavBarIsVisible="False"
     Style="{StaticResource ContentPageStyle}">
 
     <ContentPage.Behaviors>

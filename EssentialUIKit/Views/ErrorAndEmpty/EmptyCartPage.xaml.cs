@@ -16,7 +16,7 @@ namespace EssentialUIKit.Views.ErrorAndEmpty
         /// </summary>
         public EmptyCartPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         /// <summary>

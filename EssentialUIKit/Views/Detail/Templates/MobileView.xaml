@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="EssentialUIKit.Views.Detail.Templates.MobileView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+    xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
+    xmlns:rating="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms"
+    BackgroundColor="{DynamicResource Gray-White}">
+
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentView.Resources>
+
+    <ContentView.Content>
+        <Grid>
+
+            <!--  Product Image  -->
+            <Image
+                x:Name="ProductImage"
+                Aspect="{core:OnPlatformOrientationAspect PhonePortrait=AspectFill,
+                                                          PhoneLandscape=AspectFit}"
+                BackgroundColor="{DynamicResource Gray-200}" />
+
+            <Grid VerticalOptions="EndAndExpand">
+                <BoxView BackgroundColor="{DynamicResource Gray-Black}" Opacity="0.7" />
+
+                <Grid
+                    Padding="16"
+                    ColumnSpacing="16"
+                    RowSpacing="8"
+                    VerticalOptions="EndAndExpand">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <!--  Profile Image  -->
+                    <border:SfBorder
+                        BorderWidth="0"
+                        CornerRadius="24"
+                        HeightRequest="48"
+                        Style="{StaticResource CommonSfBorderStyle}"
+                        WidthRequest="48">
+                        <Image x:Name="ProfileImage" BackgroundColor="{DynamicResource Gray-200}" />
+                    </border:SfBorder>
+
+                    <StackLayout
+                        Grid.Column="1"
+                        Orientation="Horizontal"
+                        VerticalOptions="Center">
+
+                        <StackLayout Spacing="0" VerticalOptions="Start">
+                            <!--  Customer Name  -->
+                            <Label
+                                FontFamily="{StaticResource Montserrat-SemiBold}"
+                                FontSize="16"
+                                Style="{StaticResource CommonLabelStyle}"
+                                Text="Jane Deo"
+                                TextColor="{DynamicResource Gray-White}" />
+
+                            <!--  Commented Date  -->
+                            <Label
+                                FontFamily="{StaticResource Montserrat-Regular}"
+                                FontSize="12"
+                                Style="{StaticResource CommonLabelStyle}"
+                                Text="29 Dec, 2018"
+                                TextColor="{DynamicResource Gray-White}" />
+
+                        </StackLayout>
+
+                        <!--  Product Rating  -->
+                        <rating:SfRating
+                            HorizontalOptions="EndAndExpand"
+                            RatingSettings="{StaticResource CommonRatingSettings}"
+                            Style="{StaticResource CommonSfRatingStyle}"
+                            VerticalOptions="Start"
+                            Value="5" />
+
+                    </StackLayout>
+
+                    <!--  Product Review  -->
+                    <Label
+                        Grid.Row="1"
+                        Grid.ColumnSpan="2"
+                        FontFamily="{StaticResource Montserrat-Medium}"
+                        FontSize="14"
+                        Style="{StaticResource CommonLabelStyle}"
+                        Text="These boots are stunning and I look stunning in them."
+                        TextColor="{DynamicResource Gray-White}" />
+
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ProfileCommand}" CommandParameter="{Binding .}" />
+                    </Grid.GestureRecognizers>
+                </Grid>
+
+            </Grid>
+        </Grid>
+    </ContentView.Content>
+</ContentView>

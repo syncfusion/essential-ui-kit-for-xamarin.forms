@@ -1,9 +1,9 @@
-﻿using Foundation;
+﻿using EssentialUIKit.AppLayout.Controls;
+using EssentialUIKit.iOS;
+using Foundation;
 using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
-using EssentialUIKit.AppLayout.Controls;
-using EssentialUIKit.iOS;
 
 [assembly: ExportRenderer(typeof(ParallaxListView), typeof(ParallaxListViewRenderer))]
 

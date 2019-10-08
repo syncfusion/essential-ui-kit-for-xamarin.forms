@@ -1,10 +1,9 @@
 ﻿using Android.Content;
 using Android.Widget;
-using Xamarin.Forms;
-using Xamarin.Forms.Platform.Android;
 using EssentialUIKit.AppLayout.Controls;
 using EssentialUIKit.Droid.Renderers;
-using View = Android.Views.View;
+using Xamarin.Forms;
+using Xamarin.Forms.Platform.Android;
 
 [assembly: ExportRenderer(typeof(TemplateHostView), typeof(TemplateHostViewRenderer))]
 
@@ -43,7 +42,7 @@ namespace EssentialUIKit.Droid.Renderers
             if (this.Control != null && this.Control.Handle != System.IntPtr.Zero)
             {
                 var supportFragmentManager = (this.Control.Context as Android.Support.V4.App.FragmentActivity).SupportFragmentManager;
-                supportFragmentManager?.BeginTransaction().Remove(supportFragmentManager.Fragments[2]).Commit();
+                supportFragmentManager?.BeginTransaction().Remove(supportFragmentManager.Fragments[supportFragmentManager.Fragments.Count - 1]).Commit();
 
                 this.Control?.RemoveFromParent();
             }

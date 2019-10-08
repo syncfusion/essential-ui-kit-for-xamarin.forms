@@ -12,6 +12,9 @@ namespace EssentialUIKit.Models.Article
     {
         #region Fields
 
+        /// <summary>
+        /// Gets or sets a value indicating whether the article is bookmarked
+        /// </summary>
         private bool isBookmarked;
 
         #endregion
@@ -55,10 +58,10 @@ namespace EssentialUIKit.Models.Article
         /// <summary>
         /// Gets or sets the article description
         /// </summary>
-        public string Description{ get; set; }
+        public string Description { get; set; }
 
         /// <summary>
-        /// Gets or sets the property that has been bound with view, which displays the bookmark icon.
+        /// Gets or sets a value indicating whether the article is bookmarked.
         /// </summary>
         public bool IsBookmarked
         {
@@ -66,6 +69,7 @@ namespace EssentialUIKit.Models.Article
             {
                 return this.isBookmarked;
             }
+
             set
             {
                 this.isBookmarked = value;

@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Runtime.Serialization;
-using System.Text;
 
 namespace EssentialUIKit.Models.Navigation
 {
@@ -25,24 +23,24 @@ namespace EssentialUIKit.Models.Navigation
         /// Gets or sets the image URL.
         /// </summary>
         /// <value>The image URL.</value>
-        [DataMember(Name="imageURL")]
+        [DataMember(Name = "imageURL")]
         public string ImageURL
         {
             get
             {
-                return App.BaseImageUrl + imageURL;
+                return App.BaseImageUrl + this.imageURL;
             }
+
             set
             {
-                imageURL = value;
+                this.imageURL = value;
             }
         }
 
         /// <summary>
         /// Gets or sets the updated date.
         /// </summary>
-        /// <value>The updated date.</value>
-        [DataMember(Name ="updatedDate")]
+        [DataMember(Name = "updatedDate")]
         public string Date { get; set; }
 
         /// <summary>
@@ -53,14 +51,15 @@ namespace EssentialUIKit.Models.Navigation
         {
             get
             {
-                var date = Convert.ToDateTime(Date);
+                var date = Convert.ToDateTime(this.Date);
                 return DateTime.MinValue != date
                      ? date
-                     : updatedDate;
+                     : this.updatedDate;
             }
+
             set
             {
-                updatedDate = value;
+                this.updatedDate = value;
             }
         }
 
