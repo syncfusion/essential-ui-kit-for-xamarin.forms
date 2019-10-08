@@ -9,11 +9,11 @@ namespace EssentialUIKit.Views.History
     /// </summary>
     [Preserve(AllMembers = true)]
     [XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class TransactionHistoryPage : ContentPage
-	{
-		public TransactionHistoryPage ()
-		{
-			InitializeComponent ();
-		}
-	}
+    public partial class TransactionHistoryPage : ContentPage
+    {
+        public TransactionHistoryPage()
+        {
+            InitializeComponent();
+        }
+    }
 }

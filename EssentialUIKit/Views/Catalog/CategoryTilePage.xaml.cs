@@ -1,6 +1,6 @@
+using EssentialUIKit.DataService;
 using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
-using EssentialUIKit.DataService;
 
 namespace EssentialUIKit.Views.Catalog
 {
@@ -16,7 +16,7 @@ namespace EssentialUIKit.Views.Catalog
         /// </summary>
         public CategoryTilePage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
             this.BindingContext = CategoryDataService.Instance.CategoryPageViewModel;
         }
     }

@@ -9,6 +9,7 @@
 
     <!--  Font Icon Text  -->
     <x:String x:Key="Add">&#xe730;</x:String>
+    <x:String x:Key="Settings">&#xe72b;</x:String>
 
     <!--Common shadow frame style-->
     <Style x:Key="ShadowFrameStyle" TargetType="control:CustomShadowFrame">

@@ -1,8 +1,8 @@
-﻿using EssentialUIKit.Models.Bookmarks;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
+using EssentialUIKit.Models.Bookmarks;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 
@@ -27,11 +27,11 @@ namespace EssentialUIKit.ViewModels.Bookmarks
 
         private double percent;
 
-        private string cartItemCount;
+        private int? cartItemCount = null;
 
         private ObservableCollection<Product> produts;
 
-        public Command cardItemCommand;
+        private Command cardItemCommand;
 
         private Command addToCartCommand;
 
@@ -143,12 +143,13 @@ namespace EssentialUIKit.ViewModels.Bookmarks
         /// <summary>
         /// Gets or sets the property that has been bound with view, which displays the cart items count.
         /// </summary>
-        public string CartItemCount
+        public int? CartItemCount
         {
             get
             {
                 return this.cartItemCount;
             }
+
             set
             {
                 this.cartItemCount = value;
@@ -159,7 +160,6 @@ namespace EssentialUIKit.ViewModels.Bookmarks
         /// <summary>
         /// Gets or sets the property that has been bound with list view, which displays the collection of products from json.
         /// </summary>
-
         [DataMember(Name = "products")]
         public ObservableCollection<Product> Products
         {
@@ -167,16 +167,18 @@ namespace EssentialUIKit.ViewModels.Bookmarks
             {
                 return this.produts;
             }
+
             set
             {
                 if (this.produts == value)
                 {
                     return;
                 }
+
                 this.produts = value;
                 this.NotifyPropertyChanged();
-                GetProducts(Products);
-                UpdatePrice();
+                this.GetProducts(this.Products);
+                this.UpdatePrice();
             }
         }
 
@@ -185,35 +187,47 @@ namespace EssentialUIKit.ViewModels.Bookmarks
         #region Command
 
         /// <summary>
-        /// Gets or sets the command will be executed when the cart button has been clicked.
+        /// Gets the command will be executed when the cart button has been clicked.
         /// </summary>
         public Command CardItemCommand
         {
-            get { return this.cardItemCommand ?? (this.cardItemCommand = new Command(this.CartClicked)); }
+            get
+            {
+                return this.cardItemCommand ?? (this.cardItemCommand = new Command(this.CartClicked));
+            }
         }
 
         /// <summary>
-        /// Gets or sets the command that will be executed when the AddToCart button is clicked.
+        /// Gets the command that will be executed when the AddToCart button is clicked.
         /// </summary>
         public Command AddToCartCommand
         {
-            get { return this.addToCartCommand ?? (this.addToCartCommand = new Command(this.AddToCartClicked)); }
+            get
+            {
+                return this.addToCartCommand ?? (this.addToCartCommand = new Command(this.AddToCartClicked));
+            }
         }
 
         /// <summary>
-        /// Gets or sets the command that will be executed when the Remove button is clicked.
+        /// Gets the command that will be executed when the Remove button is clicked.
         /// </summary>
         public Command DeleteCommand
         {
-            get { return this.deleteCommand ?? (this.deleteCommand = new Command(this.DeleteClicked)); }
+            get
+            {
+                return this.deleteCommand ?? (this.deleteCommand = new Command(this.DeleteClicked));
+            }
         }
 
         /// <summary>
-        /// Gets or sets the command that will be executed when the quantity is selected.
+        /// Gets the command that will be executed when the quantity is selected.
         /// </summary>
         public Command QuantitySelectedCommand
         {
-            get { return this.quantitySelectedCommand ?? (this.quantitySelectedCommand = new Command(this.QuantitySelected)); }
+            get
+            {
+                return this.quantitySelectedCommand ?? (this.quantitySelectedCommand = new Command(this.QuantitySelected));
+            }
         }
 
         #endregion
@@ -232,7 +246,7 @@ namespace EssentialUIKit.ViewModels.Bookmarks
         /// <summary>
         /// Invoked when cart button is clicked.
         /// </summary>
-        /// <param name="obj"></param>
+        /// <param name="obj">The Object</param>
         private void CartClicked(object obj)
         {
             // Do something
@@ -244,7 +258,8 @@ namespace EssentialUIKit.ViewModels.Bookmarks
         /// <param name="obj">The Object</param>
         private void AddToCartClicked(object obj)
         {
-            // Do something
+            this.cartItemCount = this.cartItemCount ?? 0;
+            this.CartItemCount += 1;
         }
 
         /// <summary>
@@ -253,28 +268,37 @@ namespace EssentialUIKit.ViewModels.Bookmarks
         /// <param name="obj">The Object</param>
         private void DeleteClicked(object obj)
         {
-            if (WishlistDetails.Count > 0)
+            if (this.WishlistDetails.Count > 0)
+            {
                 this.WishlistDetails.Remove(obj as Product);
+            }
         }
 
         /// <summary>
         /// Invoked when the quantity is selected.
         /// </summary>
-        /// <param name="obj">The Object</param>
-        private void QuantitySelected(object obj)
+        /// <param name="selectedItem">The Object</param>
+        private void QuantitySelected(object selectedItem)
         {
-            // Do something
+            // Incident - 249030 - Issue in ComboBox Slection changed event.
+
+            // var item = selectedItem as Product;
+            // this.UpdatePrice();
+            // item.ActualPrice = item.ActualPrice * item.TotalQuantity;
+            // item.DiscountPrice = item.DiscountPrice * item.TotalQuantity;
         }
 
         /// <summary>
         /// This method is used to get the products from json.
         /// </summary>
-        /// <param name="Products"></param>
-        private void GetProducts(ObservableCollection<Product> Products)
+        /// <param name="products">The products</param>
+        private void GetProducts(ObservableCollection<Product> products)
         {
             this.WishlistDetails = new ObservableCollection<Product>();
-            if (Products != null && Products.Count > 0)
-                this.WishlistDetails = Products;
+            if (products != null && products.Count > 0)
+            {
+                this.WishlistDetails = products;
+            }
         }
 
         /// <summary>
@@ -282,16 +306,19 @@ namespace EssentialUIKit.ViewModels.Bookmarks
         /// </summary>
         private void UpdatePrice()
         {
-            ResetPriceValue();
+            this.ResetPriceValue();
 
             if (this.WishlistDetails != null && this.WishlistDetails.Count > 0)
             {
                 foreach (var wishlistDetail in this.WishlistDetails)
                 {
                     if (wishlistDetail.TotalQuantity == 0)
+                    {
                         wishlistDetail.TotalQuantity = 1;
-                    this.TotalPrice += (wishlistDetail.ActualPrice * wishlistDetail.TotalQuantity);
-                    this.DiscountPrice += (wishlistDetail.DiscountPrice * wishlistDetail.TotalQuantity);
+                    }
+
+                    this.TotalPrice += wishlistDetail.ActualPrice * wishlistDetail.TotalQuantity;
+                    this.DiscountPrice += wishlistDetail.DiscountPrice * wishlistDetail.TotalQuantity;
                     this.percent += wishlistDetail.DiscountPercent;
                 }
 
@@ -312,5 +339,4 @@ namespace EssentialUIKit.ViewModels.Bookmarks
 
         #endregion
     }
-
 }

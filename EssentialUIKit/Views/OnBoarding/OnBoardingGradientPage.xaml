@@ -9,8 +9,7 @@
     xmlns:sfRotator="clr-namespace:Syncfusion.SfRotator.XForms;assembly=Syncfusion.SfRotator.XForms"
     xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.OnBoarding"
     xmlns:svg="clr-namespace:EssentialUIKit.Controls"
-    NavigationPage.HasNavigationBar="False"
-    Shell.NavBarIsVisible="False">
+    NavigationPage.HasNavigationBar="False">
 
     <!--  Binding context for on-boarding gradient page  -->
     <ContentPage.BindingContext>

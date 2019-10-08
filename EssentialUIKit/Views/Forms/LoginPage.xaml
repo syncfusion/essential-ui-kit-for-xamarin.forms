@@ -10,12 +10,11 @@
     xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
     xmlns:gradient="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
     xmlns:local="clr-namespace:EssentialUIKit.Views.Forms"
-    xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Login"
+    xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Forms"
     BackgroundImageSource="{core:OnPlatformOrientationStringValue Default=LoginBackground.png,
                                                                   iOSPhoneLandscape=LoginBackground-Landscape.png,
                                                                   iOSTabletLandscape=LoginBackground-Landscape.png}"
     NavigationPage.HasNavigationBar="False"
-    Shell.NavBarIsVisible="False"
     Style="{StaticResource ContentPageStyle}">
 
     <ContentPage.Resources>

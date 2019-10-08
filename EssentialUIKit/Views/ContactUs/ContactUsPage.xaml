@@ -11,8 +11,7 @@
     xmlns:maps="clr-namespace:Syncfusion.SfMaps.XForms;assembly=Syncfusion.SfMaps.XForms"
     xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.ContactUs"
     BackgroundColor="{DynamicResource Gray-White}"
-    NavigationPage.HasNavigationBar="False"
-    Shell.NavBarIsVisible="False">
+    NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Resources>
         <ResourceDictionary>

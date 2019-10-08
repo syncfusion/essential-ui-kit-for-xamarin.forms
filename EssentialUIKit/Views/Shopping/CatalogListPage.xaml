@@ -1,0 +1,222 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="EssentialUIKit.Views.Shopping.CatalogListPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:badge="clr-namespace:Syncfusion.XForms.BadgeView;assembly=Syncfusion.SfBadgeView.XForms"
+    xmlns:behavior="clr-namespace:EssentialUIKit.Behaviors.Shopping"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:commonBehavior="clr-namespace:EssentialUIKit.Behaviors"
+    xmlns:controls="clr-namespace:EssentialUIKit.Controls"
+    xmlns:converter="clr-namespace:EssentialUIKit.Converters"
+    xmlns:helper="clr-namespace:EssentialUIKit.Helpers"
+    xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+    xmlns:rating="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms"
+    x:Name="catalogListPage"
+    Title="Catalog List page"
+    NavigationPage.HasNavigationBar="False"
+    Style="{StaticResource ContentPageStyle}">
+
+    <ContentPage.Behaviors>
+        <behavior:CartBehavior />
+    </ContentPage.Behaviors>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:BooleanToColorConverter x:Key="boolToColorConverter" />
+            <converter:BooleanToStringConverter x:Key="boolToStringConverter" />
+            <converter:IntToThicknessConverter x:Key="intToThicknessConverter" />
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!--  Title View  -->
+            <controls:TitleView Title="Dress" Grid.Row="0">
+                <controls:TitleView.TrailingView>
+                    <StackLayout HorizontalOptions="End" Orientation="Horizontal">
+                        <badge:SfBadgeView
+                            Margin="{Binding Path=BindingContext.CartItemCount, Source={x:Reference catalogListPage}, Converter={x:StaticResource intToThicknessConverter}}"
+                            Padding="0"
+                            BadgeText="{Binding Path=BindingContext.CartItemCount, Source={x:Reference catalogListPage}, Mode=TwoWay}"
+                            HeightRequest="42"
+                            HorizontalOptions="End"
+                            VerticalOptions="Center"
+                            WidthRequest="40">
+                            <badge:SfBadgeView.Content>
+                                <buttons:SfButton
+                                    Command="{Binding Path=BindingContext.CardItemCommand, Source={x:Reference ListViewList}}"
+                                    CornerRadius="4"
+                                    Style="{StaticResource IconButtonStyle}"
+                                    Text="{StaticResource Cart}" />
+                            </badge:SfBadgeView.Content>
+                            <badge:SfBadgeView.BadgeSettings>
+                                <badge:BadgeSetting
+                                    BackgroundColor="{DynamicResource PrimaryColor}"
+                                    BadgeType="None"
+                                    FontSize="9"
+                                    Offset="-5,10" />
+                            </badge:SfBadgeView.BadgeSettings>
+                        </badge:SfBadgeView>
+                    </StackLayout>
+                </controls:TitleView.TrailingView>
+            </controls:TitleView>
+
+            <!--  ListView for catalog list  -->
+            <listView:SfListView
+                x:Name="ListViewList"
+                Grid.Row="1"
+                Margin="{OnIdiom Default='0,8,8,0',
+                                 Desktop='15,15,15,0'}"
+                AutoFitMode="Height"
+                HeaderTemplate="{StaticResource CatalogDefaultHeaderTemplate}"
+                HorizontalOptions="FillAndExpand"
+                IsStickyHeader="False"
+                ItemSize="170"
+                ItemSpacing="8,8,0,8"
+                ItemsSource="{Binding Products}"
+                Style="{StaticResource SfListViewStyle}">
+
+                <listView:SfListView.Behaviors>
+                    <commonBehavior:SfListViewTapBehavior Command="{Binding Path=BindingContext.ItemSelectedCommand, Source={x:Reference catalogListPage}}" />
+                </listView:SfListView.Behaviors>
+
+                <listView:SfListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid
+                            Margin="0,0,0,8"
+                            ColumnSpacing="0"
+                            HorizontalOptions="FillAndExpand"
+                            RowSpacing="0"
+                            VerticalOptions="FillAndExpand">
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="{OnIdiom Default=Auto, Desktop=0.2*}" />
+                                <ColumnDefinition Width="{OnIdiom Default=*, Desktop=*}" />
+                                <ColumnDefinition Width="32" />
+                            </Grid.ColumnDefinitions>
+
+                            <!--  Product Image  -->
+                            <Image
+                                Grid.RowSpan="4"
+                                Margin="8,0,16,0"
+                                Aspect="Fill"
+                                BackgroundColor="{DynamicResource Gray-F0}"
+                                HeightRequest="{OnIdiom Default=150,
+                                                        Desktop=120}"
+                                WidthRequest="{OnIdiom Default=140,
+                                                       Desktop=200}">
+                                <Image.Source>
+                                    <UriImageSource
+                                        CacheValidity="14"
+                                        CachingEnabled="true"
+                                        Uri="{Binding PreviewImage}" />
+                                </Image.Source>
+                            </Image>
+
+                            <!--  Product Name  -->
+                            <Label
+                                Grid.Column="1"
+                                Margin="0,0,0,8"
+                                FontFamily="{StaticResource Montserrat-SemiBold}"
+                                LineBreakMode="TailTruncation"
+                                MaxLines="1"
+                                Style="{StaticResource LabelStyle}"
+                                Text="{Binding Name}"
+                                TextColor="{DynamicResource Gray-900}" />
+
+                            <!--  Favourite Icon  -->
+                            <Button
+                                Grid.Column="2"
+                                Margin="0,0,0,8"
+                                Padding="0"
+                                helper:RTLHelper.Margin="{OnIdiom Phone='0,0,0,0',
+                                                                  Tablet='0,0,4,0',
+                                                                  Desktop='0,0,8,0'}"
+                                Command="{Binding BindingContext.AddFavouriteCommand, Source={x:Reference ListViewList}}"
+                                CommandParameter="{Binding}"
+                                Style="{StaticResource FavouriteButtonStyle}"
+                                Text="{Binding IsFavourite, Converter={StaticResource boolToStringConverter}, ConverterParameter=1}"
+                                TextColor="{Binding IsFavourite, Converter={x:StaticResource boolToColorConverter}, ConverterParameter=4}" />
+
+                            <!--  Product Description  -->
+                            <Label
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                Margin="0,0,0,8"
+                                FontFamily="{StaticResource Montserrat-Medium}"
+                                FontSize="12"
+                                LineBreakMode="TailTruncation"
+                                LineHeight="{OnPlatform Android=1.25,
+                                                        Default=-1}"
+                                MaxLines="2"
+                                Style="{StaticResource LabelStyle}"
+                                Text="{Binding Summary}" />
+
+                            <StackLayout
+                                Grid.Row="2"
+                                Grid.Column="1"
+                                Margin="0,0,0,16"
+                                Orientation="Horizontal"
+                                Spacing="2">
+
+                                <!--  Product Price  -->
+                                <Label
+                                    FontFamily="{StaticResource Montserrat-SemiBold}"
+                                    FontSize="20"
+                                    HorizontalOptions="Start"
+                                    LineHeight="{OnPlatform Android=1.25,
+                                                            Default=-1}"
+                                    Style="{StaticResource LabelStyle}"
+                                    Text="{Binding DiscountPrice, StringFormat='${0:0 }'}"
+                                    TextColor="{DynamicResource PrimaryColor}"
+                                    VerticalOptions="CenterAndExpand"
+                                    VerticalTextAlignment="Center" />
+
+                                <Label
+                                    Margin="0,6,0,6"
+                                    FontFamily="{StaticResource Montserrat-Medium}"
+                                    FontSize="12"
+                                    HorizontalOptions="Start"
+                                    Style="{StaticResource LabelStyle}"
+                                    Text="{Binding ActualPrice, StringFormat='${0:0.00}'}"
+                                    TextDecorations="Strikethrough"
+                                    VerticalOptions="Center"
+                                    VerticalTextAlignment="Center" />
+
+                            </StackLayout>
+
+                            <!--  Product Rating  -->
+                            <rating:SfRating
+                                Grid.Row="3"
+                                Grid.Column="1"
+                                RatingSettings="{StaticResource RatingSettings}"
+                                Style="{StaticResource SfRatingStyle}"
+                                Value="{Binding OverallRating}" />
+                        </Grid>
+                    </DataTemplate>
+                </listView:SfListView.ItemTemplate>
+
+            </listView:SfListView>
+
+        </Grid>
+
+    </ContentPage.Content>
+
+</ContentPage>

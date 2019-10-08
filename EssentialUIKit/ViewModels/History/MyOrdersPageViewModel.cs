@@ -1,8 +1,8 @@
-﻿using EssentialUIKit.Models.History;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
+using EssentialUIKit.Models.History;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 
@@ -46,15 +46,17 @@ namespace EssentialUIKit.ViewModels.History
             {
                 return this.myOrders;
             }
+
             set
             {
                 if (this.myOrders == value)
                 {
                     return;
                 }
+
                 this.myOrders = value;
                 this.NotifyPropertyChanged();
-                GetProducts(MyOrders);
+                this.GetProducts(this.MyOrders);
             }
         }
 
@@ -85,11 +87,14 @@ namespace EssentialUIKit.ViewModels.History
         #region Command
 
         /// <summary>
-        /// Gets or sets the command that will be executed when an item is selected.
+        /// Gets the command that will be executed when an item is selected.
         /// </summary>
         public Command ItemSelectedCommand
         {
-            get { return this.itemSelectedCommand ?? (this.itemSelectedCommand = new Command(this.ItemSelected)); }
+            get
+            {
+                return this.itemSelectedCommand ?? (this.itemSelectedCommand = new Command(this.ItemSelected));
+            }
         }
 
         #endregion
@@ -103,8 +108,8 @@ namespace EssentialUIKit.ViewModels.History
         public void NotifyPropertyChanged([CallerMemberName] string propertyName = null)
         {
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-
         }
+
         /// <summary>
         /// Invoked when an item is selected.
         /// </summary>
@@ -117,12 +122,14 @@ namespace EssentialUIKit.ViewModels.History
         /// <summary>
         /// This method is used to get the ordered items from json.
         /// </summary>
-        /// <param name="Items">Ordered items</param>
-        private void GetProducts(ObservableCollection<Orders> Items)
+        /// <param name="items">Ordered items</param>
+        private void GetProducts(ObservableCollection<Orders> items)
         {
             this.OrderDetails = new ObservableCollection<Orders>();
-            if (Items != null && Items.Count > 0)
-                this.OrderDetails = Items;
+            if (items != null && items.Count > 0)
+            {
+                this.OrderDetails = items;
+            }
         }
 
         #endregion

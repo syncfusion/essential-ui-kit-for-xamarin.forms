@@ -15,7 +15,6 @@
     x:Name="detailPage"
     Title="Detail page"
     NavigationPage.HasNavigationBar="False"
-    Shell.NavBarIsVisible="False"
     Style="{StaticResource ContentPageStyle}">
 
     <ContentPage.Behaviors>
@@ -102,9 +101,13 @@
                             <badge:SfBadgeView.BadgeSettings>
                                 <badge:BadgeSetting
                                     BackgroundColor="{DynamicResource PrimaryColor}"
+                                    Stroke="{DynamicResource Gray-White}"
+                                    BadgeAnimation="None"
+                                    StrokeWidth="1"
                                     BadgeType="None"
-                                    FontSize="9"
-                                    Offset="-5,10" />
+                                    FontSize="10"
+                                    FontFamily="{StaticResource Montserrat-Medium}"
+                                    Offset="-10,10"/>
                             </badge:SfBadgeView.BadgeSettings>
                         </badge:SfBadgeView>
                     </controls:TitleView.TrailingView>

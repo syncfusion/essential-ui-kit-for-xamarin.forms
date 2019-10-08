@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
+using EssentialUIKit.Models.Detail;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
-using EssentialUIKit.Models.Detail;
-using System.Linq;
 
 namespace EssentialUIKit.ViewModels.Detail
 {
@@ -30,7 +30,7 @@ namespace EssentialUIKit.ViewModels.Detail
 
         private bool isReviewVisible;
 
-        private string cartItemCount;
+        private int? cartItemCount;
 
         #endregion
 
@@ -40,7 +40,7 @@ namespace EssentialUIKit.ViewModels.Detail
         /// </summary>
         public DetailPageViewModel()
         {
-            reviews = new ObservableCollection<Review>
+            this.reviews = new ObservableCollection<Review>
             {
                 new Review
                 {
@@ -92,7 +92,7 @@ namespace EssentialUIKit.ViewModels.Detail
                 Reviews = new ObservableCollection<Review>(reviews.Take(1))
             };
 
-            if (ProductDetail.Reviews == null || ProductDetail.Reviews.Count == 0)
+            if (this.ProductDetail.Reviews == null || this.ProductDetail.Reviews.Count == 0)
             {
                 this.IsReviewVisible = true;
             }
@@ -172,7 +172,7 @@ namespace EssentialUIKit.ViewModels.Detail
             this.AddToCartCommand = new Command(this.AddToCartClicked);
             this.LoadMoreCommand = new Command(this.LoadMoreClicked);
             this.ShareCommand = new Command(this.ShareClicked);
-            this.VariantCommand = new Command(VariantClicked);
+            this.VariantCommand = new Command(this.VariantClicked);
             this.ItemSelectedCommand = new Command(this.ItemSelected);
             this.CardItemCommand = new Command(this.CartClicked);
         }
@@ -258,7 +258,10 @@ namespace EssentialUIKit.ViewModels.Detail
             get
             {
                 if (productDetail.Reviews.Count == 0)
+                {
                     this.isReviewVisible = true;
+                }
+
                 return this.isReviewVisible;
             }
             set
@@ -271,7 +274,7 @@ namespace EssentialUIKit.ViewModels.Detail
         /// <summary>
         /// Gets or sets the property that has been bound with view, which displays the cart items count.
         /// </summary>
-        public string CartItemCount
+        public int? CartItemCount
         {
             get
             {
@@ -348,7 +351,9 @@ namespace EssentialUIKit.ViewModels.Detail
         private void AddFavouriteClicked(object obj)
         {
             if (obj is DetailPageViewModel model)
+            {
                 model.ProductDetail.IsFavourite = !model.ProductDetail.IsFavourite;
+            }
         }
 
         /// <summary>
@@ -366,6 +371,8 @@ namespace EssentialUIKit.ViewModels.Detail
         /// <param name="obj">The Object</param>
         private void AddToCartClicked(object obj)
         {
+            this.cartItemCount = this.cartItemCount ?? 0;
+            this.CartItemCount += 1;
             // Do something
         }
 
@@ -376,9 +383,13 @@ namespace EssentialUIKit.ViewModels.Detail
         private void LoadMoreClicked(object obj)
         {
             if (productDetail.Reviews.Count == 1)
+            {
                 productDetail.Reviews = reviews;
+            }
             else
+            {
                 productDetail.Reviews = new ObservableCollection<Review>(reviews.Take(1));
+            }
         }
 
         /// <summary>

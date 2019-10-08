@@ -16,7 +16,7 @@ namespace EssentialUIKit.Views.ErrorAndEmpty
         /// </summary>
         public NoVideosPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         /// <summary>

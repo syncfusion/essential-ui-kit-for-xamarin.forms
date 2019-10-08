@@ -15,7 +15,7 @@ namespace EssentialUIKit.Views.Catalog
         /// </summary>
         public Styles()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
     }
 }

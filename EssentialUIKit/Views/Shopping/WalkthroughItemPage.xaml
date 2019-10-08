@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="EssentialUIKit.Views.Shopping.WalkthroughItemPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
+    xmlns:svg="clr-namespace:EssentialUIKit.Controls"
+    NavigationPage.HasNavigationBar="False">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <ContentView.Content>
+        <StackLayout
+            BackgroundColor="Transparent"
+            Spacing="0"
+            VerticalOptions="Center">
+
+            <!--  Image for display svg image  -->
+            <svg:SVGImage
+                BackgroundColor="Transparent"
+                HeightRequest="{core:OnPlatformOrientationDoubleValue Default=300,
+                                                                      AndroidPhonePortrait=200,
+                                                                      AndroidPhoneLandscape=140,
+                                                                      iOSPhonePortrait=200,
+                                                                      iOSPhoneLandscape=140}"
+                Opacity="0"
+                Source="{Binding ImagePath}"
+                VerticalOptions="Center"
+                WidthRequest="{x:OnIdiom Phone=200,
+                                         Desktop=300,
+                                         Tablet=300}" />
+
+            <!--  Label to display header  -->
+            <Label
+                Margin="0,30,0,8"
+                FontFamily="{StaticResource Montserrat-SemiBold}"
+                FontSize="14"
+                HorizontalOptions="Center"
+                HorizontalTextAlignment="Center"
+                Opacity="0"
+                Style="{StaticResource OnboardingLabelStyle}"
+                Text="{Binding Header}"
+                TranslationY="60"
+                VerticalTextAlignment="Center" />
+
+            <!--  Label to display content  -->
+            <Label
+                FontFamily="{StaticResource Montserrat-Medium}"
+                FontSize="16"
+                HorizontalOptions="Center"
+                Opacity="0"
+                Style="{StaticResource OnboardingLabelStyle}"
+                Text="{Binding Content}"
+                TranslationY="60" />
+
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

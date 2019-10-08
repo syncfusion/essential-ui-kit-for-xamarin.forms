@@ -12,7 +12,7 @@ namespace EssentialUIKit.Views.Feedback
     {
         public ReviewPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
             this.ProductImage.Source = App.BaseImageUrl + "Image1.png";
         }
     }

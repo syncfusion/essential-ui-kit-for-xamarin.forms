@@ -15,7 +15,7 @@ namespace EssentialUIKit.Views.Detail
         /// </summary>
         public Styles()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
     }
 }

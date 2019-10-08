@@ -9,11 +9,10 @@
     xmlns:converter="clr-namespace:EssentialUIKit.Converters"
     xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
     xmlns:local="clr-namespace:EssentialUIKit.Views.Forms"
-    xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Login"
+    xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Forms"
     Title="Sign Up"
     BackgroundColor="{DynamicResource Gray-200}"
-    NavigationPage.HasNavigationBar="False"
-    Shell.NavBarIsVisible="False">
+    NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Resources>
         <ResourceDictionary>

@@ -16,7 +16,7 @@ namespace EssentialUIKit.Views.ErrorAndEmpty
         /// </summary>
         public NoItemPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         /// <summary>

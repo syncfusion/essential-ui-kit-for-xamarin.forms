@@ -13,13 +13,24 @@ namespace EssentialUIKit.Behaviors
     [Preserve(AllMembers = true)]
     public class SfComboBoxDropDownBehavior : Behavior<SfComboBox>
     {
-        #region Properties
+       
+
+        #region Binable Properties
 
         /// <summary>
         /// Gets or sets the CommandProperty, and it is a bindable property.
         /// </summary>
         public static readonly BindableProperty CommandProperty =
             BindableProperty.Create("Command", typeof(ICommand), typeof(SfComboBoxDropDownBehavior));
+        #endregion
+
+        #region Field
+
+        private bool isCheckboxLoaded;
+
+        #endregion
+
+        #region Public Property
 
         /// <summary>
         /// Gets or sets the Command.
@@ -33,9 +44,7 @@ namespace EssentialUIKit.Behaviors
         /// <summary>
         /// Gets the comboBox.
         /// </summary>
-        public SfComboBox ComboBox { get; private set; }
-
-        private bool isCheckboxLoaded;
+        public SfComboBox ComboBox { get; private set; }        
 
         #endregion
 
@@ -84,22 +93,25 @@ namespace EssentialUIKit.Behaviors
             int totalQuantity;
             int.TryParse(e.Value.ToString(), out totalQuantity);
 
-            var bindingContext = ((sender) as SfComboBox).BindingContext;
+            var bindingContext = (sender as SfComboBox).BindingContext;
 
             PropertyInfo propertyInfo = bindingContext.GetType().GetProperty("TotalQuantity");
             propertyInfo.SetValue(bindingContext, totalQuantity);
-
-
-            if (isCheckboxLoaded)
+            
+            if (this.isCheckboxLoaded)
             {
                 if (this.Command == null)
+                {
                     return;
+                }
 
-                if (this.Command.CanExecute(((sender as SfComboBox).BindingContext)))
-                    this.Command.Execute(((sender as SfComboBox).BindingContext));
+                if (this.Command.CanExecute((sender as SfComboBox).BindingContext))
+                {
+                    this.Command.Execute((sender as SfComboBox).BindingContext);
+                }
             }
 
-            isCheckboxLoaded = true;
+            this.isCheckboxLoaded = true;
         }
 
         /// <summary>

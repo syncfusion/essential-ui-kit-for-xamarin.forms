@@ -60,7 +60,7 @@
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.Buttons" Version="17.2.0.49" />
     <PackageReference Include="Syncfusion.Xamarin.Cards" Version="17.2.0.49" />
-    <PackageReference Include="Syncfusion.Xamarin.Core" Version="17.2.0.49" />
+    <PackageReference Include="Syncfusion.Xamarin.Core" Version="17.3.0.9-beta" />
     <PackageReference Include="Syncfusion.Xamarin.DataSource">
       <Version>17.2.0.49</Version>
     </PackageReference>
@@ -75,6 +75,9 @@
     <PackageReference Include="Syncfusion.Xamarin.SfParallaxView">
       <Version>17.2.0.49</Version>
     </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.SfProgressBar">
+      <Version>17.2.0.49</Version>
+    </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfRating" Version="17.2.0.49" />
     <PackageReference Include="Syncfusion.Xamarin.SfRotator" Version="17.2.0.49" />
     <PackageReference Include="Syncfusion.Xamarin.SfPopupLayout" Version="17.2.0.49" />
@@ -84,7 +87,7 @@
     <PackageReference Include="Syncfusion.Xamarin.SfTabView">
       <Version>17.2.0.49</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.Forms" Version="4.2.0.709249" />
+    <PackageReference Include="Xamarin.Forms" Version="4.3.0.778476-pre1" />
     <PackageReference Include="Xamarin.Android.Support.Design" Version="28.0.0.1" />
     <PackageReference Include="Xamarin.Android.Support.v7.AppCompat" Version="28.0.0.1" />
     <PackageReference Include="Xamarin.Android.Support.v4" Version="28.0.0.1" />
@@ -94,6 +97,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
+    <Compile Include="Renderers\CalenderDatePickerRenderer.cs" />
     <Compile Include="Renderers\ParallaxListViewRenderer.cs" />
     <Compile Include="Renderers\BorderlessEditorRenderer.cs" />
     <Compile Include="Renderers\BorderlessEntryRenderer.cs" />

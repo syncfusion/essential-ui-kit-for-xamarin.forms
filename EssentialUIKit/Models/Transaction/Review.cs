@@ -28,8 +28,8 @@ namespace EssentialUIKit.Models.Transaction
         [DataMember(Name = "profileimage")]
         public string ProfileImage
         {
-            get { return App.BaseImageUrl + profileImage; }
-            set { profileImage = value; }
+            get { return App.BaseImageUrl + this.profileImage; }
+            set { this.profileImage = value; }
         }
 
         /// <summary>
@@ -40,14 +40,18 @@ namespace EssentialUIKit.Models.Transaction
         {
             get
             {
-                for (var i = 0; i < images.Count; i++)
+                for (var i = 0; i < this.images.Count; i++)
                 {
-                    images[i] = images[i].Contains(App.BaseImageUrl) ? images[i] : App.BaseImageUrl + images[i];
+                    this.images[i] = this.images[i].Contains(App.BaseImageUrl) ? this.images[i] : App.BaseImageUrl + this.images[i];
                 }
 
-                return images;
+                return this.images;
             }
-            set { images = value; }
+
+            set
+            {
+                this.images = value;
+            }
         }
 
         /// <summary>
@@ -63,11 +67,15 @@ namespace EssentialUIKit.Models.Transaction
         {
             get
             {
-                return DateTime.MinValue != Convert.ToDateTime(StringDate)
-                    ? Convert.ToDateTime(StringDate)
-                    : reviewedDate;
+                return DateTime.MinValue != Convert.ToDateTime(this.StringDate)
+                    ? Convert.ToDateTime(this.StringDate)
+                    : this.reviewedDate;
             }
-            set { reviewedDate = value; }
+
+            set
+            {
+                this.reviewedDate = value;
+            }
         }
 
         /// <summary>

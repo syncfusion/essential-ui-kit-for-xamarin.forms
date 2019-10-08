@@ -1,13 +1,9 @@
-﻿using EssentialUIKit;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Text;
-using Xamarin.Forms;
-using EssentialUIKit.Models.Navigation;
 using System.Runtime.Serialization;
+using EssentialUIKit.Models.Navigation;
+using Xamarin.Forms;
 
 namespace EssentialUIKit.ViewModels.Navigation
 {
@@ -25,6 +21,12 @@ namespace EssentialUIKit.ViewModels.Navigation
 
         #endregion
 
+        #region event
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        #endregion
+
         #region Properties
 
         /// <summary>
@@ -35,7 +37,7 @@ namespace EssentialUIKit.ViewModels.Navigation
         public ObservableCollection<Photo> Photos { get; set; }
 
         /// <summary>
-        /// Gets or sets the command is executed when the add button is clicked.
+        /// Gets the command is executed when the add button is clicked.
         /// </summary>
         public Command EditCommand
         {
@@ -46,7 +48,7 @@ namespace EssentialUIKit.ViewModels.Navigation
         }
 
         /// <summary>
-        /// Gets or sets the image tap command
+        /// Gets the image tap command
         /// </summary>
         public Command ImageTapCommand
         {
@@ -54,9 +56,7 @@ namespace EssentialUIKit.ViewModels.Navigation
             {
                 return this.imageTapCommand ?? (this.imageTapCommand = new Command(this.OnImageTapped));
             }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
+        }       
 
         #endregion
 

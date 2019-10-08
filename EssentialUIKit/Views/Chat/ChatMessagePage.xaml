@@ -12,8 +12,7 @@
     xmlns:local="clr-namespace:EssentialUIKit.Views.Chat"
     xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Chat"
     BackgroundImage="ChatMessageBackground.png"
-    NavigationPage.HasNavigationBar="False"
-    Shell.NavBarIsVisible="False">
+    NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Resources>
         <ResourceDictionary>

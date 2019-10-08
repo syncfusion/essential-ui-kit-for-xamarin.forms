@@ -1,8 +1,8 @@
-﻿using UIKit;
+﻿using EssentialUIKit.AppLayout.Controls;
+using EssentialUIKit.iOS;
+using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
-using EssentialUIKit.AppLayout.Controls;
-using EssentialUIKit.iOS;
 
 [assembly: ExportRenderer(typeof(TemplateHostView), typeof(TemplateHostViewRenderer))]
 

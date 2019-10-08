@@ -9,14 +9,14 @@ namespace EssentialUIKit.Views.Social
     /// </summary>
     [Preserve(AllMembers = true)]
     [XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class SocialProfileWithCardPage : ContentPage
-	{
+    public partial class SocialProfileWithCardPage : ContentPage
+    {
         /// <summary>
         /// Initializes a new instance of the <see cref="SocialProfileWithCardPage" /> class.
         /// </summary>
-        public SocialProfileWithCardPage ()
-		{
-			InitializeComponent ();
-		}
-	}
+        public SocialProfileWithCardPage()
+        {
+            InitializeComponent();
+        }
+    }
 }

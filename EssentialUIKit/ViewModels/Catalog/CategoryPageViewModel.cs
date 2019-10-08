@@ -1,14 +1,14 @@
-using Syncfusion.ListView.XForms;
-using Syncfusion.ListView.XForms.Control.Helpers;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
+using Syncfusion.ListView.XForms;
+using Syncfusion.ListView.XForms.Control.Helpers;
+using EssentialUIKit.Models.Catalog;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
-using EssentialUIKit.Models.Catalog;
 
 namespace EssentialUIKit.ViewModels.Catalog
 {

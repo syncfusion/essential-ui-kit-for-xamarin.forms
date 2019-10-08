@@ -34,10 +34,12 @@ namespace EssentialUIKit.AppLayout.ViewModels
             }
         }
 
+        /// <summary>
+        /// Initializes a new instance for the <see cref="HomePageViewModel" /> class.
+        /// </summary>
         public HomePageViewModel()
         {
             Templates = new List<Category>();
-
             PopulateList();
         }
 

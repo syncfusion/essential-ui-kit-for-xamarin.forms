@@ -17,7 +17,7 @@ namespace EssentialUIKit.Views.Detail
         /// </summary>
         public DetailPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
             this.BindingContext = new DetailPageViewModel();
         }
 
@@ -32,11 +32,11 @@ namespace EssentialUIKit.Views.Detail
 
             if (width > height)
             {
-                Rotator.ItemTemplate = (DataTemplate) this.Resources["LandscapeTemplate"];
+                Rotator.ItemTemplate = (DataTemplate)this.Resources["LandscapeTemplate"];
             }
             else
             {
-                Rotator.ItemTemplate = (DataTemplate) this.Resources["PortraitTemplate"];
+                Rotator.ItemTemplate = (DataTemplate)this.Resources["PortraitTemplate"];
             }
         }
     }

@@ -73,7 +73,8 @@ namespace EssentialUIKit.UWP
                     typeof(Syncfusion.XForms.UWP.BadgeView.SfBadgeViewRenderer).GetTypeInfo().Assembly,
                     typeof(Syncfusion.XForms.UWP.Buttons.SfSegmentedControlRenderer).GetTypeInfo().Assembly,
                     typeof(Syncfusion.SfMaps.XForms.UWP.SfMapsRenderer).GetTypeInfo().Assembly,
-               };
+                    typeof(Syncfusion.XForms.UWP.ProgressBar.SfLinearProgressRenderer).GetTypeInfo().Assembly
+                };
 
                 Xamarin.Forms.Forms.Init(e, assembliesToInclude);
 

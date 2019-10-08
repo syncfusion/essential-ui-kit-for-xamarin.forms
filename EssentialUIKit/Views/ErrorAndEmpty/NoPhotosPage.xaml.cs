@@ -16,7 +16,7 @@ namespace EssentialUIKit.Views.ErrorAndEmpty
         /// </summary>
         public NoPhotosPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         /// <summary>

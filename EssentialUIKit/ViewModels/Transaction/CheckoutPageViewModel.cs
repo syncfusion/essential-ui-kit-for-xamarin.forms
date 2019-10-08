@@ -1,9 +1,9 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using EssentialUIKit.Models.Transaction;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
-using EssentialUIKit.Models.Transaction;
 
 namespace EssentialUIKit.ViewModels.Transaction
 {

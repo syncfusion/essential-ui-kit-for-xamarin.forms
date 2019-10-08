@@ -4,15 +4,14 @@
              xmlns:control="clr-namespace:EssentialUIKit.Controls"
              xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
              xmlns:local="clr-namespace:EssentialUIKit.Views.Forms"
-             xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Login"
+             xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Forms"
              xmlns:converter="clr-namespace:EssentialUIKit.Converters"
              xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
              xmlns:tabView="clr-namespace:Syncfusion.XForms.TabView;assembly=Syncfusion.SfTabView.XForms"
              x:Class="EssentialUIKit.Views.Forms.TabbedForm" 
              Title="Tabbed Form"
              BackgroundColor="{DynamicResource Gray-200}"
-             NavigationPage.HasNavigationBar="False"
-             Shell.NavBarIsVisible="False">
+             NavigationPage.HasNavigationBar="False">
     <ContentPage.Resources>
         <ResourceDictionary>
             <converter:BooleanToColorConverter x:Key="ColorConverter" />

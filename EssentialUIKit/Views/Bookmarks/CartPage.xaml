@@ -12,8 +12,7 @@
     xmlns:local="clr-namespace:EssentialUIKit.Views.Bookmarks"
     Title="Cart"
     BackgroundColor="{DynamicResource Gray-100}"
-    NavigationPage.HasNavigationBar="False"
-    Shell.NavBarIsVisible="False">
+    NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Resources>
         <ResourceDictionary>

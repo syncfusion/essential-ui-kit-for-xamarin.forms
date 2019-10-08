@@ -1,9 +1,9 @@
 using System;
+using EssentialUIKit.AppLayout.Controls;
+using EssentialUIKit.AppLayout.Models;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
-using EssentialUIKit.AppLayout.Controls;
-using EssentialUIKit.AppLayout.Models;
 
 namespace EssentialUIKit.AppLayout.Views
 {
@@ -43,7 +43,7 @@ namespace EssentialUIKit.AppLayout.Views
         /// </summary>
         public HomePage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         #endregion
@@ -55,9 +55,15 @@ namespace EssentialUIKit.AppLayout.Views
             base.OnSizeAllocated(width, height);
 
             if (Device.RuntimePlatform == "UWP" ||
-                !AppSettings.Instance.IsSafeAreaEnabled) return;
+                !AppSettings.Instance.IsSafeAreaEnabled)
+            {
+                return;
+            }
 
-            if (width == this.width && height == this.height) return;
+            if (width == this.width && height == this.height)
+            {
+                return;
+            }
 
             var safeAreaHeight = AppSettings.Instance.SafeAreaHeight;
             this.width = width;
@@ -85,14 +91,18 @@ namespace EssentialUIKit.AppLayout.Views
 
         protected override bool OnBackButtonPressed()
         {
-            if (!this.SettingsView.IsVisible) return base.OnBackButtonPressed();
+            if (!this.SettingsView.IsVisible)
+            {
+                return base.OnBackButtonPressed();
+            }
+
             this.SettingsView.Hide();
             return true;
         }
 
         private void ListView_OnScrollChanged(object sender, ScrollChangedEventArgs e)
         {
-            if (!loaded)
+            if (!this.loaded)
             {
                 this.scrollDensity = Application.Current.MainPage.Width / listView.WidthInPixel;
                 this.actualHeaderX = HeaderText.X;
@@ -116,7 +126,7 @@ namespace EssentialUIKit.AppLayout.Views
                 Description.Opacity = factor;
                 HeaderImage.Opacity = factor;
                 HeaderText.TranslationX = this.headerDeltaX * (factor - 1);
-                HeaderText.TranslationY = -1 * scrollValue + this.headerDeltaY * (factor - 1);
+                HeaderText.TranslationY = (-1 * scrollValue) + (this.headerDeltaY * (factor - 1));
                 BrandName.Opacity = (scrollValue + 75) / 75;
                 ActionBar.IsVisible = false;
                 SettingsIcon.TranslationY = scrollValue * -1;
@@ -125,7 +135,11 @@ namespace EssentialUIKit.AppLayout.Views
 
         private void ListView_OnSelectionChanged(object sender, SelectedItemChangedEventArgs e)
         {
-            if (e.SelectedItem == null || this.isNavigationInQueue) return;
+            if (e.SelectedItem == null || this.isNavigationInQueue)
+            {
+                return;
+            }
+
             this.isNavigationInQueue = true;
             Navigation.PushAsync(new TemplatePage(e.SelectedItem as Category));
         }

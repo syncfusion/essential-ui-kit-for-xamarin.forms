@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 
 namespace EssentialUIKit.ViewModels.Navigation
 {
@@ -10,6 +7,16 @@ namespace EssentialUIKit.ViewModels.Navigation
     /// </summary>
     public class SettingsViewModel
     {
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:EssentialUIKit.ViewModels.Navigation.SettingsViewModel"/> class.
+        /// </summary>
+        public SettingsViewModel()
+        {
+            this.DownloadCommand = new Command(this.DownloadQualityTapped);
+            this.ShowFilesCommand = new Command(this.ShowHiddenFilesTapped);
+            this.PolicyCommand = new Command(this.PrivacyPolicyTapped);
+        }
 
         /// <summary>
         /// Gets or sets the value of command used for download quality click.
@@ -27,41 +34,27 @@ namespace EssentialUIKit.ViewModels.Navigation
         public Command PolicyCommand { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:EssentialUIKit.ViewModels.Navigation.SettingsViewModel"/> class.
-        /// </summary>
-        public SettingsViewModel()
-        {
-            this.DownloadCommand = new Command(this.DownloadQualityTapped);
-            this.ShowFilesCommand = new Command(this.ShowHiddenFilesTapped);
-            this.PolicyCommand = new Command(this.PrivacyPolicyTapped);
-        }
-
-        /// <summary>
         /// Invoked when download quality tapped.
         /// </summary>
-        /// <param name="obj">Object.</param>
+        /// <param name="obj">The Object.</param>
         private void DownloadQualityTapped(object obj)
         {
-
         }
 
         /// <summary>
         /// Invoked when Show hidden files tapped.
         /// </summary>
-        /// <param name="obj">Object.</param>
+        /// <param name="obj">The Object.</param>
         private void ShowHiddenFilesTapped(object obj)
         {
-
         }
 
         /// <summary>
         /// Invoked when Privacy policy tapped.
         /// </summary>
-        /// <param name="obj">Object.</param>
+        /// <param name="obj">The Object.</param>
         private void PrivacyPolicyTapped(object obj)
         {
-
         }
-
     }
 }

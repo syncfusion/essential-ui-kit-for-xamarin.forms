@@ -10,8 +10,7 @@
     xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.History"
     Title="Payment History"
     BackgroundColor="{DynamicResource Gray-100}"
-    NavigationPage.HasNavigationBar="False"
-    Shell.NavBarIsVisible="False">
+    NavigationPage.HasNavigationBar="False">
 
     <ContentPage.BindingContext>
         <viewModel:TransactionHistoryViewModel />

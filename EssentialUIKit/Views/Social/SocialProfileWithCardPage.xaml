@@ -10,8 +10,7 @@
     xmlns:local="clr-namespace:EssentialUIKit.Views.Social.Templates"
     xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Social"
     BackgroundColor="{DynamicResource Gray-White}"
-    NavigationPage.HasNavigationBar="False"
-    Shell.NavBarIsVisible="False">
+    NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -163,7 +162,7 @@
                 <listView:SfListView
                     Grid.Row="2"
                     Margin="0"                    
-                    Padding="16,0,0,0"
+                    Padding="0"
                     AutoFitMode="DynamicHeight"
                     ColumnSpacing="0"
                     HeightRequest="200"

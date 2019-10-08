@@ -16,7 +16,7 @@ namespace EssentialUIKit.Views.ErrorAndEmpty
         /// </summary>
         public NoInternetConnectionPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         /// <summary>

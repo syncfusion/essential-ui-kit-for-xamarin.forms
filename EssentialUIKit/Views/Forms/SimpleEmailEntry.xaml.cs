@@ -15,7 +15,7 @@ namespace EssentialUIKit.Views.Forms
         /// </summary>
         public SimpleEmailEntry()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
     }
 }

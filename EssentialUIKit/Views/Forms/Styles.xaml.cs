@@ -15,7 +15,7 @@ namespace EssentialUIKit.Views.Forms
         /// </summary>
         public Styles()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
     }
 }

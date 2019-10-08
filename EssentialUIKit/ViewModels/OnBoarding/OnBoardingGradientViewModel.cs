@@ -2,9 +2,9 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
+using EssentialUIKit.Models.OnBoarding;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
-using EssentialUIKit.Models.OnBoarding;
 
 namespace EssentialUIKit.ViewModels.OnBoarding
 {
@@ -60,6 +60,15 @@ namespace EssentialUIKit.ViewModels.OnBoarding
         }
 
         #endregion
+        
+        #region Events
+
+        /// <summary>
+        /// The declaration of the property changed event.
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        #endregion
 
         #region Commands
 
@@ -74,16 +83,7 @@ namespace EssentialUIKit.ViewModels.OnBoarding
         public ICommand NextCommand { get; set; }
 
         #endregion
-
-        #region Events
-
-        /// <summary>
-        /// The declaration of the property changed event.
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        #endregion
-
+        
         #region Properties
 
         /// <summary>
@@ -91,7 +91,11 @@ namespace EssentialUIKit.ViewModels.OnBoarding
         /// </summary>
         public ObservableCollection<Boarding> Boardings
         {
-            get { return this.boardings; }
+            get
+            {
+                return this.boardings;
+            }
+
             set
             {
                 this.boardings = value;
@@ -105,12 +109,14 @@ namespace EssentialUIKit.ViewModels.OnBoarding
             {
                 return this.nextButtonText;
             }
+
             set
             {
                 if (this.nextButtonText == value)
                 {
                     return;
                 }
+
                 this.nextButtonText = value;
                 this.OnPropertyChanged();
             }
@@ -122,12 +128,14 @@ namespace EssentialUIKit.ViewModels.OnBoarding
             {
                 return this.isSkipButtonVisible;
             }
+
             set
             {
                 if (this.isSkipButtonVisible == value)
                 {
                     return;
                 }
+
                 this.isSkipButtonVisible = value;
                 this.OnPropertyChanged();
             }
@@ -139,15 +147,16 @@ namespace EssentialUIKit.ViewModels.OnBoarding
             {
                 return this.selectedIndex;
             }
+
             set
             {
                 if (this.selectedIndex == value)
                 {
                     return;
                 }
+
                 this.selectedIndex = value;
                 this.OnPropertyChanged();
-
                 this.ValidateSelection();
             }
         }
@@ -167,7 +176,10 @@ namespace EssentialUIKit.ViewModels.OnBoarding
 
         private bool ValidateAndUpdateSelectedIndex()
         {
-            if (this.selectedIndex >= this.Boardings.Count - 1) return true;
+            if (this.selectedIndex >= this.Boardings.Count - 1)
+            {
+                return true;
+            }
 
             this.SelectedIndex++;
             return false;
@@ -193,7 +205,7 @@ namespace EssentialUIKit.ViewModels.OnBoarding
         /// <param name="obj">The Object</param>
         private void Skip(object obj)
         {
-            MoveToNextPage();
+            this.MoveToNextPage();
         }
 
         /// <summary>
@@ -202,16 +214,16 @@ namespace EssentialUIKit.ViewModels.OnBoarding
         /// <param name="obj">The Object</param>
         private void Next(object obj)
         {
-            if (ValidateAndUpdateSelectedIndex())
+            if (this.ValidateAndUpdateSelectedIndex())
             {
                 Application.Current.MainPage.Navigation.PopAsync();
-                MoveToNextPage();
+                this.MoveToNextPage();
             }
         }
 
         private void MoveToNextPage()
         {
-            //Move to next page
+            // Move to next page
         }
 
         #endregion

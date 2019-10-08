@@ -8,8 +8,7 @@
     xmlns:svg="clr-namespace:EssentialUIKit.Controls"
     Title="Payment Success Page"
     BackgroundColor="{DynamicResource Gray-100}"
-    NavigationPage.HasNavigationBar="False"
-    Shell.NavBarIsVisible="False">
+    NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Resources>
         <ResourceDictionary>

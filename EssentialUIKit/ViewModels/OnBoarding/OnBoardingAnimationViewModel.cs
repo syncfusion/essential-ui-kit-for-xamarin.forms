@@ -1,11 +1,11 @@
-﻿using EssentialUIKit.Models.OnBoarding;
-using EssentialUIKit.Views.OnBoarding;
-using Syncfusion.SfRotator.XForms;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
+using EssentialUIKit.Models.OnBoarding;
+using EssentialUIKit.Views.OnBoarding;
+using Syncfusion.SfRotator.XForms;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 
@@ -38,7 +38,7 @@ namespace EssentialUIKit.ViewModels.OnBoarding
         {
             this.SkipCommand = new Command(this.Skip);
             this.NextCommand = new Command(this.Next);
-            Boardings = new ObservableCollection<Boarding>
+            this.Boardings = new ObservableCollection<Boarding>
             {
                 new Boarding()
                 {
@@ -64,11 +64,23 @@ namespace EssentialUIKit.ViewModels.OnBoarding
             };
 
             // Set bindingcontext to content view.
-            foreach (var boarding in Boardings)
+            foreach (var boarding in this.Boardings)
+            {
                 boarding.RotatorItem.BindingContext = boarding;
+            }
         }
 
         #endregion
+
+        #region Events
+
+        /// <summary>
+        /// The declaration of the property changed event.
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        #endregion
+
         #region Properties
 
         public ObservableCollection<Boarding> Boardings
@@ -77,28 +89,33 @@ namespace EssentialUIKit.ViewModels.OnBoarding
             {
                 return this.boardings;
             }
+
             set
             {
-                if(this.boardings == value)
+                if (this.boardings == value)
                 {
                     return;
                 }
+
                 this.boardings = value;
                 this.OnPropertyChanged();
             }
         }
+
         public string NextButtonText
         {
             get
             {
                 return this.nextButtonText;
             }
+
             set
             {
                 if (this.nextButtonText == value)
                 {
                     return;
                 }
+
                 this.nextButtonText = value;
                 this.OnPropertyChanged();
             }
@@ -110,12 +127,14 @@ namespace EssentialUIKit.ViewModels.OnBoarding
             {
                 return this.isSkipButtonVisible;
             }
+
             set
             {
                 if (this.isSkipButtonVisible == value)
                 {
                     return;
                 }
+
                 this.isSkipButtonVisible = value;
                 this.OnPropertyChanged();
             }
@@ -127,12 +146,14 @@ namespace EssentialUIKit.ViewModels.OnBoarding
             {
                 return this.selectedIndex;
             }
+
             set
             {
                 if (this.selectedIndex == value)
                 {
                     return;
                 }
+
                 this.selectedIndex = value;
                 this.OnPropertyChanged();
             }
@@ -154,15 +175,6 @@ namespace EssentialUIKit.ViewModels.OnBoarding
 
         #endregion
 
-        #region Events
-
-        /// <summary>
-        /// The declaration of the property changed event.
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        #endregion
-
         #region Methods
 
         /// <summary>
@@ -176,18 +188,22 @@ namespace EssentialUIKit.ViewModels.OnBoarding
 
         private bool ValidateAndUpdateSelectedIndex(int itemCount)
         {
-            if (this.SelectedIndex >= itemCount - 1) return true;
+            if (this.SelectedIndex >= itemCount - 1)
+            {
+                return true;
+            }
 
             this.SelectedIndex++;
             return false;
         }
+
         /// <summary>
         /// Invoked when the Skip button is clicked.
         /// </summary>
         /// <param name="obj">The Object</param>
         private void Skip(object obj)
         {
-            MoveToNextPage();
+            this.MoveToNextPage();
         }
 
         /// <summary>
@@ -197,19 +213,19 @@ namespace EssentialUIKit.ViewModels.OnBoarding
         private void Next(object obj)
         {
             var itemCount = (obj as SfRotator).ItemsSource.Count();
-            if (ValidateAndUpdateSelectedIndex(itemCount))
+            if (this.ValidateAndUpdateSelectedIndex(itemCount))
             {
                 Application.Current.MainPage.Navigation.PopAsync();
             }
             else
             {
-                MoveToNextPage();
+                this.MoveToNextPage();
             }
         }
 
         private void MoveToNextPage()
         {
-            //Move to next page
+            // Move to next page
         }
 
         #endregion

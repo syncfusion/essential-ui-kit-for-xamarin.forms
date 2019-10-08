@@ -16,7 +16,7 @@ namespace EssentialUIKit.Views.ErrorAndEmpty
         /// </summary>
         public SomethingWentWrongPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         /// <summary>

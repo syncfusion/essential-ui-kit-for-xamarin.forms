@@ -1,12 +1,10 @@
-﻿using EssentialUIKit.Models.Social;
-using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
-using Profile = EssentialUIKit.Models.Social.Profile;
+using ProfileModel = EssentialUIKit.Models.Social.Profile;
 
 namespace EssentialUIKit.ViewModels.Social
 {
@@ -18,9 +16,9 @@ namespace EssentialUIKit.ViewModels.Social
     {
         #region Fields
 
-        private ObservableCollection<Profile> interests;
+        private ObservableCollection<ProfileModel> interests;
 
-        private ObservableCollection<Profile> connnections;
+        private ObservableCollection<ProfileModel> connnections;
 
         private ObservableCollection<string> pictures;
 
@@ -33,52 +31,58 @@ namespace EssentialUIKit.ViewModels.Social
         /// </summary>
         public SocialProfileViewModel()
         {
-            HeaderImagePath = App.BaseImageUrl + "Album2.png";
-            ProfileImage = App.BaseImageUrl + "ProfileImage16.png";
-            ProfileName = "Lela Cortez";
-            Designation = "Designer";
-            State = "San Francisco";
-            Country = "CA";
-            About = "I’m a UMN graduate (go Gophers!) and Minnesota native, but I’m already loving my new home in the Golden Gate City! I can’t wait to explore more of the great music scene here.";
-            PostsCount = 8;
-            FollowersCount = 45;
-            FollowingCount = 45;
+            this.HeaderImagePath = App.BaseImageUrl + "Album2.png";
+            this.ProfileImage = App.BaseImageUrl + "ProfileImage16.png";
+            this.ProfileName = "Lela Cortez";
+            this.Designation = "Designer";
+            this.State = "San Francisco";
+            this.Country = "CA";
+            this.About = "I’m a UMN graduate (go Gophers!) and Minnesota native, but I’m already loving my new home in the Golden Gate City! I can’t wait to explore more of the great music scene here.";
+            this.PostsCount = 8;
+            this.FollowersCount = 45;
+            this.FollowingCount = 45;
 
-            Interests = new ObservableCollection<Profile>();
-            Interests.Add(new Profile { Name = "Food", ImagePath = App.BaseImageUrl + "Recipe12.png" });
-            Interests.Add(new Profile { Name = "Travel", ImagePath = App.BaseImageUrl + "Album5.png" });
-            Interests.Add(new Profile { Name = "Music", ImagePath = App.BaseImageUrl + "ArticleImage7.jpg" });
-            Interests.Add(new Profile { Name = "Bags", ImagePath = App.BaseImageUrl +  "Accessories.png" });
-            Interests.Add(new Profile { Name = "Market", ImagePath = App.BaseImageUrl + "PersonalCare.png" });
-            Interests.Add(new Profile { Name = "Food", ImagePath = App.BaseImageUrl + "Recipe12.png" });
-            Interests.Add(new Profile { Name = "Travel", ImagePath = App.BaseImageUrl + "Album5.png" });
-            Interests.Add(new Profile { Name = "Music", ImagePath = App.BaseImageUrl + "ArticleImage7.jpg" });
-            Interests.Add(new Profile { Name = "Bags", ImagePath = App.BaseImageUrl + "Accessories.png" });
-            Interests.Add(new Profile { Name = "Market", ImagePath = App.BaseImageUrl + "PersonalCare.png" });
+            this.Interests = new ObservableCollection<ProfileModel>()
+            {
+                 new ProfileModel { Name = "Food", ImagePath = App.BaseImageUrl + "Recipe12.png" },
+                 new ProfileModel { Name = "Travel", ImagePath = App.BaseImageUrl + "Album5.png" },
+                 new ProfileModel { Name = "Music", ImagePath = App.BaseImageUrl + "ArticleImage7.jpg" },
+                 new ProfileModel { Name = "Bags", ImagePath = App.BaseImageUrl + "Accessories.png" },
+                 new ProfileModel { Name = "Market", ImagePath = App.BaseImageUrl + "PersonalCare.png" },
+                 new ProfileModel { Name = "Food", ImagePath = App.BaseImageUrl + "Recipe12.png" },
+                 new ProfileModel { Name = "Travel", ImagePath = App.BaseImageUrl + "Album5.png" },
+                 new ProfileModel { Name = "Music", ImagePath = App.BaseImageUrl + "ArticleImage7.jpg" },
+                 new ProfileModel { Name = "Bags", ImagePath = App.BaseImageUrl + "Accessories.png" },
+                 new ProfileModel { Name = "Market", ImagePath = App.BaseImageUrl + "PersonalCare.png" },
+            };
 
-            Connections = new ObservableCollection<Profile>();            
-            Connections.Add(new Profile { Name = "Rose King", ImagePath = App.BaseImageUrl + "ProfileImage7.png" });
-            Connections.Add(new Profile { Name = "Jeanette Bell", ImagePath = App.BaseImageUrl + "ProfileImage9.png" });
-            Connections.Add(new Profile { Name = "Lily Castro", ImagePath = App.BaseImageUrl + "ProfileImage10.png" });
-            Connections.Add(new Profile { Name = "Susie Moss", ImagePath = App.BaseImageUrl + "ProfileImage11.png" });
-            Connections.Add(new Profile { Name = "Rose King", ImagePath = App.BaseImageUrl + "ProfileImage7.png" });
-            Connections.Add(new Profile { Name = "Jeanette Bell", ImagePath = App.BaseImageUrl + "ProfileImage9.png" });
-            Connections.Add(new Profile { Name = "Lily Castro", ImagePath = App.BaseImageUrl + "ProfileImage10.png" });
-            Connections.Add(new Profile { Name = "Susie Moss", ImagePath = App.BaseImageUrl + "ProfileImage11.png" });            
+            this.Connections = new ObservableCollection<ProfileModel>()
+            {
+                 new ProfileModel { Name = "Rose King", ImagePath = App.BaseImageUrl + "ProfileImage7.png" },
+                 new ProfileModel { Name = "Jeanette Bell", ImagePath = App.BaseImageUrl + "ProfileImage9.png" },
+                 new ProfileModel { Name = "Lily Castro", ImagePath = App.BaseImageUrl + "ProfileImage10.png" },
+                 new ProfileModel { Name = "Susie Moss", ImagePath = App.BaseImageUrl + "ProfileImage11.png" },
+                 new ProfileModel { Name = "Rose King", ImagePath = App.BaseImageUrl + "ProfileImage7.png" },
+                 new ProfileModel { Name = "Jeanette Bell", ImagePath = App.BaseImageUrl + "ProfileImage9.png" },
+                 new ProfileModel { Name = "Lily Castro", ImagePath = App.BaseImageUrl + "ProfileImage10.png" },
+                 new ProfileModel { Name = "Susie Moss", ImagePath = App.BaseImageUrl + "ProfileImage11.png" },
+            };
 
-            Pictures = new ObservableCollection<string>();
-            Pictures.Add(App.BaseImageUrl + "ProfileImage8.png");
-            Pictures.Add(App.BaseImageUrl + "Album6.png");
-            Pictures.Add(App.BaseImageUrl + "ArticleImage4.jpg");
-            Pictures.Add(App.BaseImageUrl + "Recipe17.png");
-            Pictures.Add(App.BaseImageUrl + "ArticleImage5.jpg");
-            Pictures.Add(App.BaseImageUrl + "Mask.png");          
+            this.Pictures = new ObservableCollection<string>()
+            {
+                 App.BaseImageUrl + "ProfileImage8.png",
+                 App.BaseImageUrl + "Album6.png",
+                 App.BaseImageUrl + "ArticleImage4.jpg",
+                 App.BaseImageUrl + "Recipe17.png",
+                 App.BaseImageUrl + "ArticleImage5.jpg",
+                 App.BaseImageUrl + "Mask.png",
+            };
 
-            this.FollowCommand = new Command(FollowClicked);
-            this.AddConnectionCommand = new Command(AddConnectionClicked);
-            this.ImageTapCommand = new Command(ImageClicked);
-            this.ProfileSelectedCommand = new Command(ProfileClicked);
-        }       
+            this.FollowCommand = new Command(this.FollowClicked);
+            this.AddConnectionCommand = new Command(this.AddConnectionClicked);
+            this.ImageTapCommand = new Command(this.ImageClicked);
+            this.ProfileSelectedCommand = new Command(this.ProfileClicked);
+        }
 
         #endregion
 
@@ -120,19 +124,35 @@ namespace EssentialUIKit.ViewModels.Social
         /// <summary>
         /// Gets or sets the interests collection.
         /// </summary>
-        public ObservableCollection<Profile> Interests
+        public ObservableCollection<ProfileModel> Interests
         {
-            get { return interests; }
-            set { interests = value; OnPropertyChanged(); }
-        }        
+            get
+            {
+                return this.interests;
+            }
+
+            set
+            {
+                this.interests = value;
+                this.OnPropertyChanged();
+            }
+        }
 
         /// <summary>
         /// Gets or sets the connections collection.
         /// </summary>
-        public ObservableCollection<Profile> Connections
+        public ObservableCollection<ProfileModel> Connections
         {
-            get { return connnections; }
-            set { connnections = value; OnPropertyChanged(); }
+            get
+            {
+                return this.connnections;
+            }
+
+            set
+            {
+                this.connnections = value;
+                this.OnPropertyChanged();
+            }
         }
 
         /// <summary>
@@ -140,8 +160,16 @@ namespace EssentialUIKit.ViewModels.Social
         /// </summary>
         public ObservableCollection<string> Pictures
         {
-            get { return pictures; }
-            set { pictures = value; OnPropertyChanged(); }
+            get
+            {
+                return this.pictures;
+            }
+
+            set
+            {
+                this.pictures = value;
+                this.OnPropertyChanged();
+            }
         }
 
         /// <summary>
@@ -195,7 +223,7 @@ namespace EssentialUIKit.ViewModels.Social
         public int FollowingCount { get; set; }
 
         #endregion
-
+        
         #region Methods
 
         /// <summary>
@@ -213,7 +241,7 @@ namespace EssentialUIKit.ViewModels.Social
         /// <param name="obj">The Object</param>
         private void FollowClicked(object obj)
         {
-            //Do something
+            // Do something
         }
 
         /// <summary>
@@ -222,7 +250,7 @@ namespace EssentialUIKit.ViewModels.Social
         /// <param name="obj">The Object</param>
         private void AddConnectionClicked(object obj)
         {
-            //Do something
+            // Do something
         }
 
         /// <summary>
@@ -231,7 +259,7 @@ namespace EssentialUIKit.ViewModels.Social
         /// <param name="obj">The Object</param>
         private void ImageClicked(object obj)
         {
-            //Do something
+            // Do something
         }
 
         /// <summary>
@@ -240,7 +268,7 @@ namespace EssentialUIKit.ViewModels.Social
         /// <param name="obj">The Object</param>
         private void ProfileClicked(object obj)
         {
-            //Do something
+            // Do something
         }
 
         #endregion

@@ -16,7 +16,7 @@ namespace EssentialUIKit.Views.ErrorAndEmpty
         /// </summary>
         public LocationDeniedPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         /// <summary>

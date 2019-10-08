@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Reflection;
+using EssentialUIKit.AppLayout.Models;
+using EssentialUIKit.AppLayout.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
-using EssentialUIKit.AppLayout.Models;
-using EssentialUIKit.AppLayout.ViewModels;
 
 namespace EssentialUIKit.AppLayout.Views
 {
@@ -73,6 +73,7 @@ namespace EssentialUIKit.AppLayout.Views
                 SettingsView.Hide();
                 return true;
             }
+
             return base.OnBackButtonPressed();
         }
 
@@ -92,6 +93,7 @@ namespace EssentialUIKit.AppLayout.Views
             {
                 return;
             }
+
             this.isNavigationInQueue = true;
 
             if (Device.RuntimePlatform == "UWP")

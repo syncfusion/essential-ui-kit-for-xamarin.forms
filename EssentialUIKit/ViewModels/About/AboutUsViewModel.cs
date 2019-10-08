@@ -1,9 +1,9 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using EssentialUIKit.Models.About;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
-using EssentialUIKit.Models.About;
 
 namespace EssentialUIKit.ViewModels.About
 {
@@ -75,46 +75,9 @@ namespace EssentialUIKit.ViewModels.About
                     EmployeeName = "Anthony",
                     Image = App.BaseImageUrl + "ProfileImage1.png",
                     Designation = "Senior Developer"
-                },
-                new AboutUsModel
-                {
-                    EmployeeName = "Julia Grant",
-                    Image = App.BaseImageUrl + "ProfileImage2.png",
-                    Designation = "Project Manager"
-                },
-                new AboutUsModel
-                {
-                    EmployeeName = "John",
-                    Image = App.BaseImageUrl + "ProfileImage4.png",
-                    Designation = "Senior Manager"
-                },
-                new AboutUsModel
-                {
-                    EmployeeName = "Danielle",
-                    Image = App.BaseImageUrl + "ProfileImage5.png",
-                    Designation = "Lead Developer"
-                },
-                new AboutUsModel
-                {
-                    EmployeeName = "Kyle Greene",
-                    Image = App.BaseImageUrl + "ProfileImage6.png",
-                    Designation = "Senior Designer"
-                },
-                new AboutUsModel
-                {
-                    EmployeeName = "Navya Sharma",
-                    Image = App.BaseImageUrl + "ProfileImage7.png",
-                    Designation = "Senior Manager"
-                },
-                new AboutUsModel
-                {
-                    EmployeeName = "Jazmine",
-                    Image = App.BaseImageUrl + "ProfileImage8.png",
-                    Designation = "Project Manager"
                 }
             };
-
-
+            
             this.ItemSelectedCommand = new Command(this.ItemSelected);
         }
 
@@ -137,7 +100,10 @@ namespace EssentialUIKit.ViewModels.About
         /// <value>Image source location.</value>
         public string CardsTopImage
         {
-            get { return this.cardsTopImage; }
+            get
+            {
+                return this.cardsTopImage;
+            }
 
             set
             {
@@ -152,7 +118,10 @@ namespace EssentialUIKit.ViewModels.About
         /// <value>The product description.</value>
         public string ProductDescription
         {
-            get { return this.productDescription; }
+            get
+            {
+                return this.productDescription;
+            }
 
             set
             {
@@ -167,7 +136,10 @@ namespace EssentialUIKit.ViewModels.About
         /// <value>The product icon.</value>
         public string ProductIcon
         {
-            get { return this.productIcon; }
+            get
+            {
+                return this.productIcon;
+            }
 
             set
             {
@@ -182,7 +154,10 @@ namespace EssentialUIKit.ViewModels.About
         /// <value>The product version.</value>
         public string ProductVersion
         {
-            get { return this.productVersion; }
+            get
+            {
+                return this.productVersion;
+            }
 
             set
             {

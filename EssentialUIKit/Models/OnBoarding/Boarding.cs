@@ -8,13 +8,7 @@ namespace EssentialUIKit.Models.OnBoarding
     /// </summary>
     [Preserve(AllMembers = true)]
     public class Boarding
-    {
-        #region Fields
-
-        private View rotatorItem;
-
-        #endregion
-
+    {       
         #region Properties
 
         /// <summary>
@@ -35,11 +29,7 @@ namespace EssentialUIKit.Models.OnBoarding
         /// <summary>
         /// Gets or sets the view.
         /// </summary>
-        public View RotatorItem
-        {
-            get { return rotatorItem; }
-            set { rotatorItem = value; }
-        }
+        public View RotatorItem { get; set; }
 
         #endregion
     }

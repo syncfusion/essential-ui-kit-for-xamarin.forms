@@ -13,7 +13,6 @@ namespace EssentialUIKit.ViewModels.Navigation
     [DataContract]
     public class NavigationViewModel
     {
-
         #region Fields
 
         private Command<object> itemTappedCommand;
@@ -34,7 +33,7 @@ namespace EssentialUIKit.ViewModels.Navigation
         #region Properties
 
         /// <summary>
-        /// Gets or sets the command that will be executed when an item is selected.
+        /// Gets the command that will be executed when an item is selected.
         /// </summary>
         public Command<object> ItemTappedCommand
         {
@@ -47,7 +46,7 @@ namespace EssentialUIKit.ViewModels.Navigation
         /// <summary>
         /// Gets or sets a collection of values to be displayed in the Navigation list page.
         /// </summary>
-        [DataMember(Name ="navigationList")]
+        [DataMember(Name = "navigationList")]
         public ObservableCollection<NavigationModel> NavigationList { get; set; }
 
         #endregion

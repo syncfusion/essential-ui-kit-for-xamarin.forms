@@ -8,8 +8,7 @@
     xmlns:svg="clr-namespace:EssentialUIKit.Controls"
     xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.ErrorAndEmpty"
     BackgroundColor="{StaticResource Gray-White}"
-    NavigationPage.HasNavigationBar="False"
-    Shell.NavBarIsVisible="False">
+    NavigationPage.HasNavigationBar="False">
 
     <!--  Binding context for NoVideos page  -->
     <ContentPage.BindingContext>

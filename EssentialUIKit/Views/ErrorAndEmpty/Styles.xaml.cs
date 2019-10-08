@@ -15,7 +15,7 @@ namespace EssentialUIKit.Views.ErrorAndEmpty
         /// </summary>
         public Styles()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
     }
 }

@@ -1,0 +1,328 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="EssentialUIKit.Views.Article.ArticleWithCommentsPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:controls="clr-namespace:EssentialUIKit.Controls"
+    xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Article"
+    BackgroundColor="{DynamicResource Gray-White}"
+    NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.BindingContext>
+        <viewModel:ArticleWithCommentsPageViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.ControlTemplate>
+        <ControlTemplate>
+            <StackLayout Spacing="0">
+                <!--  Title View  -->
+                <controls:TitleView>
+                    <controls:TitleView.TrailingView>
+                        <StackLayout Orientation="Horizontal">
+
+                            <!--  Favourite button  -->
+                            <buttons:SfButton
+                                x:Name="favouriteButton"
+                                Command="{TemplateBinding BindingContext.FavouriteCommand}"
+                                CommandParameter="{x:Reference favouriteButton}"
+                                CornerRadius="4"
+                                HeightRequest="40"
+                                Style="{StaticResource NavigationBarButtonStyle}"
+                                Text="{StaticResource Favourite}"
+                                WidthRequest="40" />
+
+                            <!--  Bookmark button  -->
+                            <buttons:SfButton
+                                x:Name="bookmarkButton"
+                                Command="{TemplateBinding BindingContext.BookmarkCommand}"
+                                CommandParameter="{x:Reference bookmarkButton}"
+                                CornerRadius="4"
+                                HeightRequest="40"
+                                Style="{StaticResource NavigationBarButtonStyle}"
+                                Text="{StaticResource ClearBookmark}"
+                                WidthRequest="40" />
+                        </StackLayout>
+                    </controls:TitleView.TrailingView>
+                </controls:TitleView>
+
+                <ContentPresenter />
+            </StackLayout>
+        </ControlTemplate>
+    </ContentPage.ControlTemplate>
+
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Spacing="0">
+
+                <StackLayout Margin="{OnIdiom Phone='16,0', Tablet='48,0', Desktop='48,0'}" Spacing="0">
+
+                    <!--  Article Tile  -->
+                    <Label
+                        Margin="0,16,0,8"
+                        FontFamily="{StaticResource Montserrat-Bold}"
+                        FontSize="20"
+                        LineHeight="1.25"
+                        Text="{Binding ArticleName}"
+                        TextColor="{DynamicResource Gray-900}" />
+
+                    <!--  Article author, title & average reading time  -->
+                    <Label
+                        Margin="0,0,0,16"
+                        FontSize="12"
+                        LineHeight="{OnPlatform Default=-1,
+                                                Android=1.5}">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span
+                                    FontFamily="{StaticResource Montserrat-Medium}"
+                                    Text="{Binding ArticleAuthor}"
+                                    TextColor="{DynamicResource Gray-900}" />
+                                <Span Text="    " />
+                                <Span
+                                    FontFamily="{StaticResource Montserrat-Regular}"
+                                    Text="{Binding ArticleDate}"
+                                    TextColor="{DynamicResource Gray-700}" />
+                                <Span Text=" | " TextColor="{DynamicResource Gray-700}" />
+                                <Span
+                                    FontFamily="{StaticResource Montserrat-Regular}"
+                                    Text="{Binding ArticleReadingTime}"
+                                    TextColor="{DynamicResource Gray-700}" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+
+                    <!--  Image of the blog  -->
+                    <Image
+                        Aspect="AspectFill"
+                        BackgroundColor="{DynamicResource Gray-200}"
+                        HeightRequest="210">
+                        <Image.Source>
+                            <UriImageSource
+                                CacheValidity="14"
+                                CachingEnabled="true"
+                                Uri="{Binding ArticleImage}" />
+                        </Image.Source>
+                    </Image>
+
+                    <!--  Article content  -->
+                    <Label
+                        Margin="0,16"
+                        FontFamily="{StaticResource Montserrat-Medium}"
+                        FontSize="14"
+                        LineHeight="1.5"
+                        Text="{Binding ArticleContent}"
+                        TextColor="{DynamicResource Gray-700}" />
+
+                    <!--  Decription image of the blog  -->
+                    <Image
+                        Margin="{OnIdiom Phone='16,8',
+                                         Tablet='0,24,0,8',
+                                         Desktop='0,24,0,8'}"
+                        Aspect="AspectFill"
+                        BackgroundColor="{DynamicResource Gray-200}"
+                        HeightRequest="150"
+                        HorizontalOptions="{OnIdiom Tablet=Center,
+                                                    Desktop=Center,
+                                                    Phone=FillAndExpand}"
+                        Source="{Binding ArticleSubImage}" />
+
+                    <!--  Description image name  -->
+                    <Label
+                        FontFamily="{StaticResource Montserrat-Medium}"
+                        FontSize="12"
+                        HorizontalOptions="Center"
+                        HorizontalTextAlignment="Center"
+                        LineHeight="1.25"
+                        Text="Image_1"
+                        TextColor="{DynamicResource Gray-700}" />
+
+                    <!--  Subtitle of the blog  -->
+                    <Label
+                        Margin="0,24,0,8"
+                        FontFamily="{StaticResource Montserrat-SemiBold}"
+                        FontSize="16"
+                        LineHeight="1.25"
+                        Text="{Binding SubTitle1}"
+                        TextColor="{DynamicResource Gray-900}" />
+
+                    <StackLayout
+                        Margin="0,0,0,24"
+                        BindableLayout.ItemsSource="{Binding ContentList}"
+                        Spacing="16">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout Orientation="Horizontal">
+
+                                    <Label
+                                        Margin="{OnPlatform Default='0, 3, 0, 0',
+                                                            iOS='0, 10, 0, 0'}"
+                                        FontFamily="{StaticResource FontIcons}"
+                                        FontSize="14"
+                                        Text="&#xe720;"
+                                        TextColor="{DynamicResource Gray-500}" />
+
+                                    <Label
+                                        FontFamily="{StaticResource Montserrat-Medium}"
+                                        FontSize="14"
+                                        LineHeight="1.5"
+                                        Text="{Binding Description}"
+                                        TextColor="{DynamicResource Gray-700}" />
+
+                                </StackLayout>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </StackLayout>
+
+                </StackLayout>
+
+                <StackLayout Padding="{OnIdiom Default='16'}" Orientation="Horizontal">
+
+                    <Label HorizontalOptions="StartAndExpand" VerticalOptions="Center">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Style="{StaticResource TitleSpanStyle}" Text="Reviews" />
+                                <Span Style="{StaticResource SpanStyle}" Text=" (" />
+                                <Span Style="{StaticResource SpanStyle}" Text="{Binding Reviews.Count}" />
+                                <Span Style="{StaticResource SpanStyle}" Text=")" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+
+                    <buttons:SfButton
+                        x:Name="ShowButton"
+                        Padding="0"
+                        Command="{Binding LoadMoreCommand}"
+                        CommandParameter="{x:Reference ShowButton}"
+                        CornerRadius="4"
+                        FontFamily="{StaticResource Montserrat-SemiBold}"
+                        FontSize="{OnIdiom Default=12,
+                                           Desktop=14}"
+                        HorizontalOptions="End"
+                        Style="{StaticResource SfButtonStyle}"
+                        Text="SHOW LESS"
+                        TextColor="{DynamicResource HyperLink}"
+                        VerticalOptions="Center">
+
+                        <buttons:SfButton.Triggers>
+                            <DataTrigger
+                                Binding="{Binding Reviews.Count}"
+                                TargetType="buttons:SfButton"
+                                Value="1">
+                                <Setter Property="Text" Value="SHOW ALL" />
+                            </DataTrigger>
+                        </buttons:SfButton.Triggers>
+                    </buttons:SfButton>
+
+                </StackLayout>
+
+                <StackLayout
+                    x:Name="StackLayout"
+                    BindableLayout.ItemsSource="{Binding Reviews}"
+                    Spacing="0">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Spacing="0">
+
+                                <BoxView HeightRequest="{OnIdiom Default=1, Desktop=0}" Style="{StaticResource BoxViewStyle}" />
+
+                                <Grid Padding="16" ColumnSpacing="0">
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <!--  Profile Image  -->
+                                    <border:SfBorder
+                                        CornerRadius="24"
+                                        HeightRequest="48"
+                                        Style="{StaticResource SfBorderStyle}"
+                                        WidthRequest="48">
+                                        <Image Aspect="AspectFill" BackgroundColor="{DynamicResource Gray-200}">
+                                            <Image.Source>
+                                                <UriImageSource
+                                                    CacheValidity="14"
+                                                    CachingEnabled="true"
+                                                    Uri="{Binding ProfileImage}" />
+                                            </Image.Source>
+                                        </Image>
+                                    </border:SfBorder>
+
+
+                                    <StackLayout
+                                        Grid.Column="1"
+                                        Margin="0"
+                                        Padding="16,0"
+                                        Spacing="0"
+                                        VerticalOptions="Start">
+
+                                        <!--  Customer Name  -->
+                                        <Label
+                                            FontFamily="{StaticResource Montserrat-SemiBold}"
+                                            FontSize="16"
+                                            Style="{StaticResource LabelStyle}"
+                                            Text="{Binding CustomerName}"
+                                            TextColor="{DynamicResource Gray-900}" />
+
+                                        <!--  Commented Date  -->
+                                        <Label
+                                            FontFamily="{StaticResource Montserrat-Regular}"
+                                            FontSize="12"
+                                            Style="{StaticResource LabelStyle}"
+                                            Text="{Binding ReviewedDate, StringFormat='{}{0:dd MMM, yyyy}'}" />
+                                    </StackLayout>
+
+                                    <!--  Product Review  -->
+                                    <Label
+                                        Grid.Row="2"
+                                        Grid.ColumnSpan="2"
+                                        FontFamily="{StaticResource Montserrat-Medium}"
+                                        FontSize="14"
+                                        LineHeight="{OnPlatform Android=1.25,
+                                                                Default=-1}"
+                                        Style="{StaticResource LabelStyle}"
+                                        Text="{Binding Comment}" />
+
+                                </Grid>
+                            </StackLayout>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+
+                </StackLayout>
+
+                <!--  See all reviews Button  -->
+                <buttons:SfButton
+                    Margin="50,8,50,24"
+                    BackgroundColor="{DynamicResource PrimaryColor}"
+                    BorderColor="{DynamicResource PrimaryColor}"
+                    BorderWidth="1"
+                    Command="{Binding AddToCartCommand}"
+                    CommandParameter="{Binding .}"
+                    FontFamily="{StaticResource Montserrat-SemiBold}"
+                    HeightRequest="40"
+                    HorizontalOptions="Center"
+                    Style="{StaticResource RoundButtonStyle}"
+                    Text="COMMENT"
+                    TextColor="{DynamicResource Gray-White}"
+                    WidthRequest="245" />
+            </StackLayout>
+
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

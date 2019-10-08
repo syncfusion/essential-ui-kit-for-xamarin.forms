@@ -16,7 +16,7 @@ namespace EssentialUIKit.Views.ECommerce
         /// </summary>
         public FilterView()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         /// <summary>
@@ -30,11 +30,11 @@ namespace EssentialUIKit.Views.ECommerce
 
             if (width > height)
             {
-                this.FooterTemplate = (DataTemplate) this.Resources["LandscapeTemplate"];
+                this.FooterTemplate = (DataTemplate)this.Resources["LandscapeTemplate"];
             }
             else
             {
-                this.FooterTemplate = (DataTemplate) this.Resources["PortraitTemplate"];
+                this.FooterTemplate = (DataTemplate)this.Resources["PortraitTemplate"];
             }
         }
     }

@@ -1,7 +1,8 @@
 ﻿using System.Reflection;
 using System.Runtime.Serialization.Json;
-using Xamarin.Forms.Internals;
 using EssentialUIKit.ViewModels.Bookmarks;
+using Xamarin.Forms.Internals;
+
 namespace EssentialUIKit.DataService
 {
     /// <summary>

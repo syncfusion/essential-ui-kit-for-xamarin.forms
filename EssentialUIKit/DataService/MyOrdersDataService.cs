@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
 using System.Runtime.Serialization.Json;
-using Xamarin.Forms.Internals;
 using EssentialUIKit.ViewModels.History;
+using Xamarin.Forms.Internals;
 
 namespace EssentialUIKit.DataService
 {

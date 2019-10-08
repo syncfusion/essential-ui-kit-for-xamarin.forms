@@ -1,7 +1,7 @@
 ﻿using System.Linq;
+using EssentialUIKit.Themes;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
-using EssentialUIKit.Themes;
 
 namespace EssentialUIKit.AppLayout
 {
@@ -20,9 +20,11 @@ namespace EssentialUIKit.AppLayout
             // mergedDictionaries.Add(new DarkTheme());
             AppSettings.Instance.IsDarkTheme = true;
         }
+
         public static void ApplyLightTheme(this ResourceDictionary resources)
         {
             var mergedDictionaries = resources.MergedDictionaries;
+
             // var darkTheme = mergedDictionaries.OfType<DarkTheme>().FirstOrDefault();
             // if (darkTheme != null)
             // {
@@ -31,6 +33,7 @@ namespace EssentialUIKit.AppLayout
             mergedDictionaries.Add(new LightTheme());
             AppSettings.Instance.IsDarkTheme = false;
         }
+
         public static void ApplyColorSet(int index)
         {
             switch (index)
@@ -52,6 +55,7 @@ namespace EssentialUIKit.AppLayout
                     break;
             }
         }
+
         public static void ApplyColorSet1()
         {
             Application.Current.Resources["PrimaryColor"] = Color.FromHex("#f54e5e");
@@ -61,6 +65,7 @@ namespace EssentialUIKit.AppLayout
             Application.Current.Resources["PrimaryLight"] = Color.FromHex("#ffe8f4");
             Application.Current.Resources["PrimaryGradient"] = Color.FromHex("e83f94");
         }
+
         public static void ApplyColorSet2()
         {
             Application.Current.Resources["PrimaryColor"] = Color.FromHex("#2f72e4");
@@ -70,6 +75,7 @@ namespace EssentialUIKit.AppLayout
             Application.Current.Resources["PrimaryLight"] = Color.FromHex("#cdddf9");
             Application.Current.Resources["PrimaryGradient"] = Color.FromHex("#00acff");
         }
+
         public static void ApplyColorSet3()
         {
             Application.Current.Resources["PrimaryColor"] = Color.FromHex("#5d4cf7");
@@ -79,6 +85,7 @@ namespace EssentialUIKit.AppLayout
             Application.Current.Resources["PrimaryLight"] = Color.FromHex("#eae8fe");
             Application.Current.Resources["PrimaryGradient"] = Color.FromHex("#aa9cfc");
         }
+
         public static void ApplyColorSet4()
         {
             Application.Current.Resources["PrimaryColor"] = Color.FromHex("#06846a");
@@ -88,6 +95,7 @@ namespace EssentialUIKit.AppLayout
             Application.Current.Resources["PrimaryLight"] = Color.FromHex("#ebf9f7");
             Application.Current.Resources["PrimaryGradient"] = Color.FromHex("#0ed342");
         }
+
         public static void ApplyColorSet5()
         {
             Application.Current.Resources["PrimaryColor"] = Color.FromHex("#d54008");

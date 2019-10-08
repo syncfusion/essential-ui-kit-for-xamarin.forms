@@ -13,8 +13,7 @@
     xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Forms"
     Title="Add Card"
     BackgroundColor="{DynamicResource Gray-100}"
-    NavigationPage.HasNavigationBar="False"
-    Shell.NavBarIsVisible="False">
+    NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -150,43 +149,15 @@
                             <!--  Combobox with calendar to pick the expire date of the card  -->
                             <border:SfBorder
                                 Grid.Row="1"
-                                Grid.Column="0"
-                                BackgroundColor="{DynamicResource Gray-White}"
-                                BorderColor="{DynamicResource Gray-300}"
-                                CornerRadius="4">
+                                Margin="0"
+                                Style="{StaticResource FormBorderStyle}">
 
-                                <combobox:SfComboBox
+                                <control:CalenderDatePicker
                                     x:Name="CustomDatePicker"
-                                    Margin="12,0"
-                                    DropDownHeaderViewHeight="300"
-                                    DropDownItemHeight="0"
-                                    DropDownWidth="{OnPlatform Default=300,
-                                                               UWP=700}"
-                                    ShowDropDownFooterView="False"
-                                    ShowDropDownHeaderView="True"
-                                    Style="{StaticResource ComboBoxStyle}"
-                                    Text="{Binding ExpireDate}"
-                                    TextColor="{DynamicResource Gray-900}"
-                                    Watermark="MM/YY"
-                                    WatermarkColor="{DynamicResource Gray-700}">
-                                    <combobox:SfComboBox.DropDownHeaderView>
-                                        <calender:SfCalendar
-                                            x:Name="Calendar"
-                                            HeightRequest="300"
-                                            SelectionChanged="Calendar_SelectionChanged">
-                                            <calender:SfCalendar.MonthViewSettings>
-                                                <calender:MonthViewSettings SelectionRadius="15" />
-                                            </calender:SfCalendar.MonthViewSettings>
-                                        </calender:SfCalendar>
-                                    </combobox:SfComboBox.DropDownHeaderView>
-                                    <combobox:SfComboBox.DropDownButtonSettings>
-                                        <combobox:DropDownButtonSettings Width="30" Height="30">
-                                            <combobox:DropDownButtonSettings.View>
-                                                <Label Text="" />
-                                            </combobox:DropDownButtonSettings.View>
-                                        </combobox:DropDownButtonSettings>
-                                    </combobox:SfComboBox.DropDownButtonSettings>
-                                </combobox:SfComboBox>
+                                    FontSize="16"
+                                    Format="MM/yy"
+                                    PlaceHolderText="MM/YY"
+                                    TextColor="{DynamicResource Gray-900}" />
 
                             </border:SfBorder>
 

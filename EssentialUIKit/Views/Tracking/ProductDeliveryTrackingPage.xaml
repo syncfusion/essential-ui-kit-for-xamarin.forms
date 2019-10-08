@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="EssentialUIKit.Views.Tracking.ProductDeliveryTrackingPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:progressBar="clr-namespace:Syncfusion.XForms.ProgressBar;assembly=Syncfusion.SfProgressBar.XForms"
+    xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Tracking"
+    Title="Order Status"
+    BackgroundColor="{StaticResource Gray-100}"
+    NavigationPage.HasNavigationBar="False"
+    Shell.NavBarIsVisible="False">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout HorizontalOptions="FillAndExpand" Spacing="0">
+                <Grid
+                    Margin="0,16,0,0"
+                    BackgroundColor="{DynamicResource Gray-White}"
+                    ColumnSpacing="0"
+                    RowSpacing="0">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="{OnIdiom Default=1, Phone=0}" />
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <!--  Product image  -->
+                    <Image
+                        Grid.Row="0"
+                        Grid.RowSpan="4"
+                        Grid.Column="0"
+                        Margin="16,8,16,16"
+                        Aspect="Fill"
+                        BackgroundColor="{DynamicResource Gray-200}"
+                        HeightRequest="80"
+                        WidthRequest="80">
+                        <Image.Source>
+                            <UriImageSource
+                                CacheValidity="14"
+                                CachingEnabled="true"
+                                Uri="{Binding ProductImage}" />
+                        </Image.Source>
+                    </Image>
+
+                    <!--  Product name  -->
+                    <Label
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Margin="0,12,0,4"
+                        FontFamily="{StaticResource Montserrat-SemiBold}"
+                        FontSize="14"
+                        LineBreakMode="TailTruncation"
+                        MaxLines="1"
+                        Style="{StaticResource LabelStyle}"
+                        Text="{Binding ProductName}"
+                        TextColor="{DynamicResource Gray-900}" />
+
+                    <!--  Description label  -->
+                    <Label
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Margin="0,0,0,8"
+                        Style="{StaticResource LabelStyle}"
+                        Text="{Binding Description}" />
+
+                    <!--  Order ID  -->
+                    <Label
+                        Grid.Row="2"
+                        Grid.Column="1"
+                        HorizontalOptions="Start"
+                        Style="{StaticResource LabelStyle}"
+                        Text="{Binding OrderID, StringFormat='Order ID: {0}'}"
+                        VerticalOptions="Center" />
+
+                </Grid>
+
+                <!--  Product delivery tracking  -->
+                <progressBar:SfStepProgressBar
+                    x:Name="stepProgress"
+                    Margin="0,20,0,0"
+                    BackgroundColor="{StaticResource Gray-White}"
+                    BindableLayout.ItemsSource="{Binding ProductDeliveryTrackings}"
+                    HorizontalOptions="FillAndExpand"
+                    Orientation="Vertical"
+                    TitleAlignment="Start"
+                    TitleSpace="12"
+                    VerticalOptions="FillAndExpand">
+
+                    <!--  Style for step progress not started  -->
+                    <progressBar:SfStepProgressBar.NotStartedStepStyle>
+                        <progressBar:StepStyle
+                            x:TypeArguments="progressBar:NotStartedStepState"
+                            MarkerContentSize="12"
+                            MarkerShapeType="Circle" />
+                    </progressBar:SfStepProgressBar.NotStartedStepStyle>
+
+                    <!--  Style for step progress inprogress  -->
+                    <progressBar:SfStepProgressBar.InProgressStepStyle>
+                        <progressBar:StepStyle
+                            x:TypeArguments="progressBar:InProgressStepState"
+                            MarkerFillColor="{StaticResource PrimaryColor}"
+                            MarkerShapeType="Circle"
+                            MarkerStrokeColor="{StaticResource PrimaryDarkColor}"
+                            ProgressLineColor="{StaticResource PrimaryColor}" />
+                    </progressBar:SfStepProgressBar.InProgressStepStyle>
+
+                    <!--  Style for step progress completed  -->
+                    <progressBar:SfStepProgressBar.CompletedStepStyle>
+                        <progressBar:StepStyle
+                            x:TypeArguments="progressBar:CompletedStepState"
+                            MarkerContentFillColor="{StaticResource Gray-White}"
+                            MarkerContentType="Tick"
+                            MarkerFillColor="{StaticResource PrimaryColor}"
+                            MarkerShapeType="Circle"
+                            MarkerStrokeColor="{StaticResource PrimaryDarkColor}" />
+                    </progressBar:SfStepProgressBar.CompletedStepStyle>
+
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <progressBar:StepView
+                                Margin="20,16,0,0"
+                                ProgressValue="{Binding ProgressValue}"
+                                Status="{Binding StepStatus}">
+                                <progressBar:StepView.PrimaryFormattedText>
+                                    <FormattedString>
+                                        <Span
+                                            FontSize="16"
+                                            Style="{StaticResource SpanStyle}"
+                                            Text="{Binding Title}" />
+                                        <Span Text="&#10;&#10;" />
+                                        <Span Style="{StaticResource SpanStyle}" Text="{Binding TitleStatus}" />
+                                        <Span Text="&#10;" />
+                                        <Span
+                                            FontFamily="{StaticResource Montserrat-Medium}"
+                                            Style="{StaticResource SpanStyle}"
+                                            Text="{Binding Date}"
+                                            TextColor="{StaticResource Gray-700}" />
+                                        <Span Text="&#10;&#10;" />
+                                        <Span Style="{StaticResource SpanStyle}" Text="{Binding OrderStatus}" />
+                                        <Span Text="&#10;" />
+                                        <Span
+                                            FontFamily="{StaticResource Montserrat-Medium}"
+                                            Style="{StaticResource SpanStyle}"
+                                            Text="{Binding OrderDate}"
+                                            TextColor="{StaticResource Gray-700}" />
+                                        <Span Text="&#10;&#10;" />
+                                    </FormattedString>
+                                </progressBar:StepView.PrimaryFormattedText>
+                            </progressBar:StepView>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </progressBar:SfStepProgressBar>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

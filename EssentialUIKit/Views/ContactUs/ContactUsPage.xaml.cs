@@ -18,7 +18,7 @@ namespace EssentialUIKit.Views.ContactUs
         /// </summary>
         public ContactUsPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         /// <summary>

@@ -1,0 +1,96 @@
+{
+  "trainname": "Chennai Express",
+  "trainnumber": "22681",
+  "departurestationshortcut": "MYS",
+  "departurestation": "Mysore Junction",
+  "arrivalstationshortcut": "MAS",
+  "arrivalstation": "Chennai Central",
+  "duration": "11:15:00 AM",
+  "stopcount": "12",
+  "stationinfo": [
+    {
+      "name": "Mysore Junction",
+      "arrivaldatetime": "7:15:00 AM",
+      "distance": "0",
+      "departuredatetime": "7:15:00 AM",
+      "progressdistance": "0"
+    },
+    {
+      "name": "Mandya",
+      "arrivaldatetime": "7:45:00 AM",
+      "distance": "45",
+      "departuredatetime": "7:15:00 AM",
+      "progressdistance": "0"
+    },
+    {
+      "name": "Kengeri",
+      "arrivaldatetime": "8:03:00 AM",
+      "distance": "126",
+      "departuredatetime": "7:15:00 AM",
+      "progressdistance": "0"
+    },
+    {
+      "name": "Bangalore Cy Jun",
+      "arrivaldatetime": "8:53:00 AM",
+      "distance": "139",
+      "departuredatetime": "7:15:00 AM",
+      "progressdistance": "0"
+    },
+    {
+      "name": "Bangalore Cant",
+      "arrivaldatetime": "8:57:00 AM",
+      "distance": "143",
+      "departuredatetime": "7:15:00 AM",
+      "progressdistance": "0"
+    },
+    {
+      "name": "Krishnarajapurm",
+      "arrivaldatetime": "9:18:00 AM",
+      "distance": "153",
+      "departuredatetime": "7:15:00 AM",
+      "progressdistance": "0"
+    },
+    {
+      "name": "Bangarapet",
+      "arrivaldatetime": "9:50:00 AM",
+      "distance": "209",
+      "departuredatetime": "7:15:00 AM",
+      "progressdistance": "0"
+    },
+    {
+      "name": "Jolarpettai",
+      "arrivaldatetime": "10:24:00 AM",
+      "distance": "287",
+      "departuredatetime": "7:15:00 AM",
+      "progressdistance": "0"
+    },
+    {
+      "name": "Katpadi Junction",
+      "arrivaldatetime": "10:44:00 AM",
+      "distance": "371",
+      "departuredatetime": "7:15:00 AM",
+      "progressdistance": "0"
+    },
+    {
+      "name": "Arakkonam",
+      "arrivaldatetime": "11:41:00 AM",
+      "distance": "431",
+      "departuredatetime": "7:15:00 AM",
+      "progressdistance": "0"
+    },
+    {
+      "name": "Perambur",
+      "arrivaldatetime": "11:54:00 AM",
+      "distance": "494",
+      "departuredatetime": "7:15:00 AM",
+      "progressdistance": "0"
+    },
+    {
+      "name": "Chennai Central",
+      "arrivaldatetime": "12:43:00 PM",
+      "distance": "500",
+      "departuredatetime": "7:15:00 AM",
+      "progressdistance": "0"
+    }
+  ]
+}

@@ -3,20 +3,21 @@
     x:Class="EssentialUIKit.Views.Detail.Styles"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:behavior="clr-namespace:EssentialUIKit.Behaviors"
     xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
     xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
-    xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms"
     xmlns:control="clr-namespace:EssentialUIKit.Controls"
     xmlns:converter="clr-namespace:EssentialUIKit.Converters"
     xmlns:graphics="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
-    xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
     xmlns:rating="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms">
 
     <Color x:Key="OrangeyYellow">#fcbc0f</Color>
     <Color x:Key="Transparent">Transparent</Color>
+    <Color x:Key="Gold">#fcbc0f</Color>
     <x:String x:Key="Cart">&#xe708;</x:String>
     <x:String x:Key="Share">&#xe704;</x:String>
+    <x:String x:Key="Close">&#xe724;</x:String>
+    <x:String x:Key="Favourite">&#xe701;</x:String>
+    <x:String x:Key="ClearBookmark">&#xe734;</x:String>
 
     <converter:DynamicResourceToColorConverter x:Key="DynamicResourceToColorConverter" />
 
@@ -35,6 +36,17 @@
         <Setter Property="FontFamily" Value="Montserrat-Regular" />
         <Setter Property="FontSize" Value="14" />
         <Setter Property="LineHeight" Value="{OnPlatform Android=1.5, Default=-1}" />
+        <Setter Property="HorizontalTextAlignment" Value="Start" />
+        <Setter Property="VerticalTextAlignment" Value="Center" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="HorizontalOptions" Value="Start" />
+    </Style>
+
+    <!--  Common style for labels  -->
+    <Style x:Key="CommonLabelStyle" TargetType="Label">
+        <Setter Property="LineHeight" Value="{OnPlatform Android=1.25, Default=-1}" />
+        <Setter Property="TextColor" Value="{DynamicResource Gray-700}" />
+        <Setter Property="FontSize" Value="14" />
         <Setter Property="HorizontalTextAlignment" Value="Start" />
         <Setter Property="VerticalTextAlignment" Value="Center" />
         <Setter Property="VerticalOptions" Value="Center" />
@@ -176,5 +188,53 @@
             <ContentPresenter />
         </ScrollView>
     </ControlTemplate>
+
+    <rating:SfRatingSettings
+        x:Key="CommonRatingSettings"
+        RatedFill="{StaticResource Gold}"
+        RatedStroke="{StaticResource Gold}"
+        UnRatedStroke="{DynamicResource Gray-600}"
+        UnRatedStrokeWidth="1" />
+
+    <!--  Common style for SfRating  -->
+    <Style x:Key="CommonSfRatingStyle" TargetType="rating:SfRating">
+        <Setter Property="ItemCount" Value="5" />
+        <Setter Property="ReadOnly" Value="True" />
+        <Setter Property="ItemSize" Value="13" />
+        <Setter Property="ItemSpacing" Value="1" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="HorizontalOptions" Value="Start" />
+    </Style>
+
+    <!--  Common style for sfBorder  -->
+    <Style x:Key="CommonSfBorderStyle" TargetType="border:SfBorder">
+        <Setter Property="BackgroundColor" Value="{DynamicResource Gray-White}" />
+        <Setter Property="BorderWidth" Value="{OnIdiom Default=2, Desktop=0}" />
+        <Setter Property="BorderColor" Value="{DynamicResource Gray-White}" />
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="VerticalOptions" Value="Center" />
+    </Style>
+
+    <!--  Common style for Navigation bar SfButton  -->
+    <Style x:Key="NavigationBarButtonStyle" TargetType="buttons:SfButton">
+        <Setter Property="TextColor" Value="{DynamicResource Gray-600}" />
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="HorizontalOptions" Value="Fill" />
+        <Setter Property="BackgroundColor" Value="Transparent" />
+        <Setter Property="BorderWidth" Value="0" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="FontFamily" Value="{StaticResource FontIcons}" />
+    </Style>
+
+    <!--  Common style for Navigation bar SfButton  -->
+    <Style x:Key="BookmarkIconStyle" TargetType="buttons:SfButton">
+        <Setter Property="TextColor" Value="{DynamicResource Gray-600}" />
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="BackgroundColor" Value="Transparent" />
+        <Setter Property="BorderWidth" Value="0" />
+        <Setter Property="FontFamily" Value="{StaticResource FontIcons}" />
+    </Style>
 
 </ResourceDictionary>
