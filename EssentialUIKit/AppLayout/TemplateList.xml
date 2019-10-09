@@ -113,7 +113,7 @@
   </Category>
 
   <Category Icon="navigation.png" Name="Tracking" IsNew="True" Description="Displays various trackings like train status, product delivery status, and more.">
-    <Page Name="Prodcut Delivery Tracking Page" Description="This page displays a live train’s present status with the estimated time of arrival at a specified destination." PageName="Views.Tracking.ProductDeliveryTrackingPage"/>
+    <Page Name="Prodcut Delivery Tracking Page" Description="This page displays a current status with the estimated time of product delivery." PageName="Views.Tracking.ProductDeliveryTrackingPage"/>
   </Category>
 
 </Samples>
