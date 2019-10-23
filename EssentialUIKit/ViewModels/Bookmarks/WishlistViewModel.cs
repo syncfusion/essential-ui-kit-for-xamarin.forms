@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
-using EssentialUIKit.Models.Bookmarks;
+using EssentialUIKit.Models;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 

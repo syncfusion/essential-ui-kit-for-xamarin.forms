@@ -8,7 +8,7 @@
     xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Social"    
     xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
     xmlns:local="clr-namespace:EssentialUIKit.Views.Social.Templates"
-    xmlns:listviewBahavior="clr-namespace:EssentialUIKit.Behaviors.Feedback"
+    xmlns:listviewBahavior="clr-namespace:EssentialUIKit.Behaviors"
     xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
     NavigationPage.HasNavigationBar="False"
     Shell.NavBarIsVisible="False">
@@ -286,7 +286,7 @@
                     TapCommand="{Binding ImageTapCommand}">
 
                     <listView:SfListView.Behaviors>
-                        <listviewBahavior:ListViewBehavior/>
+                        <listviewBahavior:SfListViewExtendHeightBehavior/>
                     </listView:SfListView.Behaviors>
 
                     <listView:SfListView.ItemTemplate>

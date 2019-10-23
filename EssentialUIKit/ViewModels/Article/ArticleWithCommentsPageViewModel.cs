@@ -2,11 +2,11 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using EssentialUIKit.Models.Article;
+using EssentialUIKit.Models;
 using Syncfusion.XForms.Buttons;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
-using Model = EssentialUIKit.Models.Article.Article;
+using Model = EssentialUIKit.Models.Article;
 
 namespace EssentialUIKit.ViewModels.Article
 {
@@ -68,11 +68,6 @@ namespace EssentialUIKit.ViewModels.Article
         /// </summary>
         private ObservableCollection<Review> reviews;
 
-        /// <summary>
-        /// Gets or sets the article all reviews
-        /// </summary>
-        private ObservableCollection<Review> allReviews;
-
         #endregion
 
         #region Constructor
@@ -105,21 +100,20 @@ namespace EssentialUIKit.ViewModels.Article
             {
                 new Review
                 {
-                    ProfileImage = "ProfileImage1.png",
+                    CustomerImage = "ProfileImage1.png",
                     CustomerName = "Jhon Deo",
                     Comment = "Greatest article I have ever read in my life.",
-                    ReviewedDate = new DateTime(2019, 12, 29),
+                    ReviewedDate = "29 Dec, 2019",
                 },
                 new Review
                 {
-                    ProfileImage = "ProfileImage3.png",
+                    CustomerImage = "ProfileImage3.png",
                     CustomerName = "David Son",
                     Comment = "Absolutely love them! Can't stop reading!",
-                    ReviewedDate = new DateTime(2019, 12, 29),
+                    ReviewedDate = "29 Dec, 2019",
                 }
             };
 
-            this.allReviews = this.reviews;
             this.FavouriteCommand = new Command(this.FavouriteButtonClicked);
             this.BookmarkCommand = new Command(this.BookmarkButtonClicked);
             this.RelatedFeaturesCommand = new Command(this.RelatedFeaturesItemClicked);
@@ -432,16 +426,9 @@ namespace EssentialUIKit.ViewModels.Article
         /// Invoked when Load more button is clicked.
         /// </summary>
         /// <param name="obj">The Object</param>
-        private void LoadMoreClicked(object obj)
+        private void LoadMoreClicked (object obj)
         {
-            if (this.Reviews.Count == 1)
-            {
-                this.Reviews = this.allReviews;
-            }
-            else
-            {
-                this.Reviews = new ObservableCollection<Review>(this.reviews.Take(1));
-            }
+            // Do something
         }
 
         /// <summary>

@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
-using ProfileModel = EssentialUIKit.Models.Social.Profile;
+using ProfileModel = EssentialUIKit.Models.Profile;
 
 namespace EssentialUIKit.ViewModels.Social
 {

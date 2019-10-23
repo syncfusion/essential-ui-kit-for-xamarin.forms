@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
-using Model = EssentialUIKit.Models.Bookmarks.Article;
+using Model = EssentialUIKit.Models.Article;
 
 namespace EssentialUIKit.ViewModels.Bookmarks
 {

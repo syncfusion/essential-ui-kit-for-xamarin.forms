@@ -3,10 +3,10 @@
     x:Class="EssentialUIKit.Views.AboutUs.AboutUsWithScrollPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:behaviour="clr-namespace:EssentialUIKit.Behaviors"
     xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
     xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
     xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.About"
-    xmlns:behaviour="clr-namespace:EssentialUIKit.Behaviors.Feedback"
     Title="About Us"
     BackgroundColor="{DynamicResource Gray-White}"
     NavigationPage.HasNavigationBar="False">
@@ -31,61 +31,62 @@
 
                 <!--  Background image  -->
                 <Image
-                Grid.Row="0"
-                Aspect="Fill"
-                BackgroundColor="{DynamicResource Gray-200}"
-                BindingContext="{x:Reference AboutUs}"
-                HeightRequest="{Binding Height}"
-                Source="About.png" />
+                    Grid.Row="0"
+                    Aspect="Fill"
+                    BackgroundColor="{DynamicResource Gray-200}"
+                    BindingContext="{x:Reference AboutUs}"
+                    HeightRequest="{Binding Height}"
+                    Source="About.png" />
 
                 <!--  Product details  -->
                 <StackLayout
-                x:Name="AboutUs"
-                Grid.Row="0"
-                Margin="0,0,0,23"
-                VerticalOptions="Start">
+                    x:Name="AboutUs"
+                    Grid.Row="0"
+                    Margin="0,0,0,23"
+                    VerticalOptions="Start">
 
                     <!--  Header  -->
                     <Label
-                    Margin="0,24,0,16"
-                    FontSize="20"
-                    Style="{StaticResource HeaderLabelStyle}"
-                    Text="About Us" />
+                        Margin="0,24,0,16"
+                        FontSize="20"
+                        Style="{StaticResource HeaderLabelStyle}"
+                        Text="About Us" />
 
                     <!--  Product description  -->
                     <Label
-                    Margin="16,0,16,0"
-                    Style="{StaticResource DescriptionLabelStyle}"
-                    Text="{Binding ProductDescription}" />
+                        Margin="16,0,16,0"
+                        Style="{StaticResource DescriptionLabelStyle}"
+                        Text="{Binding ProductDescription}" />
                 </StackLayout>
 
                 <!--  Background image  -->
-                <Image Grid.Row="1"
-                Aspect="AspectFill"
-                BackgroundColor="{DynamicResource Gray-200}"
-                HorizontalOptions="Fill"
-                Source="OurTeam.png"
-                VerticalOptions="Fill" />
+                <Image
+                    Grid.Row="1"
+                    Aspect="AspectFill"
+                    BackgroundColor="{DynamicResource Gray-200}"
+                    HorizontalOptions="Fill"
+                    Source="OurTeam.png"
+                    VerticalOptions="Fill" />
 
                 <!--  To display the team member's details  -->
                 <listView:SfListView
-                x:Name="OurTeam"
-                Grid.Row="1"
-                AutoFitMode="Height"
-                ItemsSource="{Binding EmployeeDetails}"
-                SelectionMode="None"
-                TapCommand="{Binding ItemSelectedCommand}"
-                VerticalOptions="Start">
+                    x:Name="OurTeam"
+                    Grid.Row="1"
+                    AutoFitMode="Height"
+                    ItemsSource="{Binding EmployeeDetails}"
+                    SelectionMode="None"
+                    TapCommand="{Binding ItemSelectedCommand}"
+                    VerticalOptions="Start">
 
                     <listView:SfListView.HeaderTemplate>
                         <DataTemplate>
                             <!--  Header  -->
                             <Label
-                            Margin="0,60,0,5"
-                            FontSize="20"
-                            Style="{StaticResource HeaderLabelStyle}"
-                            Text="Our Team"
-                            TextColor="{DynamicResource Gray-White}" />
+                                Margin="0,60,0,5"
+                                FontSize="20"
+                                Style="{StaticResource HeaderLabelStyle}"
+                                Text="Our Team"
+                                TextColor="{DynamicResource Gray-White}" />
                         </DataTemplate>
                     </listView:SfListView.HeaderTemplate>
 
@@ -97,36 +98,35 @@
 
                                 <!--  Profile image  -->
                                 <border:SfBorder
-                                Margin="0,0,0,8"
-                                BorderWidth="0"
-                                CornerRadius="32"
-                                HorizontalOptions="Center"
-                                VerticalOptions="Center">
-                                    <Image
-                                    BackgroundColor="{DynamicResource Gray-200}"
-                                    Style="{StaticResource AboutUsImageStyle}" >
+                                    Margin="0,0,0,8"
+                                    BorderWidth="0"
+                                    CornerRadius="32"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center">
+                                    <Image BackgroundColor="{DynamicResource Gray-200}" Style="{StaticResource AboutUsImageStyle}">
                                         <Image.Source>
-                                            <UriImageSource Uri="{Binding Image}" 
-			                                 CacheValidity="14" 
-			                                 CachingEnabled="true"/>
+                                            <UriImageSource
+                                                CacheValidity="14"
+                                                CachingEnabled="true"
+                                                Uri="{Binding Image}" />
                                         </Image.Source>
                                     </Image>
                                 </border:SfBorder>
 
                                 <!--  Employee name  -->
                                 <Label
-                                FontFamily="{StaticResource Montserrat-SemiBold}"
-                                HorizontalTextAlignment="Center"
-                                Style="{StaticResource DescriptionLabelStyle}"
-                                Text="{Binding EmployeeName}"
-                                TextColor="White" />
+                                    FontFamily="{StaticResource Montserrat-SemiBold}"
+                                    HorizontalTextAlignment="Center"
+                                    Style="{StaticResource DescriptionLabelStyle}"
+                                    Text="{Binding EmployeeName}"
+                                    TextColor="White" />
 
                                 <!--  Designation  -->
                                 <Label
-                                HorizontalTextAlignment="Center"
-                                Style="{StaticResource VersionLabelStyle}"
-                                Text="{Binding Designation}"
-                                TextColor="White" />
+                                    HorizontalTextAlignment="Center"
+                                    Style="{StaticResource VersionLabelStyle}"
+                                    Text="{Binding Designation}"
+                                    TextColor="White" />
 
                             </StackLayout>
                         </DataTemplate>
@@ -136,9 +136,9 @@
                         <listView:GridLayout SpanCount="3" />
                     </listView:SfListView.LayoutManager>
 
-                    <!--Behavior added to handle scrolling of ListView-->
+                    <!--  Behavior added to handle scrolling of ListView  -->
                     <listView:SfListView.Behaviors>
-                        <behaviour:ListViewBehavior/>
+                        <behaviour:SfListViewExtendHeightBehavior />
                     </listView:SfListView.Behaviors>
                 </listView:SfListView>
             </Grid>
