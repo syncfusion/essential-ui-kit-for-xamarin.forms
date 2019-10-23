@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Grid
+    x:Class="EssentialUIKit.Views.Templates.OrderHistoryTemplate"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+    xmlns:converter="clr-namespace:EssentialUIKit.Converters">
+
+    <Grid.Resources>
+        <ResourceDictionary>
+            <converter:StringToColorConverter x:Key="stringToColorConverter" />
+        </ResourceDictionary>
+    </Grid.Resources>
+
+    <Grid
+        Margin="0,16,0,0"
+        BackgroundColor="{DynamicResource Gray-White}"
+        ColumnSpacing="0"
+        RowSpacing="0">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="{OnIdiom Default=1, Phone=0}" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <!--  Product image  -->
+        <Image
+            Grid.Row="0"
+            Grid.RowSpan="4"
+            Grid.Column="0"
+            Margin="16,8,16,16"
+            Aspect="Fill"
+            BackgroundColor="{DynamicResource Gray-200}"
+            HeightRequest="80"
+            WidthRequest="80">
+            <Image.Source>
+                <UriImageSource
+                    CacheValidity="14"
+                    CachingEnabled="true"
+                    Uri="{Binding ProductImage}" />
+            </Image.Source>
+        </Image>
+
+        <!--  Product name  -->
+        <Label
+            Grid.Row="0"
+            Grid.Column="1"
+            Margin="0,8,0,4"
+            FontFamily="{StaticResource Montserrat-SemiBold}"
+            FontSize="14"
+            HorizontalOptions="StartAndExpand"
+            LineBreakMode="TailTruncation"
+            LineHeight="1.5"
+            MaxLines="1"
+            Text="{Binding Name}"
+            TextColor="{DynamicResource Gray-900}" />
+
+        <!--  Description label  -->
+        <Label
+            Grid.Row="1"
+            Grid.Column="1"
+            Margin="0,0,0,8"
+            FontFamily="{StaticResource Montserrat-Medium}"
+            FontSize="12"
+            HorizontalOptions="StartAndExpand"
+            LineHeight="1.5"
+            Text="{Binding Description}"
+            TextColor="{DynamicResource Gray-700}" />
+
+        <!--  Order ID  -->
+        <Label
+            Grid.Row="2"
+            Grid.Column="1"
+            FontFamily="{StaticResource Montserrat-Medium}"
+            FontSize="12"
+            HorizontalOptions="Start"
+            Text="{Binding OrderID, StringFormat='Order ID: {0}'}"
+            VerticalOptions="Center" />
+
+    </Grid>
+</Grid>

@@ -13,7 +13,7 @@ namespace EssentialUIKit.Views.Detail.Templates
         public TabletView()
         {
             InitializeComponent();
-            this.ProductImage.Source = App.BaseImageUrl + "Shoe1.png";
+            this.ProductImage.Source = App.BaseImageUrl + "ReviewShoe.png";
         }
     }
 }

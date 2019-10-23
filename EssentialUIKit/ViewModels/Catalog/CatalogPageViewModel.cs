@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
 using Syncfusion.ListView.XForms;
-using EssentialUIKit.Models.Catalog;
+using EssentialUIKit.Models;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 

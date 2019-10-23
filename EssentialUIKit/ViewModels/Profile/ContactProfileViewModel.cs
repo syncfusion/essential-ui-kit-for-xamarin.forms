@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
-using EssentialUIKit.Models.Profile;
+using Model = EssentialUIKit.Models.Profile;
 using Syncfusion.XForms.Border;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
@@ -17,7 +17,7 @@ namespace EssentialUIKit.ViewModels.Profile
     {
         #region Field
         
-        private ObservableCollection<ContactProfile> profileInfo;
+        private ObservableCollection<Model> profileInfo;
 
         #endregion
 
@@ -28,11 +28,11 @@ namespace EssentialUIKit.ViewModels.Profile
         /// </summary>
         public ContactProfileViewModel()
         {
-            this.ProfileInfo = new ObservableCollection<ContactProfile>();
+            this.ProfileInfo = new ObservableCollection<Model>();
 
             for (var i = 0; i < 6; i++)
             {
-                this.ProfileInfo.Add(new ContactProfile { ImagePath = App.BaseImageUrl + "ProfileImage1" + i + ".png" });
+                this.ProfileInfo.Add(new Model { ImagePath = App.BaseImageUrl + "ProfileImage1" + i + ".png" });
             }
 
             this.ProfileNameCommand = new Command(this.ProfileNameClicked);
@@ -56,7 +56,7 @@ namespace EssentialUIKit.ViewModels.Profile
         /// <summary>
         /// Gets or sets a collection of profile info.
         /// </summary>
-        public ObservableCollection<ContactProfile> ProfileInfo
+        public ObservableCollection<Model> ProfileInfo
         {
             get
             {

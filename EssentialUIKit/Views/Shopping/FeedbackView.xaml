@@ -89,7 +89,7 @@
                                     <UriImageSource
                                         CacheValidity="14"
                                         CachingEnabled="true"
-                                        Uri="{Binding ProfileImage}" />
+                                        Uri="{Binding CustomerImage}" />
                                 </Image.Source>
                             </Image>
                         </border:SfBorder>
@@ -119,7 +119,7 @@
                                     FontFamily="{StaticResource Montserrat-Regular}"
                                     FontSize="12"
                                     Style="{StaticResource LabelStyle}"
-                                    Text="{Binding ReviewedDate, StringFormat='{}{0:dd MMM, yyyy}'}" />
+                                    Text="{Binding ReviewedDate}" />
                             </StackLayout>
 
                             <!--  Product rating  -->

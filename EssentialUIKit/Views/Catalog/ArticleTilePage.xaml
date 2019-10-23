@@ -9,7 +9,9 @@
     xmlns:converter="clr-namespace:EssentialUIKit.Converters"
     xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
     xmlns:rotator="clr-namespace:Syncfusion.SfRotator.XForms;assembly=Syncfusion.SfRotator.XForms"
+    xmlns:template="clr-namespace:EssentialUIKit.Views.Templates"
     xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Catalog"
+    x:Name="articleTilePage"
     BackgroundColor="{DynamicResource Gray-White}"
     NavigationPage.HasNavigationBar="False">
 
@@ -22,98 +24,7 @@
             <converter:BooleanToStringConverter x:Key="BoolToStringConverter" />
 
             <DataTemplate x:Key="HorizontalArticleView">
-                <Grid RowSpacing="0">
-
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
-
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="Auto" />
-                    </Grid.ColumnDefinitions>
-
-                    <!--  Article Image  -->
-                    <Image
-                        Grid.Row="0"
-                        Grid.Column="0"
-                        Grid.ColumnSpan="2"
-                        Aspect="AspectFill"
-                        BackgroundColor="{DynamicResource Gray-200}"
-                        HeightRequest="120">
-                        <Image.Source>
-                            <UriImageSource
-                                CacheValidity="14"
-                                CachingEnabled="true"
-                                Uri="{Binding ImagePath}" />
-                        </Image.Source>
-                    </Image>
-
-                    <!--  Label for Article name  -->
-                    <Label
-                        Grid.Row="1"
-                        Grid.ColumnSpan="2"
-                        Margin="0,8"
-                        FontFamily="{StaticResource Montserrat-SemiBold}"
-                        FontSize="14"
-                        HorizontalOptions="Start"
-                        LineBreakMode="TailTruncation"
-                        LineHeight="{OnPlatform Default=-1,
-                                                Android=1.25}"
-                        MaxLines="2"
-                        Text="{Binding Name}"
-                        TextColor="{DynamicResource Gray-900}" />
-
-                    <!--  Label for Article author  -->
-                    <Label
-                        Grid.Row="2"
-                        Grid.ColumnSpan="2"
-                        Margin="0"
-                        FontFamily="{StaticResource Montserrat-Medium}"
-                        FontSize="12"
-                        HorizontalOptions="Start"
-                        LineHeight="{OnPlatform Default=-1,
-                                                Android=1.25}"
-                        Text="{Binding Author}"
-                        TextColor="{DynamicResource Gray-900}" />
-
-                    <!--  Label for Article date  -->
-                    <Label
-                        Grid.Row="3"
-                        Margin="0,2,0,8"
-                        FontFamily="{StaticResource Montserrat-Regular}"
-                        FontSize="12"
-                        HorizontalOptions="Start"
-                        LineHeight="{OnPlatform Default=-1,
-                                                Android=1.25}"
-                        TextColor="{DynamicResource Gray-700}"
-                        VerticalOptions="Center"
-                        VerticalTextAlignment="Center">
-                        <Label.FormattedText>
-                            <FormattedString>
-                                <Span Text="{Binding Date}" />
-                                <Span Text=" | " />
-                                <Span Text="{Binding AverageReadingTime}" />
-                            </FormattedString>
-                        </Label.FormattedText>
-                    </Label>
-
-                    <buttons:SfButton
-                        Grid.Row="3"
-                        Grid.Column="1"
-                        Margin="0"
-                        Padding="0"
-                        Command="{Binding Path=BindingContext.BookmarkCommand, Source={x:Reference SfListView}}"
-                        CommandParameter="{Binding .}"
-                        CornerRadius="4"
-                        FontSize="16"
-                        Style="{StaticResource NavigationBarButtonStyle}"
-                        Text="{Binding IsBookmarked, Converter={StaticResource BoolToStringConverter}, ConverterParameter=0}"
-                        WidthRequest="32" />
-                </Grid>
+                <template:ArticleTileTemplate ParentBindingContext="{Binding Path=BindingContext, Source={x:Reference articleTilePage}}" />
             </DataTemplate>
 
             <DataTemplate x:Key="HeaderView">

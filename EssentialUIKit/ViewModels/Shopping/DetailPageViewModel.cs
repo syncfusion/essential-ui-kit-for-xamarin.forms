@@ -5,7 +5,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
-using EssentialUIKit.Models.Shopping;
+using EssentialUIKit.Models;
 using System.Linq;
 using EssentialUIKit.AppLayout.Views;
 using Template = EssentialUIKit.AppLayout.Models.Template;
@@ -47,10 +47,10 @@ namespace EssentialUIKit.ViewModels.Shopping
             {
                 new Review
                 {
-                    ProfileImage = "ProfileImage10.png",
+                    CustomerImage = "ProfileImage10.png",
                     CustomerName = "Serina Williams",
                     Comment = "Greatest purchase I have ever made in my life.",
-                    ReviewedDate = new DateTime(2019, 12, 29),
+                    ReviewedDate = "29 Dec, 2019",
                     Rating = 5,
                     Images = new List<string>
                     {
@@ -62,10 +62,10 @@ namespace EssentialUIKit.ViewModels.Shopping
                 },
                 new Review
                 {
-                    ProfileImage = "ProfileImage11.png",
+                    CustomerImage = "ProfileImage11.png",
                     CustomerName = "Alise Valasquez",
                     Comment = "Absolutely love them! Can't stop wearing!",
-                    ReviewedDate = new DateTime(2019, 12, 29),
+                    ReviewedDate = "29 Dec, 2019",
                     Rating = 3,
                     Images = new List<string>
                     {

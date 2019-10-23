@@ -6,7 +6,7 @@
     xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
     xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
     xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
-    xmlns:listviewBahavior="clr-namespace:EssentialUIKit.Behaviors.Feedback"
+    xmlns:listviewBahavior="clr-namespace:EssentialUIKit.Behaviors"
     xmlns:local="clr-namespace:EssentialUIKit.Views.Social.Templates"
     xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Social"
     BackgroundColor="{DynamicResource Gray-White}"
@@ -271,7 +271,7 @@
                     TapCommand="{Binding ImageTapCommand}">
 
                     <listView:SfListView.Behaviors>
-                        <listviewBahavior:ListViewBehavior />
+                        <listviewBahavior:SfListViewExtendHeightBehavior />
                     </listView:SfListView.Behaviors>
 
                     <listView:SfListView.ItemTemplate>

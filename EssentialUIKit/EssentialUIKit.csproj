@@ -27,6 +27,7 @@
     <PackageReference Include="Syncfusion.Xamarin.DataSource" Version="17.2.0.49" />
     <PackageReference Include="Syncfusion.Xamarin.GridCommon" Version="17.2.0.49" />
     <PackageReference Include="Syncfusion.Xamarin.SfCalendar" Version="17.2.0.49" />
+    <PackageReference Include="Syncfusion.Xamarin.SfChart" Version="17.2.0.49" />
     <PackageReference Include="Syncfusion.Xamarin.SfComboBox" Version="17.2.0.49" />
     <PackageReference Include="Syncfusion.Xamarin.SfListView" Version="17.2.0.49" />
     <PackageReference Include="Syncfusion.Xamarin.SfMaps" Version="17.2.0.49" />
@@ -262,6 +263,9 @@
 	<Compile Update="Views\Social\Templates\ProfileTemplate.xaml.cs">
 	  <DependentUpon>ProfileTemplate.xaml</DependentUpon>
 	</Compile>
+	<Compile Update="Views\Templates\Styles.xaml.cs">
+	  <DependentUpon>%(Filename)</DependentUpon>
+	</Compile>
 	<Compile Update="Views\Transaction\PaymentView.xaml.cs">
 	  <DependentUpon>%(Filename)</DependentUpon>
 	</Compile>
@@ -287,6 +291,15 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="AppLayout\Views\TemplatePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Templates\ArticleListTemplate.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Templates\ArticleTileTemplate.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Article\ArticleParallaxHeaderPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Article\Styles.xaml">
@@ -375,6 +388,33 @@
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Shopping\PriceDetailView.xaml">
       <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Templates\CartItemListTemplate.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Templates\NavigationListTemplate.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Templates\NavigationTileTemplate.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Templates\OrderHistoryTemplate.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Templates\ProductListTemplate.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Templates\ProductTileTemplate.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Templates\ReviewTemplate.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Templates\Styles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Templates\WishlistItemTemplate.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Transaction\CheckoutPage.xaml">
       <Generator>MSBuild:Compile</Generator>

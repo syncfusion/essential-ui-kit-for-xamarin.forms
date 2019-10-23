@@ -6,6 +6,7 @@
     xmlns:controls="clr-namespace:EssentialUIKit.Controls"
     xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
     xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+    xmlns:template="clr-namespace:EssentialUIKit.Views.Templates"
     xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Navigation"
     BackgroundColor="{DynamicResource Gray-White}"
     NavigationPage.HasNavigationBar="False">
@@ -54,88 +55,7 @@
                                     HasShadow="True"
                                     HorizontalOptions="FillAndExpand"
                                     VerticalOptions="FillAndExpand">
-                                    <Grid
-                                        BackgroundColor="{DynamicResource PlaceholderColor}"
-                                        ColumnSpacing="0"
-                                        RowSpacing="0">
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="150" />
-                                            <RowDefinition Height="*" />
-                                        </Grid.RowDefinitions>
-
-                                        <!--  Image of an item  -->
-                                        <Image
-                                            Aspect="AspectFill"
-                                            BackgroundColor="{DynamicResource Gray-200}"
-                                            HeightRequest="254">
-                                            <Image.Source>
-                                                <UriImageSource Uri="{Binding ItemImage}" 
-			                                 CacheValidity="14" 
-			                                 CachingEnabled="true"/>
-                                            </Image.Source>
-                                        </Image>
-                                        <StackLayout
-                                            Grid.Row="1"
-                                            Padding="16"
-                                            HorizontalOptions="FillAndExpand"
-                                            Spacing="0"
-                                            VerticalOptions="FillAndExpand">
-
-                                            <!--  Name of an item  -->
-                                            <Label
-                                                FontFamily="{StaticResource Montserrat-SemiBold}"
-                                                FontSize="16"
-                                                LineHeight="{OnPlatform Android=1.5,
-                                                                        Default=-1}"
-                                                Text="{Binding ItemName}"
-                                                TextColor="{DynamicResource Gray-900}" />
-
-                                            <!--  Description about an item  -->
-                                            <Label
-                                                Margin="0,4,0,8"
-                                                FontFamily="{StaticResource Montserrat-Medium}"
-                                                FontSize="12"
-                                                LineHeight="{OnPlatform Android=1.25,
-                                                                        Default=-1}"
-                                                Text="{Binding ItemDescription}"
-                                                TextColor="{DynamicResource Gray-700}" />
-                                            <StackLayout
-                                                HorizontalOptions="FillAndExpand"
-                                                Orientation="Horizontal"
-                                                Spacing="0"
-                                                VerticalOptions="FillAndExpand">
-
-                                                <!--  Average rating from the overall rating  -->
-                                                <Label
-                                                    Margin="0,0,4,0"
-                                                    HeightRequest="16"
-                                                    Style="{StaticResource RatingLabelStyle}"
-                                                    WidthRequest="16" />
-                                                <Label
-                                                    FontFamily="{StaticResource Montserrat-Regular}"
-                                                    FontSize="12"
-                                                    LineHeight="{OnPlatform Android=1.5,
-                                                                            Default=-1}"
-                                                    Text="{Binding ItemRating}"
-                                                    TextColor="{DynamicResource Gray-700}"
-                                                    VerticalOptions="Center">
-                                                    <Label.Margin>
-                                                        <OnPlatform
-                                                            x:Type="Thickness"
-                                                            Default="0,4,0,0"
-                                                            UWP="0,6,0,0" />
-                                                    </Label.Margin>
-
-                                                </Label>
-
-                                                <!--  Navigation icon  -->
-                                                <Label
-                                                    HeightRequest="14"
-                                                    HorizontalOptions="EndAndExpand"
-                                                    Style="{StaticResource RightArrowLabelStyle}" />
-                                            </StackLayout>
-                                        </StackLayout>
-                                    </Grid>
+                                    <template:NavigationTileTemplate />
                                 </controls:CustomShadowFrame>
                             </ViewCell>
                         </DataTemplate>

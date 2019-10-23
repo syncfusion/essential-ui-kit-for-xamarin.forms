@@ -3,9 +3,8 @@
     x:Class="EssentialUIKit.Views.Detail.FeedbackView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
     xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
-    xmlns:rating="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms"
+    xmlns:template="clr-namespace:EssentialUIKit.Views.Templates"
     BackgroundColor="{DynamicResource Gray-White}"
     Spacing="0"
     VerticalOptions="Start">
@@ -30,6 +29,7 @@
                 Text="Rating and Reviews"
                 TextColor="{DynamicResource Gray-900}" />
 
+            <!--  See all review button  -->
             <buttons:SfButton
                 x:Name="ShowButton"
                 Padding="0"
@@ -45,16 +45,7 @@
                 Style="{StaticResource SfButtonStyle}"
                 Text="SHOW LESS"
                 TextColor="{DynamicResource HyperLink}"
-                VerticalOptions="Center">
-                <buttons:SfButton.Triggers>
-                    <DataTrigger
-                        Binding="{Binding ProductDetail.Reviews.Count}"
-                        TargetType="buttons:SfButton"
-                        Value="1">
-                        <Setter Property="Text" Value="SHOW ALL" />
-                    </DataTrigger>
-                </buttons:SfButton.Triggers>
-            </buttons:SfButton>
+                VerticalOptions="Center" />
 
         </StackLayout>
         <BoxView HeightRequest="{OnIdiom Default=1, Desktop=0}" Style="{StaticResource BoxViewStyle}" />
@@ -65,113 +56,7 @@
             <DataTemplate>
                 <StackLayout Spacing="0">
 
-                    <Grid Padding="16,8,16,0" ColumnSpacing="0">
-
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-
-                        <!--  Profile Image  -->
-                        <border:SfBorder
-                            CornerRadius="24"
-                            HeightRequest="48"
-                            Style="{StaticResource SfBorderStyle}"
-                            WidthRequest="48">
-                            <Image Aspect="AspectFill" BackgroundColor="{DynamicResource Gray-200}">
-                                <Image.Source>
-                                    <UriImageSource
-                                        CacheValidity="14"
-                                        CachingEnabled="true"
-                                        Uri="{Binding ProfileImage}" />
-                                </Image.Source>
-                            </Image>
-                        </border:SfBorder>
-
-                        <StackLayout
-                            Grid.Column="1"
-                            Margin="0"
-                            Padding="16,0,0,0"
-                            Orientation="Horizontal"
-                            Spacing="0">
-
-                            <StackLayout
-                                Margin="0"
-                                Padding="0"
-                                Spacing="0"
-                                VerticalOptions="Start">
-
-                                <!--  Customer Name  -->
-                                <Label
-                                    FontFamily="{StaticResource Montserrat-SemiBold}"
-                                    Style="{StaticResource LabelStyle}"
-                                    Text="{Binding CustomerName}"
-                                    TextColor="{DynamicResource Gray-900}" />
-
-                                <!--  Commented Date  -->
-                                <Label
-                                    FontFamily="{StaticResource Montserrat-Regular}"
-                                    FontSize="12"
-                                    Style="{StaticResource LabelStyle}"
-                                    Text="{Binding ReviewedDate, StringFormat='{}{0:dd MMM, yyyy}'}" />
-                            </StackLayout>
-
-                            <!--  Product rating  -->
-                            <rating:SfRating
-                                HorizontalOptions="{OnIdiom Default=FillAndExpand,
-                                                            Phone=EndAndExpand}"
-                                RatingSettings="{StaticResource RatingSettings}"
-                                Style="{StaticResource SfRatingStyle}"
-                                VerticalOptions="Start"
-                                Value="{Binding Rating}" />
-
-                        </StackLayout>
-
-                        <!--  Product images  -->
-                        <StackLayout
-                            Grid.Row="1"
-                            Grid.ColumnSpan="2"
-                            BindableLayout.ItemsSource="{Binding Images}"
-                            Orientation="Horizontal"
-                            Spacing="8">
-                            <BindableLayout.ItemTemplate>
-                                <DataTemplate>
-                                    <Image
-                                        Margin="0,8,0,0"
-                                        Aspect="AspectFill"
-                                        BackgroundColor="{DynamicResource Gray-200}"
-                                        HeightRequest="50"
-                                        WidthRequest="60">
-                                        <Image.Source>
-                                            <UriImageSource
-                                                CacheValidity="14"
-                                                CachingEnabled="true"
-                                                Uri="{Binding .}" />
-                                        </Image.Source>
-                                    </Image>
-                                </DataTemplate>
-                            </BindableLayout.ItemTemplate>
-                        </StackLayout>
-
-                        <!--  Product Review  -->
-                        <Label
-                            Grid.Row="2"
-                            Grid.ColumnSpan="2"
-                            Margin="0,0,0,16"
-                            FontFamily="{StaticResource Montserrat-Medium}"
-                            FontSize="14"
-                            LineHeight="{OnPlatform Android=1.25,
-                                                    Default=-1}"
-                            Style="{StaticResource LabelStyle}"
-                            Text="{Binding Comment}" />
-
-                    </Grid>
+                    <template:ReviewTemplate Padding="16,8,16,0" ColumnSpacing="0" />
 
                     <BoxView HeightRequest="{OnIdiom Default=1, Desktop=0}" Style="{StaticResource BoxViewStyle}" />
 
@@ -182,7 +67,6 @@
                 </StackLayout>
             </DataTemplate>
         </BindableLayout.ItemTemplate>
-
     </StackLayout>
 
     <!--  See all reviews Button  -->

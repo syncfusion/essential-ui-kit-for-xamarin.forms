@@ -3,7 +3,7 @@ using System.ComponentModel;
 using Syncfusion.XForms.Buttons;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
-using Model = EssentialUIKit.Models.Detail.Article;
+using Model = EssentialUIKit.Models.Article;
 
 namespace EssentialUIKit.ViewModels.Detail
 {
@@ -145,7 +145,7 @@ namespace EssentialUIKit.ViewModels.Detail
 
             this.FavouriteCommand = new Command(this.FavouriteButtonClicked);
             this.BookmarkCommand = new Command(this.BookmarkButtonClicked);
-            this.RelatedFeaturesCommand = new Command(this.RelatedFeaturesItemClicked);
+            this.ItemSelectedCommand = new Command(this.ItemClicked);
         }
 
         #endregion
@@ -405,7 +405,7 @@ namespace EssentialUIKit.ViewModels.Detail
         /// <summary>
         /// Gets or sets the command is executed when the related features item is clicked.
         /// </summary>
-        public Command RelatedFeaturesCommand { get; set; }
+        public Command ItemSelectedCommand { get; set; }
 
         #endregion
 
@@ -442,7 +442,7 @@ namespace EssentialUIKit.ViewModels.Detail
         /// Invoked when the related features item clicked
         /// </summary>
         /// <param name="obj">The object</param>
-        private void RelatedFeaturesItemClicked(object obj)
+        private void ItemClicked(object obj)
         {
             // Do something
         }

@@ -24,74 +24,74 @@ namespace EssentialUIKit.ViewModels.Feedback
                 {
                     CustomerName = "Jessica Park",
                     Comment = "These boots are stunning and I look stunning in them.",
-                    Date = DateTime.Now.AddDays(randomNum.Next(0, 1000)),
-                    ProfileImage = App.BaseImageUrl + "ProfileImage" + randomNum.Next(1, 19) + ".png",
+                    ReviewedDate = DateTime.Now.AddDays(randomNum.Next(0, 1000)),
+                    CustomerImage = App.BaseImageUrl + "ProfileImage" + randomNum.Next(1, 19) + ".png",
                     Rating = randomNum.Next(0, 5),
                     Images = new List<string>
                     {
-                        App.BaseImageUrl + "Shoe1.png",
-                        App.BaseImageUrl + "Shoe1.png"
+                        App.BaseImageUrl + "ReviewShoe.png",
+                        App.BaseImageUrl + "ReviewShoe.png"
                     }
                 },
                 new Review
                 {
                     CustomerName = "Alice",
                     Comment = "Greatest purchase I have ever made in my life. No lie.",
-                    Date = DateTime.Now.AddDays(randomNum.Next(0, 1000)),
-                    ProfileImage = App.BaseImageUrl + "ProfileImage" + randomNum.Next(1, 19) + ".png",
+                    ReviewedDate = DateTime.Now.AddDays(randomNum.Next(0, 1000)),
+                    CustomerImage = App.BaseImageUrl + "ProfileImage" + randomNum.Next(1, 19) + ".png",
                     Rating = randomNum.Next(0, 5)
                 },
                 new Review
                 {
                     CustomerName = "John",
                     Comment = "Absolutely love them! Can’t stop wearing!",
-                    Date = DateTime.Now.AddDays(randomNum.Next(0, 1000)),
-                    ProfileImage = App.BaseImageUrl + "ProfileImage" + randomNum.Next(1, 19) + ".png",
+                    ReviewedDate = DateTime.Now.AddDays(randomNum.Next(0, 1000)),
+                    CustomerImage = App.BaseImageUrl + "ProfileImage" + randomNum.Next(1, 19) + ".png",
                     Rating = randomNum.Next(0, 5)
                 },
                 new Review
                 {
                     CustomerName = "Lisa",
                     Comment = "These boots are very much comfortable for wearing.",
-                    Date = DateTime.Now.AddDays(randomNum.Next(0, 1000)),
-                    ProfileImage = App.BaseImageUrl + "ProfileImage" + randomNum.Next(1, 19) + ".png",
+                    ReviewedDate = DateTime.Now.AddDays(randomNum.Next(0, 1000)),
+                    CustomerImage = App.BaseImageUrl + "ProfileImage" + randomNum.Next(1, 19) + ".png",
                     Rating = randomNum.Next(0, 5),
                     Images = new List<string>
                     {
-                        App.BaseImageUrl + "Shoe1.png",
-                        App.BaseImageUrl + "Shoe1.png",
-                        App.BaseImageUrl + "Shoe1.png"
+                        App.BaseImageUrl + "ReviewShoe.png",
+                        App.BaseImageUrl + "ReviewShoe.png",
+                        App.BaseImageUrl + "ReviewShoe.png"
                     }
                 },
                 new Review
                 {
                     CustomerName = "Rebacca",
                     Comment = "Absolutely love them! Can’t stop wearing!",
-                    Date = DateTime.Now.AddDays(randomNum.Next(0, 1000)),
-                    ProfileImage = App.BaseImageUrl + "ProfileImage" + randomNum.Next(1, 19) + ".png",
+                    ReviewedDate = DateTime.Now.AddDays(randomNum.Next(0, 1000)),
+                    CustomerImage = App.BaseImageUrl + "ProfileImage" + randomNum.Next(1, 19) + ".png",
                     Rating = randomNum.Next(0, 5)
                 },
                 new Review
                 {
                     CustomerName = "Jessica Park",
                     Comment = "Happy purchasing!",
-                    Date = DateTime.Now.AddDays(randomNum.Next(0, 1000)),
-                    ProfileImage = App.BaseImageUrl + "ProfileImage" + randomNum.Next(1, 19) + ".png",
+                    ReviewedDate = DateTime.Now.AddDays(randomNum.Next(0, 1000)),
+                    CustomerImage = App.BaseImageUrl + "ProfileImage" + randomNum.Next(1, 19) + ".png",
                     Rating = randomNum.Next(4, 5)
                 },
                 new Review
                 {
                     CustomerName = "Alice",
                     Comment = "Happy buying!",
-                    Date = DateTime.Now.AddDays(randomNum.Next(0, 1000)),
-                    ProfileImage = App.BaseImageUrl + "ProfileImage" + randomNum.Next(1, 19) + ".png",
+                    ReviewedDate = DateTime.Now.AddDays(randomNum.Next(0, 1000)),
+                    CustomerImage = App.BaseImageUrl + "ProfileImage" + randomNum.Next(1, 19) + ".png",
                     Rating = randomNum.Next(0, 5),
                     Images = new List<string>
                     {
-                        App.BaseImageUrl + "Shoe1.png",
-                        App.BaseImageUrl + "Shoe1.png",
-                        App.BaseImageUrl + "Shoe1.png",
-                        App.BaseImageUrl + "Shoe1.png"
+                        App.BaseImageUrl + "ReviewShoe.png",
+                        App.BaseImageUrl + "ReviewShoe.png",
+                        App.BaseImageUrl + "ReviewShoe.png",
+                        App.BaseImageUrl + "ReviewShoe.png"
                     }
                 }
             };

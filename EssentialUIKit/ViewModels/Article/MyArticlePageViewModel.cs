@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
-using Model = EssentialUIKit.Models.Article.Article;
+using Model = EssentialUIKit.Models.Article;
 
 namespace EssentialUIKit.ViewModels.Article
 {

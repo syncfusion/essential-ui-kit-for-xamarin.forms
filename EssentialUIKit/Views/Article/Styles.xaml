@@ -114,7 +114,7 @@
         <Setter Property="FontFamily" Value="{StaticResource FontIcons}" />
     </Style>
 
-    <Style x:Key="TitleSpanStyle" TargetType="Span">
+    <Style x:Key="TitleLabelStyle" TargetType="Label">
         <Setter Property="TextColor" Value="{DynamicResource Gray-900}" />
         <Setter Property="FontFamily" Value="{StaticResource Montserrat-SemiBold}" />
         <Setter Property="FontSize" Value="16" />

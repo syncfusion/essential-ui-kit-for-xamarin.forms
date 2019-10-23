@@ -6,7 +6,7 @@ using System.Runtime.Serialization;
 using System.Threading.Tasks;
 using Syncfusion.ListView.XForms;
 using Syncfusion.ListView.XForms.Control.Helpers;
-using EssentialUIKit.Models.Catalog;
+using EssentialUIKit.Models;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 
