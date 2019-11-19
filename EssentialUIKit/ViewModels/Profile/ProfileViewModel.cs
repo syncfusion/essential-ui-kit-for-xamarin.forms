@@ -10,7 +10,7 @@ namespace EssentialUIKit.ViewModels.Profile
     /// ViewModel for Article profile page 
     /// </summary> 
     [Preserve(AllMembers = true)]
-    public class ProfileViewModel : INotifyPropertyChanged
+    public class ProfileViewModel : BaseViewModel
     {
         #region Fields
 
@@ -38,15 +38,6 @@ namespace EssentialUIKit.ViewModels.Profile
             this.TextSizeCommand = new Command(this.TextSizeOptionClicked);
             this.SettingsCommand = new Command(this.SettingsOptionClicked);
         }
-
-        #endregion
-
-        #region Event
-
-        /// <summary>
-        /// The declaration of the property changed event.
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
 
         #endregion
 
@@ -187,15 +178,6 @@ namespace EssentialUIKit.ViewModels.Profile
             await Task.Delay(100);
             Application.Current.Resources.TryGetValue("Gray-White", out var retValue);
             grid.BackgroundColor = (Color)retValue;
-        }
-
-        /// <summary>
-        /// The PropertyChanged event occurs when changing the value of property.
-        /// </summary>
-        /// <param name="propertyName">Property name</param>
-        private void NotifyPropertyChanged([CallerMemberName]string propertyName = null)
-        {
-            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         #endregion

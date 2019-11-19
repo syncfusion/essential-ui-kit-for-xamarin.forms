@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
-using EssentialUIKit.Models.Profile;
+using Model = EssentialUIKit.Models.Profile;
 using Syncfusion.XForms.Border;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
@@ -13,11 +13,11 @@ namespace EssentialUIKit.ViewModels.Profile
     /// ViewModel for Individual profile page
     /// </summary>
     [Preserve(AllMembers = true)]
-    public class ContactProfileViewModel : INotifyPropertyChanged
+    public class ContactProfileViewModel : BaseViewModel
     {
         #region Field
         
-        private ObservableCollection<ContactProfile> profileInfo;
+        private ObservableCollection<Model> profileInfo;
 
         #endregion
 
@@ -28,11 +28,11 @@ namespace EssentialUIKit.ViewModels.Profile
         /// </summary>
         public ContactProfileViewModel()
         {
-            this.ProfileInfo = new ObservableCollection<ContactProfile>();
+            this.ProfileInfo = new ObservableCollection<Model>();
 
             for (var i = 0; i < 6; i++)
             {
-                this.ProfileInfo.Add(new ContactProfile { ImagePath = App.BaseImageUrl + "ProfileImage1" + i + ".png" });
+                this.ProfileInfo.Add(new Model { ImagePath = App.BaseImageUrl + "ProfileImage1" + i + ".png" });
             }
 
             this.ProfileNameCommand = new Command(this.ProfileNameClicked);
@@ -43,20 +43,12 @@ namespace EssentialUIKit.ViewModels.Profile
 
         #endregion
 
-        #region Event
-        /// <summary>
-        /// The declaration of the property changed event.
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        #endregion
-
         #region Public Property
 
         /// <summary>
         /// Gets or sets a collection of profile info.
         /// </summary>
-        public ObservableCollection<ContactProfile> ProfileInfo
+        public ObservableCollection<Model> ProfileInfo
         {
             get
             {
@@ -97,15 +89,6 @@ namespace EssentialUIKit.ViewModels.Profile
         #endregion
 
         #region Methods
-
-        /// <summary>
-        /// The PropertyChanged event occurs when changing the value of property.
-        /// </summary>
-        /// <param name="propertyName">Property name</param>
-        public void NotifyPropertyChanged([CallerMemberName]string propertyName = null)
-        {
-            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
 
         /// <summary>
         /// Invoked when the profile name is clicked.

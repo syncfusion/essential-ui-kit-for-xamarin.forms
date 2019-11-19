@@ -4,26 +4,22 @@ using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
 using EssentialUIKit.Models.Navigation;
 using Xamarin.Forms;
+using Xamarin.Forms.Internals;
 
 namespace EssentialUIKit.ViewModels.Navigation
 {
     /// <summary>
     /// Photos view model.
     /// </summary>
+    [Preserve(AllMembers = true)]
     [DataContract]
-    public class PhotosViewModel: INotifyPropertyChanged
+    public class PhotosViewModel: BaseViewModel
     {
         #region Fields
 
         private Command editCommand;
 
         private Command imageTapCommand;
-
-        #endregion
-
-        #region event
-
-        public event PropertyChangedEventHandler PropertyChanged;
 
         #endregion
 
@@ -61,15 +57,6 @@ namespace EssentialUIKit.ViewModels.Navigation
         #endregion
 
         #region Methods
-
-        /// <summary>
-        /// The PropertyChanged event fired when change the value of property.
-        /// </summary>
-        /// <param name="propertyName">Property name</param>
-        public void NotifyPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
 
         /// <summary>
         /// Invoked when the edit button clicked

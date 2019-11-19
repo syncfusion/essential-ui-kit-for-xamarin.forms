@@ -1,9 +1,10 @@
-﻿using System.Collections.ObjectModel;
+﻿using EssentialUIKit.Controls;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
-using Model = EssentialUIKit.Models.Bookmarks.Article;
+using Model = EssentialUIKit.Models.Article;
 
 namespace EssentialUIKit.ViewModels.Bookmarks
 {
@@ -11,7 +12,7 @@ namespace EssentialUIKit.ViewModels.Bookmarks
     /// ViewModel for Article bookmark page 
     /// </summary> 
     [Preserve(AllMembers = true)]
-    public class BookmarksViewModel : INotifyPropertyChanged
+    public class BookmarksViewModel : BaseViewModel
     {
         #region Fields
 
@@ -99,15 +100,6 @@ namespace EssentialUIKit.ViewModels.Bookmarks
 
         #endregion
 
-        #region Event
-
-        /// <summary>
-        /// The declaration of the property changed event.
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        #endregion
-
         #region Public Properties        
 
         /// <summary>
@@ -148,15 +140,6 @@ namespace EssentialUIKit.ViewModels.Bookmarks
         #region Methods
 
         /// <summary>
-        /// The PropertyChanged event occurs when changing the value of property.
-        /// </summary>
-        /// <param name="propertyName">Property name</param>
-        public void NotifyPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        /// <summary>
         /// Invoked when the bookmark button is clicked.
         /// </summary>
         /// <param name="obj">The object</param>
@@ -165,6 +148,12 @@ namespace EssentialUIKit.ViewModels.Bookmarks
             if (obj is Model article)
             {
                 this.LatestStories.Remove(article);
+
+                if(this.LatestStories.Count == 0 )
+                {
+                    SfPopupView sfPopupView = new SfPopupView();
+                    sfPopupView.ShowPopUp(content: "No bookmarks here");
+                }
             }
         }
 

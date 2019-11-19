@@ -1,10 +1,12 @@
 ﻿using Xamarin.Forms;
+using Xamarin.Forms.Internals;
 
 namespace EssentialUIKit.ViewModels.Navigation
 {
     /// <summary>
     /// Viewmodel of settings page
     /// </summary>
+    [Preserve(AllMembers = true)]
     public class SettingsViewModel
     {
 

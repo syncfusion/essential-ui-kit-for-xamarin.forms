@@ -3,7 +3,7 @@ using System.ComponentModel;
 using Syncfusion.XForms.Buttons;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
-using Model = EssentialUIKit.Models.Detail.Article;
+using Model = EssentialUIKit.Models.Article;
 
 namespace EssentialUIKit.ViewModels.Detail
 {
@@ -11,7 +11,7 @@ namespace EssentialUIKit.ViewModels.Detail
     /// ViewModel for Article Detail page 
     /// </summary> 
     [Preserve(AllMembers = true)]
-    public class ArticleDetailPageViewModel : INotifyPropertyChanged
+    public class ArticleDetailPageViewModel : BaseViewModel
     {
         #region Fields
 
@@ -145,17 +145,8 @@ namespace EssentialUIKit.ViewModels.Detail
 
             this.FavouriteCommand = new Command(this.FavouriteButtonClicked);
             this.BookmarkCommand = new Command(this.BookmarkButtonClicked);
-            this.RelatedFeaturesCommand = new Command(this.RelatedFeaturesItemClicked);
+            this.ItemSelectedCommand = new Command(this.ItemClicked);
         }
-
-        #endregion
-
-        #region Event
-
-        /// <summary>
-        /// The declaration of property changed event.
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
 
         #endregion
 
@@ -176,7 +167,7 @@ namespace EssentialUIKit.ViewModels.Detail
                 if (this.articleName != value)
                 {
                     this.articleName = value;
-                    this.NotifyPropertyChanged("ArticleName");
+                    this.NotifyPropertyChanged();
                 }
             }
         }
@@ -196,7 +187,7 @@ namespace EssentialUIKit.ViewModels.Detail
                 if (this.articleImage != value)
                 {
                     this.articleImage = value;
-                    this.NotifyPropertyChanged("ArticleImage");
+                    this.NotifyPropertyChanged();
                 }
             }
         }
@@ -216,7 +207,7 @@ namespace EssentialUIKit.ViewModels.Detail
                 if (this.articleSubImage != value)
                 {
                     this.articleSubImage = value;
-                    this.NotifyPropertyChanged("ArticleSubImage");
+                    this.NotifyPropertyChanged();
                 }
             }
         }
@@ -236,7 +227,7 @@ namespace EssentialUIKit.ViewModels.Detail
                 if (this.articleAuthor != value)
                 {
                     this.articleAuthor = value;
-                    this.NotifyPropertyChanged("ArticleAuthor");
+                    this.NotifyPropertyChanged();
                 }
             }
         }
@@ -256,7 +247,7 @@ namespace EssentialUIKit.ViewModels.Detail
                 if (this.articleReadingTime != value)
                 {
                     this.articleReadingTime = value;
-                    this.NotifyPropertyChanged("ArticleReadingTime");
+                    this.NotifyPropertyChanged();
                 }
             }
         }
@@ -276,7 +267,7 @@ namespace EssentialUIKit.ViewModels.Detail
                 if (this.articleDate != value)
                 {
                     this.articleDate = value;
-                    this.NotifyPropertyChanged("ArticleDate");
+                    this.NotifyPropertyChanged();
                 }
             }
         }
@@ -296,7 +287,7 @@ namespace EssentialUIKit.ViewModels.Detail
                 if (this.articleContent != value)
                 {
                     this.articleContent = value;
-                    this.NotifyPropertyChanged("ArticleContent");
+                    this.NotifyPropertyChanged();
                 }
             }
         }
@@ -319,7 +310,7 @@ namespace EssentialUIKit.ViewModels.Detail
                 }
 
                 this.relatedStories = value;
-                this.NotifyPropertyChanged("LatestStories");
+                this.NotifyPropertyChanged();
             }
         }
 
@@ -341,7 +332,7 @@ namespace EssentialUIKit.ViewModels.Detail
                 }
 
                 this.contentList = value;
-                this.NotifyPropertyChanged("ContentList");
+                this.NotifyPropertyChanged();
             }
         }
 
@@ -363,7 +354,7 @@ namespace EssentialUIKit.ViewModels.Detail
                 }
 
                 this.subTitle1 = value;
-                this.NotifyPropertyChanged("SubTitle1");
+                this.NotifyPropertyChanged();
             }
         }
 
@@ -385,7 +376,7 @@ namespace EssentialUIKit.ViewModels.Detail
                 }
 
                 this.subTitle2 = value;
-                this.NotifyPropertyChanged("SubTitle2");
+                this.NotifyPropertyChanged();
             }
         }
 
@@ -405,7 +396,7 @@ namespace EssentialUIKit.ViewModels.Detail
         /// <summary>
         /// Gets or sets the command is executed when the related features item is clicked.
         /// </summary>
-        public Command RelatedFeaturesCommand { get; set; }
+        public Command ItemSelectedCommand { get; set; }
 
         #endregion
 
@@ -442,7 +433,7 @@ namespace EssentialUIKit.ViewModels.Detail
         /// Invoked when the related features item clicked
         /// </summary>
         /// <param name="obj">The object</param>
-        private void RelatedFeaturesItemClicked(object obj)
+        private void ItemClicked(object obj)
         {
             // Do something
         }
@@ -465,15 +456,6 @@ namespace EssentialUIKit.ViewModels.Detail
                     button.Text = (button.Text == "\ue72f") ? "\ue734" : "\ue72f";
                 }
             }
-        }
-
-        /// <summary>
-        /// The PropertyChanged event fired when change the value of property.
-        /// </summary>
-        /// <param name="propertyName">Property name</param>
-        private void NotifyPropertyChanged(string propertyName)
-        {
-            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         #endregion

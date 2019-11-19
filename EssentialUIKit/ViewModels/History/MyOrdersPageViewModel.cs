@@ -13,7 +13,7 @@ namespace EssentialUIKit.ViewModels.History
     /// </summary>
     [Preserve(AllMembers = true)]
     [DataContract]
-    public class MyOrdersPageViewModel : INotifyPropertyChanged
+    public class MyOrdersPageViewModel : BaseViewModel
     {
         #region Fields
 
@@ -22,15 +22,6 @@ namespace EssentialUIKit.ViewModels.History
         private ObservableCollection<Orders> myOrders;
 
         private Command itemSelectedCommand;
-
-        #endregion
-
-        #region Event
-
-        /// <summary>
-        /// The declaration of the property changed event.
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
 
         #endregion
 
@@ -100,15 +91,6 @@ namespace EssentialUIKit.ViewModels.History
         #endregion
 
         #region Methods
-
-        /// <summary>
-        /// The PropertyChanged event occurs when changing the value of property.
-        /// </summary>
-        /// <param name="propertyName">Property name</param>
-        public void NotifyPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
 
         /// <summary>
         /// Invoked when an item is selected.

@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using EssentialUIKit.Models.Transaction;
+using EssentialUIKit.Models;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 
@@ -11,7 +12,7 @@ namespace EssentialUIKit.ViewModels.Transaction
     /// ViewModel for Checkout page.
     /// </summary>
     [Preserve(AllMembers = true)]
-    public class CheckoutPageViewModel : INotifyPropertyChanged
+    public class CheckoutPageViewModel : BaseViewModel
     {
         #region Fields
 
@@ -71,14 +72,14 @@ namespace EssentialUIKit.ViewModels.Transaction
                     PreviewImage = App.BaseImageUrl + "Image1.png", Name = "Full-Length Skirt",
                     Summary =
                         "This plaid, cotton skirt will keep you warm in the air-conditioned office or outside on cooler days.",
-                    Seller = "New Fashion Company", ActualPrice = 245, DiscountPercent = 30, TotalQuantity = 1
+                    SellerName = "New Fashion Company", ActualPrice = 245, DiscountPercent = 30, TotalQuantity = 1
                 },
                 new Product
                 {
                     PreviewImage = App.BaseImageUrl + "Image2.png", Name = "Peasant Blouse",
                     Summary =
                         "Look your best this fall in this V-neck, pleated peasant blouse with full sleeves. Comes in white, chocolate, forest green, and more.",
-                    Seller = "New Fashion Company", ActualPrice = 245, DiscountPercent = 30, TotalQuantity = 1
+                    SellerName = "New Fashion Company", ActualPrice = 245, DiscountPercent = 30, TotalQuantity = 1
                 }
             };
 
@@ -98,15 +99,6 @@ namespace EssentialUIKit.ViewModels.Transaction
             this.PaymentOptionCommand = new Command(PaymentOptionClicked);
             this.ApplyCouponCommand = new Command(this.ApplyCouponClicked);
         }
-
-        #endregion
-
-        #region Event
-
-        /// <summary>
-        /// The declaration of the property changed event.
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
 
         #endregion
 
@@ -258,15 +250,6 @@ namespace EssentialUIKit.ViewModels.Transaction
         #endregion
 
         #region Methods
-
-        /// <summary>
-        /// The PropertyChanged event occurs when changing the value of property.
-        /// </summary>
-        /// <param name="propertyName">Property name</param>
-        public void NotifyPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
 
         /// <summary>
         /// Invoked when the Edit button is clicked.

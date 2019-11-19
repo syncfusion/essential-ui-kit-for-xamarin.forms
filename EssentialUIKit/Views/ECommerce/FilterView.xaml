@@ -84,6 +84,7 @@
 
                         <expander:SfExpander
                             Grid.Row="0"
+							IsExpanded="{Binding IsExpanded,Mode=TwoWay}"
                             Margin="{OnIdiom Default='15,0',
                                              Desktop='10,0,0,0'}"
                             BackgroundColor="Transparent"

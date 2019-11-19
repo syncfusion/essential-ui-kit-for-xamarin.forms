@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
-using ProfileModel = EssentialUIKit.Models.Social.Profile;
+using ProfileModel = EssentialUIKit.Models.Profile;
 
 namespace EssentialUIKit.ViewModels.Social
 {
@@ -12,7 +12,7 @@ namespace EssentialUIKit.ViewModels.Social
     /// ViewModel for social profile pages.
     /// </summary>
     [Preserve(AllMembers = true)]
-    public class SocialProfileViewModel : INotifyPropertyChanged
+    public class SocialProfileViewModel : BaseViewModel
     {
         #region Fields
 
@@ -110,15 +110,6 @@ namespace EssentialUIKit.ViewModels.Social
 
         #endregion
 
-        #region Events
-
-        /// <summary>
-        /// The declaration of the property changed event.
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        #endregion
-
         #region Properties
 
         /// <summary>
@@ -134,7 +125,7 @@ namespace EssentialUIKit.ViewModels.Social
             set
             {
                 this.interests = value;
-                this.OnPropertyChanged();
+                this.NotifyPropertyChanged();
             }
         }
 
@@ -151,7 +142,7 @@ namespace EssentialUIKit.ViewModels.Social
             set
             {
                 this.connnections = value;
-                this.OnPropertyChanged();
+                this.NotifyPropertyChanged();
             }
         }
 
@@ -168,7 +159,7 @@ namespace EssentialUIKit.ViewModels.Social
             set
             {
                 this.pictures = value;
-                this.OnPropertyChanged();
+                this.NotifyPropertyChanged();
             }
         }
 
@@ -225,15 +216,6 @@ namespace EssentialUIKit.ViewModels.Social
         #endregion
         
         #region Methods
-
-        /// <summary>
-        /// The PropertyChanged event occurs when changing the value of property.
-        /// </summary>
-        /// <param name="propertyName">Property name</param>
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
 
         /// <summary>
         /// Invoked when the Follow button is clicked.

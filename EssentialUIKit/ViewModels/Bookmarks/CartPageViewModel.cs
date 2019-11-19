@@ -1,10 +1,11 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using EssentialUIKit.Models.Bookmarks;
+using EssentialUIKit.Models;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using System.Runtime.Serialization;
+using EssentialUIKit.Controls;
 
 namespace EssentialUIKit.ViewModels.Bookmarks
 {
@@ -13,11 +14,11 @@ namespace EssentialUIKit.ViewModels.Bookmarks
     /// </summary>
     [Preserve(AllMembers = true)]
     [DataContract]
-    public class CartPageViewModel : INotifyPropertyChanged
+    public class CartPageViewModel : BaseViewModel
     {
         #region Fields
 
-        private ObservableCollection<CartProduct> cartDetails;
+        private ObservableCollection<Product> cartDetails;
 
         private double totalPrice;
 
@@ -27,15 +28,9 @@ namespace EssentialUIKit.ViewModels.Bookmarks
 
         private double percent;
         
-        private ObservableCollection<CartProduct> produts;
+        private ObservableCollection<Product> produts;
         
         private Command placeOrderCommand;
-        
-        private Command notificationCommand;
-        
-        private Command addToCartCommand;
-        
-        private Command saveForLaterCommand;
         
         private Command removeCommand;
         
@@ -47,21 +42,12 @@ namespace EssentialUIKit.ViewModels.Bookmarks
 
         #endregion
 
-        #region Event
-
-        /// <summary>
-        /// The declaration of the property changed event.
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        #endregion
-
         #region Public properties
 
         /// <summary>
         /// Gets or sets the property that has been bound with a list view, which displays the cart details.
         /// </summary>
-        public ObservableCollection<CartProduct> CartDetails
+        public ObservableCollection<Product> CartDetails
         {
             get
             {
@@ -151,7 +137,7 @@ namespace EssentialUIKit.ViewModels.Bookmarks
         /// </summary>
 
         [DataMember(Name = "products")]
-        public ObservableCollection<CartProduct> Products
+        public ObservableCollection<Product> Products
         {
             get
             {
@@ -181,30 +167,6 @@ namespace EssentialUIKit.ViewModels.Bookmarks
         public Command PlaceOrderCommand
         {
             get { return this.placeOrderCommand ?? (this.placeOrderCommand = new Command(this.PlaceOrderClicked)); }
-        }
-
-        /// <summary>
-        /// Gets or sets the command that will be executed when the Notification button is clicked.
-        /// </summary>
-        public Command NotificationCommand
-        {
-            get { return this.notificationCommand ?? (this.notificationCommand = new Command(this.NotificationClicked)); }
-        }
-
-        /// <summary>
-        /// Gets or sets the command that will be executed when the AddToCart button is clicked.
-        /// </summary>
-        public Command AddToCartCommand
-        {
-            get { return this.addToCartCommand ?? (this.addToCartCommand = new Command(this.AddToCartClicked)); }
-        }
-
-        /// <summary>
-        /// Gets or sets the command that will be executed when the Save for Later button is clicked.
-        /// </summary>
-        public Command SaveForLaterCommand
-        {
-            get { return this.saveForLaterCommand ?? (this.saveForLaterCommand = new Command(this.SaveForLaterClicked)); }
         }
 
         /// <summary>
@@ -244,15 +206,6 @@ namespace EssentialUIKit.ViewModels.Bookmarks
         #region Methods
 
         /// <summary>
-        /// The PropertyChanged event occurs when changing the value of property.
-        /// </summary>
-        /// <param name="propertyName">Property name</param>
-        public void NotifyPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        /// <summary>
         /// Invoked when an item is selected.
         /// </summary>
         /// <param name="obj">The Object</param>
@@ -265,39 +218,18 @@ namespace EssentialUIKit.ViewModels.Bookmarks
         /// Invoked when an item is selected.
         /// </summary>
         /// <param name="obj">The Object</param>
-        private void NotificationClicked(object obj)
-        {
-            // Do something
-        }
-
-        /// <summary>
-        /// Invoked when an item is selected.
-        /// </summary>
-        /// <param name="obj">The Object</param>
-        private void AddToCartClicked(object obj)
-        {
-            // Do something
-        }
-
-        /// <summary>
-        /// Invoked when an item is selected.
-        /// </summary>
-        /// <param name="obj">The Object</param>
-        private void SaveForLaterClicked(object obj)
-        {
-            // Do something
-        }
-
-        /// <summary>
-        /// Invoked when an item is selected.
-        /// </summary>
-        /// <param name="obj">The Object</param>
         private void RemoveClicked(object obj)
         {
-            if (obj is CartProduct product)
+            if (obj is Product product)
             {
                 this.CartDetails.Remove(product);
                 this.UpdatePrice();
+
+                if(this.CartDetails.Count == 0)
+                {
+                    SfPopupView sfPopupView = new SfPopupView();
+                    sfPopupView.ShowPopUp(content: "Your cart is empty!",buttonText:"CONTINUE SHOPPING");
+                }
             }
         }
 
@@ -338,9 +270,9 @@ namespace EssentialUIKit.ViewModels.Bookmarks
         /// This method is used to get the products from json.
         /// </summary>
         /// <param name="Products">The Products</param>
-        private void GetProducts(ObservableCollection<CartProduct> Products)
+        private void GetProducts(ObservableCollection<Product> Products)
         {
-            this.CartDetails = new ObservableCollection<CartProduct>();
+            this.CartDetails = new ObservableCollection<Product>();
             if (Products != null && Products.Count > 0)
                 this.CartDetails = Products;
         }

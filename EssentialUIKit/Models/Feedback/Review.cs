@@ -18,7 +18,7 @@ namespace EssentialUIKit.Models.Feedback
         /// <summary>
         /// Gets or sets the value for date.
         /// </summary>
-        public DateTime Date { get; set; }
+        public DateTime ReviewedDate { get; set; }
 
         /// <summary>
         /// Gets or sets the customer name.
@@ -28,7 +28,7 @@ namespace EssentialUIKit.Models.Feedback
         /// <summary>
         /// Gets or sets the profile image.
         /// </summary>
-        public string ProfileImage { get; set; }
+        public string CustomerImage { get; set; }
 
         /// <summary>
         /// Gets or sets the comment.

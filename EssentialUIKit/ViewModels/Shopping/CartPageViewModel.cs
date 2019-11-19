@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
-using EssentialUIKit.Models.Shopping;
+using EssentialUIKit.Models;
 using System.Runtime.Serialization;
 using EssentialUIKit.AppLayout.Views;
 using Template = EssentialUIKit.AppLayout.Models.Template;
@@ -20,7 +20,7 @@ namespace EssentialUIKit.ViewModels.Shopping
     {
         #region Fields
 
-        private ObservableCollection<CartProduct> cartDetails;
+        private ObservableCollection<Product> cartDetails;
 
         private double totalPrice;
 
@@ -30,7 +30,7 @@ namespace EssentialUIKit.ViewModels.Shopping
 
         private double percent;
         
-        private ObservableCollection<CartProduct> produts;
+        private ObservableCollection<Product> produts;
         
         private Command placeOrderCommand;
         
@@ -64,7 +64,7 @@ namespace EssentialUIKit.ViewModels.Shopping
         /// <summary>
         /// Gets or sets the property that has been bound with a list view, which displays the cart details.
         /// </summary>
-        public ObservableCollection<CartProduct> CartDetails
+        public ObservableCollection<Product> CartDetails
         {
             get
             {
@@ -154,7 +154,7 @@ namespace EssentialUIKit.ViewModels.Shopping
         /// </summary>
 
         [DataMember(Name = "products")]
-        public ObservableCollection<CartProduct> Products
+        public ObservableCollection<Product> Products
         {
             get
             {
@@ -306,7 +306,7 @@ namespace EssentialUIKit.ViewModels.Shopping
         /// <param name="obj">The Object</param>
         private void RemoveClicked(object obj)
         {
-            if (obj is CartProduct product)
+            if (obj is Product product )
             {
                 this.CartDetails.Remove(product);
                 this.UpdatePrice();
@@ -351,9 +351,9 @@ namespace EssentialUIKit.ViewModels.Shopping
         /// This method is used to get the products from json.
         /// </summary>
         /// <param name="Products">The Products</param>
-        private void GetProducts(ObservableCollection<CartProduct> Products)
+        private void GetProducts(ObservableCollection<Product> Products)
         {
-            this.CartDetails = new ObservableCollection<CartProduct>();
+            this.CartDetails = new ObservableCollection<Product>();
             if (Products != null && Products.Count > 0)
                 this.CartDetails = Products;
         }

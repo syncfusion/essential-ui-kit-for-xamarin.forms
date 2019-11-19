@@ -2,11 +2,11 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using EssentialUIKit.Models.Article;
+using EssentialUIKit.Models;
 using Syncfusion.XForms.Buttons;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
-using Model = EssentialUIKit.Models.Article.Article;
+using Model = EssentialUIKit.Models.Article;
 
 namespace EssentialUIKit.ViewModels.Article
 {
@@ -14,7 +14,7 @@ namespace EssentialUIKit.ViewModels.Article
     /// ViewModel for Article with comments page 
     /// </summary> 
     [Preserve(AllMembers = true)]
-    public class ArticleWithCommentsPageViewModel : INotifyPropertyChanged
+    public class ArticleWithCommentsPageViewModel : BaseViewModel
     {
         #region Fields
 
@@ -68,11 +68,6 @@ namespace EssentialUIKit.ViewModels.Article
         /// </summary>
         private ObservableCollection<Review> reviews;
 
-        /// <summary>
-        /// Gets or sets the article all reviews
-        /// </summary>
-        private ObservableCollection<Review> allReviews;
-
         #endregion
 
         #region Constructor
@@ -105,35 +100,25 @@ namespace EssentialUIKit.ViewModels.Article
             {
                 new Review
                 {
-                    ProfileImage = "ProfileImage1.png",
+                    CustomerImage = "ProfileImage1.png",
                     CustomerName = "Jhon Deo",
                     Comment = "Greatest article I have ever read in my life.",
-                    ReviewedDate = new DateTime(2019, 12, 29),
+                    ReviewedDate = "29 Dec, 2019",
                 },
                 new Review
                 {
-                    ProfileImage = "ProfileImage3.png",
+                    CustomerImage = "ProfileImage3.png",
                     CustomerName = "David Son",
                     Comment = "Absolutely love them! Can't stop reading!",
-                    ReviewedDate = new DateTime(2019, 12, 29),
+                    ReviewedDate = "29 Dec, 2019",
                 }
             };
 
-            this.allReviews = this.reviews;
             this.FavouriteCommand = new Command(this.FavouriteButtonClicked);
             this.BookmarkCommand = new Command(this.BookmarkButtonClicked);
             this.RelatedFeaturesCommand = new Command(this.RelatedFeaturesItemClicked);
             this.LoadMoreCommand = new Command(this.LoadMoreClicked);
         }
-
-        #endregion
-
-        #region Event
-
-        /// <summary>
-        /// The declaration of property changed event.
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
 
         #endregion
 
@@ -154,7 +139,7 @@ namespace EssentialUIKit.ViewModels.Article
                 if (this.articleName != value)
                 {
                     this.articleName = value;
-                    this.NotifyPropertyChanged("ArticleName");
+                    this.NotifyPropertyChanged();
                 }
             }
         }
@@ -174,7 +159,7 @@ namespace EssentialUIKit.ViewModels.Article
                 if (this.articleImage != value)
                 {
                     this.articleImage = value;
-                    this.NotifyPropertyChanged("ArticleImage");
+                    this.NotifyPropertyChanged();
                 }
             }
         }
@@ -194,7 +179,7 @@ namespace EssentialUIKit.ViewModels.Article
                 if (this.articleSubImage != value)
                 {
                     this.articleSubImage = value;
-                    this.NotifyPropertyChanged("ArticleSubImage");
+                    this.NotifyPropertyChanged();
                 }
             }
         }
@@ -214,7 +199,7 @@ namespace EssentialUIKit.ViewModels.Article
                 if (this.articleAuthor != value)
                 {
                     this.articleAuthor = value;
-                    this.NotifyPropertyChanged("ArticleAuthor");
+                    this.NotifyPropertyChanged();
                 }
             }
         }
@@ -234,7 +219,7 @@ namespace EssentialUIKit.ViewModels.Article
                 if (this.articleReadingTime != value)
                 {
                     this.articleReadingTime = value;
-                    this.NotifyPropertyChanged("ArticleReadingTime");
+                    this.NotifyPropertyChanged();
                 }
             }
         }
@@ -254,7 +239,7 @@ namespace EssentialUIKit.ViewModels.Article
                 if (this.articleDate != value)
                 {
                     this.articleDate = value;
-                    this.NotifyPropertyChanged("ArticleDate");
+                    this.NotifyPropertyChanged();
                 }
             }
         }
@@ -274,7 +259,7 @@ namespace EssentialUIKit.ViewModels.Article
                 if (this.articleContent != value)
                 {
                     this.articleContent = value;
-                    this.NotifyPropertyChanged("ArticleContent");
+                    this.NotifyPropertyChanged();
                 }
             }
         }
@@ -297,7 +282,7 @@ namespace EssentialUIKit.ViewModels.Article
                 }
 
                 this.contentList = value;
-                this.NotifyPropertyChanged("ContentList");
+                this.NotifyPropertyChanged();
             }
         }
 
@@ -319,7 +304,7 @@ namespace EssentialUIKit.ViewModels.Article
                 }
 
                 this.subTitle1 = value;
-                this.NotifyPropertyChanged("SubTitle1");
+                this.NotifyPropertyChanged();
             }
         }
         
@@ -341,7 +326,7 @@ namespace EssentialUIKit.ViewModels.Article
                 }
 
                 this.reviews = value;
-                this.NotifyPropertyChanged("Reviews");
+                this.NotifyPropertyChanged();
             }
         }
         
@@ -432,25 +417,9 @@ namespace EssentialUIKit.ViewModels.Article
         /// Invoked when Load more button is clicked.
         /// </summary>
         /// <param name="obj">The Object</param>
-        private void LoadMoreClicked(object obj)
+        private void LoadMoreClicked (object obj)
         {
-            if (this.Reviews.Count == 1)
-            {
-                this.Reviews = this.allReviews;
-            }
-            else
-            {
-                this.Reviews = new ObservableCollection<Review>(this.reviews.Take(1));
-            }
-        }
-
-        /// <summary>
-        /// The PropertyChanged event fired when change the value of property.
-        /// </summary>
-        /// <param name="propertyName">Property name</param>
-        private void NotifyPropertyChanged(string propertyName)
-        {
-            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            // Do something
         }
 
         #endregion

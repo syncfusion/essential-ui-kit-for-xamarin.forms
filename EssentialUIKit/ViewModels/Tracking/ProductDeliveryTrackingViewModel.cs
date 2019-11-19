@@ -12,7 +12,7 @@ namespace EssentialUIKit.ViewModels.Tracking
     /// </summary>
     [Preserve(AllMembers = true)]
     [DataContract]
-    public class ProductDeliveryTrackingViewModel : INotifyPropertyChanged
+    public class ProductDeliveryTrackingViewModel : BaseViewModel
     {
         #region Fields
 
@@ -30,15 +30,6 @@ namespace EssentialUIKit.ViewModels.Tracking
 
         #endregion
 
-        #region Events
-
-        /// <summary>
-        /// The declaration of the property changed event.
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        #endregion
-        
         #region Properties
 
         /// <summary>
@@ -55,7 +46,7 @@ namespace EssentialUIKit.ViewModels.Tracking
             set
             {
                 this.productDeliveryTrackings = value;
-                this.OnPropertyChanged();
+                this.NotifyPropertyChanged();
             }
         }
 
@@ -73,7 +64,7 @@ namespace EssentialUIKit.ViewModels.Tracking
             set
             {
                 this.productImage = value;
-                this.OnPropertyChanged();
+                this.NotifyPropertyChanged();
             }
         }
 
@@ -91,7 +82,7 @@ namespace EssentialUIKit.ViewModels.Tracking
             set
             {
                 this.productName = value;
-                this.OnPropertyChanged();
+                this.NotifyPropertyChanged();
             }
         }
 
@@ -109,7 +100,7 @@ namespace EssentialUIKit.ViewModels.Tracking
             set
             {
                 this.description = value;
-                this.OnPropertyChanged();
+                this.NotifyPropertyChanged();
             }
         }
 
@@ -127,7 +118,7 @@ namespace EssentialUIKit.ViewModels.Tracking
             set
             {
                 this.status = value;
-                this.OnPropertyChanged();
+                this.NotifyPropertyChanged();
             }
         }
 
@@ -145,22 +136,10 @@ namespace EssentialUIKit.ViewModels.Tracking
             set
             {
                 this.orderId = value;
-                this.OnPropertyChanged();
+                this.NotifyPropertyChanged();
             }
         }
 
-        #endregion
-               
-        #region Methods
-
-        /// <summary>
-        /// The PropertyChanged event occurs when changing the value of property.
-        /// </summary>
-        /// <param name="propertyName">Property name</param>
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
         #endregion
     }
 }

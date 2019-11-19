@@ -10,7 +10,7 @@ namespace EssentialUIKit.ViewModels.ErrorAndEmpty
     /// ViewModel for no item page.
     /// </summary>
     [Preserve(AllMembers = true)]
-    public class NoItemPageViewModel : INotifyPropertyChanged
+    public class NoItemPageViewModel : BaseViewModel
     {
         #region Fields
 
@@ -34,15 +34,6 @@ namespace EssentialUIKit.ViewModels.ErrorAndEmpty
             this.Content = "You haven’t selected any items yet";
             this.GoBackCommand = new Command(this.GoBack);
         }
-
-        #endregion
-
-        #region Events
-
-        /// <summary>
-        /// The declaration of the property changed event.
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
 
         #endregion
 
@@ -70,7 +61,7 @@ namespace EssentialUIKit.ViewModels.ErrorAndEmpty
             set
             {
                 this.imagePath = value;
-                this.OnPropertyChanged();
+                this.NotifyPropertyChanged();
             }
         }
 
@@ -87,7 +78,7 @@ namespace EssentialUIKit.ViewModels.ErrorAndEmpty
             set
             {
                 this.header = value;
-                this.OnPropertyChanged();
+                this.NotifyPropertyChanged();
             }
         }
 
@@ -104,22 +95,13 @@ namespace EssentialUIKit.ViewModels.ErrorAndEmpty
             set
             {
                 this.content = value;
-                this.OnPropertyChanged();
+                this.NotifyPropertyChanged();
             }
         }
 
         #endregion
 
         #region Methods
-
-        /// <summary>
-        /// The PropertyChanged event occurs when changing the value of property.
-        /// </summary>
-        /// <param name="propertyName">Property name</param>
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
 
         /// <summary>
         /// Invoked when the Go back button is clicked.

@@ -51,7 +51,7 @@ namespace EssentialUIKit.ViewModels.Forms
                 }
 
                 this.password = value;
-                this.OnPropertyChanged();
+                this.NotifyPropertyChanged();
             }
         }
 

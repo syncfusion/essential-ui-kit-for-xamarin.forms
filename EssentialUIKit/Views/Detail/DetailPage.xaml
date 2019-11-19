@@ -4,10 +4,11 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:badge="clr-namespace:Syncfusion.XForms.BadgeView;assembly=Syncfusion.SfBadgeView.XForms"
-    xmlns:behavior="clr-namespace:EssentialUIKit.Behaviors.Detail"
+    xmlns:behavior="clr-namespace:EssentialUIKit.Behaviors"
     xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
     xmlns:controls="clr-namespace:EssentialUIKit.Controls"
     xmlns:converter="clr-namespace:EssentialUIKit.Converters"
+    xmlns:detailBehavior="clr-namespace:EssentialUIKit.Behaviors.Detail"
     xmlns:helper="clr-namespace:EssentialUIKit.Helpers"
     xmlns:local="clr-namespace:EssentialUIKit.Views.Detail"
     xmlns:rating="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms"
@@ -18,7 +19,7 @@
     Style="{StaticResource ContentPageStyle}">
 
     <ContentPage.Behaviors>
-        <behavior:CartBehavior />
+        <detailBehavior:CartBehavior />
     </ContentPage.Behaviors>
 
     <ContentPage.Resources>
@@ -101,12 +102,12 @@
                             <badge:SfBadgeView.BadgeSettings>
                                 <badge:BadgeSetting
                                     BackgroundColor="{DynamicResource PrimaryColor}"
-                                    Stroke="{DynamicResource Gray-White}"
                                     BadgeAnimation="None"
-                                    StrokeWidth="1"
                                     BadgeType="None"
                                     FontSize="10"
-                                    Offset="-10,10"/>
+                                    Stroke="{DynamicResource Gray-White}"
+                                    StrokeWidth="1"
+                                    Offset="-10,10" />
                             </badge:SfBadgeView.BadgeSettings>
                         </badge:SfBadgeView>
                     </controls:TitleView.TrailingView>
@@ -368,7 +369,7 @@
                             ItemsSource="{Binding ProductDetail.SizeVariants}"
                             Style="{StaticResource SfSegmentedControlStyle}">
                             <buttons:SfSegmentedControl.Behaviors>
-                                <behavior:SegmentedControlBehavior Command="{Binding BindingContext.VariantCommand, Source={x:Reference detailPage}}" />
+                                <behavior:SegmentedControlCommandBehavior Command="{Binding BindingContext.VariantCommand, Source={x:Reference detailPage}}" />
                             </buttons:SfSegmentedControl.Behaviors>
                         </buttons:SfSegmentedControl>
 

@@ -11,7 +11,7 @@ namespace EssentialUIKit.ViewModels.Chat
     /// View model for recent chat page 
     /// </summary> 
     [Preserve(AllMembers = true)]
-    public class RecentChatViewModel : INotifyPropertyChanged
+    public class RecentChatViewModel : BaseViewModel
     {
         #region Fields
 
@@ -189,15 +189,6 @@ namespace EssentialUIKit.ViewModels.Chat
         }
         #endregion
 
-        #region Event
-
-        /// <summary>
-        /// The declaration of the property changed event.
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        #endregion
-
         #region Public Properties
 
         /// <summary>
@@ -279,15 +270,6 @@ namespace EssentialUIKit.ViewModels.Chat
 
         #region Methods
          
-        /// <summary>
-        /// The PropertyChanged event occurs when changing the value of property.
-        /// </summary>
-        /// <param name="propertyName">Property name</param>
-        public void NotifyPropertyChanged([CallerMemberName]string propertyName = null)
-        {
-            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
         /// <summary>
         /// Invoked when an item is selected.
         /// </summary>

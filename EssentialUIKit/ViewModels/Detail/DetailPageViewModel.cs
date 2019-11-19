@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using EssentialUIKit.Models.Detail;
+using EssentialUIKit.Models;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 
@@ -14,7 +14,7 @@ namespace EssentialUIKit.ViewModels.Detail
     /// ViewModel for detail page.
     /// </summary>
     [Preserve(AllMembers = true)]
-    public class DetailPageViewModel : INotifyPropertyChanged
+    public class DetailPageViewModel : BaseViewModel
     {
         #region Fields
 
@@ -44,10 +44,10 @@ namespace EssentialUIKit.ViewModels.Detail
             {
                 new Review
                 {
-                    ProfileImage = "ProfileImage10.png",
+                    CustomerImage = "ProfileImage10.png",
                     CustomerName = "Serina Williams",
                     Comment = "Greatest purchase I have ever made in my life.",
-                    ReviewedDate = new DateTime(2019, 12, 29),
+                    ReviewedDate = "29 Dec, 2019",
                     Rating = 5,
                     Images = new List<string>
                     {
@@ -59,10 +59,10 @@ namespace EssentialUIKit.ViewModels.Detail
                 },
                 new Review
                 {
-                    ProfileImage = "ProfileImage11.png",
+                    CustomerImage = "ProfileImage11.png",
                     CustomerName = "Alise Valasquez",
                     Comment = "Absolutely love them! Can't stop wearing!",
-                    ReviewedDate = new DateTime(2019, 12, 29),
+                    ReviewedDate = "29 Dec, 2019",
                     Rating = 3,
                     Images = new List<string>
                     {
@@ -89,7 +89,7 @@ namespace EssentialUIKit.ViewModels.Detail
                     "Image1.png",
                 },
 
-                Reviews = new ObservableCollection<Review>(reviews.Take(1))
+                Reviews = new ObservableCollection<Review>(reviews)
             };
 
             if (this.ProductDetail.Reviews == null || this.ProductDetail.Reviews.Count == 0)
@@ -168,23 +168,13 @@ namespace EssentialUIKit.ViewModels.Detail
             };
 
             this.AddFavouriteCommand = new Command(this.AddFavouriteClicked);
-            this.NotificationCommand = new Command(this.NotificationClicked);
             this.AddToCartCommand = new Command(this.AddToCartClicked);
-            this.LoadMoreCommand = new Command(this.LoadMoreClicked);
             this.ShareCommand = new Command(this.ShareClicked);
             this.VariantCommand = new Command(this.VariantClicked);
             this.ItemSelectedCommand = new Command(this.ItemSelected);
             this.CardItemCommand = new Command(this.CartClicked);
+            this.LoadMoreCommand = new Command(this.LoadMoreClicked);
         }
-
-        #endregion
-
-        #region Event
-
-        /// <summary>
-        /// The declaration of the property changed event.
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
 
         #endregion
 
@@ -297,19 +287,9 @@ namespace EssentialUIKit.ViewModels.Detail
         public Command AddFavouriteCommand { get; set; }
 
         /// <summary>
-        /// Gets or sets the command that will be executed when the Notification button is clicked.
-        /// </summary>
-        public Command NotificationCommand { get; set; }
-
-        /// <summary>
         /// Gets or sets the command that will be executed when the AddToCart button is clicked.
         /// </summary>
         public Command AddToCartCommand { get; set; }
-
-        /// <summary>
-        /// Gets or sets the command that will be executed when the Show All button is clicked.
-        /// </summary>
-        public Command LoadMoreCommand { get; set; }
 
         /// <summary>
         /// Gets or sets the command that will be executed when the Share button is clicked.
@@ -331,18 +311,14 @@ namespace EssentialUIKit.ViewModels.Detail
         /// </summary>
         public Command CardItemCommand { get; set; }
 
+        /// <summary>
+        /// Gets or sets the command that will be executed when the Show All button is clicked.
+        /// </summary>
+        public Command LoadMoreCommand { get; set; }
+
         #endregion
 
         #region Methods
-
-        /// <summary>
-        /// The PropertyChanged event occurs when changing the value of property.
-        /// </summary>
-        /// <param name="propertyName">Property name</param>
-        public void NotifyPropertyChanged([CallerMemberName]string propertyName = null)
-        {
-            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
 
         /// <summary>
         /// Invoked when the Favourite button is clicked.
@@ -357,15 +333,6 @@ namespace EssentialUIKit.ViewModels.Detail
         }
 
         /// <summary>
-        /// Invoked when the Notification button is clicked.
-        /// </summary>
-        /// <param name="obj">The Object</param>
-        private void NotificationClicked(object obj)
-        {
-            // Do something
-        }
-
-        /// <summary>
         /// Invoked when the Cart button is clicked.
         /// </summary>
         /// <param name="obj">The Object</param>
@@ -374,22 +341,6 @@ namespace EssentialUIKit.ViewModels.Detail
             this.cartItemCount = this.cartItemCount ?? 0;
             this.CartItemCount += 1;
             // Do something
-        }
-
-        /// <summary>
-        /// Invoked when Load more button is clicked.
-        /// </summary>
-        /// <param name="obj">The Object</param>
-        private void LoadMoreClicked(object obj)
-        {
-            if (productDetail.Reviews.Count == 1)
-            {
-                productDetail.Reviews = reviews;
-            }
-            else
-            {
-                productDetail.Reviews = new ObservableCollection<Review>(reviews.Take(1));
-            }
         }
 
         /// <summary>
@@ -424,6 +375,15 @@ namespace EssentialUIKit.ViewModels.Detail
         /// </summary>
         /// <param name="obj"></param>
         private void CartClicked(object obj)
+        {
+            // Do something
+        }
+
+        /// <summary>
+        /// Invoked when Load more button is clicked.
+        /// </summary>
+        /// <param name="obj">The Object</param>
+        private void LoadMoreClicked (object obj)
         {
             // Do something
         }

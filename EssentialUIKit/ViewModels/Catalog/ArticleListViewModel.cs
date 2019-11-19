@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
-using Model = EssentialUIKit.Models.Catalog.Article;
+using Model = EssentialUIKit.Models.Article;
 
 namespace EssentialUIKit.ViewModels.Catalog
 {
@@ -11,7 +11,7 @@ namespace EssentialUIKit.ViewModels.Catalog
     /// ViewModel for article list page.
     /// </summary> 
     [Preserve(AllMembers = true)]
-    public class ArticleListViewModel : INotifyPropertyChanged
+    public class ArticleListViewModel : BaseViewModel
     {
         #region Fields
 
@@ -114,15 +114,6 @@ namespace EssentialUIKit.ViewModels.Catalog
         }
         #endregion
 
-        #region Event
-
-        /// <summary>
-        /// The declaration of the property changed event.
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        #endregion
-
         #region Public Properties
         /// <summary>
         /// Gets or sets the property that has been bound with the rotator view, which displays the articles featured stories items.
@@ -195,15 +186,6 @@ namespace EssentialUIKit.ViewModels.Catalog
 
         #region Methods
 
-        /// <summary>
-        /// The PropertyChanged event occurs when changing the value of property.
-        /// </summary>
-        /// <param name="propertyName">Property name</param>
-        public void NotifyPropertyChanged([CallerMemberName]string propertyName = null)
-        {
-            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-               
         /// <summary>
         /// Invoked when the menu button is clicked.
         /// </summary>

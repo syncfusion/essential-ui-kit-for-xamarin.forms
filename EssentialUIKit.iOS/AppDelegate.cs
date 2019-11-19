@@ -1,6 +1,7 @@
 ﻿using Foundation;
 using Syncfusion.ListView.XForms.iOS;
 using Syncfusion.SfCalendar.XForms.iOS;
+using Syncfusion.SfChart.XForms.iOS.Renderers;
 using Syncfusion.SfMaps.XForms.iOS;
 using Syncfusion.SfRating.XForms.iOS;
 using Syncfusion.SfRotator.XForms.iOS;
@@ -53,6 +54,7 @@ namespace EssentialUIKit.iOS
             SfTabViewRenderer.Init();
             SfCalendarRenderer.Init();
             SfLinearProgressBarRenderer.Init();
+            SfChartRenderer.Init();     
 
             ////UIView statusBar = UIApplication.SharedApplication.ValueForKey(new NSString("statusBar")) as UIView;
             ////if (statusBar.RespondsToSelector(new ObjCRuntime.Selector("setBackgroundColor:")))

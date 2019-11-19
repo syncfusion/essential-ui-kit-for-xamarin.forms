@@ -6,7 +6,7 @@ using System.Runtime.Serialization;
 using Syncfusion.ListView.XForms;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
-using EssentialUIKit.Models.Shopping;
+using EssentialUIKit.Models;
 using EssentialUIKit.Views.Shopping;
 using EssentialUIKit.AppLayout.Views;
 using Template = EssentialUIKit.AppLayout.Models.Template;

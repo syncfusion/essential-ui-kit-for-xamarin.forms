@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
 using Syncfusion.ListView.XForms;
-using EssentialUIKit.Models.Catalog;
+using EssentialUIKit.Models;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 
@@ -15,7 +15,7 @@ namespace EssentialUIKit.ViewModels.Catalog
     /// </summary>
     [Preserve(AllMembers = true)]
     [DataContract]
-    public class CatalogPageViewModel : INotifyPropertyChanged
+    public class CatalogPageViewModel : BaseViewModel
     {
         #region Fields
 
@@ -32,8 +32,6 @@ namespace EssentialUIKit.ViewModels.Catalog
         private Command filterCommand;
 
         private Command addToCartCommand;
-
-        private Command expandingCommand;
 
         public Command cardItemCommand;
 
@@ -139,15 +137,6 @@ namespace EssentialUIKit.ViewModels.Catalog
                 "Discount"
             };
         }
-
-        #endregion
-
-        #region Event
-
-        /// <summary>
-        /// The declaration of the property changed event.
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
 
         #endregion
 
@@ -270,14 +259,6 @@ namespace EssentialUIKit.ViewModels.Catalog
         }
 
         /// <summary>
-        /// Gets or sets the command that will be executed when expander is expanded.
-        /// </summary>
-        public Command ExpandingCommand
-        {
-            get { return this.expandingCommand ?? (this.expandingCommand = new Command(this.ExpanderClicked)); }
-        }
-
-        /// <summary>
         /// Gets or sets the command will be executed when the cart icon button has been clicked.
         /// </summary>
         public Command CardItemCommand
@@ -288,15 +269,6 @@ namespace EssentialUIKit.ViewModels.Catalog
         #endregion
 
         #region Methods
-
-        /// <summary>
-        /// The PropertyChanged event occurs when changing the value of property.
-        /// </summary>
-        /// <param name="propertyName">Property name</param>
-        public void NotifyPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
 
         /// <summary>
         /// Invoked when an item is selected.
@@ -342,31 +314,6 @@ namespace EssentialUIKit.ViewModels.Catalog
         private void AddToCartClicked(object obj)
         {
             // Do something
-        }
-
-        /// <summary>
-        /// Invoked when the expander is clicked.
-        /// </summary>
-        /// <param name="obj">The Object</param>
-        private void ExpanderClicked(object obj)
-        {
-            var objects = obj as List<object>;
-            var category = objects[0] as Category;
-            var listView = objects[1] as SfListView;
-
-            if (listView == null)
-            {
-                return;
-            }
-
-            var itemIndex = listView.DataSource.DisplayItems.IndexOf(category);
-            var scrollIndex = itemIndex + category.SubCategories.Count;
-            //Expand and bring the item in the view.
-            Device.BeginInvokeOnMainThread(async () =>
-            {
-                await System.Threading.Tasks.Task.Delay(100);
-                listView.LayoutManager.ScrollToRowIndex(scrollIndex, Syncfusion.ListView.XForms.ScrollToPosition.End, true);
-            });
         }
 
         /// <summary>

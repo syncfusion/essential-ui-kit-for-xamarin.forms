@@ -12,7 +12,7 @@ namespace EssentialUIKit.ViewModels.Chat
     /// ViewModel for chat message page.
     /// </summary>
     [Preserve(AllMembers = true)]
-    public class ChatMessageViewModel : INotifyPropertyChanged
+    public class ChatMessageViewModel : BaseViewModel
     {
         #region Fields
 
@@ -56,14 +56,6 @@ namespace EssentialUIKit.ViewModels.Chat
 
             this.GenerateMessageInfo();
         }
-
-        #endregion
-
-        #region Event
-        /// <summary>
-        /// The declaration of the property changed event.
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
 
         #endregion
 
@@ -184,15 +176,6 @@ namespace EssentialUIKit.ViewModels.Chat
         #endregion
         
         #region Methods
-
-        /// <summary>
-        /// The PropertyChanged event occurs when changing the value of property.
-        /// </summary>
-        /// <param name="propertyName">Property name</param>
-        public void NotifyPropertyChanged([CallerMemberName]string propertyName = null)
-        {
-            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
 
         /// <summary>
         /// Initializes a collection and add it to the message items.

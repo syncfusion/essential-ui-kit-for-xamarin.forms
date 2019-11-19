@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
-using EssentialUIKit.Models.Catalog;
+using EssentialUIKit.Models;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 
@@ -13,7 +13,7 @@ namespace EssentialUIKit.ViewModels.Catalog
     /// </summary>
     [Preserve(AllMembers = true)]
     [DataContract]
-    public class ProductHomePageViewModel : INotifyPropertyChanged
+    public class ProductHomePageViewModel : BaseViewModel
     {
         #region Fields
 
@@ -26,15 +26,6 @@ namespace EssentialUIKit.ViewModels.Catalog
         private Command itemSelectedCommand;
 
         private string bannerImage;
-
-        #endregion
-
-        #region Event
-
-        /// <summary>
-        /// The declaration of the property changed event.
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
 
         #endregion
 
@@ -137,15 +128,6 @@ namespace EssentialUIKit.ViewModels.Catalog
         #endregion
 
         #region Methods
-
-        /// <summary>
-        /// The PropertyChanged event occurs when changing the value of property.
-        /// </summary>
-        /// <param name="propertyName">Property name</param>
-        public void NotifyPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
 
         /// <summary>
         /// Invoked when an item is selected.

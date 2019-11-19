@@ -4,6 +4,7 @@ using System.Runtime.CompilerServices;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using EssentialUIKit.Models.Shopping;
+using EssentialUIKit.Models;
 using EssentialUIKit.AppLayout.Views;
 using Template = EssentialUIKit.AppLayout.Models.Template;
 using EssentialUIKit.Views.Shopping;
@@ -74,14 +75,14 @@ namespace EssentialUIKit.ViewModels.Shopping
                     PreviewImage = App.BaseImageUrl + "Image1.png", Name = "Full-Length Skirt",
                     Summary =
                         "This plaid, cotton skirt will keep you warm in the air-conditioned office or outside on cooler days.",
-                    Seller = "New Fashion Company", ActualPrice = 245, DiscountPercent = 30, TotalQuantity = 1
+                    SellerName = "New Fashion Company", ActualPrice = 245, DiscountPercent = 30, TotalQuantity = 1
                 },
                 new Product
                 {
                     PreviewImage = App.BaseImageUrl + "Image2.png", Name = "Peasant Blouse",
                     Summary =
                         "Look your best this fall in this V-neck, pleated peasant blouse with full sleeves. Comes in white, chocolate, forest green, and more.",
-                    Seller = "New Fashion Company", ActualPrice = 245, DiscountPercent = 30, TotalQuantity = 1
+                    SellerName = "New Fashion Company", ActualPrice = 245, DiscountPercent = 30, TotalQuantity = 1
                 }
             };
 

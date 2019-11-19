@@ -15,7 +15,7 @@ namespace EssentialUIKit.ViewModels.OnBoarding
     /// ViewModel for on-boarding gradient page with animation.
     /// </summary>
     [Preserve(AllMembers = true)]
-    public class OnBoardingAnimationViewModel : INotifyPropertyChanged
+    public class OnBoardingAnimationViewModel : BaseViewModel
     {
         #region Fields
 
@@ -72,15 +72,6 @@ namespace EssentialUIKit.ViewModels.OnBoarding
 
         #endregion
 
-        #region Events
-
-        /// <summary>
-        /// The declaration of the property changed event.
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        #endregion
-
         #region Properties
 
         public ObservableCollection<Boarding> Boardings
@@ -98,7 +89,7 @@ namespace EssentialUIKit.ViewModels.OnBoarding
                 }
 
                 this.boardings = value;
-                this.OnPropertyChanged();
+                this.NotifyPropertyChanged();
             }
         }
 
@@ -117,7 +108,7 @@ namespace EssentialUIKit.ViewModels.OnBoarding
                 }
 
                 this.nextButtonText = value;
-                this.OnPropertyChanged();
+                this.NotifyPropertyChanged();
             }
         }
 
@@ -136,7 +127,7 @@ namespace EssentialUIKit.ViewModels.OnBoarding
                 }
 
                 this.isSkipButtonVisible = value;
-                this.OnPropertyChanged();
+                this.NotifyPropertyChanged();
             }
         }
 
@@ -155,7 +146,7 @@ namespace EssentialUIKit.ViewModels.OnBoarding
                 }
 
                 this.selectedIndex = value;
-                this.OnPropertyChanged();
+                this.NotifyPropertyChanged();
             }
         }
 
@@ -176,15 +167,6 @@ namespace EssentialUIKit.ViewModels.OnBoarding
         #endregion
 
         #region Methods
-
-        /// <summary>
-        /// The PropertyChanged event occurs when changing the value of property.
-        /// </summary>
-        /// <param name="propertyName">Property name</param>
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
 
         private bool ValidateAndUpdateSelectedIndex(int itemCount)
         {
@@ -215,17 +197,13 @@ namespace EssentialUIKit.ViewModels.OnBoarding
             var itemCount = (obj as SfRotator).ItemsSource.Count();
             if (this.ValidateAndUpdateSelectedIndex(itemCount))
             {
-                Application.Current.MainPage.Navigation.PopAsync();
-            }
-            else
-            {
                 this.MoveToNextPage();
             }
         }
 
         private void MoveToNextPage()
         {
-            // Move to next page
+            Application.Current.MainPage.Navigation.PopAsync();
         }
 
         #endregion

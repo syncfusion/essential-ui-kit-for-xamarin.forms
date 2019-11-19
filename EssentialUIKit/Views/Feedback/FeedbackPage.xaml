@@ -3,9 +3,10 @@
     x:Class="EssentialUIKit.Views.Feedback.FeedbackPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:behavior="clr-namespace:EssentialUIKit.Behaviors.Feedback"
+    xmlns:behavior="clr-namespace:EssentialUIKit.Behaviors"
     xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
     xmlns:local="clr-namespace:EssentialUIKit.Views.Feedback"
+    xmlns:template="clr-namespace:EssentialUIKit.Views.Templates"
     xmlns:viewmodel="clr-namespace:EssentialUIKit.ViewModels.Feedback"
     BackgroundColor="{DynamicResource Gray-White}"
     NavigationPage.HasNavigationBar="False">
@@ -50,12 +51,20 @@
                 VerticalOptions="FillAndExpand">
 
                 <listView:SfListView.Behaviors>
-                    <behavior:ListViewBehavior />
+                    <behavior:SfListViewExtendHeightBehavior />
                 </listView:SfListView.Behaviors>
 
                 <listView:SfListView.ItemTemplate>
                     <DataTemplate>
-                        <local:FeedbackTemplate />
+                        <StackLayout Spacing="0">
+                            <template:ReviewTemplate Padding="16,8,16,0" ColumnSpacing="0" />
+                            <BoxView
+                                Margin="0,8,0,8"
+                                HeightRequest="{OnIdiom Default=1,
+                                                        Desktop=0}"
+                                Style="{StaticResource BoxViewStyle}" />
+                        </StackLayout>
+                        <!--<local:FeedbackTemplate />-->
                     </DataTemplate>
                 </listView:SfListView.ItemTemplate>
 

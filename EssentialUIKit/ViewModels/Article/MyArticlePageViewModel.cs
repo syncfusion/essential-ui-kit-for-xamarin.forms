@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
-using Model = EssentialUIKit.Models.Article.Article;
+using Model = EssentialUIKit.Models.Article;
 
 namespace EssentialUIKit.ViewModels.Article
 {
@@ -10,7 +10,7 @@ namespace EssentialUIKit.ViewModels.Article
     /// ViewModel for My Article page 
     /// </summary> 
     [Preserve(AllMembers = true)]
-    public class MyArticlePageViewModel : INotifyPropertyChanged
+    public class MyArticlePageViewModel : BaseViewModel
     {
         #region Fields        
         
@@ -48,15 +48,6 @@ namespace EssentialUIKit.ViewModels.Article
 
         #endregion
 
-        #region Event
-
-        /// <summary>
-        /// The declaration of property changed event.
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        #endregion
-
         #region Public properties
 
         /// <summary>
@@ -77,7 +68,7 @@ namespace EssentialUIKit.ViewModels.Article
                 }
 
                 this.articleList = value;
-                this.NotifyPropertyChanged("ArticleList");
+                this.NotifyPropertyChanged();
             }
         }
 
@@ -115,15 +106,6 @@ namespace EssentialUIKit.ViewModels.Article
         private void SearchButtonClicked(object obj)
         {
             // Do something
-        }
-
-        /// <summary>
-        /// The PropertyChanged event fired when change the value of property.
-        /// </summary>
-        /// <param name="propertyName">Property name</param>
-        private void NotifyPropertyChanged(string propertyName)
-        {
-            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         #endregion

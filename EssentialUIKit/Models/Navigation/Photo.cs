@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Runtime.Serialization;
+using Xamarin.Forms.Internals;
 
 namespace EssentialUIKit.Models.Navigation
 {
     /// <summary>
     /// Photo model.
     /// </summary>
+    [Preserve(AllMembers = true)]
     [DataContract]
     public class Photo
     {
