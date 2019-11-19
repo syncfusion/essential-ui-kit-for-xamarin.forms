@@ -125,14 +125,4 @@
     <Page Name="Setting Page" Description="This page displays a simple settings page that includes account, notification, and support settings." PageName="Views.Settings.SettingPage"/>
   </Category>
 
-  <!--<Category Name="Shopping" Description="Simple shopping flow, fetturing catalog detail, cart detail and product checkout.">
-    <Page Name="Login Page" Description="If you want a simple and clean authentication form, then just add this page to your application. Email validation is done within this form." PageName="Views.Shopping.LoginPage"/>
-    <Page Name="Shopping Home Page" Description="Simple shopping flow, fetturing catalog detail, cart detail and product checkout" PageName="Views.Shopping.CatalogListPage"/>
-    <Page Name="Detail Page" Description="View detailed information regarding your orders" PageName="Views.Shopping.DetailPage" />
-    <Page Name="Shopping Cart Page" Description="View items in your cart for purchase. " PageName="Views.Shopping.CartPage" />
-    <Page Name="Checkout page" Description="Purchase items in your cart" PageName="Views.Shopping.CheckoutPage"/>
-    <Page Name="Payment success page" Description="This page notifies the user that their payment was successful." PageName="Views.Shopping.PaymentSuccessPage"/>
-    <Page Name="Walkthrough animation Page" Description="Guide users through a setup process on color gradient pages" PageName="Views.Shopping.OnBoardingAnimationPage"/>
-  </Category>-->
-
 </Samples>
