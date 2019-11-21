@@ -36,9 +36,9 @@
     <Page Name="Chat Conversation Page" Description="This page displays a recent conversation with a contact in a chat application. The page provides options to send files, images, or any other attachments as well as text messages." PageName="Views.Chat.ChatMessagePage" />
   </Category>
   
-   <Category Icon="article.png" Name="Article" Description="Organize blog posts in an easy-to-navigate layout.">
-    <Page Name="Article Detail with Comments Page" Description="This page displays an article with the title, image, and text." PageName="Views.Article.ArticleWithCommentsPage" />
-     <Page Name="Article Parallax Header Page" Description="This page displays an article with a pleasant parallax effect." PageName="Views.Article.ArticleParallaxHeaderPage" />
+   <Category Icon="article.png" IsUpdated="True" Name="Article" Description="Organize blog posts in an easy-to-navigate layout.">
+     <Page Name="Article Detail with Comments Page" Description="This page displays an article with the title, image, and text." PageName="Views.Article.ArticleWithCommentsPage" />
+     <Page Name="Article Parallax Header Page" IsNew="True" Description="This page displays an article with a pleasant parallax effect." PageName="Views.Article.ArticleParallaxHeaderPage" />
      <Page Name="My Article Page" Description="This page displays an article with the title, image, and text with customized layout." PageName="Views.Article.MyArticlePage" />
    </Category>
 
