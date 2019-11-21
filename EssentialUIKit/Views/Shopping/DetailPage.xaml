@@ -4,7 +4,7 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:badge="clr-namespace:Syncfusion.XForms.BadgeView;assembly=Syncfusion.SfBadgeView.XForms"
-    xmlns:behavior="clr-namespace:EssentialUIKit.Behaviors.Shopping"
+    xmlns:behavior="clr-namespace:EssentialUIKit.Behaviors"
     xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
     xmlns:controls="clr-namespace:EssentialUIKit.Controls"
     xmlns:converter="clr-namespace:EssentialUIKit.Converters"
@@ -12,13 +12,14 @@
     xmlns:local="clr-namespace:EssentialUIKit.Views.Shopping"
     xmlns:rating="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms"
     xmlns:rotator="clr-namespace:Syncfusion.SfRotator.XForms;assembly=Syncfusion.SfRotator.XForms"
+    xmlns:shoppingBehavior="clr-namespace:EssentialUIKit.Behaviors.Shopping"
     x:Name="detailPage"
     Title="Detail page"
     NavigationPage.HasNavigationBar="False"
     Style="{StaticResource ContentPageStyle}">
 
     <ContentPage.Behaviors>
-        <behavior:CartBehavior />
+        <shoppingBehavior:CartBehavior />
     </ContentPage.Behaviors>
 
     <ContentPage.Resources>
@@ -368,7 +369,7 @@
                             ItemsSource="{Binding ProductDetail.SizeVariants}"
                             Style="{StaticResource SfSegmentedControlStyle}">
                             <buttons:SfSegmentedControl.Behaviors>
-                                <behavior:SegmentedControlBehavior Command="{Binding BindingContext.VariantCommand, Source={x:Reference detailPage}}" />
+                                <behavior:SegmentedControlCommandBehavior Command="{Binding BindingContext.VariantCommand, Source={x:Reference detailPage}}" />
                             </buttons:SfSegmentedControl.Behaviors>
                         </buttons:SfSegmentedControl>
 

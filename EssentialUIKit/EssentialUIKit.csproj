@@ -75,6 +75,7 @@
     <EmbeddedResource Include="AppLayout\Icons\catalog.png" />
     <EmbeddedResource Include="AppLayout\Icons\chat.png" />
     <EmbeddedResource Include="AppLayout\Icons\contact-us.png" />
+    <EmbeddedResource Include="AppLayout\Icons\dashboard.png" />
     <EmbeddedResource Include="AppLayout\Icons\detail.png" />
     <EmbeddedResource Include="AppLayout\Icons\ecommerce.png" />
     <EmbeddedResource Include="AppLayout\Icons\error-empty.png" />
@@ -85,7 +86,9 @@
     <EmbeddedResource Include="AppLayout\Icons\navigation.png" />
     <EmbeddedResource Include="AppLayout\Icons\on-boarding.png" />
     <EmbeddedResource Include="AppLayout\Icons\profile.png" />
+    <EmbeddedResource Include="AppLayout\Icons\setting.png" />
     <EmbeddedResource Include="AppLayout\Icons\social.png" />
+    <EmbeddedResource Include="AppLayout\Icons\tracking.png" />
     <EmbeddedResource Include="AppLayout\Icons\transaction.png" />
     <EmbeddedResource Include="AppLayout\TemplateList.xml" />
     <EmbeddedResource Include="Data\deliverytracking.json" />

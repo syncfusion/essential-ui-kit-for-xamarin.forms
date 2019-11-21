@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
@@ -14,7 +14,7 @@ namespace EssentialUIKit.ViewModels.Article
     /// ViewModel for Article with comments page 
     /// </summary> 
     [Preserve(AllMembers = true)]
-    public class ArticleWithCommentsPageViewModel : INotifyPropertyChanged
+    public class ArticleWithCommentsPageViewModel : BaseViewModel
     {
         #region Fields
 
@@ -122,15 +122,6 @@ namespace EssentialUIKit.ViewModels.Article
 
         #endregion
 
-        #region Event
-
-        /// <summary>
-        /// The declaration of property changed event.
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        #endregion
-
         #region Public properties
 
         /// <summary>
@@ -148,7 +139,7 @@ namespace EssentialUIKit.ViewModels.Article
                 if (this.articleName != value)
                 {
                     this.articleName = value;
-                    this.NotifyPropertyChanged("ArticleName");
+                    this.NotifyPropertyChanged();
                 }
             }
         }
@@ -168,7 +159,7 @@ namespace EssentialUIKit.ViewModels.Article
                 if (this.articleImage != value)
                 {
                     this.articleImage = value;
-                    this.NotifyPropertyChanged("ArticleImage");
+                    this.NotifyPropertyChanged();
                 }
             }
         }
@@ -188,7 +179,7 @@ namespace EssentialUIKit.ViewModels.Article
                 if (this.articleSubImage != value)
                 {
                     this.articleSubImage = value;
-                    this.NotifyPropertyChanged("ArticleSubImage");
+                    this.NotifyPropertyChanged();
                 }
             }
         }
@@ -208,7 +199,7 @@ namespace EssentialUIKit.ViewModels.Article
                 if (this.articleAuthor != value)
                 {
                     this.articleAuthor = value;
-                    this.NotifyPropertyChanged("ArticleAuthor");
+                    this.NotifyPropertyChanged();
                 }
             }
         }
@@ -228,7 +219,7 @@ namespace EssentialUIKit.ViewModels.Article
                 if (this.articleReadingTime != value)
                 {
                     this.articleReadingTime = value;
-                    this.NotifyPropertyChanged("ArticleReadingTime");
+                    this.NotifyPropertyChanged();
                 }
             }
         }
@@ -248,7 +239,7 @@ namespace EssentialUIKit.ViewModels.Article
                 if (this.articleDate != value)
                 {
                     this.articleDate = value;
-                    this.NotifyPropertyChanged("ArticleDate");
+                    this.NotifyPropertyChanged();
                 }
             }
         }
@@ -268,7 +259,7 @@ namespace EssentialUIKit.ViewModels.Article
                 if (this.articleContent != value)
                 {
                     this.articleContent = value;
-                    this.NotifyPropertyChanged("ArticleContent");
+                    this.NotifyPropertyChanged();
                 }
             }
         }
@@ -291,7 +282,7 @@ namespace EssentialUIKit.ViewModels.Article
                 }
 
                 this.contentList = value;
-                this.NotifyPropertyChanged("ContentList");
+                this.NotifyPropertyChanged();
             }
         }
 
@@ -313,7 +304,7 @@ namespace EssentialUIKit.ViewModels.Article
                 }
 
                 this.subTitle1 = value;
-                this.NotifyPropertyChanged("SubTitle1");
+                this.NotifyPropertyChanged();
             }
         }
         
@@ -335,7 +326,7 @@ namespace EssentialUIKit.ViewModels.Article
                 }
 
                 this.reviews = value;
-                this.NotifyPropertyChanged("Reviews");
+                this.NotifyPropertyChanged();
             }
         }
         
@@ -429,15 +420,6 @@ namespace EssentialUIKit.ViewModels.Article
         private void LoadMoreClicked (object obj)
         {
             // Do something
-        }
-
-        /// <summary>
-        /// The PropertyChanged event fired when change the value of property.
-        /// </summary>
-        /// <param name="propertyName">Property name</param>
-        private void NotifyPropertyChanged(string propertyName)
-        {
-            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         #endregion

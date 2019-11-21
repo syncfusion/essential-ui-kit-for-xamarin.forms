@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Runtime.Serialization;
 using Xamarin.Forms.Internals;
 
@@ -12,6 +12,7 @@ namespace EssentialUIKit.Models
     public class Category
     {
         private string icon;
+        private bool isExpanded;
 
         /// <summary>
         /// Gets or sets the property that has been bound with an image, which displays the category.
@@ -21,6 +22,18 @@ namespace EssentialUIKit.Models
         {
             get { return App.BaseImageUrl + this.icon; }
             set { this.icon = value; }
+        }
+		
+		/// <summary>
+        /// Gets or sets the property that is Expanded.
+        /// </summary>
+		public bool IsExpanded
+        {
+            get { return isExpanded; }
+            set
+            {
+                isExpanded = value;
+            }
         }
 
         /// <summary>

@@ -18,6 +18,8 @@ namespace EssentialUIKit.Droid
 
             Xamarin.Forms.Forms.Init(this, savedInstanceState);
 
+            Syncfusion.XForms.Android.PopupLayout.SfPopupLayoutRenderer.Init();
+
             Syncfusion.XForms.Android.Core.Core.Init(this);
 
             this.LoadApplication(new App());

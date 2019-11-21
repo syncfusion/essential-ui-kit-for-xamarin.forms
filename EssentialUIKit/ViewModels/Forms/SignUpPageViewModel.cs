@@ -52,7 +52,7 @@ namespace EssentialUIKit.ViewModels.Forms
                 }
 
                 this.name = value;
-                this.OnPropertyChanged();
+                this.NotifyPropertyChanged();
             }
         }
 
@@ -74,7 +74,7 @@ namespace EssentialUIKit.ViewModels.Forms
                 }
 
                 this.password = value;
-                this.OnPropertyChanged();
+                this.NotifyPropertyChanged();
             }
         }
 
@@ -96,7 +96,7 @@ namespace EssentialUIKit.ViewModels.Forms
                 }
 
                 this.confirmPassword = value;
-                this.OnPropertyChanged();
+                this.NotifyPropertyChanged();
             }
         }
 

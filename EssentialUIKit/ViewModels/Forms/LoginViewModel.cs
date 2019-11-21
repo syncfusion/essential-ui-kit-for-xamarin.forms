@@ -8,7 +8,7 @@ namespace EssentialUIKit.ViewModels.Forms
     /// ViewModel for login page.
     /// </summary>
     [Preserve(AllMembers = true)]
-    public class LoginViewModel : INotifyPropertyChanged
+    public class LoginViewModel : BaseViewModel
     {
         #region Fields
 
@@ -18,15 +18,6 @@ namespace EssentialUIKit.ViewModels.Forms
 
         #endregion
         
-        #region Event
-
-        /// <summary>
-        /// The declaration of property changed event.
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        #endregion
-
         #region Property
 
         /// <summary>
@@ -47,7 +38,7 @@ namespace EssentialUIKit.ViewModels.Forms
                 }
 
                 this.email = value;
-                this.OnPropertyChanged();
+                this.NotifyPropertyChanged();
             }
         }
 
@@ -69,21 +60,8 @@ namespace EssentialUIKit.ViewModels.Forms
                 }
 
                 this.isInvalidEmail = value;
-                this.OnPropertyChanged();
+                this.NotifyPropertyChanged();
             }
-        }
-
-        #endregion
-        
-        #region Method
-
-        /// <summary>
-        /// The PropertyChanged event occurs when changing the value of property.
-        /// </summary>
-        /// <param name="propertyName">Property name</param>
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         #endregion

@@ -1,16 +1,17 @@
 using System;
 using System.Windows.Input;
+using EssentialUIKit.ViewModels.Dashboard;
 using Syncfusion.XForms.Buttons;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 
-namespace EssentialUIKit.Behaviors.Detail
+namespace EssentialUIKit.Behaviors
 {
     /// <summary>
     /// This class extends the behavior of the SfSegmentedControl to invoke a command when an event occurs.
     /// </summary>
     [Preserve(AllMembers = true)]
-    public class SegmentedControlBehavior : Behavior<SfSegmentedControl>
+    public class SegmentedControlSelectionBehavior : Behavior<SfSegmentedControl>
     {
         #region Properties
 
@@ -18,13 +19,19 @@ namespace EssentialUIKit.Behaviors.Detail
         /// Gets or sets the CommandProperty, and it is a bindable property.
         /// </summary>
         public static readonly BindableProperty CommandProperty =
-            BindableProperty.Create("Command", typeof(ICommand), typeof(SegmentedControlBehavior));
+            BindableProperty.Create("Command", typeof(ICommand), typeof(SegmentedControlCommandBehavior));
 
         /// <summary>
         /// Gets or sets the CommandParameterProperty, and it is a bindable property.
         /// </summary>
         public static readonly BindableProperty CommandParameterProperty =
-            BindableProperty.Create("CommandParameter", typeof(object), typeof(SegmentedControlBehavior));
+            BindableProperty.Create("CommandParameter", typeof(object), typeof(SegmentedControlCommandBehavior));
+
+        /// <summary>
+        /// Gets or sets the ParentBindingContextProperty, and it is a bindable property.
+        /// </summary>
+        public static readonly BindableProperty ParentBindingContextProperty =
+            BindableProperty.Create("ParentBindingContext", typeof(object), typeof(SegmentedControlCommandBehavior));
 
         /// <summary>
         /// Gets or sets the Command.
@@ -42,6 +49,15 @@ namespace EssentialUIKit.Behaviors.Detail
         {
             get { return this.GetValue(CommandParameterProperty); }
             set { this.SetValue(CommandParameterProperty, value); }
+        }
+
+        /// <summary>
+        /// Gets or sets the ParentBindingContext.
+        /// </summary>
+        public object ParentBindingContext
+        {
+            get { return this.GetValue(ParentBindingContextProperty); }
+            set { this.SetValue(ParentBindingContextProperty, value); }
         }
 
         /// <summary>
@@ -98,9 +114,15 @@ namespace EssentialUIKit.Behaviors.Detail
                 return;
             }
 
-            if (this.Command.CanExecute(e))
+            var context = ParentBindingContext as StockOverviewViewModel;
+            if ( context != null )
             {
-                this.Command.Execute(e);
+                context.SelectedDataVariantIndex = e.Index;
+            }
+
+            if (this.Command.CanExecute(CommandParameter))
+            {
+                this.Command.Execute(CommandParameter);
             }
         }
 

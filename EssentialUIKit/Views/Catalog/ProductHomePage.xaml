@@ -28,9 +28,7 @@
         <ScrollView>
             <StackLayout Spacing="0">
                 <Image
-                    Aspect="Fill"
                     BackgroundColor="{DynamicResource Gray-200}"
-                    HeightRequest="250"
                     Source="{Binding BannerImage}" />
 
                 <StackLayout

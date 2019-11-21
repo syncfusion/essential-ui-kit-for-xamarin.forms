@@ -10,7 +10,7 @@ namespace EssentialUIKit.ViewModels.ErrorAndEmpty
     /// ViewModel for no internet connection page.
     /// </summary>
     [Preserve(AllMembers = true)]
-    public class NoInternetConnectionPageViewModel : INotifyPropertyChanged
+    public class NoInternetConnectionPageViewModel : BaseViewModel
     {
         #region Fields
 
@@ -34,15 +34,6 @@ namespace EssentialUIKit.ViewModels.ErrorAndEmpty
             this.Content = "You must be connected to the internet to complete this action";
             this.TryAgainCommand = new Command(this.TryAgain);
         }
-
-        #endregion
-
-        #region Events
-
-        /// <summary>
-        /// The declaration of the property changed event.
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
 
         #endregion
 
@@ -70,7 +61,7 @@ namespace EssentialUIKit.ViewModels.ErrorAndEmpty
             set
             {
                 this.imagePath = value;
-                this.OnPropertyChanged();
+                this.NotifyPropertyChanged();
             }
         }
 
@@ -87,7 +78,7 @@ namespace EssentialUIKit.ViewModels.ErrorAndEmpty
             set
             {
                 this.header = value;
-                this.OnPropertyChanged();
+                this.NotifyPropertyChanged();
             }
         }
 
@@ -104,7 +95,7 @@ namespace EssentialUIKit.ViewModels.ErrorAndEmpty
             set
             {
                 this.content = value;
-                this.OnPropertyChanged();
+                this.NotifyPropertyChanged();
             }
         }
 
@@ -112,15 +103,6 @@ namespace EssentialUIKit.ViewModels.ErrorAndEmpty
 
         #region Methods
      
-        /// <summary>
-        /// The PropertyChanged event occurs when changing the value of property.
-        /// </summary>
-        /// <param name="propertyName">Property name</param>
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
         /// <summary>
         /// Invoked when the Try again button is clicked.
         /// </summary>

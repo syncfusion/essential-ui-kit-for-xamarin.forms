@@ -37,7 +37,7 @@
   </Category>
   
    <Category Icon="article.png" IsUpdated="True" Name="Article" Description="Organize blog posts in an easy-to-navigate layout.">
-    <Page Name="Article Detail with Comments Page" Description="This page displays an article with the title, image, and text." PageName="Views.Article.ArticleWithCommentsPage" />
+     <Page Name="Article Detail with Comments Page" Description="This page displays an article with the title, image, and text." PageName="Views.Article.ArticleWithCommentsPage" />
      <Page Name="Article Parallax Header Page" IsNew="True" Description="This page displays an article with a pleasant parallax effect." PageName="Views.Article.ArticleParallaxHeaderPage" />
      <Page Name="My Article Page" Description="This page displays an article with the title, image, and text with customized layout." PageName="Views.Article.MyArticlePage" />
    </Category>
@@ -89,10 +89,10 @@
     <Page Name="Payment Page" Description="View card and payment details" PageName="Views.Transaction.PaymentPage" Platform="UWP"/>
   </Category>
   
-  <Category Icon="bookmark.png" Name="Bookmark" Description="Interfaces for users to save shopping items, articles, or pages they’d like to return to later. Users can add or remove items they’ve saved as needed.">
+  <Category Icon="bookmark.png" IsUpdated="True" Name="Bookmark" Description="Interfaces for users to save shopping items, articles, or pages they’d like to return to later. Users can add or remove items they’ve saved as needed.">
     <Page Name="Wishlist Page" Description="This page displays a list of items that an online shopper has saved to potentially purchase later." PageName="Views.Bookmarks.WishlistPage"/>
-    <Page Name="Cart Page" Description="This page displays a list of products as items added to a cart in a shopping application. The page also allows you to remove items from the shopping cart. " PageName="Views.Bookmarks.CartPage"/>
-    <Page Name="Article Bookmarks Page" Description="This page displays bookmarked articles in a list. Each list card carries the image, title, author name, created date, and estimated time to read the article." PageName="Views.Bookmarks.BookmarksPage"/>
+    <Page Name="Cart Page" IsUpdated="True" Description="This page displays a list of products as items added to a cart in a shopping application. The page also allows you to remove items from the shopping cart. " PageName="Views.Bookmarks.CartPage"/>
+    <Page Name="Article Bookmarks Page" IsUpdated="True" Description="This page displays bookmarked articles in a list. Each list card carries the image, title, author name, created date, and estimated time to read the article." PageName="Views.Bookmarks.BookmarksPage"/>
   </Category>
 
   <Category Icon="history.png" Name="History" Description="Displays a list of recent actions performed by the user. It can also be used to show the recent transactions in financial apps or recent purchases in shopping apps. ">
@@ -113,8 +113,16 @@
     <Page Name="Master Page" Description="This page displays an interactive burger menu of article pages. If you are working with a master-details page for articles, this page will be the master page for navigating across the application." PageName="Views.Profile.MasterPage"/>
   </Category>
 
-  <Category Icon="navigation.png" Name="Tracking" Description="Displays various trackings like train status, product delivery status, and more.">
+  <Category Icon="tracking.png" Name="Tracking" Description="Displays various trackings like train status, product delivery status, and more.">
     <Page Name="Prodcut Delivery Tracking Page" Description="This page displays a live train’s present status with the estimated time of arrival at a specified destination." PageName="Views.Tracking.ProductDeliveryTrackingPage"/>
+  </Category>
+
+  <Category Icon="dashboard.png" Name="Dashboard" IsNew="True" Description="A beautifully presented interface relevant to common real-world use cases.">
+    <Page Name="Stock Overview Page" Description="This page displays a dashboard for stock market data visualization." PageName="Views.Dashboard.StockOverviewPage"/>
+  </Category>
+
+  <Category Icon="setting.png" Name="Settings" IsNew="True" Description="Display various types of settings pages.">
+    <Page Name="Setting Page" Description="This page displays a simple settings page that includes account, notification, and support settings." PageName="Views.Settings.SettingPage"/>
   </Category>
 
 </Samples>

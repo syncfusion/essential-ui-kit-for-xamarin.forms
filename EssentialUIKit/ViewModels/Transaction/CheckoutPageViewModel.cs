@@ -12,7 +12,7 @@ namespace EssentialUIKit.ViewModels.Transaction
     /// ViewModel for Checkout page.
     /// </summary>
     [Preserve(AllMembers = true)]
-    public class CheckoutPageViewModel : INotifyPropertyChanged
+    public class CheckoutPageViewModel : BaseViewModel
     {
         #region Fields
 
@@ -99,15 +99,6 @@ namespace EssentialUIKit.ViewModels.Transaction
             this.PaymentOptionCommand = new Command(PaymentOptionClicked);
             this.ApplyCouponCommand = new Command(this.ApplyCouponClicked);
         }
-
-        #endregion
-
-        #region Event
-
-        /// <summary>
-        /// The declaration of the property changed event.
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
 
         #endregion
 
@@ -259,15 +250,6 @@ namespace EssentialUIKit.ViewModels.Transaction
         #endregion
 
         #region Methods
-
-        /// <summary>
-        /// The PropertyChanged event occurs when changing the value of property.
-        /// </summary>
-        /// <param name="propertyName">Property name</param>
-        public void NotifyPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
 
         /// <summary>
         /// Invoked when the Edit button is clicked.

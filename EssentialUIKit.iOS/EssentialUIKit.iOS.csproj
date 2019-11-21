@@ -156,6 +156,9 @@
     <PackageReference Include="Syncfusion.Xamarin.SfCalendar">
       <Version>17.2.0.49</Version>
     </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.SfChart">
+      <Version>17.2.0.49</Version>
+    </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfComboBox" Version="17.2.0.49" />
     <PackageReference Include="Syncfusion.Xamarin.SfMaps" Version="17.2.0.49" />
     <PackageReference Include="Syncfusion.Xamarin.SfParallaxView">

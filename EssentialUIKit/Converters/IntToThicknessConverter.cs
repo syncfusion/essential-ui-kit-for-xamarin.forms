@@ -21,18 +21,17 @@ namespace EssentialUIKit.Converters
         /// <returns>The thickness</returns>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var margin = new Thickness(0);
             if (value != null)
             {
                 int itemCount;
                 int.TryParse(value.ToString(), out itemCount);
                 if (itemCount >= 0)
                 {
-                    return margin = new Thickness(0, -15, 0, 0);
+                    return new Thickness(0, -15, 0, 0);
                 }
             }
 
-            return margin;
+            return new Thickness(0);
         }
 
         /// <summary>

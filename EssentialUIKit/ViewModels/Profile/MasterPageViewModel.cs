@@ -10,7 +10,7 @@ namespace EssentialUIKit.ViewModels.Profile
     /// ViewModel for burger menu expand page.
     /// </summary> 
     [Preserve(AllMembers = true)]
-    public class MasterPageViewModel : INotifyPropertyChanged
+    public class MasterPageViewModel : BaseViewModel
     {
         #region Fields
 
@@ -39,15 +39,6 @@ namespace EssentialUIKit.ViewModels.Profile
             this.ActivityCommand = new Command(this.ActivityButtonClicked);
             this.ProfileCommand = new Command(this.ProfileButtonClicked);
         }
-
-        #endregion
-
-        #region Event
-
-        /// <summary>
-        /// The declaration of the property changed event.
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
 
         #endregion
 
@@ -189,16 +180,7 @@ namespace EssentialUIKit.ViewModels.Profile
         {
             this.UpdateSelectedItemColor(obj);
         }
-
-        /// <summary>
-        /// The PropertyChanged event occurs when changing the value of property.
-        /// </summary>
-        /// <param name="propertyName">Property name</param>
-        private void NotifyPropertyChanged([CallerMemberName]string propertyName = null)
-        {
-            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
+      
         /// <summary>
         /// Changes the selection color when an item is tapped.
         /// </summary>

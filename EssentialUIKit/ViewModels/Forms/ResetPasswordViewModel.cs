@@ -9,7 +9,7 @@ namespace EssentialUIKit.ViewModels.Forms
     /// ViewModel for reset password page.
     /// </summary>
     [Preserve(AllMembers = true)]
-    public class ResetPasswordViewModel : INotifyPropertyChanged
+    public class ResetPasswordViewModel : BaseViewModel
     {
         #region Fields
 
@@ -29,15 +29,6 @@ namespace EssentialUIKit.ViewModels.Forms
             this.SubmitCommand = new Command(this.SubmitClicked);
             this.SignUpCommand = new Command(this.SignUpClicked);
         }
-
-        #endregion
-
-        #region Event
-
-        /// <summary>
-        /// The declaration of the property changed event.
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
 
         #endregion
 
@@ -75,7 +66,7 @@ namespace EssentialUIKit.ViewModels.Forms
                 }
 
                 this.newPassword = value;
-                this.OnPropertyChanged();
+                this.NotifyPropertyChanged();
             }
         }
 
@@ -97,22 +88,13 @@ namespace EssentialUIKit.ViewModels.Forms
                 }
 
                 this.confirmPassword = value;
-                this.OnPropertyChanged();
+                this.NotifyPropertyChanged();
             }
         }
 
         #endregion
         
         #region Methods
-        
-        /// <summary>
-        /// The PropertyChanged event occurs when changing the value of property.
-        /// </summary>
-        /// <param name="propertyName">Property name</param>
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
         
         /// <summary>
         /// Invoked when the Submit button is clicked.
