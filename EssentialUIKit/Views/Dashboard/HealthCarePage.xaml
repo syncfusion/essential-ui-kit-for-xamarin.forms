@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:EssentialUIKit.Views.Dashboard"
+             xmlns:controls="clr-namespace:EssentialUIKit.Controls;assembly=EssentialUIKit"
+             xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms"
+             xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Dashboard"
+             xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+             x:Class="EssentialUIKit.Views.Dashboard.HealthCarePage"
+             xmlns:cards="clr-namespace:Syncfusion.XForms.Cards;assembly=Syncfusion.Cards.XForms"
+             xmlns:gradient="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
+             xmlns:behavior ="clr-namespace:EssentialUIKit.Behaviors;assembly=EssentialUIKit"
+             x:Name="healthCarePage"
+             NavigationPage.HasNavigationBar="False"
+             Style="{StaticResource ContentPageStyle}">
+
+    <ContentPage.BindingContext>
+        <viewModel:HealthCareViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.ControlTemplate>
+        <ControlTemplate>
+            <StackLayout x:Name="rootLayout" Spacing="0">
+
+                <!--  Title View  -->
+                <controls:TitleView
+                    Title="Health Care"
+                    FontFamily="{StaticResource Montserrat-Medium}"
+                    FontSize="16">
+                    <controls:TitleView.LeadingView>
+
+                        <buttons:SfButton
+                            Command="{TemplateBinding BindingContext.menuCommand}"
+                            CornerRadius="4"
+                            HorizontalOptions="Start"
+                            Style="{StaticResource IconButtonStyle}"
+                            Text="{StaticResource Menu}" />
+
+                    </controls:TitleView.LeadingView>
+
+                    <controls:TitleView.TrailingView>
+
+                        <border:SfBorder
+                            BackgroundColor="{DynamicResource Gray-200}"
+                            BorderColor="{DynamicResource Gray-White}"
+                            Style="{StaticResource ProfileBorderStyle}">
+                            <Image HeightRequest="40" WidthRequest="40">
+                                <Image.Source>
+                                    <UriImageSource
+                                        CacheValidity="14"
+                                        CachingEnabled="true"
+                                        Uri="{Binding Path=BindingContext.ProfileImage, Source={x:Reference healthCarePage}}" />
+                                </Image.Source>
+                            </Image>
+                        </border:SfBorder>
+
+                    </controls:TitleView.TrailingView>
+                </controls:TitleView>
+
+                <ContentPresenter />
+
+            </StackLayout>
+        </ControlTemplate>
+    </ContentPage.ControlTemplate>
+
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Spacing="0" Margin="0" Padding="8">
+                <listView:SfListView SelectionMode="None" AutoFitMode="Height" ItemSpacing="8" ItemsSource="{Binding CardItems}">
+
+                    <listView:SfListView.ItemTemplate>
+                        <DataTemplate>
+
+                            <cards:SfCardView CornerRadius="8">
+                                <cards:SfCardView.Content>
+                                    <Grid>
+
+                                        <gradient:SfGradientView>
+                                            <gradient:SfGradientView.BackgroundBrush>
+                                                <gradient:SfLinearGradientBrush>
+                                                    <gradient:SfLinearGradientBrush.GradientStops>
+                                                        <gradient:SfGradientStop Color="{Binding BackgroundGradientStart}" Offset="0.0"/>
+                                                        <gradient:SfGradientStop Color="{Binding BackgroundGradientEnd}" Offset="1.0"/>
+                                                    </gradient:SfLinearGradientBrush.GradientStops>
+                                                </gradient:SfLinearGradientBrush>
+                                            </gradient:SfGradientView.BackgroundBrush>
+                                        </gradient:SfGradientView>
+
+                                        <StackLayout Margin="15" Spacing="5">
+                                            <Label TextColor="{DynamicResource Gray-White}" LineHeight="{OnPlatform Android=1.25, Default=-1}" FontFamily="{StaticResource Montserrat-SemiBold}" FontSize="12" Text="{Binding Category}"></Label>
+                                            <Label TextColor="{DynamicResource Gray-White}" LineHeight="{OnPlatform Android=1.25, Default=-1}" FontFamily="{StaticResource Montserrat-SemiBold}" FontSize="24" Text="{Binding CategoryValue}"></Label>
+                                            <chart:SfChart BackgroundColor="Transparent"
+                                                Margin="0, 11, 0, 0"
+                                                HeightRequest="{OnIdiom Phone=44, Desktop=80, Tablet=80}"
+                                                HorizontalOptions="FillAndExpand"
+                                                VerticalOptions="FillAndExpand">
+                                        <chart:SfChart.PrimaryAxis>
+                                            <chart:DateTimeAxis ShowMajorGridLines="False" RangePadding="None" IsVisible="False"/>
+                                        </chart:SfChart.PrimaryAxis>
+
+                                        <chart:SfChart.SecondaryAxis>
+                                            <chart:NumericalAxis ShowMajorGridLines="False" IsVisible="False" />
+                                        </chart:SfChart.SecondaryAxis>
+
+                                        <chart:SfChart.Series>
+                                            <chart:SplineSeries
+                                                        ItemsSource="{Binding ChartData, Mode=TwoWay}"
+                                                        Color="{DynamicResource Gray-White}"
+                                                        StrokeWidth="2"
+                                                        XBindingPath="XValue"
+                                                        YBindingPath="YValue" />
+                                        </chart:SfChart.Series>
+
+                                    </chart:SfChart>
+                                        </StackLayout>
+                                    </Grid>
+                                </cards:SfCardView.Content>
+                            </cards:SfCardView>
+
+                        </DataTemplate>
+                    </listView:SfListView.ItemTemplate>
+
+                    <!--  Layout to customize number of columns in SfListView  -->
+                    <listView:SfListView.LayoutManager>
+                        <listView:GridLayout SpanCount="2" />
+                    </listView:SfListView.LayoutManager>
+
+                    <listView:SfListView.Behaviors>
+                        <behavior:SfListViewExtendHeightBehavior ></behavior:SfListViewExtendHeightBehavior>
+                    </listView:SfListView.Behaviors>
+
+                </listView:SfListView>
+
+                <listView:SfListView SelectionMode="None" ItemSpacing="8" ItemSize="80" ItemsSource="{Binding ListItems}">
+                    <listView:SfListView.ItemTemplate>
+                        <DataTemplate>
+
+                            <cards:SfCardView CornerRadius="4" IndicatorColor="{Binding BackgroundGradientStart}" IndicatorPosition="Left" IndicatorThickness="8">
+                                <Grid RowSpacing="4" Padding="16">
+                                    <Label Text="{Binding Category}" Style="{StaticResource LabelStyle}"></Label>
+                                    <Label Grid.Column="1" Grid.RowSpan="2" FontSize="16" Style="{StaticResource LabelStyle}" HorizontalOptions="EndAndExpand" VerticalOptions="Center" Text="{Binding CategoryValue}"></Label>
+                                    <Label Grid.Row="1" Text="{Binding CategoryPercentage}" FontSize="12" TextColor="{DynamicResource Gray-700}" Style="{StaticResource LabelStyle}" FontFamily="{StaticResource Montserrat-Medium}"></Label>
+                                </Grid>
+
+                            </cards:SfCardView>
+
+                        </DataTemplate>
+                    </listView:SfListView.ItemTemplate>
+
+                </listView:SfListView>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+
+</ContentPage>

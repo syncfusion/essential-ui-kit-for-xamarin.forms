@@ -29,6 +29,8 @@ namespace EssentialUIKit.ViewModels.Catalog
 
         public Command notificationCommand;
 
+        private Command backButtonCommand;
+
         #endregion
 
         #region Public properties
@@ -72,6 +74,14 @@ namespace EssentialUIKit.ViewModels.Catalog
             get { return notificationCommand ?? (notificationCommand = new Command(this.NotificationClicked)); }
         }
 
+        /// <summary>
+        /// Gets or sets the command is executed when the back button is clicked.
+        /// </summary>
+        public Command BackButtonCommand
+        { 
+          get { return backButtonCommand ?? (this.backButtonCommand = new Command(this.BackButtonClicked)); }
+        }
+
         #endregion
 
         #region Methods
@@ -90,6 +100,15 @@ namespace EssentialUIKit.ViewModels.Catalog
         /// </summary>
         /// <param name="obj">The Object</param>
         private void NotificationClicked(object obj)
+        {
+            // Do something
+        }
+
+        /// <summary>
+        /// Invoked when an back button is clicked.
+        /// </summary>
+        /// <param name="obj">The Object</param>
+        private void BackButtonClicked(object obj)
         {
             // Do something
         }

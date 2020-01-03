@@ -39,7 +39,7 @@
                 <buttons:SelectionIndicatorSettings
                     CornerRadius="16"
                     StrokeThickness="0"
-                    Color="{DynamicResource Secondary}" />
+                    Color="{DynamicResource PrimaryColor}" />
             </Setter.Value>
         </Setter>
 
@@ -66,6 +66,13 @@
         <Setter Property="VerticalOptions" Value="Center" />
         <Setter Property="HeightRequest" Value="40" />
         <Setter Property="WidthRequest" Value="40" />
+    </Style>
+
+    <Style x:Key="LabelStyle" TargetType="Label">
+        <Setter Property="FontFamily" Value="{StaticResource Montserrat-SemiBold}" />
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="TextColor" Value="{DynamicResource Gray-900}"/>
+        <Setter Property="LineHeight" Value="{OnPlatform Default=1.25, iOS=-1}"/>
     </Style>
 
 </ResourceDictionary>

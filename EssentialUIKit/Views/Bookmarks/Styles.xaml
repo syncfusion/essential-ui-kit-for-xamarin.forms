@@ -13,6 +13,7 @@
     <x:String x:Key="DropDownButtonIcon">&#xe70b;</x:String>
     <x:String x:Key="Cart">&#xe708;</x:String>
     <x:String x:Key="Delete">&#xe716;</x:String>
+    <x:String x:Key="Back">&#xe709;</x:String>
 
     <converter:DynamicResourceToColorConverter x:Key="DynamicResourceToColorConverter" />
 

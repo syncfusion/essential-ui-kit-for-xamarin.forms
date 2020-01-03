@@ -1,0 +1,446 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="EssentialUIKit.Views.Navigation.ContactsPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+    xmlns:sfavatar="clr-namespace:Syncfusion.XForms.AvatarView;assembly=Syncfusion.Core.XForms"
+    xmlns:controls="clr-namespace:EssentialUIKit.Controls"
+    xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Navigation.ContactsViewModel"
+    NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.BindingContext>
+        <viewModel:ContactsViewModel />
+    </ContentPage.BindingContext>
+
+    <StackLayout Spacing="0">
+        <!-- Title View -->
+        <StackLayout
+            x:Name="TitleView"
+            Padding="8,0"
+            BackgroundColor="#ffffff"
+            HeightRequest="64"
+            HorizontalOptions="FillAndExpand"
+            Orientation="Horizontal"
+            Spacing="0">
+             
+            <!-- Stack Layout for Title -->
+            <StackLayout
+                x:Name="Title"
+                HorizontalOptions="FillAndExpand"
+                IsVisible="True"
+                Orientation="Horizontal"
+                Spacing="0"
+                VerticalOptions="FillAndExpand">
+
+                <!-- Back Button -->
+                <buttons:SfButton
+                    x:Name="backButton"
+                    Command="{Binding BackButtonCommand}"
+                    CommandParameter="{x:Reference backButton}"
+                    CornerRadius="4"
+                    Style="{StaticResource IconButtonStyle}"
+                    Text="{StaticResource Back}" />
+                
+                <!-- Label for Title -->
+                <Label
+                    FontFamily="{StaticResource Montserrat-Medium}"
+                    FontSize="16"
+                    HorizontalOptions="CenterAndExpand"
+                    LineHeight="1.25"
+                    Text="Contacts"
+                    TextColor="{DynamicResource Gray-900}"
+                    VerticalOptions="Center"
+                    VerticalTextAlignment="Center" />
+
+            </StackLayout>
+
+            <!-- Search box -->
+            <StackLayout
+                x:Name="Search"
+                HorizontalOptions="EndAndExpand"
+                IsVisible="False"
+                Orientation="Horizontal"
+                Spacing="0">
+
+                <!-- Button for back to title -->
+                <buttons:SfButton
+                    x:Name="BackToTitle"
+                    Style="{StaticResource NavigationBarButtonStyle}"
+                    Clicked="BackToTitle_Clicked"
+                    Text="{StaticResource Back}" />
+
+                <!--  Rounded Search Entry  -->
+                <border:SfBorder Style="{DynamicResource SfBorderStyle}">
+                    <controls:BorderlessEntry
+                        x:Name="SearchEntry"
+                        HorizontalOptions="FillAndExpand"
+                        Placeholder="Search here"
+                        Style="{StaticResource SearchEntryStyle}" />
+                </border:SfBorder>
+
+            </StackLayout>
+
+            <!-- Search Button -->
+            <buttons:SfButton
+                x:Name="SearchButton"
+                Clicked="SearchButton_Clicked"
+                IsVisible="True"
+                Style="{StaticResource IconButtonStyle }"
+                Text="{StaticResource Search}" />
+        </StackLayout>
+        
+        <!-- Seperator -->
+        <BoxView Style="{StaticResource SeparatorStyle}" />
+
+        <!-- Contacts list -->
+        <ScrollView>
+            <StackLayout Spacing="0">
+
+                <!--  Header label for A  -->
+                <Label Text="A" Style="{StaticResource HeaderLabelStyle}" />
+
+                <controls:TapAnimationGrid Style="{StaticResource TabAnimationGridStyle}">
+                    
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <sfavatar:SfAvatarView 
+                        Grid.Column="0" 
+                        Style="{StaticResource SfAvatarStyle}"
+                        AvatarName="Aaron Erickson"
+                        BackgroundColor="#837bff"
+                        BorderColor="#837bff" />
+                    
+                    <Label Grid.Column="1" Text="Aaron Erickson" Style="{StaticResource ContactsLabelStyle}"/>
+                    
+                </controls:TapAnimationGrid>
+                
+                <!-- Seperator -->
+                <BoxView Style="{StaticResource SeparatorStyle}" />
+
+                <controls:TapAnimationGrid Style="{StaticResource TabAnimationGridStyle}">
+                    
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <sfavatar:SfAvatarView 
+                        Grid.Column="0" 
+                        Style="{StaticResource SfAvatarStyle}"
+                        AvatarName="Alexander Allen"
+                        BackgroundColor="#678cc8"
+                        BorderColor="#678cc8" />
+
+                    <Label Grid.Column="1" Text="Alexander Allen" Style="{StaticResource ContactsLabelStyle}" />
+
+                </controls:TapAnimationGrid>
+                
+                <!-- Seperator -->
+                <BoxView Style="{StaticResource SeparatorStyle}" />
+
+                <controls:TapAnimationGrid Style="{StaticResource TabAnimationGridStyle}">
+                    
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <sfavatar:SfAvatarView 
+                        Grid.Column="0" 
+                        Style="{StaticResource SfAvatarStyle}"
+                        AvatarName="Alta Sims"
+                        BackgroundColor="#29aaa0"
+                        BorderColor="#29aaa0" />
+
+                    <Label Grid.Column="1" Text="Alta Sims" Style="{StaticResource ContactsLabelStyle}" />
+
+                </controls:TapAnimationGrid>
+                
+                <!-- Seperator -->
+                <BoxView Style="{StaticResource SeparatorStyle}" />
+
+                <controls:TapAnimationGrid Style="{StaticResource TabAnimationGridStyle}">
+                    
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <sfavatar:SfAvatarView 
+                        Grid.Column="0" 
+                        Style="{StaticResource SfAvatarStyle}"
+                        AvatarName="Ann Keller"
+                        BackgroundColor="#db7faa"
+                        BorderColor="#db7faa" />
+
+                    <Label Grid.Column="1" Text="Ann Keller" Style="{StaticResource ContactsLabelStyle}" />
+
+                </controls:TapAnimationGrid>
+                
+                <!-- Seperator -->
+                <BoxView Style="{StaticResource SeparatorStyle}" />
+
+                <controls:TapAnimationGrid Style="{StaticResource TabAnimationGridStyle}">
+                    
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <sfavatar:SfAvatarView 
+                        Grid.Column="0" 
+                        Style="{StaticResource SfAvatarStyle}"
+                        AvatarName="Arthur Kim"
+                        BackgroundColor="#dc9737"
+                        BorderColor="#dc9737" />
+
+                    <Label Grid.Column="1" Text="Arthur Kim" Style="{StaticResource ContactsLabelStyle}" />
+
+                </controls:TapAnimationGrid>
+                
+                <!-- Seperator -->
+                <BoxView Style="{StaticResource SeparatorStyle}" />
+
+                <!-- Header label for B -->
+                <Label Text="B" Style="{StaticResource HeaderLabelStyle}" />
+
+                <controls:TapAnimationGrid Style="{StaticResource TabAnimationGridStyle}">
+                    
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <sfavatar:SfAvatarView 
+                        Grid.Column="0" 
+                        Style="{StaticResource SfAvatarStyle}"
+                        AvatarName="Bernard Daniels"
+                        BackgroundColor="#a8d35f"
+                        BorderColor="#a8d35f" />
+
+                    <Label Grid.Column="1" Text="Bernard Daniels" Style="{StaticResource ContactsLabelStyle}" />
+
+                </controls:TapAnimationGrid>
+                
+                <!-- Seperator -->
+                <BoxView Style="{StaticResource SeparatorStyle}" />
+
+                <controls:TapAnimationGrid Style="{StaticResource TabAnimationGridStyle}">
+                    
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <sfavatar:SfAvatarView 
+                        Grid.Column="0" 
+                        Style="{StaticResource SfAvatarStyle}"
+                        AvatarName="Bernard Rodriquez"
+                        BackgroundColor="#ec5b76"
+                        BorderColor="#ec5b76" />
+
+                    <Label Grid.Column="1" Text="Bernard Rodriquez" Style="{StaticResource ContactsLabelStyle}" />
+
+                </controls:TapAnimationGrid>
+                
+                <!-- Seperator -->
+                <BoxView Style="{StaticResource SeparatorStyle}" />
+
+                <controls:TapAnimationGrid Style="{StaticResource TabAnimationGridStyle}">
+                    
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <sfavatar:SfAvatarView 
+                        Grid.Column="0" 
+                        Style="{StaticResource SfAvatarStyle}"
+                        AvatarName="Bettie Colon"
+                        BackgroundColor="#6c88ff"
+                        BorderColor="#6c88ff" />
+
+                    <Label Grid.Column="1" Text="Bettie Colon" Style="{StaticResource ContactsLabelStyle}" />
+
+                </controls:TapAnimationGrid>
+                
+                <!-- Seperator -->
+                <BoxView Style="{StaticResource SeparatorStyle}" />
+
+                <controls:TapAnimationGrid Style="{StaticResource TabAnimationGridStyle}">
+                    
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <sfavatar:SfAvatarView
+                        Grid.Column="0" 
+                        Style="{StaticResource SfAvatarStyle}"
+                        AvatarName="Blake Moore"
+                        BackgroundColor="#cf62e2"
+                        BorderColor="#cf62e2" />
+
+                    <Label Grid.Column="1" Text="Blake Moore" Style="{StaticResource ContactsLabelStyle}" />
+
+                </controls:TapAnimationGrid>
+                
+                <!-- Seperator -->
+                <BoxView Style="{StaticResource SeparatorStyle}" />
+
+                <controls:TapAnimationGrid Style="{StaticResource TabAnimationGridStyle}">
+                    
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <sfavatar:SfAvatarView 
+                        Grid.Column="0" 
+                        Style="{StaticResource SfAvatarStyle}"
+                        AvatarName="Brandon Todd"
+                        BackgroundColor="#f57780"
+                        BorderColor="#f57780" />
+
+                    <Label Grid.Column="1" Text="Brandon Todd" Style="{StaticResource ContactsLabelStyle}" />
+
+                </controls:TapAnimationGrid>
+                
+                <!-- Seperator  -->
+                <BoxView Style="{StaticResource SeparatorStyle}" />
+
+                <!-- Header label for C -->
+                <Label Text="C" Style="{StaticResource HeaderLabelStyle}" />
+
+                <controls:TapAnimationGrid Style="{StaticResource TabAnimationGridStyle}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <sfavatar:SfAvatarView 
+                        Grid.Column="0" 
+                        Style="{StaticResource SfAvatarStyle}"
+                        AvatarName="Carlos Castro"
+                        BackgroundColor="#a8d35f"
+                        BorderColor="#a8d35f" />
+
+                    <Label Grid.Column="1" Text="Carlos Castro" Style="{StaticResource ContactsLabelStyle}" />
+
+                </controls:TapAnimationGrid>
+                
+                <!-- Seperator -->
+                <BoxView Style="{StaticResource SeparatorStyle}" />
+
+                <controls:TapAnimationGrid Style="{StaticResource TabAnimationGridStyle}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <sfavatar:SfAvatarView 
+                        Grid.Column="0" 
+                        Style="{StaticResource SfAvatarStyle}"
+                        AvatarName="Charlotte Nash"
+                        BackgroundColor="#ec5b76"
+                        BorderColor="#ec5b76" />
+
+                    <Label Grid.Column="1" Text="Charlotte Nash" Style="{StaticResource ContactsLabelStyle}" />
+
+                </controls:TapAnimationGrid>
+                
+                <!-- Seperator -->
+                <BoxView Style="{StaticResource SeparatorStyle}" />
+
+                <controls:TapAnimationGrid Style="{StaticResource TabAnimationGridStyle}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <sfavatar:SfAvatarView 
+                        Grid.Column="0" 
+                        Style="{StaticResource SfAvatarStyle}"
+                        AvatarName="Chase Blair"
+                        BackgroundColor="#6c88ff"
+                        BorderColor="#6c88ff" />
+
+                    <Label Grid.Column="1" Text="Chase Blair" Style="{StaticResource ContactsLabelStyle}" />
+
+                </controls:TapAnimationGrid>
+                
+                <!-- Seperator -->
+                <BoxView Style="{StaticResource SeparatorStyle}" />
+
+                <controls:TapAnimationGrid Style="{StaticResource TabAnimationGridStyle}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <sfavatar:SfAvatarView 
+                        Grid.Column="0" 
+                        Style="{StaticResource SfAvatarStyle}"
+                        AvatarName="Christina Lloyd"
+                        BackgroundColor="#cf62e2"
+                        BorderColor="#cf62e2" />
+
+                    <Label Grid.Column="1" Text="Christina Lloyd" Style="{StaticResource ContactsLabelStyle}" />
+
+                </controls:TapAnimationGrid>
+                
+                <!-- Seperator -->
+                <BoxView Style="{StaticResource SeparatorStyle}" />
+
+                <controls:TapAnimationGrid Style="{StaticResource TabAnimationGridStyle}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <sfavatar:SfAvatarView 
+                        Grid.Column="0" 
+                        Style="{StaticResource SfAvatarStyle}"
+                        AvatarName="Christina Hanson"
+                        BackgroundColor="#f57780"
+                        BorderColor="#f57780" />
+
+                    <Label Grid.Column="1" Text="Christina Hanson" Style="{StaticResource ContactsLabelStyle}" />
+
+                </controls:TapAnimationGrid>
+                
+                <!-- Seperator -->
+                <BoxView Style="{StaticResource SeparatorStyle}" />
+                
+            </StackLayout>
+        </ScrollView>
+    </StackLayout>
+</ContentPage>

@@ -1,0 +1,216 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="clr-namespace:EssentialUIKit.Controls"
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"          
+             x:Class="EssentialUIKit.Views.Navigation.FAQPage" 
+             xmlns:syncfusion="clr-namespace:Syncfusion.XForms.Expander;assembly=Syncfusion.Expander.XForms"            
+             mc:Ignorable="d"
+             x:Name="FAQ"          
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="{DynamicResource Gray-100}">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary Source="Styles.xaml" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness" iOS="0,20,0,0"  Default="0,0,0,0"/>
+    </ContentPage.Padding>
+    
+    <ContentPage.ControlTemplate>
+        <ControlTemplate >
+            <StackLayout Spacing="0" >
+                <!--  Title View  -->
+                <controls:TitleView Title="FAQs"  FontFamily="{StaticResource Montserrat-SemiBold}" FontAttributes="Bold" FontSize="20"  BackgroundColor="{DynamicResource Gray-White}">
+                    <controls:TitleView.LeadingView>
+                        <buttons:SfButton
+                            x:Name="backButton"
+                            Command="{TemplateBinding BindingContext.BackButtonCommand}"
+                            CommandParameter="{x:Reference backButton}"
+                            CornerRadius="4"
+                            Style="{StaticResource IconButtonStyle}"
+                            Text="{StaticResource Back}" />
+                    </controls:TitleView.LeadingView>
+                </controls:TitleView>
+                <ContentPresenter/>
+            </StackLayout>
+        </ControlTemplate>
+    </ContentPage.ControlTemplate>
+
+    <ContentPage.Content>
+        <ScrollView >
+            <StackLayout BackgroundColor="{DynamicResource Gray-100}" Spacing="0" >
+
+                <!--  Header label for Top Questions -->
+                <Label
+                    Padding ="16,20,0,20"
+                    FontFamily="{StaticResource Montserrat-SemiBold}"
+                    BackgroundColor="{DynamicResource Gray-100}"
+                    FontSize="20"
+                    FontAttributes="Bold"
+                    HorizontalTextAlignment="Center"                  
+                    LineHeight="{OnPlatform Default=-1,
+                                            Android=1.25}"
+                    Text="Top Questions"
+                    TextColor="{DynamicResource Gray-900}"
+                    HorizontalOptions="FillAndExpand" 
+                    VerticalOptions="Center"/>
+
+                <!--  Expander for how to return or exchange an item   -->
+                <syncfusion:SfExpander x:Name="Expander" HeaderBackgroundColor="{DynamicResource Gray-White}">
+
+                    <!--  Header for how to return or exchange an item   -->
+                    <syncfusion:SfExpander.Header>
+                        <Label Style="{StaticResource FAQHeaderLabelStyle}" 
+                        Text="How do I return or exchange an item?" />
+                    </syncfusion:SfExpander.Header>
+
+                    <!-- Content for how to return or exchange an item   -->
+                    <syncfusion:SfExpander.Content>
+                        <StackLayout BackgroundColor="{DynamicResource Gray-White}" >
+                            <Label Style="{StaticResource FAQLabelStyle}"  Text="To return or exchange your order, follow these simple steps:" />
+                            <Label Style="{StaticResource FAQLabelStyle}"  Text="1. Go to My Orders." />
+                            <Label Style="{StaticResource FAQLabelStyle}"  Text="2. Choose the item you wish to return." />
+                            <Label Style="{StaticResource FAQLabelStyle}"  Text="3. Fill in the details." />
+                            <Label Style="{StaticResource FAQLabelStyle}"  Text="4. Tap Request Return" />
+                        </StackLayout>
+                    </syncfusion:SfExpander.Content>
+                </syncfusion:SfExpander>
+
+                <BoxView Style="{StaticResource SeparatorStyle}" />
+
+                <!-- Expander for replacement process for orders  -->
+                <syncfusion:SfExpander HeaderBackgroundColor="{DynamicResource Gray-White}">
+
+                    <!-- Header for replacement process for orders   -->
+                    <syncfusion:SfExpander.Header>
+                        <Label                             
+                            Style="{StaticResource FAQHeaderLabelStyle}"   Padding="16,10,30,10"                  
+                            Text="What is the replacement process for orders?" />
+                    </syncfusion:SfExpander.Header>
+
+                    <!-- Content for replacement process for orders   -->
+                    <syncfusion:SfExpander.Content>
+                        <Label      />
+                    </syncfusion:SfExpander.Content>
+                </syncfusion:SfExpander>
+
+                <BoxView Style="{StaticResource SeparatorStyle}" />
+
+                <!-- Expander for not received the refund in my bank account   -->
+                <syncfusion:SfExpander HeaderBackgroundColor="{DynamicResource Gray-White}">
+
+                    <!-- Header for not received the refund in my bank account   -->
+                    <syncfusion:SfExpander.Header>
+                        <Label 
+                            Style="{StaticResource FAQHeaderLabelStyle}" Padding="16,10,30,10"
+                            Text="Why haven't I received my refund in my bank account yet?" />
+                    </syncfusion:SfExpander.Header>
+
+                    <!-- Content for not received the refund in my bank account   -->
+                    <syncfusion:SfExpander.Content>
+                        <Label      />
+                    </syncfusion:SfExpander.Content>
+                </syncfusion:SfExpander>
+
+                <BoxView Style="{StaticResource SeparatorStyle}" />
+
+                <!--  Expander for when are refunds given   -->
+                <syncfusion:SfExpander  HeaderBackgroundColor="{DynamicResource Gray-White}">
+
+                    <!--  Header for when are refunds given   -->
+                    <syncfusion:SfExpander.Header>
+                        <Label                      
+                            Style="{StaticResource FAQHeaderLabelStyle}" 
+                            Text="When are refunds given?" />
+                    </syncfusion:SfExpander.Header>
+
+                    <!--  Content for when are refunds given   -->
+                    <syncfusion:SfExpander.Content>
+                        <Label      />
+                    </syncfusion:SfExpander.Content>
+                </syncfusion:SfExpander>
+
+                <BoxView Style="{StaticResource SeparatorStyle}" />
+
+                <!--  Expander for faster delivery options not available   -->
+                <syncfusion:SfExpander HeaderBackgroundColor="{DynamicResource Gray-White}">
+
+                    <!--  Header for faster delivery options not available   -->
+                    <syncfusion:SfExpander.Header>
+                        <Label
+                            Style="{StaticResource FAQHeaderLabelStyle}" 
+                            Text="Why are faster delivery options not available at my location?" />
+                    </syncfusion:SfExpander.Header>
+
+                    <!--  Content for faster delivery options not available   -->
+                    <syncfusion:SfExpander.Content>
+                        <Label      />
+                    </syncfusion:SfExpander.Content>
+                </syncfusion:SfExpander>
+
+                <BoxView Style="{StaticResource SeparatorStyle}" />
+
+                <!--  Expander for requested for a return for my item   -->
+                <syncfusion:SfExpander HeaderBackgroundColor="{DynamicResource Gray-White}">
+
+                    <!--  Header for requested for a return for my item   -->
+                    <syncfusion:SfExpander.Header>
+                        <Label 
+                            Style="{StaticResource FAQHeaderLabelStyle}" 
+                            Text="I have requested a return for my item. When will it happen?" />
+                    </syncfusion:SfExpander.Header>
+
+                    <!--  Content for requested for a return for my item  -->
+                    <syncfusion:SfExpander.Content>
+                        <Label      />
+                    </syncfusion:SfExpander.Content>
+                </syncfusion:SfExpander>
+
+                <BoxView Style="{StaticResource SeparatorStyle}" />
+
+                <!--  Expander for invoice for my order   -->
+                <syncfusion:SfExpander HeaderBackgroundColor="{DynamicResource Gray-White}">
+
+                    <!--  Header for invoice for my order   -->
+                    <syncfusion:SfExpander.Header>
+                        <Label
+                            Style="{StaticResource FAQHeaderLabelStyle}"
+                            Text="Where can I get an invoice for my order?" />
+                    </syncfusion:SfExpander.Header>
+
+                    <!--  Content for invoice for my order   -->
+                    <syncfusion:SfExpander.Content>
+                        <Label      />
+                    </syncfusion:SfExpander.Content>
+                </syncfusion:SfExpander>
+
+                <BoxView Style="{StaticResource SeparatorStyle}" />
+
+                <!-- Expander for deactivate my account  -->
+                <syncfusion:SfExpander HeaderBackgroundColor="{DynamicResource Gray-White}">
+
+                    <!-- Header for deactivate my account  -->
+                    <syncfusion:SfExpander.Header>
+                        <Label 
+                            Style="{StaticResource FAQHeaderLabelStyle}" 
+                            Text="How do I deactivate my account?" />
+                    </syncfusion:SfExpander.Header>
+
+                    <!-- Content for deactivate my account   -->
+                    <syncfusion:SfExpander.Content>
+                        <Label      />
+                    </syncfusion:SfExpander.Content>
+                </syncfusion:SfExpander>
+
+                <BoxView Style="{StaticResource SeparatorStyle}" />
+                
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

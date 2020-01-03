@@ -101,6 +101,7 @@
     <Compile Include="Renderers\BorderlessEditorRenderer.cs" />
     <Compile Include="Renderers\BorderlessEntryRenderer.cs" />
     <Compile Include="Renderers\CalenderDatePickerRenderer.cs" />
+    <Compile Include="Renderers\TemplateHostViewRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -153,6 +154,9 @@
     <Content Include="scale-100\PlaceHolder.png" />
     <Content Include="scale-100\PlaceHolderRectangle.png" />
     <Content Include="Properties\Default.rd.xml" />
+    <Content Include="scale-100\ReSchedule.png" />
+    <Content Include="scale-100\TimeZone.png" />
+    <Content Include="scale-100\ViewMode.png" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -206,7 +210,7 @@
     <PackageReference Include="Syncfusion.Xamarin.SfTabView">
       <Version>17.2.0.49</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.Forms" Version="4.3.0.778476-pre1" />
+    <PackageReference Include="Xamarin.Forms" Version="4.4.0.991265" />
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.1.5" />
   </ItemGroup>
   <ItemGroup>

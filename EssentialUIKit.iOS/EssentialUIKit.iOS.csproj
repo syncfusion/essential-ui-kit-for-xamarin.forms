@@ -176,7 +176,7 @@
     <PackageReference Include="Syncfusion.Xamarin.SfTabView">
       <Version>17.2.0.49</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.Forms" Version="4.3.0.778476-pre1" />
+    <PackageReference Include="Xamarin.Forms" Version="4.4.0.991265" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
@@ -410,6 +410,15 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\HeaderIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ReSchedule.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\TimeZone.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ViewMode.png" />
   </ItemGroup>
   <Import Project="..\build\tools\Syncfusion.CodeAnalysis.StyleCop\tools\StyleCop.MsBuild.targets" Condition="Exists('..\build\tools\Syncfusion.CodeAnalysis.StyleCop\tools\StyleCop.MsBuild.targets')" />
   <Target Name="_VerifyBuildSignature" />

@@ -95,17 +95,7 @@ namespace EssentialUIKit.AppLayout.Views
             }
 
             this.isNavigationInQueue = true;
-
-            if (Device.RuntimePlatform == "UWP")
-            {
-                var assembly = typeof(App).GetTypeInfo().Assembly;
-                Navigation.PushAsync((Page)Activator.CreateInstance(
-                    assembly.GetType($"EssentialUIKit.{((Template)e.SelectedItem).PageName}")));
-            }
-            else
-            {
-                Navigation.PushAsync(new TemplateHostPage(e.SelectedItem as Template));
-            }
+            Navigation.PushAsync(new TemplateHostPage(e.SelectedItem as Template));
         }
 
         #endregion

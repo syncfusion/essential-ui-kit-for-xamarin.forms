@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -33,7 +33,7 @@
     <PackageReference Include="Syncfusion.Xamarin.Expander" Version="17.2.0.49" />
     <PackageReference Include="Syncfusion.Xamarin.SfBadgeView" Version="17.2.0.49" />
     <PackageReference Include="Syncfusion.Xamarin.SfTabView" Version="17.2.0.49" />
-    <PackageReference Include="Xamarin.Forms" Version="4.3.0.778476-pre1" />
+    <PackageReference Include="Xamarin.Forms" Version="4.4.0.991265" />
     <PackageReference Include="Syncfusion.Xamarin.Core" Version="17.3.0.9-beta" />
   </ItemGroup>
   <ItemGroup>

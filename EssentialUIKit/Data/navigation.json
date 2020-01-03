@@ -168,5 +168,48 @@
       "imageURL": "ProfileImage20.png",
       "updatedDate": "2019-06-23"
     }
+  ],
+  "songsPageList": [
+    {
+      "itemImage": "Songs_Image1.png",
+      "songname": "Santorini",
+      "composer": "Yanni"
+    },
+    {
+      "itemImage": "Songs_Image2.png",
+      "songname": "Orinoco flow",
+      "composer": "Enya"
+    },
+    {
+      "itemImage": "Songs_Image3.png",
+      "songname": "Thanksgiving",
+      "composer": "George Winston"
+    },
+    {
+      "itemImage": "Songs_Image4.png",
+      "songname": "The Voice Of Enigma ",
+      "composer": "Enigma"
+    },
+    {
+      "itemImage": "Songs_Image5.png",
+      "songname": "Steam Forest",
+      "composer": "Andreas Vollenweider"
+    },
+    {
+      "itemImage": "Songs_Image6.png",
+      "songname": "In The Morning Light",
+      "composer": "Yanni"
+    },
+    {
+      "itemImage": "Songs_Image7.png",
+      "songname": "Children of the Sun",
+      "composer": "Dead Can Dance "
+    },
+    {
+      "itemImage": "Songs_Image8.png",
+      "songname": "A Thousand Teardrops",
+      "composer": "Shadowfax"
+    }
+
   ]
 }
