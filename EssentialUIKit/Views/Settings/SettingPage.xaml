@@ -59,7 +59,6 @@
                     VerticalOptions="Center"
                     VerticalTextAlignment="Center" />
 
-
                 <!--  Grid for Edit profile label and navigation bar icon  -->
                 <controls:TapAnimationGrid
                     BackgroundColor="{DynamicResource Gray-White}"
