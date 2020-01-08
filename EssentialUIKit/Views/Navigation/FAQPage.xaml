@@ -48,7 +48,7 @@
 
                 <!--  Header label for Top Questions -->
                 <Label
-                    Padding ="16,20,0,20"
+                    Margin ="16,20,0,20"
                     FontFamily="{StaticResource Montserrat-SemiBold}"
                     BackgroundColor="{DynamicResource Gray-100}"
                     FontSize="20"
@@ -90,7 +90,7 @@
                     <!-- Header for replacement process for orders   -->
                     <syncfusion:SfExpander.Header>
                         <Label                             
-                            Style="{StaticResource FAQHeaderLabelStyle}"   Padding="16,10,30,10"                  
+                            Style="{StaticResource FAQHeaderLabelStyle}"   Margin="16,10,30,10"                  
                             Text="What is the replacement process for orders?" />
                     </syncfusion:SfExpander.Header>
 
@@ -108,7 +108,7 @@
                     <!-- Header for not received the refund in my bank account   -->
                     <syncfusion:SfExpander.Header>
                         <Label 
-                            Style="{StaticResource FAQHeaderLabelStyle}" Padding="16,10,30,10"
+                            Style="{StaticResource FAQHeaderLabelStyle}" Margin="16,10,30,10"
                             Text="Why haven't I received my refund in my bank account yet?" />
                     </syncfusion:SfExpander.Header>
 

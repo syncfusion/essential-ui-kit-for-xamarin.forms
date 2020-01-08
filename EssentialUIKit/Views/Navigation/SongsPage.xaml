@@ -90,10 +90,7 @@
                             HorizontalOptions="FillAndExpand"
                             Placeholder="Search here"
                             Style="{StaticResource SearchEntryStyle}"/>
-                    </border:SfBorder>
-
-                    <BoxView Style="{StaticResource BoxViewStyle}" />
-
+                    </border:SfBorder>					
                 </StackLayout>
 
                 <!--  Search Button  -->

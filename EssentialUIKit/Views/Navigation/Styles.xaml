@@ -140,7 +140,6 @@
         <Setter Property="VerticalOptions" Value="Center" />
         <Setter Property="HorizontalOptions" Value="Start" />
         <Setter Property="Margin" Value="16,0,0,0" />
-        <Setter Property="Padding" Value="16,10,40,10" />
         <Setter Property="HorizontalTextAlignment" Value="Start"/>
         <Setter Property="BackgroundColor" Value="{StaticResource Gray-White}" />
         <Setter Property="LineHeight" Value="{OnPlatform Default=-1, Android=1.5}" />
@@ -163,7 +162,7 @@
 
     <!-- Common style for contact labels -->
     <Style x:Key="ContactsLabelStyle" TargetType="Label">
-        <Setter Property="Padding" Value="16,0,0,0" />
+        <Setter Property="Margin" Value="16,0" />
         <Setter Property="TextColor" Value="{DynamicResource Gray-900}" />
         <Setter Property="FontFamily" Value="{StaticResource Montserrat-Medium}" />
         <Setter Property="FontSize" Value="16" />
@@ -183,7 +182,7 @@
 
     <!-- Common style for header labels -->
     <Style x:Key="HeaderLabelStyle" TargetType="Label">
-        <Setter Property="Padding" Value="16,0,0,0" />
+        <Setter Property="Margin" Value="16,0" />
         <Setter Property="FontFamily" Value="{DynamicResource Montserrat-Medium}" />
         <Setter Property="FontSize" Value="16" />
         <Setter Property="HeightRequest" Value="40" />
