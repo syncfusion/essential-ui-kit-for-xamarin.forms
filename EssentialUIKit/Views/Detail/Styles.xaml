@@ -18,6 +18,7 @@
     <x:String x:Key="Close">&#xe724;</x:String>
     <x:String x:Key="Favourite">&#xe701;</x:String>
     <x:String x:Key="ClearBookmark">&#xe734;</x:String>
+    <x:String x:Key="Back">&#xe709;</x:String>
 
     <converter:DynamicResourceToColorConverter x:Key="DynamicResourceToColorConverter" />
 

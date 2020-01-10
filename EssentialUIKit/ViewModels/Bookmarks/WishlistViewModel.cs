@@ -40,6 +40,8 @@ namespace EssentialUIKit.ViewModels.Bookmarks
 
         private Command quantitySelectedCommand;
 
+        private Command backButtonCommand;
+
         #endregion
 
         #region Public properties
@@ -222,6 +224,17 @@ namespace EssentialUIKit.ViewModels.Bookmarks
             }
         }
 
+        /// <summary>
+        /// Gets or sets the command is executed when the back button is clicked.
+        /// </summary>
+        public Command BackButtonCommand
+        {
+            get
+            {
+                return this.backButtonCommand ?? (this.backButtonCommand = new Command(this.BackButtonClicked));
+            }
+        }
+
         #endregion
 
         #region Methods
@@ -262,6 +275,16 @@ namespace EssentialUIKit.ViewModels.Bookmarks
                 }
             }
         }
+
+        /// <summary>
+        /// Invoked when an back button is clicked.
+        /// </summary>
+        /// <param name="obj">The Object</param>
+        private void BackButtonClicked(object obj)
+        {
+            // Do something
+        }
+
 
         /// <summary>
         /// Invoked when the quantity is selected.

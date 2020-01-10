@@ -17,7 +17,7 @@
         </ResourceDictionary>
     </Grid.Resources>
 
-    <Grid Margin="{DynamicResource ListItemMargin}" RowSpacing="0">
+    <Grid Margin="8, 0, 8, 0" RowSpacing="0">
 
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />

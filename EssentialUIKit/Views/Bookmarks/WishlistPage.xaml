@@ -38,6 +38,15 @@
                 Title="Wishlist"
                 Grid.Row="0"
                 BackgroundColor="{DynamicResource Gray-White}">
+                <controls:TitleView.LeadingView>
+                    <buttons:SfButton
+                        x:Name="backButton"
+                        Command="{Binding Path=BindingContext.BackButtonCommand, Source={x:Reference wishlistPage}}"
+                        CommandParameter="{x:Reference backButton}"
+                        CornerRadius="4"
+                        Style="{StaticResource IconButtonStyle}"
+                        Text="{StaticResource Back}" />
+                </controls:TitleView.LeadingView>
                 <controls:TitleView.TrailingView>
                     <StackLayout HorizontalOptions="End" Orientation="Horizontal">
                         <badge:SfBadgeView

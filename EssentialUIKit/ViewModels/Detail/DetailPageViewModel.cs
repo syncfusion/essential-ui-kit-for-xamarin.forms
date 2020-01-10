@@ -174,6 +174,7 @@ namespace EssentialUIKit.ViewModels.Detail
             this.ItemSelectedCommand = new Command(this.ItemSelected);
             this.CardItemCommand = new Command(this.CartClicked);
             this.LoadMoreCommand = new Command(this.LoadMoreClicked);
+            this.BackButtonCommand = new Command(BackButtonClicked);
         }
 
         #endregion
@@ -316,6 +317,11 @@ namespace EssentialUIKit.ViewModels.Detail
         /// </summary>
         public Command LoadMoreCommand { get; set; }
 
+        /// <summary>
+        /// Gets or sets the command is executed when the back button is clicked.
+        /// </summary>
+        public Command BackButtonCommand { get; set; }
+
         #endregion
 
         #region Methods
@@ -384,6 +390,15 @@ namespace EssentialUIKit.ViewModels.Detail
         /// </summary>
         /// <param name="obj">The Object</param>
         private void LoadMoreClicked (object obj)
+        {
+            // Do something
+        }
+
+        /// <summary>
+        /// Invoked when an back button is clicked.
+        /// </summary>
+        /// <param name="obj">The Object</param>
+        private void BackButtonClicked(object obj)
         {
             // Do something
         }

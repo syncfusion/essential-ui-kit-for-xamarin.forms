@@ -42,23 +42,23 @@ namespace EssentialUIKit.ViewModels.OnBoarding
             {
                 new Boarding()
                 {
-                    ImagePath = "ChooseGradient.svg",
-                    Header = "CHOOSE",
-                    Content = "Pick the item that is right for you",
+                    ImagePath = "ReSchedule.png",
+                    Header = "RESCHEDULE",
+                    Content = "Drag and drop meetings in order to reschedule them easily.",
                     RotatorItem = new WalkthroughItemPage()
                 },
                 new Boarding()
                 {
-                    ImagePath = "ConfirmGradient.svg",
-                    Header = "ORDER CONFIRMED",
-                    Content = "Your order is confirmed and will be on its way soon",
+                    ImagePath = "ViewMode.png",
+                    Header = "VIEW MODE",
+                    Content = "Display your meetings using four configurable view modes",
                     RotatorItem = new WalkthroughItemPage()
                 },
                 new Boarding()
                 {
-                    ImagePath = "DeliverGradient.svg",
-                    Header = "DELIVERY",
-                    Content = "Your item will arrive soon. Email us if you have any issues",
+                    ImagePath = "TimeZone.png",
+                    Header = "TIME ZONE",
+                    Content = "Display meetings created for different time zones.",
                     RotatorItem = new WalkthroughItemPage()
                 }
             };

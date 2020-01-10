@@ -82,6 +82,16 @@
 
                 <!--  Title View  -->
                 <controls:TitleView Title="Cart">
+                    <controls:TitleView.LeadingView>
+                        <buttons:SfButton
+                            x:Name="backButton"
+                            Command="{Binding Path=BindingContext.BackButtonCommand, Source={x:Reference detailPage}}"
+                            CommandParameter="{x:Reference backButton}"
+                            CornerRadius="4"
+                            Style="{StaticResource IconButtonStyle}"
+                            Text="{StaticResource Back}" />
+                    </controls:TitleView.LeadingView>
+
                     <controls:TitleView.TrailingView>
                         <badge:SfBadgeView
                             Margin="{Binding Path=BindingContext.CartItemCount, Source={x:Reference detailPage}, Converter={x:StaticResource intToThicknessConverter}}"

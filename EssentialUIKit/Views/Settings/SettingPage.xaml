@@ -21,7 +21,7 @@
         <ControlTemplate>
             <StackLayout Spacing="0">
                 <!--  Title View  -->
-                <controls:TitleView Title="Settings" BackgroundColor="{DynamicResource Gray-White}">
+                <controls:TitleView Title="Settings" BackgroundColor="{DynamicResource Gray-White} ">
                     <controls:TitleView.LeadingView>
                         <buttons:SfButton
                             x:Name="backButton"
@@ -148,7 +148,7 @@
                     <Label
                         Grid.Column="2"
                         Style="{StaticResource IconLabelStyle}"
-                        Text="{StaticResource Next}" />
+                        Text="{StaticResource Next}"/>
                 </controls:TapAnimationGrid>
                 <BoxView BackgroundColor="{DynamicResource Gray-100}" HeightRequest="20" />
 
@@ -219,7 +219,7 @@
                                                     ThumbBorderColor="{DynamicResource Gray-200}"
                                                     ThumbColor="{DynamicResource Gray-White}"
                                                     TrackBorderColor="{DynamicResource Gray-200}"
-                                                    TrackColor="{DynamicResource Gray-White}" />
+                                                    TrackColor="{DynamicResource Gray-200}" />
                                             </Setter.Value>
                                         </Setter>
                                     </VisualState.Setters>
@@ -283,7 +283,7 @@
                                                     ThumbBorderColor="{DynamicResource Gray-200}"
                                                     ThumbColor="{DynamicResource Gray-White}"
                                                     TrackBorderColor="{DynamicResource Gray-200}"
-                                                    TrackColor="{DynamicResource Gray-White}" />
+                                                    TrackColor="{DynamicResource Gray-200}" />
                                             </Setter.Value>
                                         </Setter>
                                     </VisualState.Setters>

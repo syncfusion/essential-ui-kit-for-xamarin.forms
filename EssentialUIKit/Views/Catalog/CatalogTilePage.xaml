@@ -83,7 +83,7 @@
                 HeaderTemplate="{StaticResource CatalogDefaultHeaderTemplate}"
                 HorizontalOptions="FillAndExpand"
                 IsStickyHeader="False"
-                ItemSpacing="8"
+                ItemSpacing="0, 8, 0, 8"
                 ItemsSource="{Binding Products}"
                 Style="{StaticResource SfListViewStyle}">
 

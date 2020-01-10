@@ -3,13 +3,13 @@
     x:Class="EssentialUIKit.Views.Catalog.CategoryTilePage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
     xmlns:behavior="clr-namespace:EssentialUIKit.Behaviors"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
     xmlns:controls="clr-namespace:EssentialUIKit.Controls"
     xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
     xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
-    Title="Categories"
     x:Name="categoryPage"
+    Title="Categories"
     BackgroundColor="{DynamicResource Gray-White}"
     NavigationPage.HasNavigationBar="False">
 
@@ -31,6 +31,15 @@
 
             <!--  Title View  -->
             <controls:TitleView Title="Categories" Grid.Row="0">
+                <controls:TitleView.LeadingView>
+                    <buttons:SfButton
+                        x:Name="backButton"
+                        Command="{Binding BindingContext.BackButtonCommand, Source={x:Reference CategoryTile}}"
+                        CommandParameter="{x:Reference backButton}"
+                        CornerRadius="4"
+                        Style="{StaticResource IconButtonStyle}"
+                        Text="{StaticResource Back}" />
+                </controls:TitleView.LeadingView>
                 <controls:TitleView.TrailingView>
                     <StackLayout HorizontalOptions="End" Orientation="Horizontal">
                         <buttons:SfButton
@@ -54,7 +63,7 @@
                 Style="{StaticResource SfListViewStyle}">
 
                 <listView:SfListView.Behaviors>
-                    <behavior:SfListViewTapBehavior Command="{Binding Path=BindingContext.CategorySelectedCommand, Source={x:Reference categoryPage}}"/>
+                    <behavior:SfListViewTapBehavior Command="{Binding Path=BindingContext.CategorySelectedCommand, Source={x:Reference categoryPage}}" />
                 </listView:SfListView.Behaviors>
 
                 <listView:SfListView.ItemTemplate>
@@ -73,14 +82,15 @@
                                 BackgroundColor="{DynamicResource Gray-200}"
                                 HeightRequest="{OnIdiom Phone=150,
                                                         Tablet=240,
-                                                        Desktop=120}"                              
+                                                        Desktop=120}"
                                 WidthRequest="{OnIdiom Phone=160,
                                                        Tablet=224,
                                                        Desktop=200}">
                                 <Image.Source>
-                                    <UriImageSource Uri="{Binding Icon}" 
-			                                 CacheValidity="14" 
-			                                 CachingEnabled="true"/>
+                                    <UriImageSource
+                                        CacheValidity="14"
+                                        CachingEnabled="true"
+                                        Uri="{Binding Icon}" />
                                 </Image.Source>
                             </Image>
 

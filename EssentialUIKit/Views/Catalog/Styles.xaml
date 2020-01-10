@@ -16,6 +16,7 @@
     <x:String x:Key="Filter">&#xe702;</x:String>
     <x:String x:Key="Sort">&#xe70a;</x:String>
     <x:String x:Key="BurgerMenu">&#xe72e;</x:String>
+    <x:String x:Key="Back">&#xe709;</x:String>
 
     <converter:DynamicResourceToColorConverter x:Key="DynamicResourceToColorConverter" />
 
