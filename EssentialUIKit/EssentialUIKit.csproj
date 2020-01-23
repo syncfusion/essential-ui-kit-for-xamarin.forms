@@ -16,25 +16,25 @@
     <PackageReference Include="SkiaSharp.Extended" Version="1.60.0" />
     <PackageReference Include="SkiaSharp.Svg" Version="1.60.0" />
     <PackageReference Include="SkiaSharp.Views.Forms" Version="1.68.0" />
-    <PackageReference Include="Syncfusion.Xamarin.Buttons" Version="17.2.0.49" />
-    <PackageReference Include="Syncfusion.Xamarin.Cards" Version="17.2.0.49" />
-    <PackageReference Include="Syncfusion.Xamarin.DataSource" Version="17.2.0.49" />
-    <PackageReference Include="Syncfusion.Xamarin.GridCommon" Version="17.2.0.49" />
-    <PackageReference Include="Syncfusion.Xamarin.SfCalendar" Version="17.2.0.49" />
-    <PackageReference Include="Syncfusion.Xamarin.SfChart" Version="17.2.0.49" />
-    <PackageReference Include="Syncfusion.Xamarin.SfComboBox" Version="17.2.0.49" />
-    <PackageReference Include="Syncfusion.Xamarin.SfListView" Version="17.2.0.49" />
-    <PackageReference Include="Syncfusion.Xamarin.SfMaps" Version="17.2.0.49" />
-    <PackageReference Include="Syncfusion.Xamarin.SfParallaxView" Version="17.2.0.49" />
-    <PackageReference Include="Syncfusion.Xamarin.SfProgressBar" Version="17.2.0.49" />
-    <PackageReference Include="Syncfusion.Xamarin.SfRating" Version="17.2.0.49" />
-    <PackageReference Include="Syncfusion.Xamarin.SfRotator" Version="17.2.0.49" />
-    <PackageReference Include="Syncfusion.Xamarin.SfPopupLayout" Version="17.2.0.49" />
-    <PackageReference Include="Syncfusion.Xamarin.Expander" Version="17.2.0.49" />
-    <PackageReference Include="Syncfusion.Xamarin.SfBadgeView" Version="17.2.0.49" />
-    <PackageReference Include="Syncfusion.Xamarin.SfTabView" Version="17.2.0.49" />
+    <PackageReference Include="Syncfusion.Xamarin.Buttons" Version="17.4.0.44" />
+    <PackageReference Include="Syncfusion.Xamarin.Cards" Version="17.4.0.44" />
+    <PackageReference Include="Syncfusion.Xamarin.DataSource" Version="17.4.0.44" />
+    <PackageReference Include="Syncfusion.Xamarin.GridCommon" Version="17.4.0.44" />
+    <PackageReference Include="Syncfusion.Xamarin.SfCalendar" Version="17.4.0.44" />
+    <PackageReference Include="Syncfusion.Xamarin.SfChart" Version="17.4.0.44" />
+    <PackageReference Include="Syncfusion.Xamarin.SfComboBox" Version="17.4.0.44" />
+    <PackageReference Include="Syncfusion.Xamarin.SfListView" Version="17.4.0.44" />
+    <PackageReference Include="Syncfusion.Xamarin.SfMaps" Version="17.4.0.44" />
+    <PackageReference Include="Syncfusion.Xamarin.SfParallaxView" Version="17.4.0.44" />
+    <PackageReference Include="Syncfusion.Xamarin.SfProgressBar" Version="17.4.0.44" />
+    <PackageReference Include="Syncfusion.Xamarin.SfRating" Version="17.4.0.44" />
+    <PackageReference Include="Syncfusion.Xamarin.SfRotator" Version="17.4.0.44" />
+    <PackageReference Include="Syncfusion.Xamarin.SfPopupLayout" Version="17.4.0.44" />
+    <PackageReference Include="Syncfusion.Xamarin.Expander" Version="17.4.0.44" />
+    <PackageReference Include="Syncfusion.Xamarin.SfBadgeView" Version="17.4.0.44" />
+    <PackageReference Include="Syncfusion.Xamarin.SfTabView" Version="17.4.0.44" />
     <PackageReference Include="Xamarin.Forms" Version="4.4.0.991265" />
-    <PackageReference Include="Syncfusion.Xamarin.Core" Version="17.3.0.9-beta" />
+    <PackageReference Include="Syncfusion.Xamarin.Core" Version="17.4.0.44" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="AppLayout\Icons\bookmark.png" />
