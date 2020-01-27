@@ -50,7 +50,7 @@
         <!--  Blog title  -->
         <Label
             Grid.Column="1"
-            Margin="0,8"
+            Margin="0,8,0,0"
             FontFamily="{StaticResource Montserrat-SemiBold}"
             FontSize="14"
             LineBreakMode="TailTruncation"
