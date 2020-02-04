@@ -142,7 +142,8 @@
                 </listView:SfListView>
 
                 <listView:SfListView SelectionMode="None" IsScrollingEnabled="False" ItemSpacing="8" ItemSize="80" ItemsSource="{Binding ListItems}">
-                    <listView:SfListView.ItemTemplate>
+
+                  <listView:SfListView.ItemTemplate>
                         <DataTemplate>
 
                             <cards:SfCardView CornerRadius="4" IndicatorColor="{Binding BackgroundGradientStart}" IndicatorPosition="Left" IndicatorThickness="8">
