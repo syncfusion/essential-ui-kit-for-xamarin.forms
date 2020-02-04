@@ -48,13 +48,7 @@ namespace EssentialUIKit.ViewModels.Navigation
         /// </summary>
         [DataMember(Name = "navigationList")]
         public ObservableCollection<NavigationModel> NavigationList { get; set; }
-
-        /// <summary>
-        /// Gets or sets a collection of values to be displayed in the songs list page.
-        /// </summary>
-        [DataMember(Name = "songsPageList")]
-        public ObservableCollection<NavigationModel> SongsPageList { get; set; }
-
+        
         #endregion
 
         #region Methods

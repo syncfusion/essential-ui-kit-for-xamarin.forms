@@ -53,12 +53,6 @@ namespace EssentialUIKit.Models.Navigation
         [DataMember(Name = "itemRating")]
         public double ItemRating { get; set; }
 
-        [DataMember(Name = "songname")]
-        public string SongName { get; set; }
-
-        [DataMember(Name = "composer")]
-        public string Composer { get; set; }
-
         #endregion
     }
 }

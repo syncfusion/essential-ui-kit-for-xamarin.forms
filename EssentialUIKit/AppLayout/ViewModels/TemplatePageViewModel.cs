@@ -32,24 +32,6 @@ namespace EssentialUIKit.AppLayout.ViewModels
         #region Public Properties
 
         /// <summary>
-        /// Sets the query data.
-        /// </summary>
-        public string QueryData
-        {
-            set
-            {
-                var decodedString = HttpUtility.UrlDecode(value);
-
-                var serializer = new XmlSerializer(typeof(Category));
-
-                using (var reader = new StringReader(decodedString))
-                {
-                    this.SelectedCategory = (Category)serializer.Deserialize(reader);
-                }
-            }
-        }
-
-        /// <summary>
         /// Gets or sets the selected category.
         /// </summary>
         public Category SelectedCategory

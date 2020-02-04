@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Globalization;
 using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
 using Syncfusion.XForms.ProgressBar;
@@ -87,9 +88,10 @@ namespace EssentialUIKit.Models.Tracking
         {
             get
             {
-                return DateTime.MinValue != Convert.ToDateTime(this.ArrivalStringDate)
-                    ? Convert.ToDateTime(this.ArrivalStringDate)
-                    : this.arrivalDateTime;
+                DateTime arrivalStringDate = Convert.ToDateTime(this.ArrivalStringDate,
+                    CultureInfo.CurrentCulture);
+                return DateTime.MinValue != arrivalStringDate ? arrivalStringDate : this.arrivalDateTime;
+
             }
 
             set
@@ -112,9 +114,9 @@ namespace EssentialUIKit.Models.Tracking
         {
             get
             {
-                return DateTime.MinValue != Convert.ToDateTime(this.DepartureStringDate)
-                   ? Convert.ToDateTime(this.DepartureStringDate)
-                   : this.departureDateTime;
+                DateTime departureStringDate = Convert.ToDateTime(this.DepartureStringDate,
+                     CultureInfo.CurrentCulture);
+                return DateTime.MinValue != departureStringDate ? departureStringDate : this.departureDateTime;
             }
 
             set

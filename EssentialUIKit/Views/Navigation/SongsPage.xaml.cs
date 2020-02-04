@@ -19,7 +19,7 @@ namespace EssentialUIKit.Views.Navigation
         public SongsPage()
         {
             InitializeComponent();
-            this.BindingContext = NavigationDataService.Instance.NavigationViewModel;
+            this.BindingContext = SongsDataService.Instance.SongsViewModel;
         }
 
         /// <summary>

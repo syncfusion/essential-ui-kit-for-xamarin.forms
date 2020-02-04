@@ -1,48 +1,68 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Text;
-using EssentialUIKit.Models.Navigation;
+﻿using System.Collections.ObjectModel;
+using System.Runtime.Serialization;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
+using EssentialUIKit.Models.Navigation;
 
-namespace EssentialUIKit.ViewModels.Navigation.ContactsViewModel
+namespace EssentialUIKit.ViewModels.Navigation
 {
     /// <summary>
-    /// ViewModel for Setting page 
-    /// </summary> 
+    /// ViewModel for contacts page.
+    /// </summary>
     [Preserve(AllMembers = true)]
+    [DataContract]
     public class ContactsViewModel : BaseViewModel
     {
+        #region Fields
+
+        private Command<object> itemTappedCommand;
+
+        #endregion
+
         #region Constructor
+
         /// <summary>
-        /// Initializes a new instance of the <see cref="ContactsViewModel" /> class
+        /// Initializes a new instance for the <see cref="ContactsViewModel"/> class.
         /// </summary>
         public ContactsViewModel()
         {
-            this.BackButtonCommand = new Command(this.BackButtonClicked);
+
         }
+
         #endregion
 
-        #region Command
+        #region Properties
 
         /// <summary>
-        /// Gets or sets the command is executed when the favourite button is clicked.
+        /// Gets the command that will be executed when an item is selected.
         /// </summary>
-        public Command BackButtonCommand { get; set; }
+        public Command<object> ItemTappedCommand
+        {
+            get
+            {
+                return this.itemTappedCommand ?? (this.itemTappedCommand = new Command<object>(this.NavigateToNextPage));
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a collction of value to be displayed in contacts list page.
+        /// </summary>
+        [DataMember(Name = "contactsPageList")]
+        public ObservableCollection<Contact> ContactList { get; set; }
+
         #endregion
 
-        #region Method
+        #region Methods
 
         /// <summary>
-        /// Invoked when the back button clicked
+        /// Invoked when an item is selected from the contacts list.
         /// </summary>
-        /// <param name="obj">The object</param>
-        private void BackButtonClicked(object obj)
+        /// <param name="selectedItem">Selected item from the list view.</param>
+        private void NavigateToNextPage(object selectedItem)
         {
             // Do something
         }
+
         #endregion
     }
 }

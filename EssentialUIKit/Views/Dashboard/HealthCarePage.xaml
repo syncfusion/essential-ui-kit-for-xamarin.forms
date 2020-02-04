@@ -142,7 +142,6 @@
                 </listView:SfListView>
 
                 <listView:SfListView SelectionMode="None" IsScrollingEnabled="False" ItemSpacing="8" ItemSize="80" ItemsSource="{Binding ListItems}">
-
                     <listView:SfListView.ItemTemplate>
                         <DataTemplate>
 

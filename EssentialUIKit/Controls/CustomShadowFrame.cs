@@ -10,22 +10,22 @@ namespace EssentialUIKit.Controls
     public class CustomShadowFrame : Frame
     {
         public static readonly BindableProperty RadiusProperty =
-           BindableProperty.Create("Radius", typeof(float), typeof(CustomShadowFrame), 0f, BindingMode.Default);
+           BindableProperty.Create(nameof(Radius), typeof(float), typeof(CustomShadowFrame), 0f, BindingMode.Default);
 
         public static readonly BindableProperty CustomBorderColorProperty =
-            BindableProperty.Create("CustomBorderColor", typeof(Color), typeof(CustomShadowFrame), default(Color), BindingMode.Default);
+            BindableProperty.Create(nameof(CustomBorderColor), typeof(Color), typeof(CustomShadowFrame), default(Color), BindingMode.Default);
 
         public static readonly BindableProperty BorderWidthProperty =
-            BindableProperty.Create("BorderWidth", typeof(int), typeof(CustomShadowFrame), default(int), BindingMode.Default);
+            BindableProperty.Create(nameof(BorderWidth), typeof(int), typeof(CustomShadowFrame), default(int), BindingMode.Default);
 
         public static readonly BindableProperty ShadowOpacityProperty =
-            BindableProperty.Create("ShadowOpacity", typeof(float), typeof(CustomShadowFrame), 0.12F, BindingMode.Default);
+            BindableProperty.Create(nameof(ShadowOpacity), typeof(float), typeof(CustomShadowFrame), 0.12F, BindingMode.Default);
 
         public static readonly BindableProperty ShadowOffsetWidthProperty =
-            BindableProperty.Create("ShadowOffsetWidth", typeof(float), typeof(CustomShadowFrame), 0f, BindingMode.Default);
+            BindableProperty.Create(nameof(ShadowOffsetWidth), typeof(float), typeof(CustomShadowFrame), 0f, BindingMode.Default);
 
         public static readonly BindableProperty ShadowOffSetHeightProperty =
-            BindableProperty.Create("ShadowOffSetHeight", typeof(float), typeof(CustomShadowFrame), 4f, BindingMode.Default);
+            BindableProperty.Create(nameof(ShadowOffSetHeight), typeof(float), typeof(CustomShadowFrame), 4f, BindingMode.Default);
 
         // Gets or sets the radius of the Frame corners.
         public float Radius

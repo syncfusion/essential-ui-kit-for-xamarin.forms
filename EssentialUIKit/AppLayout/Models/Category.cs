@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Globalization;
 using Xamarin.Forms.Internals;
 
 namespace EssentialUIKit.AppLayout.Models
@@ -34,7 +35,7 @@ namespace EssentialUIKit.AppLayout.Models
         {
             get
             {
-                return this.Pages.Count > 1 ? $"{this.Pages.Count.ToString()} Templates" : $"{this.Pages.Count.ToString()} Template";
+                return this.Pages.Count > 1 ? $"{this.Pages.Count.ToString(CultureInfo.InvariantCulture)} Templates" : $"{this.Pages.Count.ToString(CultureInfo.InvariantCulture)} Template";
             }
         }
 

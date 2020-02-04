@@ -1,20 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Xamarin.Forms.Internals;
 using Xamarin.Forms;
+using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
+using EssentialUIKit.DataService;
 
 namespace EssentialUIKit.Views.Navigation
 {
     /// <summary>
-    /// Page to show the Contacts.
+    /// Page to display the Contacts list.
     /// </summary>
     [Preserve(AllMembers = true)]
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ContactsPage : ContentPage
+    public partial class ContactsPage
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ContactsPage" /> class.
@@ -22,8 +19,14 @@ namespace EssentialUIKit.Views.Navigation
         public ContactsPage()
         {
             InitializeComponent();
+            this.BindingContext = ContactsDataService.Instance.ContactsViewModel;
         }
 
+        /// <summary>
+        /// Invoked when view size is changed.
+        /// </summary>
+        /// <param name="width">The Width</param>
+        /// <param name="height">The Height</param>
         protected override void OnSizeAllocated(double width, double height)
         {
             base.OnSizeAllocated(width, height);
@@ -37,13 +40,17 @@ namespace EssentialUIKit.Views.Navigation
             }
         }
 
+        /// <summary>
+        /// Invoked when search button is clicked.
+        /// </summary>
+        /// <param name="sender">The Sender</param>
+        /// <param name="e">Event Args</param>
         private void SearchButton_Clicked(object sender, EventArgs e)
         {
             this.Search.IsVisible = true;
-            this.Title.IsVisible = false;
-            this.SearchButton.IsVisible = false;
+            this.ContactsTitle.IsVisible = false;
 
-            if (this.TitleView != null)
+            if (this.ContactsTitleView != null)
             {
                 double opacity;
 
@@ -52,20 +59,24 @@ namespace EssentialUIKit.Views.Navigation
                     property =>
                     {
                         Search.WidthRequest = property;
-                        opacity = property / TitleView.Width;
+                        opacity = property / ContactsTitleView.Width;
                         Search.Opacity = opacity;
-                    }, 0, TitleView.Width, Easing.Linear);
+                    }, 0, ContactsTitleView.Width, Easing.Linear);
                 expandAnimation.Commit(Search, "Expand", 16, 250, Easing.Linear);
             }
-            
+
             SearchEntry.Focus();
         }
 
+        /// <summary>
+        /// Invoked when back to title button is clicked.
+        /// </summary>
+        /// <param name="sender">The Sender</param>
+        /// <param name="e">Event Args</param>
         private void BackToTitle_Clicked(object sender, EventArgs e)
         {
             this.SearchButton.IsVisible = true;
-
-            if (this.TitleView != null)
+            if (this.ContactsTitleView != null)
             {
                 double opacity;
 
@@ -73,21 +84,24 @@ namespace EssentialUIKit.Views.Navigation
                 var shrinkAnimation = new Animation(property =>
                 {
                     Search.WidthRequest = property;
-                    opacity = property / TitleView.Width;
+                    opacity = property / ContactsTitleView.Width;
                     Search.Opacity = opacity;
                 },
-                TitleView.Width, 0, Easing.Linear);
+                ContactsTitleView.Width, 0, Easing.Linear);
                 shrinkAnimation.Commit(Search, "Shrink", 16, 250, Easing.Linear, (p, q) => this.SearchBoxAnimationCompleted());
             }
 
             SearchEntry.Text = string.Empty;
         }
 
+        /// <summary>
+        /// Invokes when search box Animation completed.
+        /// </summary>
         private void SearchBoxAnimationCompleted()
         {
             this.Search.IsVisible = false;
-            this.Title.IsVisible = true;
+            this.ContactsTitle.IsVisible = true;
         }
-    
+
     }
 }

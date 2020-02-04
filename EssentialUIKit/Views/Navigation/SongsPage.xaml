@@ -90,7 +90,7 @@
                             HorizontalOptions="FillAndExpand"
                             Placeholder="Search here"
                             Style="{StaticResource SearchEntryStyle}"/>
-                    </border:SfBorder>					
+                    </border:SfBorder>
                 </StackLayout>
 
                 <!--  Search Button  -->
@@ -135,7 +135,7 @@
                                                         <UriImageSource
                                                              CacheValidity="14"
                                                              CachingEnabled="true"
-                                                             Uri="{Binding ItemImage}"/>
+                                                             Uri="{Binding SongImage}"/>
                                                     </Image.Source>
                                                 </Image>
                                             </border:SfBorder>

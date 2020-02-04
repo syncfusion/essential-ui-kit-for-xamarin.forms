@@ -114,7 +114,7 @@ namespace EssentialUIKit.Models
             set
             {
                 this.actualPrice = value;
-                this.NotifyPropertyChanged("ActualPrice");
+                this.NotifyPropertyChanged(nameof(ActualPrice));
             }
         }
 
@@ -131,7 +131,7 @@ namespace EssentialUIKit.Models
             set
             {
                 this.discountPrice = value;
-                this.NotifyPropertyChanged("DiscountPrice");
+                this.NotifyPropertyChanged(nameof(DiscountPrice));
             }
         }
 
@@ -149,7 +149,7 @@ namespace EssentialUIKit.Models
             set
             {
                 this.discountPercent = value;
-                this.NotifyPropertyChanged("DiscountPercent");
+                this.NotifyPropertyChanged(nameof(DiscountPercent));
             }
         }
 
@@ -173,7 +173,7 @@ namespace EssentialUIKit.Models
             set
             {
                 this.reviews = value;
-                this.NotifyPropertyChanged("Reviews");
+                this.NotifyPropertyChanged(nameof(Reviews));
             }
         }
 
@@ -208,7 +208,7 @@ namespace EssentialUIKit.Models
             set
             {
                 this.isFavourite = value;
-                this.NotifyPropertyChanged("IsFavourite");
+                this.NotifyPropertyChanged(nameof(IsFavourite));
             }
         }
 
@@ -226,7 +226,7 @@ namespace EssentialUIKit.Models
             set
             {
                 this.totalQuantity = value;
-                this.NotifyPropertyChanged("TotalQuantity");
+                this.NotifyPropertyChanged(nameof(TotalQuantity));
             }
         }
 

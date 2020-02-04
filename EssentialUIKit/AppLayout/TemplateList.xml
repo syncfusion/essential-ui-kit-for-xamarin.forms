@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <Samples>
 
-  <Category Icon="log-in.png" Name="Forms" IsUpdated="True" Description="Get the user’s details to authenticate, create a profile, and enter credit card information for online payment portal.">
+  <Category Icon="log-in.png" Name="Forms" Description="Get the user’s details to authenticate, create a profile, and enter credit card information for online payment portal.">
     <Page Name="Simple Login Page" Description="If you want a simple and clean authentication form, just add this page to your application. Email validation is done within this form." PageName="Views.Forms.SimpleLoginPage"/>
     <Page Name="Simple Sign Up Page" Description="This is a supporting form for a simple login page that can be modified to match any of your login pages on the fly. Email validation is done in this form." PageName="Views.Forms.SimpleSignUpPage"/>
     <Page Name="Simple Reset Password Page" Description="This page is used for resetting a password with existing credentials or signing up if the user doesn’t have credentials yet." PageName="Views.Forms.SimpleResetPasswordPage"/>
@@ -14,7 +14,7 @@
     <Page Name="Tabbed Login Page" Description="This page is a multi-tabbed user interface where one tab provides a login page and another tab provides a sign-up form." PageName="Views.Forms.TabbedForm"/>
     <Page Name="Add Card Page" Description="This page allows users to enter their credit card information to be used in an online payment portal." PageName="Views.Forms.AddCardPage"/>
     <Page Name="Add Profile Page" Description="This page allows users to add a new entry to their contacts with additional information such as name and phone number." PageName="Views.Forms.AddProfilePage"/>
-    <Page Name="Business Registration Form Page" IsNew="True" Description="This page allows users to add business details such as name, email address, and phone number." PageName="Views.Forms.BusinessRegistrationFormPage"/>
+    <Page Name="Business Registration Form Page"  Description="This page allows users to add business details such as name, email address, and phone number." PageName="Views.Forms.BusinessRegistrationFormPage"/>
   </Category>
 
   <Category Icon="catalog.png" Name="Catalog" Description="Let the users select from the list of items that includes titles, brief descriptions, and photos.">
@@ -60,9 +60,20 @@
   
   <Category Icon="navigation.png" Name="Navigation" IsUpdated="True" Description="Enable your users to navigate between pages or items at a high level.">
     <Page Name="Bottom Navigation Page" Description="This page displays a navigation interface with icons and labels at the bottom." PageName="Views.Navigation.BottomNavigationPage"/>
-    <Page Name="Navigation List Card Page" Description="This page displays an item as a card in a list. Each card carries an image of the item, its description, and an overall rating. " PageName="Views.Navigation.NavigationListCardPage"/>
-    <Page Name="Navigation Tile Card Page" Description="This page displays an item as a card in a tile layout. Each tile contains an image of the item, its description, and an overall rating." PageName="Views.Navigation.NavigationTileCardPage"/>
-    <Page Name="Songs Page" IsNew="True" Description="This page displays an item as a card in a tile layout. Each tile contains an image, the name of a song, and the song’s composer." PageName="Views.Navigation.SongsPage"/>
+    <Page Name="Navigation List Card Page" Description="This page displays items in a list. Each card carries an image, description, and the overall rating of an item. " PageName="Views.Navigation.NavigationListCardPage"/>
+    <Page Name="Navigation Tile Card Page" Description="This page displays items in a tile layout. Each tile contains an image, description, and the overall rating of an item." PageName="Views.Navigation.NavigationTileCardPage"/>
+    <Page Name="Songs Page"  Description="This page displays items in a tile layout. Each tile contains an image, the name of a song, and its composer." PageName="Views.Navigation.SongsPage"/>
+    <Page Name="FAQs Page" IsNew="True" Description="This page displays items in an expander layout. Each item contains a question and answer for a  FAQ section." PageName="Views.Navigation.FAQPage"/>
+    <Page Name="Contact Page" IsNew="True" Description="This page displays a list of contacts and avatars." PageName="Views.Navigation.ContactsPage"/>
+    <Page Name="Songs Play List" IsNew="True" Description="This page displays items in a tile layout. Each tile contains the name of a song and its composer, and a menu icon." PageName="Views.Navigation.SongsPlayListPage"/>
+    <Page Name="Movies List" IsNew="True" Description="This page displays items in a tile layout. Each tile contains the name, year of release, and ratings of a movie." PageName="Views.Navigation.MoviesListPage"/>
+    <Page Name="Names List" IsNew="True" Description="This page displays group names as a list." PageName="Views.Navigation.NamesListPage"/>
+    <Page Name="Restaurant Page" IsNew="True" Description="This page displays Restaurant lists, items description, Offers and an overall rating." PageName="Views.Navigation.RestaurantPage"/>
+    <Page Name="Icon Names List " IsNew="True" Description="The icon names list page displays contact lists with icons and a Next option." PageName="Views.Navigation.IconNamesListPage"/>
+    <Page Name="Suggestion Page" IsNew="True" Description="A suggestion page shows profile names, profile IDs, and an option to let viewers follow accounts." PageName="Views.Navigation.SuggestionPage"/>
+    <Page Name="App Usage Page" IsNew="True" Description="This page shows the usage of apps, displaying the app names, progress bars, and progress bar values." PageName="Views.Navigation.AppUsagePage"/>
+    <Page Name="Documents List Page" IsNew="True" Description="This page shows a list of documents, displaying the name of the document, the size of the document, and the time it was last updated." PageName="Views.Navigation.DocumentsListPage"/>
+    <Page Name="Selectable Name Page " IsNew="True" Description="This page shows a selectable list of names with grouping." PageName="Views.Navigation.SelectableNamePage"/>
   </Category>
 
   <Category Icon="on-boarding.png" Name="Onboarding" Description="Get your users started with a new app or experience with step-by--step instructions.">
@@ -91,10 +102,10 @@
     <Page Name="Payment Page" Description="View card and payment details" PageName="Views.Transaction.PaymentPage" Platform="UWP"/>
   </Category>
   
-  <Category Icon="bookmark.png" IsUpdated="True" Name="Bookmark" Description="Interfaces for users to save shopping items, articles, or pages they’d like to return to later. Users can add or remove items they’ve saved as needed.">
+  <Category Icon="bookmark.png" Name="Bookmark" Description="Interfaces for users to save shopping items, articles, or pages they’d like to return to later. Users can add or remove items they’ve saved as needed.">
     <Page Name="Wishlist Page" Description="This page displays a list of items that an online shopper has saved to potentially purchase later." PageName="Views.Bookmarks.WishlistPage"/>
-    <Page Name="Cart Page" IsUpdated="True" Description="This page displays a list of products as items added to a cart in a shopping application. The page also allows you to remove items from the shopping cart. " PageName="Views.Bookmarks.CartPage"/>
-    <Page Name="Article Bookmarks Page" IsUpdated="True" Description="This page displays bookmarked articles in a list. Each list card carries the image, title, author name, created date, and estimated time to read the article." PageName="Views.Bookmarks.BookmarksPage"/>
+    <Page Name="Cart Page" Description="This page displays a list of products as items added to a cart in a shopping application. The page also allows you to remove items from the shopping cart. " PageName="Views.Bookmarks.CartPage"/>
+    <Page Name="Article Bookmarks Page" Description="This page displays bookmarked articles in a list. Each list card carries the image, title, author name, created date, and estimated time to read the article." PageName="Views.Bookmarks.BookmarksPage"/>
   </Category>
 
   <Category Icon="history.png" Name="History" Description="Displays a list of recent actions performed by the user. It can also be used to show the recent transactions in financial apps or recent purchases in shopping apps. ">
@@ -116,17 +127,22 @@
   </Category>
 
   <Category Icon="tracking.png" Name="Tracking" Description="Displays various trackings like train status, product delivery status, and more.">
-    <Page Name="Product Delivery Tracking Page" Description="This page displays a live train’s present status with the estimated time of arrival at a specified destination." PageName="Views.Tracking.ProductDeliveryTrackingPage"/>
+    <Page Name="Prodcut Delivery Tracking Page" Description="This page displays a live train’s present status with the estimated time of arrival at a specified destination." PageName="Views.Tracking.ProductDeliveryTrackingPage"/>
   </Category>
 
-  <Category Icon="dashboard.png" Name="Dashboard" IsUpdated="True" Description="A beautifully presented interface relevant to common real-world use cases.">
+  <Category Icon="dashboard.png" Name="Dashboard" Description="A beautifully presented interface relevant to common real-world use cases.">
     <Page Name="Stock Overview Page" Description="This page displays a dashboard for stock market data visualization." PageName="Views.Dashboard.StockOverviewPage"/>
-    <Page Name="Health Care Page" IsNew="True" Description="This page displays a dashboard for health-care data visualization." PageName="Views.Dashboard.HealthCarePage"/>
+    <Page Name="Health Care Page"  Description="This page displays a dashboard for health-care data visualization." PageName="Views.Dashboard.HealthCarePage"/>
   </Category>
 
-  <Category Icon="setting.png" Name="Settings" IsUpdated="True" Description="Display various types of settings pages.">
+  <Category Icon="setting.png" Name="Settings" Description="Display various types of settings pages.">
     <Page Name="Setting Page" Description="This page displays a simple settings page that includes account, notification, and support settings." PageName="Views.Settings.SettingPage"/>
-    <Page Name="Help Page" IsNew="True" Description="This page displays a simple help page that provides help with recent orders and other queries." PageName="Views.Settings.HelpPage"/>
+    <Page Name="Help Page"  Description="This page displays a simple help page that provides help with recent orders and other queries." PageName="Views.Settings.HelpPage"/>
+  </Category>
+
+  <Category Icon="notification.png" Name="Notification" IsUpdated="True" Description="Display various types of notification pages.">
+    <Page Name="Task Notification Page" IsNew="True" Description="This page displays notifications for tasks, showing descriptions, task IDs, and times." PageName="Views.Notification.TaskNotificationPage"/>
+    <Page Name="Social Notification Page" IsNew="True" Description="This page displays social media notifications, containing a list of recent notifications and a list of earlier ones." PageName="Views.Notification.SocialNotificationPage"/>
   </Category>
 
 </Samples>

@@ -13,6 +13,7 @@
     <Color x:Key="BorderBackgroundColor">#20FFFFFF</Color>
     <Color x:Key="GradientStartColor">#012E8B</Color>
     <Color x:Key="GradientEndColor">#3F0041</Color>
+    <Color x:Key="FacebookBlue">#4267B2</Color>
     
     <x:String x:Key="DropDownButtonIcon">&#xe70b;</x:String>
     <x:String x:Key="AvatarIcon">&#xe723;</x:String>
