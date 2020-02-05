@@ -119,7 +119,7 @@
 
                                         <buttons:SfCheckBox Grid.Row="0" HeightRequest="48" Text="{Binding Name}" Margin="16,0" HorizontalOptions="Start"
                                                             VerticalOptions="Center" TextColor="{DynamicResource Gray-900}" IsChecked="{Binding IsSelected, Mode=TwoWay}"
-                                                            CornerRadius="2" FontFamily="{DynamicResource Montserrat-Medium}"
+                                                            CornerRadius="2" BorderWidth="1" FontFamily="{DynamicResource Montserrat-Medium}"
                                                             UncheckedColor="{DynamicResource Gray-300}" FontSize="16"/>
                                         <BoxView Grid.Row="1" Style="{StaticResource SeparatorStyle}"/>
                                     </Grid>
