@@ -20,19 +20,19 @@ namespace EssentialUIKit.Controls
         /// Gets or sets the CommandProperty, and it is a bindable property.
         /// </summary>
         public static readonly BindableProperty CommandProperty =
-           BindableProperty.Create("Command", typeof(ICommand), typeof(TapAnimationGrid), null);
+           BindableProperty.Create(nameof(Command), typeof(ICommand), typeof(TapAnimationGrid), null);
 
         /// <summary>
         /// Gets or sets the CommandParameterProperty, and it is a bindable property.
         /// </summary>
         public static readonly BindableProperty CommandParameterProperty =
-            BindableProperty.Create("CommandParameter", typeof(object), typeof(TapAnimationGrid), null);
+            BindableProperty.Create(nameof(CommandParameter), typeof(object), typeof(TapAnimationGrid), null);
 
         /// <summary>
         /// Gets or sets the TappedProperty, and it is a bindable property.
         /// </summary>
         public static readonly BindableProperty TappedProperty =
-            BindableProperty.Create("Tapped", typeof(bool), typeof(TapAnimationGrid), false, BindingMode.TwoWay,
+            BindableProperty.Create(nameof(Tapped), typeof(bool), typeof(TapAnimationGrid), false, BindingMode.TwoWay,
                 null, propertyChanged: OnTapped);
 
         ICommand tappedCommand;

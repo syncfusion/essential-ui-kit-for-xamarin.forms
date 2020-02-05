@@ -8,7 +8,6 @@ using Xamarin.Forms.Xaml;
 namespace EssentialUIKit.AppLayout.Views
 {
     [Preserve(AllMembers = true)]
-    [QueryProperty("QueryData", "data")]
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class TemplateHostPage
     {
@@ -33,15 +32,6 @@ namespace EssentialUIKit.AppLayout.Views
             Title.Text = selectedTemplate.Name;
 
             this.LoadPage(selectedTemplate.PageName);
-        }
-
-        #endregion
-
-        #region Properties
-
-        public string QueryData
-        {
-            set => this.LoadPage(value);
         }
 
         #endregion

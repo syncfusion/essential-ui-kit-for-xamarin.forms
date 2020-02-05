@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using EssentialUIKit.Models.Shopping;
@@ -77,7 +78,7 @@ namespace EssentialUIKit.Behaviors.Shopping
             if (rotator != null && rotator.ItemsSource != null && rotator.ItemsSource.Count() > 0)
             {
                 int itemsCount = rotator.ItemsSource.Count();
-                int.TryParse(selectedIndex.ToString(), out int index);
+                int.TryParse(selectedIndex.ToString(CultureInfo.CurrentCulture), out int index);
 
                 var viewModel = rotator.BindingContext as OnBoardingAnimationViewModel;
                 if (selectedIndex == itemsCount - 1)

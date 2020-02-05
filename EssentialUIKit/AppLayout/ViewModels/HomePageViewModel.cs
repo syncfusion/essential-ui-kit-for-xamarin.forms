@@ -15,25 +15,6 @@ namespace EssentialUIKit.AppLayout.ViewModels
 
         public List<Category> Templates { get; set; }
 
-        public Category SelectedCategory
-        {
-            set
-            {
-                if (value == null) return;
-
-                //XmlSerializer xmlSerializer = new XmlSerializer(typeof(Category));
-
-                //using (StringWriter textWriter = new StringWriter())
-                //{
-                //    xmlSerializer.Serialize(textWriter, value);
-
-                //    var url = HttpUtility.UrlEncode(textWriter.ToString());
-
-                //    Shell.Current.GoToAsync($@"templatepage?data1={url}", true);
-                //}
-            }
-        }
-
         /// <summary>
         /// Initializes a new instance for the <see cref="HomePageViewModel" /> class.
         /// </summary>
@@ -56,7 +37,7 @@ namespace EssentialUIKit.AppLayout.ViewModels
                 xmlReader.Read();
                 Category category = null;
                 var hasAdded = false;
-                var runtimePlatform = Device.RuntimePlatform.ToLower();
+                var runtimePlatform = Device.RuntimePlatform.ToUpperInvariant();
 
                 while (!xmlReader.EOF)
                 {
@@ -72,7 +53,7 @@ namespace EssentialUIKit.AppLayout.ViewModels
                             }
 
                             var platform = GetDataFromXmlReader(xmlReader, "Platform");
-                                if (string.IsNullOrEmpty(platform) || platform.ToLower().Contains(runtimePlatform))
+                                if (string.IsNullOrEmpty(platform) || platform.ToUpperInvariant().Contains(runtimePlatform))
                                 {
                                     var categoryName = GetDataFromXmlReader(xmlReader, "Name");
                                     var description = GetDataFromXmlReader(xmlReader, "Description");
@@ -110,7 +91,7 @@ namespace EssentialUIKit.AppLayout.ViewModels
                         {
                             var platform = GetDataFromXmlReader(xmlReader, "Platform");
 
-                            if (string.IsNullOrEmpty(platform) || platform.ToLower().Contains(runtimePlatform))
+                            if (string.IsNullOrEmpty(platform) || platform.ToUpperInvariant().Contains(runtimePlatform))
                             {
                                 var templateName = GetDataFromXmlReader(xmlReader, "Name");
                                 var description = GetDataFromXmlReader(xmlReader, "Description");

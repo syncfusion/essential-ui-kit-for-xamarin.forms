@@ -181,7 +181,6 @@
                 CornerRadius="4"
                 HeightRequest="32"
                 WidthRequest="115"
-                BackgroundColor="Transparent"
                 HorizontalOptions="Start"
                 HorizontalTextAlignment="Center"
                 Style="{StaticResource SfButtonStyle}"

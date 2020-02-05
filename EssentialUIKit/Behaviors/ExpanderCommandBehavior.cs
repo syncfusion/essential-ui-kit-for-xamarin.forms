@@ -18,19 +18,19 @@ namespace EssentialUIKit.Behaviors
         /// Gets or sets the CommandProperty, and it is a bindable property.
         /// </summary>
         public static readonly BindableProperty CommandProperty =
-            BindableProperty.Create("Command", typeof(ICommand), typeof(ExpanderCommandBehavior));
+            BindableProperty.Create(nameof(Command), typeof(ICommand), typeof(ExpanderCommandBehavior));
 
         /// <summary>
         /// Gets or sets the CommandParameterProperty, and it is a bindable property.
         /// </summary>
         public static readonly BindableProperty CommandParameterProperty =
-            BindableProperty.Create("CommandParameter", typeof(object), typeof(ExpanderCommandBehavior));
+            BindableProperty.Create(nameof(CommandParameter), typeof(object), typeof(ExpanderCommandBehavior));
 
         /// <summary>
         /// Gets or sets the child element Property, and it is a bindable property.
         /// </summary>
         public static readonly BindableProperty ChildElementProperty =
-            BindableProperty.Create("ChildElement", typeof(object), typeof(ExpanderCommandBehavior));
+            BindableProperty.Create(nameof(ChildElement), typeof(object), typeof(ExpanderCommandBehavior));
 
         /// <summary>
         /// Gets or sets the Command.

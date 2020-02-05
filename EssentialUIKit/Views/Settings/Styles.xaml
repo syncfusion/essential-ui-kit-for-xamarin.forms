@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <ResourceDictionary
     x:Class="EssentialUIKit.Views.Settings.Styles"
     xmlns="http://xamarin.com/schemas/2014/forms"
@@ -16,7 +16,8 @@
     <x:String x:Key="Account">&#xe70e;</x:String>
     <x:String x:Key="Bell">&#xe700;</x:String>
     <x:String x:Key="Mail">&#xe70e;</x:String>
-    <x:String x:Key="Help">&#xe72c;</x:String>   
+    <x:String x:Key="Help">&#xe72c;</x:String>
+   
 
     <!--  Common style for entries  -->
     <Style x:Key="ChatSearchEntryStyle" TargetType="control:BorderlessEntry">
@@ -89,7 +90,7 @@
         <Setter Property="LineHeight" Value="{OnPlatform Default=-1, Android=1.5}" />
         <Setter Property="MaxLines" Value="2" />    
     </Style>
-
+    
     <!--  Common style for separator BoxView  -->
     <Style x:Key="SeparatorStyle" TargetType="BoxView">
         <Setter Property="HeightRequest" Value="1" />

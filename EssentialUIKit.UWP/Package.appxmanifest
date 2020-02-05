@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="5ec79b0c-66cc-42d1-b51b-245cf10c509f" Publisher="CN=mageshkumarkrishnan" Version="1.0.0.0" />
+  <Identity Name="5ec79b0c-66cc-42d1-b51b-245cf10c509f" Publisher="CN=EssentialUIKit" Version="1.0.0.0" />
   <mp:PhoneIdentity PhoneProductId="ec0cc741-fd3e-485c-81be-68815c480690" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>Essential UI Kit</DisplayName>

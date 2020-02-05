@@ -43,6 +43,7 @@
     <None Remove="AppLayout\Icons\details.png" />
     <None Remove="AppLayout\Icons\forms.png" />
     <None Remove="AppLayout\Icons\history.png" />
+    <None Remove="AppLayout\Icons\notification.png" />
     <None Remove="AppLayout\Icons\profile.png" />
     <None Remove="AppLayout\Icons\social.png" />
     <None Remove="AppLayout\Icons\transaction.png" />
@@ -51,6 +52,7 @@
     <None Remove="DataService\trainstatus.json" />
     <None Remove="Data\ecommerce.json" />
     <None Remove="Data\navigation.json" />
+    <None Remove="Data\notification.json" />
     <None Remove="Images\ChooseGradient.svg" />
     <None Remove="Images\ConfirmGradient.svg" />
     <None Remove="Images\DeliverGradient.svg" />
@@ -84,6 +86,7 @@
     <EmbeddedResource Include="AppLayout\Icons\history.png" />
     <EmbeddedResource Include="AppLayout\Icons\log-in.png" />
     <EmbeddedResource Include="AppLayout\Icons\navigation.png" />
+    <EmbeddedResource Include="AppLayout\Icons\notification.png" />
     <EmbeddedResource Include="AppLayout\Icons\on-boarding.png" />
     <EmbeddedResource Include="AppLayout\Icons\profile.png" />
     <EmbeddedResource Include="AppLayout\Icons\setting.png" />
@@ -92,6 +95,7 @@
     <EmbeddedResource Include="AppLayout\Icons\transaction.png" />
     <EmbeddedResource Include="AppLayout\TemplateList.xml" />
     <EmbeddedResource Include="Data\deliverytracking.json" />
+    <EmbeddedResource Include="Data\notification.json" />
     <EmbeddedResource Include="Data\trainstatus.json" />
     <EmbeddedResource Include="Data\ecommerce.json" />
     <EmbeddedResource Include="Data\navigation.json" />

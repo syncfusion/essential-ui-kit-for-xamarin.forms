@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+             xmlns:controls="clr-namespace:EssentialUIKit.Controls"
+             xmlns:data="clr-namespace:Syncfusion.DataSource;assembly=Syncfusion.DataSource.Portable"
+             xmlns:behavior="clr-namespace:EssentialUIKit.Behaviors.Navigation"
+             mc:Ignorable="d"
+             x:Class="EssentialUIKit.Views.Navigation.SelectableNamePage"
+             BackgroundColor="{DynamicResource Gray-White}"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+
+        <Grid RowSpacing="0" ColumnSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <StackLayout x:Name="TitleView"  Padding="8,8" Grid.Row="0"
+                         BackgroundColor="{DynamicResource Gray-White}" Spacing="0"
+                         HorizontalOptions="FillAndExpand" Orientation="Horizontal" HeightRequest="64">
+
+                <StackLayout x:Name="Title" HorizontalOptions="FillAndExpand"  IsVisible="True"
+                             Orientation="Horizontal"  VerticalOptions="FillAndExpand"  Spacing="0">
+
+                    <!--  Back button command  -->
+                    <buttons:SfButton  x:Name="backButton"  Command="{Binding BackButtonCommand}"
+                                       CommandParameter="{x:Reference backButton}" CornerRadius="4"
+                                       Style="{StaticResource IconButtonStyle}" Text="{StaticResource Back}"/>
+
+                    <!--  Selectable Name page Title  -->
+                    <Label  Margin="16,0" FontFamily="{StaticResource Montserrat-Medium}" FontSize="16"
+                            HorizontalOptions="CenterAndExpand" TextColor="{DynamicResource Gray-900}"
+                            LineHeight="1.25"  Text="Selectable Name List"  VerticalOptions="Center" VerticalTextAlignment="Center" />
+
+                </StackLayout>
+
+                <StackLayout  x:Name="Search" HorizontalOptions="EndAndExpand" IsVisible="False"
+                                Orientation="Horizontal" Spacing="0">
+
+                    <!--  Back to title layout  -->
+                    <buttons:SfButton x:Name="BackToTitle" Clicked="BackToTitle_Clicked"  Text="{StaticResource Back}"
+                                      Style="{StaticResource NavigationBarButtonStyle}" />
+
+                    <!--  Rounded Search Entry  -->
+                    <border:SfBorder Style="{DynamicResource SfBorderStyle}">
+                        <controls:BorderlessEntry x:Name="SearchEntry"  BindingContext="{x:Reference SelectableNameList }"
+                                                  Text="{Binding SearchText, Mode=TwoWay}" Placeholder="Search here"
+                                                  HorizontalOptions="FillAndExpand"  Style="{StaticResource SearchEntryStyle}"/>
+                    </border:SfBorder>
+                </StackLayout>
+
+                <!--  Search Button  -->
+                <buttons:SfButton  x:Name="SearchButton" IsVisible="True" Clicked="SearchButton_Clicked" Style="{StaticResource IconButtonStyle }"
+                                   Text="{StaticResource Search}" />
+
+            </StackLayout>
+            <BoxView Grid.Row="1" Style="{StaticResource SeparatorStyle}"/>
+            <StackLayout Grid.Row="2" Spacing="0">
+                <controls:SearchableContactsList x:Name="SelectableNameList" IsScrollBarVisible="False"
+                                                       AllowSwiping="True" AutoFitMode="Height" ItemSpacing="0"
+                                                       AllowGroupExpandCollapse="False" SelectionGesture="Tap"
+                                                       SelectionMode="Single" VerticalOptions="FillAndExpand"
+                                                       SearchText="{Binding SearchText}" TapCommand="{Binding ItemTappedCommand}"
+                                                       ItemsSource="{Binding SelectableName}" SelectionBackgroundColor="Transparent">
+
+                    <controls:SearchableContactsList.DataSource>
+                        <data:DataSource>
+                            <data:DataSource.SortDescriptors>
+                                <data:SortDescriptor PropertyName="name" Direction="Ascending"/>
+                            </data:DataSource.SortDescriptors>
+                        </data:DataSource>
+                    </controls:SearchableContactsList.DataSource>
+
+                    <!-- Group Header -->
+                    <controls:SearchableContactsList.GroupHeaderTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <ViewCell.View>
+                                    <StackLayout Spacing="0" Orientation="Horizontal" HeightRequest="40" 
+                                                 BackgroundColor="{DynamicResource Gray-100}">
+                                        <Label Text="{Binding Key}"  FontSize="16" Margin="16,8"
+                                               FontFamily="{StaticResource Montserrat-Medium}"
+                                               TextColor="{DynamicResource Gray-900}"
+                                               VerticalOptions="Center" HorizontalOptions="Start"/>
+
+                                    </StackLayout>
+                                </ViewCell.View>
+                            </ViewCell>
+                        </DataTemplate>
+                    </controls:SearchableContactsList.GroupHeaderTemplate>
+
+                    <controls:SearchableContactsList.Behaviors>
+                        <behavior:ContactsListViewBehavior/>
+                    </controls:SearchableContactsList.Behaviors>
+
+                    <controls:SearchableContactsList.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <ViewCell.View>
+                                    <Grid RowSpacing="0" ColumnSpacing="0">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+
+                                        <buttons:SfCheckBox Grid.Row="0" HeightRequest="48" Text="{Binding Name}" Margin="16,0" HorizontalOptions="Start"
+                                                            VerticalOptions="Center" TextColor="{DynamicResource Gray-900}" IsChecked="{Binding IsSelected, Mode=TwoWay}"
+                                                            CornerRadius="2" BorderWidth="1" FontFamily="{DynamicResource Montserrat-Medium}"
+                                                            UncheckedColor="{DynamicResource Gray-300}" FontSize="16"/>
+                                        <BoxView Grid.Row="1" Style="{StaticResource SeparatorStyle}"/>
+                                    </Grid>
+                                </ViewCell.View>
+                            </ViewCell>
+                        </DataTemplate>
+                    </controls:SearchableContactsList.ItemTemplate>
+                </controls:SearchableContactsList>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

@@ -50,7 +50,7 @@ namespace EssentialUIKit.Models.History
             set
             {
                 this.customerName = value;
-                this.OnPropertyChanged("CustomerName");
+                this.OnPropertyChanged(nameof(CustomerName));
             }
         }
 
@@ -67,7 +67,7 @@ namespace EssentialUIKit.Models.History
             set
             {
                 this.transactionDescription = value;
-                this.OnPropertyChanged("TransactionDescription");
+                this.OnPropertyChanged(nameof(TransactionDescription));
             }
         }
 
@@ -84,7 +84,7 @@ namespace EssentialUIKit.Models.History
             set
             {
                 this.image = value;
-                this.OnPropertyChanged("Image");
+                this.OnPropertyChanged(nameof(Image));
             }
         }
 
@@ -101,7 +101,7 @@ namespace EssentialUIKit.Models.History
             set
             {
                 this.transactionAmount = value;
-                this.OnPropertyChanged("TransactionAmount");
+                this.OnPropertyChanged(nameof(TransactionAmount));
             }
         }
 
@@ -118,7 +118,7 @@ namespace EssentialUIKit.Models.History
             set
             {
                 this.isCredited = value;
-                this.OnPropertyChanged("IsCredited");
+                this.OnPropertyChanged(nameof(IsCredited));
             }
         }
 
@@ -135,7 +135,7 @@ namespace EssentialUIKit.Models.History
             set
             {
                 this.date = value;
-                this.OnPropertyChanged("Date");
+                this.OnPropertyChanged(nameof(Date));
             }
         }
 

@@ -1,4 +1,4 @@
-using EssentialUIKit.Views.Settings;
+﻿using EssentialUIKit.Views.Settings;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

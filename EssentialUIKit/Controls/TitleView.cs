@@ -14,37 +14,37 @@ namespace EssentialUIKit.Controls
         /// <summary>
         /// Gets or sets the LeadingViewProperty, and it is a bindable property.
         /// </summary>
-        public static readonly BindableProperty LeadingViewProperty = BindableProperty.Create("LeadingView", typeof(View), typeof(TitleView), new ContentView(), BindingMode.Default, null, OnLeadingViewPropertyChanged);
+        public static readonly BindableProperty LeadingViewProperty = BindableProperty.Create(nameof(LeadingView), typeof(View), typeof(TitleView), new ContentView(), BindingMode.Default, null, OnLeadingViewPropertyChanged);
 
         /// <summary>
         /// Gets or sets the TrailingViewProperty, and it is a bindable property.
         /// </summary>
-        public static readonly BindableProperty TrailingViewProperty = BindableProperty.Create("TrailingView", typeof(View), typeof(TitleView), new ContentView(), BindingMode.Default, null, OnTrailingViewPropertyChanged);
+        public static readonly BindableProperty TrailingViewProperty = BindableProperty.Create(nameof(TrailingView), typeof(View), typeof(TitleView), new ContentView(), BindingMode.Default, null, OnTrailingViewPropertyChanged);
 
         /// <summary>
         /// Gets or sets the ContentProperty, and it is a bindable property.
         /// </summary>
-        public static readonly BindableProperty ContentProperty = BindableProperty.Create("Content", typeof(View), typeof(TitleView), new ContentView(), BindingMode.Default, null, OnContentPropertyChanged);
+        public static readonly BindableProperty ContentProperty = BindableProperty.Create(nameof(Content), typeof(View), typeof(TitleView), new ContentView(), BindingMode.Default, null, OnContentPropertyChanged);
 
         /// <summary>
         /// Gets or sets the TitleProperty, and it is a bindable property.
         /// </summary>
-        public static readonly BindableProperty TitleProperty = BindableProperty.Create("Title", typeof(string), typeof(TitleView), string.Empty, BindingMode.Default, null, OnTitlePropertyChanged);
+        public static readonly BindableProperty TitleProperty = BindableProperty.Create(nameof(Title), typeof(string), typeof(TitleView), string.Empty, BindingMode.Default, null, OnTitlePropertyChanged);
 
         /// <summary>
         /// Gets or sets the FontFamilyProperty, and it is a bindable property.
         /// </summary>
-        public static readonly BindableProperty FontFamilyProperty = BindableProperty.Create("FontFamily", typeof(string), typeof(TitleView), string.Empty, BindingMode.Default, null, OnFontFamilyPropertyChanged);
+        public static readonly BindableProperty FontFamilyProperty = BindableProperty.Create(nameof(FontFamily), typeof(string), typeof(TitleView), string.Empty, BindingMode.Default, null, OnFontFamilyPropertyChanged);
 
         /// <summary>
         /// Gets or sets the FontAttributesProperty, and it is a bindable property.
         /// </summary>
-        public static readonly BindableProperty FontAttributesProperty = BindableProperty.Create("FontAttributes", typeof(FontAttributes), typeof(TitleView), FontAttributes.None, BindingMode.Default, null, OnFontAttributesPropertyChanged);
+        public static readonly BindableProperty FontAttributesProperty = BindableProperty.Create(nameof(FontAttributes), typeof(FontAttributes), typeof(TitleView), FontAttributes.None, BindingMode.Default, null, OnFontAttributesPropertyChanged);
 
         /// <summary>
         /// Gets or sets the FontSizeProperty, and it is a bindable property.
         /// </summary>
-        public static readonly BindableProperty FontSizeProperty = BindableProperty.Create("FontSize", typeof(double), typeof(TitleView), 16d, BindingMode.Default, null, OnFontSizePropertyChanged);
+        public static readonly BindableProperty FontSizeProperty = BindableProperty.Create(nameof(FontSize), typeof(double), typeof(TitleView), 16d, BindingMode.Default, null, OnFontSizePropertyChanged);
 
         #endregion
 

@@ -18,7 +18,7 @@ namespace EssentialUIKit.Controls
         /// Gets or sets the text value used to search.
         /// </summary>
         public static readonly BindableProperty SearchTextProperty = 
-            BindableProperty.Create("SearchText", typeof(string), typeof(SearchableListView), null, BindingMode.Default, null, OnSearchTextChanged);
+            BindableProperty.Create(nameof(SearchText), typeof(string), typeof(SearchableListView), null, BindingMode.Default, null, OnSearchTextChanged);
 
         /// <summary>
         /// Gets or sets the text value used to search.
@@ -26,20 +26,7 @@ namespace EssentialUIKit.Controls
         private string searchText;
 
         #endregion
-
-        #region Contructor
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="SearchableListView" /> class.
-        /// </summary>
-        public SearchableListView()
-        {
-            this.SelectionChanged -= this.CustomListView_SelectionChanged;
-            this.SelectionChanged += this.CustomListView_SelectionChanged;
-        }
-
-        #endregion
-
+        
         #region Property
 
         /// <summary>
@@ -73,45 +60,20 @@ namespace EssentialUIKit.Controls
 
             listView.RefreshView();
         }
-
-        /// <summary>
-        /// Invoked when list view selection items are changed.
-        /// </summary>
-        /// <param name="sender">The ListView</param>
-        /// <param name="e">Item selection changed event args</param>
-        private async void CustomListView_SelectionChanged(object sender, ItemSelectionChangedEventArgs e)
-        {
-            if (Application.Current.Resources.TryGetValue("Gray-100", out var retVal))
-            {
-            }
-
-            this.SelectionBackgroundColor = (Color)retVal;
-            await Task.Delay(100);
-            this.SelectionBackgroundColor = Color.Transparent;
-            this.SelectedItems.Clear();
-        }
-
+        
         /// <summary>
         /// Filtering the list view items based on the search text.
         /// </summary>
         /// <param name="obj">The list view item</param>
         /// <returns>Returns the filtered item</returns>
-        private bool FilterContacts(object obj)
+        public virtual bool FilterContacts(object obj)
         {
-            var taskInfo = obj as ChatDetail;
-            var message = taskInfo.Message;
-            if (taskInfo.MessageType != "Text")
+            if (this.SearchText == null)
             {
-                message = string.Empty;
+                return false;
             }
 
-            if (this.searchText == null || taskInfo.SenderName == null || message == null)
-            {
-                return true;
-            }
-
-            return taskInfo.SenderName.ToLower().Contains(this.searchText.ToLower())
-                   || message.ToLower().Contains(this.searchText.ToLower());
+            return true;
         }
 
         #endregion

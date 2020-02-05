@@ -21,7 +21,7 @@ namespace EssentialUIKit.Behaviors
         /// Gets or sets the CommandProperty, and it is a bindable property.
         /// </summary>
         public static readonly BindableProperty CommandProperty =
-            BindableProperty.Create("Command", typeof(ICommand), typeof(SfComboBoxDropDownBehavior));
+            BindableProperty.Create(nameof(Command), typeof(ICommand), typeof(SfComboBoxDropDownBehavior));
         #endregion
 
         #region Field

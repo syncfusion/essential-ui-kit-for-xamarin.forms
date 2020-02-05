@@ -15,7 +15,7 @@ namespace EssentialUIKit.Views.Shopping
         /// Gets or sets the ActionTextProperty, and it is a bindable property.
         /// </summary>
         public static readonly BindableProperty ActionTextProperty =
-            BindableProperty.Create("ActionText", typeof(string), typeof(PriceDetailView));
+            BindableProperty.Create(nameof(ActionText), typeof(string), typeof(PriceDetailView));
 
         #region Constructor
 

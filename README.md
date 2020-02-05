@@ -90,7 +90,7 @@ We follow the style used by the .NET Foundation, with a few exceptions:
 <br/><br/>
 
 <p align="center">
-    <img src="Images/xamarin-forms-ui-template-navigation-page.jpg" alt="Image"/>
+    <img src="Images/xamarin-forms-ui-template-navigation-page.png" alt="Image"/>
 </p>
 <br/><br/>
 
@@ -101,6 +101,11 @@ We follow the style used by the .NET Foundation, with a few exceptions:
 
 <p align="center">
     <img src="Images/xamarin-forms-ui-template-about-page.jpg" alt="Image"/>
+</p>
+<br/><br/>
+
+<p align="center">
+    <img src="Images/xamarin-forms-ui-template-notification-page.png" alt="Image"/>
 </p>
 
 <p align="center"> <b> Install the app to preview the templates instantly </b> </p>
