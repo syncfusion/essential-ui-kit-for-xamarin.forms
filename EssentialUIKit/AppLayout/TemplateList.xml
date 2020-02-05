@@ -64,7 +64,7 @@
     <Page Name="Navigation Tile Card Page" Description="This page displays items in a tile layout. Each tile contains an image, description, and the overall rating of an item." PageName="Views.Navigation.NavigationTileCardPage"/>
     <Page Name="Songs Page"  Description="This page displays items in a tile layout. Each tile contains an image, the name of a song, and its composer." PageName="Views.Navigation.SongsPage"/>
     <Page Name="FAQs Page" IsNew="True" Description="This page displays items in an expander layout. Each item contains a question and answer for a  FAQ section." PageName="Views.Navigation.FAQPage"/>
-    <Page Name="Contact Page" IsNew="True" Description="This page displays a list of contacts and avatars." PageName="Views.Navigation.ContactsPage"/>
+    <Page Name="Contacts List" IsNew="True" Description="This page displays a list of contacts and avatars." PageName="Views.Navigation.ContactsPage"/>
     <Page Name="Songs Play List" IsNew="True" Description="This page displays items in a tile layout. Each tile contains the name of a song and its composer, and a menu icon." PageName="Views.Navigation.SongsPlayListPage"/>
     <Page Name="Movies List" IsNew="True" Description="This page displays items in a tile layout. Each tile contains the name, year of release, and ratings of a movie." PageName="Views.Navigation.MoviesListPage"/>
     <Page Name="Names List" IsNew="True" Description="This page displays group names as a list." PageName="Views.Navigation.NamesListPage"/>
