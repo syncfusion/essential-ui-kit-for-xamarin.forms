@@ -29,7 +29,7 @@ namespace EssentialUIKit.Converters
                 return "Today";
             }
 
-            return dateTime.Day == currentTime.AddDays(-1).Day ? "Yesterday" : dateTime.ToString("MMMM dd, yyyy");
+            return dateTime.Day == currentTime.AddDays(-1).Day ? "Yesterday" : dateTime.ToString("MMMM dd, yyyy", CultureInfo.CurrentCulture);
         }
 
         /// <summary>

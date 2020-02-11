@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Globalization;
 using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
 using EssentialUIKit.Models.Tracking;
@@ -127,9 +128,10 @@ namespace EssentialUIKit.ViewModels.Tracking
         {
             get
             {
-                return DateTime.MinValue != Convert.ToDateTime(this.StringDuration)
-                    ? Convert.ToDateTime(this.StringDuration)
-                    : this.duration;
+                DateTime stringDuration = Convert.ToDateTime(this.StringDuration, 
+                    CultureInfo.CurrentCulture);
+                return DateTime.MinValue != stringDuration? stringDuration : this.duration;
+
             }
 
             set
@@ -168,7 +170,7 @@ namespace EssentialUIKit.ViewModels.Tracking
 
             foreach (var stationInfo in this.StationInfoCollection)
             {
-                var station = this.CreateStationInfo(stationInfo.Name, stationInfo.ArrivalDateTime.ToString(), double.Parse(stationInfo.Distance));
+                var station = this.CreateStationInfo(stationInfo.Name, stationInfo.ArrivalDateTime.ToString(CultureInfo.CurrentCulture), double.Parse(stationInfo.Distance, CultureInfo.CurrentCulture));
                 stationInfo.Name = station.Name;
                 stationInfo.Arrival = station.Arrival;
                 stationInfo.Departure = station.Departure;
@@ -220,7 +222,7 @@ namespace EssentialUIKit.ViewModels.Tracking
                 Departure = dateTimeArr.AddMinutes(2).TimeOfDay.ToString().Remove(5),
                 ArrivalDateTime = dateTimeArr,
                 DepartureDateTime = dateTimeArr.AddMinutes(2),
-                Distance = "Station at " + toDistance.ToString() + " km",
+                Distance = "Station at " + toDistance.ToString(CultureInfo.CurrentCulture) + " km",
                 Status = currentStatus
             };
 

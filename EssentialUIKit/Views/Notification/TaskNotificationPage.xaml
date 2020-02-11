@@ -1,0 +1,197 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:controls="clr-namespace:EssentialUIKit.Controls"
+             xmlns:converter="clr-namespace:EssentialUIKit.Converters"
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+             xmlns:sfavatar="clr-namespace:Syncfusion.XForms.AvatarView;assembly=Syncfusion.Core.XForms"
+             x:Class="EssentialUIKit.Views.Notification.TaskNotificationPage"
+             x:Name="taskNotificationPage"
+             BackgroundColor="{DynamicResource Gray-White}"
+             NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <converter:BooleanToColorConverter x:Key="BoolToColorConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.ControlTemplate>
+        <ControlTemplate>
+            <StackLayout Spacing="0">
+                
+                <!--  Title View  -->
+                <controls:TitleView Title="Notifications" BackgroundColor="{DynamicResource Gray-White} ">
+                    
+                    <!-- Back button -->
+                    <controls:TitleView.LeadingView>
+                        <buttons:SfButton Text="{StaticResource Back}" Style="{StaticResource IconButtonStyle}" CornerRadius="4"
+                                          Command="{Binding Path=BindingContext.BackCommand, Source={x:Reference taskNotificationPage}}" />
+                    </controls:TitleView.LeadingView>
+
+                    <!-- More button -->
+                    <controls:TitleView.TrailingView>
+                        <buttons:SfButton Text="{StaticResource More}" Style="{StaticResource IconButtonStyle}" CornerRadius="4"
+                                          Command="{Binding Path=BindingContext.MenuCommand, Source={x:Reference taskNotificationPage}}" />
+                    </controls:TitleView.TrailingView>
+                    
+                </controls:TitleView>
+                <ContentPresenter />
+                
+            </StackLayout>
+        </ControlTemplate>
+    </ContentPage.ControlTemplate>
+
+    <ContentPage.Content>
+        <Grid RowSpacing="0" ColumnSpacing="0">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" >
+                <Label Margin="16,16,16,8"
+                       Text="RECENT"
+                       TextColor="{DynamicResource Gray-900}"
+                       FontSize="12"
+                       FontFamily="{DynamicResource Montserrat-SemiBold}"
+                       HorizontalOptions="Start"/>
+
+                <buttons:SfButton Margin="16,16,16,8"
+                                  BorderWidth="0" 
+                                  WidthRequest="134" 
+                                  HeightRequest="18"
+                                  BackgroundColor="{DynamicResource Gray-White}" 
+                                  TextColor="{DynamicResource Gray-600}"
+                                  CornerRadius="4"
+                                  HorizontalOptions="End">
+                    
+                    <Label Text="MARK ALL AS READ"
+                           TextColor="{DynamicResource Link}"
+                           FontSize="12"
+                           VerticalTextAlignment="Center"
+                           HorizontalTextAlignment="Center"
+                           LineHeight="{OnPlatform Android=1.5,Default=-1}"
+                           FontFamily="{DynamicResource Montserrat-SemiBold}" />
+                    
+                </buttons:SfButton>
+            </Grid>
+
+            <StackLayout Grid.Row="1" Spacing="0">
+                <listView:SfListView x:Name="TaskNotifications"
+                                     IsScrollBarVisible="False"
+                                     AllowSwiping="True"
+                                     AutoFitMode="Height"
+                                     ItemSpacing="0"
+                                     SelectionGesture="Tap"
+                                     SelectionMode="Single"
+                                     VerticalOptions="FillAndExpand"
+                                     TapCommand="{Binding ItemTappedCommand}"
+                                     ItemsSource="{Binding TaskNotificationsList}"
+                                     SelectionBackgroundColor="Transparent">
+
+                    <listView:SfListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid RowSpacing="0" ColumnSpacing="0" HeightRequest="101" 
+                                      BackgroundColor="{Binding IsRead, Converter={x:StaticResource BoolToColorConverter}, ConverterParameter=7}">
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <!-- User Name Avatar -->
+                                    <sfavatar:SfAvatarView Grid.RowSpan="4" 
+                                                           Margin="16,12,8,41"
+                                                           AvatarName="{Binding UserName}"
+                                                           InitialsColor="{DynamicResource Gray-White}"
+                                                           InitialsType="DoubleCharacter"
+                                                           BackgroundColor="{Binding BackgroundColor}"
+                                                           AvatarShape="Circle"
+                                                           AvatarSize="Medium"
+                                                           VerticalOptions="Start"
+                                                           WidthRequest="48"
+                                                           HeightRequest="48"
+                                                           BorderWidth="0" />
+
+                                    <!-- Description -->
+                                    <Label Grid.Column="1"
+                                           Margin="8,12,16,0"
+                                           Text="{Binding Description}"
+                                           TextColor="{DynamicResource Gray-900}"
+                                           FontSize="16"
+                                           LineHeight="{OnPlatform Android=1.5,Default=-1}"
+                                           LineBreakMode="TailTruncation"
+                                           FontFamily="{DynamicResource Montserrat-SemiBold}"/>
+
+                                    <!-- Detailed Description -->
+                                    <Label Grid.Row="1"
+                                           Grid.Column="1"
+                                           Margin="8,0,16,8"
+                                           Text="{Binding Detail}"
+                                           TextColor="{DynamicResource Gray-700}"
+                                           FontSize="14"
+                                           LineHeight="{OnPlatform Android=1.5,Default=-1}"
+                                           LineBreakMode="TailTruncation"
+                                           FontFamily="{DynamicResource Montserrat-medium}"
+                                           HeightRequest="21" />
+
+                                    <!-- Task-ID -->
+                                    <buttons:SfButton Grid.Row="2" 
+                                                      Grid.Column="1" 
+                                                      Margin="0,0,0,12" 
+                                                      CornerRadius="12" 
+                                                      BackgroundColor="{DynamicResource Link}"
+                                                      Opacity="0.08"
+                                                      HorizontalOptions="Start" 
+                                                      WidthRequest="100"
+                                                      HeightRequest="24"/>
+
+                                        <Label Text="{Binding TaskID}" Grid.Row="2" Grid.Column="1" Margin="13,3,13,15"
+                                               TextColor="{DynamicResource Link}"
+                                               FontSize="12"  HorizontalOptions="Start"
+                                               LineHeight="{OnPlatform Android=1.5,Default=-1}"
+                                               VerticalTextAlignment="Center"
+                                               HorizontalTextAlignment="Center"
+                                               FontFamily="{DynamicResource Montserrat-SemiBold}" />
+
+                                    <!-- Time -->
+                                    <Label Grid.RowSpan="4" 
+                                           Grid.Column="1"
+                                           Margin="0,68,16,15"
+                                           Text="{Binding Time}"
+                                           TextColor="{DynamicResource Gray-700}"
+                                           FontSize="12"
+                                           LineHeight="{OnPlatform Android=1.5,Default=-1}"
+                                           FontFamily="{DynamicResource Montserrat-Medium}"
+                                           HorizontalOptions="End"
+                                           HeightRequest="18" />
+
+                                    <!-- Seperator -->
+                                    <BoxView Grid.Row="3" Grid.ColumnSpan="2" Style="{StaticResource SeparatorStyle}" />
+
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </listView:SfListView.ItemTemplate>
+                </listView:SfListView>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

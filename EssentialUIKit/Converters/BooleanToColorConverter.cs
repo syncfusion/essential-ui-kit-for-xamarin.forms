@@ -47,12 +47,21 @@ namespace EssentialUIKit.Converters
                 case "4":
                     Application.Current.Resources.TryGetValue("Gray-600", out var outVal);
                     return (Color) outVal;
-                case "5" when (bool) value:
+                case "5" when (bool)value:
                     Application.Current.Resources.TryGetValue("Green", out var retGreen);
                     return (Color)retGreen;
                 case "5":
                     Application.Current.Resources.TryGetValue("Red", out var retRed);
                     return (Color)retRed;
+                case "6" when (bool)value:
+                    Application.Current.Resources.TryGetValue("Gray-300", out var gray300);
+                    return (Color)gray300;
+                case "6":
+                    Application.Current.Resources.TryGetValue("Secondary", out var secondary);
+                    return (Color)secondary;
+                case "7" when !(bool)value:
+                    Application.Current.Resources.TryGetValue("Gray-100", out var gray100);
+                    return (Color)gray100;
                 default:
                     return Color.Transparent;
             }

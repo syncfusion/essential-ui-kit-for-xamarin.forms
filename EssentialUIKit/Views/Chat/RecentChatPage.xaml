@@ -124,7 +124,7 @@
             <BoxView BackgroundColor="{DynamicResource Gray-200}" HeightRequest="1" />
 
             <!--  Searchable List view  -->
-            <controls:SearchableListView
+            <controls:SearchableChatList
                 x:Name="ListView"
                 AllowSwiping="True"
                 AutoFitMode="Height"
@@ -137,7 +137,7 @@
                 SwipeOffset="156"
                 VerticalOptions="FillAndExpand">
 
-                <controls:SearchableListView.ItemTemplate>
+                <controls:SearchableChatList.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <ViewCell.View>
@@ -255,9 +255,9 @@
                             </ViewCell.View>
                         </ViewCell>
                     </DataTemplate>
-                </controls:SearchableListView.ItemTemplate>
+                </controls:SearchableChatList.ItemTemplate>
 
-                <controls:SearchableListView.RightSwipeTemplate>
+                <controls:SearchableChatList.RightSwipeTemplate>
                     <DataTemplate>
                         <border:SfBorder
                             Margin="0,8"
@@ -309,9 +309,9 @@
                             </Grid>
                         </border:SfBorder>
                     </DataTemplate>
-                </controls:SearchableListView.RightSwipeTemplate>
+                </controls:SearchableChatList.RightSwipeTemplate>
 
-            </controls:SearchableListView>
+            </controls:SearchableChatList>
 
         </StackLayout>
     </ContentPage.Content>

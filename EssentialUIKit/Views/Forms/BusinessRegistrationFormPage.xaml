@@ -36,7 +36,7 @@
                     TextColor="{DynamicResource Gray-900}"
                     FontFamily="{StaticResource Montserrat-Medium}"
                     FontSize="16"
-                    Padding="0,20,0,20"
+                    Margin="0,20"
                     HorizontalOptions="CenterAndExpand" />
 
                 <BoxView HeightRequest="1" BackgroundColor="{DynamicResource Gray-200}"/>

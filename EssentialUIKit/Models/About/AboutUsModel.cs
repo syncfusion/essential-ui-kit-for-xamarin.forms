@@ -44,7 +44,7 @@ namespace EssentialUIKit.Models.About
             set
             {
                 this.employeeName = value;
-                this.OnPropertyChanged("EmployeeName");
+                this.OnPropertyChanged(nameof(EmployeeName));
             }
         }
 
@@ -62,7 +62,7 @@ namespace EssentialUIKit.Models.About
             set
             {
                 this.designation = value;
-                this.OnPropertyChanged("Designation");
+                this.OnPropertyChanged(nameof(Designation));
             }
         }
 
@@ -80,7 +80,7 @@ namespace EssentialUIKit.Models.About
             set
             {
                 this.image = value;
-                this.OnPropertyChanged("Image");
+                this.OnPropertyChanged(nameof(Image));
             }
         }
 

@@ -18,19 +18,19 @@ namespace EssentialUIKit.Behaviors
         /// Gets or sets the CommandProperty, and it is a bindable property.
         /// </summary>
         public static readonly BindableProperty CommandProperty =
-            BindableProperty.Create("Command", typeof(ICommand), typeof(SegmentedControlCommandBehavior));
+            BindableProperty.Create(nameof(Command), typeof(ICommand), typeof(SegmentedControlCommandBehavior));
 
         /// <summary>
         /// Gets or sets the CommandParameterProperty, and it is a bindable property.
         /// </summary>
         public static readonly BindableProperty CommandParameterProperty =
-            BindableProperty.Create("CommandParameter", typeof(object), typeof(SegmentedControlCommandBehavior));
+            BindableProperty.Create(nameof(CommandParameter), typeof(object), typeof(SegmentedControlCommandBehavior));
 
         /// <summary>
         /// Gets or sets the ParentBindingContextProperty, and it is a bindable property.
         /// </summary>
         public static readonly BindableProperty ParentBindingContextProperty =
-            BindableProperty.Create("ParentBindingContext", typeof(object), typeof(SegmentedControlCommandBehavior));
+            BindableProperty.Create(nameof(ParentBindingContext), typeof(object), typeof(SegmentedControlCommandBehavior));
 
         /// <summary>
         /// Gets or sets the Command.

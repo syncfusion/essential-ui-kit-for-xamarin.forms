@@ -17,7 +17,6 @@
     <Color x:Key="Orange">#ff844a</Color>
     <Color x:Key="Blue">#4acaff</Color>
     <Color x:Key="HyperLink">#567cd7</Color>
-    <Color x:Key="FacebookBlue">#4267B2</Color>
 
     <Color x:Key="Gray-100">#f6f7f8</Color>
     <Color x:Key="Gray-200">#ebecef</Color>

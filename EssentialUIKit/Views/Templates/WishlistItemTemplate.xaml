@@ -179,16 +179,18 @@
                 Command="{Binding Path=ParentBindingContext.AddToCartCommand, Source={x:Reference wishlistItemTemplate}}"
                 CommandParameter="{Binding .}"
                 CornerRadius="4"
-                FontFamily="{StaticResource Montserrat-SemiBold}"
-                FontSize="14"
                 HeightRequest="32"
+                WidthRequest="115"
                 HorizontalOptions="Start"
                 HorizontalTextAlignment="Center"
                 Style="{StaticResource SfButtonStyle}"
-                Text="Add to Cart"
-                TextColor="{DynamicResource HyperLink}"
                 VerticalOptions="Center"
-                VerticalTextAlignment="Center" />
+                VerticalTextAlignment="Center">
+                
+                <Label  Text="Add to Cart" Margin="16,5" LineHeight="{OnPlatform Android=1.5, Default=-1}"
+                        FontSize="14"  FontFamily="{StaticResource Montserrat-SemiBold}" 
+                        TextColor="{DynamicResource HyperLink}" BackgroundColor="Transparent"/>
+            </buttons:SfButton> 
         </StackLayout>
 
     </Grid>

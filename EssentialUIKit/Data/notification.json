@@ -1,0 +1,94 @@
+{
+  "recentSocialNotificationList": [
+    {
+      "name": "John Doe sent you a friend request.",
+      "receivedTime": "2 mins ago",
+      "isRead": "false"
+    },
+    {
+      "name": "You have a new friend suggestion: John Doe",
+      "receivedTime": "5 mins ago",
+      "isRead": "false"
+    }
+  ],
+
+  "earlierSocialNotificationList": [
+    {
+      "name": "Milton Lane invited you to like Syncfusion.",
+      "receivedTime": "4 hours ago",
+      "isRead": "true"
+    },
+    {
+      "name": "Stella Blake commented on your post.",
+      "receivedTime": "8 hours ago",
+      "isRead": "false"
+    },
+    {
+      "name": "Rosetta Lane and Luella Green like your photo.",
+      "receivedTime": "9 hours ago",
+      "isRead": "true"
+    },
+    {
+      "name": "Darrell Silva likes your photo.",
+      "receivedTime": "9 hours ago",
+      "isRead": "true"
+    }
+  ],
+
+  "taskNotificationPageList": [
+    {
+      "userName": "AB",
+      "backgroundColor": "#837bff",
+      "description": "Provide banner image for new control",
+      "detail": "Please review this image and send me your feedback.",
+      "taskID": "GRAP-13578",
+      "time": "2 mins ago",
+      "isRead": "false"
+    },
+    {
+      "userName": "BR",
+      "backgroundColor": "#678cc8",
+      "description": "Provide banner image for new control",
+      "detail": "Sarah Pyke attached new image",
+      "taskID": "GRAP-13578",
+      "time": "2 mins ago",
+      "isRead": "false"
+    },
+    {
+      "userName": "DM",
+      "backgroundColor": "#29aaa0",
+      "description": "Need .gif image for attached document",
+      "detail": "Larry Burton updated images in task",
+      "taskID": "GRAP-13934",
+      "time": "2 mins ago",
+      "isRead": "true"
+    },
+    {
+      "userName": "ER",
+      "backgroundColor": "#db7faa",
+      "description": "Provide banner image for new control",
+      "detail": "Please review this image and send me your feedback.",
+      "taskID": "GRAP-13578",
+      "time": "2 mins ago",
+      "isRead": "false"
+    },
+    {
+      "userName": "EN",
+      "backgroundColor": "#dc9737",
+      "description": "Provide banner image for new control",
+      "detail": "Larry Burton updated images in task",
+      "taskID": "GRAP-13578",
+      "time": "2 mins ago",
+      "isRead": "true"
+    },
+    {
+      "userName": "DM",
+      "backgroundColor": "#a8d35f",
+      "description": "Need .gif image for attached document",
+      "detail": "Larry Burton updated images in task",
+      "taskID": "GRAP-13934",
+      "time": "2 mins ago",
+      "isRead": "true"
+    }
+  ]
+}

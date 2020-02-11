@@ -91,9 +91,6 @@
                             Placeholder="Search here"
                             Style="{StaticResource SearchEntryStyle}"/>
                     </border:SfBorder>
-
-                    <BoxView Style="{StaticResource BoxViewStyle}" />
-
                 </StackLayout>
 
                 <!--  Search Button  -->
@@ -138,7 +135,7 @@
                                                         <UriImageSource
                                                              CacheValidity="14"
                                                              CachingEnabled="true"
-                                                             Uri="{Binding ItemImage}"/>
+                                                             Uri="{Binding SongImage}"/>
                                                     </Image.Source>
                                                 </Image>
                                             </border:SfBorder>

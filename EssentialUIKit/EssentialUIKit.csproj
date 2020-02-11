@@ -16,25 +16,25 @@
     <PackageReference Include="SkiaSharp.Extended" Version="1.60.0" />
     <PackageReference Include="SkiaSharp.Svg" Version="1.60.0" />
     <PackageReference Include="SkiaSharp.Views.Forms" Version="1.68.0" />
-    <PackageReference Include="Syncfusion.Xamarin.Buttons" Version="17.2.0.49" />
-    <PackageReference Include="Syncfusion.Xamarin.Cards" Version="17.2.0.49" />
-    <PackageReference Include="Syncfusion.Xamarin.DataSource" Version="17.2.0.49" />
-    <PackageReference Include="Syncfusion.Xamarin.GridCommon" Version="17.2.0.49" />
-    <PackageReference Include="Syncfusion.Xamarin.SfCalendar" Version="17.2.0.49" />
-    <PackageReference Include="Syncfusion.Xamarin.SfChart" Version="17.2.0.49" />
-    <PackageReference Include="Syncfusion.Xamarin.SfComboBox" Version="17.2.0.49" />
-    <PackageReference Include="Syncfusion.Xamarin.SfListView" Version="17.2.0.49" />
-    <PackageReference Include="Syncfusion.Xamarin.SfMaps" Version="17.2.0.49" />
-    <PackageReference Include="Syncfusion.Xamarin.SfParallaxView" Version="17.2.0.49" />
-    <PackageReference Include="Syncfusion.Xamarin.SfProgressBar" Version="17.2.0.49" />
-    <PackageReference Include="Syncfusion.Xamarin.SfRating" Version="17.2.0.49" />
-    <PackageReference Include="Syncfusion.Xamarin.SfRotator" Version="17.2.0.49" />
-    <PackageReference Include="Syncfusion.Xamarin.SfPopupLayout" Version="17.2.0.49" />
-    <PackageReference Include="Syncfusion.Xamarin.Expander" Version="17.2.0.49" />
-    <PackageReference Include="Syncfusion.Xamarin.SfBadgeView" Version="17.2.0.49" />
-    <PackageReference Include="Syncfusion.Xamarin.SfTabView" Version="17.2.0.49" />
+    <PackageReference Include="Syncfusion.Xamarin.Buttons" Version="17.4.0.44" />
+    <PackageReference Include="Syncfusion.Xamarin.Cards" Version="17.4.0.44" />
+    <PackageReference Include="Syncfusion.Xamarin.DataSource" Version="17.4.0.44" />
+    <PackageReference Include="Syncfusion.Xamarin.GridCommon" Version="17.4.0.44" />
+    <PackageReference Include="Syncfusion.Xamarin.SfCalendar" Version="17.4.0.44" />
+    <PackageReference Include="Syncfusion.Xamarin.SfChart" Version="17.4.0.44" />
+    <PackageReference Include="Syncfusion.Xamarin.SfComboBox" Version="17.4.0.44" />
+    <PackageReference Include="Syncfusion.Xamarin.SfListView" Version="17.4.0.44" />
+    <PackageReference Include="Syncfusion.Xamarin.SfMaps" Version="17.4.0.44" />
+    <PackageReference Include="Syncfusion.Xamarin.SfParallaxView" Version="17.4.0.44" />
+    <PackageReference Include="Syncfusion.Xamarin.SfProgressBar" Version="17.4.0.44" />
+    <PackageReference Include="Syncfusion.Xamarin.SfRating" Version="17.4.0.44" />
+    <PackageReference Include="Syncfusion.Xamarin.SfRotator" Version="17.4.0.44" />
+    <PackageReference Include="Syncfusion.Xamarin.SfPopupLayout" Version="17.4.0.44" />
+    <PackageReference Include="Syncfusion.Xamarin.Expander" Version="17.4.0.44" />
+    <PackageReference Include="Syncfusion.Xamarin.SfBadgeView" Version="17.4.0.44" />
+    <PackageReference Include="Syncfusion.Xamarin.SfTabView" Version="17.4.0.44" />
     <PackageReference Include="Xamarin.Forms" Version="4.4.0.991265" />
-    <PackageReference Include="Syncfusion.Xamarin.Core" Version="17.3.0.9-beta" />
+    <PackageReference Include="Syncfusion.Xamarin.Core" Version="17.4.0.44" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="AppLayout\Icons\bookmark.png" />
@@ -43,6 +43,7 @@
     <None Remove="AppLayout\Icons\details.png" />
     <None Remove="AppLayout\Icons\forms.png" />
     <None Remove="AppLayout\Icons\history.png" />
+    <None Remove="AppLayout\Icons\notification.png" />
     <None Remove="AppLayout\Icons\profile.png" />
     <None Remove="AppLayout\Icons\social.png" />
     <None Remove="AppLayout\Icons\transaction.png" />
@@ -51,6 +52,7 @@
     <None Remove="DataService\trainstatus.json" />
     <None Remove="Data\ecommerce.json" />
     <None Remove="Data\navigation.json" />
+    <None Remove="Data\notification.json" />
     <None Remove="Images\ChooseGradient.svg" />
     <None Remove="Images\ConfirmGradient.svg" />
     <None Remove="Images\DeliverGradient.svg" />
@@ -84,6 +86,7 @@
     <EmbeddedResource Include="AppLayout\Icons\history.png" />
     <EmbeddedResource Include="AppLayout\Icons\log-in.png" />
     <EmbeddedResource Include="AppLayout\Icons\navigation.png" />
+    <EmbeddedResource Include="AppLayout\Icons\notification.png" />
     <EmbeddedResource Include="AppLayout\Icons\on-boarding.png" />
     <EmbeddedResource Include="AppLayout\Icons\profile.png" />
     <EmbeddedResource Include="AppLayout\Icons\setting.png" />
@@ -92,6 +95,7 @@
     <EmbeddedResource Include="AppLayout\Icons\transaction.png" />
     <EmbeddedResource Include="AppLayout\TemplateList.xml" />
     <EmbeddedResource Include="Data\deliverytracking.json" />
+    <EmbeddedResource Include="Data\notification.json" />
     <EmbeddedResource Include="Data\trainstatus.json" />
     <EmbeddedResource Include="Data\ecommerce.json" />
     <EmbeddedResource Include="Data\navigation.json" />

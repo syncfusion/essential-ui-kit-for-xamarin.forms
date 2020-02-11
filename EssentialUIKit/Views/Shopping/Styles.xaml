@@ -29,6 +29,7 @@
     <x:String x:Key="Cart">&#xe708;</x:String>
     <x:String x:Key="Bell">&#xe700;</x:String>
     <x:String x:Key="DropDownButtonIcon">&#xe70b;</x:String>
+    <Color x:Key="FacebookBlue">#4267B2</Color>
 
     <converter:DynamicResourceToColorConverter x:Key="DynamicResourceToColorConverter" />
 
