@@ -74,10 +74,13 @@ namespace EssentialUIKit.Behaviors
         /// <param name="segmentedControl">Segmented Control</param>
         protected override void OnAttachedTo(SfSegmentedControl segmentedControl)
         {
-            base.OnAttachedTo(segmentedControl);
-            this.SegmentedControl = segmentedControl;
-            segmentedControl.BindingContextChanged += this.OnBindingContextChanged;
-            segmentedControl.SelectionChanged += this.OnSelectionChanged;
+            if (segmentedControl != null)
+            {
+                base.OnAttachedTo(segmentedControl);
+                this.SegmentedControl = segmentedControl;
+                segmentedControl.BindingContextChanged += this.OnBindingContextChanged;
+                segmentedControl.SelectionChanged += this.OnSelectionChanged;
+            }
         }
 
         /// <summary>
@@ -86,10 +89,13 @@ namespace EssentialUIKit.Behaviors
         /// <param name="segmentedControl">Segmented Control</param>
         protected override void OnDetachingFrom(SfSegmentedControl segmentedControl)
         {
-            base.OnDetachingFrom(segmentedControl);
-            segmentedControl.BindingContextChanged -= this.OnBindingContextChanged;
-            segmentedControl.SelectionChanged -= this.OnSelectionChanged;
-            this.SegmentedControl = null;
+            if (segmentedControl != null)
+            {
+                base.OnDetachingFrom(segmentedControl);
+                segmentedControl.BindingContextChanged -= this.OnBindingContextChanged;
+                segmentedControl.SelectionChanged -= this.OnSelectionChanged;
+                this.SegmentedControl = null;
+            }
         }
 
         /// <summary>

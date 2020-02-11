@@ -89,19 +89,22 @@ namespace EssentialUIKit.Behaviors.OnBoarding
         /// <param name="item">The Item</param>
         public async void StartAnimation(List<View> childElement, Boarding item)
         {
-            var fadeAnimationImage = childElement[0].FadeTo(1, 250);
-            var fadeAnimationtaskTitleTime = childElement[1].FadeTo(1, 1000);
-            var translateAnimation = childElement[1].TranslateTo(0, 0, 500);
-            var scaleAnimationTitle = childElement[1].ScaleTo(1.5, 500, Easing.SinIn);
-            var fadeAnimationTaskDescriptionTime = childElement[2].FadeTo(1, 1000);
-            var translateDescriptionAnimation = childElement[2].TranslateTo(0, 0, 500);
+            if (childElement != null && item != null)
+            {
+                var fadeAnimationImage = childElement[0].FadeTo(1, 250);
+                var fadeAnimationtaskTitleTime = childElement[1].FadeTo(1, 1000);
+                var translateAnimation = childElement[1].TranslateTo(0, 0, 500);
+                var scaleAnimationTitle = childElement[1].ScaleTo(1.5, 500, Easing.SinIn);
+                var fadeAnimationTaskDescriptionTime = childElement[2].FadeTo(1, 1000);
+                var translateDescriptionAnimation = childElement[2].TranslateTo(0, 0, 500);
 
-            var animation = new Animation();
-            var scaleDownAnimation = new Animation(v => childElement[0].Scale = v, 0.5, 1, Easing.SinIn);
-            animation.Add(0, 1, scaleDownAnimation);
-            animation.Commit((item as Boarding).RotatorItem as ContentView, "animation", 16, 500);
+                var animation = new Animation();
+                var scaleDownAnimation = new Animation(v => childElement[0].Scale = v, 0.5, 1, Easing.SinIn);
+                animation.Add(0, 1, scaleDownAnimation);
+                animation.Commit((item as Boarding).RotatorItem as ContentView, "animation", 16, 500);
 
-            await Task.WhenAll(fadeAnimationTaskDescriptionTime, fadeAnimationtaskTitleTime, translateAnimation, scaleAnimationTitle, translateDescriptionAnimation);
+                await Task.WhenAll(fadeAnimationTaskDescriptionTime, fadeAnimationtaskTitleTime, translateAnimation, scaleAnimationTitle, translateDescriptionAnimation);
+            }
         }
 
         /// <summary>
@@ -110,9 +113,12 @@ namespace EssentialUIKit.Behaviors.OnBoarding
         /// <param name="rotator">The Rotator</param>
         protected override void OnAttachedTo(SfRotator rotator)
         {
-            base.OnAttachedTo(rotator);
-            rotator.SelectedIndexChanged += this.Rotator_SelectedIndexChanged;
-            rotator.BindingContextChanged += this.Rotator_BindingContextChanged;
+            if (rotator != null)
+            {
+                base.OnAttachedTo(rotator);
+                rotator.SelectedIndexChanged += this.Rotator_SelectedIndexChanged;
+                rotator.BindingContextChanged += this.Rotator_BindingContextChanged;
+            }
         }
 
         /// <summary>
@@ -121,9 +127,12 @@ namespace EssentialUIKit.Behaviors.OnBoarding
         /// <param name="rotator"></param>
         protected override void OnDetachingFrom(SfRotator rotator)
         {
-            base.OnDetachingFrom(rotator);
-            rotator.SelectedIndexChanged -= this.Rotator_SelectedIndexChanged;
-            rotator.BindingContextChanged -= this.Rotator_BindingContextChanged;
+            if (rotator != null)
+            {
+                base.OnDetachingFrom(rotator);
+                rotator.SelectedIndexChanged -= this.Rotator_SelectedIndexChanged;
+                rotator.BindingContextChanged -= this.Rotator_BindingContextChanged;
+            }
         }
 
         /// <summary>

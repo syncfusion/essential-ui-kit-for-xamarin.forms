@@ -103,18 +103,23 @@ namespace EssentialUIKit.Behaviors
         /// <param name="comboBox">The ComboBox</param>
         protected override void OnAttachedTo(SfButton button)
         {
-            base.OnAttachedTo(button);
-            button.Clicked += Button_Clicked;
+            if (button != null)
+            {
+                base.OnAttachedTo(button);
+                button.Clicked += Button_Clicked;
+            }
         }
-
         /// <summary>
         /// Invoked when exit from the view.
         /// </summary>
         /// <param name="comboBox">The comboBox</param>
         protected override void OnDetachingFrom(SfButton button)
         {
-            base.OnDetachingFrom(button);
-            button.Clicked -= Button_Clicked;
+            if (button != null)
+            {
+                base.OnDetachingFrom(button);
+                button.Clicked -= Button_Clicked;
+            }
         }
 
         /// <summary>

@@ -21,7 +21,7 @@ namespace EssentialUIKit.Controls
             {
                 var taskInfo = obj as Models.Navigation.Restaurant;
 
-                if (string.IsNullOrEmpty(taskInfo.Name) || string.IsNullOrEmpty(taskInfo.Description) ||
+                if ( taskInfo == null || string.IsNullOrEmpty(taskInfo.Name) || string.IsNullOrEmpty(taskInfo.Description) ||
                     string.IsNullOrEmpty(taskInfo.Offer) || string.IsNullOrEmpty(taskInfo.ItemRating))
                 {
                     return false;

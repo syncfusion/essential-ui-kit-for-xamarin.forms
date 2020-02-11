@@ -27,10 +27,13 @@ namespace EssentialUIKit.Behaviors.Chat
         /// <param name="bindable">The SfListView</param>
         protected override void OnAttachedTo(SfListView bindable)
         {
-            base.OnAttachedTo(bindable);
-            this.listView = bindable;
-            this.listView.Loaded += this.ListView_Loaded;
-            this.listView.DataSource.SourceCollectionChanged += this.DataSource_SourceCollectionChanged;
+            if (bindable != null)
+            {
+                base.OnAttachedTo(bindable);
+                this.listView = bindable;
+                this.listView.Loaded += this.ListView_Loaded;
+                this.listView.DataSource.SourceCollectionChanged += this.DataSource_SourceCollectionChanged;
+            }
         }
 
         /// <summary>
