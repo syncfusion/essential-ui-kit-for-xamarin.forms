@@ -35,7 +35,7 @@ namespace EssentialUIKit.Helpers
         {
             var payment = item as Payment;
 
-            if (payment.CardNumber != null)
+            if (payment != null && payment.CardNumber != null)
             {
                 return this.CardTemplate;
             }

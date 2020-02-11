@@ -38,7 +38,7 @@ namespace EssentialUIKit.ViewModels.Shopping
 
         private Command expandingCommand;
 
-        public Command cardItemCommand;
+        private Command cardItemCommand;
 
         private string cartItemCount;
 

@@ -134,23 +134,25 @@
                         <!--  Edit/Change button  -->
                         <buttons:SfButton
                             Grid.Row="0"
-                            Grid.Column="3"
+                            Grid.Column="3" 
                             Margin="{OnIdiom Default='16,16,16,0',
                                              Phone='16,2,16,2'}"
                             BorderWidth="0"
                             Command="{Binding BindingContext.EditCommand, Source={x:Reference RadioGroup}}"
-                            CornerRadius="4"
-                            FontFamily="{StaticResource Montserrat-SemiBold}"
-                            FontSize="14"
+                            CornerRadius="4"                           
                             HeightRequest="{OnIdiom Desktop=18,
                                                     Default=35}"
                             HorizontalOptions="End"
-                            Style="{StaticResource SfButtonStyle}"
-                            Text="{OnIdiom Default=Edit,
-                                           Phone=Change}"
-                            TextColor="{StaticResource HyperLink}"
+                            Style="{StaticResource SfButtonStyle}"                           
                             WidthRequest="{OnIdiom Desktop=50,
-                                                   Default=80}" />
+                                                   Default=80}" >
+                            <buttons:SfButton.Content>
+                                <Label  Text="{OnIdiom Default=Edit, Phone=Change}"
+                                        TextColor="{StaticResource HyperLink}"  
+                                        FontFamily="{StaticResource Montserrat-SemiBold}"
+                                        FontSize="14" HorizontalOptions="Center" VerticalOptions="Center"/>
+                            </buttons:SfButton.Content>
+                        </buttons:SfButton>
 
                         <!--  Address Label  -->
                         <Label

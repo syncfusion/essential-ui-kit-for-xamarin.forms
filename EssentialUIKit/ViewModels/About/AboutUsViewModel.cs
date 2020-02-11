@@ -75,6 +75,24 @@ namespace EssentialUIKit.ViewModels.About
                     EmployeeName = "Anthony",
                     Image = App.BaseImageUrl + "ProfileImage1.png",
                     Designation = "Senior Developer"
+                },
+                new AboutUsModel
+                {
+                    EmployeeName = "Danielle",
+                    Image = App.BaseImageUrl + "ProfileImage7.png",
+                    Designation = "Senior Developer"
+                },
+                 new AboutUsModel
+                {
+                    EmployeeName = "Kyle Greene",
+                    Image = App.BaseImageUrl + "ProfileImage6.png",
+                    Designation = "Senior Developer"
+                },
+                  new AboutUsModel
+                {
+                    EmployeeName = "Navya Sharma",
+                    Image = App.BaseImageUrl + "ProfileImage13.png",
+                    Designation = "Testing Engineer"
                 }
             };
             

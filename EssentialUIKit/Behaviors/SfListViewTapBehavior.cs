@@ -36,8 +36,11 @@ namespace EssentialUIKit.Behaviors
         /// <param name="bindableListView">The SfListView</param>
         protected override void OnAttachedTo(SfListView bindableListView)
         {
-            base.OnAttachedTo(bindableListView);
-            bindableListView.ItemTapped += this.BindableListView_ItemTapped;
+            if (bindableListView != null)
+            {
+                base.OnAttachedTo(bindableListView);
+                bindableListView.ItemTapped += this.BindableListView_ItemTapped;
+            }
         }
             
         /// <summary>
@@ -46,8 +49,11 @@ namespace EssentialUIKit.Behaviors
         /// <param name="bindableListView">The SfListView</param>
         protected override void OnDetachingFrom(SfListView bindableListView)
         {
-            base.OnDetachingFrom(bindableListView);
-            bindableListView.ItemTapped -= this.BindableListView_ItemTapped;
+            if (bindableListView != null)
+            {
+                base.OnDetachingFrom(bindableListView);
+                bindableListView.ItemTapped -= this.BindableListView_ItemTapped;
+            }
         }
 
         /// <summary>

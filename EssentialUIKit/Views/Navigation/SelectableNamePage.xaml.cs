@@ -1,5 +1,6 @@
 ﻿using System;
 using EssentialUIKit.DataService;
+using EssentialUIKit.ViewModels.Navigation;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
@@ -99,6 +100,22 @@ namespace EssentialUIKit.Views.Navigation
         {
             this.Search.IsVisible = false;
             this.Title.IsVisible = true;
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            // Setting IsSelected property to false at entry time.
+            if (BindingContext is SelectableNamePageViewModel)
+            {
+                var viewModel = BindingContext as SelectableNamePageViewModel;
+
+                foreach (var item in viewModel.SelectableName)
+                {
+                    item.IsSelected = false;
+                }
+            }
         }
     }
 }

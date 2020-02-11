@@ -29,9 +29,11 @@ namespace EssentialUIKit.AppLayout.Views
             TemplateHostView.HeightRequest = HostViewContainer.HeightRequest = Application.Current.MainPage.Height - 55;
             TemplateHostView.WidthRequest = HostViewContainer.WidthRequest = Application.Current.MainPage.Width;
 
-            Title.Text = selectedTemplate.Name;
-
-            this.LoadPage(selectedTemplate.PageName);
+            if (selectedTemplate != null)
+            {
+                Title.Text = selectedTemplate.Name;
+                this.LoadPage(selectedTemplate.PageName);
+            }
         }
 
         #endregion

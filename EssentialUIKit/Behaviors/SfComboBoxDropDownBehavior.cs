@@ -56,10 +56,13 @@ namespace EssentialUIKit.Behaviors
         /// <param name="comboBox">The ComboBox</param>
         protected override void OnAttachedTo(SfComboBox comboBox)
         {
-            base.OnAttachedTo(comboBox);
-            this.ComboBox = comboBox;
-            comboBox.BindingContextChanged += this.OnBindingContextChanged;
-            comboBox.SelectionChanged += this.SelectionChanged;
+            if (comboBox != null)
+            {
+                base.OnAttachedTo(comboBox);
+                this.ComboBox = comboBox;
+                comboBox.BindingContextChanged += this.OnBindingContextChanged;
+                comboBox.SelectionChanged += this.SelectionChanged;
+            }
         }
 
         /// <summary>
@@ -68,10 +71,13 @@ namespace EssentialUIKit.Behaviors
         /// <param name="comboBox">The comboBox</param>
         protected override void OnDetachingFrom(SfComboBox comboBox)
         {
-            base.OnDetachingFrom(comboBox);
-            comboBox.BindingContextChanged -= this.OnBindingContextChanged;
-            comboBox.SelectionChanged -= this.SelectionChanged;
-            this.ComboBox = null;
+            if (comboBox != null)
+            {
+                base.OnDetachingFrom(comboBox);
+                comboBox.BindingContextChanged -= this.OnBindingContextChanged;
+                comboBox.SelectionChanged -= this.SelectionChanged;
+                this.ComboBox = null;
+            }
         }
 
         /// <summary>

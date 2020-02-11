@@ -52,7 +52,7 @@ namespace EssentialUIKit.Helpers
         /// <returns>Returns the margin</returns>
         public static Thickness GetMargin(BindableObject bindable)
         {
-            return (Thickness) bindable.GetValue(MarginProperty);
+            return (Thickness)bindable?.GetValue(MarginProperty);
         }
 
         /// <summary>
@@ -62,7 +62,7 @@ namespace EssentialUIKit.Helpers
         /// <returns>Returns the padding.</returns>
         public static Thickness GetPadding(BindableObject bindable)
         {
-            return (Thickness)bindable.GetValue(PaddingProperty);
+            return (Thickness)bindable?.GetValue(PaddingProperty);
         }
 
         /// <summary>
@@ -72,7 +72,7 @@ namespace EssentialUIKit.Helpers
         /// <returns>Returns the corner radius.</returns>
         public static Thickness GetCornerRadius(BindableObject bindable)
         {
-            return (Thickness)bindable.GetValue(CornerRadiusProperty);
+            return (Thickness)bindable?.GetValue(CornerRadiusProperty);
         }
 
         /// <summary>
@@ -84,11 +84,11 @@ namespace EssentialUIKit.Helpers
         {
             if (value != ZeroThickness)
             {
-                bindable.SetValue(MarginProperty, value);
+                bindable?.SetValue(MarginProperty, value);
             }
             else
             {
-                bindable.ClearValue(MarginProperty);
+                bindable?.ClearValue(MarginProperty);
             }
         }
 
@@ -101,11 +101,11 @@ namespace EssentialUIKit.Helpers
         {
             if (value != ZeroThickness)
             {
-                bindable.SetValue(PaddingProperty, value);
+                bindable?.SetValue(PaddingProperty, value);
             }
             else
             {
-                bindable.ClearValue(PaddingProperty);
+                bindable?.ClearValue(PaddingProperty);
             }
         }
 
@@ -118,11 +118,11 @@ namespace EssentialUIKit.Helpers
         {
             if (value != ZeroThickness)
             {
-                bindable.SetValue(CornerRadiusProperty, value);
+                bindable?.SetValue(CornerRadiusProperty, value);
             }
             else
             {
-                bindable.ClearValue(CornerRadiusProperty);
+                bindable?.ClearValue(CornerRadiusProperty);
             }
         }
 

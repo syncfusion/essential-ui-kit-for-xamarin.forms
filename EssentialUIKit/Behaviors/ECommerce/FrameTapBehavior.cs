@@ -42,10 +42,13 @@ namespace EssentialUIKit.Behaviors.ECommerce
         /// <param name="bindableFrame">The Frame</param>
         protected override void OnAttachedTo(Frame bindableFrame)
         {
-            base.OnAttachedTo(bindableFrame);
-            this.tapGestureRecognizer = new TapGestureRecognizer();
-            this.tapGestureRecognizer.Tapped += this.TapGestureRecognizer_Tapped;
-            bindableFrame.GestureRecognizers.Add(this.tapGestureRecognizer);
+            if (bindableFrame != null)
+            {
+                base.OnAttachedTo(bindableFrame);
+                this.tapGestureRecognizer = new TapGestureRecognizer();
+                this.tapGestureRecognizer.Tapped += this.TapGestureRecognizer_Tapped;
+                bindableFrame.GestureRecognizers.Add(this.tapGestureRecognizer);
+            }
         }
 
         /// <summary>

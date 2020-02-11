@@ -28,10 +28,13 @@ namespace EssentialUIKit.Behaviors
         /// <param name="borderlessEntry">The borderlessEntry</param>
         protected override void OnAttachedTo(BorderlessEntry borderlessEntry)
         {
-            base.OnAttachedTo(borderlessEntry);
-            this.BorderlessEntry = borderlessEntry;
-            borderlessEntry.BindingContextChanged += this.OnBindingContextChanged;
-            borderlessEntry.TextChanged += this.OnTextChanged;
+            if (borderlessEntry != null)
+            {
+                base.OnAttachedTo(borderlessEntry);
+                this.BorderlessEntry = borderlessEntry;
+                borderlessEntry.BindingContextChanged += this.OnBindingContextChanged;
+                borderlessEntry.TextChanged += this.OnTextChanged;
+            }
         }
 
         /// <summary>
@@ -40,10 +43,13 @@ namespace EssentialUIKit.Behaviors
         /// <param name="borderlessEntry">The borderlessEntry</param>
         protected override void OnDetachingFrom(BorderlessEntry borderlessEntry)
         {
-            base.OnDetachingFrom(borderlessEntry);
-            borderlessEntry.BindingContextChanged -= this.OnBindingContextChanged;
-            borderlessEntry.TextChanged -= this.OnTextChanged;
-            this.BorderlessEntry = null;
+            if (borderlessEntry != null)
+            {
+                base.OnDetachingFrom(borderlessEntry);
+                borderlessEntry.BindingContextChanged -= this.OnBindingContextChanged;
+                borderlessEntry.TextChanged -= this.OnTextChanged;
+                this.BorderlessEntry = null;
+            }
         }
 
         /// <summary>
