@@ -115,7 +115,7 @@
                                     HeaderIconPosition="None"
                                     IsExpanded="{Binding IsExpandable}">
                                     <expander:SfExpander.Header>
-                                        <Grid Padding="16">
+                                        <Grid Padding="16" Margin="2">
 
                                             <Grid.RowDefinitions>
                                                 <RowDefinition Height="Auto" />

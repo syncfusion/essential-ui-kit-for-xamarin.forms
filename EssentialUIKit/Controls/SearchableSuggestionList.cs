@@ -23,7 +23,7 @@ namespace EssentialUIKit.Controls
             if (base.FilterContacts(obj))
             {
                 var taskInfo = obj as Models.Navigation.Suggestion;
-                if (string.IsNullOrEmpty(taskInfo.SuggestionName) || string.IsNullOrEmpty(taskInfo.Id))
+                if (taskInfo == null || string.IsNullOrEmpty(taskInfo.SuggestionName) || string.IsNullOrEmpty(taskInfo.Id))
                 {
                     return false;
                 }

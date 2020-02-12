@@ -74,11 +74,14 @@ namespace EssentialUIKit.Behaviors
         /// <param name="expander">Segmented Control</param>
         protected override void OnAttachedTo(SfExpander expander)
         {
-            base.OnAttachedTo(expander);
-            this.ExpanderControl = expander;
-            expander.BindingContextChanged += this.OnBindingContextChanged;
-            expander.Expanded += Expander_Expanded;
-            expander.Collapsed += Expander_Collapsed;
+            if (expander != null)
+            {
+                base.OnAttachedTo(expander);
+                this.ExpanderControl = expander;
+                expander.BindingContextChanged += this.OnBindingContextChanged;
+                expander.Expanded += Expander_Expanded;
+                expander.Collapsed += Expander_Collapsed;
+            }
         }
 
 
@@ -88,11 +91,14 @@ namespace EssentialUIKit.Behaviors
         /// <param name="expander">Segmented Control</param>
         protected override void OnDetachingFrom(SfExpander expander)
         {
-            base.OnDetachingFrom(expander);
-            expander.BindingContextChanged -= this.OnBindingContextChanged;
-            expander.Expanded -= this.Expander_Expanded;
-            expander.Collapsed -= Expander_Collapsed;
-            this.ExpanderControl = null;
+            if (expander != null)
+            {
+                base.OnDetachingFrom(expander);
+                expander.BindingContextChanged -= this.OnBindingContextChanged;
+                expander.Expanded -= this.Expander_Expanded;
+                expander.Collapsed -= Expander_Collapsed;
+                this.ExpanderControl = null;
+            }
         }
 
         /// <summary>

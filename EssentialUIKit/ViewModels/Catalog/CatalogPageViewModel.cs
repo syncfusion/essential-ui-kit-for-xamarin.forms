@@ -33,7 +33,7 @@ namespace EssentialUIKit.ViewModels.Catalog
 
         private Command addToCartCommand;
 
-        public Command cardItemCommand;
+        private Command cardItemCommand;
 
         private string cartItemCount;
 

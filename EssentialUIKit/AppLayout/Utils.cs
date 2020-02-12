@@ -10,28 +10,34 @@ namespace EssentialUIKit.AppLayout
     {
         public static void ApplyDarkTheme(this ResourceDictionary resources)
         {
-            var mergedDictionaries = resources.MergedDictionaries;
-            var lightTheme = mergedDictionaries.OfType<LightTheme>().FirstOrDefault();
-            if (lightTheme != null)
+            if (resources != null)
             {
-                mergedDictionaries.Remove(lightTheme);
-            }
+                var mergedDictionaries = resources.MergedDictionaries;
+                var lightTheme = mergedDictionaries.OfType<LightTheme>().FirstOrDefault();
+                if (lightTheme != null)
+                {
+                    mergedDictionaries.Remove(lightTheme);
+                }
 
-            // mergedDictionaries.Add(new DarkTheme());
-            AppSettings.Instance.IsDarkTheme = true;
+                // mergedDictionaries.Add(new DarkTheme());
+                AppSettings.Instance.IsDarkTheme = true;
+            }
         }
 
         public static void ApplyLightTheme(this ResourceDictionary resources)
         {
-            var mergedDictionaries = resources.MergedDictionaries;
+            if (resources != null)
+            {
+                var mergedDictionaries = resources.MergedDictionaries;
 
-            // var darkTheme = mergedDictionaries.OfType<DarkTheme>().FirstOrDefault();
-            // if (darkTheme != null)
-            // {
-            //     mergedDictionaries.Remove(darkTheme);
-            // }
-            mergedDictionaries.Add(new LightTheme());
-            AppSettings.Instance.IsDarkTheme = false;
+                // var darkTheme = mergedDictionaries.OfType<DarkTheme>().FirstOrDefault();
+                // if (darkTheme != null)
+                // {
+                //     mergedDictionaries.Remove(darkTheme);
+                // }
+                mergedDictionaries.Add(new LightTheme());
+                AppSettings.Instance.IsDarkTheme = false;
+            }
         }
 
         public static void ApplyColorSet(int index)

@@ -23,11 +23,11 @@ namespace EssentialUIKit.ViewModels.Catalog
 
         private ObservableCollection<Category> categories;
 
-        public Command categorySelectedCommand;
+        private Command categorySelectedCommand;
 
-        public Command expandingCommand;
+        private Command expandingCommand;
 
-        public Command notificationCommand;
+        private Command notificationCommand;
 
         private Command backButtonCommand;
 
