@@ -92,7 +92,11 @@ namespace EssentialUIKit.ViewModels.Notification
         /// <param name="selectedItem">Selected item from the list view.</param>
         private void ItemSelected(object selectedItem)
         {
-            ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as SocialNotificationModel).IsRead = true;
+            if (selectedItem != null && (selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs).ItemData is SocialNotificationModel)
+            {
+                ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as SocialNotificationModel).IsRead = true;
+            }
+         
             // Do something
         }
 
