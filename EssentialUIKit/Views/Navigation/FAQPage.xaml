@@ -80,6 +80,7 @@
                     <border:SfBorder Style="{DynamicResource SfBorderStyle}">
 
                         <controls:BorderlessEntry  x:Name="SearchEntry"
+                            Placeholder="Search here"
                             BindingContext="{x:Reference Questions}"
                             HorizontalOptions="FillAndExpand"
                             Text="{Binding SearchText, Mode=TwoWay}"

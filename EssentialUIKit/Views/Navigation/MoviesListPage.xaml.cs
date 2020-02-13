@@ -60,10 +60,8 @@ namespace EssentialUIKit.Views.Navigation
                         opacity = property / TitleView.Width;
                         Search.Opacity = opacity;
                     }, 0, TitleView.Width, Easing.Linear);
-                expandAnimation.Commit(Search, "Expand", 16, 250, Easing.Linear);
+                expandAnimation.Commit(Search, "Expand", 16, 250, Easing.Linear, (p, q) => this.SearchExpandAnimationCompleted());
             }
-
-            SearchEntry.Focus();
         }
 
         /// <summary>
@@ -99,6 +97,14 @@ namespace EssentialUIKit.Views.Navigation
         {
             this.Search.IsVisible = false;
             this.Title.IsVisible = true;
+        }
+
+        /// <summary>
+        /// Invokes when search expand Animation completed.
+        /// </summary>
+        private void SearchExpandAnimationCompleted()
+        {
+            this.SearchEntry.Focus();
         }
 
     }

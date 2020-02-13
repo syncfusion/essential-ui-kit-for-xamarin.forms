@@ -62,10 +62,8 @@ namespace EssentialUIKit.Views.Navigation
                         opacity = property / ContactsTitleView.Width;
                         Search.Opacity = opacity;
                     }, 0, ContactsTitleView.Width, Easing.Linear);
-                expandAnimation.Commit(Search, "Expand", 16, 250, Easing.Linear);
+                expandAnimation.Commit(Search, "Expand", 16, 250, Easing.Linear, (p, q) => this.SearchExpandAnimationCompleted());
             }
-
-            SearchEntry.Focus();
         }
 
         /// <summary>
@@ -103,5 +101,12 @@ namespace EssentialUIKit.Views.Navigation
             this.ContactsTitle.IsVisible = true;
         }
 
+        /// <summary>
+        /// Invokes when search expand Animation completed.
+        /// </summary>
+        private void SearchExpandAnimationCompleted()
+        {
+            this.SearchEntry.Focus();
+        }
     }
 }
