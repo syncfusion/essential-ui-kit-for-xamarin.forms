@@ -65,7 +65,6 @@
                 VerticalOptions="EndAndExpand">
                 <Label
                     Margin="0,0,4,0"
-                    HeightRequest="16"
                     Style="{StaticResource RatingLabelStyle}"
                     WidthRequest="16" />
                 <Label
@@ -86,7 +85,6 @@
 
                 <!--  Navigation icon  -->
                 <Label
-                    HeightRequest="14"
                     HorizontalOptions="EndAndExpand"
                     Style="{StaticResource RightArrowLabelStyle}" />
             </StackLayout>

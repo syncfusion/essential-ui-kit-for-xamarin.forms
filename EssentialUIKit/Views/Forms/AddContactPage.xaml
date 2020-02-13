@@ -111,8 +111,8 @@
                 <border:SfBorder BorderColor="{Binding Source={x:Reference PhoneNoEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}" Style="{StaticResource FormBorderStyle}">
                     <control:BorderlessEntry
                         x:Name="PhoneNoEntry"
-                        Keyboard="Numeric" Text="{Binding PhoneNumber}"
-                        Placeholder="Phone Number"
+                        Keyboard="Telephone" Text="{Binding PhoneNumber}"
+                        Placeholder="Phone Number" 
                         Style="{StaticResource EntryTextStyle}" />
                 </border:SfBorder>
                 <border:SfBorder BorderColor="{Binding Source={x:Reference AddressEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}" Style="{StaticResource FormBorderStyle}">
@@ -121,25 +121,57 @@
                         Placeholder="Address" Text="{Binding Address}"
                         Style="{StaticResource EntryTextStyle}" />
                 </border:SfBorder>
+                <border:SfBorder
+                    Padding="6,0,0,0"
+                    BorderColor="{Binding Source={x:Reference CountryPicker}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}"
+                    HeightRequest="40"
+                    Style="{StaticResource FormBorderStyle}">
+                    <combobox:SfComboBox
+                        x:Name="CountryPicker" 
+                        DataSource="{Binding Countries}"
+                            DisplayMemberPath="Country"
+                            SelectedItem="{Binding Country, Mode=TwoWay}"
+                        Style="{StaticResource ComboBoxStyle}"
+                        Watermark="Country">
+                        <combobox:SfComboBox.DropDownButtonSettings>
+                            <combobox:DropDownButtonSettings Width="30" Height="30">
+                                <combobox:DropDownButtonSettings.View>
+                                    <Label
+                                        Margin="0"
+                                        FontFamily="{StaticResource FontIcons}"
+                                        FontSize="25"
+                                        HorizontalTextAlignment="Center"
+                                        Text="{StaticResource DropDownButtonIcon}"
+                                        TextColor="{DynamicResource Gray-600}"
+                                        VerticalTextAlignment="Center" />
+                                </combobox:DropDownButtonSettings.View>
+                            </combobox:DropDownButtonSettings>
+                        </combobox:SfComboBox.DropDownButtonSettings>
+                    </combobox:SfComboBox>
+                </border:SfBorder>
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />
                         <ColumnDefinition Width="4" />
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
-                    <border:SfBorder BorderColor="{Binding Source={x:Reference CityEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}" Style="{StaticResource FormBorderStyle}">
+                    <border:SfBorder BorderColor="{Binding Source={x:Reference CityEntry}, Path=IsFocused,
+                        Converter={StaticResource ColorConverter}, ConverterParameter=3}" 
+                                     Style="{StaticResource FormBorderStyle}" Grid.Column="2">
                         <control:BorderlessEntry
                             x:Name="CityEntry"
                             Placeholder="City" Text="{Binding City}"
                             Style="{StaticResource EntryTextStyle}" />
                     </border:SfBorder>
                     <border:SfBorder
-                        Grid.Column="2"
+                        
                         Padding="6,0,0,0"
                         BorderColor="{Binding Source={x:Reference StatePicker}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}"
                         Style="{StaticResource FormBorderStyle}">
                         <combobox:SfComboBox
-                            x:Name="StatePicker" SelectedValue="{Binding State, Mode=TwoWay}"
+                            x:Name="StatePicker"
+                            SelectedItem="{Binding State, Mode=TwoWay}"
+                            DataSource="{Binding SelectedItem.States, Source={Reference CountryPicker}}"
                             Style="{StaticResource ComboBoxStyle}"
                             Watermark="State">
                             <combobox:SfComboBox.DropDownButtonSettings>
@@ -159,32 +191,6 @@
                         </combobox:SfComboBox>
                     </border:SfBorder>
                 </Grid>
-                <border:SfBorder
-                    Padding="6,0,0,0"
-                    BorderColor="{Binding Source={x:Reference CountryPicker}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}"
-                    HeightRequest="40"
-                    Style="{StaticResource FormBorderStyle}">
-                    <combobox:SfComboBox
-                        x:Name="CountryPicker" 
-                        SelectedValue="{Binding Country, Mode=TwoWay}"
-                        Style="{StaticResource ComboBoxStyle}"
-                        Watermark="Country">
-                        <combobox:SfComboBox.DropDownButtonSettings>
-                            <combobox:DropDownButtonSettings Width="30" Height="30">
-                                <combobox:DropDownButtonSettings.View>
-                                    <Label
-                                        Margin="0"
-                                        FontFamily="{StaticResource FontIcons}"
-                                        FontSize="25"
-                                        HorizontalTextAlignment="Center"
-                                        Text="{StaticResource DropDownButtonIcon}"
-                                        TextColor="{DynamicResource Gray-600}"
-                                        VerticalTextAlignment="Center" />
-                                </combobox:DropDownButtonSettings.View>
-                            </combobox:DropDownButtonSettings>
-                        </combobox:SfComboBox.DropDownButtonSettings>
-                    </combobox:SfComboBox>
-                </border:SfBorder>
                 <buttons:SfButton
                     HorizontalOptions="Center" Command="{Binding SubmitCommand}"
                     Style="{StaticResource SfButtonStyle}"

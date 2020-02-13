@@ -143,7 +143,7 @@
         <Setter Property="TextColor" Value="{DynamicResource Gray-700}"/>
         <Setter Property="ShowBorder" Value="False"/>
         <Setter Property="WatermarkColor" Value="{DynamicResource Gray-700}"/>
-        <Setter Property="Margin" Value="8,0"/>
+        <Setter Property="Margin" Value="8,3,0,-3"/>
         <Setter Property="HeightRequest" Value="40"/>
     </Style>
 

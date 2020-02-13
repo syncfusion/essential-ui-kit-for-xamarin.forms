@@ -145,7 +145,7 @@
                                  Style="{StaticResource BusinessFormBorderStyle}">
                     <controls:BorderlessEntry
                             x:Name="EmailEntry"
-                            Placeholder="Email"
+                            Placeholder="Email" Keyboard="Email"
                             Text="{Binding Email}"
                             Style="{StaticResource EntryTextBoxStyle}" />
                 </border:SfBorder>
@@ -161,7 +161,7 @@
 
                 <border:SfBorder BorderColor="{Binding Source={x:Reference PhoneNumberEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}" 
                                  Style="{StaticResource BusinessFormBorderStyle}">
-                    <controls:BorderlessEntry Keyboard="Numeric" MaxLength="10"
+                    <controls:BorderlessEntry Keyboard="Telephone" 
                             x:Name="PhoneNumberEntry"
                             Placeholder="Phone Number"
                             Text="{Binding PhoneNumber}"
@@ -203,7 +203,7 @@
                                 Style="{StaticResource ComboBoxStyle}"
                             DataSource="{Binding Countries}"
                             DisplayMemberPath="Country"
-                            SelectedItem="{Binding Country,Mode=TwoWay}"
+                            SelectedItem="{Binding Country, Mode=TwoWay}"
                                 Watermark="Select Country"
                                 VerticalOptions="CenterAndExpand">
                         <combobox:SfComboBox.DropDownButtonSettings>
@@ -237,8 +237,9 @@
                         <ColumnDefinition Width="4" />
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
-                    
-                    <border:SfBorder BorderColor="{Binding Source={x:Reference CityEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}" 
+
+                    <border:SfBorder 
+                            Grid.Column="2" BorderColor="{Binding Source={x:Reference CityEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}" 
                                      Style="{StaticResource BusinessFormBorderStyle}">
                         <controls:BorderlessEntry
                                 x:Name="CityEntry"
@@ -248,12 +249,11 @@
                     </border:SfBorder>
                     
                     <border:SfBorder
-                            Grid.Column="2"
                             BorderColor="{Binding Source={x:Reference StatePicker}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}"
                             Style="{StaticResource BusinessFormBorderStyle}">
                             <combobox:SfComboBox
                                     x:Name="StatePicker"
-                                    SelectedItem="{Binding State,Mode=TwoWay}"
+                                    SelectedItem="{Binding State, Mode=TwoWay}"
                                     DataSource="{Binding SelectedItem.States, Source={Reference CountryPicker}}"
                                     Style="{StaticResource ComboBoxStyle}"
                                     Watermark="State"

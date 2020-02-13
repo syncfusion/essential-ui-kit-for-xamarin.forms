@@ -167,7 +167,7 @@
                                     x:Name="EmailEntry"
                                     HeightRequest="40"
                                     HorizontalOptions="FillAndExpand"
-                                    Placeholder="Email"
+                                    Placeholder="Email" Keyboard="Email"
                                     Style="{StaticResource BorderlessEntryStyle}"
                                     VerticalOptions="CenterAndExpand" />
 

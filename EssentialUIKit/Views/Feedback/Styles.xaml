@@ -77,12 +77,10 @@
 
     <!--  Common style for SfButton  -->
     <Style x:Key="SfButtonStyle" TargetType="buttons:SfButton">
-        <Setter Property="BackgroundColor" Value="{DynamicResource Gray-White}" />
-        <Setter Property="BorderWidth" Value="2" />
-        <Setter Property="BorderColor" Value="{DynamicResource Gray-300}" />
-        <Setter Property="HorizontalOptions" Value="Center" />
-        <Setter Property="VerticalOptions" Value="Center" />
-        <Setter Property="CornerRadius" Value="4" />
+        <Setter Property="BackgroundColor" Value="Transparent" />
+        <Setter Property="TextColor" Value="{DynamicResource Gray-700}" />
+        <Setter Property="FontFamily" Value="Montserrat-Regular" />
+        <Setter Property="FontSize" Value="16" />
     </Style>
 
     <!--  Common style for Magenta buttons  -->

@@ -30,28 +30,28 @@ namespace EssentialUIKit.ViewModels.Forms
         {
             this.SubmitCommand = new Command(this.SubmitClicked);
 
-            Countries = new List<BusinessRegistrationFormModel>();
-            Countries.Add(new BusinessRegistrationFormModel()
+            Countries = new List<CountryModel>();
+            Countries.Add(new CountryModel()
             {
                 Country = "Australia",
                 States = new string[] { "Tasmania", "Victoria", "Queensland", "Northen Territory" }
             });
-            Countries.Add(new BusinessRegistrationFormModel()
+            Countries.Add(new CountryModel()
             {
                 Country = "Brazil",
                 States = new string[] { "Bahia", "Ceara", "Goias", "Maranhao" }
             });
-            Countries.Add(new BusinessRegistrationFormModel()
+            Countries.Add(new CountryModel()
             {
                 Country = "Canada",
                 States = new string[] { "Manitoba", "Ontario", "Quebec", "Yukon" }
             });
-            Countries.Add(new BusinessRegistrationFormModel()
+            Countries.Add(new CountryModel()
             {
                 Country = "India",
                 States = new string[] { "Assam", "Gujarat", "Haryana", "Tamil Nadu" }
             });
-            Countries.Add(new BusinessRegistrationFormModel()
+            Countries.Add(new CountryModel()
             {
                 Country = "USA",
                 States = new string[] { "California", "Florida", "New York", "Washington" }
@@ -125,7 +125,7 @@ namespace EssentialUIKit.ViewModels.Forms
         /// <summary>
         /// Gets or sets the collection property, which contains the countries data. 
         /// </summary>
-        public List<BusinessRegistrationFormModel> Countries { get; set; }
+        public List<CountryModel> Countries { get; set; }
 
 
         #endregion 

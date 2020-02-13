@@ -6,7 +6,7 @@ namespace EssentialUIKit.Models
     /// Model for SocialProfile
     /// </summary>
     [Preserve(AllMembers = true)]
-    public class BusinessRegistrationFormModel
+    public class CountryModel
     {
         #region Properties
 

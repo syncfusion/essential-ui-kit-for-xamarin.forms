@@ -335,9 +335,9 @@
                             HeightRequest="40"
                             HorizontalOptions="End"
                             VerticalOptions="Start"
+                            Style="{StaticResource IconButtonStyle}"
+                            Text="{StaticResource Share}"
                             WidthRequest="40">
-
-                            <Label Style="{StaticResource IconLabelStyle}" Text="{StaticResource Share}" />
 
                         </buttons:SfButton>
 

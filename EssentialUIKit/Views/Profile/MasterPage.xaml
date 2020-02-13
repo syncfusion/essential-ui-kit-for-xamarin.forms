@@ -30,7 +30,6 @@
                     Padding="16,24,16,8"
                     BackgroundColor="{DynamicResource Gray-White}"
                     ColumnSpacing="8"
-                    HeightRequest="48"
                     RowSpacing="2">
 
                     <Grid.RowDefinitions>
@@ -92,8 +91,7 @@
                 <!--  Grid for home label and icon  -->
                 <Grid
                     x:Name="HomeGrid"
-                    BackgroundColor="{DynamicResource Gray-White}"
-                    HeightRequest="48">
+                    BackgroundColor="{DynamicResource Gray-White}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
@@ -126,8 +124,7 @@
                 <!--  Grid for interests label and icon  -->
                 <Grid
                     x:Name="InterestsGrid"
-                    BackgroundColor="{DynamicResource Gray-White}"
-                    HeightRequest="48">
+                    BackgroundColor="{DynamicResource Gray-White}">
 
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
@@ -159,8 +156,7 @@
                 <!--  Grid for bookmark label and icon  -->
                 <Grid
                     x:Name="BookmarkGrid"
-                    BackgroundColor="{DynamicResource Gray-White}"
-                    HeightRequest="48">
+                    BackgroundColor="{DynamicResource Gray-White}">
 
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
@@ -192,8 +188,7 @@
                 <!--  Grid for activity label and icon  -->
                 <Grid
                     x:Name="ActivityGrid"
-                    BackgroundColor="{DynamicResource Gray-White}"
-                    HeightRequest="48">
+                    BackgroundColor="{DynamicResource Gray-White}">
 
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
@@ -225,8 +220,7 @@
                 <!--  Grid for profile label and icon  -->
                 <Grid
                     x:Name="ProfileGrid"
-                    BackgroundColor="{DynamicResource Gray-White}"
-                    HeightRequest="48">
+                    BackgroundColor="{DynamicResource Gray-White}">
 
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
