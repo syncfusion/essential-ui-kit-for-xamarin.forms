@@ -79,7 +79,7 @@
             Grid.Row="3"
             Margin="0,2,0,8"
             FontFamily="{StaticResource Montserrat-Regular}"
-            FontSize="12"
+            FontSize="12" LineBreakMode="TailTruncation"
             HorizontalOptions="Start"
             LineHeight="{OnPlatform Default=-1,
                                     Android=1.25}"

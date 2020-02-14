@@ -69,7 +69,6 @@
                         helper:RTLHelper.CornerRadius="{OnIdiom Default='32,32,0,0'}"
                         BackgroundColor="{DynamicResource Gray-White}"
                         BorderWidth="0"
-                        HeightRequest="87"
                         VerticalOptions="End">
                         <border:SfBorder.Content>
                             <Grid

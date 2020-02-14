@@ -25,17 +25,20 @@ namespace EssentialUIKit.Behaviors.Navigation
 
         protected override void OnAttachedTo(Syncfusion.ListView.XForms.SfListView bindable)
         {
-            listView = bindable;
-            listView.DataSource.GroupDescriptors.Add(new GroupDescriptor()
+            if (bindable != null)
             {
-                PropertyName = "Name",
-                KeySelector = (object obj1) =>
+                listView = bindable;
+                listView.DataSource.GroupDescriptors.Add(new GroupDescriptor()
                 {
-                    var item = (obj1 as Models.Navigation.Contact);
-                    return item.Name[0].ToString(CultureInfo.CurrentCulture);
-                },
-            });
-            base.OnAttachedTo(bindable);
+                    PropertyName = "Name",
+                    KeySelector = (object obj1) =>
+                    {
+                        var item = (obj1 as Models.Navigation.Contact);
+                        return item.Name[0].ToString(CultureInfo.CurrentCulture);
+                    },
+                });
+                base.OnAttachedTo(bindable);
+            }
         }
 
         /// <summary>

@@ -3,6 +3,7 @@
     x:Class="EssentialUIKit.Views.Forms.BusinessRegistrationFormPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ListCollection="clr-namespace:System.Collections.Generic;assembly=netstandard"
     xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
     xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
     xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms"
@@ -104,7 +105,18 @@
                                 Style="{StaticResource ComboBoxStyle}"
                                 Watermark="Choose Business"
                                 VerticalOptions="CenterAndExpand">
-                                <combobox:SfComboBox.DropDownButtonSettings>
+                        <combobox:SfComboBox.ComboBoxSource>
+                            <ListCollection:List x:TypeArguments="x:String">
+                                <x:String>Sole Proprietorship</x:String>
+                                <x:String>Partnership</x:String>
+                                <x:String>Limited Partnership</x:String>
+                                <x:String>Corporation</x:String>
+                                <x:String>Limited Liability Company</x:String>
+                                <x:String>Nonprofit Organization</x:String>
+                                <x:String>Cooperative</x:String>
+                            </ListCollection:List>
+                        </combobox:SfComboBox.ComboBoxSource>
+                        <combobox:SfComboBox.DropDownButtonSettings>
                                     <combobox:DropDownButtonSettings>
                                         <combobox:DropDownButtonSettings.View>
                                             <Label
@@ -133,7 +145,7 @@
                                  Style="{StaticResource BusinessFormBorderStyle}">
                     <controls:BorderlessEntry
                             x:Name="EmailEntry"
-                            Placeholder="Email"
+                            Placeholder="Email" Keyboard="Email"
                             Text="{Binding Email}"
                             Style="{StaticResource EntryTextBoxStyle}" />
                 </border:SfBorder>
@@ -149,7 +161,7 @@
 
                 <border:SfBorder BorderColor="{Binding Source={x:Reference PhoneNumberEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}" 
                                  Style="{StaticResource BusinessFormBorderStyle}">
-                    <controls:BorderlessEntry
+                    <controls:BorderlessEntry Keyboard="Telephone" 
                             x:Name="PhoneNumberEntry"
                             Placeholder="Phone Number"
                             Text="{Binding PhoneNumber}"
@@ -174,6 +186,42 @@
                             Style="{StaticResource EntryTextBoxStyle}" />
                 </border:SfBorder>
 
+                <!-- Country -->
+                <Label
+                        FontFamily="{StaticResource Montserrat-Medium}"
+                        Margin="0,24,0,4"
+                        HeightRequest="18"
+                        FontSize="12"
+                        Text="Country"
+                        TextColor="{DynamicResource Gray-800}" />
+
+                <border:SfBorder
+                        BorderColor="{Binding Source={x:Reference CountryPicker}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}"
+                        Style="{StaticResource BusinessFormBorderStyle}">
+                        <combobox:SfComboBox
+                                x:Name="CountryPicker"
+                                Style="{StaticResource ComboBoxStyle}"
+                            DataSource="{Binding Countries}"
+                            DisplayMemberPath="Country"
+                            SelectedItem="{Binding Country, Mode=TwoWay}"
+                                Watermark="Select Country"
+                                VerticalOptions="CenterAndExpand">
+                        <combobox:SfComboBox.DropDownButtonSettings>
+                                     <combobox:DropDownButtonSettings>
+                                        <combobox:DropDownButtonSettings.View>
+                                            <Label
+                                                    FontFamily="{StaticResource FontIcons}"
+                                                    FontSize="25"
+                                                    HorizontalTextAlignment="Center"
+                                                    Text="{StaticResource DropDownButtonIcon}"
+                                                    TextColor="{DynamicResource Gray-600}"
+                                                    VerticalTextAlignment="Center" />
+                                        </combobox:DropDownButtonSettings.View>
+                                     </combobox:DropDownButtonSettings>
+                                </combobox:SfComboBox.DropDownButtonSettings>
+                        </combobox:SfComboBox>
+                </border:SfBorder>
+
                 <!-- City and State -->
                 <Label
                         FontFamily="{StaticResource Montserrat-Medium}"
@@ -189,8 +237,9 @@
                         <ColumnDefinition Width="4" />
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
-                    
-                    <border:SfBorder BorderColor="{Binding Source={x:Reference CityEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}" 
+
+                    <border:SfBorder 
+                            Grid.Column="2" BorderColor="{Binding Source={x:Reference CityEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}" 
                                      Style="{StaticResource BusinessFormBorderStyle}">
                         <controls:BorderlessEntry
                                 x:Name="CityEntry"
@@ -200,12 +249,12 @@
                     </border:SfBorder>
                     
                     <border:SfBorder
-                            Grid.Column="2"
                             BorderColor="{Binding Source={x:Reference StatePicker}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}"
                             Style="{StaticResource BusinessFormBorderStyle}">
                             <combobox:SfComboBox
                                     x:Name="StatePicker"
-                                    SelectedValue="{Binding State, Mode=TwoWay}"
+                                    SelectedItem="{Binding State, Mode=TwoWay}"
+                                    DataSource="{Binding SelectedItem.States, Source={Reference CountryPicker}}"
                                     Style="{StaticResource ComboBoxStyle}"
                                     Watermark="State"
                                     VerticalOptions="CenterAndExpand">
@@ -225,40 +274,6 @@
                             </combobox:SfComboBox>
                     </border:SfBorder>
                 </Grid>
-
-                <!-- Country -->
-                <Label
-                        FontFamily="{StaticResource Montserrat-Medium}"
-                        Margin="0,24,0,4"
-                        HeightRequest="18"
-                        FontSize="12"
-                        Text="Country"
-                        TextColor="{DynamicResource Gray-800}" />
-
-                <border:SfBorder
-                        BorderColor="{Binding Source={x:Reference CountryPicker}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}"
-                        Style="{StaticResource BusinessFormBorderStyle}">
-                        <combobox:SfComboBox
-                                x:Name="CountryPicker"
-                                SelectedValue="{Binding Country, Mode=TwoWay}"
-                                Style="{StaticResource ComboBoxStyle}"
-                                Watermark="Select Country"
-                                VerticalOptions="CenterAndExpand">
-                                <combobox:SfComboBox.DropDownButtonSettings>
-                                     <combobox:DropDownButtonSettings>
-                                        <combobox:DropDownButtonSettings.View>
-                                            <Label
-                                                    FontFamily="{StaticResource FontIcons}"
-                                                    FontSize="25"
-                                                    HorizontalTextAlignment="Center"
-                                                    Text="{StaticResource DropDownButtonIcon}"
-                                                    TextColor="{DynamicResource Gray-600}"
-                                                    VerticalTextAlignment="Center" />
-                                        </combobox:DropDownButtonSettings.View>
-                                     </combobox:DropDownButtonSettings>
-                                </combobox:SfComboBox.DropDownButtonSettings>
-                        </combobox:SfComboBox>
-                </border:SfBorder>
 
                 <!-- Submit Button -->
                 <buttons:SfButton

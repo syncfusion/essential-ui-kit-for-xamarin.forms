@@ -111,7 +111,7 @@ namespace EssentialUIKit.ViewModels.Article
                     ImagePath = App.BaseImageUrl + "ArticleImage2.png",
                     Name = "Learning to Reset",
                     Author = "John Doe",
-                    Date = "Aug 2010",
+                    Date = "Aug 10",
                     AverageReadingTime = "5 mins read"
                 },
                 new Model
@@ -127,7 +127,7 @@ namespace EssentialUIKit.ViewModels.Article
                     ImagePath = App.BaseImageUrl + "ArticleImage4.png",
                     Name = "Guiding Your Flock to Success",
                     Author = "John Doe",
-                    Date = "May 2012",
+                    Date = "May 20",
                     AverageReadingTime = "5 mins read"
                 },
                 new Model
@@ -143,7 +143,7 @@ namespace EssentialUIKit.ViewModels.Article
                     ImagePath = App.BaseImageUrl + "ArticleImage6.png",
                     Name = "Holistic Approach to UI Design",
                     Author = "John Doe",
-                    Date = "Dec 2013",
+                    Date = "Dec 13",
                     AverageReadingTime = "5 mins read"
                 }
             };

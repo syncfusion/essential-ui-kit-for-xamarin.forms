@@ -32,7 +32,7 @@
 
                     <control:BorderlessEntry
                         x:Name="Email"
-                        Placeholder="Email"
+                        Placeholder="Email" Keyboard="Email"
                         Style="{StaticResource EntryStyle}"
                         Text="{Binding Email}" />
 

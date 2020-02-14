@@ -94,10 +94,16 @@ namespace EssentialUIKit.Views.Chat
                         opacity = property / TitleBar.Width;
                         SearchBox.Opacity = opacity;
                     }, 0, TitleBar.Width, Easing.Linear);
-                expandAnimation.Commit(SearchBox, "Expand", 16, 250, Easing.Linear);
+                expandAnimation.Commit(SearchBox, "Expand", 16, 250, Easing.Linear, (p, q) => this.SearchExpandAnimationCompleted());
             }
+        }
 
-            SearchEntry.Focus();
+        /// <summary>
+        /// Invokes when search expand Animation completed.
+        /// </summary>
+        private void SearchExpandAnimationCompleted()
+        {
+            this.SearchEntry.Focus();
         }
     }
 }

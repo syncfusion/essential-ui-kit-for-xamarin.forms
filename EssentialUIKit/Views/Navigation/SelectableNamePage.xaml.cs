@@ -1,5 +1,6 @@
 ﻿using System;
 using EssentialUIKit.DataService;
+using EssentialUIKit.ViewModels.Navigation;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
@@ -60,10 +61,8 @@ namespace EssentialUIKit.Views.Navigation
                         opacity = property / TitleView.Width;
                         Search.Opacity = opacity;
                     }, 0, TitleView.Width, Easing.Linear);
-                expandAnimation.Commit(Search, "Expand", 16, 250, Easing.Linear);
+                expandAnimation.Commit(Search, "Expand", 16, 250, Easing.Linear, (p,q)=>this.SearchExpandAnimationCompleted());
             }
-
-            SearchEntry.Focus();
         }
 
         /// <summary>
@@ -99,6 +98,30 @@ namespace EssentialUIKit.Views.Navigation
         {
             this.Search.IsVisible = false;
             this.Title.IsVisible = true;
+        }
+
+        /// <summary>
+        /// Invokes when search expand Animation completed.
+        /// </summary>
+        private void SearchExpandAnimationCompleted()
+        {
+            this.SearchEntry.Focus();
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            // Setting IsSelected property to false at entry time.
+            if (BindingContext is SelectableNamePageViewModel)
+            {
+                var viewModel = BindingContext as SelectableNamePageViewModel;
+
+                foreach (var item in viewModel.SelectableName)
+                {
+                    item.IsSelected = false;
+                }
+            }
         }
     }
 }

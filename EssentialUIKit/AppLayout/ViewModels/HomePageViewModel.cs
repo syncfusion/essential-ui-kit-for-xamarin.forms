@@ -143,8 +143,12 @@ namespace EssentialUIKit.AppLayout.ViewModels
 
         public static string GetDataFromXmlReader(XmlReader reader, string attribute)
         {
-            reader.MoveToAttribute(attribute);
-            return reader.Value;
+            if (reader != null)
+            {
+                reader.MoveToAttribute(attribute);
+                return reader.Value;
+            }
+            return string.Empty;
         }
 
         private string GetUpdateType(string value, string type)

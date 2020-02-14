@@ -142,12 +142,15 @@
                 </listView:SfListView>
 
                 <listView:SfListView SelectionMode="None" IsScrollingEnabled="False" ItemSpacing="8" ItemSize="80" ItemsSource="{Binding ListItems}">
-
-                  <listView:SfListView.ItemTemplate>
+                    <listView:SfListView.ItemTemplate>
                         <DataTemplate>
 
                             <cards:SfCardView CornerRadius="4" IndicatorColor="{Binding BackgroundGradientStart}" IndicatorPosition="Left" IndicatorThickness="8">
                                 <Grid RowSpacing="4" Padding="16">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
                                     <Label Text="{Binding Category}" Style="{StaticResource LabelStyle}"></Label>
                                     <Label Grid.Column="1" Grid.RowSpan="2" FontSize="16" Style="{StaticResource LabelStyle}" HorizontalOptions="EndAndExpand" VerticalOptions="Center" Text="{Binding CategoryValue}"></Label>
                                     <Label Grid.Row="1" Text="{Binding CategoryPercentage}" FontSize="12" TextColor="{DynamicResource Gray-700}" Style="{StaticResource LabelStyle}" FontFamily="{StaticResource Montserrat-Medium}"></Label>

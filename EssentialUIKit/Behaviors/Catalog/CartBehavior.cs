@@ -24,19 +24,24 @@ namespace EssentialUIKit.Behaviors.Catalog
         /// <param name="bindableContentPage">Bindable ContentPage</param>
         protected override void OnAttachedTo(ContentPage bindableContentPage)
         {
-            base.OnAttachedTo(bindableContentPage);
-            this.bindablePage = bindableContentPage;
-            bindableContentPage.Appearing += this.Bindable_Appearing;
-        }
-                
+            if (bindableContentPage != null)
+            {
+                base.OnAttachedTo(bindableContentPage);
+                this.bindablePage = bindableContentPage;
+                bindableContentPage.Appearing += this.Bindable_Appearing;
+            }
+        }               
         /// <summary>
         /// Invoked when exit from the page.
         /// </summary>
         /// <param name="bindableContentPage">Content Page</param>
         protected override void OnDetachingFrom(ContentPage bindableContentPage)
         {
-            base.OnDetachingFrom(bindableContentPage);
-            bindableContentPage.Appearing -= this.Bindable_Appearing;
+            if (bindableContentPage != null)
+            {
+                base.OnDetachingFrom(bindableContentPage);
+                bindableContentPage.Appearing -= this.Bindable_Appearing;
+            }
         }
 
         /// <summary>

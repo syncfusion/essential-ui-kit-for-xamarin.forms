@@ -24,20 +24,27 @@ namespace EssentialUIKit.AppLayout.Controls
 
         public static void OnScrollChanged(object sender, ScrollChangedEventArgs e)
         {
-            ((ParallaxListView)sender).ScrollChanged?.Invoke((ParallaxListView)sender, e);
+                ((ParallaxListView)sender)?.ScrollChanged?.Invoke((ParallaxListView)sender, e);
         }
 
         public static void OnSelectionChanged(object sender, SelectedItemChangedEventArgs e)
         {
-            ((ParallaxListView)sender).SelectionChanged(sender, e);
-            ((ParallaxListView)sender).SelectedItem = e.SelectedItem;
-            ((ParallaxListView)sender).SelectedItem = null;
+            ParallaxListView listView = (ParallaxListView)sender;
+            if (listView != null)
+            {
+                listView.SelectionChanged(sender, e);
+                listView.SelectedItem = e.SelectedItem;
+                listView.SelectedItem = null;
+            }
         }
 
         public static void OnSelectionChanged(object sender, int index)
         {
-            var listView = sender as ParallaxListView;
-            OnSelectionChanged(sender, new SelectedItemChangedEventArgs((listView.ItemsSource as IList)[index], index));
+            if (sender is ParallaxListView)
+            {
+                var listView = sender as ParallaxListView;
+                OnSelectionChanged(sender, new SelectedItemChangedEventArgs((listView.ItemsSource as IList)[index], index));
+            }
         }
 
         private void ParallaxListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)

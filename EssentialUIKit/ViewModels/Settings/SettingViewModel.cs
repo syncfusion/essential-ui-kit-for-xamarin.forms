@@ -138,9 +138,11 @@ namespace EssentialUIKit.ViewModels.Settings
         /// Invoked when the FAQ clicked
         /// </summary>
         /// <param name="obj">The object</param>
+        /// 
+        
         private void FAQClicked (object obj)
         {
-            // Do something
+           // Do something
         }
 
         /// <summary>

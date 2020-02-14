@@ -37,15 +37,14 @@ namespace EssentialUIKit.Controls
             if (base.FilterContacts(obj))
             {
                 var taskInfo = obj as ChatDetail;
+                if (taskInfo == null || string.IsNullOrEmpty(taskInfo.SenderName) || string.IsNullOrEmpty(taskInfo.Message))
+                {
+                    return false;
+                }
                 var message = taskInfo.Message;
                 if (taskInfo.MessageType != "Text")
                 {
                     message = string.Empty;
-                }
-
-                if (string.IsNullOrEmpty(taskInfo.SenderName) || string.IsNullOrEmpty(taskInfo.Message))
-                {
-                    return false;
                 }
 
                 return taskInfo.SenderName.ToUpperInvariant().Contains(this.SearchText.ToUpperInvariant())

@@ -83,7 +83,8 @@
 
                         <controls:BorderlessEntry  x:Name="SearchEntry"
                             BindingContext="{x:Reference Suggestions}"
-                            HorizontalOptions="FillAndExpand"
+                            HorizontalOptions="FillAndExpand" 
+                            Placeholder="Search here"
                             Text="{Binding SearchText, Mode=TwoWay}"
                             Style="{StaticResource SearchEntryStyle}"/>
                     </border:SfBorder>

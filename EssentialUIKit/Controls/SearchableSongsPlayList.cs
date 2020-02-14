@@ -22,7 +22,7 @@ namespace EssentialUIKit.Controls
             {
                 var taskInfo = obj as Models.Navigation.Song;
 
-                if (string.IsNullOrEmpty(taskInfo.SongName) || string.IsNullOrEmpty(taskInfo.Composer))
+                if (taskInfo == null || string.IsNullOrEmpty(taskInfo.SongName) || string.IsNullOrEmpty(taskInfo.Composer))
                 {
                     return false;
                 }

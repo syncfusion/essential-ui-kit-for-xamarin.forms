@@ -105,7 +105,7 @@
                     Style="{StaticResource FormBorderStyle}">
                     <control:BorderlessEntry
                         x:Name="PhoneNoEntry"
-                        Keyboard="Numeric"
+                        Keyboard="Telephone" 
                         Placeholder="Phone Number"
                         Style="{StaticResource EntryTextStyle}" />
                 </border:SfBorder>

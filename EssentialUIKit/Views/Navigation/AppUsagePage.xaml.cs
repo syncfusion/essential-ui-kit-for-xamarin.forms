@@ -19,6 +19,5 @@ namespace EssentialUIKit.Views.Navigation
             InitializeComponent();
             this.BindingContext = AppUsageDataService.Instance.AppUsageViewModel;
         }
-
     }
 }

@@ -59,10 +59,13 @@ namespace EssentialUIKit.Behaviors.ECommerce
         /// <param name="expander">The SfExpander</param>
         protected override void OnAttachedTo(SfExpander expander)
         {
-            base.OnAttachedTo(expander);
-            this.Expander = expander;
-            expander.BindingContextChanged += this.OnBindingContextChanged;
-            expander.Expanding += this.OnExpanding;
+            if (expander != null)
+            {
+                base.OnAttachedTo(expander);
+                this.Expander = expander;
+                expander.BindingContextChanged += this.OnBindingContextChanged;
+                expander.Expanding += this.OnExpanding;
+            }
         }
 
         /// <summary>
@@ -71,10 +74,13 @@ namespace EssentialUIKit.Behaviors.ECommerce
         /// <param name="expander">The SfExpander</param>
         protected override void OnDetachingFrom(SfExpander expander)
         {
-            base.OnDetachingFrom(expander);
-            expander.BindingContextChanged -= this.OnBindingContextChanged;
-            expander.Expanding -= this.OnExpanding;
-            this.Expander = null;
+            if (expander != null)
+            {
+                base.OnDetachingFrom(expander);
+                expander.BindingContextChanged -= this.OnBindingContextChanged;
+                expander.Expanding -= this.OnExpanding;
+                this.Expander = null;
+            }
         }
 
         /// <summary>
