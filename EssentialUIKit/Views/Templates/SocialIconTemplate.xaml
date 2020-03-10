@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Grid xmlns="http://xamarin.com/schemas/2014/forms" 
+      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+      xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+      x:Class="EssentialUIKit.Views.Templates.SocialIconTemplate">
+
+    <Grid.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Grid.Resources>
+
+
+    <Grid   WidthRequest="160" HorizontalOptions="Center" Margin="0,24"  ColumnSpacing="0" >
+
+        <buttons:SfButton    BackgroundColor="{DynamicResource FacebookLogin}" HorizontalOptions="Start"
+                                            Style="{StaticResource SocialIconButtonStyle}"  Command="{Binding FaceBookLoginCommand}"
+                                            Text="{StaticResource FaceBook}" TextColor="{StaticResource Gray-White}"/>
+
+        <buttons:SfButton   BackgroundColor="{DynamicResource TwitterBlue}" HorizontalOptions="Center"
+                                            Style="{StaticResource SocialIconButtonStyle}"  Command="{Binding TwitterLoginCommand}"
+                                            Text="{StaticResource Twitter}" />
+
+        <buttons:SfButton  BackgroundColor="{DynamicResource Red}" HorizontalOptions="End"
+                                            Style="{StaticResource SocialIconButtonStyle}"  Command="{Binding GmailLoginCommand}"
+                                            Text="{StaticResource Google}"/>
+
+    </Grid>
+</Grid>

@@ -1,6 +1,7 @@
 using System;
 using EssentialUIKit.AppLayout.Controls;
 using EssentialUIKit.AppLayout.Models;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
@@ -130,6 +131,7 @@ namespace EssentialUIKit.AppLayout.Views
                 BrandName.Opacity = (scrollValue + 75) / 75;
                 ActionBar.IsVisible = false;
                 SettingsIcon.TranslationY = scrollValue * -1;
+                CodeViewerIcon.TranslationY = scrollValue * -1;
             }
         }
 
@@ -147,6 +149,11 @@ namespace EssentialUIKit.AppLayout.Views
         private void ShowSettings(object sender, EventArgs e)
         {
             SettingsView.Show();
+        }
+
+        private void GotoCodeViewer(object sender, EventArgs e)
+        {
+            Device.OpenUri(new Uri("https://github.com/syncfusion/essential-ui-kit-for-xamarin.forms"));
         }
 
         #endregion

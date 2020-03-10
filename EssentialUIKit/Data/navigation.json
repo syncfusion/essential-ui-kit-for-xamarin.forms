@@ -669,7 +669,117 @@
     {
       "name": "Dustin Blake"
     }
+  ],
+
+  "rotatorMoviesList": [
+    {
+      "image": "BannerImage.png"
+    },
+    {
+      "image": "BanarImage2.jpg"
+    },
+    {
+      "image": "BanarImage3.jpg"
+    },
+    {
+      "image": "BanarImage4.jpeg"
+    },
+    {
+      "image": "BanarImage5.jpg"
+    }
+  ],
+
+  "showingMoviesList": [
+    {
+      "moviename": "The Lion King",
+      "image": "Lion+King.png",
+      "movierating": 5
+    },
+    {
+      "moviename": "Captain Marvel",
+      "image": "Captain+Marvel.png",
+      "movierating": 5
+    },
+    {
+      "moviename": "The Irishman",
+      "image": "The+Irishman.png",
+      "movierating": 5
+    }
+  ],
+
+  "trailerMoviesList": [
+    {
+      "moviename": "Toy Story 4",
+      "image": "Toy+Story+4.png"
+    },
+    {
+      "moviename": "Star Wars: The Rise of Skywalker",
+      "image": "Star+Wars.png"
+    },
+    {
+      "moviename": "The Aeronauts",
+      "image": "The+Aeronauts.png"
+    }
+  ],
+
+  "upcomingMoviesList": [
+    {
+      "moviename": "Aladdin",
+      "image": "Aladdin.png",
+      "movierating": 5
+    },
+    {
+      "moviename": "Avengers: Endgame",
+      "image": "Avengers+End+Game.png",
+      "movierating": 5
+    },
+    {
+      "moviename": "Joker",
+      "image": "Joker.png",
+      "movierating": 5
+    }
+  ],
+
+  "fileExploreList": [
+    {
+      "folderName": "Documents",
+      "items": "8 Items",
+      "dateTime": "28/11/2019  10.30 PM"
+    },
+    {
+      "folderName": "Downloads",
+      "items": "28 Items",
+      "dateTime": "8/11/2019  11.20 PM"
+    },
+    {
+      "folderName": "My Music",
+      "items": "148 Items",
+      "dateTime": "2/1/2020  8.44 AM"
+    },
+    {
+      "folderName": "My Videos",
+      "items": "48 Items",
+      "dateTime": "21/9/2019  12.10 PM"
+    },
+    {
+      "folderName": "Images",
+      "items": "342 Items",
+      "dateTime": "16/12/2019  6.45 PM"
+    },
+    {
+      "folderName": "Data",
+      "items": "21 Items",
+      "dateTime": "18/11/2019  10.24 AM"
+    },
+    {
+      "folderName": "Movies",
+      "items": "12 Items",
+      "dateTime": "25/11/2019  7.30 AM"
+    },
+    {
+      "folderName": "Files",
+      "items": "43 Items", 
+      "dateTime": "14/12/2019  11.30 PM"
+    }
   ]
 }
-
-

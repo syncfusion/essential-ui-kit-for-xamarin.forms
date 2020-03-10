@@ -9,6 +9,7 @@
     xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms"
     xmlns:control="clr-namespace:EssentialUIKit.Controls"
     xmlns:converter="clr-namespace:EssentialUIKit.Converters"
+    xmlns:behaviors="clr-namespace:EssentialUIKit.Behaviors"
     xmlns:local="clr-namespace:EssentialUIKit.Views.Forms"
     xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Forms"
     Title="Details Form"
@@ -108,13 +109,7 @@
                     Style="{StaticResource HeaderLabelStyle}"
                     Text="Contact Information" />
                 <local:ContactEmailEntry /> 
-                <border:SfBorder BorderColor="{Binding Source={x:Reference PhoneNoEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}" Style="{StaticResource FormBorderStyle}">
-                    <control:BorderlessEntry
-                        x:Name="PhoneNoEntry"
-                        Keyboard="Telephone" Text="{Binding PhoneNumber}"
-                        Placeholder="Phone Number" 
-                        Style="{StaticResource EntryTextStyle}" />
-                </border:SfBorder>
+               
                 <border:SfBorder BorderColor="{Binding Source={x:Reference AddressEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}" Style="{StaticResource FormBorderStyle}">
                     <control:BorderlessEntry
                         x:Name="AddressEntry"
@@ -126,13 +121,9 @@
                     BorderColor="{Binding Source={x:Reference CountryPicker}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}"
                     HeightRequest="40"
                     Style="{StaticResource FormBorderStyle}">
-                    <combobox:SfComboBox
+                    <control:CountryComboBox
                         x:Name="CountryPicker" 
-                        DataSource="{Binding Countries}"
-                            DisplayMemberPath="Country"
-                            SelectedItem="{Binding Country, Mode=TwoWay}"
-                        Style="{StaticResource ComboBoxStyle}"
-                        Watermark="Country">
+                        Style="{StaticResource ComboBoxStyle}">
                         <combobox:SfComboBox.DropDownButtonSettings>
                             <combobox:DropDownButtonSettings Width="30" Height="30">
                                 <combobox:DropDownButtonSettings.View>
@@ -147,7 +138,7 @@
                                 </combobox:DropDownButtonSettings.View>
                             </combobox:DropDownButtonSettings>
                         </combobox:SfComboBox.DropDownButtonSettings>
-                    </combobox:SfComboBox>
+                    </control:CountryComboBox>
                 </border:SfBorder>
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -160,7 +151,7 @@
                                      Style="{StaticResource FormBorderStyle}" Grid.Column="2">
                         <control:BorderlessEntry
                             x:Name="CityEntry"
-                            Placeholder="City" Text="{Binding City}"
+                            Placeholder="City"  Text="{Binding City, Source={Reference CountryPicker}}"
                             Style="{StaticResource EntryTextStyle}" />
                     </border:SfBorder>
                     <border:SfBorder
@@ -170,8 +161,8 @@
                         Style="{StaticResource FormBorderStyle}">
                         <combobox:SfComboBox
                             x:Name="StatePicker"
-                            SelectedItem="{Binding State, Mode=TwoWay}"
-                            DataSource="{Binding SelectedItem.States, Source={Reference CountryPicker}}"
+                            SelectedItem="{Binding State, Source={Reference CountryPicker}}"
+                            DataSource="{Binding States, Source={Reference CountryPicker}}"
                             Style="{StaticResource ComboBoxStyle}"
                             Watermark="State">
                             <combobox:SfComboBox.DropDownButtonSettings>
@@ -191,6 +182,19 @@
                         </combobox:SfComboBox>
                     </border:SfBorder>
                 </Grid>
+                <border:SfBorder BorderColor="{Binding Source={x:Reference PhoneNoEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}" Style="{StaticResource FormBorderStyle}">
+                    <control:BorderlessEntry
+                        x:Name="PhoneNoEntry"
+                        Placeholder="{Binding PhoneNumberPlaceHolder, Source={Reference CountryPicker}}"
+                            Text="{Binding PhoneNumber, Source={Reference CountryPicker}}"
+                        Keyboard="Telephone" 
+                        Style="{StaticResource EntryTextStyle}" >
+                        <control:BorderlessEntry.Behaviors>
+                            <behaviors:EntryMaskedBehavior Mask="{Binding Source={x:Reference CountryPicker}, Path=Mask}" 
+                                                           Prefix="{Binding Source={Reference CountryPicker}, Path=CountryCode}"/>
+                        </control:BorderlessEntry.Behaviors>
+                    </control:BorderlessEntry>
+                </border:SfBorder>
                 <buttons:SfButton
                     HorizontalOptions="Center" Command="{Binding SubmitCommand}"
                     Style="{StaticResource SfButtonStyle}"

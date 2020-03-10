@@ -294,7 +294,7 @@
                             <Grid BackgroundColor="{DynamicResource Gray-F0}">
                                 <!--Photos-->
                                 <Image 
-                                    Source="{Binding .}" 
+                                    Source="{Binding ImagePath}" 
                                     Aspect="AspectFill"
                                     HeightRequest="90"
                                     BackgroundColor="{DynamicResource Gray-200}"

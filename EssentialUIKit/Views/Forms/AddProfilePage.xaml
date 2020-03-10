@@ -7,6 +7,7 @@
     xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
     xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
     xmlns:control="clr-namespace:EssentialUIKit.Controls"
+    xmlns:behaviours="clr-namespace:EssentialUIKit.Behaviors"
     xmlns:converter="clr-namespace:EssentialUIKit.Converters"
     xmlns:sfavatar="clr-namespace:Syncfusion.XForms.AvatarView;assembly=Syncfusion.Core.XForms"
     Title="New Contact"
@@ -106,8 +107,12 @@
                     <control:BorderlessEntry
                         x:Name="PhoneNoEntry"
                         Keyboard="Telephone" 
-                        Placeholder="Phone Number"
-                        Style="{StaticResource EntryTextStyle}" />
+                        Placeholder="Phone Number : e.g. XXXX-XXXXXX"
+                        Style="{StaticResource EntryTextStyle}" >
+                        <control:BorderlessEntry.Behaviors>
+                            <behaviours:EntryMaskedBehavior Mask="(+91)XXXXX-XXXXX" Prefix="(+91)"/>
+                        </control:BorderlessEntry.Behaviors>
+                    </control:BorderlessEntry>
                 </border:SfBorder>
 
                 <buttons:SfButton

@@ -15,12 +15,14 @@ namespace EssentialUIKit.Droid
             Window.AddFlags(WindowManagerFlags.DrawsSystemBarBackgrounds);
 
             base.OnCreate(savedInstanceState);
-
+            
             Xamarin.Forms.Forms.Init(this, savedInstanceState);
 
             Syncfusion.XForms.Android.PopupLayout.SfPopupLayoutRenderer.Init();
 
             Syncfusion.XForms.Android.Core.Core.Init(this);
+
+            Xamarin.Essentials.Platform.Init(this, savedInstanceState);
 
             this.LoadApplication(new App());
 
@@ -29,6 +31,12 @@ namespace EssentialUIKit.Droid
 
             // Enable scrolling to the page when the keyboard is enabled
             Xamarin.Forms.Application.Current.On<Xamarin.Forms.PlatformConfiguration.Android>().UseWindowSoftInputModeAdjust(WindowSoftInputModeAdjust.Resize);
+        }
+
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
+        {
+            Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+            base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
 }

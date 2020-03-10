@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:controls="clr-namespace:EssentialUIKit.Controls"
+             xmlns:converter="clr-namespace:EssentialUIKit.Converters"
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+             xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+             x:Class="EssentialUIKit.Views.Notification.ECommerceNotificationPage"
+             x:Name="eCommerceNotificationPage"
+             BackgroundColor="{DynamicResource Gray-White}"
+             NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <converter:BooleanToColorConverter x:Key="BoolToColorConverter" />
+            <converter:StringToGlyphConverter x:Key="GlyphConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.ControlTemplate>
+        <ControlTemplate>
+            <StackLayout Spacing="0">
+
+                <!--  Title View  -->
+                <controls:TitleView Title="Notifications" BackgroundColor="{DynamicResource Gray-White} ">
+
+                    <!-- Back button -->
+                    <controls:TitleView.LeadingView>
+                        <buttons:SfButton Text="{StaticResource Back}" Style="{StaticResource IconButtonStyle}" CornerRadius="4"
+                                          Command="{Binding Path=BindingContext.BackCommand, Source={x:Reference eCommerceNotificationPage}}" />
+                    </controls:TitleView.LeadingView>
+
+                    <!-- More button -->
+                    <controls:TitleView.TrailingView>
+                        <buttons:SfButton Text="{StaticResource More}" Style="{StaticResource IconButtonStyle}" CornerRadius="4"
+                                          Command="{Binding Path=BindingContext.MenuCommand, Source={x:Reference eCommerceNotificationPage}}" />
+                    </controls:TitleView.TrailingView>
+
+                </controls:TitleView>
+                <ContentPresenter />
+
+            </StackLayout>
+        </ControlTemplate>
+    </ContentPage.ControlTemplate>
+
+    <ContentPage.Content>
+        <StackLayout Spacing="0">
+
+            <listView:SfListView x:Name="ECommerceNotifications"
+                                 IsScrollBarVisible="False"
+                                 AllowSwiping="True"
+                                 AutoFitMode="Height"
+                                 ItemSpacing="0"
+                                 SelectionGesture="Tap"
+                                 SelectionMode="Single"
+                                 VerticalOptions="FillAndExpand"
+                                 TapCommand="{Binding ItemTappedCommand}"
+                                 ItemsSource="{Binding ECommerceNotificationsList}"
+                                 SelectionBackgroundColor="Transparent">
+
+                <listView:SfListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid RowSpacing="0" ColumnSpacing="0" 
+                                  BackgroundColor="{Binding IsRead, Converter={x:StaticResource BoolToColorConverter}, ConverterParameter=7}">
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <!-- Circular Border for icons  -->
+                                <border:SfBorder Grid.RowSpan="3" 
+                                                 Margin="8,16,16,0"
+                                                 BackgroundColor="{Binding BackgroundColor}"
+                                                 BorderWidth="0"
+                                                 VerticalOptions="StartAndExpand"
+                                                 CornerRadius="24">
+
+                                    <Label x:Name="NotificationIcon"
+                                           Text="{Binding NotificationIcon, Converter={StaticResource GlyphConverter}, ConverterParameter={x:Reference NotificationIcon}}" 
+                                           HorizontalTextAlignment="Center"
+                                           VerticalTextAlignment="Center"
+                                           TextColor="{DynamicResource Gray-White}"
+                                           FontFamily="{DynamicResource FontIcons}"
+                                           FontSize="25"
+                                           HeightRequest="48" 
+                                           WidthRequest="48">
+
+                                        <Label.Resources>
+                                            <ResourceDictionary>
+                                                <ResourceDictionary.MergedDictionaries>
+                                                    <ResourceDictionary Source="Styles.xaml" />
+                                                </ResourceDictionary.MergedDictionaries>
+                                            </ResourceDictionary>
+                                        </Label.Resources>
+
+                                    </Label>
+
+                                </border:SfBorder>
+
+                                <!-- Description -->
+                                <Label Grid.Column="1"
+                                       Margin="0,16,16,4"
+                                       Text="{Binding Description}" 
+                                       TextColor="{DynamicResource Gray-900}"
+                                       FontSize="16"
+                                       LineHeight="{OnPlatform Android=1.5,Default=-1}"
+                                       LineBreakMode="WordWrap"
+                                       FontFamily="{DynamicResource Montserrat-Medium}" />
+
+                                <!-- Time -->
+                                <Label Grid.Row="1"
+                                       Grid.Column="1"
+                                       Margin="0,0,0,16"
+                                       Text="{Binding Time}"
+                                       TextColor="{DynamicResource Gray-700}"
+                                       FontSize="12"
+                                       LineHeight="{OnPlatform Android=1.5,Default=-1}"
+                                       FontFamily="{DynamicResource Montserrat-Medium}" />
+
+                                <!-- Seperator -->
+                                <BoxView Grid.Row="2" Grid.ColumnSpan="2" Style="{StaticResource SeparatorStyle}" />
+
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </listView:SfListView.ItemTemplate>
+            </listView:SfListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Detail"
+             xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+             xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+             xmlns:local="clr-namespace:EssentialUIKit.Views.Detail.Templates"
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             x:Class="EssentialUIKit.Views.Detail.EventDetailPage"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="{StaticResource Gray-White}">
+
+    <ContentPage.BindingContext>
+        <viewModel:EventDetailViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <ScrollView VerticalScrollBarVisibility="Never">
+            <StackLayout>
+
+                <!--  Header image  -->
+                <Image                      
+                    Aspect="AspectFill"
+                    BackgroundColor="{DynamicResource Gray-800}"
+                    HorizontalOptions="FillAndExpand"
+                    HeightRequest="{OnIdiom Phone=300,Default=480}">
+                    <Image.Source>
+                        <UriImageSource Uri="{Binding HeaderImagePath}" 
+			                                 CacheValidity="12" 
+			                                 CachingEnabled="true"/>
+                    </Image.Source>
+                </Image>
+
+                <border:SfBorder 
+                    HeightRequest="10" 
+                    Margin="0,-15,0,0" 
+                    CornerRadius="10,10,0,0" 
+                    HorizontalOptions="FillAndExpand" 
+                    BorderWidth="0" 
+                    BorderColor="Transparent" 
+                    BackgroundColor="{DynamicResource Gray-White}" />
+
+                <Grid Margin="16,14" RowSpacing="0" ColumnSpacing="0">
+                    <Grid.RowDefinitions >
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!--  Event name label  -->
+                    <Label  Margin="0,6,0,0" HorizontalOptions="Start" Text="Ignite Music" Grid.ColumnSpan="2" FontSize="20" 
+                            FontFamily="{StaticResource Montserrat-Bold}" 
+                            TextColor="{DynamicResource Gray-900}" />
+
+                    <!--  Favourite button  -->
+                    <buttons:SfButton                
+                         x:Name="favouriteButton" BorderWidth="1" BorderColor="{DynamicResource Gray-300}" CornerRadius="20"
+                         Text="{StaticResource Favourite}"                
+                         Command="{Binding Path=BindingContext.FavouriteCommand, Source={x:Reference favouriteButton}}"                                                     
+                         CommandParameter="{x:Reference favouriteButton}"                       
+                         Grid.Row="0" Margin="0"
+                         Grid.Column="2" FontFamily="{StaticResource FontIcons}"
+                         TextColor="{StaticResource Steel}" BackgroundColor="Transparent"
+                         WidthRequest="40"
+                         HeightRequest="40"
+                         HorizontalOptions="End">
+
+                    </buttons:SfButton>
+
+                    <!-- Calender icon  -->
+                    <Label Margin="0,24,0,0" Grid.Row="1"  
+                           FontSize="18" VerticalOptions="Start" HorizontalOptions="Start" 
+                           Text="{StaticResource Calender}" FontFamily="{StaticResource FontIcons}" 
+                           TextColor="{DynamicResource Gray-600}"/>
+
+                    <StackLayout Spacing="2"  Padding="0,4,0,0" Margin="8,18,0,0" Grid.Column="1" Grid.Row="1"  >
+
+                        <!--  Event date label  -->
+                        <Label Text="Sunday, 22 Dec 2019" FontSize="16" FontFamily="{StaticResource Montserrat-Medium}" 
+                               HorizontalOptions="Start" TextColor="{DynamicResource Gray-900}"/>
+
+                        <!--  Event time label  -->
+                        <Label  Text="10.00 PM - 2.00 AM"  FontSize="12" FontFamily="{StaticResource Montserrat-Medium}" 
+                               HorizontalOptions="Start" TextColor="{DynamicResource Gray-800}"/>
+                    </StackLayout>
+
+                    <!--  Event map pin icon  -->
+
+                    <Label Margin="0,24,0,0" Grid.Row="2" VerticalOptions="Start" HorizontalOptions="Start" 
+                           Text="{StaticResource MapPin}" FontFamily="{StaticResource FontIcons}" 
+                           TextColor="{DynamicResource Gray-600}" FontSize="18"/>
+
+                    <StackLayout Spacing="2" Padding="0,4,0,0" Margin="8,18,0,0" Grid.Column="1" Grid.Row="2" >
+
+                        <!--  Event location -->
+                        <Label Text="Hard Rock Cafe"  FontSize="16" FontFamily="{StaticResource Montserrat-Medium}" 
+                               HorizontalOptions="Start" TextColor="{DynamicResource Gray-900}"/>
+
+                        <Label  Text="1501 Broadway, New York, NY 10036, USA"  FontSize="12" FontFamily="{StaticResource Montserrat-Medium}" 
+                               HorizontalOptions="Start" TextColor="{DynamicResource Gray-800}"/>
+
+                    </StackLayout>
+
+                    <!--  Event group icon -->
+                    <Label Margin="0,24,0,0" Grid.Row="3" Grid.ColumnSpan="2" VerticalOptions="Start" HorizontalOptions="Start" 
+                           Text="{StaticResource Group}" FontSize="17" FontFamily="{StaticResource FontIcons}" 
+                           TextColor="{DynamicResource Gray-600}"/>
+
+                    <StackLayout Margin="8,18,0,0" Padding="0,4,0,0" Grid.Column="1" Grid.Row="3" >
+
+                        <Label Text="Going" Grid.Row="3" FontSize="16" FontFamily="{StaticResource Montserrat-Medium}" 
+                               HorizontalOptions="Start" TextColor="{DynamicResource Gray-900}"/>
+
+                        <listView:SfListView HeightRequest="32"            
+                        Padding="0"
+                        AutoFitMode="DynamicHeight"
+                        ColumnSpacing="0"
+                        HorizontalOptions="FillAndExpand"
+                        IsScrollBarVisible="False"
+                        ItemSpacing="0"
+                        ItemsSource="{Binding Connections}"
+                        Orientation="Horizontal"
+                        RowSpacing="0"
+                        IsStickyHeader="False"
+                        SelectionBackgroundColor="Transparent"
+                        TapCommand="{Binding ProfileSelectedCommand}"
+                        VerticalOptions="StartAndExpand">
+
+                            <listView:SfListView.ItemTemplate>
+                                <DataTemplate>
+                                    <local:EventTemplate />
+                                </DataTemplate>
+                            </listView:SfListView.ItemTemplate>
+
+                        </listView:SfListView>
+                    </StackLayout>
+
+                    <StackLayout Spacing="4" Margin="0,32,0,0" Grid.ColumnSpan="3" Grid.Row="4">
+
+                        <!--  Event details -->
+                        <Label Text="Detail"  Margin="0" FontSize="16" FontFamily="{StaticResource Montserrat-SemiBold}" 
+                               HorizontalOptions="Start" TextColor="{DynamicResource Gray-900}"/>
+
+                        <Label  Text="Featuring bands from the local music scene, IGNITE! Music Festival aims to bring the best of Americans music to everyone."  
+                           Margin="0" FontSize="12" FontFamily="{StaticResource Montserrat-Medium}" LineHeight="1.2"
+                               HorizontalOptions="Start" TextColor="{DynamicResource Gray-700}"/>
+
+                    </StackLayout>
+
+                    <!--  join button -->
+                    <buttons:SfButton x:Name="joinButton" Grid.ColumnSpan="2" Grid.Row="5"
+                         Margin="0,50,0,0"
+                         Command="{Binding Path=BindingContext.JoinCommand, Source={x:Reference joinButton}}"     
+                         Style="{StaticResource  SfGradientButtonStyle}"
+                         HeightRequest="40" HorizontalOptions="FillAndExpand"
+                         CornerRadius="4"
+                         Text="JOIN"
+                         TextColor="{DynamicResource Gray-White}" />
+
+                    <!--  more icon button -->
+                    <buttons:SfButton x:Name="menuIcon" Grid.Row="5" WidthRequest="50"
+                         Command="{Binding Path=BindingContext.MenuCommand, Source={x:Reference menuIcon}}"  
+                         Margin="16,50,0,0" CornerRadius="4"
+                         Grid.Column="2"
+                         Style="{StaticResource MenuIcon}"
+                         Text="{StaticResource Menu}" />
+                </Grid>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
+    
+    

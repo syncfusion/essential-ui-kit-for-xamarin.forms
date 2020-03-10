@@ -10,6 +10,9 @@
 
     <Color x:Key="Transparent">Transparent</Color>
 
+    <x:String x:Key="MoreIcon">&#xe719;</x:String>
+    <x:String x:Key="Back">&#xe709;</x:String>
+
     <Style TargetType="control:TitleView">
         <Setter Property="BackgroundColor" Value="{DynamicResource Gray-White}" />
     </Style>
@@ -163,6 +166,27 @@
                 </VisualStateGroup>
             </VisualStateGroupList>
         </Setter>
+    </Style>
+
+    <!--  Common style for icon buttons  -->
+    <Style x:Key="IconButtonStyle" TargetType="buttons:SfButton">
+        <Setter Property="TextColor" Value="{DynamicResource Gray-600}" />
+        <Setter Property="BackgroundColor" Value="{StaticResource Transparent}" />
+        <Setter Property="FontFamily" Value="{StaticResource FontIcons}" />
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="HorizontalTextAlignment" Value="Center" />
+        <Setter Property="VerticalTextAlignment" Value="Center" />
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="HeightRequest" Value="40" />
+        <Setter Property="WidthRequest" Value="40" />
+    </Style>
+
+    <Style x:Key="CardLabel" TargetType="Label">
+        <Setter Property="FontFamily" Value="{StaticResource Montserrat-SemiBold}"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="TextColor" Value="{DynamicResource Gray-White}"/>
+        <Setter Property="LineHeight" Value="{OnPlatform Default=-1, Android=1.5}"/>
     </Style>
 
 </ResourceDictionary>

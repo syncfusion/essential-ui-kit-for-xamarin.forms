@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Grid xmlns="http://xamarin.com/schemas/2014/forms"
+      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+      xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+      xmlns:gradient="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
+      xmlns:cards="clr-namespace:Syncfusion.XForms.Cards;assembly=Syncfusion.Cards.XForms"
+      x:Class="EssentialUIKit.Views.Templates.EventListTemplate">
+
+    <Grid.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Grid.Resources>
+
+    <Grid RowSpacing="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Image Grid.Row="0"
+            Aspect="AspectFill"
+            BackgroundColor="{DynamicResource Gray-200}"
+            HeightRequest="280" >
+            <Image.Source>
+                <UriImageSource
+                    CacheValidity="14"
+                    CachingEnabled="true"
+                    Uri="{Binding ImagePath}"/>
+            </Image.Source>
+        </Image>
+
+        <buttons:SfButton                
+             x:Name="favouriteIcon"   
+             Text="{StaticResource Favourite}"  FontSize="18"  
+             Command="{Binding Path=BindingContext.FavouriteCommand, Source={x:Reference favouriteIcon}}"                                                     
+             CommandParameter="{x:Reference favouriteIcon}"                    
+             Grid.Row="0" Margin="0,5,5,0" CornerRadius="4"
+             FontFamily="{StaticResource FontIcons}"
+             TextColor="{StaticResource Gray-White}" BackgroundColor="Transparent"
+             WidthRequest="40"
+             HeightRequest="40"
+             HorizontalOptions="End" VerticalOptions="Start">
+        </buttons:SfButton>
+
+        <Grid Grid.Row="1"  Padding="8,18" ColumnSpacing="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <!--  Card view for displaying items  -->
+            <cards:SfCardView CornerRadius="4" Margin="2,2,8,0" HasShadow="False" WidthRequest="40" HeightRequest="40">
+                <cards:SfCardView.Content>
+                    <Grid>
+                        <gradient:SfGradientView>
+                            <gradient:SfGradientView.BackgroundBrush>
+                                <gradient:SfLinearGradientBrush>
+                                    <gradient:SfLinearGradientBrush.GradientStops>
+                                        <gradient:SfGradientStop Offset="0" Color="{DynamicResource PrimaryColor}" />
+                                        <gradient:SfGradientStop Offset="1" Color="{DynamicResource PrimaryGradient}" />
+                                    </gradient:SfLinearGradientBrush.GradientStops>
+                                </gradient:SfLinearGradientBrush>
+                            </gradient:SfGradientView.BackgroundBrush>
+                        </gradient:SfGradientView>
+
+                        <StackLayout Margin="6,2" Padding="2,0,0,2" Spacing="2">
+
+                            <!--  Event month label  -->
+                            <Label Text="{Binding EventMonth}"  TextColor="{StaticResource Gray-White}" 
+                                   FontSize="12"  FontFamily="{StaticResource Montserrat-SemiBold}" 
+                                    HorizontalOptions="Center" />
+                            <!--  Event event label  -->
+                            <Label Text="{Binding EventDate}"  TextColor="{StaticResource Gray-White}" 
+                                   FontSize="12"  FontFamily="{StaticResource Montserrat-SemiBold}" 
+                                   HorizontalOptions="Center" />
+                        </StackLayout>
+
+                    </Grid>
+                </cards:SfCardView.Content>
+            </cards:SfCardView>
+
+            <StackLayout Margin="0" Grid.Column="1" Spacing="4" >
+
+                <!--  Event name label  -->
+                <Label Text="{Binding EventName}"  FontSize="16" FontFamily="{StaticResource Montserrat-SemiBold}" 
+                       HorizontalOptions="Start" TextColor="{DynamicResource Gray-900}" LineBreakMode="NoWrap"/>
+
+                <!--  Event time label  -->
+                <Label  Text="10.00 PM - 2.00 AM"  FontSize="12" FontFamily="{StaticResource Montserrat-Medium}" 
+                        HorizontalOptions="Start" TextColor="{DynamicResource Gray-700}"/>
+
+            </StackLayout>
+
+            <!-- Menu button -->
+            <buttons:SfButton HorizontalOptions="End" Margin="0" WidthRequest="{OnIdiom Phone=30,Default=40}" VerticalOptions="Center"
+                 Grid.Column="2"
+                 Style="{StaticResource MoreButton}"
+                 Text="{StaticResource More}" />
+        </Grid>
+    </Grid>
+</Grid>

@@ -12,6 +12,7 @@
     <Color x:Key="TappedBackgroundColor">#eaeaea</Color>
     <Color x:Key="Transparent">Transparent</Color>
     <Color x:Key="LightGreen">#35c659</Color>
+    <Color x:Key="OrangeyYellow">#fcbc0f</Color>
     
     <x:String x:Key="Rating">&#xe70c;</x:String>
     <x:String x:Key="Back">&#xe709;</x:String>
@@ -34,6 +35,8 @@
     <x:String x:Key="Calendar">&#xe742;</x:String>
     <x:String x:Key="Account">&#xe70e;</x:String>
     <x:String x:Key="MoreIcon">&#xe715;</x:String>
+    <x:String x:Key="Category">&#xe733;</x:String>
+    <x:String x:Key="FileExplorer">&#xe74a;</x:String>
 
     <!-- Common style for rating labels -->
     <Style x:Key="RatingLabelStyle" TargetType="Label">
@@ -226,7 +229,7 @@
         <Setter Property="BackgroundColor" Value="Transparent" />
         <Setter Property="FontFamily" Value="{StaticResource FontIcons}" />
     </Style>
-    
+
     <!--  Common style for icon buttons  -->
     <Style x:Key="IconButton" TargetType="Label">
         <Setter Property="TextColor" Value="{DynamicResource Gray-600}" />
@@ -249,7 +252,19 @@
         <Setter Property="FontFamily" Value="{StaticResource FontIcons}" />
         <Setter Property="HeightRequest" Value="34" />
         <Setter Property="WidthRequest" Value="34" />
-        <Setter Property="HorizontalOptions" Value="End" />
+    </Style>
+
+    <!--  Common style for next  SfButton  -->
+    <Style x:Key="ViewAllButtonStyle" TargetType="buttons:SfButton">
+        <Setter Property="TextColor" Value="{DynamicResource HyperLink}" />
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="CornerRadius" Value="4" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="BackgroundColor" Value="Transparent" />
+        <Setter Property="FontFamily" Value="{StaticResource Montserrat-SemiBold}" />
+        <Setter Property="HeightRequest" Value="38" />
+        <Setter Property="HorizontalOptions" Value="EndAndExpand" />
+        <Setter Property="Margin" Value="16,0,0,0"/>
     </Style>
 
     <!--  Common style for labels  -->

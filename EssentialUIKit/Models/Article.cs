@@ -1,5 +1,4 @@
-﻿using System.ComponentModel;
-using System.Runtime.CompilerServices;
+﻿using EssentialUIKit.ViewModels;
 using Xamarin.Forms.Internals;
 
 namespace EssentialUIKit.Models
@@ -8,7 +7,7 @@ namespace EssentialUIKit.Models
     /// Model for Article templates.
     /// </summary>
     [Preserve(AllMembers = true)]
-    public class Article : INotifyPropertyChanged
+    public class Article : BaseViewModel
     {
         #region Fields
 
@@ -17,14 +16,10 @@ namespace EssentialUIKit.Models
         /// </summary>
         private bool isBookmarked;
 
-        #endregion
-
-        #region Event
-
         /// <summary>
-        /// The declaration of property changed event.
+        /// Gets or sets a value indicating whether the article is favourite.
         /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
+        private bool isFavourite; 
 
         #endregion
 
@@ -44,6 +39,7 @@ namespace EssentialUIKit.Models
         /// Gets or sets the article author name.
         /// </summary>
         public string Author { get; set; }
+
 
         /// <summary>
         /// Gets or sets the article publish date.
@@ -77,18 +73,38 @@ namespace EssentialUIKit.Models
             }
         }
 
-        #endregion
+        /// <summary>
+        /// Gets or sets a value indicating whether the article is favourite.
+        /// </summary>
+        public bool IsFavourite
+        {
+            get
+            {
+                return this.isFavourite;
+            }
 
-        #region Methods
+            set
+            {
+                this.isFavourite = value;
+                this.NotifyPropertyChanged();
+            }
+        }
 
         /// <summary>
-        /// The PropertyChanged event occurs when changing the value of property.
+        /// Gets or sets the bookmarked count.
         /// </summary>
-        /// <param name="propertyName">Property name</param>
-        public void NotifyPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
+        public int BookmarkedCount { get; set; }
+
+        /// <summary>
+        /// Gets or sets the favourite count.
+        /// </summary>
+        public int FavouritesCount { get; set; }
+
+        /// <summary>
+        /// Gets or sets the shared count.
+        /// </summary>
+        public int SharedCount { get; set; }
+
         #endregion
     }
 }

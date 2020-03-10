@@ -16,6 +16,7 @@ using Syncfusion.XForms.iOS.Graphics;
 using Syncfusion.XForms.iOS.PopupLayout;
 using Syncfusion.XForms.iOS.ProgressBar;
 using Syncfusion.XForms.iOS.TabView;
+using Syncfusion.SfGauge.XForms.iOS;
 using UIKit;
 
 namespace EssentialUIKit.iOS
@@ -54,7 +55,8 @@ namespace EssentialUIKit.iOS
             SfTabViewRenderer.Init();
             SfCalendarRenderer.Init();
             SfLinearProgressBarRenderer.Init();
-            SfChartRenderer.Init();     
+            SfChartRenderer.Init();
+            SfGaugeRenderer.Init();
 
             ////UIView statusBar = UIApplication.SharedApplication.ValueForKey(new NSString("statusBar")) as UIView;
             ////if (statusBar.RespondsToSelector(new ObjCRuntime.Selector("setBackgroundColor:")))

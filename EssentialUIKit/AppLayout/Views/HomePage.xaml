@@ -217,13 +217,23 @@
                                                   iOS=10}"
                         HasShadow="False" />
 
-                    <Button
-                        x:Name="SettingsIcon"
-                        Grid.Row="1"
-                        Clicked="ShowSettings"
-                        HorizontalOptions="EndAndExpand"
-                        Style="{StaticResource ActionBarSettingIconStyle}"
-                        VerticalOptions="Start" />
+                    <StackLayout Grid.Row="1" Spacing="0" Orientation="Horizontal" HorizontalOptions="EndAndExpand">
+                        <Button
+                            x:Name="CodeViewerIcon" 
+                            Text="&#xe753;"
+                            FontSize="16"
+                            Clicked="GotoCodeViewer"
+                            Style="{StaticResource ActionBarSettingIconStyle}"
+                            VerticalOptions="Start" />
+
+                        <Button
+                            x:Name="SettingsIcon" 
+                            Clicked="ShowSettings" 
+                            Style="{StaticResource ActionBarSettingIconStyle}"
+                            VerticalOptions="Start" />
+                    </StackLayout>
+
+                   
 
                 </Grid>
             </ListView.Header>
@@ -251,12 +261,18 @@
                 Text="{StaticResource HomePageTitle}"
                 VerticalOptions="CenterAndExpand" />
 
-            <Button
-                Grid.Row="1"
-                Clicked="ShowSettings"
-                HorizontalOptions="EndAndExpand"
-                Style="{StaticResource ActionBarSettingIconStyle}"
-                VerticalOptions="CenterAndExpand" />
+            <StackLayout Grid.Row="1" Spacing="0" Orientation="Horizontal" HorizontalOptions="End">
+                <Button
+                    Text="&#xe753;" FontSize="16"
+                    Clicked="GotoCodeViewer"
+                    Style="{StaticResource ActionBarSettingIconStyle}"
+                    VerticalOptions="Start" />
+
+                <Button
+                    Clicked="ShowSettings"
+                    Style="{StaticResource ActionBarSettingIconStyle}"
+                    VerticalOptions="CenterAndExpand" />
+            </StackLayout>
 
             <Frame
                 Grid.Row="2"

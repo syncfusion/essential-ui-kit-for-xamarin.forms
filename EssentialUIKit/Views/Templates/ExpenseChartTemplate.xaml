@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Grid xmlns="http://xamarin.com/schemas/2014/forms"
+      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+      xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d"
+      xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms"
+      xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms"
+      xmlns:gradient ="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
+      x:Class="EssentialUIKit.Views.Templates.ExpenseChartTemplate">
+
+    <Grid.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Grid.Resources>
+
+    <Grid RowSpacing="0" ColumnSpacing="0" HeightRequest="409">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <gradient:SfGradientView Grid.RowSpan="4">
+            <gradient:SfGradientView.BackgroundBrush>
+                <gradient:SfLinearGradientBrush>
+                    <gradient:SfLinearGradientBrush.GradientStops>
+                        <gradient:SfGradientStop Color="{DynamicResource Liliac}" Offset="0.0" />
+                        <gradient:SfGradientStop Color="{DynamicResource Purpleish-Blue}" Offset="1.0" />
+                    </gradient:SfLinearGradientBrush.GradientStops>
+                </gradient:SfLinearGradientBrush>
+            </gradient:SfGradientView.BackgroundBrush>
+        </gradient:SfGradientView>
+
+        <!-- Title -->
+        <Label Margin="0,28,0,12" 
+               Text="Wallet" 
+               TextColor="{DynamicResource Gray-White}"
+               FontSize="16"
+               FontFamily="{DynamicResource Montserrat-Medium}"
+               HorizontalOptions="Center"
+               LineHeight="{OnPlatform Android=1.5, Default=-1}" />
+
+        <!-- Total balance -->
+        <Label Grid.Row="1"
+               Margin="16,16,16,4" 
+               Text="Total Balance"
+               TextColor="{DynamicResource Gray-White}"
+               FontSize="12"
+               FontFamily="{DynamicResource Montserrat-Medium}"
+               LineHeight="{OnPlatform Android=1.5, Default=-1}" />
+
+        <Label Grid.Row="2" 
+               Margin="16,0,16,32"
+               TextColor="{DynamicResource Gray-White}"
+               FontSize="24"
+               FontFamily="{DynamicResource Montserrat-Bold}"
+               LineHeight="{OnPlatform Android=1.5, Default=-1}">
+            <Label.FormattedText>
+                <FormattedString>
+                    <Span Text="$" />
+                    <Span Text="{Binding TotalBalance}" />
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
+
+        <StackLayout Grid.Row="1" 
+                     Grid.RowSpan="2"
+                     Margin="0,16,16,51"
+                     Padding="8,5"
+                     HorizontalOptions="End"
+                     VerticalOptions="Start"
+                     WidthRequest="{OnPlatform Android=90, Default=94}"
+                     HeightRequest="32">
+            <combobox:SfComboBox SelectedIndex="{Binding SelectedIndex, Mode=TwoWay}" 
+                                 SelectedItem="{Binding DataSource[0], Mode=OneTime}" 
+                                 ShowBorder="False" MultiSelectMode="None" IsEditableMode="False"
+                                 TextColor="{DynamicResource Gray-White}" HorizontalOptions="Start" TextSize="14"
+                                 VerticalOptions="Start" FontFamily="{DynamicResource Montserrat-Medium}"
+                                 DisplayMemberPath="Duration" DataSource="{Binding DataSource}">
+                <combobox:SfComboBox.DropDownButtonSettings>
+                    <combobox:DropDownButtonSettings>
+                        <combobox:DropDownButtonSettings.View>
+                            <Label FontFamily="{StaticResource FontIcons}"
+                                   FontSize="20"
+                                   HorizontalTextAlignment="Center"
+                                   Text="{StaticResource DropDownButtonIcon}"
+                                   TextColor="{DynamicResource Gray-White}"
+                                   VerticalTextAlignment="Center" />
+                        </combobox:DropDownButtonSettings.View>
+                    </combobox:DropDownButtonSettings>
+                </combobox:SfComboBox.DropDownButtonSettings>
+            </combobox:SfComboBox>
+        </StackLayout>
+
+        <!-- Income and expense chart -->
+        <chart:SfChart Grid.Row="3" Margin="10,0,10,26" HorizontalOptions="FillAndExpand" 
+                       VerticalOptions="FillAndExpand" BackgroundColor="{DynamicResource Transparent}">
+
+            <chart:SfChart.PrimaryAxis>
+                <chart:CategoryAxis ShowMajorGridLines="False" Interval="1">
+                    <chart:CategoryAxis.LabelStyle>
+                        <chart:ChartAxisLabelStyle Margin="0,8,0,0" TextColor="{DynamicResource Gray-White}" FontSize="12" 
+                                                   FontFamily="{DynamicResource Montserrat-Medium}" />
+                    </chart:CategoryAxis.LabelStyle>
+                    <chart:CategoryAxis.AxisLineStyle>
+                        <chart:ChartLineStyle StrokeWidth="0" />
+                    </chart:CategoryAxis.AxisLineStyle>
+                    <chart:CategoryAxis.MajorTickStyle>
+                        <chart:ChartAxisTickStyle TickSize="0" StrokeWidth="0" />
+                    </chart:CategoryAxis.MajorTickStyle>
+                </chart:CategoryAxis>
+            </chart:SfChart.PrimaryAxis>
+
+            <chart:SfChart.SecondaryAxis>
+                <chart:NumericalAxis Minimum="0" Maximum="100" Interval="10" ShowMinorGridLines="False" IsVisible="False" 
+                                     ShowMajorGridLines="False">
+                    <chart:NumericalAxis.AxisLineStyle>
+                        <chart:ChartLineStyle StrokeWidth="0" />
+                    </chart:NumericalAxis.AxisLineStyle>
+                </chart:NumericalAxis>
+            </chart:SfChart.SecondaryAxis>
+
+            <chart:SfChart.Legend>
+                <chart:ChartLegend ToggleSeriesVisibility="True" Margin="0,29,0,0" DockPosition="Bottom" IconWidth="8" IconHeight="8" 
+                                   Orientation="Horizontal">
+                    <chart:ChartLegend.LabelStyle>
+                        <chart:ChartLegendLabelStyle Margin="10,0,24,0" TextColor="{DynamicResource Gray-White}" 
+                                                     FontSize="12" FontFamily="{DynamicResource Montserrat-Medium}" />
+                    </chart:ChartLegend.LabelStyle>
+                </chart:ChartLegend>
+            </chart:SfChart.Legend>
+
+            <chart:SfChart.Series>
+                <chart:StackingColumn100Series Width="0.1" CornerRadius="4" ItemsSource="{Binding ChartData}"
+                                               XBindingPath="XValue" YBindingPath="Expense" Label="Expense" Color="{DynamicResource Lemon-Lime}" 
+                                               LegendIcon="Circle" EnableTooltip="False" EnableAnimation="True" />
+
+                <chart:StackingColumn100Series Width="0.1" CornerRadius="4" ItemsSource="{Binding ChartData}" XBindingPath="XValue" 
+                                               YBindingPath="GapValue" Color="Transparent" IsVisibleOnLegend="False" />
+
+                <chart:StackingColumn100Series Width="0.1" CornerRadius="4" ItemsSource="{Binding ChartData}" XBindingPath="XValue" 
+                                               YBindingPath="Income" Label="Income" Color="{DynamicResource Bright-Cyan}" 
+                                               LegendIcon="Circle" EnableTooltip="False" EnableAnimation="True" />
+            </chart:SfChart.Series>
+
+        </chart:SfChart>
+    </Grid>
+</Grid>
