@@ -46,7 +46,7 @@
                     VerticalOptions="Start">
                     <CarouselView.ItemTemplate>
                         <DataTemplate>
-                              <!--Image of the resort-->  
+                            <!--Image of the resort-->
                             <Image
                                   Aspect="AspectFill"
                                   BackgroundColor="{DynamicResource Gray-200}"
@@ -145,10 +145,10 @@
                                 <StackLayout Margin="0,19,0,0" Spacing="8" Orientation="Horizontal" Grid.Row="2" HeightRequest="40">
 
                                     <!--  combo Box for calender -->
-                                    <border:SfBorder Padding="4,0,6,0" WidthRequest="170" Margin="0"
+                                    <border:SfBorder Padding="4,0,6,0" WidthRequest="180" Margin="0"
                                        HeightRequest="40" Style="{StaticResource FormBorderStyle}">
 
-                                        <combobox:SfComboBox WidthRequest="172" x:Name="sfComboBox" ShowDropDownFooterView="False" 
+                                        <combobox:SfComboBox WidthRequest="180" x:Name="sfComboBox" ShowDropDownFooterView="False" 
                                              DataSource="{Binding Calender}"                
                                             ShowDropDownHeaderView="True" DropDownWidth="300" Margin="0" 
                                             TextSize="14" DropDownHeaderViewHeight="300" Watermark="Select Date"
@@ -163,7 +163,7 @@
                                                     SelectionMode="RangeSelection"  />
                                             </combobox:SfComboBox.DropDownHeaderView>
                                             <combobox:SfComboBox.DropDownButtonSettings>
-                                                <combobox:DropDownButtonSettings Width="40" Height="40">
+                                                <combobox:DropDownButtonSettings Width="16" Height="40">
                                                     <combobox:DropDownButtonSettings.View>
                                                         <Label WidthRequest="12" 
                                                                FontFamily="{StaticResource FontIcons}"
@@ -203,7 +203,7 @@
                                     </border:SfBorder>
 
                                     <!--  combo Box for bed -->
-                                    <border:SfBorder  Padding="4,0,0,0" Margin="0" WidthRequest="{OnIdiom Phone=86,Default=100}"
+                                    <border:SfBorder  Padding="4,0,0,0" Margin="0" WidthRequest="{OnIdiom Phone=76,Default=100}"
                                           HeightRequest="40" Style="{StaticResource FormBorderStyle}">
 
                                         <combobox:SfComboBox  WidthRequest="{OnIdiom Phone=76,Default=100}" Margin="0"
@@ -259,7 +259,7 @@
                                             Command="{Binding Path=BindingContext.BookCommand, Source={x:Reference book}}" 
                                             CornerRadius="24" Style="{StaticResource BookNowButtonStyle}"
                                             Text="BOOK" />
-                                    
+
                                 </Grid>
 
                                 <!--  Resort information title -->
@@ -291,7 +291,7 @@
                                     <listView:SfListView.ItemTemplate>
                                         <DataTemplate>
                                             <StackLayout Spacing="4" Orientation="Vertical" Margin="0">
-                                               
+
                                                 <border:SfBorder  BorderWidth="0" BackgroundColor="{DynamicResource Gray-100}" 
                                                   HeightRequest="40" WidthRequest="40"                     
                                                     CornerRadius="20" 
@@ -299,36 +299,36 @@
                                                     <border:SfBorder.Content>
                                                         <Label  Text="{Binding Icon}" FontFamily="{StaticResource FontIcons}" VerticalOptions="Center"
                                                                 HorizontalOptions="Center" TextColor="{StaticResource Steel}"/>
-                                                               
+
                                                     </border:SfBorder.Content>
                                                 </border:SfBorder>
-                                                
+
                                                 <Label  TextColor="{DynamicResource Gray-700}" 
                                                     FontFamily="{StaticResource Montserrat-Medium}" FontSize="12"
                                                     Text="{Binding Facility}" HorizontalOptions="Center"/>
-                                          
+
                                             </StackLayout>
                                         </DataTemplate>
                                     </listView:SfListView.ItemTemplate>
 
                                     <listView:SfListView.FooterTemplate>
-                                            <DataTemplate>
-                                                <StackLayout Spacing="4" Orientation="Vertical" Margin="0">
+                                        <DataTemplate>
+                                            <StackLayout Spacing="4" Orientation="Vertical" Margin="0">
 
-                                                    <buttons:SfButton  BorderWidth="0" BackgroundColor="{DynamicResource Gray-100}" 
+                                                <buttons:SfButton  BorderWidth="0" BackgroundColor="{DynamicResource Gray-100}" 
                                                     HeightRequest="40" WidthRequest="40" Text="{StaticResource Menu}" 
                                                     FontFamily="{StaticResource FontIcons}" TextColor="{StaticResource Steel}"               
                                                     CornerRadius="20" HorizontalOptions="Center" VerticalOptions="Center">
-                                                    </buttons:SfButton>
+                                                </buttons:SfButton>
 
-                                                    <Label  TextColor="{DynamicResource Gray-700}" 
+                                                <Label  TextColor="{DynamicResource Gray-700}" 
                                                     FontFamily="{StaticResource Montserrat-Medium}" FontSize="12"
                                                     Text="More" HorizontalOptions="Center"/>
 
-                                                </StackLayout>
-                                            </DataTemplate>
-                                        </listView:SfListView.FooterTemplate>
-                                  
+                                            </StackLayout>
+                                        </DataTemplate>
+                                    </listView:SfListView.FooterTemplate>
+
                                 </listView:SfListView>
 
                                 <!--  Title for location -->

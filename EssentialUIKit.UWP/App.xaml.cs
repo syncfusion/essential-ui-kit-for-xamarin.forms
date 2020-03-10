@@ -75,7 +75,7 @@ namespace EssentialUIKit.UWP
                     typeof(Syncfusion.SfMaps.XForms.UWP.SfMapsRenderer).GetTypeInfo().Assembly,
                     typeof(Syncfusion.XForms.UWP.ProgressBar.SfLinearProgressRenderer).GetTypeInfo().Assembly
                 };
-
+                Xamarin.Forms.Forms.SetFlags("CollectionView_Experimental");
                 Xamarin.Forms.Forms.Init(e, assembliesToInclude);
 
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)

@@ -469,7 +469,7 @@ namespace EssentialUIKit.ViewModels.Detail
         private void SelectionChanged( SelectionChangedEventArgs e)
         {
             selectedDates = e.DateAdded;
-            this.RoomDetail.SelectedRanges = (selectedDates[0].Date.ToString("MMM dd")) + "-" + (selectedDates[selectedDates.Count - 1].Date.ToString("MMM dd"));
+            this.RoomDetail.SelectedRanges = (selectedDates[0].Date.ToString("MMM dd")) + " - " + (selectedDates[selectedDates.Count - 1].Date.ToString("MMM dd"));
             IsDropDownOpen = false;
         }
 

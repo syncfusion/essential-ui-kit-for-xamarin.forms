@@ -1,7 +1,6 @@
 ﻿using System;
 using EssentialUIKit.AppLayout.Models;
 using EssentialUIKit.AppLayout.ViewModels;
-using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;

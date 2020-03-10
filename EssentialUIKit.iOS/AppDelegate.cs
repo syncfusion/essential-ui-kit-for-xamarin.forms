@@ -18,6 +18,7 @@ using Syncfusion.XForms.iOS.ProgressBar;
 using Syncfusion.XForms.iOS.TabView;
 using Syncfusion.SfGauge.XForms.iOS;
 using UIKit;
+using Xamarin.Forms;
 
 namespace EssentialUIKit.iOS
 {
@@ -35,6 +36,7 @@ namespace EssentialUIKit.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
+            Forms.SetFlags("CollectionView_Experimental");
             this.LoadApplication(new App());
             SfButtonRenderer.Init();
             SfCheckBoxRenderer.Init();
