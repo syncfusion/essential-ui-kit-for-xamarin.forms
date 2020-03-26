@@ -192,7 +192,7 @@ namespace EssentialUIKit.ViewModels.Dashboard
                     Name = "Phillip Estrada",
                     Title = "Cash Back",
                     Amount = 50,
-                    Date = new DateTime(2019, 1, 1),
+                    Date = new DateTime(2019, 1, 7),
                     IsCredited = true
                 },
                 new Model()
@@ -201,7 +201,7 @@ namespace EssentialUIKit.ViewModels.Dashboard
                     Name = "Nell Sanchez",
                     Title = "Food Order Bill",
                     Amount = 50,
-                    Date = new DateTime(2019, 1, 1),
+                    Date = new DateTime(2019, 1, 7),
                     IsCredited = false
                 },
                 new Model()
@@ -210,7 +210,7 @@ namespace EssentialUIKit.ViewModels.Dashboard
                     Name = "Essie Hansen",
                     Title = "XXXXXXX6585",
                     Amount = 60,
-                    Date = new DateTime(2019, 1, 2),
+                    Date = new DateTime(2019, 1, 6),
                     IsCredited = true
                 },
                 new Model()
@@ -219,7 +219,7 @@ namespace EssentialUIKit.ViewModels.Dashboard
                     Name = "Nell Sanchez",
                     Title = "Credit Card Bill",
                     Amount = 40,
-                    Date = new DateTime(2019, 1, 2),
+                    Date = new DateTime(2019, 1, 6),
                     IsCredited = false
                 },
                 new Model()
@@ -228,7 +228,7 @@ namespace EssentialUIKit.ViewModels.Dashboard
                     Name = "Amelia Coleman",
                     Title = "Refund",
                     Amount = 40,
-                    Date = new DateTime(2019, 1, 3),
+                    Date = new DateTime(2019, 1, 5),
                     IsCredited = true
                 },
                 new Model()
@@ -237,7 +237,7 @@ namespace EssentialUIKit.ViewModels.Dashboard
                     Name = "Nell Sanchez",
                     Title = "Recharge",
                     Amount = 60,
-                    Date = new DateTime(2019, 1, 3),
+                    Date = new DateTime(2019, 1, 5),
                     IsCredited = false
                 },
                 new Model()
@@ -264,7 +264,7 @@ namespace EssentialUIKit.ViewModels.Dashboard
                     Name = "Blake Moore",
                     Title = "XXXXXXX6585",
                     Amount = 45,
-                    Date = new DateTime(2019, 1, 5),
+                    Date = new DateTime(2019, 1, 3),
                     IsCredited = true
                 },
                 new Model()
@@ -273,7 +273,7 @@ namespace EssentialUIKit.ViewModels.Dashboard
                     Name = "Nell Sanchez",
                     Title = "Food Order Bill",
                     Amount = 55,
-                    Date = new DateTime(2019, 1, 5),
+                    Date = new DateTime(2019, 1, 3),
                     IsCredited = false
                 },
                 new Model()
@@ -282,7 +282,7 @@ namespace EssentialUIKit.ViewModels.Dashboard
                     Name = "Chase Blair",
                     Title = "Refund",
                     Amount = 65,
-                    Date = new DateTime(2019, 1, 6),
+                    Date = new DateTime(2019, 1, 2),
                     IsCredited = true
                 },
                 new Model()
@@ -291,7 +291,7 @@ namespace EssentialUIKit.ViewModels.Dashboard
                     Name = "Nell Sanchez",
                     Title = "Food Order Bill",
                     Amount = 35,
-                    Date = new DateTime(2019, 1, 6),
+                    Date = new DateTime(2019, 1, 2),
                     IsCredited = false
                 },
                 new Model()
@@ -300,7 +300,7 @@ namespace EssentialUIKit.ViewModels.Dashboard
                     Name = "Bernard Daniels",
                     Title = "Cash Back",
                     Amount = 35,
-                    Date = new DateTime(2019, 1, 7),
+                    Date = new DateTime(2019, 1, 1),
                     IsCredited = true
                 },
                 new Model()
@@ -309,7 +309,7 @@ namespace EssentialUIKit.ViewModels.Dashboard
                     Name = "Nell Sanchez",
                     Title = "Food Order Bill",
                     Amount = 65,
-                    Date = new DateTime(2019, 1, 7),
+                    Date = new DateTime(2019, 1, 1),
                     IsCredited = false
                 }
             };
@@ -328,7 +328,7 @@ namespace EssentialUIKit.ViewModels.Dashboard
                     Name = "Amelia Coleman",
                     Title = "Refund",
                     Amount = 85,
-                    Date = new DateTime(2019, 1, 5),
+                    Date = new DateTime(2019, 1, 28),
                     IsCredited = true
                 },
                 new Model()
@@ -337,7 +337,7 @@ namespace EssentialUIKit.ViewModels.Dashboard
                     Name = "Nell Sanchez",
                     Title = "Food Order Bill",
                     Amount = 15.75,
-                    Date = new DateTime(2019, 1, 6),
+                    Date = new DateTime(2019, 1, 26),
                     IsCredited = false
                 },
                 new Model()
@@ -346,7 +346,7 @@ namespace EssentialUIKit.ViewModels.Dashboard
                     Name = "Arthur Kim",
                     Title = "XXXXXXX6585",
                     Amount = 65,
-                    Date = new DateTime(2019, 1, 10),
+                    Date = new DateTime(2019, 1, 20),
                     IsCredited = true
                 },
                 new Model()
@@ -355,7 +355,7 @@ namespace EssentialUIKit.ViewModels.Dashboard
                     Name = "Nell Sanchez",
                     Title = "Delivery Bill",
                     Amount = 35,
-                    Date = new DateTime(2019, 1, 12),
+                    Date = new DateTime(2019, 1, 18),
                     IsCredited = false
                 },
                 new Model()
@@ -364,7 +364,7 @@ namespace EssentialUIKit.ViewModels.Dashboard
                     Name = "Bettie Conlon",
                     Title = "Refund",
                     Amount = 40,
-                    Date = new DateTime(2019, 1, 18),
+                    Date = new DateTime(2019, 1, 12),
                     IsCredited = true
                 },
                 new Model()
@@ -373,7 +373,7 @@ namespace EssentialUIKit.ViewModels.Dashboard
                     Name = "Nell Sanchez",
                     Title = "Food Order Bill",
                     Amount = 60,
-                    Date = new DateTime(2019, 1, 20),
+                    Date = new DateTime(2019, 1, 10),
                     IsCredited = false
                 },
                 new Model()
@@ -382,7 +382,7 @@ namespace EssentialUIKit.ViewModels.Dashboard
                     Name = "Essie Hansen",
                     Title = "Cashback",
                     Amount = 30,
-                    Date = new DateTime(2019, 1, 28),
+                    Date = new DateTime(2019, 1, 6),
                     IsCredited = true
                 },
                 new Model()
@@ -391,7 +391,7 @@ namespace EssentialUIKit.ViewModels.Dashboard
                     Name = "Nell Sanchez",
                     Title = "Food order Bill",
                     Amount = 70,
-                    Date = new DateTime(2019, 1, 26),
+                    Date = new DateTime(2019, 1, 5),
                     IsCredited = false
                 },
             };
@@ -410,7 +410,7 @@ namespace EssentialUIKit.ViewModels.Dashboard
                     Name = "Arthur Kim",
                     Title = "XXXXXXX6585",
                     Amount = 65,
-                    Date = new DateTime(2019, 1, 13),
+                    Date = new DateTime(2019, 11, 24),
                     IsCredited = true
                 },
                 new Model()
@@ -419,7 +419,7 @@ namespace EssentialUIKit.ViewModels.Dashboard
                     Name = "Nell Sanchez",
                     Title = "Delivery Bill",
                     Amount = 35,
-                    Date = new DateTime(2019, 1, 26),
+                    Date = new DateTime(2019, 11, 2),
                     IsCredited = false
                 },
                 new Model()
@@ -428,7 +428,7 @@ namespace EssentialUIKit.ViewModels.Dashboard
                     Name = "Amelia Coleman",
                     Title = "XXXXXXX6585",
                     Amount = 70,
-                    Date = new DateTime(2019, 3, 5),
+                    Date = new DateTime(2019, 9, 21),
                     IsCredited = true
                 },
                 new Model()
@@ -437,7 +437,7 @@ namespace EssentialUIKit.ViewModels.Dashboard
                     Name = "Nell Sanchez",
                     Title = "Credit Card Bill",
                     Amount = 30.50,
-                    Date = new DateTime(2019, 3, 18),
+                    Date = new DateTime(2019, 9, 8),
                     IsCredited = false
                 },
                 new Model()
@@ -446,24 +446,6 @@ namespace EssentialUIKit.ViewModels.Dashboard
                     Name = "Alta Sims",
                     Title = "XXXXXXX6585",
                     Amount = 50,
-                    Date = new DateTime(2019, 5, 15),
-                    IsCredited = true
-                },
-                new Model()
-                {
-                    ProfileImage = "ProfileImage8.png",
-                    Name = "Nell Sanchez",
-                    Title = "Credit Card Bill",
-                    Amount = 50,
-                    Date = new DateTime(2019, 5, 21),
-                    IsCredited = false
-                },
-                new Model()
-                {
-                    ProfileImage = "ProfileImage3.png",
-                    Name = "Blake Moore",
-                    Title = "Refund",
-                    Amount = 35,
                     Date = new DateTime(2019, 7, 18),
                     IsCredited = true
                 },
@@ -472,8 +454,26 @@ namespace EssentialUIKit.ViewModels.Dashboard
                     ProfileImage = "ProfileImage8.png",
                     Name = "Nell Sanchez",
                     Title = "Credit Card Bill",
-                    Amount = 65,
+                    Amount = 50,
                     Date = new DateTime(2019, 7, 12),
+                    IsCredited = false
+                },
+                new Model()
+                {
+                    ProfileImage = "ProfileImage3.png",
+                    Name = "Blake Moore",
+                    Title = "Refund",
+                    Amount = 35,
+                    Date = new DateTime(2019, 5, 21),
+                    IsCredited = true
+                },
+                new Model()
+                {
+                    ProfileImage = "ProfileImage8.png",
+                    Name = "Nell Sanchez",
+                    Title = "Credit Card Bill",
+                    Amount = 65,
+                    Date = new DateTime(2019, 5, 15),
                     IsCredited = false
                 },
                 new Model()
@@ -482,7 +482,7 @@ namespace EssentialUIKit.ViewModels.Dashboard
                     Name = "Chase Blair",
                     Title = "XXXXXXX6585",
                     Amount = 20,
-                    Date = new DateTime(2019, 9, 8),
+                    Date = new DateTime(2019, 3, 15),
                     IsCredited = true
                 },
                 new Model()
@@ -491,7 +491,7 @@ namespace EssentialUIKit.ViewModels.Dashboard
                     Name = "Nell Sanchez",
                     Title = "Credit Card Bill",
                     Amount = 80,
-                    Date = new DateTime(2019, 9, 21),
+                    Date = new DateTime(2019, 3, 5),
                     IsCredited = false
                 },
                 new Model()
@@ -500,7 +500,7 @@ namespace EssentialUIKit.ViewModels.Dashboard
                     Name = "Arthur Kim",
                     Title = "Cashback",
                     Amount = 85,
-                    Date = new DateTime(2019, 11, 24),
+                    Date = new DateTime(2019, 1, 26),
                     IsCredited = true
                 },
                 new Model()
@@ -509,7 +509,7 @@ namespace EssentialUIKit.ViewModels.Dashboard
                     Name = "Nell Sanchez",
                     Title = "Credit Card Bill",
                     Amount = 15,
-                    Date = new DateTime(2019, 11, 2),
+                    Date = new DateTime(2019, 1, 13),
                     IsCredited = false
                 }
             };

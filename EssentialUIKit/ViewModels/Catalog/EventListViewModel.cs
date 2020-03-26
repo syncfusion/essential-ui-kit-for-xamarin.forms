@@ -44,13 +44,17 @@ namespace EssentialUIKit.ViewModels.Catalog
             this.EventItems = new List<EventList>()
             {
                  new EventList { ImagePath = App.BaseImageUrl +"Event-Image-two.png" , EventMonth="Dec",
-                                   EventName="Build Your Base, New York", EventDate="24", IsUpcoming=true },
+                                   EventName="Build Your Base, New York", EventDate="24", IsUpcoming=true, 
+                                   EventTime="2:00 PM - 6:00 PM"},
                  new EventList {  ImagePath = App.BaseImageUrl +"Event-Image.png" , EventMonth="Dec",
-                                   EventName="Ignite Music, New York", EventDate="22",IsPopular=true },
+                                   EventName="Ignite Music, New York", EventDate="22",IsPopular=true,
+                                   EventTime="7:00 PM - 11:00 PM"},
                  new EventList { ImagePath =  App.BaseImageUrl +"Event-Image-three.png" , EventMonth="Dec",
-                                   EventName="John Weds Jane, New York", EventDate="27", IsUpcoming=true },
+                                   EventName="John Weds Jane, New York", EventDate="27", IsUpcoming=true,
+                                   EventTime="10:00 AM - 2:00 PM"},
                  new EventList { ImagePath = App.BaseImageUrl +"Event-Image-one.png", EventMonth="Dec",
-                                   EventName="BigSounds, New York", EventDate="23",IsPopular=true }
+                                   EventName="BigSounds, New York", EventDate="23",IsPopular=true,
+                                   EventTime="9:00 PM - 1:00 PM"}
             };
 
             this.PopularEventItems = EventItems.Where(item => item.IsUpcoming == true).ToList();

@@ -33,7 +33,7 @@
                         Placeholder="Email"
                         PlaceholderColor="{DynamicResource Gray-700}"
                         Style="{StaticResource EntryStyle}"
-                        
+                        Keyboard="Email"
                         Text="{Binding Email}"
                         TextColor="{DynamicResource Gray-900}" />
                     

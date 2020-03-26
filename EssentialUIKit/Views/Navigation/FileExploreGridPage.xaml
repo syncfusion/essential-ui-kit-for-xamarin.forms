@@ -60,7 +60,7 @@
                            FontFamily="{StaticResource Montserrat-Medium}"
                            FontSize="16"
                            HorizontalOptions="CenterAndExpand"
-                           Text="File Explore"
+                           Text="File Explorer"
                            TextColor="{DynamicResource Gray-900}"
                            VerticalOptions="Center"
                            VerticalTextAlignment="Center" />

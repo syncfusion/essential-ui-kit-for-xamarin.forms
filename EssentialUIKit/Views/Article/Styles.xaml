@@ -110,7 +110,6 @@
         <Setter Property="HorizontalOptions" Value="Fill" />
         <Setter Property="BackgroundColor" Value="Transparent" />
         <Setter Property="BorderWidth" Value="0" />
-        <Setter Property="FontAttributes" Value="Bold" />
         <Setter Property="FontFamily" Value="{StaticResource FontIcons}" />
     </Style>
 

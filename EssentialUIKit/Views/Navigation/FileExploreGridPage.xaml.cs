@@ -7,7 +7,7 @@ using EssentialUIKit.DataService;
 namespace EssentialUIKit.Views.Navigation
 {
     /// <summary>
-    /// Page to display the file explore grid.
+    /// Page to display the file explorer grid.
     /// </summary>
     [Preserve(AllMembers = true)]
     [XamlCompilation(XamlCompilationOptions.Compile)]

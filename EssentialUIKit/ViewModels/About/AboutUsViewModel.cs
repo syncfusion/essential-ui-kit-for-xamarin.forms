@@ -1,6 +1,4 @@
 ﻿using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using EssentialUIKit.Models.About;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;

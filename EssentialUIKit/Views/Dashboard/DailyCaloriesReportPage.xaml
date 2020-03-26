@@ -188,7 +188,6 @@
                                                      Margin="0" HeightRequest="24"
                                                      IsScrollBarVisible="False"
                                                      SelectionMode="None" 
-                                                     IsScrollingEnabled="False" 
                                                      AutoFitMode="None"          
                                                      ItemSpacing="0" 
                                                      ItemSize="120" 

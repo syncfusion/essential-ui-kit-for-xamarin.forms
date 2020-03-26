@@ -1,6 +1,4 @@
 ﻿using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
@@ -253,7 +251,15 @@ namespace EssentialUIKit.ViewModels.Social
         /// <param name="obj">The Object</param>
         private void FollowClicked(object obj)
         {
-            // Do something
+            Label label = obj as Label;
+            if (label.Text == "FOLLOW")
+            {
+                label.Text = "FOLLOWED";
+            }
+            else if (label.Text == "FOLLOWED")
+            {
+                label.Text = "FOLLOW";
+            } 
         }
 
         /// <summary>

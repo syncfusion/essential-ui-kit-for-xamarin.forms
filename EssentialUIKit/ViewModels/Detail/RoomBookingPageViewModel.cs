@@ -174,15 +174,15 @@ namespace EssentialUIKit.ViewModels.Detail
             this.BedsCollection = new List<RoomDetail>()
             {
                 new RoomDetail{ DisplayText="1 Bed", ValueText=1 },
-                new RoomDetail { DisplayText="2 Bed", ValueText=2 },
-                new RoomDetail{ DisplayText="3 Bed", ValueText=3 }
+                new RoomDetail { DisplayText="2 Beds", ValueText=2 },
+                new RoomDetail{ DisplayText="3 Beds", ValueText=3 }
             };
 
             this.GuestsCollection = new List<RoomDetail>()
             {
                 new RoomDetail{ DisplayText="1 Guest", ValueText=1 },
-                new RoomDetail { DisplayText="2 Guest", ValueText=2 },
-                new RoomDetail{ DisplayText="3 Guest", ValueText=3 }
+                new RoomDetail { DisplayText="2 Guests", ValueText=2 },
+                new RoomDetail{ DisplayText="3 Guests", ValueText=3 }
             };
 
             this.CustomMarkers = new ObservableCollection<MapMarker>();

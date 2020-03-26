@@ -18,7 +18,7 @@
         <!--  Rating and Reviews Header  -->
         <StackLayout Margin="0"  Orientation="Horizontal" >
 
-            <Label Margin="16,0,8,16"
+            <Label Margin="16,0,8,8"
                 FontFamily="{StaticResource Montserrat-SemiBold}"
                 FontSize="16" 
                 HorizontalOptions="StartAndExpand"
@@ -27,7 +27,7 @@
                 TextColor="{DynamicResource Gray-900}" />
 
             <!--  See all review button  -->
-            <buttons:SfButton Margin="0,0,8,16"
+            <buttons:SfButton Margin="0,0,8,8"
                 x:Name="ShowButton"
                 Padding="0"
                 CornerRadius="4"
@@ -42,7 +42,8 @@
                 VerticalOptions="Start" />
 
         </StackLayout>
-        <BoxView HeightRequest="{OnIdiom Default=1, Desktop=0}" Style="{StaticResource BoxViewStyle}" Margin="-16,0" />
+        <BoxView HeightRequest="{OnIdiom Default=1, Desktop=0}" 
+                 Style="{StaticResource BoxViewStyle}"  />
     </StackLayout>
 
     <StackLayout x:Name="StackLayout" BindableLayout.ItemsSource="{Binding RoomDetail.Reviews}">
@@ -50,11 +51,8 @@
             <DataTemplate>
                 <StackLayout Spacing="0">
 
-                    <template:BookingReviewTemplate Padding="16,8,16,0" ColumnSpacing="0" />
+                    <template:BookingReviewTemplate Padding="16,0,16,8" ColumnSpacing="0" />
 
-                    <BoxView HeightRequest="{OnIdiom Default=1, Desktop=0}"   Style="{StaticResource BoxViewStyle}" />
-
-                    
                 </StackLayout>
             </DataTemplate>
         </BindableLayout.ItemTemplate>

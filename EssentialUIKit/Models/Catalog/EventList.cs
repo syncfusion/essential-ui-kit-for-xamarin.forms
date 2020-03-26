@@ -28,6 +28,11 @@ namespace EssentialUIKit.Models.Catalog
         public string EventDate { get; set; }
 
         /// <summary>
+        /// Gets or sets the event time.
+        /// </summary>
+        public string EventTime { get; set; }
+
+        /// <summary>
         /// Gets or sets the event month.
         /// </summary>
         public string EventMonth { get; set; }

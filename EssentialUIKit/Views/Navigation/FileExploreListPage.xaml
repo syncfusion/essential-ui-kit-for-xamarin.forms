@@ -53,12 +53,12 @@
                                       Style="{StaticResource IconButtonStyle}"
                                       Text="{StaticResource Back}" />
 
-                    <!--  File explore list page Title  -->
+                    <!--  File explorer list page Title  -->
                     <Label Margin="16,0"
                            FontFamily="{StaticResource Montserrat-Medium}"
                            FontSize="16"
                            HorizontalOptions="CenterAndExpand"
-                           Text="File Explore"
+                           Text="File Explorer"
                            TextColor="{DynamicResource Gray-900}"
                            VerticalOptions="Center"
                            VerticalTextAlignment="Center" />

@@ -46,7 +46,7 @@
                     <!--   Data table page Title  -->
                     <Label  Margin="16,0" FontFamily="{StaticResource Montserrat-Medium}" FontSize="16"
                             HorizontalOptions="CenterAndExpand" TextColor="{DynamicResource Gray-900}"
-                            LineHeight="1.25"  Text="Table"  VerticalOptions="Center" VerticalTextAlignment="Center" />
+                            LineHeight="1.25"  Text="Premier League Table"  VerticalOptions="Center" VerticalTextAlignment="Center" />
 
                 </StackLayout>
 
@@ -133,7 +133,7 @@
                                         </Grid.ColumnDefinitions>
                                         
                                         <!--  club name -->
-                                        <Label Padding="0"  Margin="6,0,0,0" Text="{Binding SerialNumber}"  FontSize="14" FontFamily="{StaticResource Montserrat-Medium}" 
+                                        <Label Margin="6,0,0,0" Text="{Binding SerialNumber}"  FontSize="14" FontFamily="{StaticResource Montserrat-Medium}" 
                                         TextColor="{DynamicResource Gray-900}" VerticalOptions="Center" HorizontalOptions="Start" />
 
                                         <Grid Grid.Column="1" ColumnSpacing="8">

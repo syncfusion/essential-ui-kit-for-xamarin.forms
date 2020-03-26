@@ -220,9 +220,9 @@
                     <StackLayout Grid.Row="3" Grid.ColumnSpan="2" Spacing="16" Margin="16,0,16,44" Orientation="Horizontal" >
 
                         <!-- Follow button -->
-                        <buttons:SfButton Command="{Binding FollowCommand}" WidthRequest="155" HeightRequest="32" 
+                        <buttons:SfButton Command="{Binding FollowCommand}" CommandParameter="{x:Reference followLabel}" WidthRequest="155" HeightRequest="32" 
                                           CornerRadius="1" Style="{StaticResource SfGradientButtonStyle}">
-                            <Label Text="FOLLOW" TextColor="{DynamicResource Gray-White}" FontSize="14"  
+                            <Label x:Name="followLabel" Text="FOLLOW" TextColor="{DynamicResource Gray-White}" FontSize="14"  
                                    FontFamily="{DynamicResource Montserrat-SemiBold}" LineHeight="{OnPlatform Android=1.5, Default=-1}"
                                    HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
                         </buttons:SfButton>
@@ -277,26 +277,9 @@
                            TextColor="{DynamicResource Gray-800}"
                            Style="{StaticResource TitleLabelStyle}"/>
 
-                    <listView:SfListView Grid.Row="3"
-                                         HeightRequest="100"
-                                         Margin="0,0,0,25"
-                                         Padding="0"
-                                         AutoFitMode="DynamicHeight"
-                                         ColumnSpacing="0"
-                                         HorizontalOptions="FillAndExpand"
-                                         IsScrollBarVisible="False"
-                                         ItemSpacing="0"
-                                         ItemsSource="{Binding Connections}"
-                                         Orientation="Horizontal"
-                                         RowSpacing="0"
-                                         IsStickyHeader="False"
-                                         SelectionBackgroundColor="Transparent"
-                                         TapCommand="{Binding ProfileSelectedCommand}"
-                                         VerticalOptions="StartAndExpand">
+                    <StackLayout Orientation="Horizontal" Grid.Row="3" Spacing="0">
 
-                        <listView:SfListView.HeaderTemplate>
-                            <DataTemplate>
-                                <Button Margin="16,16,16,0"
+                        <Button Margin="16,16,16,0"
                                         Padding="16"
                                         BackgroundColor="{DynamicResource Gray-100}"
                                         Command="{Binding AddConnectionCommand}"
@@ -309,16 +292,33 @@
                                         TextColor="{DynamicResource Gray-600}"
                                         VerticalOptions="StartAndExpand"
                                         HorizontalOptions="Start"/>
-                            </DataTemplate>
-                        </listView:SfListView.HeaderTemplate>
+                        
+                        <listView:SfListView 
+                              HeightRequest="100"
+                              Margin="0,0,0,25"
+                              Padding="0"
+                              AutoFitMode="DynamicHeight"
+                              ColumnSpacing="0"
+                              HorizontalOptions="FillAndExpand"
+                              IsScrollBarVisible="False"
+                              ItemSpacing="0"
+                              ItemsSource="{Binding Connections}"
+                              Orientation="Horizontal"
+                              RowSpacing="0"
+                              IsStickyHeader="False"
+                              SelectionBackgroundColor="Transparent"
+                              TapCommand="{Binding ProfileSelectedCommand}"
+                              VerticalOptions="StartAndExpand">
 
-                        <listView:SfListView.ItemTemplate>
-                            <DataTemplate>
-                                <local:ProfileTemplate />
-                            </DataTemplate>
-                        </listView:SfListView.ItemTemplate>
+                            <listView:SfListView.ItemTemplate>
+                                <DataTemplate>
+                                    <local:ProfileTemplate />
+                                </DataTemplate>
+                            </listView:SfListView.ItemTemplate>
 
-                    </listView:SfListView>
+                        </listView:SfListView>
+
+                    </StackLayout>
 
                     <!-- Photos title -->
                     <Label Grid.Row="4"

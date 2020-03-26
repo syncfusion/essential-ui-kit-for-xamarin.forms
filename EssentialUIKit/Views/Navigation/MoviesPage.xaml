@@ -73,7 +73,7 @@
         <ControlTemplate>
             <StackLayout Spacing="0">
                 <!--  Title View  -->
-                <controls:TitleView Title="Movies List" BackgroundColor="{DynamicResource Gray-White}">
+                <controls:TitleView Title="Movies" BackgroundColor="{DynamicResource Gray-White}">
                     <controls:TitleView.TrailingView>
                         
                         <!--Search Button-->
@@ -151,7 +151,7 @@
                                          SelectionMode="None"
                                          HeightRequest="280" 
                                          ItemSize="150" 
-                                         ItemSpacing="16, 0, 0, 0" 
+                                         ItemSpacing="8, 0, 8, 0" 
                                          Orientation="Horizontal" 
                                          IsScrollBarVisible="False"
                                          ItemsSource="{Binding NowShowingMoviesList}" 
@@ -177,7 +177,7 @@
                                          ItemSize="180" 
                                          Orientation="Horizontal" 
                                          ItemsSource="{Binding TrailerMoviesList}" 
-                                         ItemSpacing="16, 0, 0, 0" 
+                                         ItemSpacing="8, 0, 8, 0" 
                                          ItemTemplate="{StaticResource TrailerTemplate}"
                                          IsScrollBarVisible="False"/>
 
@@ -200,7 +200,7 @@
                                          ItemSize="150" 
                                          Orientation="Horizontal" 
                                          ItemsSource="{Binding UpcomingMoviesList}" 
-                                         ItemSpacing="16, 0, 0, 0" 
+                                         ItemSpacing="8, 0, 8, 0" 
                                          ItemTemplate="{StaticResource MovieTemplate}"
                                          IsScrollBarVisible="False"/>
 

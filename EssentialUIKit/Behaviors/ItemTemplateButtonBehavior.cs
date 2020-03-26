@@ -1,9 +1,7 @@
-﻿using EssentialUIKit.Models;
-using Syncfusion.ListView.XForms;
+﻿using Syncfusion.ListView.XForms;
 using Syncfusion.XForms.Buttons;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;

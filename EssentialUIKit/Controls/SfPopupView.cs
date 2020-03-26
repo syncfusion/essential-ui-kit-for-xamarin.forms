@@ -1,8 +1,5 @@
 ﻿using Syncfusion.XForms.Buttons;
 using Syncfusion.XForms.PopupLayout;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 

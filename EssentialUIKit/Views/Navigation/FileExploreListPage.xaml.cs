@@ -7,7 +7,7 @@ using EssentialUIKit.DataService;
 namespace EssentialUIKit.Views.Navigation
 {
     /// <summary>
-    /// Page to display the file explore list.
+    /// Page to display the file explorer list.
     /// </summary>
     [Preserve(AllMembers = true)]
     [XamlCompilation(XamlCompilationOptions.Compile)]

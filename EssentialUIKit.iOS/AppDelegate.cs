@@ -35,8 +35,8 @@ namespace EssentialUIKit.iOS
         // You have 17 seconds to return from this method, or iOS will terminate your application.
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
-            global::Xamarin.Forms.Forms.Init();
             Forms.SetFlags("CollectionView_Experimental");
+            global::Xamarin.Forms.Forms.Init();
             this.LoadApplication(new App());
             SfButtonRenderer.Init();
             SfCheckBoxRenderer.Init();

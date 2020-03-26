@@ -1,7 +1,4 @@
-﻿using Syncfusion.ListView.XForms;
-using System.Threading.Tasks;
-using Xamarin.Forms;
-using Xamarin.Forms.Internals;
+﻿using Xamarin.Forms.Internals;
 
 namespace EssentialUIKit.Controls
 {

@@ -75,7 +75,7 @@
                         CornerRadius="12"
                         BackgroundColor="{DynamicResource Gray-White}"
                         BorderColor="{DynamicResource Gray-200}"
-                        Padding="0"
+                        Padding="0,0,0,10"
                         BorderWidth="2"
                         HasShadow="True">
                         <StackLayout Spacing="0">
@@ -149,7 +149,7 @@
                                        HeightRequest="40" Style="{StaticResource FormBorderStyle}">
 
                                         <combobox:SfComboBox WidthRequest="180" x:Name="sfComboBox" ShowDropDownFooterView="False" 
-                                             DataSource="{Binding Calender}"                
+                                             DataSource="{Binding Calender}"             
                                             ShowDropDownHeaderView="True" DropDownWidth="300" Margin="0" 
                                             TextSize="14" DropDownHeaderViewHeight="300" Watermark="Select Date"
                                             MaximumDropDownHeight="300" DropDownFooterViewHeight="0" 
@@ -185,7 +185,8 @@
                                         HeightRequest="40"
                                         Style="{StaticResource FormBorderStyle}">
 
-                                        <combobox:SfComboBox WidthRequest="{OnIdiom Phone=86,Default=116}" DropDownWidth="{OnPlatform Android=76,Default=100}"
+                                        <combobox:SfComboBox WidthRequest="{OnIdiom Phone=86,Default=116}" 
+                                                             DropDownWidth="{OnPlatform Android=86,Default=110}"
                                             DataSource="{Binding GuestsCollection}" Margin="0"
                                             Style="{StaticResource ComboBoxStyle}" DisplayMemberPath="DisplayText" 
                                             SelectedIndex="0" VerticalOptions="Center" Watermark="Guest">

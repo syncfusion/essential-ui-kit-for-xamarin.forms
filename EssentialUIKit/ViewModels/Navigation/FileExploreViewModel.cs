@@ -7,7 +7,7 @@ using EssentialUIKit.Models.Navigation;
 namespace EssentialUIKit.ViewModels.Navigation
 {
     /// <summary>
-    /// ViewModel for file explore list page.
+    /// ViewModel for file explorer list page.
     /// </summary>
     [Preserve(AllMembers = true)]
     [DataContract]
@@ -45,7 +45,7 @@ namespace EssentialUIKit.ViewModels.Navigation
         }
 
         /// <summary>
-        /// Gets or sets a collction of value to be displayed in file explore list page.
+        /// Gets or sets a collction of value to be displayed in file explorer list page.
         /// </summary>
         [DataMember(Name = "fileExploreList")]
         public ObservableCollection<File> FileExploreList { get; set; }
@@ -55,7 +55,7 @@ namespace EssentialUIKit.ViewModels.Navigation
         #region Methods
 
         /// <summary>
-        /// Invoked when an item is selected from the file explore list.
+        /// Invoked when an item is selected from the file explorer list.
         /// </summary>
         /// <param name="selectedItem">Selected item from the list view.</param>
         private void NavigateToNextPage(object selectedItem)

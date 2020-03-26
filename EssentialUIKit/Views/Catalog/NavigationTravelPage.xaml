@@ -129,7 +129,7 @@
                                    ItemsSource="{Binding TravelPlaces}" 
                                    SelectedIndex="{Binding SelectedIndex, Mode=TwoWay}"/>
 
-                <Grid RowSpacing="0" ColumnSpacing="0" Margin="16,43,8,10">
+                <Grid RowSpacing="0" ColumnSpacing="0" Margin="16,23,8,10">
                     <Label Text="TOP DESTINATIONS" Style="{StaticResource HeaderLabelStyle}" HorizontalOptions="Start" VerticalOptions="Center" />
                     <buttons:SfButton Text="VIEW ALL" BackgroundColor="Transparent" FontSize="12" CornerRadius="4"
                                       FontFamily="{DynamicResource Montserrat-SemiBold}" VerticalOptions="StartAndExpand"
@@ -208,17 +208,14 @@
                                     
                                     <!-- Right arrow icon -->
                                     <buttons:SfButton Grid.Row="3" 
-                                                      Margin="16,0,16,16"
+                                                      Margin="0,0,5,5"
                                                       BackgroundColor="Transparent"
                                                       TextColor="{DynamicResource Gray-600}"
                                                       CornerRadius="4"
+                                                      FontSize="20" 
+                                                      FontFamily="{StaticResource FontIcons}"
+                                                      Text="{StaticResource ArrowRight}"
                                                       HorizontalOptions="End">
-                                        <Label Text="{StaticResource ArrowRight}"
-                                               TextColor="{DynamicResource Steel}"
-                                               FontSize="20"
-                                               HorizontalTextAlignment="Center"
-                                               VerticalTextAlignment="Center"
-                                               FontFamily="{StaticResource FontIcons}" />
                                     </buttons:SfButton>
 
                                 </Grid>

@@ -6,7 +6,7 @@ using EssentialUIKit.ViewModels.Navigation;
 namespace EssentialUIKit.DataService
 {
     /// <summary>
-    /// Data service for file explore list page to load the data from json file.
+    /// Data service for file explorer list page to load the data from json file.
     /// </summary>
     [Preserve(AllMembers = true)]
     public class FileExploreDataService
@@ -27,7 +27,7 @@ namespace EssentialUIKit.DataService
         public static FileExploreDataService Instance => instance ?? (instance = new FileExploreDataService());
 
         /// <summary>
-        /// Gets or sets the value of file explore list view model.
+        /// Gets or sets the value of file explorer list view model.
         /// </summary>
         public FileExploreViewModel FileExploreViewModel =>
             this.fileExploreViewModel ??

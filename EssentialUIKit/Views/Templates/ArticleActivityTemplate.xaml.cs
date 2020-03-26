@@ -17,7 +17,7 @@ namespace EssentialUIKit.Views.Templates
         /// </summary>
         public static BindableProperty ParentBindingContextProperty =
          BindableProperty.Create(nameof(ParentBindingContext), typeof(object),
-         typeof(ArticleTileTemplate), null);
+         typeof(ArticleActivityTemplate), null);
 
         /// <summary>
         /// Gets or sets the parent bindingcontext.
@@ -29,7 +29,7 @@ namespace EssentialUIKit.Views.Templates
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ArticleTileTemplate"/> class.
+        /// Initializes a new instance of the <see cref="ArticleActivityTemplate"/> class.
         /// </summary>
         public ArticleActivityTemplate()
         {

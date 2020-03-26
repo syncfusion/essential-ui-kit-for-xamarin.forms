@@ -83,8 +83,8 @@
     <Page Name="Documents List Page" Description="This page shows a list of documents, displaying the name of the document, the size of the document, and the time it was last updated." PageName="Views.Navigation.DocumentsListPage"/>
     <Page Name="Selectable Name Page " Description="This page shows a selectable list of names with grouping." PageName="Views.Navigation.SelectableNamePage"/>
     <Page Name="Movies Page " IsNew="True" Description="This page shows a list of movies organized by now showing, trailers, and upcoming releases." PageName="Views.Navigation.MoviesPage"/>
-    <Page Name="File Explore List Page" IsNew="True" Description="This page displays files, folders, folder names, and information such as date, time, and the number of items in folders." PageName="Views.Navigation.FileExploreListPage"/>
-    <Page Name="File Explore Grid Page" IsNew="True" Description="This page shows a list of folders in a grid view that includes the name of the folder and the number of items in it." PageName="Views.Navigation.FileExploreGridPage"/>
+    <Page Name="File Explorer List Page" IsNew="True" Description="This page displays files, folders, folder names, and information such as date, time, and the number of items in folders." PageName="Views.Navigation.FileExploreListPage"/>
+    <Page Name="File Explorer Grid Page" IsNew="True" Description="This page shows a list of folders in a grid view that includes the name of the folder and the number of items in it." PageName="Views.Navigation.FileExploreGridPage"/>
   </Category>
 
   <Category Icon="on-boarding.png" Name="Onboarding" Description="Get your users started with a new app or experience with step-by--step instructions.">
@@ -161,7 +161,7 @@
   <Category Icon="notification.png" Name="Notification" IsUpdated="True" Description="Display various types of notification pages.">
     <Page Name="Task Notification Page" Description="This page displays notifications for tasks, showing descriptions, task IDs, and times." PageName="Views.Notification.TaskNotificationPage"/>
     <Page Name="Social Notification Page" Description="This page displays social media notifications, containing a list of recent notifications and a list of earlier ones." PageName="Views.Notification.SocialNotificationPage"/>
-    <Page Name="ECommerce Notification Page" IsNew="True" Description="This page displays e-commerce notifications that include description and time." PageName="Views.Notification.ECommerceNotificationPage"/>
+    <Page Name="E-commerce Notification Page" IsNew="True" Description="This page displays e-commerce notifications that include description and time." PageName="Views.Notification.ECommerceNotificationPage"/>
   </Category>
    
   <!--<Category Name="Shopping" Description="Simple shopping flow, fetturing catalog detail, cart detail and product checkout.">

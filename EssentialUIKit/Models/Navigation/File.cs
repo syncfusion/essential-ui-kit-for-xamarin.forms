@@ -4,7 +4,7 @@ using Xamarin.Forms.Internals;
 namespace EssentialUIKit.Models.Navigation
 {
     /// <summary>
-    /// Model for the file explore list page.
+    /// Model for the file explorer list page.
     /// </summary>
     [Preserve(AllMembers = true)]
     [DataContract]

@@ -104,19 +104,16 @@
                         </border:SfBorder>
 
                         <!--  Forgot password link  -->
-                        <Label
+                        <buttons:SfButton
                         x:Name="ForgotPasswordLabel"
-                        Grid.Row="4"
+                        Grid.Row="4" CornerRadius="4"
                         Margin="0,16"
                         FontFamily="{StaticResource Montserrat-SemiBold}"
-                        FontSize="12"
-                        HorizontalOptions="End"
+                        FontSize="12" 
+                        HorizontalOptions="End" 
+                        Style="{StaticResource SfFlatButtonStyle}"
                         Text="FORGOT PASSWORD?"
-                        TextColor="{DynamicResource Gray-White}">
-                            <Label.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding ForgotPasswordCommand}" CommandParameter="{x:Reference ForgotPasswordLabel}" />
-                            </Label.GestureRecognizers>
-                        </Label>
+                        TextColor="{DynamicResource Gray-White}"/>
 
 
                         <buttons:SfButton

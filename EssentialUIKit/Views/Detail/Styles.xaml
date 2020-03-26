@@ -235,7 +235,6 @@
         <Setter Property="HorizontalOptions" Value="Fill" />
         <Setter Property="BackgroundColor" Value="Transparent" />
         <Setter Property="BorderWidth" Value="0" />
-        <Setter Property="FontAttributes" Value="Bold" />
         <Setter Property="FontFamily" Value="{StaticResource FontIcons}" />
     </Style>
 
@@ -274,18 +273,23 @@
         <Setter Property="TextColor" Value="{DynamicResource Gray-White}" />
         <Setter Property="FontFamily" Value="{StaticResource Montserrat-SemiBold}" />
         <Setter Property="FontSize" Value="14" />
-        <Setter Property="HeightRequest" Value="32" />
-        <Setter Property="CornerRadius" Value="24" />
-        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="HeightRequest" Value="40" />
+        <Setter Property="CornerRadius" Value="4" />
         <Setter Property="VerticalOptions" Value="Center"/>
-        <Setter Property="WidthRequest" Value="120" />
         <Setter Property="FontAttributes" Value="Bold"/>
         <Setter Property="VerticalTextAlignment" Value="Center" />
         <Setter Property="BorderWidth" Value="0"/>
-        <Setter Property="TextColor" Value="{DynamicResource Gray-White}" />
         <Setter Property="HorizontalOptions" Value="FillAndExpand" />
-        <Setter Property="VerticalOptions" Value="Center" />
-        <Setter Property="HeightRequest" Value="48" />
+        <Setter Property="BackgroundGradient">
+            <Setter.Value>
+                <graphics:SfLinearGradientBrush>
+                    <graphics:SfLinearGradientBrush.GradientStops>
+                        <graphics:SfGradientStop Offset="0" Color="{DynamicResource PrimaryColor}" />
+                        <graphics:SfGradientStop Offset="1" Color="{DynamicResource PrimaryGradient}" />
+                    </graphics:SfLinearGradientBrush.GradientStops>
+                </graphics:SfLinearGradientBrush>
+            </Setter.Value>
+        </Setter>
     </Style>
 
     <!-- Common style for search entries -->

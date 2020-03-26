@@ -4,6 +4,7 @@
       xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
       xmlns:gradient="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
       xmlns:cards="clr-namespace:Syncfusion.XForms.Cards;assembly=Syncfusion.Cards.XForms"
+      xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
       x:Class="EssentialUIKit.Views.Templates.EventListTemplate">
 
     <Grid.Resources>
@@ -37,7 +38,7 @@
              Text="{StaticResource Favourite}"  FontSize="18"  
              Command="{Binding Path=BindingContext.FavouriteCommand, Source={x:Reference favouriteIcon}}"                                                     
              CommandParameter="{x:Reference favouriteIcon}"                    
-             Grid.Row="0" Margin="0,5,5,0" CornerRadius="4"
+             Grid.Row="0" Margin="0,5,5,0" CornerRadius="20"
              FontFamily="{StaticResource FontIcons}"
              TextColor="{StaticResource Gray-White}" BackgroundColor="Transparent"
              WidthRequest="40"
@@ -53,8 +54,8 @@
             </Grid.ColumnDefinitions>
 
             <!--  Card view for displaying items  -->
-            <cards:SfCardView CornerRadius="4" Margin="2,2,8,0" HasShadow="False" WidthRequest="40" HeightRequest="40">
-                <cards:SfCardView.Content>
+            <border:SfBorder CornerRadius="6" Margin="0" HasShadow="False" BorderColor="Transparent" WidthRequest="40" HeightRequest="40">
+                <border:SfBorder.Content>
                     <Grid>
                         <gradient:SfGradientView>
                             <gradient:SfGradientView.BackgroundBrush>
@@ -67,7 +68,7 @@
                             </gradient:SfGradientView.BackgroundBrush>
                         </gradient:SfGradientView>
 
-                        <StackLayout Margin="6,2" Padding="2,0,0,2" Spacing="2">
+                        <StackLayout  Spacing="0" Margin="0,3,0,0">
 
                             <!--  Event month label  -->
                             <Label Text="{Binding EventMonth}"  TextColor="{StaticResource Gray-White}" 
@@ -80,17 +81,17 @@
                         </StackLayout>
 
                     </Grid>
-                </cards:SfCardView.Content>
-            </cards:SfCardView>
+                </border:SfBorder.Content>
+            </border:SfBorder>
 
-            <StackLayout Margin="0" Grid.Column="1" Spacing="4" >
+            <StackLayout Margin="8,0,0,0" Grid.Column="1" Spacing="4" >
 
                 <!--  Event name label  -->
                 <Label Text="{Binding EventName}"  FontSize="16" FontFamily="{StaticResource Montserrat-SemiBold}" 
                        HorizontalOptions="Start" TextColor="{DynamicResource Gray-900}" LineBreakMode="NoWrap"/>
 
                 <!--  Event time label  -->
-                <Label  Text="10.00 PM - 2.00 AM"  FontSize="12" FontFamily="{StaticResource Montserrat-Medium}" 
+                <Label  Text="{Binding EventTime}"  FontSize="12" FontFamily="{StaticResource Montserrat-Medium}" 
                         HorizontalOptions="Start" TextColor="{DynamicResource Gray-700}"/>
 
             </StackLayout>

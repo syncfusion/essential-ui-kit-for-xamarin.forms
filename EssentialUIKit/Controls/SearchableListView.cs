@@ -1,6 +1,4 @@
-﻿using System.Threading.Tasks;
-using EssentialUIKit.Models.Chat;
-using Syncfusion.ListView.XForms;
+﻿using Syncfusion.ListView.XForms;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 
