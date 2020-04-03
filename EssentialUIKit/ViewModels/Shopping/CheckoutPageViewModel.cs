@@ -72,14 +72,14 @@ namespace EssentialUIKit.ViewModels.Shopping
             {
                 new Product
                 {
-                    PreviewImage = App.BaseImageUrl + "Image1.png", Name = "Full-Length Skirt",
+                    PreviewImage = "Image1.png", Name = "Full-Length Skirt",
                     Summary =
                         "This plaid, cotton skirt will keep you warm in the air-conditioned office or outside on cooler days.",
                     SellerName = "New Fashion Company", ActualPrice = 245, DiscountPercent = 30, TotalQuantity = 1
                 },
                 new Product
                 {
-                    PreviewImage = App.BaseImageUrl + "Image2.png", Name = "Peasant Blouse",
+                    PreviewImage = "Image2.png", Name = "Peasant Blouse",
                     Summary =
                         "Look your best this fall in this V-neck, pleated peasant blouse with full sleeves. Comes in white, chocolate, forest green, and more.",
                     SellerName = "New Fashion Company", ActualPrice = 245, DiscountPercent = 30, TotalQuantity = 1

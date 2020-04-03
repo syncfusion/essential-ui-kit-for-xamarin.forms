@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary
+             xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+             x:Class="EssentialUIKit.Views.Dashboard.CompanyHistoryTemplates">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="../Styles.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <DataTemplate x:Key="headerTemplate">
+        <ViewCell>
+            <border:SfBorder BackgroundColor="{StaticResource PrimaryColor}" WidthRequest="48" HeightRequest="48" BorderWidth="4"  
+                              VerticalOptions="Center" CornerRadius="24" HorizontalOptions="Start" BorderColor="{DynamicResource PrimaryLighterColor}">
+                <border:SfBorder.Content>
+                    <Label  Text="{Binding Year}" TextColor="{DynamicResource Gray-White}" VerticalOptions="Center" HorizontalOptions="Center"
+                           FontSize="12" FontFamily="{StaticResource Montserrat-Bold}" LineHeight="{OnPlatform Default=1.25, iOS=-1}" />
+                </border:SfBorder.Content>
+            
+            </border:SfBorder>
+        </ViewCell>
+    </DataTemplate>
+
+    <DataTemplate x:Key="contentTemplate">
+        <ViewCell>
+            <Grid ColumnSpacing="0" RowSpacing="0" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                
+                <border:SfBorder WidthRequest="16" Grid.Column="0" Margin="16,2" HeightRequest="16" BorderColor="{StaticResource PrimaryColor}"
+                                 BorderWidth="2" HorizontalOptions="Start" VerticalOptions="Start" CornerRadius="8" BackgroundColor="{DynamicResource Gray-White}">
+                </border:SfBorder>
+                
+                <Label Text="{Binding Description}" FontSize="14" FontFamily="{StaticResource Montserrat-Medium}" HorizontalOptions="Start" VerticalOptions="Start"
+                       LineHeight="{OnPlatform Default=1.25, iOS=-1}" TextColor="{DynamicResource Gray-700}" Grid.Column="1"/>
+            </Grid>
+        </ViewCell>
+    </DataTemplate>
+</ResourceDictionary>

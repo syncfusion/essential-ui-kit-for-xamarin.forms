@@ -23,6 +23,7 @@
     <PackageReference Include="Syncfusion.Xamarin.SfCalendar" Version="17.4.0.44" />
     <PackageReference Include="Syncfusion.Xamarin.SfChart" Version="17.4.0.44" />
     <PackageReference Include="Syncfusion.Xamarin.SfComboBox" Version="17.4.0.44" />
+    <PackageReference Include="Syncfusion.Xamarin.SfGauge" Version="17.4.0.44" />
     <PackageReference Include="Syncfusion.Xamarin.SfListView" Version="17.4.0.44" />
     <PackageReference Include="Syncfusion.Xamarin.SfMaps" Version="17.4.0.44" />
     <PackageReference Include="Syncfusion.Xamarin.SfParallaxView" Version="17.4.0.44" />
@@ -33,7 +34,7 @@
     <PackageReference Include="Syncfusion.Xamarin.Expander" Version="17.4.0.44" />
     <PackageReference Include="Syncfusion.Xamarin.SfBadgeView" Version="17.4.0.44" />
     <PackageReference Include="Syncfusion.Xamarin.SfTabView" Version="17.4.0.44" />
-    <PackageReference Include="Xamarin.Forms" Version="4.4.0.991265" />
+    <PackageReference Include="Xamarin.Forms" Version="4.3.0.991250" />
     <PackageReference Include="Syncfusion.Xamarin.Core" Version="17.4.0.44" />
   </ItemGroup>
   <ItemGroup>
@@ -53,10 +54,13 @@
     <None Remove="Data\ecommerce.json" />
     <None Remove="Data\navigation.json" />
     <None Remove="Data\notification.json" />
+    <None Remove="Data\timeline.json" />
+    <None Remove="Images\CaloriesEaten.svg" />
     <None Remove="Images\ChooseGradient.svg" />
     <None Remove="Images\ConfirmGradient.svg" />
     <None Remove="Images\DeliverGradient.svg" />
     <None Remove="Images\EmptyCart.svg" />
+    <None Remove="Images\HeartRate.svg" />
     <None Remove="Images\LocationAccessDenied.svg" />
     <None Remove="Images\NoCredits.svg" />
     <None Remove="Images\NoInternet.svg" />
@@ -68,7 +72,9 @@
     <None Remove="Images\PaymentFailed.svg" />
     <None Remove="Images\PaymentFailure.svg" />
     <None Remove="Images\PaymentSuccess.svg" />
+    <None Remove="Images\SleepDuration.svg" />
     <None Remove="Images\SomethingWentWrong.svg" />
+    <None Remove="Images\WaterConsumed.svg" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="AppLayout\Icons\about-us.png" />
@@ -96,13 +102,16 @@
     <EmbeddedResource Include="AppLayout\TemplateList.xml" />
     <EmbeddedResource Include="Data\deliverytracking.json" />
     <EmbeddedResource Include="Data\notification.json" />
+    <EmbeddedResource Include="Data\timeline.json" />
     <EmbeddedResource Include="Data\trainstatus.json" />
     <EmbeddedResource Include="Data\ecommerce.json" />
     <EmbeddedResource Include="Data\navigation.json" />
+    <EmbeddedResource Include="Images\CaloriesEaten.svg" />
     <EmbeddedResource Include="Images\ChooseGradient.svg" />
     <EmbeddedResource Include="Images\ConfirmGradient.svg" />
     <EmbeddedResource Include="Images\DeliverGradient.svg" />
     <EmbeddedResource Include="Images\EmptyCart.svg" />
+    <EmbeddedResource Include="Images\HeartRate.svg" />
     <EmbeddedResource Include="Images\LocationAccessDenied.svg" />
     <EmbeddedResource Include="Images\NoCredits.svg" />
     <EmbeddedResource Include="Images\NoInternet.svg" />
@@ -114,7 +123,9 @@
     <EmbeddedResource Include="Images\PaymentFailed.svg" />
     <EmbeddedResource Include="Images\PaymentFailure.svg" />
     <EmbeddedResource Include="Images\PaymentSuccess.svg" />
+    <EmbeddedResource Include="Images\SleepDuration.svg" />
     <EmbeddedResource Include="Images\SomethingWentWrong.svg" />
+    <EmbeddedResource Include="Images\WaterConsumed.svg" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="AppLayout\Views\Styles.xaml.cs">
@@ -143,6 +154,12 @@
     </Compile>
     <Compile Update="Views\Bookmarks\BookmarksPage.xaml.cs">
       <DependentUpon>BookmarksPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Dashboard\DailyCaloriesReportPage.xaml.cs">
+      <DependentUpon>DailyCaloriesReportPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Dashboard\DailyTimeLinePage.xaml.cs">
+      <DependentUpon>DailyTimelinePage.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\Profile\MasterPage.xaml.cs">
       <DependentUpon>MasterPage.xaml</DependentUpon>

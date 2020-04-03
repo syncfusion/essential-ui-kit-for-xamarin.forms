@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+             xmlns:local="clr-namespace:EssentialUIKit.Views.Dashboard.Selectors"
+             xmlns:Behavior="clr-namespace:EssentialUIKit.Behaviors"
+             x:Class="EssentialUIKit.Views.Dashboard.CompanyHistoryPage"
+             BackgroundColor="{DynamicResource Gray-White}"
+             NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.ControlTemplate>
+        <ControlTemplate>
+            <StackLayout Spacing="0" >
+                <!--  Title View  -->
+                <Label 
+                    Text="Company History"
+                    TextColor="{DynamicResource Gray-900}"
+                    FontFamily="{StaticResource Montserrat-Medium}"
+                    FontSize="16"
+                    Margin="0,20"
+                    HorizontalOptions="CenterAndExpand" />
+
+                <BoxView HeightRequest="1" BackgroundColor="{DynamicResource Gray-200}"/>
+                <ContentPresenter />
+            </StackLayout>
+        </ControlTemplate>
+    </ContentPage.ControlTemplate>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml"/>
+                <ResourceDictionary Source="Templates/CompanyHistoryTemplates.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <local:CompanyHistoryDataSelectors x:Key="CompanyHistoryTemplate" Header="{StaticResource headerTemplate}" 
+                                              Content="{StaticResource contentTemplate}"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <ContentPage.Content>
+        <ScrollView>
+        <StackLayout Margin="16,24" Spacing="8" >
+    
+                <Label Text="{Binding CompanyName}" FontSize="16" FontFamily="{StaticResource Montserrat-SemiBold}" LineHeight="{OnPlatform Default=1.25, iOS=-1}"
+                       TextColor="{DynamicResource Gray-800}" LineBreakMode="TailTruncation"/>
+
+                <Label Text="{Binding CompanyDescription}" FontSize="14" FontFamily="{StaticResource Montserrat-Medium}"  LineHeight="{OnPlatform Default=1.25, iOS=-1}"
+                       TextColor="{DynamicResource Gray-700}" LineBreakMode="WordWrap" />
+
+                <Grid RowSpacing="0" ColumnSpacing="0" Margin="0,16,0,0">
+            <BoxView HeightRequest="{Binding Source={x:Reference list}, Path=Height}" HorizontalOptions="Start" 
+                     VerticalOptions="Start"   WidthRequest="1" Margin="23,0,0,0" BackgroundColor="{DynamicResource Gray-300}" />
+
+                    <listView:SfListView VerticalOptions="Start" x:Name="list" ItemTemplate="{StaticResource CompanyHistoryTemplate}" AutoFitMode="Height"
+                                 SelectionMode="None" AllowSwiping="True" ItemSpacing="0,0,0,20"
+                                 IsScrollBarVisible="False" ItemsSource="{Binding CompanyHistory}" >
+
+                <listView:SfListView.Behaviors>
+                    <Behavior:SfListViewExtendHeightBehavior/>
+                </listView:SfListView.Behaviors>
+            </listView:SfListView>
+        </Grid>
+        </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

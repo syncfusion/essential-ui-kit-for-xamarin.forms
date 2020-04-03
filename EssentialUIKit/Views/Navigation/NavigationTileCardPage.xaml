@@ -30,7 +30,7 @@
             <!--  Title View  -->
             <controls:TitleView Title="Home" Grid.Row="0" />
 
-            <Grid Grid.Row="1" Padding="{core:OnPlatformOrientationThickness Default='16,0,11,0', TabletPortrait='24,16,20,0', TabletLandscape='24,16,20,0', Desktop='24,24,20,0'}">
+            <Grid Grid.Row="1" Padding="{core:OnPlatformOrientationThickness Default='11,0', TabletPortrait='20,16,20,0', TabletLandscape='20,16,20,0', Desktop='20,24,20,0'}">
 
                 <listView:SfListView
                     AutoFitMode="Height"
@@ -46,7 +46,7 @@
                             <ViewCell>
                                 <!--  View of each tile item  -->
                                 <controls:CustomShadowFrame
-                                    Margin="0,2,5,5"
+                                    Margin="5,2,5,5"
                                     Padding="0"
                                     BackgroundColor="{DynamicResource Gray-White}"
                                     BorderColor="{DynamicResource Gray-White}"

@@ -157,6 +157,7 @@
     <Content Include="scale-100\ReSchedule.png" />
     <Content Include="scale-100\TimeZone.png" />
     <Content Include="scale-100\ViewMode.png" />
+    <Content Include="scale-100\Visa.png" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -194,6 +195,9 @@
       <Version>17.4.0.44</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfComboBox" Version="17.4.0.44" />
+    <PackageReference Include="Syncfusion.Xamarin.SfGauge">
+      <Version>17.4.0.44</Version>
+    </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfMaps" Version="17.4.0.44" />
     <PackageReference Include="Syncfusion.Xamarin.SfParallaxView">
       <Version>17.4.0.44</Version>
@@ -210,7 +214,7 @@
     <PackageReference Include="Syncfusion.Xamarin.SfTabView">
       <Version>17.4.0.44</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.Forms" Version="4.4.0.991265" />
+    <PackageReference Include="Xamarin.Forms" Version="4.3.0.991250" />
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.1.5" />
   </ItemGroup>
   <ItemGroup>
@@ -220,11 +224,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\UIFontIcons.ttf" />
     <Content Include="Assets\Montserrat-Bold.ttf" />
     <Content Include="Assets\Montserrat-Medium.ttf" />
     <Content Include="Assets\Montserrat-Regular.ttf" />
     <Content Include="Assets\Montserrat-SemiBold.ttf" />
+    <Content Include="Assets\UIFontIcons.ttf" />
     <None Include="EssentialUIKit.UWP_TemporaryKey.pfx" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">

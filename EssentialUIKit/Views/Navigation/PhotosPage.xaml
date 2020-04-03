@@ -87,7 +87,7 @@
                 <listView:SfListView.ItemTemplate>
                     <DataTemplate>
                         <Grid BackgroundColor="{DynamicResource Gray-200}">
-                            <Image Aspect="Fill"
+                            <Image Aspect="AspectFill"
                                    BackgroundColor="{DynamicResource Gray-200}"
                                    HeightRequest="90" 
                                    WidthRequest="114">

@@ -10,6 +10,7 @@
     xmlns:controls="clr-namespace:EssentialUIKit.Controls"
     xmlns:converter="clr-namespace:EssentialUIKit.Converters"
     xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Forms"
+    xmlns:behaviours="clr-namespace:EssentialUIKit.Behaviors"
     Title="Business Registration Form"
     BackgroundColor="{DynamicResource Gray-100}"
     NavigationPage.HasNavigationBar="False">
@@ -150,24 +151,6 @@
                             Style="{StaticResource EntryTextBoxStyle}" />
                 </border:SfBorder>
 
-                <!-- Phone Number -->
-                <Label
-                        FontFamily="{StaticResource Montserrat-Medium}"
-                        Margin="0,24,0,4"
-                        HeightRequest="18"
-                        FontSize="12"
-                        Text="Phone Number"
-                        TextColor="{DynamicResource Gray-800}" />
-
-                <border:SfBorder BorderColor="{Binding Source={x:Reference PhoneNumberEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}" 
-                                 Style="{StaticResource BusinessFormBorderStyle}">
-                    <controls:BorderlessEntry Keyboard="Telephone" 
-                            x:Name="PhoneNumberEntry"
-                            Placeholder="Phone Number"
-                            Text="{Binding PhoneNumber}"
-                            Style="{StaticResource EntryTextBoxStyle}" />
-                </border:SfBorder>
-
                 <!-- Street Address -->
                 <Label
                         FontFamily="{StaticResource Montserrat-Medium}"
@@ -198,14 +181,9 @@
                 <border:SfBorder
                         BorderColor="{Binding Source={x:Reference CountryPicker}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}"
                         Style="{StaticResource BusinessFormBorderStyle}">
-                        <combobox:SfComboBox
+                        <controls:CountryComboBox
                                 x:Name="CountryPicker"
-                                Style="{StaticResource ComboBoxStyle}"
-                            DataSource="{Binding Countries}"
-                            DisplayMemberPath="Country"
-                            SelectedItem="{Binding Country, Mode=TwoWay}"
-                                Watermark="Select Country"
-                                VerticalOptions="CenterAndExpand">
+                                Style="{StaticResource ComboBoxStyle}">
                         <combobox:SfComboBox.DropDownButtonSettings>
                                      <combobox:DropDownButtonSettings>
                                         <combobox:DropDownButtonSettings.View>
@@ -219,7 +197,7 @@
                                         </combobox:DropDownButtonSettings.View>
                                      </combobox:DropDownButtonSettings>
                                 </combobox:SfComboBox.DropDownButtonSettings>
-                        </combobox:SfComboBox>
+                        </controls:CountryComboBox>
                 </border:SfBorder>
 
                 <!-- City and State -->
@@ -244,7 +222,7 @@
                         <controls:BorderlessEntry
                                 x:Name="CityEntry"
                                 Placeholder="City"
-                                Text="{Binding City}"
+                                Text="{Binding City, Source={Reference CountryPicker}}"
                                 Style="{StaticResource EntryTextBoxStyle}" />
                     </border:SfBorder>
                     
@@ -253,8 +231,8 @@
                             Style="{StaticResource BusinessFormBorderStyle}">
                             <combobox:SfComboBox
                                     x:Name="StatePicker"
-                                    SelectedItem="{Binding State, Mode=TwoWay}"
-                                    DataSource="{Binding SelectedItem.States, Source={Reference CountryPicker}}"
+                                SelectedItem="{Binding State, Source={Reference CountryPicker}}"
+                                    DataSource="{Binding States, Source={Reference CountryPicker}}"
                                     Style="{StaticResource ComboBoxStyle}"
                                     Watermark="State"
                                     VerticalOptions="CenterAndExpand">
@@ -274,6 +252,29 @@
                             </combobox:SfComboBox>
                     </border:SfBorder>
                 </Grid>
+
+                <!-- Phone Number -->
+                <Label
+                        FontFamily="{StaticResource Montserrat-Medium}"
+                        Margin="0,24,0,4"
+                        HeightRequest="18"
+                        FontSize="12"
+                        Text="Phone Number"
+                        TextColor="{DynamicResource Gray-800}" />
+
+                <border:SfBorder BorderColor="{Binding Source={x:Reference PhoneNumberEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}" 
+                                 Style="{StaticResource BusinessFormBorderStyle}">
+                    <controls:BorderlessEntry Keyboard="Telephone" 
+                            x:Name="PhoneNumberEntry" 
+                            Placeholder="{Binding PhoneNumberPlaceHolder, Source={Reference CountryPicker}}"
+                            Text="{Binding PhoneNumber, Source={Reference CountryPicker}}"
+                            Style="{StaticResource EntryTextBoxStyle}" >
+                        <controls:BorderlessEntry.Behaviors>
+                            <behaviours:EntryMaskedBehavior Mask="{Binding Source={x:Reference CountryPicker}, Path=Mask}" 
+                                                            Prefix="{Binding Source={Reference CountryPicker}, Path=CountryCode}"/>
+                        </controls:BorderlessEntry.Behaviors>
+                    </controls:BorderlessEntry>
+                </border:SfBorder>
 
                 <!-- Submit Button -->
                 <buttons:SfButton

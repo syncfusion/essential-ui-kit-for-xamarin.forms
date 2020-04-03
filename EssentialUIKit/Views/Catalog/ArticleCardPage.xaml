@@ -1,0 +1,173 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:cards="clr-namespace:Syncfusion.XForms.Cards;assembly=Syncfusion.Cards.XForms"
+             xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Catalog"
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+             xmlns:controls="clr-namespace:EssentialUIKit.Controls"
+             xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+             xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
+             xmlns:Templates="clr-namespace:EssentialUIKit.Views.Templates"
+             x:Name="articleCard"
+             BackgroundColor="{DynamicResource Gray-White}"
+             NavigationPage.HasNavigationBar="False"
+             x:Class="EssentialUIKit.Views.Catalog.ArticleCardPage">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.BindingContext>
+        <viewModel:ArticleCardViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <Grid RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>  
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <StackLayout x:Name="TitleView"  Padding="8,8" Grid.Row="0" HeightRequest="48"
+                         BackgroundColor="{DynamicResource Gray-White}" Spacing="0"
+                         HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+
+                <StackLayout x:Name="Title" HorizontalOptions="FillAndExpand"  IsVisible="True"
+                             Orientation="Horizontal"  VerticalOptions="FillAndExpand"  Spacing="0">
+
+                    <!--  Back button command  -->
+                    <buttons:SfButton  x:Name="backButton"  Command="{Binding BackButtonCommand}"
+                                       CommandParameter="{x:Reference backButton}" CornerRadius="4"
+                                       Style="{StaticResource IconButtonStyle}" Text="{StaticResource Back}"/>
+
+                    <!--   Article card page Title  -->
+                    <Label  Margin="16,0" FontFamily="{StaticResource Montserrat-Medium}" FontSize="16"
+                            HorizontalOptions="CenterAndExpand" TextColor="{DynamicResource Gray-900}"
+                            LineHeight="1.25"  Text="Articles"  VerticalOptions="Center" VerticalTextAlignment="Center" />
+
+                </StackLayout>
+
+                <StackLayout  x:Name="Search" HorizontalOptions="EndAndExpand" IsVisible="False"
+                                Orientation="Horizontal" Spacing="0">
+
+                    <!--  Back to title layout  -->
+                    <buttons:SfButton x:Name="BackToTitle" Clicked="BackToTitle_Clicked"  Text="{StaticResource Back}"
+                                      Style="{StaticResource NavigationBarButtonStyle}" WidthRequest="38" HeightRequest="38"
+                                      CornerRadius="4" Padding="0"/>
+
+                    <!--  Rounded Search Entry  -->
+                    <border:SfBorder Style="{StaticResource SfBorderStyle}">
+                        <controls:BorderlessEntry x:Name="SearchEntry"  BindingContext="{x:Reference ArticlesCard}"
+                                                  Text="{Binding SearchText, Mode=TwoWay}" Placeholder="Search here"
+                                                  HorizontalOptions="FillAndExpand"  Style="{StaticResource SearchEntryStyle}"/>
+                    </border:SfBorder>
+                </StackLayout>
+
+                <!--  Search Button  -->
+                <buttons:SfButton  x:Name="SearchButton" IsVisible="True" Clicked="SearchButton_Clicked" Style="{StaticResource IconButtonStyle }"
+                                   Text="{StaticResource Search}" />
+            </StackLayout>
+
+            <BoxView Grid.Row="1" HeightRequest="1" BackgroundColor="{DynamicResource Gray-200}"/>
+
+                <StackLayout Grid.Row="2" Spacing="0">
+                <ScrollView>
+                    <controls:SearchableArticleList x:Name="ArticlesCard" IsScrollBarVisible="False"  AllowSwiping="True" 
+                                  AutoFitMode="Height" SelectionGesture="Tap"  SelectionMode="Single" ItemSpacing="16" 
+                                  VerticalOptions="FillAndExpand" SearchText="{Binding SearchText}" TapCommand="{Binding ItemTappedCommand}"
+                                  ItemsSource="{Binding Articles}"  SelectionBackgroundColor="Transparent">
+                        <controls:SearchableArticleList.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <controls:CustomShadowFrame CornerRadius="4" HasShadow="True"  BorderColor="{DynamicResource Gray-White}"  BackgroundColor="{DynamicResource Gray-White}"
+                                                                Margin="4" Padding="0" BorderWidth="1">
+                                        <controls:CustomShadowFrame.Content>                                        
+                                            <Grid RowSpacing="0" ColumnSpacing="0">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="*"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+
+                                            <!--  Image of the Article  -->
+                                            <Image
+                                                Aspect="AspectFill"  Grid.Row="0"
+                                                
+                                                HeightRequest="{OnIdiom Phone=170,
+                                                                        Tablet=170,
+                                                                        Desktop=170}"
+                                                WidthRequest="{OnIdiom Phone=343,
+                                                                        Tablet=343,
+                                                                        Desktop=423}">
+                                                <Image.Source>
+                                                    <UriImageSource
+                                                        CacheValidity="14"
+                                                        CachingEnabled="true"
+                                                        Uri="{Binding ImagePath}"/>
+                                                </Image.Source>
+                                            </Image>
+
+                                                <!--  OverLay Effect  -->
+                                                <Frame  CornerRadius="4" Opacity="0.35" BackgroundColor="{DynamicResource Gray-Black}" Grid.Row="0"/>
+
+                                                <!-- Description of the Article  -->
+                                            <StackLayout Grid.Row="0" Margin="16,70,16,0" Spacing="0" VerticalOptions="EndAndExpand">
+                                                
+                                                <!--Article Title-->
+                                                <Label Text="{Binding Name}"  Margin="0,8" FontSize="16" 
+                                                FontFamily="{StaticResource Montserrat-SemiBold}" LineBreakMode="WordWrap"
+                                                TextColor="{DynamicResource Gray-White}" VerticalOptions="End"  LineHeight="{OnPlatform Default=-1,Android=1.5}"/>
+
+                                                <!--  Author name  -->
+                                                <Label 
+                                                FontFamily="{StaticResource Montserrat-Medium}"
+                                                FontSize="12"
+                                                LineHeight="{OnPlatform Default=-1,
+                                                                        Android=1.5}"
+                                                Text="{Binding Author}"
+                                                TextColor="{DynamicResource Gray-White }"
+                                                VerticalOptions="End" />
+
+                                                <!--  Published date and average reading time  -->
+                                                <Label 
+                                                Margin="0,0,0,8" Grid.Row="2" VerticalOptions="End"
+                                                FontFamily="{StaticResource Montserrat-Medium}"
+                                                FontSize="12"
+                                                LineHeight="{OnPlatform Default=-1,
+                                                                        Android=1.5}"
+                                                TextColor="{DynamicResource Gray-White }">
+                                                    <Label.FormattedText>
+                                                        <FormattedString>
+                                                            <Span Text="{Binding Date}" />
+                                                            <Span Text=" | " />
+                                                            <Span Text="{Binding AverageReadingTime}" />
+                                                        </FormattedString>
+                                                    </Label.FormattedText>
+                                                </Label>
+                                            </StackLayout>
+
+                                            <Templates:ArticleActivityTemplate Grid.Row="1" ParentBindingContext="{Binding Path=BindingContext, Source={x:Reference articleCard}}"/>
+
+                                            </Grid>
+                                        </controls:CustomShadowFrame.Content>
+                                    </controls:CustomShadowFrame>
+                                </ViewCell>
+                            </DataTemplate>
+                        </controls:SearchableArticleList.ItemTemplate>
+
+                        <!--  Layout to customize no. of columns in SfListView  -->
+                        <controls:SearchableArticleList.LayoutManager>
+                            <listView:GridLayout SpanCount="{core:OnPlatformOrientationIntValue Desktop=3, PhonePortrait=1, PhoneLandscape=1, TabletPortrait=2, TabletLandscape=2}" />
+                        </controls:SearchableArticleList.LayoutManager>
+
+                    </controls:SearchableArticleList>
+                </ScrollView>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

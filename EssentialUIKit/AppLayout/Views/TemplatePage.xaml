@@ -46,7 +46,7 @@
 
         <graphics:SfGradientView Grid.Row="0" Grid.RowSpan="3" />
 
-        <StackLayout
+        <StackLayout Spacing="0"
             x:Name="ActionBarContent"
             Grid.Row="1"
             HorizontalOptions="FillAndExpand"
@@ -63,8 +63,16 @@
                 VerticalOptions="CenterAndExpand" />
 
             <Button
+                Clicked="GotoCodeViewer"
+                HorizontalOptions="End"
+                Text="&#xe753;"
+                FontSize="16"
+                Style="{StaticResource ActionBarSettingIconStyle}"
+                VerticalOptions="CenterAndExpand" />
+
+            <Button
                 Clicked="ShowSettings"
-                HorizontalOptions="EndAndExpand"
+                HorizontalOptions="End"
                 Style="{StaticResource ActionBarSettingIconStyle}"
                 VerticalOptions="CenterAndExpand" />
         </StackLayout>

@@ -11,6 +11,10 @@
     <x:String x:Key="Back">&#xe709;</x:String>
     <x:String x:Key="More">&#xe719;</x:String>
     <x:String x:Key="New Message">&#xe720;</x:String>
+    <x:String x:Key="Delivered">&#xe741;</x:String>
+    <x:String x:Key="Offer">&#xe736;</x:String>
+    <x:String x:Key="FlashSale">&#xe743;</x:String>
+    <x:String x:Key="Arrived">&#xe740;</x:String>
 
     <!--  Common style for icon buttons  -->
     <Style x:Key="IconButtonStyle" TargetType="buttons:SfButton">

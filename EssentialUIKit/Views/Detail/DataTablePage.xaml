@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+             xmlns:controls="clr-namespace:EssentialUIKit.Controls"
+             xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Detail"
+             x:Class="EssentialUIKit.Views.Detail.DataTablePage"
+             BackgroundColor="{DynamicResource Gray-White}"
+             NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <ContentPage.BindingContext>
+        <viewModel:DataTableViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <Grid RowSpacing="0" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <StackLayout x:Name="TitleView"  Padding="8,8" Grid.Row="0" HeightRequest="64"
+                         BackgroundColor="{DynamicResource Gray-White}" Spacing="0"
+                         HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+
+                <StackLayout x:Name="Title" HorizontalOptions="FillAndExpand"  IsVisible="True"
+                             Orientation="Horizontal"  VerticalOptions="FillAndExpand"  Spacing="0">
+
+                    <!--  Back button command  -->
+                    <buttons:SfButton  x:Name="backButton"  Command="{Binding BackButtonCommand}"
+                                       CommandParameter="{x:Reference backButton}" CornerRadius="4"
+                                       Style="{StaticResource IconButtonStyle}" Text="{StaticResource Back}"/>
+
+                    <!--   Data table page Title  -->
+                    <Label  Margin="16,0" FontFamily="{StaticResource Montserrat-Medium}" FontSize="16"
+                            HorizontalOptions="CenterAndExpand" TextColor="{DynamicResource Gray-900}"
+                            LineHeight="1.25"  Text="Premier League Table"  VerticalOptions="Center" VerticalTextAlignment="Center" />
+
+                </StackLayout>
+
+                <StackLayout  x:Name="Search" HorizontalOptions="EndAndExpand" IsVisible="False"
+                                Orientation="Horizontal" Spacing="0">
+
+                    <!--  Back to title layout  -->
+                    <buttons:SfButton x:Name="BackToTitle" Clicked="BackToTitle_Clicked"  Text="{StaticResource Back}"
+                                      Style="{StaticResource NavigationBarButtonStyle}" />
+
+                    <!--  Rounded Search Entry  -->
+                    <border:SfBorder Style="{DynamicResource SfBorderStyle}">
+                        <controls:BorderlessEntry x:Name="SearchEntry"  BindingContext="{x:Reference dataTable}"
+                                                  Text="{Binding SearchText, Mode=TwoWay}" Placeholder="Search here"
+                                                  HorizontalOptions="FillAndExpand"  Style="{StaticResource SearchEntryStyle}"/>
+                    </border:SfBorder>
+                </StackLayout>
+
+                <!--  Search Button  -->
+                <buttons:SfButton  x:Name="SearchButton" IsVisible="True" Clicked="SearchButton_Clicked" Style="{StaticResource IconButtonStyle }"
+                                   Text="{StaticResource Search}" />
+            </StackLayout>
+
+            <BoxView Grid.Row="1" Style="{StaticResource SeparatorStyle}"/>
+
+            <StackLayout Grid.Row="4" Spacing="0" >
+
+                <controls:SearchableDataTable  x:Name="dataTable"
+                    Padding="0"
+                    AutoFitMode="Height"
+                    IsScrollBarVisible="false"
+                    ItemSpacing="0"
+                    ItemsSource="{Binding Items}"
+                    SearchText="{Binding SearchText}"
+                    SelectionBackgroundColor="Transparent"
+                    TapCommand="{Binding ItemTappedCommand}"
+                    VerticalOptions="FillAndExpand"
+                    StickyFooterPosition="Body">
+
+                    <controls:SearchableDataTable.HeaderTemplate>
+                        <DataTemplate>
+                            <Grid Grid.Row="2" HeightRequest="48" Margin="0,8,0,0" Padding="16,0,8,0" ColumnSpacing="0" BackgroundColor="{StaticResource Gray-100}">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="{OnIdiom Desktop=0.5*, Tablet=1*, Phone=0.8*}" />
+                                    <ColumnDefinition Width="{OnIdiom Desktop=2.5*, Tablet=1*, Phone=2*}" />
+                                    <ColumnDefinition Width="{OnIdiom Desktop=0.7*, Tablet=1*, Phone=0.8*}" />
+                                    <ColumnDefinition Width="{OnIdiom Desktop=0.7*, Tablet=1*, Phone=0.8*}" />
+                                    <ColumnDefinition Width="{OnIdiom Desktop=0.7*, Tablet=1*, Phone=*}" />
+                                    <ColumnDefinition Width="{OnIdiom Desktop=5*, Tablet=1*, Phone=*}" />
+                                </Grid.ColumnDefinitions>
+
+                                <Label Text="Pos" HorizontalOptions="Start"  FontSize="12" FontFamily="{StaticResource Montserrat-SemiBold}" 
+                                   TextColor="{DynamicResource Gray-800}" VerticalOptions="Center"/>
+
+                                <Label Grid.Column="1" HorizontalOptions="Start"  Text="Club"  FontSize="12" FontFamily="{StaticResource Montserrat-SemiBold}"                                                      
+                                   TextColor="{DynamicResource Gray-800}" VerticalOptions="Center"  />
+
+                                <Label  Grid.Column="2" HorizontalOptions="Start"  Text="Pl" FontSize="12" FontFamily="{StaticResource Montserrat-SemiBold}"                                 
+                                   TextColor="{DynamicResource Gray-800}" VerticalOptions="Center"/>
+
+                                <Label  Grid.Column="3" HorizontalOptions="Start"  Text="Gd"  FontSize="12" FontFamily="{StaticResource Montserrat-SemiBold}"                                    
+                                   TextColor="{DynamicResource Gray-800}" VerticalOptions="Center"/>
+
+                                <Label  Grid.Column="4" Grid.ColumnSpan="2" HorizontalOptions="Start"  Text="Pts"  FontSize="12" FontFamily="{StaticResource Montserrat-SemiBold}"                                
+                                   TextColor="{DynamicResource Gray-800}" VerticalOptions="Center"/>
+                                
+                            </Grid>
+                        </DataTemplate>
+                    </controls:SearchableDataTable.HeaderTemplate>
+                    
+                    <!--  List View for the table  -->
+                    <controls:SearchableDataTable.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Margin="0" Spacing="0" >
+                                    <Grid HeightRequest="48" Margin="16,0,8,0" ColumnSpacing="0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="{OnIdiom Desktop=0.5*, Tablet=1*, Phone=0.8*}" />
+                                            <ColumnDefinition Width="{OnIdiom Desktop=2.5*, Tablet=1*, Phone=2*}" />
+                                            <ColumnDefinition Width="{OnIdiom Desktop=0.7*, Tablet=1*, Phone=0.8*}" />
+                                            <ColumnDefinition Width="{OnIdiom Desktop=0.7*, Tablet=1*, Phone=0.8*}" />
+                                            <ColumnDefinition Width="{OnIdiom Desktop=0.7*, Tablet=1*, Phone=*}" />
+                                            <ColumnDefinition Width="{OnIdiom Desktop=5*, Tablet=1*, Phone=*}" />
+                                        </Grid.ColumnDefinitions>
+                                        
+                                        <!--  club name -->
+                                        <Label Margin="6,0,0,0" Text="{Binding SerialNumber}"  FontSize="14" FontFamily="{StaticResource Montserrat-Medium}" 
+                                        TextColor="{DynamicResource Gray-900}" VerticalOptions="Center" HorizontalOptions="Start" />
+
+                                        <Grid Grid.Column="1" ColumnSpacing="8">
+                                           
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="0.2*"/>
+                                                <ColumnDefinition Width="{OnIdiom Desktop=2.3*, Tablet=2.3*, Phone=1.8*}" />
+                                            </Grid.ColumnDefinitions>
+                                            
+                                            <!--  Club images -->
+                                            <Image  Grid.Column="0" HeightRequest="20" 
+                                                   VerticalOptions="Center" HorizontalOptions="Start" >
+                                                <Image.Source>
+                                                    <UriImageSource
+                                                       CacheValidity="14"
+                                                       CachingEnabled="true"
+                                                       Uri="{Binding ImagePath}" />
+                                                 </Image.Source>
+                                                
+                                            </Image>
+
+                                            <Label Margin="0" Grid.Column="1"  Text="{Binding ClubName}" FontSize="14" FontFamily="{StaticResource Montserrat-Medium}" 
+                                        TextColor="{DynamicResource Gray-900}" VerticalOptions="Center" HorizontalOptions="Start" />
+
+                                        </Grid>
+                                        <!--  Total players -->
+                                        <Label  Grid.Column="2" Text="17" FontFamily="{StaticResource Montserrat-Medium}" 
+                                        TextColor="{DynamicResource Gray-900}" VerticalOptions="Center" HorizontalOptions="Start" />
+
+                                        <!--  Gold points for the club -->
+                                        <Label  Grid.Column="3" Text="{Binding GoldPoints}"  FontSize="14" FontFamily="{StaticResource Montserrat-Medium}" 
+                                        TextColor="{DynamicResource Gray-900}" VerticalOptions="Center" HorizontalOptions="Start" />
+
+                                        <!--  Total points for the club -->
+                                        <Label  Grid.Column="4" Text="{Binding Points}"  FontSize="14" FontFamily="{StaticResource Montserrat-Medium}" 
+                                        TextColor="{DynamicResource Gray-900}" VerticalOptions="Center" HorizontalOptions="Start" />
+
+                                        <!--  Ratings for 5 matches -->
+                                        <StackLayout  x:Name="stackLayout" Grid.Column="5" VerticalOptions="Center" HorizontalOptions="Start" 
+                                                      Orientation="Horizontal" Spacing="4"
+                                                      BindableLayout.ItemsSource="{Binding MatchResults}" WidthRequest="8" 
+                                                      HeightRequest="8">
+                                            <BindableLayout.ItemTemplate>
+                                                <DataTemplate>
+                                                    <BoxView  BackgroundColor="{Binding }" WidthRequest="8" 
+                                                      HeightRequest="8"  CornerRadius="16" />
+                                                </DataTemplate>
+                                            </BindableLayout.ItemTemplate>
+                                        </StackLayout>
+                                    </Grid>
+                                    <BoxView Grid.Row="1" Grid.ColumnSpan="5" Style="{StaticResource SeparatorStyle}"/>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </controls:SearchableDataTable.ItemTemplate>
+                </controls:SearchableDataTable>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

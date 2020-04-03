@@ -284,7 +284,7 @@
                                     HeightRequest="90"
                                     WidthRequest="104" >
                                     <Image.Source>
-                                        <UriImageSource Uri="{Binding .}" 
+                                        <UriImageSource Uri="{Binding ImagePath}" 
 			                                 CacheValidity="14" 
 			                                 CachingEnabled="true"/>
                                     </Image.Source>

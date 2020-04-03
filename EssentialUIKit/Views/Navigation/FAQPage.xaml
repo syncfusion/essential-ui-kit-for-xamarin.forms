@@ -23,82 +23,55 @@
     <ContentPage.Content>
         <Grid RowSpacing="0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="64" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
             <!--  Title view  -->
-            <StackLayout  x:Name="TitleView"
-                Padding="16,8"
-                Grid.Row="0"
-                BackgroundColor="{DynamicResource Gray-White}"
-                HorizontalOptions="FillAndExpand"
-                Orientation="Horizontal"
-                Spacing="0">
+            <StackLayout x:Name="TitleView"  Padding="8,8" Grid.Row="0" HeightRequest="64"
+                         BackgroundColor="{DynamicResource Gray-White}" Spacing="0"
+                         HorizontalOptions="FillAndExpand" Orientation="Horizontal">
 
-                <StackLayout   x:Name="Title"
-                    HorizontalOptions="FillAndExpand"
-                    IsVisible="True"
-                    Orientation="Horizontal"
-                    Spacing="0"
-                    VerticalOptions="FillAndExpand">
+                <StackLayout x:Name="Title" HorizontalOptions="FillAndExpand"  IsVisible="True"
+                             Orientation="Horizontal"  VerticalOptions="FillAndExpand"  Spacing="0">
 
                     <!--  Back button command  -->
-                    <buttons:SfButton  x:Name="backButton"
-                        Command="{Binding BackButtonCommand}"
-                        CommandParameter="{x:Reference backButton}"
-                        CornerRadius="4"
-                        Style="{StaticResource IconButtonStyle}"
-                        Text="{StaticResource Back}" />
+                    <buttons:SfButton  x:Name="backButton"  Command="{Binding BackButtonCommand}"
+                                       CommandParameter="{x:Reference backButton}" CornerRadius="4"
+                                       Style="{StaticResource IconButtonStyle}" Text="{StaticResource Back}"/>
 
-                    <!--  FAQ page Title  -->
-                    <Label   Margin="16,0"
-                        FontFamily="{StaticResource Montserrat-Medium}"
-                        FontSize="16"
-                        HorizontalOptions="CenterAndExpand"
-                        LineHeight="1.25"
-                        Text="FAQs"
-                        TextColor="{DynamicResource Gray-900}"
-                        VerticalOptions="Center"
-                        VerticalTextAlignment="Center" />
+                    <!--   Icon Names List page Title  -->
+                    <Label  Margin="16,0" FontFamily="{StaticResource Montserrat-Medium}" FontSize="16"
+                            HorizontalOptions="CenterAndExpand" TextColor="{DynamicResource Gray-900}"
+                            LineHeight="1.25" Text="FAQs"  VerticalOptions="Center" VerticalTextAlignment="Center" />
 
                 </StackLayout>
 
-                <StackLayout  x:Name="Search"
-                    HorizontalOptions="EndAndExpand"
-                    IsVisible="False"
-                    Orientation="Horizontal"
-                    Spacing="0">
+                <StackLayout  x:Name="Search" HorizontalOptions="EndAndExpand" IsVisible="False"
+                                Orientation="Horizontal" Spacing="0">
 
                     <!--  Back to title layout  -->
-                    <buttons:SfButton   x:Name="BackToTitle"
-                        Clicked="BackToTitle_Clicked"
-                        Style="{StaticResource NavigationBarButtonStyle}"
-                        Text="{StaticResource Back}" />
+                    <buttons:SfButton x:Name="BackToTitle" Clicked="BackToTitle_Clicked"  Text="{StaticResource Back}"
+                                      Style="{StaticResource NavigationBarButtonStyle}" />
 
                     <!--  Rounded Search Entry  -->
                     <border:SfBorder Style="{DynamicResource SfBorderStyle}">
-
-                        <controls:BorderlessEntry  x:Name="SearchEntry"
-                            Placeholder="Search here"
-                            BindingContext="{x:Reference Questions}"
-                            HorizontalOptions="FillAndExpand"
-                            Text="{Binding SearchText, Mode=TwoWay}"
-                            Style="{StaticResource SearchEntryStyle}"/>
+                        <controls:BorderlessEntry x:Name="SearchEntry"  BindingContext="{x:Reference FAQList}"
+                                                  Text="{Binding SearchText, Mode=TwoWay}" Placeholder="Search here"
+                                                  HorizontalOptions="FillAndExpand"  Style="{StaticResource SearchEntryStyle}"/>
                     </border:SfBorder>
-
                 </StackLayout>
 
                 <!--  Search Button  -->
-                <buttons:SfButton x:Name="SearchButton"
-                    IsVisible="True"
-                    Clicked="SearchButton_Clicked"
-                    Style="{StaticResource IconButtonStyle }"
-                    Text="{StaticResource Search}" />
-
+                <buttons:SfButton  x:Name="SearchButton" IsVisible="True" Clicked="SearchButton_Clicked" Style="{StaticResource IconButtonStyle }"
+                                   Text="{StaticResource Search}" />
             </StackLayout>
 
-            <StackLayout Grid.Row="1" Spacing="0" BackgroundColor="{DynamicResource Gray-100}">
+            <!-- Seperator -->
+            <BoxView Grid.Row="1" Style="{StaticResource SeparatorStyle}"/>
+
+            <StackLayout Grid.Row="2" Spacing="0" BackgroundColor="{DynamicResource Gray-100}">
                 
                 <!--  Header label Top Questions -->
                 <Label  Margin ="0,24,0,24"
@@ -114,7 +87,7 @@
                     HorizontalOptions="FillAndExpand" 
                     VerticalOptions="Center"/>
 
-                <controls:SearchableFAQList  x:Name="Questions"
+                <controls:SearchableFAQList  x:Name="FAQList"
                     Padding="0"
                     VerticalOptions="FillAndExpand"                                          
                     FocusBorderThickness="0" 

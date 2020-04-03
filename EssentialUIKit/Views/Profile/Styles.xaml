@@ -7,6 +7,9 @@
     xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms">
 
     <Color x:Key="Transparent">Transparent</Color>
+    <Color x:Key="Dull-Red">#c04848</Color>
+    <Color x:Key="Deep-Purple">#480048</Color>
+    
     <x:String x:Key="Edit">&#xe727;</x:String>
     <x:String x:Key="Next">&#xe71a;</x:String>
     <x:String x:Key="Home">&#xe706;</x:String>
@@ -94,4 +97,21 @@
         <Setter Property="BackgroundColor" Value="{DynamicResource Gray-200}" />
     </Style>
 
+    <!-- Common style for labels -->
+    <Style x:Key="LabelStyle" TargetType="Label">
+        <Setter Property="FontFamily" Value="{StaticResource Montserrat-SemiBold}" />
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="TextColor" Value="{DynamicResource Gray-900}"/>
+        <Setter Property="HeightRequest" Value="24"/>
+        <Setter Property="LineHeight" Value="{OnPlatform Android=1.5, Default=-1}"/>
+    </Style>
+
+    <!--Common boxview style-->
+    <Style x:Key="BoxViewStyle" TargetType="BoxView">
+        <Setter Property="WidthRequest" Value="1"/>
+        <Setter Property="HeightRequest" Value="24"/>
+        <Setter Property="BackgroundColor" Value="{DynamicResource Gray-400}"/>
+        <Setter Property="VerticalOptions" Value="Center"/>
+    </Style>
+    
 </ResourceDictionary>

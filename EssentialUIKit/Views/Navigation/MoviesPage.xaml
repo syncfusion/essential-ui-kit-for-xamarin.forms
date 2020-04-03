@@ -1,0 +1,211 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+             xmlns:rotator="clr-namespace:Syncfusion.SfRotator.XForms;assembly=Syncfusion.SfRotator.XForms"
+             xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+             xmlns:rating="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms"
+             xmlns:controls="clr-namespace:EssentialUIKit.Controls"
+             mc:Ignorable="d"
+             x:Class="EssentialUIKit.Views.Navigation.MoviesPage"
+             BackgroundColor="{DynamicResource Gray-White}"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <DataTemplate x:Key="MovieTemplate">
+                <StackLayout Spacing="8">
+                    <border:SfBorder CornerRadius="8" BorderWidth="0" >
+                        <Image Aspect="AspectFill"
+                               BackgroundColor="{DynamicResource Gray-200}"
+                               HeightRequest="220"
+                               WidthRequest="150">
+                            <Image.Source>
+                                <UriImageSource CacheValidity="14"
+                                                CachingEnabled="true"
+                                                Uri="{Binding Image}" />
+                            </Image.Source>
+                        </Image>
+                    </border:SfBorder>
+
+                    <Label Text="{Binding MovieName}" FontFamily="{StaticResource Montserrat-SemiBold}" FontSize="14" TextColor="{DynamicResource Gray-900}" LineHeight="{OnPlatform Android=1.5, Default=-1}" LineBreakMode="TailTruncation"></Label>
+
+                    <rating:SfRating ItemCount="5" Value="{Binding MovieRating}" ItemSize="14" ItemSpacing="1" ReadOnly="True" VerticalOptions="Center" HorizontalOptions="Start">
+                        <rating:SfRating.RatingSettings>
+                            <rating:SfRatingSettings RatedFill="{StaticResource OrangeyYellow}" RatedStroke="{StaticResource OrangeyYellow}" UnRatedStroke="{StaticResource Gray-600}" UnRatedStrokeWidth="1"/>
+                        </rating:SfRating.RatingSettings>
+                    </rating:SfRating>
+
+                </StackLayout>
+            </DataTemplate>
+
+            <DataTemplate x:Key="TrailerTemplate">
+                <StackLayout Spacing="8">
+                    <border:SfBorder CornerRadius="8" BorderWidth="0">
+                        <Image
+                            Aspect="AspectFill" WidthRequest="180"
+                            BackgroundColor="{DynamicResource Gray-200}"
+                            HeightRequest="120">
+                            <Image.Source>
+                                <UriImageSource CacheValidity="14"
+                                                CachingEnabled="true"
+                                                Uri="{Binding Image}" />
+                            </Image.Source>
+                        </Image>
+                    </border:SfBorder>
+
+                    <Label Text="{Binding MovieName}" FontFamily="{StaticResource Montserrat-SemiBold}" FontSize="14" TextColor="{DynamicResource Gray-900}" LineHeight="{OnPlatform Android=1.5, Default=-1}" LineBreakMode="TailTruncation"></Label>
+
+                </StackLayout>
+            </DataTemplate>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.ControlTemplate>
+        <ControlTemplate>
+            <StackLayout Spacing="0">
+                <!--  Title View  -->
+                <controls:TitleView Title="Movies" BackgroundColor="{DynamicResource Gray-White}">
+                    <controls:TitleView.TrailingView>
+                        
+                        <!--Search Button-->
+                        <buttons:SfButton Style="{StaticResource IconButtonStyle}" 
+                                  Text="{StaticResource Search}" CornerRadius="4"
+                                  Command="{Binding SearchButtonCommand}"/>
+
+                    </controls:TitleView.TrailingView>
+                </controls:TitleView> 
+                <ContentPresenter />
+            </StackLayout>
+        </ControlTemplate>
+    </ContentPage.ControlTemplate>
+
+    <ContentPage.Content>
+        
+            <ScrollView>
+                <Grid RowSpacing="0" ColumnSpacing="0">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <rotator:SfRotator Grid.Row="0"
+                                       BackgroundColor="{StaticResource Transparent}"
+                                       DotsBorderColor="Transparent"
+                                       HeightRequest="210"
+                                       HorizontalOptions="StartAndExpand"
+                                       ItemsSource="{Binding RotatorMoviesList}"
+                                       NavigationDirection="Horizontal"
+                                       NavigationStripMode="Dots"
+                                       SelectedDotColor="{DynamicResource PrimaryColor}"
+                                       UnselectedDotColor="{DynamicResource Gray-200}"
+                                       VerticalOptions="Start" EnableAutoPlay="True" NavigationDelay="2000">
+                        <rotator:SfRotator.ItemTemplate>
+                            <DataTemplate>
+                                <Image
+                                    Aspect="AspectFill"
+                                    BackgroundColor="{DynamicResource Gray-200}"
+                                    HeightRequest="140">
+                                    <Image.Source>
+                                        <UriImageSource CacheValidity="14"
+                                                        CachingEnabled="true"
+                                                        Uri="{Binding Image}" />
+                                    </Image.Source>
+                                </Image>
+                            </DataTemplate>
+                        </rotator:SfRotator.ItemTemplate>
+                    </rotator:SfRotator>
+
+                    <StackLayout Grid.Row="1" 
+                                 VerticalOptions="Start" 
+                                 Orientation="Horizontal" 
+                                 Margin="16, 26, 16, 8">
+
+                        <Label Text="NOW SHOWING" 
+                               VerticalTextAlignment="Center" 
+                               FontFamily="{StaticResource Montserrat-SemiBold}" 
+                               FontSize="12" 
+                               TextColor="{DynamicResource Gray-800}" 
+                               LineHeight="{OnPlatform Android=1.25, Default=-1}"/>
+
+                        <buttons:SfButton Text="VIEW ALL" 
+                                          Command="{Binding ShowingNowViewAllCommand}" 
+                                          Style="{StaticResource ViewAllButtonStyle}"/>
+                    </StackLayout>
+
+                    <listView:SfListView Grid.Row="2" 
+                                         SelectionMode="None"
+                                         HeightRequest="280" 
+                                         ItemSize="150" 
+                                         ItemSpacing="8, 0, 8, 0" 
+                                         Orientation="Horizontal" 
+                                         IsScrollBarVisible="False"
+                                         ItemsSource="{Binding NowShowingMoviesList}" 
+                                         ItemTemplate="{StaticResource MovieTemplate}"/>
+
+                    <StackLayout Grid.Row="3" Orientation="Horizontal" Margin="16, 26, 16, 8">
+
+                        <Label Text="TRAILERS" 
+                               VerticalTextAlignment="Center" 
+                               FontFamily="{StaticResource Montserrat-SemiBold}" 
+                               FontSize="12" 
+                               TextColor="{DynamicResource Gray-800}" 
+                               LineHeight="{OnPlatform Android=1.25, Default=-1}"/>
+
+                        <buttons:SfButton Text="VIEW ALL" 
+                                          Style="{StaticResource ViewAllButtonStyle}" 
+                                          Command="{Binding TrailerViewAllCommand}"/>
+                    </StackLayout>
+
+                    <listView:SfListView Grid.Row="4"
+                                         SelectionMode="None" 
+                                         HeightRequest="180" 
+                                         ItemSize="180" 
+                                         Orientation="Horizontal" 
+                                         ItemsSource="{Binding TrailerMoviesList}" 
+                                         ItemSpacing="8, 0, 8, 0" 
+                                         ItemTemplate="{StaticResource TrailerTemplate}"
+                                         IsScrollBarVisible="False"/>
+
+                    <StackLayout Grid.Row="5" Orientation="Horizontal" Margin="16, 26, 16, 8">
+
+                        <Label Text="COMING SOON" 
+                               VerticalTextAlignment="Center"
+                               FontFamily="{StaticResource Montserrat-SemiBold}" 
+                               FontSize="12" TextColor="{DynamicResource Gray-800}" 
+                               LineHeight="{OnPlatform Android=1.25, Default=-1}"/>
+
+                        <buttons:SfButton Text="VIEW ALL" 
+                                          Style="{StaticResource ViewAllButtonStyle}" 
+                                          Command="{Binding UpcomingViewAllCommand}"/>
+                    </StackLayout>
+
+                    <listView:SfListView Grid.Row="6"
+                                         SelectionMode="None" 
+                                         HeightRequest="280" 
+                                         ItemSize="150" 
+                                         Orientation="Horizontal" 
+                                         ItemsSource="{Binding UpcomingMoviesList}" 
+                                         ItemSpacing="8, 0, 8, 0" 
+                                         ItemTemplate="{StaticResource MovieTemplate}"
+                                         IsScrollBarVisible="False"/>
+
+                </Grid>
+            </ScrollView>
+            
+    </ContentPage.Content>
+</ContentPage>

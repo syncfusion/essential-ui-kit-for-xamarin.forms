@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<StackLayout xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             xmlns:template="clr-namespace:EssentialUIKit.Views.Templates"
+             BackgroundColor="{DynamicResource Gray-White}"
+            
+             x:Class="EssentialUIKit.Views.Detail.BookingFeedbackView">
+    <StackLayout.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </StackLayout.Resources>
+
+    <StackLayout Spacing="0">
+        <!--  Rating and Reviews Header  -->
+        <StackLayout Margin="0"  Orientation="Horizontal" >
+
+            <Label Margin="16,0,8,8"
+                FontFamily="{StaticResource Montserrat-SemiBold}"
+                FontSize="16" 
+                HorizontalOptions="StartAndExpand"
+                Style="{StaticResource LabelStyle}"
+                Text="Ratings and Reviews"
+                TextColor="{DynamicResource Gray-900}" />
+
+            <!--  See all review button  -->
+            <buttons:SfButton Margin="0,0,8,8"
+                x:Name="ShowButton"
+                Padding="0"
+                CornerRadius="4"
+                FontFamily="{StaticResource Montserrat-SemiBold}"
+                FontSize="{OnIdiom Default=12,
+                                   Desktop=14}"
+                
+               HorizontalOptions="End"
+                Style="{StaticResource SfButtonStyle}"
+                Text="SHOW ALL"
+                TextColor="{DynamicResource HyperLink}"
+                VerticalOptions="Start" />
+
+        </StackLayout>
+        <BoxView HeightRequest="{OnIdiom Default=1, Desktop=0}" 
+                 Style="{StaticResource BoxViewStyle}"  />
+    </StackLayout>
+
+    <StackLayout x:Name="StackLayout" BindableLayout.ItemsSource="{Binding RoomDetail.Reviews}">
+        <BindableLayout.ItemTemplate>
+            <DataTemplate>
+                <StackLayout Spacing="0">
+
+                    <template:BookingReviewTemplate Padding="16,0,16,8" ColumnSpacing="0" />
+
+                </StackLayout>
+            </DataTemplate>
+        </BindableLayout.ItemTemplate>
+    </StackLayout>
+
+</StackLayout>
+             

@@ -23,12 +23,12 @@
 
         <Grid RowSpacing="0" ColumnSpacing="0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="64"/>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="1"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <StackLayout x:Name="TitleView"  Padding="8,8" HeightRequest="48"  Grid.Row="0"
+            <StackLayout x:Name="TitleView"  Padding="8,8" HeightRequest="64"  Grid.Row="0"
                          BackgroundColor="{DynamicResource Gray-White}" Spacing="0"
                          HorizontalOptions="FillAndExpand" Orientation="Horizontal">
 

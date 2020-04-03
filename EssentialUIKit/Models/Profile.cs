@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms.Internals;
+﻿using System.Runtime.Serialization;
+using Xamarin.Forms.Internals;
 
 namespace EssentialUIKit.Models
 {
@@ -8,6 +9,12 @@ namespace EssentialUIKit.Models
     [Preserve(AllMembers = true)]
     public class Profile
     {
+        #region Fields
+
+        private string imagePath;
+
+        #endregion
+
         #region Properties
 
         /// <summary>
@@ -16,9 +23,13 @@ namespace EssentialUIKit.Models
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets or sets the imagepath.
+        /// Gets or sets the image path.
         /// </summary>
-        public string ImagePath { get; set; }
+        public string ImagePath
+        {
+            get { return App.BaseImageUrl + this.imagePath; }
+            set { this.imagePath = value; }
+        }
 
         #endregion
     }

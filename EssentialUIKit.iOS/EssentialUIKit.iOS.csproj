@@ -118,10 +118,10 @@
     <BundleResource Include="Resources\Montserrat-Medium.ttf" />
     <BundleResource Include="Resources\Montserrat-Regular.ttf" />
     <BundleResource Include="Resources\Montserrat-SemiBold.ttf" />
+    <Compile Include="Renderers\CalenderDatePickerRenderer.cs" />
     <BundleResource Include="Resources\UIFontIcons.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </BundleResource>
-    <Compile Include="Renderers\CalenderDatePickerRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
@@ -160,6 +160,9 @@
       <Version>17.4.0.44</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfComboBox" Version="17.4.0.44" />
+    <PackageReference Include="Syncfusion.Xamarin.SfGauge">
+      <Version>17.4.0.44</Version>
+    </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfMaps" Version="17.4.0.44" />
     <PackageReference Include="Syncfusion.Xamarin.SfParallaxView">
       <Version>17.4.0.44</Version>
@@ -176,7 +179,7 @@
     <PackageReference Include="Syncfusion.Xamarin.SfTabView">
       <Version>17.4.0.44</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.Forms" Version="4.4.0.991265" />
+    <PackageReference Include="Xamarin.Forms" Version="4.3.0.991250" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
@@ -419,6 +422,9 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\ViewMode.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Visa.png" />
   </ItemGroup>
   <Import Project="..\build\tools\Syncfusion.CodeAnalysis.StyleCop\tools\StyleCop.MsBuild.targets" Condition="Exists('..\build\tools\Syncfusion.CodeAnalysis.StyleCop\tools\StyleCop.MsBuild.targets')" />
   <Target Name="_VerifyBuildSignature" />

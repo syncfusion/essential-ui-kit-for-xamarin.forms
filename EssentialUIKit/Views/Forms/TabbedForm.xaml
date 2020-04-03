@@ -94,7 +94,7 @@
                                     Margin="0,16"
                                     Command="{Binding LoginCommand}"
                                     Style="{StaticResource SfButtonStyle}"
-                                    Text="LOGIN" />
+                                    Text="LOG IN" />
 
                                     </StackLayout>
                                 </Grid>

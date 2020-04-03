@@ -16,7 +16,9 @@ using Syncfusion.XForms.iOS.Graphics;
 using Syncfusion.XForms.iOS.PopupLayout;
 using Syncfusion.XForms.iOS.ProgressBar;
 using Syncfusion.XForms.iOS.TabView;
+using Syncfusion.SfGauge.XForms.iOS;
 using UIKit;
+using Xamarin.Forms;
 
 namespace EssentialUIKit.iOS
 {
@@ -33,6 +35,7 @@ namespace EssentialUIKit.iOS
         // You have 17 seconds to return from this method, or iOS will terminate your application.
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
+            Forms.SetFlags("CollectionView_Experimental");
             global::Xamarin.Forms.Forms.Init();
             this.LoadApplication(new App());
             SfButtonRenderer.Init();
@@ -54,7 +57,8 @@ namespace EssentialUIKit.iOS
             SfTabViewRenderer.Init();
             SfCalendarRenderer.Init();
             SfLinearProgressBarRenderer.Init();
-            SfChartRenderer.Init();     
+            SfChartRenderer.Init();
+            SfGaugeRenderer.Init();
 
             ////UIView statusBar = UIApplication.SharedApplication.ValueForKey(new NSString("statusBar")) as UIView;
             ////if (statusBar.RespondsToSelector(new ObjCRuntime.Selector("setBackgroundColor:")))

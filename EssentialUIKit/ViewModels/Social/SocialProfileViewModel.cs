@@ -1,6 +1,5 @@
-﻿using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
+﻿using Syncfusion.XForms.Buttons;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
@@ -20,7 +19,13 @@ namespace EssentialUIKit.ViewModels.Social
 
         private ObservableCollection<ProfileModel> connnections;
 
-        private ObservableCollection<string> pictures;
+        private ObservableCollection<ProfileModel> pictures;
+
+        private string headerImagePath;
+
+        private string profileImage;
+
+        private string backgroundImage;
 
         #endregion
 
@@ -31,8 +36,9 @@ namespace EssentialUIKit.ViewModels.Social
         /// </summary>
         public SocialProfileViewModel()
         {
-            this.HeaderImagePath = App.BaseImageUrl + "Album2.png";
-            this.ProfileImage = App.BaseImageUrl + "ProfileImage16.png";
+            this.HeaderImagePath = "Album2.png";
+            this.ProfileImage = "ProfileImage16.png";
+            this.BackgroundImage = "Sky-Image.png";
             this.ProfileName = "Lela Cortez";
             this.Designation = "Designer";
             this.State = "San Francisco";
@@ -44,41 +50,42 @@ namespace EssentialUIKit.ViewModels.Social
 
             this.Interests = new ObservableCollection<ProfileModel>()
             {
-                 new ProfileModel { Name = "Food", ImagePath = App.BaseImageUrl + "Recipe12.png" },
-                 new ProfileModel { Name = "Travel", ImagePath = App.BaseImageUrl + "Album5.png" },
-                 new ProfileModel { Name = "Music", ImagePath = App.BaseImageUrl + "ArticleImage7.jpg" },
-                 new ProfileModel { Name = "Bags", ImagePath = App.BaseImageUrl + "Accessories.png" },
-                 new ProfileModel { Name = "Market", ImagePath = App.BaseImageUrl + "PersonalCare.png" },
-                 new ProfileModel { Name = "Food", ImagePath = App.BaseImageUrl + "Recipe12.png" },
-                 new ProfileModel { Name = "Travel", ImagePath = App.BaseImageUrl + "Album5.png" },
-                 new ProfileModel { Name = "Music", ImagePath = App.BaseImageUrl + "ArticleImage7.jpg" },
-                 new ProfileModel { Name = "Bags", ImagePath = App.BaseImageUrl + "Accessories.png" },
-                 new ProfileModel { Name = "Market", ImagePath = App.BaseImageUrl + "PersonalCare.png" },
+                new ProfileModel { Name = "Food", ImagePath = "Recipe12.png" },
+                new ProfileModel { Name = "Travel", ImagePath = "Album5.png" },
+                new ProfileModel { Name = "Music", ImagePath = "ArticleImage7.jpg" },
+                new ProfileModel { Name = "Bags", ImagePath = "Accessories.png" },
+                new ProfileModel { Name = "Market", ImagePath = "PersonalCare.png" },
+                new ProfileModel { Name = "Food", ImagePath = "Recipe12.png" },
+                new ProfileModel { Name = "Travel", ImagePath = "Album5.png" },
+                new ProfileModel { Name = "Music", ImagePath = "ArticleImage7.jpg" },
+                new ProfileModel { Name = "Bags", ImagePath = "Accessories.png" },
+                new ProfileModel { Name = "Market", ImagePath = "PersonalCare.png" }
             };
 
             this.Connections = new ObservableCollection<ProfileModel>()
             {
-                 new ProfileModel { Name = "Rose King", ImagePath = App.BaseImageUrl + "ProfileImage7.png" },
-                 new ProfileModel { Name = "Jeanette Bell", ImagePath = App.BaseImageUrl + "ProfileImage9.png" },
-                 new ProfileModel { Name = "Lily Castro", ImagePath = App.BaseImageUrl + "ProfileImage10.png" },
-                 new ProfileModel { Name = "Susie Moss", ImagePath = App.BaseImageUrl + "ProfileImage11.png" },
-                 new ProfileModel { Name = "Rose King", ImagePath = App.BaseImageUrl + "ProfileImage7.png" },
-                 new ProfileModel { Name = "Jeanette Bell", ImagePath = App.BaseImageUrl + "ProfileImage9.png" },
-                 new ProfileModel { Name = "Lily Castro", ImagePath = App.BaseImageUrl + "ProfileImage10.png" },
-                 new ProfileModel { Name = "Susie Moss", ImagePath = App.BaseImageUrl + "ProfileImage11.png" },
+                new ProfileModel { Name = "Rose King", ImagePath = "ProfileImage7.png" },
+                new ProfileModel { Name = "Jeanette Bell", ImagePath = "ProfileImage9.png" },
+                new ProfileModel { Name = "Lily Castro", ImagePath = "ProfileImage10.png" },
+                new ProfileModel { Name = "Susie Moss", ImagePath = "ProfileImage11.png" },
+                new ProfileModel { Name = "Rose King", ImagePath = "ProfileImage7.png" },
+                new ProfileModel { Name = "Jeanette Bell", ImagePath = "ProfileImage9.png" },
+                new ProfileModel { Name = "Lily Castro", ImagePath = "ProfileImage10.png" },
+                new ProfileModel { Name = "Susie Moss", ImagePath = "ProfileImage11.png" }
             };
 
-            this.Pictures = new ObservableCollection<string>()
+            this.Pictures = new ObservableCollection<ProfileModel>()
             {
-                 App.BaseImageUrl + "ProfileImage8.png",
-                 App.BaseImageUrl + "Album6.png",
-                 App.BaseImageUrl + "ArticleImage4.jpg",
-                 App.BaseImageUrl + "Recipe17.png",
-                 App.BaseImageUrl + "ArticleImage5.jpg",
-                 App.BaseImageUrl + "Mask.png",
+                new ProfileModel { ImagePath = "ProfileImage8.png" },
+                new ProfileModel { ImagePath = "Album6.png" },
+                new ProfileModel { ImagePath = "ArticleImage4.jpg" },
+                new ProfileModel { ImagePath = "Recipe17.png" },
+                new ProfileModel { ImagePath = "ArticleImage5.jpg" },
+                new ProfileModel { ImagePath = "Mask.png" }
             };
 
             this.FollowCommand = new Command(this.FollowClicked);
+            this.MessageCommand = new Command(this.MessageClicked);
             this.AddConnectionCommand = new Command(this.AddConnectionClicked);
             this.ImageTapCommand = new Command(this.ImageClicked);
             this.ProfileSelectedCommand = new Command(this.ProfileClicked);
@@ -92,6 +99,11 @@ namespace EssentialUIKit.ViewModels.Social
         /// Gets or sets the command that is executed when the Follow button is clicked.
         /// </summary>
         public ICommand FollowCommand { get; set; }
+
+        /// <summary>
+        /// Gets or sets the command that is executed when the message button is clicked.
+        /// </summary>
+        public ICommand MessageCommand { get; set; }
 
         /// <summary>
         /// Gets or sets the command that is executed when the AddConnection button is clicked.
@@ -149,7 +161,7 @@ namespace EssentialUIKit.ViewModels.Social
         /// <summary>
         /// Gets or sets the photos collection.
         /// </summary>
-        public ObservableCollection<string> Pictures
+        public ObservableCollection<ProfileModel> Pictures
         {
             get
             {
@@ -166,12 +178,29 @@ namespace EssentialUIKit.ViewModels.Social
         /// <summary>
         /// Gets or sets the header image path.
         /// </summary>
-        public string HeaderImagePath { get; set; }
+        public string HeaderImagePath
+        {
+            get { return App.BaseImageUrl + this.headerImagePath; }
+            set { this.headerImagePath = value; }
+        }
 
         /// <summary>
         /// Gets or sets the profile image.
         /// </summary>
-        public string ProfileImage { get; set; }
+        public string ProfileImage
+        {
+            get { return App.BaseImageUrl + this.profileImage; }
+            set { this.profileImage = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets the background image.
+        /// </summary>
+        public string BackgroundImage
+        {
+            get { return App.BaseImageUrl + this.backgroundImage; }
+            set { this.backgroundImage = value; }
+        }
 
         /// <summary>
         /// Gets or sets the profile name
@@ -222,6 +251,23 @@ namespace EssentialUIKit.ViewModels.Social
         /// </summary>
         /// <param name="obj">The Object</param>
         private void FollowClicked(object obj)
+        {
+            SfButton button = obj as SfButton;
+            if (button.Text == "FOLLOW")
+            {
+                button.Text = "FOLLOWED";
+            }
+            else if (button.Text == "FOLLOWED")
+            {
+                button.Text = "FOLLOW";
+            } 
+        }
+
+        /// <summary>
+        /// Invoked when the message button is clicked.
+        /// </summary>
+        /// <param name="obj">The Object</param>
+        private void MessageClicked(object obj)
         {
             // Do something
         }

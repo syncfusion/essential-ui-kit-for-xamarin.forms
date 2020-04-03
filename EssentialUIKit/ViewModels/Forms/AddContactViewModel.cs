@@ -1,7 +1,4 @@
-﻿using EssentialUIKit.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System;
 using Xamarin.Forms;
 
 namespace EssentialUIKit.ViewModels.Forms
@@ -11,14 +8,6 @@ namespace EssentialUIKit.ViewModels.Forms
     /// </summary>
     public class AddContactViewModel : LoginViewModel
     {
-        #region Fields
-
-        private object country;
-
-        private object state;
-
-        #endregion
-
         #region Constructor
         /// <summary>
         /// Initializes a new instance for the <see cref="AddContactViewModel" /> class.
@@ -26,33 +15,6 @@ namespace EssentialUIKit.ViewModels.Forms
         public AddContactViewModel()
         {
             this.SubmitCommand = new Command(this.SubmitButtonClicked);
-
-            Countries = new List<CountryModel>();
-            Countries.Add(new CountryModel()
-            {
-                Country = "Australia",
-                States = new string[] { "Tasmania", "Victoria", "Queensland", "Northen Territory" }
-            });
-            Countries.Add(new CountryModel()
-            {
-                Country = "Brazil",
-                States = new string[] { "Bahia", "Ceara", "Goias", "Maranhao" }
-            });
-            Countries.Add(new CountryModel()
-            {
-                Country = "Canada",
-                States = new string[] { "Manitoba", "Ontario", "Quebec", "Yukon" }
-            });
-            Countries.Add(new CountryModel()
-            {
-                Country = "India",
-                States = new string[] { "Assam", "Gujarat", "Haryana", "Tamil Nadu" }
-            });
-            Countries.Add(new CountryModel()
-            {
-                Country = "USA",
-                States = new string[] { "California", "Florida", "New York", "Washington" }
-            });
         }
 
         #endregion
@@ -93,37 +55,6 @@ namespace EssentialUIKit.ViewModels.Forms
         /// Gets or sets the property that bounds with an entry that gets the city from user in the Add Contact page.
         /// </summary>
         public string City { get; set; }
-
-        /// <summary>
-        /// Gets or sets the property that bounds with a ComboBox that gets the Country from user.
-        /// </summary>
-        public object Country
-        {
-            get { return country; }
-            set
-            {
-                country = value;
-                State = null;
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the property that bounds with a ComboBox that gets the State from user.
-        /// </summary>
-        public object State
-        {
-            get { return state; }
-            set
-            {
-                state = value;
-                NotifyPropertyChanged();
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the collection property, which contains the countries data. 
-        /// </summary>
-        public List<CountryModel> Countries { get; set; }
 
         #endregion
 

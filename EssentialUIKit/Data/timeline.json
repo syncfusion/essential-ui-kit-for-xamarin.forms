@@ -1,0 +1,77 @@
+{
+  "dailyTimeline": [
+    {
+      "name": "Gym",
+      "description": "Treadmill, squats, bike, weights",
+      "time": "8 AM",
+      "icon": "\ue74c"
+    },
+    {
+      "name": "Breakfast",
+      "description": "Toast, boiled Egg, pineapple, orange juice.",
+      "time": "9 AM",
+      "itemImage": "Recipe9.png",
+      "icon": "\ue750"
+    },
+    {
+      "name": "Meeting-College Friends",
+      "description": "Daily Grind. Coordinating gifts for Mel's baby shower",
+      "time": "10 AM",
+      "icon": "\ue714"
+    },
+    {
+      "name": "Photograpy Exhibit",
+      "description": "At the art center. Parking deck on Main St. Meet Jon and Kate at entrance.",
+      "time": "12 PM",
+      "icon": "\ue713"
+    },
+    {
+      "name": "Lunch",
+      "description": "O'Henrys One block north of art center. Try the fries.",
+      "time": "1 PM",
+      "icon": "\ue74e"
+    },
+    {
+      "name": "Organization Workshop",
+      "description": "Brooklyn building, room 311. Bring laptop and water bottle.",
+      "time": "3 PM",
+      "icon": "\ue751"
+    },
+    {
+      "name": "Snacks",
+      "description": "Apple, banana, fresh juice",
+      "time": "6 PM",
+      "icon": "\ue74b"
+    }
+  ],
+
+  "companyName": "Elm Vaults",
+  "companyDescription": "Elm Vaults is the industry leader in wooden vault construction. For more than 80 years, people around the world have relied on us for vaults that are equal parts secure and aesthetically pleasing.",
+
+  "companyHistory": [
+    {
+      "year": 2019
+    },
+    {
+      "description": "The Texas Cedar Elm Vault is released, impressing vault enthusiasts with its height and oblique-based leaves."
+    },
+    {
+      "description": "The Cork Elm Vault is named Best in Show at the Midwestern Vault Show. This is the ninth time an Elm Vaults product has won the award."
+    },
+    {
+      "year": 2018
+    },
+    {
+      "description": "The David Elm Vault design receives an overhaul to further distinguish it from the American Elm Vault."
+    },
+    {
+      "description": "65th anniversary of the Slippery Elm Vault, a popular vault among baseball pitchers and historians."
+    },
+    {
+      "year": 2016
+    },
+    {
+      "description": "The Heartwood and Sapwood Vault Add-Ons are announced, introducing an unprecedented element of modularity to Elm Vaults products."
+    }
+  ]
+}

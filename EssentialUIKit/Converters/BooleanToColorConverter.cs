@@ -62,6 +62,12 @@ namespace EssentialUIKit.Converters
                 case "7" when !(bool)value:
                     Application.Current.Resources.TryGetValue("Gray-100", out var gray100);
                     return (Color)gray100;
+                case "8" when (bool)value:
+                    Application.Current.Resources.TryGetValue("PrimaryColor", out var primary);
+                    return (Color)primary;
+                case "8":
+                    Application.Current.Resources.TryGetValue("Gray-White", out var graywhite);
+                    return (Color)graywhite;
                 default:
                     return Color.Transparent;
             }

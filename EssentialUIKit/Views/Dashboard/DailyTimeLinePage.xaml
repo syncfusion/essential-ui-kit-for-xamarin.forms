@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+             xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+             xmlns:Behavior="clr-namespace:EssentialUIKit.Behaviors"
+             mc:Ignorable="d"
+             x:Class="EssentialUIKit.Views.Dashboard.DailyTimelinePage"
+             BackgroundColor="{DynamicResource Gray-White}"
+             NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid RowSpacing="0" ColumnSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Label
+                        Margin="0,12"
+                        FontFamily="{StaticResource Montserrat-Medium}"
+                        FontSize="16"
+                        HorizontalOptions="CenterAndExpand"
+                        LineHeight="1.25"
+                        Text="Daily Timeline"
+                        TextColor="{DynamicResource Gray-900}"
+                        VerticalOptions="Center"
+                        VerticalTextAlignment="Center" />
+
+                <!-- Separator -->
+                <BoxView  Grid.Row="1" BackgroundColor="{DynamicResource Gray-200}" HeightRequest="1" />
+
+                <StackLayout Grid.Row="2" Margin="16" Spacing="0" >
+                    <Label Text="Today" HorizontalOptions="Start" FontSize="20" FontFamily="{StaticResource Montserrat-Bold}"
+                       TextColor="{DynamicResource Gray-900}"/>
+                    <Label Text="27 Nov 2019" HorizontalOptions="Start" FontSize="12" FontFamily="{StaticResource Montserrat-Medium}"
+                       TextColor="{DynamicResource Gray-700}"/>
+
+                    <Grid RowSpacing="0" ColumnSpacing="0" Margin="16,24,0,0">
+                        <BoxView HeightRequest="{Binding Source={x:Reference listView}, Path=Height}" HorizontalOptions="Start" 
+                     VerticalOptions="Start"   WidthRequest="1" Margin="80,0,0,0" BackgroundColor="{DynamicResource Gray-300}" />
+
+                        <listView:SfListView VerticalOptions="Start" x:Name="listView" ItemsSource="{Binding DailyTimeline}" AutoFitMode="Height"
+                                 SelectionMode="None" SelectionBackgroundColor="Transparent" AllowSwiping="True" ItemSpacing="0,0,0,20"
+                                 IsScrollBarVisible="False">
+
+                            <listView:SfListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <Grid ColumnSpacing="0" RowSpacing="0" >
+                                            <Grid.ColumnDefinitions >
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <Label Text="{Binding Time}" LineHeight="{OnPlatform Default=1.25, iOS=-1}" Margin="0,10,0,0" 
+                                            FontFamily="{StaticResource Montserrat-Medium}" WidthRequest="52" FontSize="14"
+                                            TextColor="{DynamicResource Gray-700}" HorizontalOptions="Start" />
+
+                                            <border:SfBorder BackgroundColor="{StaticResource PrimaryColor}" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Start"
+                                             WidthRequest="40" HeightRequest="40"  BorderColor="Transparent"  CornerRadius="20" Margin="8,0,0,0">
+
+                                                <border:SfBorder WidthRequest="32" HeightRequest="32" BorderColor="Transparent" BackgroundColor="{StaticResource PrimaryColor}"
+                                                         HorizontalOptions="Center" VerticalOptions="Center" CornerRadius="20" Margin="4" BorderWidth="1.5">
+                                                    <Label Text="{Binding Icon}" TextColor="{DynamicResource Gray-White}" FontSize="18"  FontFamily="{StaticResource FontIcons}" 
+                                                    HorizontalOptions="Center" VerticalOptions="Center"/>
+                                                </border:SfBorder>
+                                            </border:SfBorder>
+
+                                            <StackLayout Spacing="2" Grid.Column="2" HorizontalOptions="Start" VerticalOptions="Start" Margin="16,0">
+
+                                                <Label LineHeight="{OnPlatform Default=1.25, iOS=-1}" TextColor="{DynamicResource Gray-900}"  
+                                                Text="{Binding Name}"  FontSize="14" FontFamily="{StaticResource Montserrat-SemiBold}"/>
+
+                                                <Label Text="{Binding Description}" FontSize="12" 
+                                              LineHeight="{OnPlatform Default=1.25, iOS=-1}" 
+                                              FontFamily="{StaticResource Montserrat-Medium}" LineBreakMode="WordWrap"
+                                              TextColor="{DynamicResource Gray-700}"/>
+                                            </StackLayout>
+                                        </Grid>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </listView:SfListView.ItemTemplate>
+
+                            <listView:SfListView.Behaviors>
+                                <Behavior:SfListViewExtendHeightBehavior/>
+                            </listView:SfListView.Behaviors>
+
+                        </listView:SfListView>
+                    </Grid>
+                </StackLayout>
+
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

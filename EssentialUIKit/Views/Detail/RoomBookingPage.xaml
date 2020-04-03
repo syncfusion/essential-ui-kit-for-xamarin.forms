@@ -1,0 +1,443 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Detail"
+             xmlns:converter="clr-namespace:EssentialUIKit.Converters"
+             xmlns:rotator="clr-namespace:Syncfusion.SfRotator.XForms;assembly=Syncfusion.SfRotator.XForms"
+             xmlns:controls="clr-namespace:EssentialUIKit.Controls"
+             xmlns:rating="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms" 
+             xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+             xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms"
+             xmlns:local="clr-namespace:EssentialUIKit.Views.Detail"
+             xmlns:behaviors="clr-namespace:EssentialUIKit.Behaviors"
+             xmlns:syncfusion="clr-namespace:Syncfusion.SfCalendar.XForms;assembly=Syncfusion.SfCalendar.XForms"
+             xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             xmlns:maps="clr-namespace:Syncfusion.SfMaps.XForms;assembly=Syncfusion.SfMaps.XForms"
+             x:Class="EssentialUIKit.Views.Detail.RoomBookingPage"  
+             NavigationPage.HasNavigationBar="False" x:Name="RoomBooking"
+             BackgroundColor="{StaticResource Gray-White}">
+
+    <ContentPage.BindingContext>
+        <viewModel:RoomBookingPageViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <converter:VisibilityConverter x:Key="VisibilityConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Spacing="0"  >
+                <!--<Rotator for featured blog stories>-->
+                <CarouselView
+                    x:Name="Rotator" Position="0" 
+                    BackgroundColor="Gray"
+                    HeightRequest="350" 
+                    PositionChangedCommand="{Binding SelectionCommand}" 
+                    PositionChangedCommandParameter="{Binding Source={x:Reference Rotator}, Path=CurrentItem}"
+                    HorizontalOptions="StartAndExpand"
+                    ItemsSource="{Binding PreviewImages}"
+                    VerticalOptions="Start">
+                    <CarouselView.ItemTemplate>
+                        <DataTemplate>
+                            <!--Image of the resort-->
+                            <Image
+                                  Aspect="AspectFill"
+                                  BackgroundColor="{DynamicResource Gray-200}"
+                                  HeightRequest="350">
+                                <Image.Source>
+                                    <UriImageSource
+                                        CacheValidity="14"
+                                        CachingEnabled="true"
+                                        Uri="{Binding ImagePath}" />
+                                </Image.Source>
+                            </Image>
+                        </DataTemplate>
+                    </CarouselView.ItemTemplate>
+                </CarouselView>
+
+                <rotator:SfRotator BackgroundColor="Transparent"
+                                   DotsBorderColor="Transparent" 
+                                   SelectedDotColor="{DynamicResource PrimaryColor}" 
+                                   HeightRequest="30" Margin="0, -75, 0, 0"
+                                   ItemsSource="{Binding PreviewImages}" 
+                                   SelectedIndex="{Binding SelectedIndex, Mode=TwoWay}"/>
+
+                <ContentView>
+                    <controls:CustomShadowFrame  
+                        Margin="16,12,16,16"
+                        CornerRadius="12"
+                        BackgroundColor="{DynamicResource Gray-White}"
+                        BorderColor="{DynamicResource Gray-200}"
+                        Padding="0,0,0,10"
+                        BorderWidth="2"
+                        HasShadow="True">
+                        <StackLayout Spacing="0">
+
+                            <Grid Margin="16"
+                                ColumnSpacing="0"
+                                RowSpacing="0">
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+
+                                <!--  Product Name  -->
+                                <Label Grid.Row="0" VerticalTextAlignment="Start" VerticalOptions="Start"
+                                    FontFamily="{StaticResource Montserrat-SemiBold}"
+                                    FontSize="20"                           
+                                    Style="{StaticResource LabelStyle}"
+                                    Text="{Binding RoomDetail.Name}"
+                                    TextColor="{DynamicResource Gray-900}" />
+
+                                <StackLayout Orientation="Horizontal" Grid.Row="1" VerticalOptions="StartAndExpand"
+                                             Margin="0,-4,0,0">
+
+                                    <!--  Product rating  -->
+                                    <rating:SfRating Grid.Row="1"
+                                        Margin="0" 
+                                        RatingSettings="{StaticResource RatingSettings}"
+                                        Style="{StaticResource SfRatingStyle}"
+                                        Value="{Binding RoomDetail.OverallRating}" />
+
+                                    <!--  Reviews -->
+                                    <Label Grid.Row="1" Margin="4,0,0,0"
+                                        FontFamily="{StaticResource Montserrat-Medium}"
+                                        Style="{StaticResource LabelStyle}" 
+                                        Text="{Binding RoomDetail.TotalReviews}" />
+
+                                </StackLayout>
+
+                                <!--  favorite button  -->
+                                <buttons:SfButton x:Name="favouriteButton"           
+                                    BorderWidth="1" BackgroundColor="{DynamicResource Gray-White}"  BorderColor="{DynamicResource Gray-300}"
+                                    HeightRequest="40" WidthRequest="40"
+                                    Command="{Binding Path=BindingContext.FavouriteCommand, 
+                                    Source={x:Reference favouriteButton}}"                                                     
+                                    CommandParameter="{x:Reference favouriteButton}"                       
+                                    Text="{StaticResource Favourite}"  Margin="0"                       
+                                    FontFamily="{StaticResource FontIcons}"
+                                    TextColor="{StaticResource Steel}" 
+                                    CornerRadius="20"
+                                    HorizontalOptions="End" VerticalOptions="Center">
+                                </buttons:SfButton>
+
+                                <!--  combo Box for calender -->
+                                <StackLayout Margin="0,19,0,0" Spacing="8" Orientation="Horizontal" Grid.Row="2" HeightRequest="40">
+
+                                    <!--  combo Box for calender -->
+                                    <border:SfBorder
+                                         Style="{StaticResource ComboBoxBorderStyle}" WidthRequest="{OnIdiom Phone=147,Default=180}">
+
+                                        <combobox:SfComboBox x:Name="sfComboBox" ShowDropDownFooterView="False" 
+                                             DataSource="{Binding Calender}" 
+                                             ShowDropDownHeaderView="True" DropDownWidth="300"
+                                             DropDownHeaderViewHeight="300" Watermark="Select Date"
+                                             MaximumDropDownHeight="300" DropDownFooterViewHeight="0" 
+                                             DropDownItemHeight="0"  Text="{Binding RoomDetail.SelectedRanges}"
+                                             Style="{StaticResource ComboBoxStyle}" Margin="3,3,0,-3"
+                                             IsDropDownOpen="{Binding IsDropDownOpen, Mode=TwoWay}">
+
+                                            <combobox:SfComboBox.DropDownHeaderView>
+                                                <Grid Padding="2" HeightRequest="300">
+                                                    <syncfusion:SfCalendar 
+                                                    SelectionChangedCommand="{Binding OnSelectionChanged}"
+                                                    SelectionMode="RangeSelection"  />
+                                                </Grid>
+                                            </combobox:SfComboBox.DropDownHeaderView>
+
+                                            <combobox:SfComboBox.DropDownButtonSettings>
+                                                <combobox:DropDownButtonSettings Width="20" Height="40" >
+                                                    <combobox:DropDownButtonSettings.View>
+                                                        <Label WidthRequest="12" Padding="0,0,4,0"
+                                                               FontFamily="{StaticResource FontIcons}"
+                                                               FontSize="16" HorizontalTextAlignment="End"
+                                                               Style="{StaticResource LabelStyle}"
+                                                               Text="{StaticResource Calender}" 
+                                                               TextColor="{DynamicResource Steel}"/>
+                                                    </combobox:DropDownButtonSettings.View>
+                                                </combobox:DropDownButtonSettings>
+                                            </combobox:SfComboBox.DropDownButtonSettings>
+
+                                        </combobox:SfComboBox>
+
+                                    </border:SfBorder>
+
+                                    <!--  combo Box for guests -->
+                                    <border:SfBorder
+                                         Style="{StaticResource ComboBoxBorderStyle}" WidthRequest="{OnIdiom Phone={OnPlatform Default=80, iOS=90},Default=116}">
+
+                                        <combobox:SfComboBox DropDownTextSize="{OnPlatform Default=14, iOS=12}"
+                                            DataSource="{Binding GuestsCollection}" DisplayMemberPath="DisplayText"
+                                            Style="{StaticResource ComboBoxStyle}" ItemPadding="3" Margin="3,3,0,-3"
+                                            Watermark="Guest" SelectedIndex="0" VerticalOptions="CenterAndExpand">
+
+                                            <combobox:SfComboBox.DropDownButtonSettings>
+                                                <combobox:DropDownButtonSettings Width="0"/>
+                                            </combobox:SfComboBox.DropDownButtonSettings>
+
+                                            <combobox:SfComboBox.Behaviors>
+                                                <behaviors:SelectedIndexBehavior Command="{Binding BindingContext.GuestCommand, 
+                                                    Source={x:Reference RoomBooking}}"/>
+                                            </combobox:SfComboBox.Behaviors>
+                                        </combobox:SfComboBox>
+
+                                    </border:SfBorder>
+
+                                    <!--  combo Box for bed -->
+                                    <border:SfBorder
+                                         Style="{StaticResource ComboBoxBorderStyle}" 
+                                         WidthRequest="{OnIdiom Phone={OnPlatform Default=64, iOS=80},Default=100}" >
+                                        
+                                        <combobox:SfComboBox DropDownTextSize="{OnPlatform Default=14, iOS=12}"
+                                            DataSource="{Binding BedsCollection}" DisplayMemberPath="DisplayText"
+                                            Style="{StaticResource ComboBoxStyle}"  Margin="3,3,0,-3" ItemPadding="3"
+                                            Watermark="Bed" SelectedIndex="0"
+                                            VerticalOptions="CenterAndExpand">
+                                            <combobox:SfComboBox.DropDownButtonSettings>
+                                                <combobox:DropDownButtonSettings Width="0"/>
+                                            </combobox:SfComboBox.DropDownButtonSettings>
+
+                                            <combobox:SfComboBox.Behaviors>
+                                                <behaviors:SelectedIndexBehavior
+                                                    Command="{Binding BindingContext.BedCommand, 
+                                                    Source={x:Reference RoomBooking}}"/>
+                                            </combobox:SfComboBox.Behaviors>
+                                        </combobox:SfComboBox>
+                                    </border:SfBorder>
+                                </StackLayout>
+
+                                <Grid Margin="0,16,0,24" Grid.Row="3" HeightRequest="40" >
+
+                                    <!--  price label -->
+                                    <Label VerticalOptions="Center" HorizontalOptions="Start"
+                                    Margin="0" 
+                                    FontSize="12"
+                                    LineHeight="{OnPlatform Default=-1,
+                                                Android=1.5}">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span FontSize="24"
+                                                FontFamily="{StaticResource Montserrat-Medium}"
+                                                Text="{Binding RoomDetail.Cost, StringFormat='${0:0}'}"
+                                                TextColor="{DynamicResource PrimaryColor}" />
+
+                                                <Span  Text=" / " FontSize="16" TextColor="{DynamicResource Gray-700}" />
+
+                                                <Span FontSize="14"
+                                               FontFamily="{StaticResource Montserrat-Regular}" 
+                                               Text="{Binding RoomDetail.TotalDays}"
+                                               TextColor="{DynamicResource Gray-700}" />
+
+                                                <Span FontSize="14"
+                                               FontFamily="{StaticResource Montserrat-Regular}"
+                                               Text=" night" TextColor="{DynamicResource Gray-700}" />
+
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+
+                                    <!--  Suggestion button  -->
+                                    <buttons:SfButton x:Name="book"  HeightRequest="35" WidthRequest="80" Margin="0" HorizontalOptions="End" VerticalOptions="Center"
+                                            Command="{Binding Path=BindingContext.BookCommand, Source={x:Reference book}}" 
+                                            CornerRadius="24" Style="{StaticResource BookNowButtonStyle}"
+                                            Text="BOOK" />
+
+                                </Grid>
+
+                                <!--  Resort information title -->
+                                <Label Margin="0" Grid.Row="4"
+                                    FontFamily="{StaticResource Montserrat-SemiBold}"
+                                    Style="{StaticResource LabelStyle}"
+                                    Text="Resort Information"
+                                    TextColor="{DynamicResource Gray-900}" />
+
+                                <!--  resort description -->
+                                <Label  Grid.Row="5"  Margin="0,4"
+                                    FontFamily="{StaticResource Montserrat-Medium}"
+                                    FontSize="12"
+                                    Style="{StaticResource LabelStyle}"
+                                    Text="{Binding RoomDetail.ResortDescription}" />
+
+                                <!--  Title fo amenities-->
+                                <Label Grid.Row="6" Margin="0,16,0,8"
+                                   FontFamily="{StaticResource Montserrat-SemiBold}"       
+                                   Style="{StaticResource LabelStyle}"
+                                   Text="Amenities"
+                                   TextColor="{DynamicResource Gray-900}" />
+
+                                <!--  icon label -->
+                                <listView:SfListView Grid.Row="7" IsScrollBarVisible="False" ItemSpacing="8" 
+                                    AutoFitMode="Height" HeightRequest="80" Orientation="Horizontal" SelectionBackgroundColor="Transparent"
+                                    ItemsSource="{Binding Facilities}">
+
+                                    <listView:SfListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackLayout Spacing="4" Orientation="Vertical" Margin="0">
+
+                                                <border:SfBorder  BorderWidth="0" BackgroundColor="{DynamicResource Gray-100}" 
+                                                  HeightRequest="40" WidthRequest="40"                     
+                                                    CornerRadius="20" 
+                                                    HorizontalOptions="Center" VerticalOptions="Center">
+                                                    <border:SfBorder.Content>
+                                                        <Label  Text="{Binding Icon}" FontFamily="{StaticResource FontIcons}" VerticalOptions="Center"
+                                                                HorizontalOptions="Center" TextColor="{StaticResource Steel}"/>
+
+                                                    </border:SfBorder.Content>
+                                                </border:SfBorder>
+
+                                                <Label  TextColor="{DynamicResource Gray-700}" 
+                                                    FontFamily="{StaticResource Montserrat-Medium}" FontSize="12"
+                                                    Text="{Binding Facility}" HorizontalOptions="Center"/>
+
+                                            </StackLayout>
+                                        </DataTemplate>
+                                    </listView:SfListView.ItemTemplate>
+
+                                    <listView:SfListView.FooterTemplate>
+                                        <DataTemplate>
+                                            <StackLayout Spacing="4" Orientation="Vertical" Margin="0">
+
+                                                <buttons:SfButton  BorderWidth="0" BackgroundColor="{DynamicResource Gray-100}" 
+                                                    HeightRequest="40" WidthRequest="40" Text="{StaticResource Menu}" 
+                                                    FontFamily="{StaticResource FontIcons}" TextColor="{StaticResource Steel}"               
+                                                    CornerRadius="20" HorizontalOptions="Center" VerticalOptions="Center">
+                                                </buttons:SfButton>
+
+                                                <Label  TextColor="{DynamicResource Gray-700}" 
+                                                    FontFamily="{StaticResource Montserrat-Medium}" FontSize="12"
+                                                    Text="More" HorizontalOptions="Center"/>
+
+                                            </StackLayout>
+                                        </DataTemplate>
+                                    </listView:SfListView.FooterTemplate>
+
+                                </listView:SfListView>
+
+                                <!--  Title for location -->
+                                <Label  Grid.Row="8"  FontFamily="{StaticResource Montserrat-SemiBold}"
+                                    FontSize="14"  Style="{StaticResource LabelStyle}"
+                                    Text="Location" TextColor="{DynamicResource Gray-900}" />
+
+                                <!--  Map for locating the location  -->
+                                <maps:SfMaps Margin="0,8"
+                                   x:Name="Map" Grid.Row="9"
+                                   BackgroundColor="{DynamicResource Gray-White}"
+                                   HeightRequest="120"
+                                   HorizontalOptions="FillAndExpand"
+                                   VerticalOptions="FillAndExpand"
+                                   ZoomLevel="15">
+
+                                    <maps:SfMaps.Layers>
+                                        <maps:ImageryLayer
+                                           GeoCoordinates="{Binding GeoCoordinate}"
+                                           Markers="{Binding CustomMarkers}"
+                                           ResetOnDoubleTap="False">
+
+                                            <!--  Template for customizing the address popup  -->
+                                            <maps:ImageryLayer.MarkerTemplate>
+                                                <DataTemplate>
+                                                    <StackLayout>
+                                                        <!--  Set pin image  -->
+                                                        <Image
+                                                           Margin="10,5,0,0"
+                                                           HeightRequest="25"
+                                                           HorizontalOptions="StartAndExpand"
+                                                           WidthRequest="25" 
+                                                           Source="{Binding PinImage}" />
+                                                    </StackLayout>
+                                                </DataTemplate>
+                                            </maps:ImageryLayer.MarkerTemplate>
+                                        </maps:ImageryLayer>
+                                    </maps:SfMaps.Layers>
+                                </maps:SfMaps>
+
+                                <Grid ColumnSpacing="12" Margin="0,8,0,0" Grid.Row="10" RowSpacing="8">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <!--  Map pin icon -->
+                                    <Label WidthRequest="12"                         
+                                        FontFamily="{StaticResource FontIcons}"
+                                        FontSize="12"
+                                        HorizontalOptions="StartAndExpand"                        
+                                        Style="{StaticResource LabelStyle}"
+                                        Text="{StaticResource MapPin}" HorizontalTextAlignment="Start"
+                                        TextColor="{DynamicResource Gray-900}" />
+
+                                    <!--  Label for address -->
+                                    <Label  HorizontalTextAlignment="Start"  Grid.Column="1"                    
+                                       FontFamily="{StaticResource Montserrat-Medium}"
+                                       FontSize="12"
+                                       HorizontalOptions="StartAndExpand"                        
+                                       Style="{StaticResource LabelStyle}"
+                                       Text="{Binding RoomDetail.Address}" 
+                                       TextColor="{DynamicResource Gray-900}" />
+
+
+                                    <!--  icon for call -->
+                                    <Label WidthRequest="12" Grid.Row="1"
+                                       FontFamily="{StaticResource FontIcons}"
+                                       FontSize="12"
+                                       HorizontalOptions="StartAndExpand"                        
+                                       Style="{StaticResource LabelStyle}"
+                                       Text="{StaticResource Call}" 
+                                       TextColor="{DynamicResource Gray-900}" />
+
+                                    <!--  call label -->
+                                    <Label Grid.Column="1" Grid.Row="1"
+                                       FontFamily="{StaticResource Montserrat-Medium}"
+                                       FontSize="12"
+                                       HorizontalOptions="StartAndExpand"                        
+                                       Style="{StaticResource LabelStyle}"
+                                       Text="{Binding RoomDetail.PhoneNumber}" 
+                                       TextColor="{DynamicResource Gray-900}" />
+                                </Grid>
+                            </Grid>
+
+                            <!--  Rating and Reviews  -->
+                            <local:BookingFeedbackView
+                                    IsVisible="{Binding IsReviewVisible, Converter={StaticResource VisibilityConverter}}" />
+                            <Label  Grid.Row="12"
+                                FontFamily="{StaticResource Montserrat-SemiBold}"
+                                FontSize="16"
+                                HorizontalOptions="CenterAndExpand"
+                                IsVisible="{Binding IsReviewVisible}"
+                                Text="Be the 1st one to review"
+                                TextColor="{DynamicResource Gray-900}"
+                                VerticalOptions="CenterAndExpand" />
+
+                        </StackLayout>
+                    </controls:CustomShadowFrame >
+                </ContentView>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
+

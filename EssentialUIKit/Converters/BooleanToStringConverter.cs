@@ -45,6 +45,17 @@ namespace EssentialUIKit.Converters
                         return "\ue701";
                     }
                 }
+                else if (parameter.ToString() == "2")
+                {
+                    if ((bool)value)
+                    {
+                        return "+";
+                    }
+                    else
+                    {
+                        return "-";
+                    }
+                }
             }
 
             return string.Empty;

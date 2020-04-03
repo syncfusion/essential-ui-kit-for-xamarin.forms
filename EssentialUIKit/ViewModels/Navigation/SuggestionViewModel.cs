@@ -1,4 +1,5 @@
 ﻿using EssentialUIKit.Models.Navigation;
+using Syncfusion.XForms.Buttons;
 using System.Collections.ObjectModel;
 using System.Runtime.Serialization;
 using Xamarin.Forms;
@@ -70,7 +71,15 @@ namespace EssentialUIKit.ViewModels.Navigation
         /// <param name="obj">The Object</param>
         private void SuggestionClicked(object obj)
         {
-            //Do something
+            SfButton button = obj as SfButton;
+            if (button.Text == "FOLLOW")
+            {
+                button.Text = "FOLLOWED";
+            }
+            else if (button.Text == "FOLLOWED")
+            {
+                button.Text = "FOLLOW";
+            }
         }
 
         #endregion

@@ -1,5 +1,4 @@
 ﻿using System.Collections.ObjectModel;
-using System.ComponentModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using Model = EssentialUIKit.Models.Article;

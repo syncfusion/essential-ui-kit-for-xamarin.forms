@@ -2,6 +2,7 @@
 using Android.Content.PM;
 using Android.OS;
 using Android.Views;
+using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration.AndroidSpecific;
 
 namespace EssentialUIKit.Droid
@@ -16,12 +17,14 @@ namespace EssentialUIKit.Droid
 
             base.OnCreate(savedInstanceState);
 
-            Xamarin.Forms.Forms.Init(this, savedInstanceState);
+            Forms.SetFlags("CollectionView_Experimental");
+
+            Forms.Init(this, savedInstanceState);
 
             Syncfusion.XForms.Android.PopupLayout.SfPopupLayoutRenderer.Init();
 
             Syncfusion.XForms.Android.Core.Core.Init(this);
-
+            
             this.LoadApplication(new App());
 
             // Change the status bar color

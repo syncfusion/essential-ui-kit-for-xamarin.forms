@@ -1,0 +1,212 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             xmlns:controls="clr-namespace:EssentialUIKit.Controls"
+             mc:Ignorable="d"
+             x:Class="EssentialUIKit.Views.Navigation.FileExploreListPage"
+             BackgroundColor="{DynamicResource Gray-White}"
+             NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+
+        <Grid RowSpacing="0" ColumnSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <StackLayout x:Name="TitleView"
+                         Padding="8"
+                         HeightRequest="64"
+                         Grid.Row="0"
+                         BackgroundColor="{DynamicResource Gray-White}"
+                         HorizontalOptions="FillAndExpand"
+                         Orientation="Horizontal"
+                         Spacing="0">
+
+                <StackLayout x:Name="Title"
+                             HorizontalOptions="FillAndExpand"
+                             IsVisible="True"
+                             Orientation="Horizontal"
+                             Spacing="0"
+                             VerticalOptions="FillAndExpand">
+
+                    <!--  Back button command  -->
+                    <buttons:SfButton x:Name="backButton"
+                                      Command="{Binding BackButtonCommand}"
+                                      CommandParameter="{x:Reference backButton}"
+                                      CornerRadius="4"
+                                      Style="{StaticResource IconButtonStyle}"
+                                      Text="{StaticResource Back}" />
+
+                    <!--  File explorer list page Title  -->
+                    <Label Margin="16,0"
+                           FontFamily="{StaticResource Montserrat-Medium}"
+                           FontSize="16"
+                           HorizontalOptions="CenterAndExpand"
+                           Text="File Explorer"
+                           TextColor="{DynamicResource Gray-900}"
+                           VerticalOptions="Center"
+                           VerticalTextAlignment="Center" />
+
+                </StackLayout>
+
+                <StackLayout x:Name="Search"
+                             HorizontalOptions="EndAndExpand"
+                             IsVisible="False"
+                             Orientation="Horizontal"
+                             Spacing="0">
+
+                    <!--  Back to title layout  -->
+                    <buttons:SfButton x:Name="BackToTitle"
+                                      Clicked="BackToTitle_Clicked"
+                                      Style="{StaticResource NavigationBarButtonStyle}"
+                                      Text="{StaticResource Back}" />
+
+                    <!--  Rounded Search Entry  -->
+                    <border:SfBorder Style="{DynamicResource SfBorderStyle}">
+                        <controls:BorderlessEntry x:Name="SearchEntry"
+                                                  BindingContext="{x:Reference FileExploreList}"
+                                                  Text="{Binding SearchText, Mode=TwoWay}"
+                                                  HorizontalOptions="FillAndExpand"
+                                                  Placeholder="Search here"
+                                                  Style="{StaticResource SearchEntryStyle}" />
+                    </border:SfBorder>
+                </StackLayout>
+
+                <!--  Search Button  -->
+                <buttons:SfButton x:Name="SearchButton"
+                                  IsVisible="True"
+                                  Clicked="SearchButton_Clicked"
+                                  Style="{StaticResource IconButtonStyle }"
+                                  Text="{StaticResource Search}" />
+
+            </StackLayout>
+
+            <!-- Seperator -->
+            <BoxView Grid.Row="1" Style="{StaticResource SeparatorStyle}"/>
+
+            <Grid Grid.Row="2" RowSpacing="0" ColumnSpacing="0" HeightRequest="48">
+
+                <Label Margin="16,0"
+                       Text="Folders"
+                       TextColor="{DynamicResource Gray-900}"
+                       FontSize="16"
+                       LineHeight="{OnPlatform Android=1.5,Default=-1}"
+                       FontFamily="{DynamicResource Montserrat-SemiBold}"
+                       HorizontalOptions="Start"
+                       VerticalOptions="Center" />
+
+                <buttons:SfButton Margin="15,0" 
+                                  Text="{StaticResource Category}"
+                                  TextColor="{DynamicResource Gray-600}"
+                                  BackgroundColor="{DynamicResource Gray-White}"
+                                  FontFamily="{DynamicResource FontIcons}"
+                                  FontSize="20"
+                                  CornerRadius="4"
+                                  HorizontalOptions="End"
+                                  VerticalOptions="Center" />
+
+            </Grid>
+
+            <controls:SearchableFileExploreList x:Name="FileExploreList"
+                                                Grid.Row="3"
+                                                IsScrollBarVisible="False"
+                                                AllowSwiping="True"
+                                                AutoFitMode="Height"
+                                                ItemSpacing="0"
+                                                SelectionGesture="Tap"
+                                                SelectionMode="Single"
+                                                VerticalOptions="FillAndExpand"
+                                                SearchText="{Binding SearchText}"
+                                                TapCommand="{Binding ItemTappedCommand}"
+                                                ItemsSource="{Binding FileExploreList}"
+                                                SelectionBackgroundColor="{DynamicResource TappedBackgroundColor}">
+
+                <controls:SearchableFileExploreList.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.View>
+                                <Grid RowSpacing="0" ColumnSpacing="0">
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <!-- Folder Icon -->
+                                    <Label Margin="16,0"
+                                               Grid.RowSpan="3"
+                                               Text="{StaticResource FileExplorer}"
+                                               TextColor="{DynamicResource Gray-600}"
+                                               FontFamily="{DynamicResource FontIcons}"
+                                               FontSize="40"
+                                               VerticalOptions="Center"/>
+
+                                    <!-- Folder Name -->
+                                    <Label Margin="0,13,0,0" 
+                                               Grid.Column="1"
+                                               Text="{Binding FolderName}"
+                                               TextColor="{DynamicResource Gray-900}"
+                                               FontSize="16"
+                                               FontFamily="{DynamicResource Montserrat-Medium}"
+                                               LineHeight="{OnPlatform Android=1.5, Default=-1}"/>
+
+                                    <!-- Number of items, date and time -->
+                                    <Label Grid.Row="1" Grid.Column="1" Margin="0,0,0,14" Style="{StaticResource LabelStyle}">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="{Binding Items}" FontFamily="{DynamicResource Montserrat-Medium}" />
+                                                <Span Text=" " />
+                                                <Span Text=" | " />
+                                                <Span Text=" " />
+                                                <Span Text="{Binding DateTime}" FontFamily="{DynamicResource Montserrat-Medium}" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+
+                                    <!-- Next Button -->
+                                    <buttons:SfButton Margin="15,0"
+                                                          Grid.RowSpan="3"
+                                                          Grid.Column="1"
+                                                          Text="{StaticResource Next}"
+                                                          TextColor="{DynamicResource Gray-600}"
+                                                          BackgroundColor="Transparent"
+                                                          FontFamily="{DynamicResource FontIcons}"
+                                                          CornerRadius="4"
+                                                          FontSize="20"
+                                                          HorizontalOptions="End"
+                                                          VerticalOptions="Center"/>
+
+                                    <!-- Seperator -->
+                                    <BoxView Grid.Row="2" Grid.ColumnSpan="2" Style="{StaticResource SeparatorStyle}" />
+
+                                </Grid>
+                            </ViewCell.View>
+                        </ViewCell>
+                    </DataTemplate>
+                </controls:SearchableFileExploreList.ItemTemplate>
+            </controls:SearchableFileExploreList>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

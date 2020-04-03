@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Detail"
+             xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+             xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+             xmlns:local="clr-namespace:EssentialUIKit.Views.Detail.Templates"
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             x:Class="EssentialUIKit.Views.Detail.EventDetailPage"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="{StaticResource Gray-White}">
+
+    <ContentPage.BindingContext>
+        <viewModel:EventDetailViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <ScrollView VerticalScrollBarVisibility="Never">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <!--  Header image  -->
+                <Image                      
+                    Aspect="AspectFill"
+                    HorizontalOptions="FillAndExpand"
+                    HeightRequest="{OnIdiom Phone=334,Default=480}">
+                    <Image.Source>
+                        <UriImageSource Uri="{Binding HeaderImagePath}" 
+			                                 CacheValidity="12" 
+			                                 CachingEnabled="true"/>
+                    </Image.Source>
+                </Image>
+                <!--  OverLay Effect  -->
+                <Frame  CornerRadius="4" Opacity="0.25" BackgroundColor="{DynamicResource Gray-Black}"/>
+
+                <border:SfBorder Margin="0,-51,0,0" CornerRadius="10,10,0,0" BackgroundColor="{DynamicResource Gray-White}"
+                                 BorderWidth="0" Padding="16" Grid.Row="1">
+                    <StackLayout Margin="0" Padding="0" Orientation="Vertical" Spacing="0">
+                       
+                        <Grid ColumnSpacing="0" HorizontalOptions="FillAndExpand">
+
+                            <!--  Event name label  -->
+                            <Label  HorizontalOptions="Start" VerticalOptions="Center" Text="Ignite Music" FontSize="20" 
+                                    FontFamily="{StaticResource Montserrat-Bold}" TextColor="{DynamicResource Gray-900}"
+                                    LineHeight="{OnPlatform Default=-1,Android=1.25}"/>
+
+                            <!--  Favourite button  -->
+                            <buttons:SfButton x:Name="favouriteButton" Grid.Column="1" BorderWidth="1" BorderColor="{DynamicResource Gray-300}" CornerRadius="20"              
+                                              Text="{StaticResource Favourite}" CommandParameter="{x:Reference favouriteButton}" 
+                                              Command="{Binding Path=BindingContext.FavouriteCommand, Source={x:Reference favouriteButton}}" 
+                                              Margin="0" FontFamily="{StaticResource FontIcons}" HorizontalOptions="End"                              
+                                              TextColor="{StaticResource Steel}" BackgroundColor="Transparent" WidthRequest="40"
+                                              HeightRequest="40" >
+
+                            </buttons:SfButton>
+                        </Grid>
+
+                        <StackLayout Margin="0,24,0,0" Orientation="Horizontal" Spacing="8">
+                        <!-- Calender icon  -->
+                        <Label Margin="0,2" FontSize="18" VerticalOptions="Start" HorizontalOptions="Start"  
+                               Text="{StaticResource Calender}" FontFamily="{StaticResource FontIcons}" TextColor="{DynamicResource Gray-600}"/>
+
+                        <!--  Event date label  -->
+                            <Label Text="Sunday, 22 Dec 2019" FontSize="16" FontFamily="{StaticResource Montserrat-Medium}" 
+                                   HorizontalOptions="Start" TextColor="{DynamicResource Gray-900}" LineHeight="{OnPlatform Default=-1,Android=1.25}"/>
+                        </StackLayout>
+                        <!--  Event time label  -->
+                        <Label Margin="26,2" Text="10:00 AM - 2:00 PM"  FontSize="12" FontFamily="{StaticResource Montserrat-Medium}" 
+                               HorizontalOptions="Start" TextColor="{DynamicResource Gray-800}" LineHeight="{OnPlatform Default=-1,Android=1.25}"/>
+
+                        <StackLayout Orientation="Horizontal" Spacing="8" Margin="0,24,0,0">
+                            <!--  Event map pin icon  -->
+                            <Label Margin="0,2" VerticalOptions="Start" HorizontalOptions="Start" 
+                           Text="{StaticResource MapPin}" FontFamily="{StaticResource FontIcons}" 
+                           TextColor="{DynamicResource Gray-600}" FontSize="18"/>
+
+                                <!--  Event location -->
+                                <Label Text="Hard Rock Cafe"  FontSize="16" FontFamily="{StaticResource Montserrat-Medium}" 
+                               HorizontalOptions="Start" TextColor="{DynamicResource Gray-900}" LineHeight="{OnPlatform Default=-1,Android=1.25}"/> 
+
+                        </StackLayout>
+                        <Label Margin="26,2" Text="1501 Broadway, New York, NY 10036, USA"  FontSize="12" FontFamily="{StaticResource Montserrat-Medium}" 
+                               HorizontalOptions="Start" TextColor="{DynamicResource Gray-800}"/>
+
+                        <StackLayout Orientation="Horizontal" Spacing="8" Margin="0,24,0,0">
+                        <!--  Event group icon -->
+                        <Label Margin="0,2" VerticalOptions="Start" HorizontalOptions="Start" 
+                           Text="{StaticResource Group}" FontSize="17" FontFamily="{StaticResource FontIcons}" 
+                           TextColor="{DynamicResource Gray-600}"/>
+
+                            <Label Text="Going" FontSize="16" FontFamily="{StaticResource Montserrat-Medium}" 
+                               HorizontalOptions="Start" TextColor="{DynamicResource Gray-900}"/>
+
+                        </StackLayout>
+
+                        <listView:SfListView HeightRequest="32" Margin="26,6" Padding="0" AutoFitMode="Height"          
+                                             HorizontalOptions="FillAndExpand" IsScrollBarVisible="False" ItemSpacing="0" 
+                                             ItemsSource="{Binding Connections}" Orientation="Horizontal" IsStickyHeader="False"
+                                             SelectionBackgroundColor="Transparent" TapCommand="{Binding ProfileSelectedCommand}"
+                                             VerticalOptions="Start">
+                        
+                            <listView:SfListView.ItemTemplate>
+                                <DataTemplate>
+                                    <local:EventTemplate />
+                                </DataTemplate>
+                            </listView:SfListView.ItemTemplate>
+
+                        </listView:SfListView>
+
+                        <!--  Event details -->
+                        <Label Text="Detail"  Margin="0,24,0,0" FontSize="16" FontFamily="{StaticResource Montserrat-SemiBold}" 
+                               HorizontalOptions="Start" TextColor="{DynamicResource Gray-900}" LineHeight="{OnPlatform Default=-1,Android=1.25}"/>
+
+                        <Label Text="Featuring bands from the local music scene, IGNITE! Music Festival aims to bring the best of Americans music to everyone."  
+                               Margin="0,4,0,0" FontSize="12" FontFamily="{StaticResource Montserrat-Medium}" LineHeight="{OnPlatform Default=-1,Android=1.25}"
+                               HorizontalOptions="Start" TextColor="{DynamicResource Gray-700}"/>
+
+                        <StackLayout HorizontalOptions="FillAndExpand" Margin="0,24,0,0" Padding="0" Orientation="Horizontal">
+                        
+                            <!--  join button -->
+                            <buttons:SfButton x:Name="joinButton" Margin="0" Style="{StaticResource SfGradientButtonStyle}"
+                                              Text="JOIN" TextColor="{DynamicResource Gray-White}"
+                                              Command="{Binding Path=BindingContext.JoinCommand, Source={x:Reference joinButton}}"/>
+
+                            <!--  more icon button -->
+                            <buttons:SfButton x:Name="menuIcon" WidthRequest="40" HeightRequest="40" Text="{StaticResource Menu}"
+                                          Command="{Binding Path=BindingContext.MenuCommand, Source={x:Reference menuIcon}}"  
+                                          CornerRadius="4" HorizontalOptions="End" Style="{StaticResource MenuIcon}" Margin="16,0,0,0"/>
+                         
+                        </StackLayout>
+
+                    </StackLayout>
+                </border:SfBorder>
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
+    
+    

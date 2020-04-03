@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
+﻿using System.Collections.ObjectModel;
 using EssentialUIKit.Models;
 using Syncfusion.XForms.Buttons;
 using Xamarin.Forms;

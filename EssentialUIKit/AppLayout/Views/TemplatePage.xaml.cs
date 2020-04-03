@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Reflection;
 using EssentialUIKit.AppLayout.Models;
 using EssentialUIKit.AppLayout.ViewModels;
 using Xamarin.Forms;
@@ -28,7 +27,7 @@ namespace EssentialUIKit.AppLayout.Views
         public TemplatePage(Category selectedCategory)
         {
             InitializeComponent();
-            ((TemplatePageViewModel)BindingContext).SelectedCategory = selectedCategory;
+            ((TemplatePageViewModel) BindingContext).SelectedCategory = selectedCategory;
         }
 
         #endregion
@@ -98,6 +97,11 @@ namespace EssentialUIKit.AppLayout.Views
             Navigation.PushAsync(new TemplateHostPage(e.SelectedItem as Template));
         }
 
-        #endregion
+       private void GotoCodeViewer(object sender, EventArgs e)
+        {
+            Device.OpenUri(new Uri("https://github.com/syncfusion/essential-ui-kit-for-xamarin.forms"));
+        }
+
+       #endregion
     }
 }

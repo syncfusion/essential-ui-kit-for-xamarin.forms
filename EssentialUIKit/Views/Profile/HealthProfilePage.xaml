@@ -1,0 +1,200 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+             xmlns:cards="clr-namespace:Syncfusion.XForms.Cards;assembly=Syncfusion.Cards.XForms"
+             xmlns:gradient="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
+             xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+             xmlns:svg="clr-namespace:EssentialUIKit.Controls"
+             xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Profile"
+             x:Class="EssentialUIKit.Views.Profile.HealthProfilePage"
+             NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <!--  Binding context for Health Profile Page  -->
+    <ContentPage.BindingContext>
+        <viewModel:HealthProfileViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Grid RowSpacing="0" HeightRequest="361">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <gradient:SfGradientView Grid.RowSpan="3">
+                        <gradient:SfGradientView.BackgroundBrush>
+                            <gradient:SfLinearGradientBrush>
+                                <gradient:SfLinearGradientBrush.GradientStops>
+                                    <gradient:SfGradientStop Color="{StaticResource Dull-Red}" Offset="0.0"/>
+                                    <gradient:SfGradientStop Color="{StaticResource Deep-Purple}" Offset="1.0"/>
+                                </gradient:SfLinearGradientBrush.GradientStops>
+                            </gradient:SfLinearGradientBrush>
+                        </gradient:SfGradientView.BackgroundBrush>
+                    </gradient:SfGradientView>
+
+                    <!-- Profile Image -->
+                    <border:SfBorder Margin="0,56,0,8"
+                                     HeightRequest="120"
+                                     WidthRequest="120"
+                                     CornerRadius="60"
+                                     BorderWidth="2"
+                                     HorizontalOptions="CenterAndExpand"
+                                     VerticalOptions="StartAndExpand"
+                                     BorderColor="{DynamicResource Gray-White}"
+                                     BackgroundColor="{DynamicResource Gray-White}">
+
+                        <Image Aspect="AspectFill"
+                               BackgroundColor="{DynamicResource Gray-White}">
+                            <Image.Source>
+                                <UriImageSource Uri="{Binding ProfileImage}"
+                                                CacheValidity="14"
+                                                CachingEnabled="True"/>
+                            </Image.Source>
+                        </Image>
+
+                    </border:SfBorder>
+
+                    <!-- Profile Name -->
+                    <Label Grid.Row="1"
+                           Margin="0,0,0,2"
+                           Text="{Binding ProfileName}"
+                           TextColor="{DynamicResource Gray-White}"
+                           FontSize="20"
+                           FontFamily="{DynamicResource Montserrat-SemiBold}"
+                           HorizontalOptions="CenterAndExpand"
+                           VerticalOptions="StartAndExpand"
+                           LineHeight="{OnPlatform Android=1.5, Default=-1}" />
+
+                    <!-- State and Country -->
+                    <Label Grid.Row="2"
+                           TextColor="{DynamicResource Gray-White}"
+                           FontSize="12"
+                           FontFamily="{DynamicResource Montserrat-Medium}"
+                           HorizontalOptions="CenterAndExpand"
+                           VerticalOptions="StartAndExpand"
+                           LineHeight="{OnPlatform Android=1.5, Default=-1}">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{Binding State}"/>
+                                <Span Text=" "/>
+                                <Span Text="{Binding Country}"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Grid>
+
+                <border:SfBorder Grid.Row="1" Margin="0,-69,0,0" Padding="0,61,0,0" BackgroundColor="{DynamicResource Gray-100}" CornerRadius="14,14,0,0"
+                                 VerticalOptions="Start" BorderWidth="0">
+                    <listView:SfListView SelectionMode="None" ItemSpacing="16,8" ItemSize="74" IsScrollingEnabled="False" AutoFitMode="Height"
+                                         ItemsSource="{Binding CardItems}">
+                        <listView:SfListView.ItemTemplate>
+                            <DataTemplate>
+                                <cards:SfCardView CornerRadius="4" BorderWidth="0" HasShadow="True" WidthRequest="{OnIdiom Phone=343, Default=736}"
+                                                  HorizontalOptions="CenterAndExpand" BackgroundColor="{DynamicResource Gray-White}">
+                                    <Grid RowSpacing="0" Padding="16">
+
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="*" />
+                                        </Grid.RowDefinitions>
+
+                                        <!-- Category -->
+                                        <Label Text="{Binding CategoryValue}" Style="{StaticResource LabelStyle}" />
+
+                                        <!-- Category Value -->
+                                        <Label Grid.Row="1" FontSize="12" Style="{StaticResource LabelStyle}" 
+                                               FontFamily="{DynamicResource Montserrat-Medium}" 
+                                               TextColor="{DynamicResource Gray-700}" HeightRequest="18" Text="{Binding Category}" />
+
+                                        <!-- Category Image -->
+                                        <svg:SVGImage Grid.RowSpan="2" 
+                                                      BackgroundColor="Transparent"
+                                                      Source="{Binding ImagePath}"
+                                                      HorizontalOptions="End"
+                                                      VerticalOptions="Center"
+                                                      WidthRequest="32" 
+                                                      HeightRequest="31" />
+
+                                    </Grid>
+                                </cards:SfCardView>
+                            </DataTemplate>
+                        </listView:SfListView.ItemTemplate>
+                    </listView:SfListView>
+                </border:SfBorder>
+
+                <cards:SfCardView Grid.Row="0" CornerRadius="4" VerticalOptions="End" Margin="16,0,16,24"  BorderWidth="0" HasShadow="True"  
+                                 BackgroundColor="{DynamicResource Gray-White}" HorizontalOptions="CenterAndExpand" WidthRequest="{OnIdiom Phone=343, Default=736}" >
+                   
+                    <Grid RowSpacing="0" ColumnSpacing="0" WidthRequest="{OnIdiom Phone=343, Default=480}" 
+                          HeightRequest="90">
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <!-- Age -->
+                        <Label Text="{Binding Age}" Style="{StaticResource LabelStyle}" HorizontalOptions="Center"
+                               VerticalOptions="End" />
+
+                        <Label Grid.Row="1" FontSize="12" Text="Age" Style="{StaticResource LabelStyle}" 
+                               HorizontalOptions="Center" VerticalOptions="Start"
+                               FontFamily="{DynamicResource Montserrat-Medium}" TextColor="{DynamicResource Gray-700}" />
+
+                        <!-- Seperator -->
+                        <BoxView Grid.Column="1" Style="{StaticResource BoxViewStyle}" Grid.RowSpan="2" />
+
+                        <!-- Weight -->
+                        <Label Grid.Row="0" Grid.Column="2" Text="{Binding Weight}" Style="{StaticResource LabelStyle}"
+                                HorizontalOptions="Center" VerticalOptions="End" />
+
+                        <Label Grid.Row="1" Grid.Column="2" Text="Weight" FontSize="12" Style="{StaticResource LabelStyle}" 
+                               FontFamily="{DynamicResource Montserrat-Medium}" TextColor="{DynamicResource Gray-700}" 
+                               HorizontalOptions="Center" VerticalOptions="Start" />
+
+                        <!-- Seperator -->
+                        <BoxView Grid.Column="3" Style="{StaticResource BoxViewStyle}" Grid.RowSpan="2" />
+
+                        <!-- Height -->
+                        <Label Grid.Row="0" Grid.Column="4" Text="{Binding Height}" HorizontalOptions="Center" 
+                               VerticalOptions="End" Style="{StaticResource LabelStyle}" />
+
+                        <Label Grid.Row="1" Grid.Column="4" Text="Height" FontSize="12" HorizontalOptions="Center"
+                               VerticalOptions="Start" Style="{StaticResource LabelStyle}" FontFamily="{DynamicResource Montserrat-Medium}" 
+                               TextColor="{DynamicResource Gray-700}" />
+
+                    </Grid>
+                </cards:SfCardView>
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

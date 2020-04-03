@@ -10,6 +10,7 @@
     <!--  Font Icon Text  -->
     <x:String x:Key="Add">&#xe730;</x:String>
     <x:String x:Key="Settings">&#xe72b;</x:String>
+    <x:String x:Key="Back">&#xe709;</x:String>
 
     <!--Common shadow frame style-->
     <Style x:Key="ShadowFrameStyle" TargetType="control:CustomShadowFrame">
@@ -103,6 +104,26 @@
                 </gradient:SfLinearGradientBrush>
             </Setter.Value>
         </Setter>        
+    </Style>
+
+    <!--  Common style for icon buttons  -->
+    <Style x:Key="IconButtonStyle" TargetType="buttons:SfButton">
+        <Setter Property="TextColor" Value="{DynamicResource Gray-White}" />
+        <Setter Property="BackgroundColor" Value="Transparent" />
+        <Setter Property="FontFamily" Value="{StaticResource FontIcons}" />
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="VerticalTextAlignment" Value="Center" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="HeightRequest" Value="40" />
+        <Setter Property="WidthRequest" Value="40" />
+    </Style>
+
+    <!--  Common style for square buttons  -->
+    <Style x:Key="SquareButtonStyle" TargetType="buttons:SfButton">
+        <Setter Property="BackgroundColor" Value="{DynamicResource Gray-White}" />
+        <Setter Property="WidthRequest" Value="163" />
+        <Setter Property="CornerRadius" Value="1" />
+        <Setter Property="BorderWidth" Value="0"/>
     </Style>
 
 </ResourceDictionary>

@@ -22,7 +22,7 @@
         <Setter Property="BackgroundColor" Value="Transparent" />
         <Setter Property="Text" Value="&#xe72b;" />
         <Setter Property="Padding" Value="{OnPlatform Default=8, UWP=6}" />
-        <Setter Property="Margin" Value="8" />
+        <Setter Property="Margin" Value="4,8" />
         <Setter Property="HeightRequest" Value="{OnPlatform Default=32, UWP=40}" />
         <Setter Property="WidthRequest" Value="{OnPlatform Default=32, UWP=40}" />
     </Style>
