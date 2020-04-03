@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using Syncfusion.XForms.Buttons;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
@@ -251,14 +252,14 @@ namespace EssentialUIKit.ViewModels.Social
         /// <param name="obj">The Object</param>
         private void FollowClicked(object obj)
         {
-            Label label = obj as Label;
-            if (label.Text == "FOLLOW")
+            SfButton button = obj as SfButton;
+            if (button.Text == "FOLLOW")
             {
-                label.Text = "FOLLOWED";
+                button.Text = "FOLLOWED";
             }
-            else if (label.Text == "FOLLOWED")
+            else if (button.Text == "FOLLOWED")
             {
-                label.Text = "FOLLOW";
+                button.Text = "FOLLOW";
             } 
         }
 

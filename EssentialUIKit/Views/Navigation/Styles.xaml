@@ -296,8 +296,7 @@
         <Setter Property="FontSize" Value="12" />
         <Setter Property="CornerRadius" Value="16" />
         <Setter Property="HorizontalOptions" Value="End"/>
-        <Setter Property="WidthRequest" Value="88"/>
-        
+
     </Style>
 
 </ResourceDictionary>

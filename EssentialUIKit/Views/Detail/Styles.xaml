@@ -355,5 +355,12 @@
         <Setter Property="WidthRequest" Value="40" />
         <Setter Property="HorizontalOptions" Value="End" />
     </Style>
-    
+
+    <Style x:Key="ComboBoxBorderStyle" TargetType="border:SfBorder">
+        <Setter Property="BorderColor" Value="{DynamicResource Gray-300}"/>
+        <Setter Property="CornerRadius" Value="4"/>
+        <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+        <Setter Property="BackgroundColor" Value="{DynamicResource Gray-White}"/>
+    </Style>
+
 </ResourceDictionary>

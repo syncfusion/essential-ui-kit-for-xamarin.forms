@@ -29,15 +29,15 @@ namespace EssentialUIKit.ViewModels.Detail
                 {
                     Name = "John Doe",
                     AddressType = "Home",
-                    Location = "Akshya Nagar 1st Block 1st Cross, Rammurthy Nagar, Bangalore-560016",
-                    ContactNumber = "+91 984-356-2332"
+                    Location = "114 Ridge St NW, Hudson, NC 28638",
+                    ContactNumber = "(828) 228-2882"
                 },
                 new Address
                 {
                     Name = "John Doe",
                     AddressType = "Work",
-                    Location = "126/3, Sarjapur Main Rd, opp. KEB, near Bharat Petroleum, Sulikunte, Banglore-562125",
-                    ContactNumber = "+91 984-356-2332"
+                    Location = "100 S 4th St, Bloomfield, NM 87413",
+                    ContactNumber = "(828) 295-1271"
                 },
             };
         }

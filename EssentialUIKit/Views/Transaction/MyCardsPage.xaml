@@ -64,7 +64,7 @@
 
             <!--  ListView displaying saved cards  -->
             <ListView:SfListView x:Name="myCards" AutoFitMode="Height" IsScrollBarVisible="False" ItemSpacing="16,24,16,0" 
-                                 SelectionGesture="Tap" SelectionMode="Single" AllowSwiping="True" ItemsSource="{Binding CardDetails}">
+                                 SelectionGesture="Tap" SelectionBackgroundColor="Transparent" SelectionMode="Single" AllowSwiping="True" ItemsSource="{Binding CardDetails}">
             <ListView:SfListView.ItemTemplate>
                 <DataTemplate>
                             <cards:SfCardView CornerRadius="4" HasShadow="True" HeightRequest="180" WidthRequest="343" 

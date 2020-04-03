@@ -154,10 +154,11 @@
                                         </StackLayout>
 
                                         <!--  Suggestion button  -->
-                                        <buttons:SfButton Grid.Column="2"  Margin="0,20" 
+                                        <buttons:SfButton x:Name="follow" Grid.Column="2"  Margin="0,20" 
                                             Command="{Binding Path=BindingContext.SuggestionCommand, Source={x:Reference Suggestions}}" 
+                                            CommandParameter="{x:Reference follow}" 
                                             Style="{StaticResource SfButtonStyle}" CornerRadius="24"
-                                            Text="FOLLOW" />
+                                            Text="FOLLOW" WidthRequest="100"/>
 
                                     </Grid>
                                     <BoxView Style="{StaticResource SeparatorStyle}" />

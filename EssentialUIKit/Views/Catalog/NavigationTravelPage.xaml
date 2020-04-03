@@ -35,7 +35,7 @@
             <StackLayout Spacing="0">
 
                 <Grid HeightRequest="64">
-                    
+
                     <!--  Back button command  -->
                     <buttons:SfButton Margin="16,0,0,0" 
                                       HorizontalOptions="Start"
@@ -44,7 +44,7 @@
                                       CornerRadius="4"
                                       Style="{StaticResource IconButtonStyle}"
                                       Text="{StaticResource Back}" />
-                    
+
                     <!--  Navigation travel page title  -->
                     <Label FontFamily="{StaticResource Montserrat-Medium}"
                            FontSize="16"
@@ -52,47 +52,50 @@
                            Text="Travel"
                            TextColor="{DynamicResource Gray-900}"
                            VerticalOptions="Center" />
-                    
-                </Grid>
-                
-                <!-- Rotator for travel places -->
-                <CarouselView x:Name="Rotator"
-                              HeightRequest="500"
-                              Position="2" 
-                              Margin="8, 0"
-                              PositionChangedCommand="{Binding SelectionCommand}" 
-                              PositionChangedCommandParameter="{Binding Source={x:Reference Rotator}, Path=CurrentItem}"
-                              VerticalOptions="FillAndExpand" 
-                              ItemsSource="{Binding TravelPlaces}">
 
-                    <CarouselView.ItemTemplate>
+                </Grid>
+
+
+
+                <rotator:SfRotator BackgroundColor="Transparent"
+                                   DotsBorderColor="Transparent" 
+                                   UnselectedDotColor="{DynamicResource Gray-200}"
+                                   SelectedDotColor="{DynamicResource PrimaryColor}" 
+                                   ItemsSource="{Binding TravelPlaces}" 
+                                   SelectedIndex="{Binding SelectedIndex, Mode=TwoWay}"
+                                   NavigationStripMode="Dots"
+                                   NavigationStripPosition="Bottom"
+                                   DotPlacement="Default"
+                                   HeightRequest="525"
+                                   Margin="8, 0">
+                    <rotator:SfRotator.ItemTemplate>
                         <DataTemplate>
                             <StackLayout Spacing="0">
-                            <controls:CustomShadowFrame x:Name="Rotator" BackgroundColor="{DynamicResource Gray-White}" 
+                                <controls:CustomShadowFrame x:Name="Rotator" BackgroundColor="{DynamicResource Gray-White}" 
                                                         BorderColor="{DynamicResource Gray-White}" BorderWidth="1" 
                                                         CornerRadius="4" HasShadow="True" Margin="4" Padding="0">
 
-                                <Grid RowSpacing="0">
+                                    <Grid RowSpacing="0">
 
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                    </Grid.RowDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
 
-                                      <!--Image of the place-->  
-                                    <Image Aspect="AspectFill"
+                                        <!--Image of the place-->
+                                        <Image Aspect="AspectFill"
                                            BackgroundColor="{DynamicResource Gray-White}"
                                            HeightRequest="395">
-                                        <Image.Source>
-                                            <UriImageSource CacheValidity="14"
+                                            <Image.Source>
+                                                <UriImageSource CacheValidity="14"
                                                             CachingEnabled="true" 
                                                             Uri="{Binding ImagePath}" />
-                                        </Image.Source>
-                                    </Image>
+                                            </Image.Source>
+                                        </Image>
 
-                                      <!--Travel place-->  
-                                    <Label Grid.Row="1" 
+                                        <!--Travel place-->
+                                        <Label Grid.Row="1" 
                                            Margin="16,16,16,4"
                                            Text="{Binding Place}"
                                            TextColor="{DynamicResource Gray-900}"
@@ -100,8 +103,8 @@
                                            FontFamily="{DynamicResource Montserrat-SemiBold}"
                                            LineHeight="{OnPlatform Android=1.5, Default=-1}" />
 
-                                      <!--Details of travel place-->  
-                                    <Label Grid.Row="2" 
+                                        <!--Details of travel place-->
+                                        <Label Grid.Row="2" 
                                            Margin="16,0,16,16"
                                            Text="{Binding Details}"
                                            TextColor="{DynamicResource Gray-700}"
@@ -111,23 +114,15 @@
                                            MaxLines="2"
                                            LineHeight="{OnPlatform Android=1.2, Default=-1}" />
 
-                                    <Grid.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding Path=BindingContext.TravelPlacesCommand, Source={x:Reference Rotator}}" CommandParameter="{Binding .}" />
-                                    </Grid.GestureRecognizers>
-                                </Grid>
-                            </controls:CustomShadowFrame>
+                                        <Grid.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding Path=BindingContext.TravelPlacesCommand, Source={x:Reference Rotator}}" CommandParameter="{Binding .}" />
+                                        </Grid.GestureRecognizers>
+                                    </Grid>
+                                </controls:CustomShadowFrame>
                             </StackLayout>
                         </DataTemplate>
-                    </CarouselView.ItemTemplate>
-                </CarouselView>
-
-                <rotator:SfRotator BackgroundColor="Transparent"
-                                   DotsBorderColor="Transparent" 
-                                   UnselectedDotColor="{DynamicResource Gray-200}"
-                                   SelectedDotColor="{DynamicResource PrimaryColor}" 
-                                   HeightRequest="30" 
-                                   ItemsSource="{Binding TravelPlaces}" 
-                                   SelectedIndex="{Binding SelectedIndex, Mode=TwoWay}"/>
+                    </rotator:SfRotator.ItemTemplate>
+                </rotator:SfRotator>
 
                 <Grid RowSpacing="0" ColumnSpacing="0" Margin="16,23,8,10">
                     <Label Text="TOP DESTINATIONS" Style="{StaticResource HeaderLabelStyle}" HorizontalOptions="Start" VerticalOptions="Center" />
@@ -205,7 +200,7 @@
                                            MaxLines="2"
                                            Text="{Binding Details}"
                                            TextColor="{DynamicResource Gray-700}" />
-                                    
+
                                     <!-- Right arrow icon -->
                                     <buttons:SfButton Grid.Row="3" 
                                                       Margin="0,0,5,5"

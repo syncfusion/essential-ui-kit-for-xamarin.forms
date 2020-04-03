@@ -220,19 +220,21 @@
                     <StackLayout Grid.Row="3" Grid.ColumnSpan="2" Spacing="16" Margin="16,0,16,44" Orientation="Horizontal" >
 
                         <!-- Follow button -->
-                        <buttons:SfButton Command="{Binding FollowCommand}" CommandParameter="{x:Reference followLabel}" WidthRequest="155" HeightRequest="32" 
-                                          CornerRadius="1" Style="{StaticResource SfGradientButtonStyle}">
-                            <Label x:Name="followLabel" Text="FOLLOW" TextColor="{DynamicResource Gray-White}" FontSize="14"  
-                                   FontFamily="{DynamicResource Montserrat-SemiBold}" LineHeight="{OnPlatform Android=1.5, Default=-1}"
-                                   HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
-                        </buttons:SfButton>
+                        <buttons:SfButton x:Name="follow"
+                            Command="{Binding FollowCommand}" CommandParameter="{x:Reference follow}"
+                            WidthRequest="155" 
+                            Style="{StaticResource SfGradientButtonStyle}"
+                            CornerRadius="1"
+                            Text="FOLLOW" HorizontalTextAlignment="Center"
+                            VerticalTextAlignment="Center"/>
 
                         <!-- Message button -->
-                        <buttons:SfButton Command="{Binding MessageCommand}" Style="{StaticResource SquareButtonStyle}" WidthRequest="155">
-                            <Label Text="MESSAGE" TextColor="{DynamicResource Gray-900}" FontSize="14" 
-                                   FontFamily="{DynamicResource Montserrat-SemiBold}" LineHeight="{OnPlatform Android=1.5, Default=-1}"
-                                   HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
-                        </buttons:SfButton>
+                        <buttons:SfButton Command="{Binding MessageCommand}" 
+                            Style="{StaticResource SquareButtonStyle}" 
+                            WidthRequest="155"
+                            Text="MESSAGE" TextColor="{DynamicResource Gray-900}" 
+                            FontSize="14" FontFamily="{DynamicResource Montserrat-SemiBold}" 
+                            HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
 
                     </StackLayout>
 

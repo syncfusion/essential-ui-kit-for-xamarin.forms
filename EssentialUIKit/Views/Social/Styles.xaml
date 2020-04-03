@@ -121,7 +121,6 @@
     <!--  Common style for square buttons  -->
     <Style x:Key="SquareButtonStyle" TargetType="buttons:SfButton">
         <Setter Property="BackgroundColor" Value="{DynamicResource Gray-White}" />
-        <Setter Property="HeightRequest" Value="32" />
         <Setter Property="WidthRequest" Value="163" />
         <Setter Property="CornerRadius" Value="1" />
         <Setter Property="BorderWidth" Value="0"/>

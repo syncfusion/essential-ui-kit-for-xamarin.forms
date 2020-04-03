@@ -21,7 +21,7 @@
                 </Grid.RowDefinitions>
 
                 <Label
-                        Padding="0,12"
+                        Margin="0,12"
                         FontFamily="{StaticResource Montserrat-Medium}"
                         FontSize="16"
                         HorizontalOptions="CenterAndExpand"

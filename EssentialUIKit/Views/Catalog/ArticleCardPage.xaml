@@ -46,7 +46,7 @@
                                        CommandParameter="{x:Reference backButton}" CornerRadius="4"
                                        Style="{StaticResource IconButtonStyle}" Text="{StaticResource Back}"/>
 
-                    <!--   Icon Names List page Title  -->
+                    <!--   Article card page Title  -->
                     <Label  Margin="16,0" FontFamily="{StaticResource Montserrat-Medium}" FontSize="16"
                             HorizontalOptions="CenterAndExpand" TextColor="{DynamicResource Gray-900}"
                             LineHeight="1.25"  Text="Articles"  VerticalOptions="Center" VerticalTextAlignment="Center" />
@@ -112,7 +112,10 @@
                                                 </Image.Source>
                                             </Image>
 
-                                            <!-- Description of the Article  -->
+                                                <!--  OverLay Effect  -->
+                                                <Frame  CornerRadius="4" Opacity="0.35" BackgroundColor="{DynamicResource Gray-Black}" Grid.Row="0"/>
+
+                                                <!-- Description of the Article  -->
                                             <StackLayout Grid.Row="0" Margin="16,70,16,0" Spacing="0" VerticalOptions="EndAndExpand">
                                                 
                                                 <!--Article Title-->
@@ -147,9 +150,6 @@
                                                     </Label.FormattedText>
                                                 </Label>
                                             </StackLayout>
-
-                                            <!--  OverLay Effect  -->
-                                            <Frame  CornerRadius="4" Opacity="0.35" BackgroundColor="{DynamicResource Gray-Black}" Grid.Row="0"/>
 
                                             <Templates:ArticleActivityTemplate Grid.Row="1" ParentBindingContext="{Binding Path=BindingContext, Source={x:Reference articleCard}}"/>
 

@@ -144,11 +144,11 @@
                     </StackLayout>
                     
                     <!--Follow button-->
-                    <buttons:SfButton
+                    <buttons:SfButton x:Name="follow"
+                        Command="{Binding FollowCommand}" CommandParameter="{x:Reference follow}"
                         Grid.RowSpan="2"
                         Grid.Column="1"
                         VerticalOptions="End"
-                        Command="{Binding FollowCommand}"
                         Margin="24,0,0,0"
                         Style="{StaticResource SfGradientButtonStyle}"
                         Text="FOLLOW" />

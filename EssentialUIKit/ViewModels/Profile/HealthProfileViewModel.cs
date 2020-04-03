@@ -59,7 +59,7 @@ namespace EssentialUIKit.ViewModels.Profile
             this.State = "San Francisco";
             this.Country = "CA";
             this.Age = "35";
-            this.Weight = "72 kg";
+            this.Weight = "159 Ibs";
             this.Height = "165 cm";
         }
 

@@ -127,7 +127,7 @@
 
                                 </StackLayout>
 
-                                <!--  favorit button  -->
+                                <!--  favorite button  -->
                                 <buttons:SfButton x:Name="favouriteButton"           
                                     BorderWidth="1" BackgroundColor="{DynamicResource Gray-White}"  BorderColor="{DynamicResource Gray-300}"
                                     HeightRequest="40" WidthRequest="40"
@@ -145,27 +145,30 @@
                                 <StackLayout Margin="0,19,0,0" Spacing="8" Orientation="Horizontal" Grid.Row="2" HeightRequest="40">
 
                                     <!--  combo Box for calender -->
-                                    <border:SfBorder Padding="4,0,6,0" WidthRequest="180" Margin="0"
-                                       HeightRequest="40" Style="{StaticResource FormBorderStyle}">
+                                    <border:SfBorder
+                                         Style="{StaticResource ComboBoxBorderStyle}" WidthRequest="{OnIdiom Phone=147,Default=180}">
 
-                                        <combobox:SfComboBox WidthRequest="180" x:Name="sfComboBox" ShowDropDownFooterView="False" 
-                                             DataSource="{Binding Calender}"             
-                                            ShowDropDownHeaderView="True" DropDownWidth="300" Margin="0" 
-                                            TextSize="14" DropDownHeaderViewHeight="300" Watermark="Select Date"
-                                            MaximumDropDownHeight="300" DropDownFooterViewHeight="0" 
-                                            DropDownItemHeight="0"  Text="{Binding RoomDetail.SelectedRanges}"
-                                            Style="{StaticResource ComboBoxStyle}"
-                                            IsDropDownOpen="{Binding IsDropDownOpen, Mode=TwoWay}">
+                                        <combobox:SfComboBox x:Name="sfComboBox" ShowDropDownFooterView="False" 
+                                             DataSource="{Binding Calender}" 
+                                             ShowDropDownHeaderView="True" DropDownWidth="300"
+                                             DropDownHeaderViewHeight="300" Watermark="Select Date"
+                                             MaximumDropDownHeight="300" DropDownFooterViewHeight="0" 
+                                             DropDownItemHeight="0"  Text="{Binding RoomDetail.SelectedRanges}"
+                                             Style="{StaticResource ComboBoxStyle}" Margin="3,3,0,-3"
+                                             IsDropDownOpen="{Binding IsDropDownOpen, Mode=TwoWay}">
 
                                             <combobox:SfComboBox.DropDownHeaderView>
-                                                <syncfusion:SfCalendar SelectionChangedCommand="{Binding OnSelectionChanged}" 
-                                                    HeightRequest="300" 
+                                                <Grid Padding="2" HeightRequest="300">
+                                                    <syncfusion:SfCalendar 
+                                                    SelectionChangedCommand="{Binding OnSelectionChanged}"
                                                     SelectionMode="RangeSelection"  />
+                                                </Grid>
                                             </combobox:SfComboBox.DropDownHeaderView>
+
                                             <combobox:SfComboBox.DropDownButtonSettings>
-                                                <combobox:DropDownButtonSettings Width="16" Height="40">
+                                                <combobox:DropDownButtonSettings Width="20" Height="40" >
                                                     <combobox:DropDownButtonSettings.View>
-                                                        <Label WidthRequest="12" 
+                                                        <Label WidthRequest="12" Padding="0,0,4,0"
                                                                FontFamily="{StaticResource FontIcons}"
                                                                FontSize="16" HorizontalTextAlignment="End"
                                                                Style="{StaticResource LabelStyle}"
@@ -180,16 +183,13 @@
                                     </border:SfBorder>
 
                                     <!--  combo Box for guests -->
-                                    <border:SfBorder WidthRequest="{OnIdiom Phone=86,Default=116}" Padding="4,0,0,0"
-                                        Margin="0"
-                                        HeightRequest="40"
-                                        Style="{StaticResource FormBorderStyle}">
+                                    <border:SfBorder
+                                         Style="{StaticResource ComboBoxBorderStyle}" WidthRequest="{OnIdiom Phone={OnPlatform Default=80, iOS=90},Default=116}">
 
-                                        <combobox:SfComboBox WidthRequest="{OnIdiom Phone=86,Default=116}" 
-                                                             DropDownWidth="{OnPlatform Android=86,Default=110}"
-                                            DataSource="{Binding GuestsCollection}" Margin="0"
-                                            Style="{StaticResource ComboBoxStyle}" DisplayMemberPath="DisplayText" 
-                                            SelectedIndex="0" VerticalOptions="Center" Watermark="Guest">
+                                        <combobox:SfComboBox DropDownTextSize="{OnPlatform Default=14, iOS=12}"
+                                            DataSource="{Binding GuestsCollection}" DisplayMemberPath="DisplayText"
+                                            Style="{StaticResource ComboBoxStyle}" ItemPadding="3" Margin="3,3,0,-3"
+                                            Watermark="Guest" SelectedIndex="0" VerticalOptions="CenterAndExpand">
 
                                             <combobox:SfComboBox.DropDownButtonSettings>
                                                 <combobox:DropDownButtonSettings Width="0"/>
@@ -204,14 +204,15 @@
                                     </border:SfBorder>
 
                                     <!--  combo Box for bed -->
-                                    <border:SfBorder  Padding="4,0,0,0" Margin="0" WidthRequest="{OnIdiom Phone=76,Default=100}"
-                                          HeightRequest="40" Style="{StaticResource FormBorderStyle}">
-
-                                        <combobox:SfComboBox  WidthRequest="{OnIdiom Phone=76,Default=100}" Margin="0"
-                                            DataSource="{Binding BedsCollection}" DisplayMemberPath="DisplayText"                         
-                                            Style="{StaticResource ComboBoxStyle}" SelectedIndex="0" Watermark="Bed"
-                                            VerticalOptions="Center" DropDownWidth="{OnPlatform Android=76,Default=90}">
-
+                                    <border:SfBorder
+                                         Style="{StaticResource ComboBoxBorderStyle}" 
+                                         WidthRequest="{OnIdiom Phone={OnPlatform Default=64, iOS=80},Default=100}" >
+                                        
+                                        <combobox:SfComboBox DropDownTextSize="{OnPlatform Default=14, iOS=12}"
+                                            DataSource="{Binding BedsCollection}" DisplayMemberPath="DisplayText"
+                                            Style="{StaticResource ComboBoxStyle}"  Margin="3,3,0,-3" ItemPadding="3"
+                                            Watermark="Bed" SelectedIndex="0"
+                                            VerticalOptions="CenterAndExpand">
                                             <combobox:SfComboBox.DropDownButtonSettings>
                                                 <combobox:DropDownButtonSettings Width="0"/>
                                             </combobox:SfComboBox.DropDownButtonSettings>
@@ -240,7 +241,7 @@
                                                 Text="{Binding RoomDetail.Cost, StringFormat='${0:0}'}"
                                                 TextColor="{DynamicResource PrimaryColor}" />
 
-                                                <Span  Text="/" FontSize="16" TextColor="{DynamicResource Gray-700}" />
+                                                <Span  Text=" / " FontSize="16" TextColor="{DynamicResource Gray-700}" />
 
                                                 <Span FontSize="14"
                                                FontFamily="{StaticResource Montserrat-Regular}" 

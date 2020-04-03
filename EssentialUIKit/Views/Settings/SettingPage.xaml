@@ -442,7 +442,7 @@
                     HeightRequest="40"
                     HorizontalOptions="Center"
                     Style="{StaticResource RoundButtonStyle}"
-                    Text="LOGOUT"
+                    Text="LOG OUT"
                     TextColor="{DynamicResource Gray-White}"
                     WidthRequest="245" />
 

@@ -32,7 +32,7 @@ namespace EssentialUIKit.ViewModels.Profile
 
             for (var i = 0; i < 6; i++)
             {
-                this.ProfileInfo.Add(new Model { ImagePath = App.BaseImageUrl + "ProfileImage1" + i + ".png" });
+                this.ProfileInfo.Add(new Model { ImagePath = "ProfileImage1" + i + ".png" });
             }
 
             this.ProfileNameCommand = new Command(this.ProfileNameClicked);
