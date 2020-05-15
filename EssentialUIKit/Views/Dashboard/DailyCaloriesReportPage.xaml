@@ -4,13 +4,14 @@
              xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Dashboard"
              xmlns:gradient="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
              xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
-             xmlns:cards="clr-namespace:Syncfusion.XForms.Cards;assembly=Syncfusion.Cards.XForms"
              xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
              xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
              xmlns:gauge="clr-namespace:Syncfusion.SfGauge.XForms;assembly=Syncfusion.SfGauge.XForms"
              xmlns:behaviors="clr-namespace:EssentialUIKit.Behaviors;assembly=EssentialUIKit"
+             xmlns:control="clr-namespace:EssentialUIKit.Controls"
              x:Class="EssentialUIKit.Views.Dashboard.DailyCaloriesReportPage"
-             NavigationPage.HasNavigationBar="False">
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="{DynamicResource Gray-Bg}">
 
     <ContentPage.BindingContext>
         <viewModel:DailyCaloriesReportViewModel x:Name="CalorieViewModel" />
@@ -82,12 +83,14 @@
                         </gauge:SfCircularGauge.Headers>
 
                         <gauge:SfCircularGauge.Scales >
-                            <gauge:Scale x:Name="Scale" 
+                            <gauge:Scale x:Name="GaugeScale" 
                                          ShowLabels="False" 
                                          ShowRim="False"  
                                          ShowTicks="False"
                                          StartAngle="0"
-                                         SweepAngle="360"/>
+                                         SweepAngle="360"
+                                         EndValue="{Binding ScaleEndValue}"
+                                         Pointers="{Binding Pointers}"/>
                         </gauge:SfCircularGauge.Scales>
 
                     </gauge:SfCircularGauge>
@@ -112,8 +115,8 @@
                                     <buttons:SfButton Text="{Binding Session}" 
                                                       CornerRadius="4" 
                                                       Command="{Binding Path=BindingContext.SessionCommand, Source={x:Reference Sessions}}"                                                     
-                                                      CommandParameter="{Binding BindingContext, Source={x:Reference Sessions}}" 
-                                                      Clicked="SessionButton_OnClicked">
+                                                      CommandParameter="{Binding .}" 
+                                                      >
 
                                         <buttons:SfButton.Triggers>
                                             <DataTrigger TargetType="buttons:SfButton" 
@@ -168,8 +171,8 @@
                     </listView:SfListView>
 
                     <StackLayout Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3"
-                                 VerticalOptions="FillAndExpand"
-                                 BackgroundColor="{StaticResource Gray-White}" Spacing="0"
+                                 BackgroundColor="{DynamicResource GrayShadowColor}" Spacing="0"
+                                 VerticalOptions="FillAndExpand"                                
                                  HeightRequest="{OnPlatform Android='200',UWP='300'}">
                         <Grid>
                             <Grid.ColumnDefinitions>
@@ -178,10 +181,12 @@
                                 <ColumnDefinition Width="{OnIdiom Phone=16, Default=1*}"/>
                             </Grid.ColumnDefinitions>
 
-                            <cards:SfCardView CornerRadius="4" Grid.Column="1"
-                                          HeightRequest="245"
-                                          Margin="0,-60,0,16"
-                                          HasShadow="True">
+                            <control:CustomShadowFrame Grid.Column="1" Padding="0" BackgroundColor="{DynamicResource GrayShadowColor}" 
+                                          HeightRequest="240" BorderWidth="0" CornerRadius="4" Radius="4" HasShadow="True"
+                                          Margin="0,-60,0,16" >
+
+                                <control:CustomShadowFrame.Content>
+                                    <border:SfBorder BorderWidth="0" CornerRadius="4">
                                 <listView:SfListView x:Name="SfListView" 
                                                      VerticalOptions="FillAndExpand"
                                                      HorizontalOptions="Center"
@@ -191,12 +196,12 @@
                                                      AutoFitMode="None"          
                                                      ItemSpacing="0" 
                                                      ItemSize="120" 
-                                                     ItemsSource="{Binding BreakfastCalories}">
+                                                     ItemsSource="{Binding SelectedCalorieItems}">
 
                                     <listView:SfListView.ItemTemplate>
                                         <DataTemplate>
-                                            <border:SfBorder BorderWidth="1" 
-                                                             BorderColor="{StaticResource Gray-200}">
+                                            <border:SfBorder BorderWidth="0.5" 
+                                                             BorderColor="{DynamicResource Gray-200}">
 
                                                 <StackLayout Spacing="8" 
                                                              HorizontalOptions="Center" 
@@ -204,13 +209,13 @@
 
                                                     <Label Margin="0" 
                                                            FontSize="16" 
-                                                           TextColor="{StaticResource Gray-900}" 
+                                                           TextColor="{DynamicResource Gray-900}" 
                                                            Style="{StaticResource LabelStyle}"  
                                                            HorizontalOptions="Center"
                                                            Text="{Binding Quantity}"/>
 
                                                     <Label  FontSize="12" 
-                                                            TextColor="{StaticResource Gray-700}" 
+                                                            TextColor="{DynamicResource Gray-700}" 
                                                             HorizontalOptions="Center" 
                                                             Text="{Binding Nutrient}" 
                                                             Style="{StaticResource LabelStyle}"/>
@@ -234,8 +239,15 @@
                                     </listView:SfListView.LayoutManager>
 
                                 </listView:SfListView>
+                                    </border:SfBorder>
+                                </control:CustomShadowFrame.Content>
 
-                            </cards:SfCardView>
+                            </control:CustomShadowFrame>
+
+                            <border:SfBorder  Grid.Column="1" Padding="0" WidthRequest="240" BorderWidth="1"
+                                    BackgroundColor="Transparent" CornerRadius="4" Margin="0,-60,0,16" BorderColor="{DynamicResource GrayShadowColor}"
+                                    HasShadow="False" />    
+                                          
                         </Grid>
                     </StackLayout >
                 </Grid>

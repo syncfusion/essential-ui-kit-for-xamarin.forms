@@ -14,9 +14,9 @@
 
     <!--Common shadow frame style-->
     <Style x:Key="ShadowFrameStyle" TargetType="control:CustomShadowFrame">
-        <Setter Property="BackgroundColor" Value="{DynamicResource Gray-White}"/>
-        <Setter Property="BorderColor" Value="{DynamicResource Gray-White}"/>
-        <Setter Property="BorderWidth" Value="0"/>
+        <Setter Property="BackgroundColor" Value="{DynamicResource GrayShadowColor}"/>
+        <Setter Property="BorderColor" Value="{DynamicResource GrayShadowColor}"/>
+        <Setter Property="BorderWidth" Value="1"/>
         <Setter Property="Padding" Value="0"/>
         <Setter Property="CornerRadius" Value="12"/>
         <Setter Property="HasShadow" Value="True"/>
@@ -108,7 +108,7 @@
 
     <!--  Common style for icon buttons  -->
     <Style x:Key="IconButtonStyle" TargetType="buttons:SfButton">
-        <Setter Property="TextColor" Value="{DynamicResource Gray-White}" />
+        <Setter Property="TextColor" Value="{DynamicResource Gray-900}" />
         <Setter Property="BackgroundColor" Value="Transparent" />
         <Setter Property="FontFamily" Value="{StaticResource FontIcons}" />
         <Setter Property="FontSize" Value="18" />

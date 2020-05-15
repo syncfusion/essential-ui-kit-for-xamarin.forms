@@ -22,7 +22,7 @@ namespace EssentialUIKit.ViewModels.History
                 {
                      CustomerName = "Alice",
                      TransactionDescription = "Cashback",
-                     Image = App.BaseImageUrl + "ProfileImage15.png",
+                     CustomerImage = App.BaseImageUrl + "ProfileImage15.png",
                      TransactionAmount = "+ $70",
                      Date = DateTime.Now.AddDays(randomNum.Next(-1000, 0)),
                      IsCredited = true
@@ -31,7 +31,7 @@ namespace EssentialUIKit.ViewModels.History
                 {
                      CustomerName = "Jessica Park",
                      TransactionDescription = "XXXXXXX6585",
-                     Image = App.BaseImageUrl + "ProfileImage10.png",
+                     CustomerImage = App.BaseImageUrl + "ProfileImage10.png",
                      TransactionAmount = "+ $80",
                      Date = DateTime.Now.AddDays(randomNum.Next(-1000, 0)),
                      IsCredited = true
@@ -40,7 +40,7 @@ namespace EssentialUIKit.ViewModels.History
                 {
                      CustomerName = "Lisa",
                      TransactionDescription = "Recharge",
-                     Image = App.BaseImageUrl + "ProfileImage11.png",
+                     CustomerImage = App.BaseImageUrl + "ProfileImage11.png",
                      TransactionAmount = "- $50",
                      Date = DateTime.Now.AddDays(randomNum.Next(-1000, 0)),
                      IsCredited = false
@@ -49,7 +49,7 @@ namespace EssentialUIKit.ViewModels.History
                 {
                      CustomerName = "Rebecca",
                      TransactionDescription = "Credit Card Bill",
-                     Image = App.BaseImageUrl + "ProfileImage12.png",
+                     CustomerImage = App.BaseImageUrl + "ProfileImage12.png",
                      TransactionAmount = "- $180",
                      Date = DateTime.Now.AddDays(randomNum.Next(-1000, 0)),
                      IsCredited = false

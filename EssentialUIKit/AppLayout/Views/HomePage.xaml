@@ -8,7 +8,8 @@
     xmlns:viewModels="clr-namespace:EssentialUIKit.AppLayout.ViewModels;assembly=EssentialUIKit"
     xmlns:views="clr-namespace:EssentialUIKit.AppLayout.Views;assembly=EssentialUIKit"
     Title="{StaticResource HomePageTitle}"
-    Style="{StaticResource ContentPageStyle}">
+    Style="{StaticResource ContentPageStyle}"
+    BackgroundColor="{DynamicResource Gray-Bg}">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -48,7 +49,8 @@
             ItemsSource="{Binding Templates}"
             ScrollChanged="ListView_OnScrollChanged"
             SelectionChanged="ListView_OnSelectionChanged"
-            SeparatorVisibility="None">
+            SeparatorVisibility="None"
+            BackgroundColor="Transparent">
 
             <ListView.ItemTemplate>
                 <DataTemplate>
@@ -93,7 +95,7 @@
                                             FontFamily="{StaticResource Montserrat-Medium}"
                                             FontSize="10"
                                             Text="{Binding UpdateType}"
-                                            TextColor="{DynamicResource Gray-White}" />
+                                            TextColor="{DynamicResource Gray-Bg}" />
                                     </Frame.Content>
                                 </Frame>
                             </StackLayout>
@@ -212,7 +214,7 @@
                     <Frame
                         Grid.Row="2"
                         Padding="0"
-                        BackgroundColor="{DynamicResource Gray-White}"
+                        BackgroundColor="{DynamicResource Gray-Bg}"
                         CornerRadius="{OnPlatform 20,
                                                   iOS=10}"
                         HasShadow="False" />
@@ -221,7 +223,7 @@
                         <Button
                             x:Name="CodeViewerIcon" 
                             Text="&#xe753;"
-                            FontSize="16"
+                            FontSize="16" WidthRequest="35"
                             Clicked="GotoCodeViewer"
                             Style="{StaticResource ActionBarSettingIconStyle}"
                             VerticalOptions="Start" />
@@ -277,7 +279,7 @@
             <Frame
                 Grid.Row="2"
                 Padding="0"
-                BackgroundColor="{DynamicResource Gray-White}"
+                BackgroundColor="{DynamicResource Gray-Bg}"
                 CornerRadius="{OnPlatform 20,
                                           iOS=10}"
                 HasShadow="False" />

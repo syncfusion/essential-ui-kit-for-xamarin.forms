@@ -25,6 +25,8 @@ namespace EssentialUIKit.ViewModels.Catalog
 
         private int selectedIndex;
 
+        private Command viewAllCommand;
+
         #endregion
 
         #region Constructor
@@ -68,25 +70,29 @@ namespace EssentialUIKit.ViewModels.Catalog
                 {
                     ImagePath = App.BaseImageUrl + "Venice.jpeg",
                     Place = "Venice, Italy",
-                    Details = "Venice is arguably the most beautiful city in the world. The world seems to agree, sending 30 million tourists to walk its cobblestone streets, cross its ornate bridges, and sail down its elegant canals every year."
+                    Details = "Venice is arguably the most beautiful city in the world. The world seems to agree, sending 30 million tourists to walk its cobblestone streets, cross its ornate bridges, and sail down its elegant canals every year.",
+                    Price ="$1500"
                 },
                 new Model
                 {
                     ImagePath = App.BaseImageUrl + "Santorini-greece.jpeg",
                     Place = "Santorini, Greece",
-                    Details = "The result of volcanic eruptions that devastated ancient civilizations, Santorini, locally known as Thira, is now a tourism must-do. The white buildings and blue roofs of Oia town are an icon of Greece itself."
+                    Details = "The result of volcanic eruptions that devastated ancient civilizations, Santorini, locally known as Thira, is now a tourism must-do. The white buildings and blue roofs of Oia town are an icon of Greece itself.",
+                    Price ="$2000"
                 },
                 new Model
                 {
                     ImagePath = App.BaseImageUrl + "Salt-Pond-Bay-Thailand.jpeg",
                     Place = "Maya Beach, Thailand",
-                    Details = "The crystal blue waters of this cove were made famous by the 2000 movie The Beach. Surrounded by dramatic cliffs and a white-sand beach, Maya Beach is a popular day trip."
+                    Details = "The crystal blue waters of this cove were made famous by the 2000 movie The Beach. Surrounded by dramatic cliffs and a white-sand beach, Maya Beach is a popular day trip.",
+                    Price ="$2500"
                 },
                 new Model
                 {
                     ImagePath = App.BaseImageUrl + "Gran-via-Valencia.jpeg",
                     Place = "Madrid, Spain",
-                    Details = "The capital of Spain tends to be overlooked in favor of the colorful Barcelona, but this city has a glamor of its own."
+                    Details = "The capital of Spain tends to be overlooked in favor of the colorful Barcelona, but this city has a glamor of its own.",
+                    Price ="$1700"
                 },
             };
 
@@ -230,7 +236,7 @@ namespace EssentialUIKit.ViewModels.Catalog
         /// Gets or sets the command that will be executed when an item is selected.
         /// </summary>
         public Command ItemSelectedCommand { get; set; }
-
+   
         /// <summary>
         /// Gets or sets the command that will be executed when the favourite button is clicked.
         /// </summary>
@@ -250,6 +256,17 @@ namespace EssentialUIKit.ViewModels.Catalog
             get
             {
                 return this.selectionCommand ?? (this.selectionCommand = new Command(this.SelectionClicked));
+            }
+        }
+
+        // <summary>
+        /// Gets or sets the command that will be executed when ViewAll Command is tapped.
+        /// </summary>   
+        public Command ViewAllCommand
+        {
+            get
+            {
+                return this.viewAllCommand ?? (this.viewAllCommand = new Command(this.ViewAllClicked));
             }
         }
 
@@ -311,6 +328,16 @@ namespace EssentialUIKit.ViewModels.Catalog
         {
             this.SelectedIndex = this.TravelPlaces.IndexOf(obj);
         }
+
+        /// <summary>
+        /// Invoked when ViewAll item is clicked.
+        /// </summary>
+        /// <param name="obj">The rotator item</param>
+        private void ViewAllClicked(object obj)
+        {
+            // Do something
+        }
+       
         #endregion
     }
 }

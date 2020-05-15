@@ -54,7 +54,7 @@
                 FontSize="12"
                 LineHeight="{OnPlatform Android=1.25,
                                         Default=-1}"
-                Text="{Binding ItemDescription}"
+                Text="{Binding ItemDescription}" MaxLines="2" LineBreakMode="TailTruncation"
                 TextColor="{DynamicResource Gray-700}" />
 
             <!--  Average rating from the overall rating  -->

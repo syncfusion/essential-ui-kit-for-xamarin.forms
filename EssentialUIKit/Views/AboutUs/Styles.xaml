@@ -36,4 +36,5 @@
         <Setter Property="HeightRequest" Value="64" />
         <Setter Property="WidthRequest" Value="64" />
     </Style>
+
 </ResourceDictionary>

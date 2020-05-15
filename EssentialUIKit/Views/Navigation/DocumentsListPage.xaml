@@ -8,8 +8,9 @@
              xmlns:controls="clr-namespace:EssentialUIKit.Controls"
              mc:Ignorable="d"
              x:Class="EssentialUIKit.Views.Navigation.DocumentsListPage"
-             BackgroundColor="{DynamicResource Gray-White}"
-             NavigationPage.HasNavigationBar="False">
+             BackgroundColor="{DynamicResource Gray-Bg}"
+             NavigationPage.HasNavigationBar="False"
+             x:Name="documentList">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -28,16 +29,16 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <StackLayout x:Name="TitleView"  Padding="8,8" Grid.Row="0" HeightRequest="64"
-                         BackgroundColor="{DynamicResource Gray-White}" Spacing="0"
+            <StackLayout x:Name="TitleView"  Padding="8,8" Grid.Row="0" 
+                         BackgroundColor="{DynamicResource Gray-Bg}" Spacing="0"
                          HorizontalOptions="FillAndExpand" Orientation="Horizontal">
 
-                <StackLayout x:Name="Title" HorizontalOptions="FillAndExpand"  IsVisible="True"
+                <StackLayout x:Name="TitleLayout" HorizontalOptions="FillAndExpand"  IsVisible="True"
                              Orientation="Horizontal"  VerticalOptions="FillAndExpand"  Spacing="0">
 
                     <!--  Back button command  -->
                     <buttons:SfButton  x:Name="backButton"  Command="{Binding BackButtonCommand}"
-                                       CommandParameter="{x:Reference backButton}" CornerRadius="4"
+                                       CommandParameter="{x:Reference backButton}" CornerRadius="20"
                                        Style="{StaticResource IconButtonStyle}" Text="{StaticResource Back}"/>
 
                     <!--   Documents List page Title  -->
@@ -82,7 +83,7 @@
                                                   SearchText="{Binding SearchText}"
                                                   TapCommand="{Binding ItemTappedCommand}"
                                                   ItemsSource="{Binding DocumentsList}"
-                                                  SelectionBackgroundColor="{DynamicResource TappedBackgroundColor}">
+                                                  SelectionBackgroundColor="{DynamicResource Gray-200}">
 
                     <controls:SearchableDocumentsList.ItemTemplate>
                         <DataTemplate>
@@ -144,19 +145,21 @@
                                                HeightRequest="21" />
 
                                         <!-- More Button -->
-                                        <buttons:SfButton Grid.Column="3" 
+                                        <buttons:SfButton Grid.Column="3"  
                                                           Grid.RowSpan="3" 
+                                                          CornerRadius="4"
                                                           Margin="15,0,15,0"
                                                           TextColor="{DynamicResource Gray-600}"
                                                           BackgroundColor="{DynamicResource Transparent}"
                                                           HorizontalOptions="End"
-                                                          HorizontalTextAlignment="End"
+                                                          HorizontalTextAlignment="Center"
                                                           VerticalOptions="Center"
                                                           Text="{StaticResource MoreIcon}"
                                                           FontSize="18"
                                                           WidthRequest="38"
                                                           HeightRequest="38"
-                                                          FontFamily="{StaticResource FontIcons}" />
+                                                          FontFamily="{StaticResource FontIcons}" 
+                                                           Command="{Binding Path=BindingContext.MenuCommand, Source={x:Reference documentList}}"/>
 
                                         <!-- Seperator -->
                                         <BoxView Grid.Row="2" Grid.ColumnSpan="4" Style="{DynamicResource SeparatorStyle}" />

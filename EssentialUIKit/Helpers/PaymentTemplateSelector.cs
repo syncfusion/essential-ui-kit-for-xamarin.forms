@@ -27,7 +27,7 @@ namespace EssentialUIKit.Helpers
         #region Methods
 
         /// <summary>
-        /// Returns Xamarin.Forms.DataTemplate.
+        /// This methoid returns the DataTemplate based on selection.
         /// </summary>
         /// <param name="item">The Model</param>
         /// <param name="container">The bindable object</param>

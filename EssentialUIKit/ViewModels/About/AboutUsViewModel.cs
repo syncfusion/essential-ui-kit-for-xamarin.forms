@@ -19,7 +19,7 @@ namespace EssentialUIKit.ViewModels.About
 
         private string productIcon;
 
-        private string cardsTopImage;
+        private string bannerImage;
 
         #endregion
 
@@ -34,7 +34,7 @@ namespace EssentialUIKit.ViewModels.About
                 "Situated in the heart of Smith-town, Acme Products, Inc., has a long-standing tradition of selling the best products while providing the fastest service on the market. Since 1952, we’ve helped our customers identify their needs, understand their wants, and capture their dreams.";
             this.productIcon = App.BaseImageUrl + "Icon.png";
             this.productVersion = "1.0";
-            this.cardsTopImage = App.BaseImageUrl + "Mask.png";
+            this.bannerImage = App.BaseImageUrl + "Mask.png";
 
             this.EmployeeDetails = new ObservableCollection<AboutUsModel>
             {
@@ -105,16 +105,16 @@ namespace EssentialUIKit.ViewModels.About
         /// Gets or sets the top image source of the About us with cards view.
         /// </summary>
         /// <value>Image source location.</value>
-        public string CardsTopImage
+        public string BannerImage
         {
             get
             {
-                return this.cardsTopImage;
+                return this.bannerImage;
             }
 
             set
             {
-                this.cardsTopImage = value;
+                this.bannerImage = value;
                 this.NotifyPropertyChanged();
             }
         }

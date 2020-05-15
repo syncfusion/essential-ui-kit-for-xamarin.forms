@@ -6,7 +6,7 @@
              xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
              xmlns:viewmodel="clr-namespace:EssentialUIKit.ViewModels.Navigation"               
              x:Class="EssentialUIKit.Views.Navigation.SuggestionPage"
-             BackgroundColor="{DynamicResource Gray-White}"
+             BackgroundColor="{DynamicResource Gray-Bg}"
              NavigationPage.HasNavigationBar="False" >
 
     <ContentPage.Resources>
@@ -31,14 +31,14 @@
             </Grid.RowDefinitions>
             
             <StackLayout  x:Name="TitleView"
-                Padding="16,8" HeightRequest="64"
+                Padding="16,8"
                 Grid.Row="0"
-                BackgroundColor="{DynamicResource Gray-White}"
+                BackgroundColor="{DynamicResource Gray-Bg}"
                 HorizontalOptions="FillAndExpand"
                 Orientation="Horizontal"
                 Spacing="0">
 
-                <StackLayout   x:Name="Title"
+                <StackLayout   x:Name="TitleLayout"
                     HorizontalOptions="FillAndExpand"
                     IsVisible="True"
                     Orientation="Horizontal"
@@ -49,7 +49,7 @@
                     <buttons:SfButton  x:Name="backButton"
                         Command="{Binding BackButtonCommand}"
                         CommandParameter="{x:Reference backButton}"
-                        CornerRadius="4"
+                        CornerRadius="20"
                         Style="{StaticResource IconButtonStyle}"
                         Text="{StaticResource Back}" />
 
@@ -106,7 +106,7 @@
 
                 <controls:SearchableSuggestionList x:Name="Suggestions"
                     AutoFitMode="Height"
-                    BackgroundColor="{DynamicResource Gray-White}"
+                    BackgroundColor="{DynamicResource Gray-Bg}"
                     IsScrollBarVisible="False"
                     ItemsSource="{Binding SuggestionList}"
                     SelectionBackgroundColor="Transparent"
@@ -116,7 +116,7 @@
                     <controls:SearchableSuggestionList.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <StackLayout BackgroundColor="{DynamicResource Gray-White}" Spacing="0">
+                                <StackLayout BackgroundColor="{DynamicResource Gray-Bg}" Spacing="0">
                                     <Grid Margin="16,0" ColumnSpacing="0" >
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="Auto" />
@@ -137,7 +137,7 @@
                                             </Image>
                                         </border:SfBorder>
 
-                                        <StackLayout Spacing="3" Grid.Column="1"  Margin="16,16,0,13" BackgroundColor="{DynamicResource Gray-White}">
+                                        <StackLayout Spacing="3" Grid.Column="1"  Margin="16,16,0,13" BackgroundColor="{DynamicResource Gray-Bg}">
 
                                             <!--  Suggestion name  -->
                                             <Label  FontFamily="{StaticResource Montserrat-Medium}"

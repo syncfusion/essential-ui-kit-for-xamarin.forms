@@ -20,12 +20,14 @@
     <Color x:Key="FacebookBlue">#4267B2</Color>
     <Color x:Key="LightGreen">#35c659</Color>
     <Color x:Key="FacebookLogin">#3b5998</Color>
+    <Color x:Key="Steel">#788396</Color>
 
     <x:String x:Key="DropDownButtonIcon">&#xe70b;</x:String>
     <x:String x:Key="AvatarIcon">&#xe723;</x:String>
     <x:String x:Key="FaceBook">&#xe70f;</x:String>
     <x:String x:Key="Google">&#xe74d;</x:String>
-    <x:String x:Key="Twitter">&#xe749;</x:String>
+    <x:String x:Key="Twitter">&#xe749;</x:String> 
+    <x:String x:Key="Add">&#xe730;</x:String>
 
     <!--  Common style for content pages  -->
     <Style x:Key="ContentPageStyle" TargetType="ContentPage">
@@ -141,14 +143,14 @@
         <Setter Property="CornerRadius" Value="4"/>
         <Setter Property="Padding" Value="12,8"/>
         <Setter Property="Margin" Value="0,8"/>
-        <Setter Property="BackgroundColor" Value="{DynamicResource Gray-White}"/>
+        <Setter Property="BackgroundColor" Value="{DynamicResource Gray-Bg}"/>
     </Style>
 
     <Style x:Key="BusinessFormBorderStyle" TargetType="border:SfBorder">
         <Setter Property="BorderColor" Value="{DynamicResource Gray-300}"/>
         <Setter Property="CornerRadius" Value="4"/>
         <Setter Property="VerticalOptions" Value="CenterAndExpand" />
-        <Setter Property="BackgroundColor" Value="{DynamicResource Gray-White}"/>
+        <Setter Property="BackgroundColor" Value="{DynamicResource Gray-Bg}"/>
     </Style>
 
     <Style x:Key="EntryTextStyle" TargetType="control:BorderlessEntry">
@@ -156,6 +158,7 @@
         <Setter Property="FontSize" Value="16"/>
         <Setter Property="TextColor" Value="{DynamicResource Gray-900}"/>
         <Setter Property="PlaceholderColor" Value="{DynamicResource Gray-700}"/>
+        <Setter Property="BackgroundColor" Value="Transparent"/>
     </Style>
 
     <Style x:Key="DatePickerStyle" TargetType="DatePicker">
@@ -172,6 +175,10 @@
         <Setter Property="WatermarkColor" Value="{DynamicResource Gray-700}"/>
         <Setter Property="Margin" Value="8,3,0,-3"/>
         <Setter Property="HeightRequest" Value="40"/>
+        <Setter Property="DropDownBorderColor" Value="{DynamicResource Gray-300}"/>
+        <Setter Property="SelectedDropDownItemColor" Value="Transparent"/>
+        <Setter Property="DropDownBackgroundColor" Value="{DynamicResource Gray-Bg}"/>
+        <Setter Property="DropDownTextColor" Value="{DynamicResource Gray-700}"/>
     </Style>
 
     <Style x:Key="EntryTextBoxStyle" TargetType="control:BorderlessEntry">
@@ -181,6 +188,7 @@
         <Setter Property="PlaceholderColor" Value="{DynamicResource Gray-700}"/>
         <Setter Property="Margin" Value="12,0"/>
         <Setter Property="HeightRequest" Value="40"/>
+        <Setter Property="BackgroundColor" Value="Transparent"/>
     </Style>
 
     <!--  Common style for social icon SfButton  -->
@@ -192,7 +200,7 @@
         <Setter Property="VerticalTextAlignment" Value="Center" />
         <Setter Property="HorizontalTextAlignment" Value="Center" />
         <Setter Property="FontFamily" Value="{StaticResource FontIcons}"/>
-        <Setter Property="TextColor" Value="{DynamicResource Gray-White}"/>
+        <Setter Property="TextColor" Value="{DynamicResource Gray-Bg}"/>
     </Style>
 
 </ResourceDictionary>

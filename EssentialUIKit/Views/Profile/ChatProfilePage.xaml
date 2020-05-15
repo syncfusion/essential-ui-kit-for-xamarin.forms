@@ -6,7 +6,7 @@
     xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
     xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Profile"
     Title="Profile Page"
-    BackgroundColor="{DynamicResource Gray-White}"
+    BackgroundColor="{DynamicResource Gray-Bg}"
     NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Resources>
@@ -43,7 +43,7 @@
                 <buttons:SfButton
                     Margin="0,10,0,0"
                     BackgroundColor="Transparent"
-                    BorderColor="{DynamicResource Gray-White}"
+                    BorderColor="{DynamicResource Gray-Bg}"
                     BorderWidth="2"
                     Command="{Binding EditCommand}"
                     CornerRadius="60"

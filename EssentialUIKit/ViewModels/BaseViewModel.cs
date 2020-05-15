@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
 using System.Text;
+using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 
 namespace EssentialUIKit.ViewModels
@@ -15,6 +16,27 @@ namespace EssentialUIKit.ViewModels
     [DataContract]
     public class BaseViewModel : INotifyPropertyChanged
     {
+        #region Fields
+
+        private Command<object> backButtonCommand;
+
+        #endregion
+
+        #region Commands
+
+        /// <summary>
+        /// Gets the command that will be executed when an item is selected.
+        /// </summary>
+        public Command<object> BackButtonCommand
+        {
+            get
+            {
+                return this.backButtonCommand ?? (this.backButtonCommand = new Command<object>(this.BackButtonClicked));
+            }
+        }
+
+        #endregion
+
         #region Event handler
 
         /// <summary>
@@ -25,6 +47,15 @@ namespace EssentialUIKit.ViewModels
         #endregion
 
         #region Methods
+
+        /// <summary>
+        /// Invoked when an back button is clicked.
+        /// </summary>
+        /// <param name="obj">The Object</param>
+        private void BackButtonClicked(object obj)
+        {
+            Application.Current.MainPage.Navigation.PopAsync();
+        }
 
         /// <summary>
         /// The PropertyChanged event occurs when changing the value of property.

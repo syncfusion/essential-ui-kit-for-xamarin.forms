@@ -25,6 +25,8 @@ namespace EssentialUIKit.ViewModels.Catalog
 
         private string bannerImage;
 
+        private Command viewAllCommand;
+
         #endregion
 
         #region Public properties
@@ -123,6 +125,18 @@ namespace EssentialUIKit.ViewModels.Catalog
             }
         }
 
+        /// <summary>
+        /// Gets or sets the command that is executed when the view all button is clicked.
+        /// </summary>
+  
+        public Command ViewAllCommand
+        {
+            get
+            {
+                return this.viewAllCommand ?? (this.viewAllCommand = new Command(this.ViewAllClicked));
+            }
+        }
+
         #endregion
 
         #region Methods
@@ -132,6 +146,15 @@ namespace EssentialUIKit.ViewModels.Catalog
         /// </summary>
         /// <param name="attachedObject">The Object</param>
         private void ItemSelected(object attachedObject)
+        {
+            // Do something
+        }
+
+        /// <summary>
+        /// Invoked when an view all is selected.
+        /// </summary>
+        /// <param name="obj">The Object</param>
+        private void ViewAllClicked(object obj)
         {
             // Do something
         }

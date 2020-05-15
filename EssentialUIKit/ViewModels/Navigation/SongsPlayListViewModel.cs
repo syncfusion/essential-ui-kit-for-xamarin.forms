@@ -17,6 +17,8 @@ namespace EssentialUIKit.ViewModels.Navigation
 
         private Command<object> itemSelectedCommand;
 
+        private Command<object> menuCommand;
+
         #endregion
 
         #region Constructor
@@ -44,6 +46,17 @@ namespace EssentialUIKit.ViewModels.Navigation
         }
 
         /// <summary>
+        /// Gets the command that will be executed when an more button is selected.
+        /// </summary>
+        public Command<object> MenuCommand
+        {
+            get
+            {
+                return this.menuCommand ?? (this.menuCommand = new Command<object>(this.MoreButtonClicked));
+            }
+        }
+
+        /// <summary>
         /// Gets or sets a collection of values to be displayed in the Songs play list page.
         /// </summary>
         [DataMember(Name = "songsPageList")]
@@ -58,6 +71,16 @@ namespace EssentialUIKit.ViewModels.Navigation
         /// </summary>
         /// <param name="selectedItem">Selected item from the list view.</param>
         private void NavigateToNextPage(object selectedItem)
+        {
+            // Do something
+        }
+
+
+        /// <summary>
+        /// Invoked when an more button is selected from the Songs play list.
+        /// </summary>
+        /// <param name="selectedItem">Selected item from the list view.</param>
+        private void MoreButtonClicked(object selectedItem)
         {
             // Do something
         }

@@ -6,8 +6,9 @@
              xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
              xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Navigation"
              x:Class="EssentialUIKit.Views.Navigation.SongsPlayListPage"
-             BackgroundColor="{DynamicResource Gray-White}"
-             NavigationPage.HasNavigationBar="False">
+             BackgroundColor="{DynamicResource Gray-Bg}"
+             NavigationPage.HasNavigationBar="False"
+             x:Name="songsPlayList">
 
     <ContentPage.BindingContext>
         <viewModel:SongsPlayListViewModel/>
@@ -31,13 +32,12 @@
             <StackLayout x:Name="TitleView"
                 Padding="16,8"
                 Grid.Row="0"
-                HeightRequest="64"
-                BackgroundColor="{DynamicResource Gray-White}"
+                BackgroundColor="{DynamicResource Gray-Bg}"
                 HorizontalOptions="FillAndExpand"
                 Orientation="Horizontal"
                 Spacing="0">
 
-                <StackLayout  x:Name="Title"
+                <StackLayout  x:Name="TitleLayout"
                     HorizontalOptions="FillAndExpand"
                     IsVisible="True"
                     Orientation="Horizontal"
@@ -48,7 +48,7 @@
                     <buttons:SfButton x:Name="backButton"
                         Command="{Binding BackButtonCommand}"
                         CommandParameter="{x:Reference backButton}"
-                        CornerRadius="4"
+                        CornerRadius="20"
                         Style="{StaticResource IconButtonStyle}"
                         Text="{StaticResource Back}" />
 
@@ -156,7 +156,8 @@
                                                           Margin="16,0"
                                                           Grid.Column="1"
                                                           Style="{StaticResource MoreButton}"
-                                                          Text="{StaticResource More}" />
+                                                          Text="{StaticResource More}" 
+                                                          Command="{Binding Path=BindingContext.MenuCommand, Source={x:Reference songsPlayList}}"/>
 
                                     </Grid>
                                     <!-- Seperator -->

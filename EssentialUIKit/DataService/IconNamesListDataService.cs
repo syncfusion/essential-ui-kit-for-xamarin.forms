@@ -13,7 +13,7 @@ namespace EssentialUIKit.DataService
     {
         #region fields 
 
-        private static IconNamesListDataService instance;
+        private static IconNamesListDataService iconNamesListDataService;
 
         private IconNamesListViewModel iconNamesListViewModel;
 
@@ -24,7 +24,7 @@ namespace EssentialUIKit.DataService
         /// <summary>
         /// Gets an instance of the <see cref="IconNamesListDataService"/>.
         /// </summary>
-        public static IconNamesListDataService Instance => instance ?? (instance = new IconNamesListDataService());
+        public static IconNamesListDataService Instance => iconNamesListDataService ?? (iconNamesListDataService = new IconNamesListDataService());
 
         /// <summary>
         /// Gets or sets the value of icon name list page view model.
@@ -49,15 +49,15 @@ namespace EssentialUIKit.DataService
 
             var assembly = typeof(App).GetTypeInfo().Assembly;
 
-            T obj;
+            T data;
 
             using (var stream = assembly.GetManifestResourceStream(file))
             {
                 var serializer = new DataContractJsonSerializer(typeof(T));
-                obj = (T)serializer.ReadObject(stream);
+                data = (T)serializer.ReadObject(stream);
             }
 
-            return obj;
+            return data;
         }
 
         #endregion

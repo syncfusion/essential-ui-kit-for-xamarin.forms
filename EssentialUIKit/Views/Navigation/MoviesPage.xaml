@@ -11,7 +11,8 @@
              xmlns:controls="clr-namespace:EssentialUIKit.Controls"
              mc:Ignorable="d"
              x:Class="EssentialUIKit.Views.Navigation.MoviesPage"
-             BackgroundColor="{DynamicResource Gray-White}"
+             x:Name="moviesPage"
+             BackgroundColor="{DynamicResource Gray-Bg}"
              NavigationPage.HasNavigationBar="False">
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -30,7 +31,7 @@
                             <Image.Source>
                                 <UriImageSource CacheValidity="14"
                                                 CachingEnabled="true"
-                                                Uri="{Binding Image}" />
+                                                Uri="{Binding PosterImage}" />
                             </Image.Source>
                         </Image>
                     </border:SfBorder>
@@ -56,7 +57,7 @@
                             <Image.Source>
                                 <UriImageSource CacheValidity="14"
                                                 CachingEnabled="true"
-                                                Uri="{Binding Image}" />
+                                                Uri="{Binding PosterImage}" />
                             </Image.Source>
                         </Image>
                     </border:SfBorder>
@@ -73,14 +74,14 @@
         <ControlTemplate>
             <StackLayout Spacing="0">
                 <!--  Title View  -->
-                <controls:TitleView Title="Movies" BackgroundColor="{DynamicResource Gray-White}">
+                <controls:TitleView Title="Movies" BackgroundColor="{DynamicResource Gray-Bg}">
+               
                     <controls:TitleView.TrailingView>
                         
                         <!--Search Button-->
                         <buttons:SfButton Style="{StaticResource IconButtonStyle}" 
-                                  Text="{StaticResource Search}" CornerRadius="4"
-                                  Command="{Binding SearchButtonCommand}"/>
-
+                                  Text="{StaticResource Search}" CornerRadius="20"
+                                  Command="{Binding Path=BindingContext.SearchButtonCommand, Source={x:Reference moviesPage}}"/>
                     </controls:TitleView.TrailingView>
                 </controls:TitleView> 
                 <ContentPresenter />
@@ -112,7 +113,7 @@
                                        NavigationDirection="Horizontal"
                                        NavigationStripMode="Dots"
                                        SelectedDotColor="{DynamicResource PrimaryColor}"
-                                       UnselectedDotColor="{DynamicResource Gray-200}"
+                                       UnselectedDotColor="#ebecef"
                                        VerticalOptions="Start" EnableAutoPlay="True" NavigationDelay="2000">
                         <rotator:SfRotator.ItemTemplate>
                             <DataTemplate>
@@ -123,7 +124,7 @@
                                     <Image.Source>
                                         <UriImageSource CacheValidity="14"
                                                         CachingEnabled="true"
-                                                        Uri="{Binding Image}" />
+                                                        Uri="{Binding PosterImage}" />
                                     </Image.Source>
                                 </Image>
                             </DataTemplate>
@@ -155,7 +156,8 @@
                                          Orientation="Horizontal" 
                                          IsScrollBarVisible="False"
                                          ItemsSource="{Binding NowShowingMoviesList}" 
-                                         ItemTemplate="{StaticResource MovieTemplate}"/>
+                                         ItemTemplate="{StaticResource MovieTemplate}"
+                                         TapCommand="{Binding ItemSelectedCommand}"/>
 
                     <StackLayout Grid.Row="3" Orientation="Horizontal" Margin="16, 26, 16, 8">
 
@@ -179,7 +181,8 @@
                                          ItemsSource="{Binding TrailerMoviesList}" 
                                          ItemSpacing="8, 0, 8, 0" 
                                          ItemTemplate="{StaticResource TrailerTemplate}"
-                                         IsScrollBarVisible="False"/>
+                                         IsScrollBarVisible="False"
+                                         TapCommand="{Binding ItemSelectedCommand}"/>
 
                     <StackLayout Grid.Row="5" Orientation="Horizontal" Margin="16, 26, 16, 8">
 
@@ -202,7 +205,8 @@
                                          ItemsSource="{Binding UpcomingMoviesList}" 
                                          ItemSpacing="8, 0, 8, 0" 
                                          ItemTemplate="{StaticResource MovieTemplate}"
-                                         IsScrollBarVisible="False"/>
+                                         IsScrollBarVisible="False"
+                                         TapCommand="{Binding ItemSelectedCommand}"/>
 
                 </Grid>
             </ScrollView>

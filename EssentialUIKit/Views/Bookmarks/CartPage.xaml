@@ -25,13 +25,13 @@
             <StackLayout Spacing="0">
 
                 <!--  Title View  -->
-                <controls:TitleView Title="Cart" BackgroundColor="{DynamicResource Gray-White}">
+                <controls:TitleView Title="Cart" BackgroundColor="{DynamicResource Gray-Bg}">
                     <controls:TitleView.LeadingView>
                         <buttons:SfButton
                             x:Name="backButton"
                             Command="{TemplateBinding BindingContext.BackButtonCommand}"
                             CommandParameter="{x:Reference backButton}"
-                            CornerRadius="4"
+                            CornerRadius="20"
                             Style="{StaticResource IconButtonStyle}"
                             Text="{StaticResource Back}" />
                     </controls:TitleView.LeadingView>
@@ -52,7 +52,7 @@
                 Margin="{OnIdiom Default='0,16,0,0',
                                  Desktop='16'}"
                 BackgroundColor="{OnIdiom Default={StaticResource Transparent},
-                                          Desktop={DynamicResource Gray-White},
+                                          Desktop={DynamicResource Gray-Bg},
                                           Converter={StaticResource DynamicResourceToColorConverter}}"
                 ColumnSpacing="0"
                 HorizontalOptions="{OnIdiom Default=Fill,
@@ -75,7 +75,7 @@
                 <!--  Cart Header  -->
                 <StackLayout
                     Padding="16"
-                    BackgroundColor="{DynamicResource Gray-White}"
+                    BackgroundColor="{DynamicResource Gray-Bg}"
                     Orientation="Horizontal">
                     <Label
                         FontFamily="{StaticResource Montserrat-SemiBold}"
@@ -84,7 +84,7 @@
                         TextColor="{DynamicResource Gray-900}" />
 
                     <Label
-                        BackgroundColor="{DynamicResource Gray-White}"
+                        BackgroundColor="{DynamicResource Gray-Bg}"
                         FontAttributes="Bold"
                         FontFamily="{StaticResource Montserrat-SemiBold}"
                         HorizontalOptions="EndAndExpand"
@@ -104,7 +104,7 @@
                     x:Name="CartLayout"
                     Grid.Row="2"
                     BackgroundColor="{OnIdiom Default={StaticResource Transparent},
-                                              Desktop={StaticResource Gray-White},
+                                              Desktop={StaticResource Gray-Bg},
                                               Converter={StaticResource DynamicResourceToColorConverter}}"
                     BindableLayout.ItemsSource="{Binding CartDetails}"
                     Spacing="16"

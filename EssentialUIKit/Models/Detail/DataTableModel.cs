@@ -6,11 +6,11 @@ namespace EssentialUIKit.Models.Detail
     /// Model for Data table
     /// /// </summary>
     [Preserve(AllMembers = true)]
-    public class DataTable
+    public class DataTableModel
     {
         #region fields
 
-        private string imagePath;
+        private string imageIcon;
 
         #endregion
 
@@ -19,10 +19,10 @@ namespace EssentialUIKit.Models.Detail
         /// <summary>
         /// Gets or sets the club image.
         /// </summary>
-        public string ImagePath
+        public string ImageIcon
         {
-            get { return App.BaseImageUrl + this.imagePath; }
-            set { this.imagePath = value; }
+            get { return App.BaseImageUrl + this.imageIcon; }
+            set { this.imageIcon = value; }
         }
 
         /// <summary>

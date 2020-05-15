@@ -9,7 +9,7 @@
              xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
              mc:Ignorable="d"
              x:Class="EssentialUIKit.Views.Navigation.SongsPage"
-             BackgroundColor="{DynamicResource Gray-White}"
+             BackgroundColor="{DynamicResource Gray-Bg}"
              NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Resources>
@@ -33,14 +33,14 @@
                 x:Name="TitleView" 
                 Padding="16,8"
                 Grid.Row="0"
-                HeightRequest="64"
-                BackgroundColor="{DynamicResource Gray-White}"
+                
+                BackgroundColor="{DynamicResource Gray-Bg}"
                 HorizontalOptions="FillAndExpand"
                 Orientation="Horizontal"
                 Spacing="0">
 
                 <StackLayout
-                    x:Name="Title"
+                    x:Name="TitleLayout"
                     HorizontalOptions="FillAndExpand"
                     IsVisible="True"
                     Orientation="Horizontal"
@@ -52,7 +52,7 @@
                             x:Name="backButton"
                             Command="{Binding BackButtonCommand}"
                             CommandParameter="{x:Reference backButton}"
-                            CornerRadius="4"
+                            CornerRadius="20"
                             Style="{StaticResource IconButtonStyle}"
                             Text="{StaticResource Back}" />
 
@@ -129,7 +129,7 @@
 
                                             <border:SfBorder
                                               BackgroundColor="{DynamicResource Gray-200}"
-                                                 BorderColor="{DynamicResource Gray-White}"
+                                                 BorderColor="{DynamicResource Gray-Bg}"
                                                   Style="{StaticResource ProfileBorderStyle}">
                                                 <Image HeightRequest="56" WidthRequest="56">
                                                     <Image.Source>

@@ -8,7 +8,7 @@
     xmlns:local="clr-namespace:EssentialUIKit.Views.Feedback"
     xmlns:template="clr-namespace:EssentialUIKit.Views.Templates"
     xmlns:viewmodel="clr-namespace:EssentialUIKit.ViewModels.Feedback"
-    BackgroundColor="{DynamicResource Gray-White}"
+    BackgroundColor="{DynamicResource Gray-Bg}"
     NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Resources>
@@ -42,7 +42,7 @@
             <!--  List view to show the feedback given by the customers  -->
             <listView:SfListView
                 AutoFitMode="Height"
-                BackgroundColor="{DynamicResource Gray-White}"
+                BackgroundColor="{DynamicResource Gray-Bg}"
                 HeaderTemplate="{StaticResource HeaderTemplate}"
                 IsScrollBarVisible="False"
                 ItemsSource="{Binding FeedbackInfo}"

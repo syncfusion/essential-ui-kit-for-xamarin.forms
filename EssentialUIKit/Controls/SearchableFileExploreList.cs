@@ -21,14 +21,14 @@ namespace EssentialUIKit.Controls
             if (base.FilterContacts(obj))
             {
                 var taskInfo = obj as File;
-                if (taskInfo == null || string.IsNullOrEmpty(taskInfo.FolderName) || string.IsNullOrEmpty(taskInfo.Items) 
+                if (taskInfo == null || string.IsNullOrEmpty(taskInfo.FolderName) || string.IsNullOrEmpty(taskInfo.FolderItems) 
                     || string.IsNullOrEmpty(taskInfo.DateTime))
                 {
                     return false;
                 }
 
                 return taskInfo.FolderName.ToUpperInvariant().Contains(this.SearchText.ToUpperInvariant())
-                    || taskInfo.Items.ToUpperInvariant().Contains(this.SearchText.ToUpperInvariant()) 
+                    || taskInfo.FolderItems.ToUpperInvariant().Contains(this.SearchText.ToUpperInvariant()) 
                     || taskInfo.DateTime.ToUpperInvariant().Contains(this.SearchText.ToUpperInvariant());
             }
 

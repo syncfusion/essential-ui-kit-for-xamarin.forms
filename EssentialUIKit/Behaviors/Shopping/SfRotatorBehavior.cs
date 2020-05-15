@@ -102,7 +102,7 @@ namespace EssentialUIKit.Behaviors.Shopping
 
                 // Start animation to selected view.
                 var currentItem = items[index];
-                var childElement = (((currentItem as Boarding).RotatorItem as ContentView).Children[0] as StackLayout).Children.ToList();
+                var childElement = (((currentItem as Boarding).RotatorView as ContentView).Children[0] as StackLayout).Children.ToList();
                 if (childElement != null && childElement.Count > 0)
                 {
                     this.StartAnimation(childElement, currentItem as Boarding);
@@ -112,7 +112,7 @@ namespace EssentialUIKit.Behaviors.Shopping
                 if (index != this.previousIndex)
                 {
                     var previousItem = items[this.previousIndex];
-                    var previousChildElement = (((previousItem as Boarding).RotatorItem as ContentView).Children[0] as StackLayout).Children.ToList();
+                    var previousChildElement = (((previousItem as Boarding).RotatorView as ContentView).Children[0] as StackLayout).Children.ToList();
                     if (previousChildElement != null && previousChildElement.Count > 0)
                     {
                         previousChildElement[0].FadeTo(0, 250);
@@ -147,7 +147,7 @@ namespace EssentialUIKit.Behaviors.Shopping
                 var animation = new Animation();
                 var scaleDownAnimation = new Animation(v => childElement[0].Scale = v, 0.5, 1, Easing.SinIn);
                 animation.Add(0, 1, scaleDownAnimation);
-                animation.Commit((item as Boarding).RotatorItem as ContentView, "animation", 16, 500);
+                animation.Commit((item as Boarding).RotatorView as ContentView, "animation", 16, 500);
 
                 await Task.WhenAll(fadeAnimationTaskDescriptionTime, fadeAnimationtaskTitleTime, translateAnimation, scaleAnimationTitle, translateDescriptionAnimation);
             }

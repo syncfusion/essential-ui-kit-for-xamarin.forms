@@ -4,15 +4,15 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
-    xmlns:cards="clr-namespace:Syncfusion.XForms.Cards;assembly=Syncfusion.Cards.XForms"
     xmlns:controls="clr-namespace:EssentialUIKit.Controls"
     xmlns:converter="clr-namespace:EssentialUIKit.Converters"
     xmlns:helper="clr-namespace:EssentialUIKit.Helpers"
     xmlns:syncfusion="clr-namespace:Syncfusion.SfRotator.XForms;assembly=Syncfusion.SfRotator.XForms"
     xmlns:template="clr-namespace:EssentialUIKit.Views.Templates"
-    xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Catalog"
+    xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Catalog" 
+    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
     x:Name="articleList"
-    BackgroundColor="{DynamicResource Gray-White}"
+    BackgroundColor="{DynamicResource Gray-Bg}"
     NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Resources>
@@ -37,7 +37,7 @@
                     <controls:TitleView.LeadingView>
                         <buttons:SfButton
                             Command="{TemplateBinding BindingContext.MenuCommand}"
-                            CornerRadius="4"
+                            CornerRadius="20"
                             HeightRequest="40"
                             Style="{StaticResource NavigationBarButtonStyle}"
                             Text="{StaticResource BurgerMenu}"
@@ -70,7 +70,7 @@
                     BackgroundColor="{StaticResource Transparent}"
                     DotPlacement="OutSide"
                     DotsBorderColor="Transparent"
-                    HeightRequest="266"
+                    HeightRequest="276"
                     HorizontalOptions="StartAndExpand"
                     ItemsSource="{Binding FeaturedStories}"
                     NavigationDirection="Horizontal"
@@ -84,8 +84,9 @@
                                 Margin="0"
                                 Padding="0"
                                 Spacing="0">
-                                <cards:SfCardView CornerRadius="4" HasShadow="True">
-                                    <cards:SfCardView.Content>
+                                <controls:CustomShadowFrame CornerRadius="4" HasShadow="True" BackgroundColor="{StaticResource GrayShadowColor}"
+                                                            Padding="0" Margin="4" BorderWidth="0" Radius="4">
+                                    <border:SfBorder BorderWidth="0" BorderColor="Transparent" CornerRadius="4">
                                         <StackLayout Spacing="0">
 
                                             <!--  Image of the blog  -->
@@ -145,8 +146,8 @@
                                             </StackLayout.GestureRecognizers>
 
                                         </StackLayout>
-                                    </cards:SfCardView.Content>
-                                </cards:SfCardView>
+                                    </border:SfBorder>
+                                </controls:CustomShadowFrame>
                             </StackLayout>
                         </DataTemplate>
                     </syncfusion:SfRotator.ItemTemplate>

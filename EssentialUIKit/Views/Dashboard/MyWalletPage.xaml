@@ -9,9 +9,11 @@
              xmlns:converter="clr-namespace:EssentialUIKit.Converters"
              xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
              xmlns:template="clr-namespace:EssentialUIKit.Views.Templates"
+             xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms"
+             xmlns:gradient ="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
              xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Dashboard"
              x:Class="EssentialUIKit.Views.Dashboard.MyWalletPage"
-             BackgroundColor="{DynamicResource Gray-White}"
+             BackgroundColor="{DynamicResource Gray-Bg}"
              NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Resources>
@@ -26,7 +28,7 @@
 
     <!--  Binding context for my wallet page  -->
     <ContentPage.BindingContext>
-        <viewModel:MyWalletViewModel />
+        <viewModel:WalletViewModel />
     </ContentPage.BindingContext>
 
     <ContentPage.Content>
@@ -39,12 +41,95 @@
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
 
-                <template:ExpenseChartTemplate Grid.Row="0" />
+                <Grid RowSpacing="0" ColumnSpacing="0" HeightRequest="409">
 
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <gradient:SfGradientView Grid.RowSpan="4">
+                        <gradient:SfGradientView.BackgroundBrush>
+                            <gradient:SfLinearGradientBrush>
+                                <gradient:SfLinearGradientBrush.GradientStops>
+                                    <gradient:SfGradientStop Color="{DynamicResource Liliac}" Offset="0.0" />
+                                    <gradient:SfGradientStop Color="{DynamicResource Purpleish-Blue}" Offset="1.0" />
+                                </gradient:SfLinearGradientBrush.GradientStops>
+                            </gradient:SfLinearGradientBrush>
+                        </gradient:SfGradientView.BackgroundBrush>
+                    </gradient:SfGradientView>
+
+                    <!-- Title -->
+                    <Label Margin="0,28,0,12" 
+                           Text="Wallet" 
+                           TextColor="{DynamicResource Gray-White}"
+                           FontSize="16"
+                           FontFamily="{DynamicResource Montserrat-Medium}"
+                           HorizontalOptions="Center"
+                           LineHeight="{OnPlatform Android=1.5, Default=-1}" />
+
+                    <!-- Total balance -->
+                    <Label Grid.Row="1"
+                           Margin="16,16,16,4" 
+                           Text="Total Balance"
+                           TextColor="{DynamicResource Gray-White}"
+                           FontSize="12"
+                           FontFamily="{DynamicResource Montserrat-Medium}"
+                           LineHeight="{OnPlatform Android=1.5, Default=-1}" />
+
+                    <Label Grid.Row="2" 
+                           Margin="16,0,16,32"
+                           TextColor="{DynamicResource Gray-White}"
+                           FontSize="24"
+                           FontFamily="{DynamicResource Montserrat-Bold}"
+                           LineHeight="{OnPlatform Android=1.5, Default=-1}">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="$" />
+                                <Span Text="{Binding TotalBalance}" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+
+                    <StackLayout Grid.Row="1" 
+                                 Grid.RowSpan="2"
+                                 Margin="0,16,16,51"
+                                 Padding="8,5"
+                                 HorizontalOptions="End"
+                                 VerticalOptions="Start"
+                                 WidthRequest="{OnPlatform Android=90, Default=94}"
+                                 HeightRequest="32">
+                        <combobox:SfComboBox SelectedIndex="{Binding SelectedIndex, Mode=TwoWay}" 
+                                             SelectedItem="{Binding DataSource[0], Mode=OneTime}" 
+                                             ShowBorder="False" MultiSelectMode="None" IsEditableMode="False"
+                                             TextColor="{DynamicResource Gray-White}" HorizontalOptions="Start" TextSize="14"
+                                             VerticalOptions="Start" FontFamily="{DynamicResource Montserrat-Medium}"
+                                             DisplayMemberPath="Duration" DataSource="{Binding DataSource}">
+                            <combobox:SfComboBox.DropDownButtonSettings>
+                                <combobox:DropDownButtonSettings>
+                                    <combobox:DropDownButtonSettings.View>
+                                        <Label FontFamily="{StaticResource FontIcons}"
+                                               FontSize="20" Padding="-2,0,0,0"
+                                               HorizontalTextAlignment="Start"
+                                               Text="{StaticResource DropDownButtonIcon}"
+                                               TextColor="{DynamicResource Gray-White}"
+                                               VerticalTextAlignment="Center" />
+                                    </combobox:DropDownButtonSettings.View>
+                                </combobox:DropDownButtonSettings>
+                            </combobox:SfComboBox.DropDownButtonSettings>
+                        </combobox:SfComboBox>
+                    </StackLayout>
+
+                    <template:ExpenseChartTemplate Grid.Row="3" />
+                    
+                </Grid>
+               
                 <Grid Grid.Row="1">
 
                     <Label Margin="16,26,16,16"
-                           Text="TRANSACTIONS"
+                           Text="LATEST TRANSACTIONS"
                            TextColor="{DynamicResource Gray-800}"
                            FontSize="12"
                            LineHeight="{OnPlatform Android=1.5, Default=-1}"
@@ -58,7 +143,8 @@
                                       WidthRequest="72"
                                       HeightRequest="18"
                                       CornerRadius="4"
-                                      HorizontalOptions="End">
+                                      HorizontalOptions="End"
+                                      Command="{Binding ViewAllCommand}">
                         <Label Text="VIEW ALL"
                                TextColor="{DynamicResource Link}"
                                FontSize="12"
@@ -74,7 +160,7 @@
                                      IsScrollBarVisible="False"
                                      ItemSpacing="0"
                                      ItemsSource="{Binding ListItems}"
-                                     SelectionBackgroundColor="{DynamicResource TappedBackgroundColor}"
+                                     SelectionBackgroundColor="{DynamicResource Gray-200}"
                                      TapCommand="{Binding ItemTappedCommand}"
                                      AutoFitMode="Height">
                     <listView:SfListView.ItemTemplate>

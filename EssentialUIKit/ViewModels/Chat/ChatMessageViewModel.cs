@@ -49,7 +49,6 @@ namespace EssentialUIKit.ViewModels.Chat
             this.ShowCamera = new Command(this.CameraClicked);
             this.SendAttachment = new Command(this.AttachmentClicked);
             this.SendCommand = new Command(this.SendClicked);
-            this.BackCommand = new Command(this.BackButtonClicked);
             this.ProfileCommand = new Command(this.ProfileClicked);
 
             this.GenerateMessageInfo();
@@ -166,11 +165,6 @@ namespace EssentialUIKit.ViewModels.Chat
         /// </summary>
         public Command SendCommand { get; set; }
 
-        /// <summary>
-        /// Gets or sets the command that is executed when the back button is clicked.
-        /// </summary>
-        public Command BackCommand { get; set; }
-
         #endregion
         
         #region Methods
@@ -274,15 +268,6 @@ namespace EssentialUIKit.ViewModels.Chat
             }
 
             this.NewMessage = null;
-        }
-
-        /// <summary>
-        /// Invoked when the back button is clicked.
-        /// </summary>
-        /// <param name="obj">The object</param>
-        private void BackButtonClicked(object obj)
-        {
-            // Do something
         }
 
         /// <summary>

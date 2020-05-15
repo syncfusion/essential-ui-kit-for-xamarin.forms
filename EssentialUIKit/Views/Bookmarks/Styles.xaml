@@ -18,7 +18,7 @@
     <converter:DynamicResourceToColorConverter x:Key="DynamicResourceToColorConverter" />
 
     <Style TargetType="control:TitleView">
-        <Setter Property="BackgroundColor" Value="{DynamicResource Gray-White}" />
+        <Setter Property="BackgroundColor" Value="{DynamicResource Gray-Bg}" />
     </Style>
 
     <!--  Common style for labels  -->

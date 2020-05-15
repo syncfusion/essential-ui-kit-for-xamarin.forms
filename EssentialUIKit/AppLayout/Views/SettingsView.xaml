@@ -32,44 +32,74 @@
               Opacity="0">
 
             <Grid.RowDefinitions>
-                <RowDefinition Height="44" />
+                <RowDefinition Height="8" />
+                <RowDefinition Height="20" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="44" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
             <Frame
                 Grid.Row="0"
                 Padding="0"
                 BackgroundColor="White"
-                CornerRadius="20"
-                Margin="0,-20,0,0"
+                CornerRadius="14"
+                Margin="0,-14,0,0"
                 HasShadow="False" />
 
-            <Label
-                Text="Pick Your Color"
+            <StackLayout Orientation="Horizontal" Spacing="0"  Grid.Row="1" Margin="0,-20,0,0" >
+
+                <Label
+                Text="Settings"
                 TextColor="#333942"
                 FontSize="16"
                 FontFamily="{StaticResource Montserrat-SemiBold}"
-                Grid.Row="0"
-                Margin="16,7,0,0"
+                VerticalOptions="Center"
+                Margin="16,0,0,0"
                 HorizontalOptions="Start" />
 
-            <!--Close Icon-->
-            <Button
-                Grid.Row="0"
+                <!--Close Icon-->
+                <Button
                 Style="{StaticResource CloseIconStyle}"
-                Margin="0,-5,0,0"
+                Margin="0"
+                VerticalOptions="Center"
                 Clicked="Button_OnClicked"
                 HorizontalOptions="EndAndExpand"
                 WidthRequest="50"/>
 
+            </StackLayout>
+
+            <Grid Grid.Row="2" Margin="24">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button x:Name="lightThme" Text="Light Theme" WidthRequest="164" HeightRequest="44" 
+                        FontFamily="{StaticResource Montserrat-Regular}" FontSize="14" FontAttributes="None"
+                        TextColor="{DynamicResource Gray-Bg}" Clicked="lightThme_Clicked"
+                        BackgroundColor="{DynamicResource PrimaryColor}" CornerRadius="4"/>
+                <Button x:Name="darkTheme" Text="Dark Theme" Grid.Column="1" WidthRequest="164" HeightRequest="44" 
+                         FontFamily="{StaticResource Montserrat-Regular}" FontSize="14" FontAttributes="None"
+                        TextColor="{DynamicResource Gray-900}" Clicked="darkTheme_Clicked"
+                        BackgroundColor="{DynamicResource Gray-200}" CornerRadius="4"/>
+            </Grid>
+
+            <Label 
+                Text="Pick Your Color"
+                TextColor="#333942"
+                FontSize="14"
+                FontFamily="{StaticResource Montserrat-Regular}"
+                Grid.Row="3"
+                Margin="16,7,0,0"
+                HorizontalOptions="Start" />
+            
             <segmentControl:SfSegmentedControl 
-                Grid.Row="1" 
+                Grid.Row="4" 
                 x:Name="PrimaryColorsView" 
                 CornerRadius="0" 
                 SegmentHeight="40" 
                 SegmentWidth="40" 
-                Margin="10"
+                Margin="10,0,10,10"
                 Color="Transparent"
                 SegmentBorderThickness="0"
                 SegmentPadding="14"
@@ -79,19 +109,12 @@
 
                 <segmentControl:SfSegmentedControl.SelectionIndicatorSettings>
                     <segmentControl:SelectionIndicatorSettings
-                        Color="#f54e5e"
+                        Color="{DynamicResource PrimaryColor}"
                         Position="Border"
                         CornerRadius="20"/>
                 </segmentControl:SfSegmentedControl.SelectionIndicatorSettings>
 
             </segmentControl:SfSegmentedControl>
-
-            <!--TODO:Apply gradient color-->
-            <buttons:SfButton
-                Text="APPLY"
-                Clicked="ApplySettings"
-                Grid.Row="2"
-                Style="{StaticResource SfGradientButtonStyle}"/>
 
         </Grid>
     </Grid>

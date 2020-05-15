@@ -14,7 +14,7 @@
 
     <Grid
         Margin="0,16,0,0"
-        BackgroundColor="{DynamicResource Gray-White}"
+        BackgroundColor="{DynamicResource Gray-Bg}"
         ColumnSpacing="0"
         RowSpacing="0">
 
@@ -83,7 +83,8 @@
             FontSize="12"
             HorizontalOptions="Start"
             Text="{Binding OrderID, StringFormat='Order ID: {0}'}"
-            VerticalOptions="Center" />
+            VerticalOptions="Center"
+            TextColor="{DynamicResource Gray-700}"/>
 
     </Grid>
 </Grid>

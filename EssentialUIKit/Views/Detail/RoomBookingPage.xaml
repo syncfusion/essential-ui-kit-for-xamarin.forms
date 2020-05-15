@@ -16,7 +16,7 @@
              xmlns:maps="clr-namespace:Syncfusion.SfMaps.XForms;assembly=Syncfusion.SfMaps.XForms"
              x:Class="EssentialUIKit.Views.Detail.RoomBookingPage"  
              NavigationPage.HasNavigationBar="False" x:Name="RoomBooking"
-             BackgroundColor="{StaticResource Gray-White}">
+             BackgroundColor="{StaticResource Gray-Bg}">
 
     <ContentPage.BindingContext>
         <viewModel:RoomBookingPageViewModel />
@@ -46,18 +46,23 @@
                     VerticalOptions="Start">
                     <CarouselView.ItemTemplate>
                         <DataTemplate>
-                            <!--Image of the resort-->
-                            <Image
-                                  Aspect="AspectFill"
-                                  BackgroundColor="{DynamicResource Gray-200}"
-                                  HeightRequest="350">
-                                <Image.Source>
-                                    <UriImageSource
-                                        CacheValidity="14"
-                                        CachingEnabled="true"
-                                        Uri="{Binding ImagePath}" />
-                                </Image.Source>
-                            </Image>
+                            <Grid>
+                                
+                                <!--Image of the resort-->
+                                <Image Aspect="AspectFill"
+                                       BackgroundColor="{DynamicResource Gray-200}"
+                                       HeightRequest="350">
+                                    <Image.Source>
+                                        <UriImageSource CacheValidity="14"
+                                                        CachingEnabled="true"
+                                                        Uri="{Binding ImagePath}" />
+                                    </Image.Source>
+                                </Image>
+
+                                <!--  OverLay Effect  -->
+                                <Frame Opacity="0.25" BackgroundColor="{DynamicResource Gray-Black}" />
+                                
+                            </Grid>
                         </DataTemplate>
                     </CarouselView.ItemTemplate>
                 </CarouselView>
@@ -71,16 +76,16 @@
 
                 <ContentView>
                     <controls:CustomShadowFrame  
-                        Margin="16,12,16,16"
-                        CornerRadius="12"
-                        BackgroundColor="{DynamicResource Gray-White}"
-                        BorderColor="{DynamicResource Gray-200}"
-                        Padding="0,0,0,10"
-                        BorderWidth="2"
-                        HasShadow="True">
+                        Margin="16,12,16,16" 
+                        CornerRadius="12" Radius="12"
+                        BackgroundColor="{DynamicResource Gray-Bg}" BorderColor="{DynamicResource Gray-Bg}"
+                        Padding="4" HasShadow="True"
+                        BorderWidth="2">
+
                         <StackLayout Spacing="0">
 
                             <Grid Margin="16"
+                                BackgroundColor="{DynamicResource Gray-Bg}"
                                 ColumnSpacing="0"
                                 RowSpacing="0">
 
@@ -129,7 +134,8 @@
 
                                 <!--  favorite button  -->
                                 <buttons:SfButton x:Name="favouriteButton"           
-                                    BorderWidth="1" BackgroundColor="{DynamicResource Gray-White}"  BorderColor="{DynamicResource Gray-300}"
+                                    BorderWidth="1" BackgroundColor="{DynamicResource Gray-Bg}"
+                                                  BorderColor="{DynamicResource Gray-300}"
                                     HeightRequest="40" WidthRequest="40"
                                     Command="{Binding Path=BindingContext.FavouriteCommand, 
                                     Source={x:Reference favouriteButton}}"                                                     
@@ -158,9 +164,11 @@
                                              IsDropDownOpen="{Binding IsDropDownOpen, Mode=TwoWay}">
 
                                             <combobox:SfComboBox.DropDownHeaderView>
+            
                                                 <Grid Padding="2" HeightRequest="300">
                                                     <syncfusion:SfCalendar 
                                                     SelectionChangedCommand="{Binding OnSelectionChanged}"
+                                                    BackgroundColor="{DynamicResource GrayShadowColor}" 
                                                     SelectionMode="RangeSelection"  />
                                                 </Grid>
                                             </combobox:SfComboBox.DropDownHeaderView>
@@ -294,13 +302,13 @@
                                         <DataTemplate>
                                             <StackLayout Spacing="4" Orientation="Vertical" Margin="0">
 
-                                                <border:SfBorder  BorderWidth="0" BackgroundColor="{DynamicResource Gray-100}" 
+                                                <border:SfBorder  BorderWidth="0" BackgroundColor="{DynamicResource Gray-200}" 
                                                   HeightRequest="40" WidthRequest="40"                     
                                                     CornerRadius="20" 
                                                     HorizontalOptions="Center" VerticalOptions="Center">
                                                     <border:SfBorder.Content>
                                                         <Label  Text="{Binding Icon}" FontFamily="{StaticResource FontIcons}" VerticalOptions="Center"
-                                                                HorizontalOptions="Center" TextColor="{StaticResource Steel}"/>
+                                                                HorizontalOptions="Center" FontSize="20" TextColor="{StaticResource Steel}"/>
 
                                                     </border:SfBorder.Content>
                                                 </border:SfBorder>
@@ -317,10 +325,11 @@
                                         <DataTemplate>
                                             <StackLayout Spacing="4" Orientation="Vertical" Margin="0">
 
-                                                <buttons:SfButton  BorderWidth="0" BackgroundColor="{DynamicResource Gray-100}" 
+                                                <buttons:SfButton  BorderWidth="0" BackgroundColor="{DynamicResource Gray-200}" 
                                                     HeightRequest="40" WidthRequest="40" Text="{StaticResource Menu}" 
                                                     FontFamily="{StaticResource FontIcons}" TextColor="{StaticResource Steel}"               
-                                                    CornerRadius="20" HorizontalOptions="Center" VerticalOptions="Center">
+                                                    CornerRadius="20" HorizontalOptions="Center" VerticalOptions="Center"
+                                                    Command="{Binding MoreCommand}">
                                                 </buttons:SfButton>
 
                                                 <Label  TextColor="{DynamicResource Gray-700}" 
@@ -341,7 +350,7 @@
                                 <!--  Map for locating the location  -->
                                 <maps:SfMaps Margin="0,8"
                                    x:Name="Map" Grid.Row="9"
-                                   BackgroundColor="{DynamicResource Gray-White}"
+                                   BackgroundColor="{DynamicResource Gray-Bg}"
                                    HeightRequest="120"
                                    HorizontalOptions="FillAndExpand"
                                    VerticalOptions="FillAndExpand"
@@ -422,7 +431,7 @@
                             </Grid>
 
                             <!--  Rating and Reviews  -->
-                            <local:BookingFeedbackView
+                            <local:BookingFeedbackView  ParentBindingContext="{Binding Path=BindingContext, Source={x:Reference RoomBooking}}"
                                     IsVisible="{Binding IsReviewVisible, Converter={StaticResource VisibilityConverter}}" />
                             <Label  Grid.Row="12"
                                 FontFamily="{StaticResource Montserrat-SemiBold}"

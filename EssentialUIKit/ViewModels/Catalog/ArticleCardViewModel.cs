@@ -14,7 +14,7 @@ namespace EssentialUIKit.ViewModels.Catalog
     {
         #region Fields
 
-        private Command<object> itemTappedCommand;
+     
 
         #endregion
 
@@ -25,27 +25,21 @@ namespace EssentialUIKit.ViewModels.Catalog
         /// </summary>
         public ObservableCollection<Model> Articles { get; set; }
 
-        /// <summary>
-        /// Gets the command that will be executed when an item is selected.
-        /// </summary>
-        public Command<object> ItemTappedCommand
-        {
-            get
-            {
-                return this.itemTappedCommand ?? (this.itemTappedCommand = new Command<object>(this.NavigateToNextPage));
-            }
-        }
+       
 
         #endregion
 
         #region Constructor
-
+        /// <summary>
+        /// Initializes a new instance for the <see cref="ArticleCardViewModel" />
+        /// </summary>
         public ArticleCardViewModel()
         {
             
             this.BookmarkCommand = new Command(this.BookmarkButtonClicked);
             this.AddFavouriteCommand = new Command(this.FavouriteButtonClicked);
             this.ShareCommand = new Command(this.ShareButtonClicked);
+            this.ItemTappedCommand = new Command(this.NavigateToNextPage);
 
             this.Articles = new ObservableCollection<Model>()
             {
@@ -132,14 +126,18 @@ namespace EssentialUIKit.ViewModels.Catalog
             }
             else
             {
-                var button = obj as SfButton;
-                if (button != null)
+                var favouriteButton = obj as SfButton;
+                if (favouriteButton != null)
                 {
-                    button.Text = (button.Text == "\ue701") ? "\ue732" : "\ue701";
+                    favouriteButton.Text = (favouriteButton.Text == "\ue701") ? "\ue732" : "\ue701";
                 }
             }
         }
 
+        /// <summary>
+        /// Invoked when the bookmark button clicked
+        /// </summary>
+        /// <param name="obj"></param>
         public void BookmarkButtonClicked(object obj)
         {
             if (obj != null && (obj is Model))
@@ -148,14 +146,18 @@ namespace EssentialUIKit.ViewModels.Catalog
             }
             else
             {
-                var button = obj as SfButton;
-                if (button != null)
+                var bookmarkButton = obj as SfButton;
+                if (bookmarkButton != null)
                 {
-                    button.Text = (button.Text == "\ue72f") ? "\ue734" : "\ue72f";
+                    bookmarkButton.Text = (bookmarkButton.Text == "\ue72f") ? "\ue734" : "\ue72f";
                 }
             }
         }
 
+        /// <summary>
+        /// Invoked when the share button clicked
+        /// </summary>
+        /// <param name="obj"></param>
         private void ShareButtonClicked(object obj)
         {
             // Do Something.
@@ -178,6 +180,11 @@ namespace EssentialUIKit.ViewModels.Catalog
         /// Gets or sets the command is executed when the share button is clicked.
         /// </summary>
         public Command ShareCommand { get; set; }
+     
+        /// <summary>
+        /// Gets or sets the command is executed when the item  is clicked.
+        /// </summary>
+        public Command ItemTappedCommand { get; set; }
 
         #endregion
     }

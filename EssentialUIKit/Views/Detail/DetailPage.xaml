@@ -32,9 +32,9 @@
             <DataTemplate x:Key="PortraitTemplate">
                 <Image
                     Margin="3"
-                    Aspect="{OnIdiom Default=AspectFill,
+                    Aspect="{OnIdiom Default=AspectFit,
                                      Tablet=AspectFit}"
-                    BackgroundColor="{DynamicResource Gray-200}"
+                    BackgroundColor="{DynamicResource Gray-Bg}"
                     HorizontalOptions="Center"
                     VerticalOptions="Center">
                     <Image.Source>
@@ -87,7 +87,7 @@
                             x:Name="backButton"
                             Command="{Binding Path=BindingContext.BackButtonCommand, Source={x:Reference detailPage}}"
                             CommandParameter="{x:Reference backButton}"
-                            CornerRadius="4"
+                            CornerRadius="20"
                             Style="{StaticResource IconButtonStyle}"
                             Text="{StaticResource Back}" />
                     </controls:TitleView.LeadingView>
@@ -104,7 +104,7 @@
                             <badge:SfBadgeView.Content>
                                 <buttons:SfButton
                                     Command="{TemplateBinding BindingContext.CardItemCommand}"
-                                    CornerRadius="4"
+                                    CornerRadius="20"
                                     HorizontalOptions="End"
                                     Style="{StaticResource IconButtonStyle}"
                                     Text="{StaticResource Cart}" />
@@ -115,7 +115,7 @@
                                     BadgeAnimation="None"
                                     BadgeType="None"
                                     FontSize="10"
-                                    Stroke="{DynamicResource Gray-White}"
+                                    Stroke="{DynamicResource Gray-Bg}"
                                     StrokeWidth="1"
                                     Offset="-10,10" />
                             </badge:SfBadgeView.BadgeSettings>
@@ -137,7 +137,7 @@
                                  Desktop='24,24,24,0'}"
                 Padding="{OnIdiom Default=0,
                                   Desktop=16}"
-                BackgroundColor="{OnIdiom Desktop={DynamicResource Gray-White},
+                BackgroundColor="{OnIdiom Desktop={DynamicResource Gray-Bg},
                                           Converter={StaticResource DynamicResourceToColorConverter}}"
                 ColumnSpacing="{OnIdiom Default=0,
                                         Desktop=16}"
@@ -156,7 +156,7 @@
                 <!--  Product images  -->
                 <rotator:SfRotator
                     x:Name="Rotator"
-                    BackgroundColor="{OnIdiom Default={DynamicResource Gray-White},
+                    BackgroundColor="{OnIdiom Default={DynamicResource Gray-Bg},
                                               Tablet={DynamicResource Gray-100},
                                               Converter={StaticResource DynamicResourceToColorConverter}}"
                     DotPlacement="OutSide"
@@ -177,7 +177,7 @@
                                           Desktop=1}"
                     ControlTemplate="{OnIdiom Desktop={StaticResource DesktopDetailTemplate}}">
                     <Grid
-                        BackgroundColor="{DynamicResource Gray-White}"
+                        BackgroundColor="{DynamicResource Gray-Bg}"
                         ColumnSpacing="0"
                         RowSpacing="0">
 
@@ -308,18 +308,14 @@
                             Command="{Binding BindingContext.AddFavouriteCommand, Source={x:Reference detailPage}}"
                             CommandParameter="{Binding .}"
                             CornerRadius="20"
+                            WidthRequest="40"
                             HeightRequest="40"
                             HorizontalOptions="End"
-                            Style="{StaticResource IconBorderStyle}"
-                            VerticalOptions="Center">
-
-                            <Label
-                                Style="{StaticResource IconLabelStyle}"
-                                Text="{Binding ProductDetail.IsFavourite, Converter={StaticResource BoolToStringConverter}, ConverterParameter=1}"
-                                TextColor="{Binding ProductDetail.IsFavourite, Converter={x:StaticResource BoolToColorConverter}, ConverterParameter=4}" />
-
-                        </buttons:SfButton>
-
+                            Style="{StaticResource IconButtonStyle}"
+                            VerticalOptions="Center"
+                            Text="{Binding ProductDetail.IsFavourite, Converter={StaticResource BoolToStringConverter}, ConverterParameter=1}"
+                            TextColor="{Binding ProductDetail.IsFavourite, Converter={x:StaticResource BoolToColorConverter}, ConverterParameter=4}" />
+                        
                         <!--  Share Icon  -->
                         <buttons:SfButton
                             Grid.Row="2"
@@ -351,7 +347,7 @@
                                                     Phone=16}"
                             Style="{StaticResource BoxViewStyle}"
                             Color="{OnIdiom Default={DynamicResource Gray-100},
-                                            Desktop={DynamicResource Gray-White},
+                                            Desktop={DynamicResource Gray-Bg},
                                             Converter={StaticResource DynamicResourceToColorConverter}}" />
 
                         <!--  Size Label  -->
@@ -377,6 +373,7 @@
                             Margin="{OnIdiom Default='0,0,0,16',
                                              Desktop='0,0,0,8'}"
                             ItemsSource="{Binding ProductDetail.SizeVariants}"
+                            SelectionTextColor="{DynamicResource Gray-White}"
                             Style="{StaticResource SfSegmentedControlStyle}">
                             <buttons:SfSegmentedControl.Behaviors>
                                 <behavior:SegmentedControlCommandBehavior Command="{Binding BindingContext.VariantCommand, Source={x:Reference detailPage}}" />
@@ -391,7 +388,7 @@
                                                     Default=0}"
                             Style="{StaticResource BoxViewStyle}"
                             Color="{OnIdiom Default={DynamicResource Gray-100},
-                                            Desktop={DynamicResource Gray-White},
+                                            Desktop={DynamicResource Gray-Bg},
                                             Converter={StaticResource DynamicResourceToColorConverter}}" />
 
                         <StackLayout
@@ -402,7 +399,7 @@
                             Grid.ColumnSpan="{OnIdiom Default=4,
                                                       Phone=5}"
                             Padding="0,16"
-                            BackgroundColor="{OnIdiom Default={DynamicResource Gray-White},
+                            BackgroundColor="{OnIdiom Default={DynamicResource Gray-Bg},
                                                       Phone={DynamicResource Gray-100},
                                                       Converter={StaticResource DynamicResourceToColorConverter}}"
                             Orientation="Horizontal"
@@ -410,16 +407,19 @@
 
                             <!--  Buy Now Button  -->
                             <buttons:SfButton
-                                BackgroundColor="{DynamicResource Gray-White}"
+                                BackgroundColor="{DynamicResource PrimaryColor}"
                                 BorderColor="{DynamicResource PrimaryColor}"
-                                BorderWidth="1"
+                                FontSize="16"
+                                FontFamily="{StaticResource Montserrat-SemiBold}"
+                                Style="{StaticResource RoundButtonStyle}"
+                                BorderWidth="0"
                                 CornerRadius="22"
                                 HeightRequest="44"
                                 HorizontalOptions="Center"
                                 IsVisible="{OnIdiom Default=True,
                                                     Phone=False}"
-                                Text="Buy Now"
-                                TextColor="{DynamicResource PrimaryColor}"
+                                Text="BUY NOW"
+                                TextColor="{DynamicResource Gray-White}"
                                 VerticalOptions="Center"
                                 WidthRequest="200" />
 
@@ -429,7 +429,7 @@
                                                  Phone='40,0'}"
                                 BackgroundColor="{DynamicResource PrimaryColor}"
                                 BorderColor="{DynamicResource PrimaryColor}"
-                                BorderWidth="1"
+                                BorderWidth="0"
                                 Command="{Binding AddToCartCommand}"
                                 CommandParameter="{Binding .}"
                                 FontFamily="{StaticResource Montserrat-SemiBold}"
@@ -476,7 +476,7 @@
                                                     Default=16}"
                             Style="{StaticResource BoxViewStyle}"
                             Color="{OnIdiom Default={DynamicResource Gray-100},
-                                            Desktop={DynamicResource Gray-White},
+                                            Desktop={DynamicResource Gray-Bg},
                                             Converter={StaticResource DynamicResourceToColorConverter}}" />
 
                         <!--  Rating and Reviews  -->

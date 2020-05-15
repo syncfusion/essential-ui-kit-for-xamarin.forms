@@ -45,28 +45,28 @@ namespace EssentialUIKit.ViewModels.OnBoarding
                     ImagePath = "ReSchedule.png",
                     Header = "RESCHEDULE",
                     Content = "Drag and drop meetings in order to reschedule them easily.",
-                    RotatorItem = new WalkthroughItemPage()
+                    RotatorView = new WalkthroughItemPage()
                 },
                 new Boarding()
                 {
                     ImagePath = "ViewMode.png",
                     Header = "VIEW MODE",
                     Content = "Display your meetings using four configurable view modes",
-                    RotatorItem = new WalkthroughItemPage()
+                    RotatorView = new WalkthroughItemPage()
                 },
                 new Boarding()
                 {
                     ImagePath = "TimeZone.png",
                     Header = "TIME ZONE",
                     Content = "Display meetings created for different time zones.",
-                    RotatorItem = new WalkthroughItemPage()
+                    RotatorView = new WalkthroughItemPage()
                 }
             };
 
             // Set bindingcontext to content view.
             foreach (var boarding in this.Boardings)
             {
-                boarding.RotatorItem.BindingContext = boarding;
+                boarding.RotatorView.BindingContext = boarding;
             }
         }
 

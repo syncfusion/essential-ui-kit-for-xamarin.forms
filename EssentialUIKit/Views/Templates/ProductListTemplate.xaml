@@ -6,6 +6,7 @@
     xmlns:converter="clr-namespace:EssentialUIKit.Converters"
     xmlns:helper="clr-namespace:EssentialUIKit.Helpers"
     xmlns:rating="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
     x:Name="productListTemplate">
 
     <Grid.Resources>
@@ -35,7 +36,7 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="{OnIdiom Default=Auto, Desktop=0.2*}" />
             <ColumnDefinition Width="{OnIdiom Default=*, Desktop=*}" />
-            <ColumnDefinition Width="32" />
+            <ColumnDefinition Width="36" />
         </Grid.ColumnDefinitions>
 
         <!--  Product Image  -->
@@ -68,16 +69,17 @@
             TextColor="{DynamicResource Gray-900}" />
 
         <!--  Favourite Icon  -->
-        <Button
-            Grid.Column="2"
+        <buttons:SfButton
+            Grid.Column="2" 
             Margin="0,0,0,8"
-            Padding="0"
+            Padding="0" 
             helper:RTLHelper.Margin="{OnIdiom Phone='0,0,0,0',
                                               Tablet='0,0,4,0',
                                               Desktop='0,0,8,0'}"
             Command="{Binding ParentBindingContext.AddFavouriteCommand, Source={x:Reference productListTemplate}}"
             CommandParameter="{Binding}"
-            Style="{StaticResource FavouriteButtonStyle}"
+            CornerRadius="20" 
+            Style="{StaticResource NavigationBarButtonStyle}"
             Text="{Binding IsFavourite, Converter={StaticResource boolToStringConverter}, ConverterParameter=1}"
             TextColor="{Binding IsFavourite, Converter={x:StaticResource boolToColorConverter}, ConverterParameter=4}" />
 

@@ -20,7 +20,7 @@
 
     <Grid
         Margin="0,16,0,0"
-        BackgroundColor="{DynamicResource Gray-White}"
+        BackgroundColor="{DynamicResource Gray-Bg}"
         ColumnSpacing="0"
         RowSpacing="0">
 
@@ -180,7 +180,6 @@
                 CommandParameter="{Binding .}"
                 CornerRadius="4"
                 HeightRequest="32"
-                WidthRequest="115"
                 HorizontalOptions="Start"
                 HorizontalTextAlignment="Center"
                 Style="{StaticResource SfButtonStyle}"

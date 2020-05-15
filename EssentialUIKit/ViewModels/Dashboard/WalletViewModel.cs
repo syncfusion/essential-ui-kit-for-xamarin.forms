@@ -12,7 +12,7 @@ namespace EssentialUIKit.ViewModels.Dashboard
     /// ViewModel for my wallet page.
     /// </summary>
     [Preserve(AllMembers = true)]
-    public class MyWalletViewModel : BaseViewModel
+    public class WalletViewModel : BaseViewModel
     {
         #region Fields
 
@@ -36,14 +36,16 @@ namespace EssentialUIKit.ViewModels.Dashboard
 
         private Command<object> itemTappedCommand;
 
+        private Command<object> viewAllCommand;
+
         #endregion
 
         #region Constructor
 
         /// <summary>
-        /// Initializes a new instance for the <see cref="MyWalletViewModel" /> class.
+        /// Initializes a new instance for the <see cref="WalletViewModel" /> class.
         /// </summary>
-        public MyWalletViewModel()
+        public WalletViewModel()
         {
             WeekData();
             MonthData();
@@ -141,6 +143,17 @@ namespace EssentialUIKit.ViewModels.Dashboard
             get
             {
                 return this.itemTappedCommand ?? (this.itemTappedCommand = new Command<object>(this.NavigateToNextPage));
+            }
+        }
+
+        /// <summary>
+        /// Gets the command that will be executed when an view all is selected.
+        /// </summary>
+        public Command<object> ViewAllCommand
+        {
+            get
+            {
+                return this.viewAllCommand ?? (this.viewAllCommand = new Command<object>(this.ViewAllClicked));
             }
         }
 
@@ -564,6 +577,15 @@ namespace EssentialUIKit.ViewModels.Dashboard
         /// </summary>
         /// <param name="selectedItem">Selected item from the list view.</param>
         private void NavigateToNextPage(object selectedItem)
+        {
+            // Do something
+        }
+
+        /// <summary>
+        /// Invoked when an view all button is selected from the my wallet page.
+        /// </summary>
+        /// <param name="selectedItem">Selected item from the list view.</param>
+        private void ViewAllClicked(object selectedItem)
         {
             // Do something
         }

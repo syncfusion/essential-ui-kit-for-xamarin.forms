@@ -16,7 +16,7 @@ namespace EssentialUIKit.Models.History
 
         private string transactionDescription;
 
-        private string image;
+        private string customerImage;
 
         private DateTime date;
 
@@ -74,17 +74,17 @@ namespace EssentialUIKit.Models.History
         /// <summary>
         /// Gets or sets the image of an user.
         /// </summary>
-        public string Image
+        public string CustomerImage
         {
             get
             {
-                return this.image;
+                return this.customerImage;
             }
 
             set
             {
-                this.image = value;
-                this.OnPropertyChanged(nameof(Image));
+                this.customerImage = value;
+                this.OnPropertyChanged(nameof(CustomerImage));
             }
         }
 

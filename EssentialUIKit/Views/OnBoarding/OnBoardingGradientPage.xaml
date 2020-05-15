@@ -51,7 +51,7 @@
                 HorizontalOptions="End"
                 Opacity="{Binding IsSkipButtonVisible}"
                 Text="Skip"
-                TextColor="{x:StaticResource Gray-White}"
+                TextColor="{x:StaticResource Gray-Bg}"
                 VerticalOptions="StartAndExpand"
                 WidthRequest="80" />
 

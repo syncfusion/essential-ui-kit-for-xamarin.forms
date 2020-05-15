@@ -10,7 +10,8 @@
     xmlns:customControls="clr-namespace:EssentialUIKit.Controls"
     xmlns:maps="clr-namespace:Syncfusion.SfMaps.XForms;assembly=Syncfusion.SfMaps.XForms"
     xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.ContactUs"
-    BackgroundColor="{DynamicResource Gray-White}"
+    xmlns:local="clr-namespace:EssentialUIKit.Views.Forms"
+    BackgroundColor="{DynamicResource Gray-Bg}"
     NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Resources>
@@ -39,7 +40,7 @@
                 <!--  Map for locating the location  -->
                 <maps:SfMaps
                     x:Name="Map"
-                    BackgroundColor="{DynamicResource Gray-White}"
+                    BackgroundColor="{DynamicResource Gray-Bg}"
                     HeightRequest="315"
                     HorizontalOptions="FillAndExpand"
                     VerticalOptions="FillAndExpand"
@@ -59,8 +60,8 @@
                                         <Frame
                                             Margin="0"
                                             Padding="16,0,9,0"
-                                            BackgroundColor="{DynamicResource Gray-White}"
-                                            BorderColor="{DynamicResource Gray-White}"
+                                            BackgroundColor="{DynamicResource Gray-Bg}"
+                                            BorderColor="{DynamicResource Gray-Bg}"
                                             CornerRadius="5"
                                             HasShadow="True"
                                             HorizontalOptions="Center"
@@ -121,8 +122,8 @@
                 <Frame
                     x:Name="MainFrame"
                     Padding="0"
-                    BackgroundColor="{DynamicResource Gray-White}"
-                    BorderColor="{DynamicResource Gray-White}"
+                    BackgroundColor="{DynamicResource Gray-Bg}"
+                    BorderColor="{DynamicResource Gray-Bg}"
                     HorizontalOptions="FillAndExpand">
 
                     <StackLayout
@@ -147,62 +148,32 @@
                             TextColor="{DynamicResource Gray-900}"
                             VerticalTextAlignment="Center" />
 
-                        <border:SfBorder Style="{StaticResource SfBorderStyle}">
+                        <border:SfBorder Style="{StaticResource SfBorderStyle}" Padding="12,0"
+                                         BorderColor="{Binding Source={x:Reference name}, Path=IsFocused, Converter={StaticResource BooleanToColorConverter}, ConverterParameter=3}">
                             <!--  Entry to get name from user  -->
-                            <customControls:BorderlessEntry
-                                HeightRequest="40"
+                            <customControls:BorderlessEntry x:Name="name"
+                                HeightRequest="40" 
                                 Placeholder="Name"
-                                Style="{StaticResource BorderlessEntryStyle}"
+                                PlaceholderColor="{DynamicResource Gray-700}"
+                                TextColor="{DynamicResource Gray-900}"
+                                Style="{StaticResource EntryTextStyle}"
                                 VerticalOptions="Center" />
                         </border:SfBorder>
 
-                        <border:SfBorder
-                            x:Name="EmailBorder"
-                            BorderColor="{Binding Path=IsVisible, Source={x:Reference WarningImage}, Converter={x:StaticResource BooleanToColorConverter}, ConverterParameter=2}"
-                            Style="{x:StaticResource SfBorderStyle}">
-                            <StackLayout Orientation="Horizontal" Spacing="0">
+                        <local:ContactEmailEntry />
 
-                                <!--  Entry to get email id from user  -->
-                                <customControls:BorderlessEntry
-                                    x:Name="EmailEntry"
-                                    HeightRequest="40"
-                                    HorizontalOptions="FillAndExpand"
-                                    Placeholder="Email" Keyboard="Email"
-                                    Style="{StaticResource BorderlessEntryStyle}"
-                                    VerticalOptions="CenterAndExpand" />
-
-                                <Label
-                                    x:Name="WarningImage"
-                                    Margin="0,0,5,0"
-                                    FontFamily="{StaticResource FontIcons}"
-                                    FontSize="{OnIdiom Desktop=14,
-                                                       Tablet=14,
-                                                       Phone=12}"
-                                    HorizontalOptions="End"
-                                    IsVisible="{Binding Path=IsVisible, Source={x:Reference ValidationLabel}}"
-                                    Text="&#xe707;"
-                                    TextColor="{DynamicResource Red}"
-                                    VerticalOptions="CenterAndExpand" />
-                            </StackLayout>
-                        </border:SfBorder>
-
-                        <Label
-                            x:Name="ValidationLabel"
-                            Margin="0,-10,0,0"
-                            FontSize="12"
-                            HorizontalOptions="FillAndExpand"
-                            IsVisible="{Binding Path=IsFocused, Source={x:Reference EmailEntry}, Converter={StaticResource StringToBooleanConverter}, ConverterParameter={x:Reference EmailEntry}}"
-                            Text="Please enter the valid e-mail"
-                            TextColor="{DynamicResource Red}" />
-
-                        <border:SfBorder HeightRequest="120" Style="{StaticResource SfBorderStyle}">
+                        <border:SfBorder HeightRequest="120" Style="{StaticResource SfBorderStyle}"
+                                         BorderColor="{Binding Source={x:Reference message}, Path=IsFocused, Converter={StaticResource BooleanToColorConverter}, ConverterParameter=3}">
                             <!--  Editor to get message from user  -->
                             <customControls:BorderlessEditor
+                                x:Name="message"
                                 HeightRequest="120"
                                 Placeholder="Message"
+                                FontSize="16"
+                                FontFamily="{StaticResource Montserrat-Regular}"
                                 PlaceholderColor="{DynamicResource Gray-700}"
-                                TextColor="{DynamicResource Gray-900}">
-                                <customControls:BorderlessEditor.Margin>
+                                TextColor="{DynamicResource Gray-900}"
+                                BackgroundColor="{DynamicResource Gray-Bg}">                                <customControls:BorderlessEditor.Margin>
                                     <OnPlatform
                                         x:TypeArguments="Thickness"
                                         Android="0,0,5,0"

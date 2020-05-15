@@ -26,9 +26,9 @@
     <ContentPage.Content>
         <ScrollView>
 
-            <StackLayout BackgroundColor="{DynamicResource Gray-White}" Spacing="0">
+            <StackLayout BackgroundColor="{DynamicResource Gray-Bg}" Spacing="0">
 
-                <Grid>
+                <Grid VerticalOptions="FillAndExpand">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
@@ -46,7 +46,7 @@
 
                     <!--  Edit  -->
                     <button:SfButton
-                        Grid.Row="0"
+                        Grid.Row="0" 
                         Grid.Column="2"
                         Margin="10"
                         Padding="0"
@@ -64,10 +64,10 @@
                     <!--  Profile name and status with border  -->
                     <border:SfBorder
                         x:Name="ProfileNameLabel"
-                        Grid.Row="0"
+                        Grid.Row="0" Margin="0,0,0,-1"
                         Grid.ColumnSpan="3"
                         helper:RTLHelper.CornerRadius="{OnIdiom Default='32,32,0,0'}"
-                        BackgroundColor="{DynamicResource Gray-White}"
+                        BackgroundColor="{DynamicResource Gray-Bg}"
                         BorderWidth="0"
                         VerticalOptions="End">
                         <border:SfBorder.Content>
@@ -118,7 +118,7 @@
                                 <!--  Status  -->
                                 <Label
                                     Grid.Row="1"
-                                    Grid.Column="1"
+                                    Grid.Column="1" 
                                     Margin="{OnPlatform Default='0',
                                                         iOS='0,6,0,0'}"
                                     FontSize="12"
@@ -206,7 +206,7 @@
 
                     <button:SfButton
                         Padding="0"
-                        BackgroundColor="{DynamicResource Gray-White}"
+                        BackgroundColor="{DynamicResource Gray-Bg}"
                         Command="{Binding ViewAllCommand}"
                         CornerRadius="4"
                         FontFamily="{StaticResource Montserrat-SemiBold}"

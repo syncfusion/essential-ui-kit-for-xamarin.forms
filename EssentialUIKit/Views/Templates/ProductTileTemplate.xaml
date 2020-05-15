@@ -5,6 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:converter="clr-namespace:EssentialUIKit.Converters"
     xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
     x:Name="productTileTemplate">
 
     <Grid.Resources>
@@ -109,15 +110,15 @@
         </StackLayout>
 
         <!--  Favourite Icon  -->
-        <Button
+        <buttons:SfButton
             Grid.Row="2"
             Grid.Column="1"
             Margin="0,0,0,8"
-            Padding="0"
+            Padding="0" Style="{StaticResource NavigationBarButtonStyle}"
             Command="{Binding ParentBindingContext.AddFavouriteCommand, Source={x:Reference productTileTemplate}}"
             CommandParameter="{Binding}"
-            FontSize="18"
-            Style="{StaticResource FavouriteButtonStyle}"
+            FontSize="16" WidthRequest="40"
+            CornerRadius="30"
             Text="{Binding IsFavourite, Converter={StaticResource boolToStringConverter}, ConverterParameter=1}"
             TextColor="{Binding IsFavourite, Converter={x:StaticResource boolToColorConverter}, ConverterParameter=4}" />
 

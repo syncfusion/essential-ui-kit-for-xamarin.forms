@@ -5,15 +5,15 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
-             xmlns:cards="clr-namespace:Syncfusion.XForms.Cards;assembly=Syncfusion.Cards.XForms"
              xmlns:controls="clr-namespace:EssentialUIKit.Controls"
              xmlns:converter="clr-namespace:EssentialUIKit.Converters"
              xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
              xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Catalog"
              xmlns:rotator="clr-namespace:Syncfusion.SfRotator.XForms;assembly=Syncfusion.SfRotator.XForms"
+             xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
              x:Class="EssentialUIKit.Views.Catalog.NavigationTravelPage"
              x:Name="navigationTravelPage"
-             BackgroundColor="{DynamicResource Gray-White}"
+             BackgroundColor="{DynamicResource Gray-Bg}"
              NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Resources>
@@ -41,7 +41,7 @@
                                       HorizontalOptions="Start"
                                       VerticalOptions="Center"
                                       Command="{Binding BackButtonCommand}"
-                                      CornerRadius="4"
+                                      CornerRadius="20"
                                       Style="{StaticResource IconButtonStyle}"
                                       Text="{StaticResource Back}" />
 
@@ -54,11 +54,11 @@
                            VerticalOptions="Center" />
 
                 </Grid>
-
-
-
-                <rotator:SfRotator BackgroundColor="Transparent"
-                                   DotsBorderColor="Transparent" 
+                
+                <!-- Rotator for travel places -->
+                <rotator:SfRotator  x:Name="sfRotator"
+                                   BackgroundColor="Transparent"
+                                   DotsBorderColor="Transparent"
                                    UnselectedDotColor="{DynamicResource Gray-200}"
                                    SelectedDotColor="{DynamicResource PrimaryColor}" 
                                    ItemsSource="{Binding TravelPlaces}" 
@@ -67,16 +67,16 @@
                                    NavigationStripPosition="Bottom"
                                    DotPlacement="Default"
                                    HeightRequest="525"
-                                   Margin="8, 0">
+                                   Margin="8, 0" >
                     <rotator:SfRotator.ItemTemplate>
                         <DataTemplate>
                             <StackLayout Spacing="0">
-                                <controls:CustomShadowFrame x:Name="Rotator" BackgroundColor="{DynamicResource Gray-White}" 
-                                                        BorderColor="{DynamicResource Gray-White}" BorderWidth="1" 
-                                                        CornerRadius="4" HasShadow="True" Margin="4" Padding="0">
-
-                                    <Grid RowSpacing="0">
-
+                                <controls:CustomShadowFrame x:Name="Rotator" BackgroundColor="{DynamicResource GrayShadowColor}" Margin="4" 
+                                                            BorderWidth="1" BorderColor="{DynamicResource GrayShadowColor}" Padding="0" 
+                                                            CornerRadius="4" Radius="4" HasShadow="True">
+                                   
+                                    <border:SfBorder BorderWidth="0" BorderColor="Transparent" CornerRadius="4">
+                                        <Grid x:Name="grid" RowSpacing="0">
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="Auto"/>
                                             <RowDefinition Height="Auto"/>
@@ -96,29 +96,32 @@
 
                                         <!--Travel place-->
                                         <Label Grid.Row="1" 
-                                           Margin="16,16,16,4"
-                                           Text="{Binding Place}"
-                                           TextColor="{DynamicResource Gray-900}"
-                                           FontSize="16"
-                                           FontFamily="{DynamicResource Montserrat-SemiBold}"
-                                           LineHeight="{OnPlatform Android=1.5, Default=-1}" />
+                                               Margin="16,16,16,4"
+                                               Text="{Binding Place}"
+                                               TextColor="{DynamicResource Gray-900}"
+                                               FontSize="16"
+                                               FontFamily="{DynamicResource Montserrat-SemiBold}"
+                                               LineHeight="{OnPlatform Android=1.5, Default=-1}" />
 
                                         <!--Details of travel place-->
                                         <Label Grid.Row="2" 
-                                           Margin="16,0,16,16"
-                                           Text="{Binding Details}"
-                                           TextColor="{DynamicResource Gray-700}"
-                                           FontSize="12"
-                                           FontFamily="{DynamicResource Montserrat-Medium}"
-                                           LineBreakMode="TailTruncation"
-                                           MaxLines="2"
-                                           LineHeight="{OnPlatform Android=1.2, Default=-1}" />
+                                               Margin="16,0,16,16"
+                                               Text="{Binding Details}"
+                                               TextColor="{DynamicResource Gray-700}"
+                                               FontSize="12"
+                                               FontFamily="{DynamicResource Montserrat-Medium}"
+                                               LineBreakMode="TailTruncation"
+                                               MaxLines="2"
+                                               LineHeight="{OnPlatform Android=1.2, Default=-1}" />
 
-                                        <Grid.GestureRecognizers>
-                                            <TapGestureRecognizer Command="{Binding Path=BindingContext.TravelPlacesCommand, Source={x:Reference Rotator}}" CommandParameter="{Binding .}" />
-                                        </Grid.GestureRecognizers>
-                                    </Grid>
+                                            <Grid.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding Path=BindingContext.TravelPlacesCommand, Source={x:Reference sfRotator}}" CommandParameter="{Binding BindingContext, Source={x:Reference grid}}" />
+                                            </Grid.GestureRecognizers>
+                                        </Grid>
+                                    </border:SfBorder>
+                               
                                 </controls:CustomShadowFrame>
+
                             </StackLayout>
                         </DataTemplate>
                     </rotator:SfRotator.ItemTemplate>
@@ -128,7 +131,8 @@
                     <Label Text="TOP DESTINATIONS" Style="{StaticResource HeaderLabelStyle}" HorizontalOptions="Start" VerticalOptions="Center" />
                     <buttons:SfButton Text="VIEW ALL" BackgroundColor="Transparent" FontSize="12" CornerRadius="4"
                                       FontFamily="{DynamicResource Montserrat-SemiBold}" VerticalOptions="StartAndExpand"
-                                      TextColor="{StaticResource Link}" HorizontalOptions="End" />
+                                      TextColor="{StaticResource Link}" HorizontalOptions="End" 
+                                      Command="{Binding ViewAllCommand}"/>
                 </Grid>
 
                 <listView:SfListView Margin="8,0,0,0"
@@ -145,75 +149,87 @@
 
                     <listView:SfListView.ItemTemplate>
                         <DataTemplate>
-                            <controls:CustomShadowFrame Margin="8,0,8,35"
-                                                        Padding="0"
-                                                        BackgroundColor="{DynamicResource Gray-White}"
-                                                        BorderColor="{DynamicResource Gray-White}"
-                                                        CornerRadius="4"
-                                                        HasShadow="True"
-                                                        WidthRequest="230"
-                                                        HeightRequest="276">
+                            <controls:CustomShadowFrame Margin="8,0,8,35" BackgroundColor="{DynamicResource GrayShadowColor}" 
+                                                        BorderWidth="1" BorderColor="{DynamicResource GrayShadowColor}" Padding="0" HasShadow="True"
+                                                        CornerRadius="4" Radius="4" WidthRequest="230" HeightRequest="276">
 
-                                <Grid RowSpacing="0">
+                                <border:SfBorder BorderWidth="0" BorderColor="Transparent" CornerRadius="4">
+                                    <Grid RowSpacing="0">
 
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                    </Grid.RowDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
 
-                                    <!--  Place image  -->
-                                    <Image Margin="0,0,0,16"
-                                           Aspect="AspectFill"
-                                           BackgroundColor="{DynamicResource Gray-White}"
-                                           HeightRequest="150"
-                                           HorizontalOptions="FillAndExpand"
-                                           VerticalOptions="Start"
-                                           Source="{Binding ImagePath}" />
+                                        <!--  Place image  -->
+                                        <Image Margin="0,0,0,16"
+                                               Aspect="AspectFill"
+                                               BackgroundColor="{DynamicResource Gray-Bg}"
+                                               HeightRequest="150"
+                                               HorizontalOptions="FillAndExpand"
+                                               VerticalOptions="Start"
+                                               Source="{Binding ImagePath}" />
 
-                                    <buttons:SfButton Margin="0,2,2,0"
-                                                      Style="{StaticResource FavouriteButton}"
-                                                      Command="{Binding BindingContext.AddFavouriteCommand, Source={x:Reference navigationTravelPage}}"
-                                                      CommandParameter="{Binding}"
-                                                      Text="{Binding IsFavourite, Converter={StaticResource boolToStringConverter}, ConverterParameter=1}"
-                                                      TextColor="{Binding IsFavourite, Converter={x:StaticResource boolToColorConverter}, ConverterParameter=8}" />
+                                        <!--  OverLay Effect  -->
+                                        <Frame Opacity="0.35" BackgroundColor="{DynamicResource Gray-Black}" Margin="0,0,0,16"/>
 
-                                    <!--  Place name  -->
-                                    <Label Grid.Row="1" 
-                                           Margin="16,0,16,4"
-                                           FontFamily="{StaticResource Montserrat-SemiBold}"
-                                           FontSize="16"
-                                           HorizontalOptions="StartAndExpand"
-                                           LineHeight="{OnPlatform Android=1.5, Default=-1}"
-                                           Text="{Binding Place}"
-                                           TextColor="{DynamicResource Gray-900}" />
+                                        <!--  Favourite Icon  -->
+                                        <buttons:SfButton Margin="0,2,2,0"
+                                                          Style="{StaticResource FavouriteButton}" CornerRadius="20"
+                                                          Command="{Binding BindingContext.AddFavouriteCommand, Source={x:Reference navigationTravelPage}}"
+                                                          CommandParameter="{Binding}"
+                                                          Text="{Binding IsFavourite, Converter={StaticResource boolToStringConverter}, ConverterParameter=1}"
+                                                          TextColor="{Binding IsFavourite, Converter={x:StaticResource boolToColorConverter}, ConverterParameter=8}" />
 
-                                    <!--  Place Details  -->
-                                    <Label Grid.Row="2" 
-                                           Margin="16,0,16,8"
-                                           FontFamily="{StaticResource Montserrat-Medium}"
-                                           FontSize="12"
-                                           HorizontalOptions="StartAndExpand"
-                                           LineHeight="{OnPlatform Android=1.5, Default=-1}"
-                                           LineBreakMode="TailTruncation"
-                                           MaxLines="2"
-                                           Text="{Binding Details}"
-                                           TextColor="{DynamicResource Gray-700}" />
+                                        <!--  Place name  -->
+                                        <Label Grid.Row="1" 
+                                               Margin="16,0,16,4"
+                                               FontFamily="{StaticResource Montserrat-SemiBold}"
+                                               FontSize="16"
+                                               HorizontalOptions="StartAndExpand"
+                                               LineHeight="{OnPlatform Android=1.5, Default=-1}"
+                                               Text="{Binding Place}"
+                                               TextColor="{DynamicResource Gray-900}" />
 
-                                    <!-- Right arrow icon -->
-                                    <buttons:SfButton Grid.Row="3" 
-                                                      Margin="0,0,5,5"
-                                                      BackgroundColor="Transparent"
-                                                      TextColor="{DynamicResource Gray-600}"
-                                                      CornerRadius="4"
-                                                      FontSize="20" 
-                                                      FontFamily="{StaticResource FontIcons}"
-                                                      Text="{StaticResource ArrowRight}"
-                                                      HorizontalOptions="End">
-                                    </buttons:SfButton>
+                                        <!--  Place Details  -->
+                                        <Label Grid.Row="2" 
+                                               Margin="16,0,16,8"
+                                               FontFamily="{StaticResource Montserrat-Medium}"
+                                               FontSize="12"
+                                               HorizontalOptions="StartAndExpand"
+                                               LineHeight="{OnPlatform Android=1.5, Default=-1}"
+                                               LineBreakMode="TailTruncation"
+                                               MaxLines="2"
+                                               Text="{Binding Details}"
+                                               TextColor="{DynamicResource Gray-700}" />
 
-                                </Grid>
+                                        <!--  Price Details  -->
+                                        <Label Grid.Row="3" 
+                                               Margin="16,0,0,5"
+                                               FontFamily="{StaticResource Montserrat-SemiBold}"
+                                               FontSize="16"
+                                               HorizontalOptions="StartAndExpand"
+                                               LineHeight="{OnPlatform Android=1.5, Default=-1}"
+                                               Text="{Binding Price}"
+                                               TextColor="{DynamicResource PrimaryColor}" />
+
+                                        <!-- Right arrow icon -->
+                                        <buttons:SfButton Grid.Row="3" 
+                                                          Margin="0,0,5,5"
+                                                          BackgroundColor="Transparent"
+                                                          TextColor="{DynamicResource Gray-600}"
+                                                          CornerRadius="4"
+                                                          FontSize="20" 
+                                                          FontFamily="{StaticResource FontIcons}"
+                                                          Text="{StaticResource ArrowRight}"
+                                                          HorizontalOptions="End">
+                                        </buttons:SfButton>
+                                        
+                                    </Grid>
+                                </border:SfBorder>
+                           
                             </controls:CustomShadowFrame>
                         </DataTemplate>
                     </listView:SfListView.ItemTemplate>
@@ -223,7 +239,7 @@
                     <Label Text="BEST PLACES" Style="{StaticResource HeaderLabelStyle}" HorizontalOptions="Start" VerticalOptions="Center" />
                     <buttons:SfButton Text="VIEW ALL" BackgroundColor="Transparent" FontSize="12" CornerRadius="4"
                                       FontFamily="{DynamicResource Montserrat-SemiBold}"
-                                      TextColor="{StaticResource Link}" HorizontalOptions="End" />
+                                      TextColor="{StaticResource Link}" HorizontalOptions="End" Command="{Binding ViewAllCommand}"/>
                 </Grid>
 
                 <listView:SfListView Margin="8,0,0,0"
@@ -240,23 +256,22 @@
 
                     <listView:SfListView.ItemTemplate>
                         <DataTemplate>
-                            <controls:CustomShadowFrame Margin="8,0,8,24"
-                                                        Padding="0"
-                                                        BackgroundColor="{DynamicResource Gray-White}"
-                                                        BorderColor="{DynamicResource Gray-White}"
-                                                        CornerRadius="4"
-                                                        HasShadow="True"
-                                                        WidthRequest="180"
-                                                        HeightRequest="250">
+                            <controls:CustomShadowFrame Margin="8,0,8,24" BackgroundColor="{DynamicResource GrayShadowColor}" 
+                                                        BorderWidth="1" BorderColor="{DynamicResource GrayShadowColor}" Padding="0" HasShadow="True"
+                                                        CornerRadius="4" Radius="4" WidthRequest="180" HeightRequest="250">
 
-                                <Grid RowSpacing="0" ColumnSpacing="0" WidthRequest="180" HeightRequest="250">
+                                <border:SfBorder BorderWidth="0" BorderColor="Transparent" CornerRadius="4">
+                                    <Grid RowSpacing="0" ColumnSpacing="0" WidthRequest="180" HeightRequest="250">
 
                                     <!--  Place image  -->
                                     <Image Aspect="AspectFill"
-                                           BackgroundColor="{DynamicResource Gray-White}"
+                                           BackgroundColor="{DynamicResource Gray-Bg}"
                                            HorizontalOptions="FillAndExpand"
                                            VerticalOptions="FillAndExpand"
                                            Source="{Binding ImagePath}" />
+
+                                    <!--  OverLay Effect  -->
+                                    <Frame Opacity="0.35" BackgroundColor="{DynamicResource Gray-Black}" />
 
                                     <!--  Place name  -->
                                     <Label Margin="8,0,0,12"
@@ -271,13 +286,15 @@
 
                                     <!--  Favourite Icon  -->
                                     <buttons:SfButton Margin="0,2,2,0"
-                                                      Style="{StaticResource FavouriteButton}"
+                                                      Style="{StaticResource FavouriteButton}" CornerRadius="20"
                                                       Command="{Binding BindingContext.AddFavouriteCommand, Source={x:Reference navigationTravelPage}}"
                                                       CommandParameter="{Binding}"
                                                       Text="{Binding IsFavourite, Converter={StaticResource boolToStringConverter}, ConverterParameter=1}"
                                                       TextColor="{Binding IsFavourite, Converter={x:StaticResource boolToColorConverter}, ConverterParameter=8}" />
 
-                                </Grid>
+                                    </Grid>
+                                </border:SfBorder>
+                                
                             </controls:CustomShadowFrame>
                         </DataTemplate>
                     </listView:SfListView.ItemTemplate>

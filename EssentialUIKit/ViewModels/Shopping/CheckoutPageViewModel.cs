@@ -302,10 +302,7 @@ namespace EssentialUIKit.ViewModels.Shopping
             }
             else
             {
-                Template template = new Template();
-                template.Name = "Payment Success Page";
-                template.PageName = "Views.Shopping.PaymentSuccessPage";
-                Application.Current.MainPage.Navigation.PushAsync(new TemplateHostPage(template));
+                Application.Current.MainPage.Navigation.PushAsync(new TemplateHostPage(new Template() { Name= "Payment Success Page" , PageName= "Views.Shopping.PaymentSuccessPage" }));
             }
         }
 

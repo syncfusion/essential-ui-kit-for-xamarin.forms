@@ -6,9 +6,9 @@
     xmlns:controls="clr-namespace:EssentialUIKit.Controls"
     xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
     xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
-    xmlns:template="clr-namespace:EssentialUIKit.Views.Templates"
-    xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Navigation"
-    BackgroundColor="{DynamicResource Gray-White}"
+    xmlns:template="clr-namespace:EssentialUIKit.Views.Templates" 
+    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+    BackgroundColor="{DynamicResource Gray-Bg}"
     NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Resources>
@@ -48,14 +48,18 @@
                                 <controls:CustomShadowFrame
                                     Margin="5,2,5,5"
                                     Padding="0"
-                                    BackgroundColor="{DynamicResource Gray-White}"
-                                    BorderColor="{DynamicResource Gray-White}"
+                                    BackgroundColor="{DynamicResource GrayShadowColor}"
+                                    BorderColor="{DynamicResource GrayShadowColor}"
                                     BorderWidth="1"
-                                    CornerRadius="4"
+                                    CornerRadius="4" Radius="4"
                                     HasShadow="True"
                                     HorizontalOptions="FillAndExpand"
                                     VerticalOptions="FillAndExpand">
+
+                                    <border:SfBorder BorderWidth="0" BorderColor="Transparent" CornerRadius="4">
                                     <template:NavigationTileTemplate />
+                                    </border:SfBorder>
+
                                 </controls:CustomShadowFrame>
                             </ViewCell>
                         </DataTemplate>

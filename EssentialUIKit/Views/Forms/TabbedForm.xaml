@@ -10,7 +10,7 @@
              xmlns:tabView="clr-namespace:Syncfusion.XForms.TabView;assembly=Syncfusion.SfTabView.XForms"
              x:Class="EssentialUIKit.Views.Forms.TabbedForm" 
              Title="Tabbed Form"
-             BackgroundColor="{DynamicResource Gray-200}"
+             BackgroundColor="{DynamicResource GrayShadowBackgroundColor}"
              NavigationPage.HasNavigationBar="False">
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -38,8 +38,10 @@
                 <StackLayout.BindingContext>
                     <viewModel:LoginPageViewModel/>
                 </StackLayout.BindingContext>
-                <control:CustomShadowFrame Margin="24,8" Padding="0">
-                    <tabView:SfTabView VisibleHeaderCount="2" >
+
+                <control:CustomShadowFrame Margin="24,8" Padding="0" BackgroundColor="{DynamicResource GrayShadowColor}"
+                                           BorderWidth="0" HasShadow="True" CornerRadius="4" Radius="4">
+                    <tabView:SfTabView VisibleHeaderCount="2" BackgroundColor="Transparent">
                         <tabView:SfTabView.SelectionIndicatorSettings>
                             <tabView:SelectionIndicatorSettings Color="{DynamicResource PrimaryColor}"
                                                             StrokeThickness="3"/>
@@ -60,7 +62,7 @@
 
                                         <!--  Entry to get password from user  -->
                                         <border:SfBorder
-                                    BackgroundColor="{DynamicResource Gray-White}"
+                                    BackgroundColor="{DynamicResource Gray-Bg}"
                                     BorderColor="{Binding Source={x:Reference PasswordEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}"
                                     Style="{StaticResource SfBorderStyle}">
                                             <control:BorderlessEntry
@@ -74,18 +76,19 @@
                                         </border:SfBorder>
 
                                         <!--  Forgot password link  -->
-                                        <Label
-                                    x:Name="ForgotPasswordLabel"
-                                    Margin="0,16"
-                                    FontFamily="{StaticResource Montserrat-SemiBold}"
-                                    FontSize="12"                        
-                                    HorizontalOptions="End"                        
-                                    Text="Forgot Password?"
-                                    TextColor="{DynamicResource Gray-800}">
-                                            <Label.GestureRecognizers>
-                                                <TapGestureRecognizer Command="{Binding ForgotPasswordCommand}" CommandParameter="{x:Reference ForgotPasswordLabel}" />
-                                            </Label.GestureRecognizers>
-                                        </Label>
+                                        <buttons:SfButton
+                                            x:Name="ForgotPasswordLabel"
+                                            Margin="0,16"
+                                            FontFamily="{StaticResource Montserrat-SemiBold}"
+                                            FontSize="12"                        
+                                            HorizontalOptions="End"                        
+                                            Text="Forgot Password?"
+                                            TextColor="{DynamicResource Gray-800}"
+                                            Style="{StaticResource SfFlatButtonStyle}" 
+                                            HorizontalTextAlignment="Center"
+                                            CornerRadius="4"
+                                            WidthRequest="140"
+                                            Command="{Binding ForgotPasswordCommand}"/>
 
                                         <!--  Login button  -->
                                         <buttons:SfButton
@@ -100,6 +103,7 @@
                                 </Grid>
                             </tabView:SfTabItem.Content>
                         </tabView:SfTabItem>
+
                         <tabView:SfTabItem Title="Sign Up" SelectionColor="{DynamicResource PrimaryColor}"
                                            TitleFontFamily="{StaticResource Montserrat-Regular}"
                                            TitleFontSize="14"
@@ -111,7 +115,7 @@
                                 <StackLayout Padding="16,16,16,36" Spacing="24" HorizontalOptions="Center">
                                     <!--  Entry to get username from user  -->
                                     <border:SfBorder
-                                    BackgroundColor="{DynamicResource Gray-White}"
+                                    BackgroundColor="{DynamicResource Gray-Bg}"
                                     BorderColor="{Binding Source={x:Reference NameEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}"
                                     Style="{StaticResource SfBorderStyle}">
                                         <control:BorderlessEntry
@@ -128,7 +132,7 @@
 
                                     <!--  Entry to get password from user  -->
                                     <border:SfBorder                        
-                                    BackgroundColor="{DynamicResource Gray-White}"
+                                    BackgroundColor="{DynamicResource Gray-Bg}"
                                     BorderColor="{Binding Source={x:Reference SignupPasswordEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}"
                                     Style="{StaticResource SfBorderStyle}">
                                         <control:BorderlessEntry
@@ -143,7 +147,7 @@
 
                                     <!--  Entry to get the confirm password from user  -->
                                     <border:SfBorder
-                                    BackgroundColor="{DynamicResource Gray-White}"
+                                    BackgroundColor="{DynamicResource Gray-Bg}"
                                     BorderColor="{Binding Source={x:Reference ConfirmPasswordEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}"
                                     Style="{StaticResource SfBorderStyle}">
                                         <control:BorderlessEntry

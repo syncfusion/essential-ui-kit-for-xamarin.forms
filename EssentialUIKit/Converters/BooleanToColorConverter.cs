@@ -38,9 +38,11 @@ namespace EssentialUIKit.Converters
                 case "2":
                     return Color.FromHex("#ced2d9");
                 case "3" when (bool) value:
-                    return Color.FromHex("#959eac");
+                    Application.Current.Resources.TryGetValue("Gray-500", out var focusVal);
+                    return (Color)focusVal;
                 case "3":
-                    return Color.FromHex("#ced2d9");
+                    Application.Current.Resources.TryGetValue("Gray-300", out var val);
+                    return (Color)val;
                 case "4" when (bool) value:
                     Application.Current.Resources.TryGetValue("PrimaryColor", out var retVal);
                     return (Color) retVal;

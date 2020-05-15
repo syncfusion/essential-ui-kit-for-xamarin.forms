@@ -4,6 +4,7 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
     xmlns:control="clr-namespace:EssentialUIKit.Controls"
     xmlns:rating="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms"
     xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Feedback"
@@ -28,7 +29,7 @@
 
             <StackLayout Spacing="16">
 
-                <StackLayout Padding="16" BackgroundColor="{StaticResource Gray-White}">
+                <StackLayout Padding="16" BackgroundColor="{StaticResource Gray-Bg}">
 
                     <!--  Title  -->
                     <Label
@@ -43,7 +44,7 @@
 
                 <Grid
                     Padding="16"
-                    BackgroundColor="{DynamicResource Gray-White}"
+                    BackgroundColor="{DynamicResource Gray-Bg}"
                     ColumnSpacing="0"
                     RowSpacing="0">
                     <Grid.ColumnDefinitions>
@@ -89,7 +90,7 @@
 
                 </Grid>
 
-                <Grid BackgroundColor="{DynamicResource Gray-White}" RowSpacing="0">
+                <Grid BackgroundColor="{DynamicResource Gray-Bg}" RowSpacing="0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
@@ -107,29 +108,33 @@
                     <BoxView Grid.Row="1" Style="{StaticResource BoxViewStyle}" />
 
                     <!--  Button to upload product photos  -->
-                    <buttons:SfButton
-                        x:Name="UploadButton"
-                        Grid.Row="2"
-                        Margin="0,24"
-                        BorderWidth="1"
-                        Command="{Binding UploadCommand}"
-                        CommandParameter="{x:Reference UploadButton}"
-                        CornerRadius="4"
-                        HeightRequest="70"
-                        Style="{StaticResource SfButtonStyle}"
-                        WidthRequest="165">
-                        <Label
-                            FontFamily="{StaticResource Montserrat-Medium}"
-                            FontSize="14"
-                            HorizontalOptions="Center"
-                            HorizontalTextAlignment="Center"
-                            Style="{StaticResource LabelStyle}"
-                            Text="Click here to upload" />
-                    </buttons:SfButton>
+                    <border:SfBorder x:Name="dashedBorder" 
+                                     Grid.Row="2"
+                                     Margin="0,24"
+                                     BorderColor="{DynamicResource Gray-300}"
+                                     BorderWidth="2"
+                                     CornerRadius="4"
+                                     HeightRequest="70"
+                                     WidthRequest="167"
+                                     HorizontalOptions="Center">
+                        <buttons:SfButton x:Name="UploadButton"
+                                          BorderWidth="1"
+                                          Command="{Binding UploadCommand}"
+                                          CommandParameter="{x:Reference UploadButton}"
+                                          CornerRadius="4"                      
+                                          Style="{StaticResource SfButtonStyle}">
+                            <Label FontFamily="{StaticResource Montserrat-Medium}"
+                                   FontSize="14"
+                                   HorizontalOptions="Center"
+                                   HorizontalTextAlignment="Center"
+                                   Style="{StaticResource LabelStyle}"
+                                   Text="Click here to upload" />
+                        </buttons:SfButton>
+                    </border:SfBorder>
 
                 </Grid>
 
-                <Grid BackgroundColor="{DynamicResource Gray-White}" RowSpacing="0">
+                <Grid BackgroundColor="{DynamicResource Gray-Bg}" RowSpacing="0">
 
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
@@ -140,6 +145,7 @@
                     <Label
                         Margin="16"
                         FontFamily="{StaticResource Montserrat-SemiBold}"
+                        FontSize="16"
                         Style="{StaticResource LabelStyle}"
                         Text="Write your Review"
                         TextColor="{DynamicResource Gray-900}" />
@@ -155,6 +161,7 @@
                         HeightRequest="100"
                         HorizontalOptions="FillAndExpand"
                         Placeholder="Description"
+                        BackgroundColor="{DynamicResource Gray-Bg}"
                         PlaceholderColor="{DynamicResource Gray-700}"
                         TextColor="{DynamicResource Gray-700}"
                         VerticalOptions="StartAndExpand" />

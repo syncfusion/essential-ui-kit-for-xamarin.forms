@@ -28,7 +28,7 @@
             <StackLayout Spacing="0">
 
                 <!--  Title View  -->
-                <controls:TitleView Title="Checkout" BackgroundColor="{DynamicResource Gray-White}" />
+                <controls:TitleView Title="Checkout" BackgroundColor="{DynamicResource Gray-Bg}" />
 
                 <ContentPresenter />
 

@@ -37,13 +37,13 @@
             <controls:TitleView
                 Title="Wishlist"
                 Grid.Row="0"
-                BackgroundColor="{DynamicResource Gray-White}">
+                BackgroundColor="{DynamicResource Gray-Bg}">
                 <controls:TitleView.LeadingView>
                     <buttons:SfButton
                         x:Name="backButton"
                         Command="{Binding Path=BindingContext.BackButtonCommand, Source={x:Reference wishlistPage}}"
                         CommandParameter="{x:Reference backButton}"
-                        CornerRadius="4"
+                        CornerRadius="20"
                         Style="{StaticResource IconButtonStyle}"
                         Text="{StaticResource Back}" />
                 </controls:TitleView.LeadingView>
@@ -60,7 +60,7 @@
                             <badge:SfBadgeView.Content>
                                 <buttons:SfButton
                                     Command="{Binding Path=BindingContext.CardItemCommand, Source={x:Reference WishlistLayout}}"
-                                    CornerRadius="4"
+                                    CornerRadius="20"
                                     Style="{StaticResource IconButtonStyle}"
                                     Text="{StaticResource Cart}" />
                             </badge:SfBadgeView.Content>
@@ -71,7 +71,7 @@
                                     BadgeIcon="None"
                                     BadgeType="None"
                                     FontSize="10"
-                                    Stroke="{DynamicResource Gray-White}"
+                                    Stroke="{DynamicResource Gray-Bg}"
                                     StrokeWidth="1"
                                     Offset="-10,10" />
                             </badge:SfBadgeView.BadgeSettings>
@@ -86,9 +86,9 @@
                 Grid.Row="1"
                 AllowSwiping="True"
                 BackgroundColor="{OnIdiom Default={StaticResource Transparent},
-                                          Desktop={StaticResource Gray-White},
+                                          Desktop={StaticResource Gray-Bg},
                                           Converter={StaticResource DynamicResourceToColorConverter}}"
-                ItemSize="120"
+                ItemSize="130" 
                 ItemsSource="{Binding WishlistDetails}"
                 SelectionMode="None"
                 SwipeOffset="88"

@@ -9,7 +9,7 @@
     xmlns:helper="clr-namespace:EssentialUIKit.Helpers"
     xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.History"
     Title="Payment History"
-    BackgroundColor="{DynamicResource Gray-100}"
+    BackgroundColor="{DynamicResource Gray-Bg}"
     NavigationPage.HasNavigationBar="False">
 
     <ContentPage.BindingContext>
@@ -36,9 +36,9 @@
                         <control:CustomShadowFrame
                             Margin="0"
                             Padding="0"
-                            BackgroundColor="{DynamicResource Gray-White}"
-                            BorderColor="{DynamicResource Gray-White}"
-                            CornerRadius="4"
+                            BackgroundColor="{DynamicResource Gray-100}"
+                            BorderColor="{DynamicResource Gray-100}"
+                            CornerRadius="4" Radius="4"
                             HasShadow="True"
                             HeightRequest="80">
                             <control:CustomShadowFrame.GestureRecognizers>
@@ -68,14 +68,14 @@
                                         HeightRequest="48"
                                         WidthRequest="48" >
                                         <Image.Source>
-                                            <UriImageSource Uri="{Binding Image}" 
+                                            <UriImageSource Uri="{Binding CustomerImage}" 
 			                                 CacheValidity="14" 
 			                                 CachingEnabled="true"/>
                                         </Image.Source>
                                     </Image>
                                 </border:SfBorder>
 
-                                <!--  Customer name and transactiona amount label  -->
+                                <!--  Customer name and transaction amount label  -->
                                 <StackLayout
                                     Grid.Row="0"
                                     Grid.Column="1"

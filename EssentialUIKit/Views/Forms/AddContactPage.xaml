@@ -66,9 +66,10 @@
                             x:Name="CustomDatePicker"
                             FontFamily="{StaticResource Montserrat-Regular}"
                             FontSize="16"
-                            Format="dd/MM/yy"
-                            PlaceHolderText="DD/MM/YY"
-                            TextColor="{DynamicResource Gray-900}" />
+                            Format="dd/MM/yyyy"
+                            PlaceHolderText="DD/MM/YYYY"
+                            TextColor="{DynamicResource Gray-900}"
+                            BackgroundColor="Transparent"/>
 
                     </border:SfBorder>
                     <border:SfBorder
@@ -79,7 +80,8 @@
                         Style="{StaticResource FormBorderStyle}">
                         <combobox:SfComboBox
                             x:Name="GenderPicker" SelectedValue="{Binding Gender, Mode=TwoWay}"
-                            Style="{StaticResource ComboBoxStyle}"
+                            Style="{StaticResource ComboBoxStyle}" 
+                         
                             Watermark="Gender">
                             <combobox:SfComboBox.ComboBoxSource>
                                 <ListCollection:List x:TypeArguments="x:String">

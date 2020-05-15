@@ -115,6 +115,7 @@ namespace EssentialUIKit.ViewModels.Article
             this.BookmarkCommand = new Command(this.BookmarkButtonClicked);
             this.RelatedFeaturesCommand = new Command(this.RelatedFeaturesItemClicked);
             this.LoadMoreCommand = new Command(this.LoadMoreClicked);
+            this.AddNewCommentCommand = new Command(this.AddNewCommentClicked);
         }
 
         #endregion
@@ -350,6 +351,11 @@ namespace EssentialUIKit.ViewModels.Article
         /// </summary>
         public Command LoadMoreCommand { get; set; }
 
+        /// <summary>
+        /// Gets or sets the command that will be executed when the add new comment is clicked.
+        /// </summary>
+        public Command AddNewCommentCommand { get; set; }
+
         #endregion
 
         #region Methods
@@ -415,6 +421,15 @@ namespace EssentialUIKit.ViewModels.Article
         /// </summary>
         /// <param name="obj">The Object</param>
         private void LoadMoreClicked (object obj)
+        {
+            // Do something
+        }
+
+        /// <summary>
+        /// Invoked when Add new comment is clicked.
+        /// </summary>
+        /// <param name="obj">The Object</param>
+        private void AddNewCommentClicked(object obj)
         {
             // Do something
         }

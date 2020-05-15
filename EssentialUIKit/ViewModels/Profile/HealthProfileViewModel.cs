@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using Xamarin.Forms.Internals;
 using EssentialUIKit.Models;
+using Xamarin.Forms;
 
 namespace EssentialUIKit.ViewModels.Profile
 {
@@ -17,6 +18,8 @@ namespace EssentialUIKit.ViewModels.Profile
         /// </summary>
         private ObservableCollection<HealthProfile> cardItems;
 
+        private Command<object> itemTappedCommand;
+
         #endregion
 
         #region Constructor
@@ -32,25 +35,25 @@ namespace EssentialUIKit.ViewModels.Profile
                 {
                     Category = "Calories Eaten",
                     CategoryValue = "13,100",
-                    ImagePath = "CaloriesEaten.svg"
+                    CategoryImage = "CaloriesEaten.svg"
                 },
                 new HealthProfile()
                 {
                     Category = "Heart Rate",
                     CategoryValue = "87 BPM",
-                    ImagePath = "HeartRate.svg"
+                    CategoryImage = "HeartRate.svg"
                 },
                 new HealthProfile()
                 {
                     Category = "Water Consumed",
                     CategoryValue = "38.6 L",
-                    ImagePath = "WaterConsumed.svg"
+                    CategoryImage = "WaterConsumed.svg"
                 },
                 new HealthProfile()
                 {
                     Category = "Sleep Duration",
                     CategoryValue = "7.3 H",
-                    ImagePath = "SleepDuration.svg"
+                    CategoryImage = "SleepDuration.svg"
                 }
             };
 
@@ -118,6 +121,30 @@ namespace EssentialUIKit.ViewModels.Profile
         /// Gets or sets the height.
         /// </summary>
         public string Height { get; set; }
+
+        /// <summary>
+        /// Gets the command that will be executed when an item is selected.
+        /// </summary>
+        public Command<object> ItemTappedCommand
+        {
+            get
+            {
+                return this.itemTappedCommand ?? (this.itemTappedCommand = new Command<object>(this.NavigateToNextPage));
+            }
+        }
+
+        #region Methods
+
+        /// <summary>
+        /// Invoked when an item is selected from the health profile page.
+        /// </summary>
+        /// <param name="selectedItem">Selected item from the list view.</param>
+        private void NavigateToNextPage(object selectedItem)
+        {
+            // Do something
+        }
+
+        #endregion
 
         #endregion
     }

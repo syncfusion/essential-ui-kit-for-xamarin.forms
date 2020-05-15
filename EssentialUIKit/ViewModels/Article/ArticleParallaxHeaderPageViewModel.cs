@@ -80,6 +80,10 @@ namespace EssentialUIKit.ViewModels.Article
         /// </summary>
         private string subTitle2;
 
+        private Command addNewCommentCommand;
+
+        private Command<object> itemSelectedCommand;
+
         #endregion
 
         #region Constructor
@@ -172,10 +176,8 @@ namespace EssentialUIKit.ViewModels.Article
             };
 
             this.ShareButtonCommand = new Command(this.ShareButtonClicked);
-            this.BackButtonCommand = new Command(this.BackButtonClicked);
             this.BookmarkCommand = new Command(this.BookmarkButtonClicked);
             this.RelatedFeaturesCommand = new Command(this.RelatedFeaturesItemClicked);
-            this.AddNewCommentCommand = new Command(this.CommentButtonClicked);
             this.LoadMoreCommand = new Command(this.LoadMoreClicked);
         }
 
@@ -457,14 +459,9 @@ namespace EssentialUIKit.ViewModels.Article
 
         #region Commands
         /// <summary>
-        /// Gets or sets the command is executed when the favourite button is clicked.
+        /// Gets or sets the command is executed when the share button is clicked.
         /// </summary>
         public Command ShareButtonCommand { get; set; }
-
-        /// <summary>
-        /// Gets or sets the command is executed when the back button is clicked.
-        /// </summary>
-        public Command BackButtonCommand { get; set; }
 
         /// <summary>
         /// Gets or sets the command is executed when the book mark button is clicked.
@@ -477,14 +474,31 @@ namespace EssentialUIKit.ViewModels.Article
         public Command RelatedFeaturesCommand { get; set; }
 
         /// <summary>
-        /// Gets or sets the command that will be executed when the Comment button is clicked.
-        /// </summary>
-        public Command AddNewCommentCommand { get; set; }
-
-        /// <summary>
-        /// Gets or sets the command that will be executed when the Show All button is clicked.
+        /// Gets or sets the command that will be executed when the load more button is clicked.
         /// </summary>
         public Command LoadMoreCommand { get; set; }
+
+        /// <summary>
+        /// Gets or sets the command that will be executed when the Comment button is clicked.
+        /// </summary>
+        public Command AddNewCommentCommand
+        {
+            get
+            {
+                return this.addNewCommentCommand ?? (this.addNewCommentCommand = new Command(this.CommentButtonClicked));
+            }
+        }
+
+        // <summary>
+        /// Gets the command that will be executed when an item is selected.
+        /// </summary>
+        public Command<object> ItemSelectedCommand
+        {
+            get
+            {
+                return this.itemSelectedCommand ?? (this.itemSelectedCommand = new Command<object>(this.NavigateToNextPage));
+            }
+        }
 
         #endregion
 
@@ -497,15 +511,6 @@ namespace EssentialUIKit.ViewModels.Article
         private void ShareButtonClicked (object obj)
         {
            // Do something
-        }
-
-        /// <summary>
-        /// Invoked when the back button clicked
-        /// </summary>
-        /// <param name="obj">The object</param>
-        private void BackButtonClicked (object obj)
-        {
-            // Do something
         }
 
         /// <summary>
@@ -553,6 +558,15 @@ namespace EssentialUIKit.ViewModels.Article
         private void LoadMoreClicked (object obj)
         {
            // Do something
+        }
+
+        /// <summary>
+        /// Invoked when an item is selected from the article parallax header page.
+        /// </summary>
+        /// <param name="selectedItem">Selected item from the list view.</param>
+        private void NavigateToNextPage(object selectedItem)
+        {
+            // Do something
         }
 
         #endregion

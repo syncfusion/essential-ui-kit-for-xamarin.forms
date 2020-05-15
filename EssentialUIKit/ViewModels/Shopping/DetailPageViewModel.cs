@@ -52,7 +52,7 @@ namespace EssentialUIKit.ViewModels.Shopping
                     Comment = "Greatest purchase I have ever made in my life.",
                     ReviewedDate = "29 Dec, 2019",
                     Rating = 5,
-                    Images = new List<string>
+                    CustomerReviewImages = new List<string>
                     {
                         "Image1.png",
                         "Image1.png",
@@ -67,7 +67,7 @@ namespace EssentialUIKit.ViewModels.Shopping
                     Comment = "Absolutely love them! Can't stop wearing!",
                     ReviewedDate = "29 Dec, 2019",
                     Rating = 3,
-                    Images = new List<string>
+                    CustomerReviewImages = new List<string>
                     {
                        "Image1.png",
                        "Image1.png",

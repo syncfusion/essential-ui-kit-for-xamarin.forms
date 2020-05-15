@@ -29,16 +29,16 @@
             </Grid.RowDefinitions>
 
             <!--  Title view  -->
-            <StackLayout x:Name="TitleView"  Padding="8,8" Grid.Row="0" HeightRequest="64"
-                         BackgroundColor="{DynamicResource Gray-White}" Spacing="0"
+            <StackLayout x:Name="TitleView"  Padding="8,8" Grid.Row="0" 
+                         BackgroundColor="{DynamicResource Gray-Bg}" Spacing="0"
                          HorizontalOptions="FillAndExpand" Orientation="Horizontal">
 
-                <StackLayout x:Name="Title" HorizontalOptions="FillAndExpand"  IsVisible="True"
+                <StackLayout x:Name="TitleLayout" HorizontalOptions="FillAndExpand"  IsVisible="True"
                              Orientation="Horizontal"  VerticalOptions="FillAndExpand"  Spacing="0">
 
                     <!--  Back button command  -->
                     <buttons:SfButton  x:Name="backButton"  Command="{Binding BackButtonCommand}"
-                                       CommandParameter="{x:Reference backButton}" CornerRadius="4"
+                                       CommandParameter="{x:Reference backButton}" CornerRadius="20"
                                        Style="{StaticResource IconButtonStyle}" Text="{StaticResource Back}"/>
 
                     <!--   Icon Names List page Title  -->
@@ -102,10 +102,10 @@
                     <controls:SearchableFAQList.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <StackLayout  BackgroundColor="{DynamicResource Gray-White}" Spacing="0">
+                                <StackLayout  BackgroundColor="{DynamicResource Gray-Bg}" Spacing="0">
                                     <syncfusion:SfExpander Margin="16, 0"
                                         x:Name="expander" HeaderIconPosition="End" IconColor="{DynamicResource Gray-600}"
-                                        HeaderBackgroundColor="{DynamicResource Gray-White}">
+                                        HeaderBackgroundColor="{DynamicResource Gray-Bg}">
 
                                         <!--Header -->
                                         <syncfusion:SfExpander.Header>
@@ -119,7 +119,7 @@
 
                                         <!--Content -->
                                         <syncfusion:SfExpander.Content>
-                                            <StackLayout  BackgroundColor="{DynamicResource Gray-White}" Spacing="8" Padding="0,0,0,15"
+                                            <StackLayout  BackgroundColor="{DynamicResource Gray-Bg}" Spacing="8" Padding="0,0,0,15"
                                                   BindableLayout.ItemsSource="{Binding Answer}">
 
                                                 <BindableLayout.ItemTemplate >

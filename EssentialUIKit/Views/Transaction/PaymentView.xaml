@@ -8,15 +8,17 @@
     xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
     xmlns:control="clr-namespace:EssentialUIKit.Controls"
     xmlns:templateSelector="clr-namespace:EssentialUIKit.Helpers"
+    xmlns:converter="clr-namespace:EssentialUIKit.Converters"
     x:Name="paymentView"
-    BackgroundColor="{DynamicResource Gray-White}">
+    BackgroundColor="{DynamicResource Gray-Bg}">
 
     <ContentView.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
-
+            <converter:BooleanToColorConverter x:Key="ColorConverter" />
+            
             <!--  Template for Saved card payment mode  -->
             <DataTemplate x:Key="CardTemplate">
                 <Grid ColumnSpacing="0" RowSpacing="0">
@@ -59,9 +61,10 @@
                         Padding="{OnPlatform Default='12,0',
                                              iOS='12,8'}"
                         templateSelector:RTLHelper.Margin="42,8,16,0"
-                        BorderColor="{DynamicResource Gray-300}"
+                        BorderColor="{Binding Source={x:Reference Entry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}"
                         CornerRadius="4">
                         <control:BorderlessEntry
+                             x:Name="Entry"
                             FontFamily="{StaticResource Montserrat-Regular}"
                             FontSize="16"
                             HeightRequest="{OnPlatform Default=40,
@@ -140,7 +143,7 @@
     </ContentView.Resources>
 
     <StackLayout
-        BackgroundColor="{DynamicResource Gray-White}"
+        BackgroundColor="{DynamicResource Gray-Bg}"
         Spacing="0"
         VerticalOptions="Start">
 

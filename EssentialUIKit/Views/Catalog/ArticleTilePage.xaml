@@ -12,7 +12,7 @@
     xmlns:template="clr-namespace:EssentialUIKit.Views.Templates"
     xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Catalog"
     x:Name="articleTilePage"
-    BackgroundColor="{DynamicResource Gray-White}"
+    BackgroundColor="{DynamicResource Gray-Bg}"
     NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Resources>
@@ -65,7 +65,7 @@
                                         BackgroundColor="{DynamicResource PrimaryColor}"
                                         BorderWidth="0"
                                         HorizontalOptions="Start"
-                                        Opacity="0.6"
+                                        Opacity="0.8"
                                         VerticalOptions="Center">
                                         <Label
                                             Margin="16"
@@ -119,7 +119,7 @@
             <controls:TitleView
                 Title="Blog"
                 Grid.Row="0"
-                BackgroundColor="{DynamicResource Gray-White}" />
+                BackgroundColor="{DynamicResource Gray-Bg}" />
 
             <!--  List out the items for latest stories  -->
             <listView:SfListView

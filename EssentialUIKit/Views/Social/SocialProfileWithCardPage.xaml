@@ -9,7 +9,7 @@
     xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
     xmlns:local="clr-namespace:EssentialUIKit.Views.Social.Templates"
     xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Social"
-    BackgroundColor="{DynamicResource Gray-White}"
+    BackgroundColor="{DynamicResource Gray-Bg}"
     NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Resources>
@@ -28,31 +28,57 @@
     <ContentPage.Content>
         <ScrollView>
             <Grid RowSpacing="0">
-
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
+                <!-- Title View -->
+                <Grid Grid.Row="0" RowSpacing="0"  HeightRequest="50" >
+
+                    <buttons:SfButton Margin="8,0" x:Name="backButton"  
+                                      Command="{Binding BackButtonCommand}"
+                                      CommandParameter="{x:Reference backButton}"
+                                          Text="{StaticResource Back}"
+                                          CornerRadius="4"
+                                          Style="{StaticResource IconButtonStyle}"
+                                          HorizontalOptions="Start"
+                                          VerticalOptions="Center"/>
+
+                    <Label Text="Profile Page"
+                               TextColor="{DynamicResource Gray-900}"
+                               FontSize="16"
+                               FontFamily="{DynamicResource Montserrat-Medium}"
+                               LineHeight="{OnPlatform Android=1.5, Default=-1}"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center" />
+
+                    <buttons:SfButton     Margin="8,0"
+                                          Text="{StaticResource Settings}"
+                                          CornerRadius="4"
+                                          Style="{StaticResource IconButtonStyle}"
+                                          HorizontalOptions="End"
+                                          VerticalOptions="Center" 
+                                          Command="{Binding SettingsCommand}"/>
+
+                </Grid>
+
                 <control:CustomShadowFrame
-                    Grid.Row="0"
-                    Margin="16,16,16,32"
+                    Grid.Row="1" 
+                    Margin="16,0,16,32" 
                     Style="{StaticResource ShadowFrameStyle}">
 
-                    <border:SfBorder
-                        BorderColor="Transparent"
-                        BorderWidth="0"
-                        CornerRadius="12">
-
-                        <StackLayout Spacing="0">
+                    <border:SfBorder CornerRadius="4" BorderColor="Transparent" BorderWidth="0">
+                        <StackLayout Spacing="0" Margin="0" Padding="0">
 
                             <!--  Header image path  -->
                             <Image
                                 Aspect="Fill"
-                                BackgroundColor="{DynamicResource Gray-200}"
+                                BackgroundColor="{DynamicResource GrayShadowColor}"
                                 HeightRequest="120"
-                                HorizontalOptions="Fill">
+                                HorizontalOptions="FillAndExpand">
                                 <Image.Source>
                                     <UriImageSource Uri="{Binding HeaderImagePath}" 
 			                                 CacheValidity="14" 
@@ -90,7 +116,7 @@
                             <Label Style="{StaticResource HeaderLabelStyle}" Text="{Binding ProfileName}" />
 
                             <StackLayout
-                                Margin="0,0,0,16"
+                                Margin="0,0,0,16" BackgroundColor="Transparent"
                                 HorizontalOptions="CenterAndExpand"
                                 Orientation="Horizontal"
                                 Spacing="5">
@@ -148,7 +174,7 @@
 
                 <!--  Interest title label  -->
                 <Label
-                    Grid.Row="1"
+                    Grid.Row="2"
                     Margin="16,0,0,0"
                     FontFamily="{StaticResource Montserrat-SemiBold}"
                     FontSize="12"
@@ -160,8 +186,8 @@
                     TextColor="{DynamicResource Gray-800}" />
 
                 <listView:SfListView
-                    Grid.Row="2"
-                    Margin="0"                    
+                    Grid.Row="3"
+                    Margin="16,0,0,0"                    
                     Padding="0"
                     AutoFitMode="DynamicHeight"
                     ColumnSpacing="0"

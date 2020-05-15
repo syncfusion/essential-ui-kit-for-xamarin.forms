@@ -5,16 +5,11 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms">
 
-    <Color x:Key="TappedBackgroundColor">#eaeaea</Color>
     <Color x:Key="Transparent">Transparent</Color>
     <Color x:Key="Link">#567cd7</Color>
     <x:String x:Key="Back">&#xe709;</x:String>
     <x:String x:Key="More">&#xe719;</x:String>
     <x:String x:Key="New Message">&#xe720;</x:String>
-    <x:String x:Key="Delivered">&#xe741;</x:String>
-    <x:String x:Key="Offer">&#xe736;</x:String>
-    <x:String x:Key="FlashSale">&#xe743;</x:String>
-    <x:String x:Key="Arrived">&#xe740;</x:String>
 
     <!--  Common style for icon buttons  -->
     <Style x:Key="IconButtonStyle" TargetType="buttons:SfButton">

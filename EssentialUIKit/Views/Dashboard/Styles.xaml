@@ -14,12 +14,9 @@
     <x:String x:Key="DropDownButtonIcon">&#xe70b;</x:String>
 
     <Color x:Key="Transparent">Transparent</Color>
-    <Color x:Key="TappedBackgroundColor">#eaeaea</Color>
     <Color x:Key="Green">#7ed321</Color>
     <Color x:Key="GradientStart">#373668</Color>
     <Color x:Key="GradientEnd">#24243b</Color>
-    <Color x:Key="primary-lighter">#edcacd</Color>
-    <Color x:Key="PrimaryColor">#f54e5e</Color>
     <Color x:Key="Liliac">#d483fc</Color>
     <Color x:Key="Purpleish-Blue">#5d4cf7</Color>
     <Color x:Key="Link">#567cd7</Color>
@@ -29,35 +26,7 @@
     <converter:DynamicResourceToColorConverter x:Key="DynamicResourceToColorConverter" />
 
     <Style x:Key="ContentPageStyle" TargetType="ContentPage">
-        <Setter Property="BackgroundColor" Value="{OnIdiom Default={DynamicResource Gray-White}, Desktop={DynamicResource Gray-100}, Converter={StaticResource DynamicResourceToColorConverter}}" />
-    </Style>
-
-    <!--  Common style for SfSegmentedControl  -->
-    <Style x:Key="SfSegmentedControlStyle" TargetType="buttons:SfSegmentedControl">
-        <Setter Property="FontSize" Value="14" />
-        <Setter Property="FontFamily" Value="Montserrat-Bold" />
-        <Setter Property="FontColor" Value="{DynamicResource Gray-900}" />
-        <Setter Property="SelectionTextColor" Value="{DynamicResource Gray-White}" />
-        <Setter Property="BackgroundColor" Value="Transparent" />
-        <Setter Property="BorderThickness" Value="0" />
-        <Setter Property="SegmentBackgroundColor" Value="{DynamicResource Gray-White}" />
-        <Setter Property="SegmentBorderColor" Value="{DynamicResource Gray-White}" />
-        <Setter Property="SegmentBorderThickness" Value="0" />
-        <Setter Property="SegmentCornerRadius" Value="16" />
-        <Setter Property="SegmentHeight" Value="32" />
-        <Setter Property="SegmentWidth" Value="32" />
-        <Setter Property="SegmentPadding" Value="16" />
-        <Setter Property="SelectionAnimationDuration" Value="0" />
-        <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
-        <Setter Property="SelectionIndicatorSettings">
-            <Setter.Value>
-                <buttons:SelectionIndicatorSettings
-                    CornerRadius="16"
-                    StrokeThickness="0"
-                    Color="{DynamicResource PrimaryColor}" />
-            </Setter.Value>
-        </Setter>
-
+        <Setter Property="BackgroundColor" Value="{OnIdiom Default={DynamicResource Gray-Bg}, Desktop={DynamicResource Gray-100}, Converter={StaticResource DynamicResourceToColorConverter}}" />
     </Style>
 
     <!--  Common style for profile border style  -->
@@ -65,7 +34,7 @@
         <Setter Property="HorizontalOptions" Value="Center" />
         <Setter Property="VerticalOptions" Value="Center" />
         <Setter Property="BorderWidth" Value="1" />
-        <Setter Property="BorderColor" Value="{DynamicResource Gray-White}" />
+        <Setter Property="BorderColor" Value="{DynamicResource Gray-Bg}" />
         <Setter Property="CornerRadius" Value="20" />
     </Style>
 
@@ -124,4 +93,32 @@
         <Setter Property="BackgroundColor" Value="{DynamicResource Gray-200}" />
     </Style>
 
+    <!--  Common style for SfSegmentedControl  -->
+    <Style x:Key="SfSegmentedControlStyle" TargetType="buttons:SfSegmentedControl">
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="FontFamily" Value="Montserrat-Bold" />
+        <Setter Property="FontColor" Value="{DynamicResource Gray-700}" />
+        <Setter Property="SelectionTextColor" Value="{DynamicResource Gray-White}" />
+        <Setter Property="BackgroundColor" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="SegmentBackgroundColor" Value="{DynamicResource GrayShadowColor}" />
+        <Setter Property="SegmentBorderColor" Value="{DynamicResource GrayShadowColor}" />
+        <Setter Property="SegmentBorderThickness" Value="0" />
+        <Setter Property="SegmentCornerRadius" Value="16" />
+        <Setter Property="SegmentHeight" Value="32" />
+        <Setter Property="SegmentWidth" Value="32" />
+        <Setter Property="SegmentPadding" Value="16" />
+        <Setter Property="SelectionAnimationDuration" Value="0" />
+        <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+        <Setter Property="SelectionIndicatorSettings">
+            <Setter.Value>
+                <buttons:SelectionIndicatorSettings
+                    CornerRadius="16"
+                    StrokeThickness="0"
+                    Color="{DynamicResource PrimaryColor}" />
+            </Setter.Value>
+        </Setter>
+
+    </Style>
+    
 </ResourceDictionary>

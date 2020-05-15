@@ -5,7 +5,7 @@
              xmlns:local="clr-namespace:EssentialUIKit.Views.Dashboard.Selectors"
              xmlns:Behavior="clr-namespace:EssentialUIKit.Behaviors"
              x:Class="EssentialUIKit.Views.Dashboard.CompanyHistoryPage"
-             BackgroundColor="{DynamicResource Gray-White}"
+             BackgroundColor="{DynamicResource Gray-Bg}"
              NavigationPage.HasNavigationBar="False">
 
     <ContentPage.ControlTemplate>

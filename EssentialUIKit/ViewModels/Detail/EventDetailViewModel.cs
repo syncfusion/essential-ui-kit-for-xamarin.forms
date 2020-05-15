@@ -121,12 +121,14 @@ namespace EssentialUIKit.ViewModels.Detail
 
             if (button.Text == "\ue701")
             {
+                //Text changed unfilled to the filled favourite icon.
                 button.Text = "\ue732";
                 Application.Current.Resources.TryGetValue("PrimaryColor", out var retVal);
                 button.TextColor = (Color)retVal;
             }
             else
             {
+                //Text changed filled to the unfilled favourite icon.
                 button.Text = "\ue701";
                 Application.Current.Resources.TryGetValue("Gray-600", out var retVal);
                 button.TextColor = (Color)retVal;

@@ -9,7 +9,7 @@
              xmlns:listviewBahavior="clr-namespace:EssentialUIKit.Behaviors"
              xmlns:local="clr-namespace:EssentialUIKit.Views.Social.Templates"
              xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Social"
-             BackgroundColor="{DynamicResource Gray-White}"
+             BackgroundColor="{DynamicResource Gray-Bg}"
              NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Resources>
@@ -50,7 +50,7 @@
 
                     <!-- Background image -->
                     <Image Grid.RowSpan="4" Grid.ColumnSpan="2" Aspect="AspectFill"
-                           BackgroundColor="{DynamicResource Gray-White}">
+                           BackgroundColor="{DynamicResource Gray-Bg}">
                         <Image.Source>
                             <UriImageSource Uri="{Binding BackgroundImage}" 
 			                                CacheValidity="14" 
@@ -61,10 +61,13 @@
                     <!-- Title View -->
                     <Grid Grid.Row="0" Grid.ColumnSpan="2" RowSpacing="0" ColumnSpacing="0" HeightRequest="60">
 
-                        <buttons:SfButton Margin="8,0"
+                        <buttons:SfButton Margin="8,0" x:Name="backButton"  
+                                          Command="{Binding BackButtonCommand}"
+                                          CommandParameter="{x:Reference backButton}"
                                           Text="{StaticResource Back}"
-                                          CornerRadius="4"
+                                          CornerRadius="20"
                                           Style="{StaticResource IconButtonStyle}"
+                                          TextColor="{DynamicResource Gray-White}"
                                           HorizontalOptions="Start"
                                           VerticalOptions="Center" />
 
@@ -78,10 +81,12 @@
 
                         <buttons:SfButton Margin="8,0"
                                           Text="{StaticResource Settings}"
-                                          CornerRadius="4"
+                                          CornerRadius="20"
                                           Style="{StaticResource IconButtonStyle}"
+                                          TextColor="{DynamicResource Gray-White}"
                                           HorizontalOptions="End"
-                                          VerticalOptions="Center" />
+                                          VerticalOptions="Center"
+                                          Command="{Binding SettingsCommand}"/>
 
                     </Grid>
 
@@ -92,7 +97,7 @@
                                      Grid.Column="0"
                                      Margin="16,8,16,52"
                                      BackgroundColor="{DynamicResource Gray-White}"
-                                     BorderColor="White"
+                                     BorderColor="{DynamicResource Gray-White}"
                                      BorderWidth="2"
                                      CornerRadius="10"
                                      HeightRequest="80"
@@ -102,7 +107,7 @@
 
                         <!-- Profile image -->
                         <Image Aspect="AspectFill"
-                               BackgroundColor="{DynamicResource Gray-White}"
+                               BackgroundColor="{DynamicResource Gray-Bg}"
                                HeightRequest="80"
                                WidthRequest="80">
                             <Image.Source>
@@ -232,7 +237,7 @@
                         <buttons:SfButton Command="{Binding MessageCommand}" 
                             Style="{StaticResource SquareButtonStyle}" 
                             WidthRequest="155"
-                            Text="MESSAGE" TextColor="{DynamicResource Gray-900}" 
+                            Text="MESSAGE" TextColor="#333942" 
                             FontSize="14" FontFamily="{DynamicResource Montserrat-SemiBold}" 
                             HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
 

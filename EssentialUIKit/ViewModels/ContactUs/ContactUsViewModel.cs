@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Windows.Input;
 using EssentialUIKit.Models.ContactUs;
+using EssentialUIKit.ViewModels.Forms;
 using Syncfusion.SfMaps.XForms;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
@@ -13,7 +14,7 @@ namespace EssentialUIKit.ViewModels.ContactUs
     /// ViewModel for contact us page.
     /// </summary>
     [Preserve(AllMembers = true)]
-    public class ContactUsViewModel : BaseViewModel
+    public class ContactUsViewModel : LoginViewModel
     {
         #region Fields
 

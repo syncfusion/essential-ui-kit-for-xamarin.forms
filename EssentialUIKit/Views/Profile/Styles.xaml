@@ -4,7 +4,8 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
-    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms">
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+  >
 
     <Color x:Key="Transparent">Transparent</Color>
     <Color x:Key="Dull-Red">#c04848</Color>
@@ -40,7 +41,7 @@
         <Setter Property="HorizontalOptions" Value="Fill" />
         <Setter Property="HorizontalTextAlignment" Value="Center" />
         <Setter Property="BorderWidth" Value="0" />
-        <Setter Property="BackgroundColor" Value="{DynamicResource Gray-White}" />
+        <Setter Property="BackgroundColor" Value="{DynamicResource Gray-Bg}" />
         <Setter Property="CornerRadius" Value="4" />
     </Style>
 
@@ -113,5 +114,5 @@
         <Setter Property="BackgroundColor" Value="{DynamicResource Gray-400}"/>
         <Setter Property="VerticalOptions" Value="Center"/>
     </Style>
-    
+
 </ResourceDictionary>

@@ -21,41 +21,40 @@ namespace EssentialUIKit.ViewModels.Transaction
 
         public MyCardsViewModel()
         {
-            this.BackButtonCommand = new Command(this.BackButtonClicked);
-            this.MoreButtonCommand = new Command(this.MoreButtonClicked);
             this.AddCardCommand = new Command(this.AddCardButtonClicked);
+            this.MenuCommand = new Command(this.MenuButtonClicked);
 
             this.CardDetails = new ObservableCollection<Card>()
             {
                 new Card
                 {
-                  Type = "CREDIT CARD",
+                  CardType = "CREDIT CARD",
                   Number = "XXXX  XXXX  XXXX  5838",
                   Name = "Peter Wilson",
                   Expiry = "08/20",
-                  Cvv = 846,
+                  CardCvv = 846,
                   BackgroundGradientStart = "#d54381",
                   BackgroundGradientEnd = "#7644ad",
                   CardTypeIcon = "Card.png"
                 },
                 new Card
                 {
-                  Type = "DEBIT CARD",
+                  CardType = "DEBIT CARD",
                   Number = "XXXX  XXXX  XXXX  0743",
                   Name = "Peter Wilson",
                   Expiry = "03/21",
-                  Cvv = 543,
+                  CardCvv = 543,
                   BackgroundGradientStart = "#af4aff",
                   BackgroundGradientEnd = "#3e5aff",
                   CardTypeIcon = "Visa.png"
                 },
                  new Card
                 {
-                  Type = "CREDIT CARD",
+                  CardType = "CREDIT CARD",
                   Number = "XXXX  XXXX  XXXX  0629",
                   Name = "Peter Wilson",
                   Expiry = "18/22",
-                  Cvv = 346,
+                  CardCvv = 346,
                   BackgroundGradientStart = "#d54381",
                   BackgroundGradientEnd = "#7644ad",
                   CardTypeIcon = "Card.png"
@@ -71,16 +70,7 @@ namespace EssentialUIKit.ViewModels.Transaction
         /// Invoked when the more button clicked
         /// </summary>
         /// <param name="obj">The object</param>
-        private void MoreButtonClicked(object obj)
-        {
-            // Do something
-        }
-
-        /// <summary>
-        /// Invoked when the back button clicked
-        /// </summary>
-        /// <param name="obj">The object</param>
-        private void BackButtonClicked(object obj)
+        private void MenuButtonClicked(object obj)
         {
             // Do something
         }
@@ -98,15 +88,11 @@ namespace EssentialUIKit.ViewModels.Transaction
 
         #region Command
 
-            /// <summary>
-            /// Gets or sets the command is executed when the back button is clicked.
-            /// </summary>
-        public Command BackButtonCommand { get; set; }
 
         /// <summary>
         /// Gets or sets the command is executed when the more button is clicked.
         /// </summary>
-        public Command MoreButtonCommand { get; set; }
+        public Command MenuCommand { get; set; }
 
         /// <summary>
         /// Gets or sets the command is executed when the add card button is clicked.

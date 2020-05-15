@@ -81,7 +81,7 @@ namespace EssentialUIKit.ViewModels.Navigation
         /// <param name="obj">The sender.</param>
         private void BackButtonClicked(object obj)
         {
-            // Do something
+            Application.Current.MainPage.Navigation.PopAsync();
         }
 
         #endregion

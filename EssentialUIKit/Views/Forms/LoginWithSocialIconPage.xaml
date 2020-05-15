@@ -97,10 +97,10 @@
                             x:Name="PasswordEntry"
                             IsPassword="True"
                             Placeholder="Password"
-                            PlaceholderColor="{DynamicResource Gray-700}"
+                            PlaceholderColor="#606a7b"
                             Style="{StaticResource EntryStyle}"
                             Text="{Binding Password}"
-                            TextColor="{DynamicResource Gray-900}" />
+                            TextColor="#333942" />
                         </border:SfBorder>
 
                         <!--  Forgot password link  -->
@@ -113,7 +113,8 @@
                         HorizontalOptions="End" 
                         Style="{StaticResource SfFlatButtonStyle}"
                         Text="FORGOT PASSWORD?"
-                        TextColor="{DynamicResource Gray-White}"/>
+                        TextColor="{DynamicResource Gray-White}"
+                        Command="{Binding ForgotPasswordCommand}"/>
 
 
                         <buttons:SfButton

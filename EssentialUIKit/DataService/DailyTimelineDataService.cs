@@ -13,7 +13,7 @@ namespace EssentialUIKit.DataService
     {
         #region Fields
 
-        private static DailyTimelineDataService instance;
+        private static DailyTimelineDataService dailyTimelineDataService;
         private DailyTimelineViewModel dailyTimelineViewModel;
         #endregion
 
@@ -32,7 +32,7 @@ namespace EssentialUIKit.DataService
         /// <summary>
         /// Gets an instance of the <see cref="DailyTimelineDataService"/>.
         /// </summary>
-        public static DailyTimelineDataService Instance => instance ?? (instance = new DailyTimelineDataService());
+        public static DailyTimelineDataService Instance => dailyTimelineDataService ?? (dailyTimelineDataService = new DailyTimelineDataService());
 
         /// <summary>
         /// Gets or sets the value of pDaily Timeline page view model.
@@ -55,15 +55,15 @@ namespace EssentialUIKit.DataService
 
             var assembly = typeof(App).GetTypeInfo().Assembly;
 
-            T obj;
+            T data;
 
             using (var stream = assembly.GetManifestResourceStream(file))
             {
                 var serializer = new DataContractJsonSerializer(typeof(T));
-                obj = (T)serializer.ReadObject(stream);
+                data = (T)serializer.ReadObject(stream);
             }
 
-            return obj;
+            return data;
         }
         #endregion
     }

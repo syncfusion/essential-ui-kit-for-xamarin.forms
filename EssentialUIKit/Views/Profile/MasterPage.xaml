@@ -6,7 +6,7 @@
     xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
     xmlns:helper="clr-namespace:EssentialUIKit.Helpers"
     xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Profile"
-    BackgroundColor="{DynamicResource Gray-White}"
+    BackgroundColor="{DynamicResource Gray-Bg}"
     NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Resources>
@@ -28,7 +28,7 @@
                 <!--  profile view  -->
                 <Grid
                     Padding="16,24,16,8"
-                    BackgroundColor="{DynamicResource Gray-White}"
+                    BackgroundColor="{DynamicResource Gray-Bg}"
                     ColumnSpacing="8"
                     RowSpacing="2">
 
@@ -91,7 +91,7 @@
                 <!--  Grid for home label and icon  -->
                 <Grid
                     x:Name="HomeGrid"
-                    BackgroundColor="{DynamicResource Gray-White}">
+                    BackgroundColor="{DynamicResource Gray-Bg}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
@@ -124,7 +124,7 @@
                 <!--  Grid for interests label and icon  -->
                 <Grid
                     x:Name="InterestsGrid"
-                    BackgroundColor="{DynamicResource Gray-White}">
+                    BackgroundColor="{DynamicResource Gray-Bg}">
 
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
@@ -156,7 +156,7 @@
                 <!--  Grid for bookmark label and icon  -->
                 <Grid
                     x:Name="BookmarkGrid"
-                    BackgroundColor="{DynamicResource Gray-White}">
+                    BackgroundColor="{DynamicResource Gray-Bg}">
 
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
@@ -188,7 +188,7 @@
                 <!--  Grid for activity label and icon  -->
                 <Grid
                     x:Name="ActivityGrid"
-                    BackgroundColor="{DynamicResource Gray-White}">
+                    BackgroundColor="{DynamicResource Gray-Bg}">
 
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
@@ -220,7 +220,7 @@
                 <!--  Grid for profile label and icon  -->
                 <Grid
                     x:Name="ProfileGrid"
-                    BackgroundColor="{DynamicResource Gray-White}">
+                    BackgroundColor="{DynamicResource Gray-Bg}">
 
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />

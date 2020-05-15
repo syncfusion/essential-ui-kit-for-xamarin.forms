@@ -3,8 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
              xmlns:template="clr-namespace:EssentialUIKit.Views.Templates"
-             BackgroundColor="{DynamicResource Gray-White}"
-            
+             BackgroundColor="{DynamicResource Gray-Bg}"
+             x:Name="bookingFeedbackView"
              x:Class="EssentialUIKit.Views.Detail.BookingFeedbackView">
     <StackLayout.Resources>
         <ResourceDictionary>
@@ -34,16 +34,18 @@
                 FontFamily="{StaticResource Montserrat-SemiBold}"
                 FontSize="{OnIdiom Default=12,
                                    Desktop=14}"
-                
-               HorizontalOptions="End"
+                Command="{Binding Path=ParentBindingContext.ShowAllCommand, Source={x:Reference bookingFeedbackView}}"
+            CommandParameter="{Binding .}" 
+                HorizontalOptions="End"
                 Style="{StaticResource SfButtonStyle}"
                 Text="SHOW ALL"
                 TextColor="{DynamicResource HyperLink}"
                 VerticalOptions="Start" />
 
         </StackLayout>
-        <BoxView HeightRequest="{OnIdiom Default=1, Desktop=0}" 
-                 Style="{StaticResource BoxViewStyle}"  />
+
+        <BoxView HeightRequest="{OnIdiom Default=1, Desktop=0}" Style="{StaticResource BoxViewStyle}" Margin="0"/>
+        
     </StackLayout>
 
     <StackLayout x:Name="StackLayout" BindableLayout.ItemsSource="{Binding RoomDetail.Reviews}">

@@ -75,9 +75,7 @@ namespace EssentialUIKit.ViewModels.Navigation
 
         private Command<object> searchButtonCommand;
 
-        private Command<object> showingNowItemTappedCommand;
-        private Command<object> trailerItemTappedCommand;
-        private Command<object> upcomingItemTappedCommand;
+        private Command<object> itemSelectedCommand;
 
         private Command<object> showingNowViewAllCommand;
         private Command<object> trailerViewAllCommand;
@@ -160,35 +158,13 @@ namespace EssentialUIKit.ViewModels.Navigation
         }
 
         /// <summary>
-        /// Gets the command that will be executed when now showing item is selected.
+        /// Gets the command that will be executed when item is selected.
         /// </summary>
-        public Command<object> ShowingNowItemTappedCommand
+        public Command<object> ItemSelectedCommand
         {
             get
             {
-                return this.showingNowItemTappedCommand ?? (this.showingNowItemTappedCommand = new Command<object>(this.ShowingNowItemSelected));
-            }
-        }
-
-        /// <summary>
-        /// Gets the command that will be executed when trailer item is clicked.
-        /// </summary>
-        public Command<object> TrailerItemTappedCommand
-        {
-            get
-            {
-                return this.trailerItemTappedCommand ?? (this.trailerItemTappedCommand = new Command<object>(this.TrailerItemSelected));
-            }
-        }
-
-        /// <summary>
-        /// Gets the command that will be executed when coming soon item is clicked.
-        /// </summary>
-        public Command<object> UpcomingItemTappedCommand
-        {
-            get
-            {
-                return this.upcomingItemTappedCommand ?? (this.upcomingItemTappedCommand = new Command<object>(this.UpcomingItemSelected));
+                return this.itemSelectedCommand ?? (this.itemSelectedCommand = new Command<object>(this.ItemSelected));
             }
         }
 
@@ -233,32 +209,13 @@ namespace EssentialUIKit.ViewModels.Navigation
         }
 
         /// <summary>
-        /// Invoked when an item is selected from the now showing category of movies page.
+        /// Invoked when an item is selected from the movies page.
         /// </summary>
         /// <param name="selectedItem">Selected item from the list view.</param>
-        private void ShowingNowItemSelected(object selectedItem)
+        private void ItemSelected(object selectedItem)
         {
             // Do something
         }
-
-        // <summary>
-        /// Invoked when an item is selected from the trailer category of movies page.
-        /// </summary>
-        /// <param name="selectedItem">Selected item from the list view.</param>
-        private void TrailerItemSelected(object selectedItem)
-        {
-            // Do something
-        }
-
-        // <summary>
-        /// Invoked when an item is selected from the coming soon category of movies page.
-        /// </summary>
-        /// <param name="selectedItem">Selected item from the list view.</param>
-        private void UpcomingItemSelected(object selectedItem)
-        {
-            // Do something
-        }
-
         #endregion
 
         #endregion

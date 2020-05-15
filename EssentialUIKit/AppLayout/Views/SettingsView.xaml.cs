@@ -16,7 +16,7 @@ namespace EssentialUIKit.AppLayout.Views
         {
             InitializeComponent();
             BindingContext = AppSettings.Instance;
-            
+
             var colors = new List<Color>
             {
                 Color.FromHex("#f54e5e"),
@@ -44,13 +44,14 @@ namespace EssentialUIKit.AppLayout.Views
             }
 
             PrimaryColorsView.ItemsSource = viewCollection;
-            PrimaryColorsView.SelectedIndex = AppSettings.Instance.SelectedPrimaryColor;
+            UpdatePrimaryColorIndex();
             PrimaryColorsView.SelectionChanged += (sender, e) =>
             {
                 PrimaryColorsView.SelectionIndicatorSettings.Color = colors[e.Index];
+                AppSettings.Instance.SelectedPrimaryColor = PrimaryColorsView.SelectedIndex;
             };
         }
-        
+
         public void Show()
         {
             IsVisible = true;
@@ -69,12 +70,6 @@ namespace EssentialUIKit.AppLayout.Views
             parentAnimation.Commit(this, "HideSettings");
         }
 
-        private void ApplySettings(object sender, EventArgs e)
-        {
-            AppSettings.Instance.SelectedPrimaryColor = PrimaryColorsView.SelectedIndex;
-            this.Hide();
-        }
-        
         private void Button_OnClicked(object sender, EventArgs e)
         {
             this.Hide();
@@ -83,6 +78,23 @@ namespace EssentialUIKit.AppLayout.Views
         private void CloseSettings(object sender, EventArgs e)
         {
             this.Hide();
+        }
+
+        private void lightThme_Clicked(object sender, EventArgs e)
+        {
+            PrimaryColorsView.SelectedIndex = 0;
+            Application.Current.Resources.ApplyLightTheme();
+        }
+
+        private void darkTheme_Clicked(object sender, EventArgs e)
+        {
+            PrimaryColorsView.SelectedIndex = 1;
+            Application.Current.Resources.ApplyDarkTheme();
+        }
+
+        public void UpdatePrimaryColorIndex()
+        {
+            PrimaryColorsView.SelectedIndex = AppSettings.Instance.SelectedPrimaryColor;
         }
     }
 }

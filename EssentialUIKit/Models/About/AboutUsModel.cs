@@ -4,7 +4,7 @@ using Xamarin.Forms.Internals;
 namespace EssentialUIKit.Models.About
 {
     /// <summary>
-    /// Model for About us templates.
+    /// Model for AboutUs Page.
     /// </summary>
     [Preserve(AllMembers = true)]
     public class AboutUsModel : INotifyPropertyChanged

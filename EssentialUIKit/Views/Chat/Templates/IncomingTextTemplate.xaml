@@ -10,9 +10,10 @@
 
         <cards:SfCardView
             helper:RTLHelper.CornerRadius="0, 10, 10, 10"
-            helper:RTLHelper.Margin="22, 12, 38, 0"
-            BackgroundColor="{DynamicResource Gray-White}"
-            BorderWidth="0"
+            helper:RTLHelper.Margin="22, 12, 38, 4"
+            BackgroundColor="{DynamicResource Gray-100}"
+            BorderColor="{DynamicResource Gray-100}"
+            BorderWidth="1"
             HasShadow="False"
             HorizontalOptions="Start">
 

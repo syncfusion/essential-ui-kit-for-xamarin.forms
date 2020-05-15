@@ -19,7 +19,7 @@ namespace EssentialUIKit.Controls
         {
             if (base.FilterContacts(obj))
             {
-                var taskInfo = obj as Models.Detail.DataTable;
+                var taskInfo = obj as Models.Detail.DataTableModel;
 
                 if (string.IsNullOrEmpty(taskInfo.ClubName))
                 {

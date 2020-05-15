@@ -9,7 +9,7 @@
     xmlns:template="clr-namespace:EssentialUIKit.Views.Templates"
     xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Bookmarks"
     x:Name="bookmarksPage"
-    BackgroundColor="{DynamicResource Gray-White}"
+    BackgroundColor="{DynamicResource Gray-Bg}"
     NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Resources>
@@ -31,7 +31,7 @@
         <ControlTemplate>
             <StackLayout Spacing="0">
                 <!--  Title View  -->
-                <controls:TitleView Title="Bookmarks" BackgroundColor="{DynamicResource Gray-White}" />
+                <controls:TitleView Title="Bookmarks" BackgroundColor="{DynamicResource Gray-Bg}" />
                 <ContentPresenter />
             </StackLayout>
         </ControlTemplate>

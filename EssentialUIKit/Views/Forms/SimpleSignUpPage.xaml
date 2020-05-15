@@ -73,7 +73,7 @@
 
                     <!--  Entry to get username from user  -->
                     <border:SfBorder
-                        BackgroundColor="{DynamicResource Gray-White}"
+                        BackgroundColor="{DynamicResource Gray-Bg}"
                         BorderColor="{Binding Source={x:Reference NameEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}"
                         Style="{StaticResource SfBorderStyle}">
                         <control:BorderlessEntry
@@ -90,7 +90,7 @@
 
                     <!--  Entry to get password from user  -->
                     <border:SfBorder
-                        BackgroundColor="{DynamicResource Gray-White}"
+                        BackgroundColor="{DynamicResource Gray-Bg}"
                         BorderColor="{Binding Source={x:Reference PasswordEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}"
                         Style="{StaticResource SfBorderStyle}">
                         <control:BorderlessEntry
@@ -105,7 +105,7 @@
 
                     <!--  Entry to get the confirm password from user  -->
                     <border:SfBorder
-                        BackgroundColor="{DynamicResource Gray-White}"
+                        BackgroundColor="{DynamicResource Gray-Bg}"
                         BorderColor="{Binding Source={x:Reference ConfirmPasswordEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}"
                         Style="{StaticResource SfBorderStyle}">
                         <control:BorderlessEntry

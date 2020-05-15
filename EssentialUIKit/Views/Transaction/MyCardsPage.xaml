@@ -6,13 +6,16 @@
              xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
              xmlns:ListView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
              xmlns:ViewModel="clr-namespace:EssentialUIKit.ViewModels.Transaction"
-             xmlns:gradient="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
+             xmlns:gradient="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms" 
+             xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+             xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
              x:Class="EssentialUIKit.Views.Transaction.MyCardsPage"
              BackgroundColor="{DynamicResource Gray-100}"
-             NavigationPage.HasNavigationBar="False">
+             NavigationPage.HasNavigationBar="False"
+             x:Name="myCardsPage">
 
     <ContentPage.BindingContext>
-        <ViewModel:MyCardsViewModel/>
+        <ViewModel:MyCardsViewModel x:Name="myCardsViewModel"/>
     </ContentPage.BindingContext>
 
     <ContentPage.Resources>
@@ -31,9 +34,9 @@
                         <!--  Back button command  -->
                         <buttons:SfButton
                             x:Name="backButton"
-                            Command="{Binding BackButtonCommand}"
+                            Command="{Binding BackButtonCommand, Source={x:Reference myCardsViewModel}}"
                             CommandParameter="{x:Reference backButton}"
-                            CornerRadius="4"
+                            CornerRadius="20"
                             Style="{StaticResource IconButtonStyle}"
                             Text="{StaticResource Back}" />
                     </controls:TitleView.LeadingView>
@@ -42,11 +45,11 @@
                         <!--  More button command  -->
                         <buttons:SfButton
                             x:Name="moreButton"
-                            Command="{Binding MoreButtonCommand}"
                             CommandParameter="{x:Reference moreButton}"
                             CornerRadius="4"
                             Style="{StaticResource IconButtonStyle}"
-                            Text="{StaticResource MoreIcon}" />
+                            Text="{StaticResource MoreIcon}" 
+                            Command="{Binding Path=BindingContext.MenuCommand, Source={x:Reference myCardsPage}}"/>
                     </controls:TitleView.TrailingView>
 
                 </controls:TitleView>
@@ -67,22 +70,27 @@
                                  SelectionGesture="Tap" SelectionBackgroundColor="Transparent" SelectionMode="Single" AllowSwiping="True" ItemsSource="{Binding CardDetails}">
             <ListView:SfListView.ItemTemplate>
                 <DataTemplate>
-                            <cards:SfCardView CornerRadius="4" HasShadow="True" HeightRequest="180" WidthRequest="343" 
-                                              HorizontalOptions="CenterAndExpand">
-                                <cards:SfCardView.Content>
+                            <controls:CustomShadowFrame CornerRadius="4" HasShadow="True" 
+                                                        WidthRequest="343" 
+                                                        HeightRequest="180" 
+                                                        HorizontalOptions="CenterAndExpand" BackgroundColor="{DynamicResource GrayShadowColor}"
+                                                        BorderWidth="0" Radius="4" Padding="0">
+                                <controls:CustomShadowFrame.Content>
                             <Grid>
-                                <gradient:SfGradientView>
-                                    <gradient:SfGradientView.BackgroundBrush>
-                                        <gradient:SfLinearGradientBrush>
-                                            <gradient:SfLinearGradientBrush.GradientStops>
-                                                <gradient:SfGradientStop Color="{Binding BackgroundGradientStart}" Offset="0.0"/>
-                                                <gradient:SfGradientStop Color="{Binding BackgroundGradientEnd}" Offset="1.0"/>
-                                            </gradient:SfLinearGradientBrush.GradientStops>
-                                        </gradient:SfLinearGradientBrush>
-                                    </gradient:SfGradientView.BackgroundBrush>
-                                </gradient:SfGradientView>
+                                    <border:SfBorder BorderWidth="0" CornerRadius="4" >
+                                        <gradient:SfGradientView>
+                                            <gradient:SfGradientView.BackgroundBrush>
+                                                <gradient:SfLinearGradientBrush>
+                                                    <gradient:SfLinearGradientBrush.GradientStops>
+                                                        <gradient:SfGradientStop Color="{Binding BackgroundGradientStart}" Offset="0.0"/>
+                                                        <gradient:SfGradientStop Color="{Binding BackgroundGradientEnd}" Offset="1.0"/>
+                                                    </gradient:SfLinearGradientBrush.GradientStops>
+                                                </gradient:SfLinearGradientBrush>
+                                            </gradient:SfGradientView.BackgroundBrush>
+                                        </gradient:SfGradientView>
+                                    </border:SfBorder>
 
-                                <Grid RowSpacing="27" Margin="16,20" >
+                                    <Grid RowSpacing="27" Margin="16,20" >
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="Auto"/>
                                         <RowDefinition Height="Auto"/>
@@ -97,7 +105,7 @@
 
                                         <!-- Card Type -->
                                         <Label Grid.Row="0" Grid.ColumnSpan="3" HorizontalOptions="Start"  VerticalOptions="Center" 
-                                           Style="{StaticResource CardLabel}" Margin="0,3" Text="{Binding Type}"/>
+                                           Style="{StaticResource CardLabel}" Margin="0,3" Text="{Binding CardType}"/>
 
                                         <!-- Icon displaying card type -->
                                         <Image Grid.Row="0" Grid.ColumnSpan="3"  HeightRequest="27" HorizontalOptions="End"  VerticalOptions="Start"
@@ -128,19 +136,23 @@
                                         <StackLayout Grid.Column="2" Spacing="0" HorizontalOptions="Center">
                                             <Label Text="CVV" FontSize="12" FontFamily="{StaticResource Montserrat-Medium}" 
                                                    LineHeight="{OnPlatform Default=-1, Android=1.5}" TextColor="{DynamicResource Gray-White}"/>
-                                            <Label Text="{Binding Cvv}" Style="{StaticResource CardLabel}" />
+                                            <Label Text="{Binding CardCvv}" Style="{StaticResource CardLabel}" />
                                         </StackLayout>
                                     </Grid>
                                 </Grid>
                             </Grid>
-                        </cards:SfCardView.Content>
-                    </cards:SfCardView>
+                        </controls:CustomShadowFrame.Content>
+                    </controls:CustomShadowFrame>
                         </DataTemplate>
             </ListView:SfListView.ItemTemplate>
+                <ListView:SfListView.LayoutManager>
+                    <ListView:GridLayout SpanCount="{core:OnPlatformOrientationIntValue Desktop=3, PhonePortrait=1, PhoneLandscape=2, TabletPortrait=2, TabletLandscape=3}">
+                    </ListView:GridLayout>
+                </ListView:SfListView.LayoutManager>
             </ListView:SfListView>
 
             <!--  Add Card button command  -->
-            <buttons:SfButton x:Name="addCardButton" Style="{StaticResource MagentaButtonStyle}" Text="ADD NEW CARD" 
+            <buttons:SfButton x:Name="addCardButton" Style="{StaticResource MagentaButtonStyle}" FontFamily="{DynamicResource Montserrat-SemiBold}" Text="ADD NEW CARD" 
                               Command="{Binding AddCardCommand}" CommandParameter="{x:Reference addCardButton}" Grid.Row="1"
                               HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand" HeightRequest="40"/>
         </Grid>

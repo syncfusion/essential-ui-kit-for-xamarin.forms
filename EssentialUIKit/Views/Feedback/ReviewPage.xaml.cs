@@ -14,6 +14,7 @@ namespace EssentialUIKit.Views.Feedback
         {
             InitializeComponent();
             this.ProductImage.Source = App.BaseImageUrl + "Image1.png";
+            dashedBorder.DashArray = new double[2] { 5, 5 };
         }
     }
 }

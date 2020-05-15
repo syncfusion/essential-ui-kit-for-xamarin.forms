@@ -11,7 +11,7 @@
     xmlns:template="clr-namespace:EssentialUIKit.Views.Templates"
     xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Article"
     x:Name="articleParallaxPage"
-    BackgroundColor="{DynamicResource Gray-White}"
+    BackgroundColor="{DynamicResource Gray-Bg}"
     NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Resources>
@@ -37,7 +37,7 @@
                             x:Name="backButton"
                             Command="{TemplateBinding BindingContext.BackButtonCommand}"
                             CommandParameter="{x:Reference backButton}"
-                            CornerRadius="4"
+                            CornerRadius="20"
                             Style="{StaticResource IconButtonStyle}"
                             Text="{StaticResource Back}" />
                     </controls:TitleView.LeadingView>
@@ -48,7 +48,7 @@
                                 x:Name="shareButton"
                                 Command="{TemplateBinding BindingContext.ShareButtonCommand}"
                                 CommandParameter="{x:Reference shareButton}"
-                                CornerRadius="4"
+                                CornerRadius="20"
                                 HeightRequest="40"
                                 Style="{StaticResource IconButtonStyle}"
                                 Text="{StaticResource Share}"
@@ -59,7 +59,7 @@
                                 x:Name="bookmarkButton"
                                 Command="{TemplateBinding BindingContext.BookmarkCommand}"
                                 CommandParameter="{x:Reference bookmarkButton}"
-                                CornerRadius="4"
+                                CornerRadius="20"
                                 HeightRequest="40"
                                 Style="{StaticResource NavigationBarButtonStyle}"
                                 Text="{StaticResource ClearBookmark}"
@@ -157,7 +157,7 @@
                                             FontFamily="{StaticResource Montserrat-Regular}"
                                             Text="{Binding ArticleDate}"
                                             TextColor="{DynamicResource Gray-White}" />
-                                        <Span Text=" | " TextColor="{DynamicResource Gray-White}" />
+                                        <Span Text=" | " TextColor="{DynamicResource Gray-Bg}" />
                                         <Span
                                             FontFamily="{StaticResource Montserrat-Regular}"
                                             Text="{Binding ArticleReadingTime}"
@@ -169,7 +169,7 @@
 
                         <StackLayout
                             Grid.Row="2"
-                            BackgroundColor="{DynamicResource Gray-White}"
+                            BackgroundColor="{DynamicResource Gray-Bg}"
                             Spacing="0">
                             <!--  Subtitle of the blog  -->
                             <Label
@@ -232,12 +232,13 @@
                                 x:Name="SfListView"
                                 Margin="16,0,16,8"
                                 AutoFitMode="Height"
-                                BackgroundColor="{DynamicResource Gray-White}"
+                                BackgroundColor="{DynamicResource Gray-Bg}"
                                 HorizontalOptions="FillAndExpand"
                                 ItemSpacing="8"
                                 ItemsSource="{Binding RelatedStories}"
                                 SelectionBackgroundColor="Transparent"
-                                VerticalOptions="FillAndExpand">
+                                VerticalOptions="FillAndExpand"
+                                TapCommand="{Binding ItemSelectedCommand}">
                                 <listView:SfListView.Behaviors>
                                     <behavior:SfListViewExtendHeightBehavior />
                                 </listView:SfListView.Behaviors>

@@ -13,7 +13,7 @@ namespace EssentialUIKit.DataService
     {
         #region fields 
 
-        private static SelectableNamePageDataService instance;
+        private static SelectableNamePageDataService selectableNamePageDataService;
 
         private SelectableNamePageViewModel selectableNameViewModel;
 
@@ -24,7 +24,7 @@ namespace EssentialUIKit.DataService
         /// <summary>
         /// Gets an instance of the <see cref="SelectableNamePageDataService"/>.
         /// </summary>
-        public static SelectableNamePageDataService Instance => instance ?? (instance = new SelectableNamePageDataService());
+        public static SelectableNamePageDataService Instance => selectableNamePageDataService ?? (selectableNamePageDataService = new SelectableNamePageDataService());
 
         /// <summary>
         /// Gets or sets the value of selectable name list page view model.
@@ -49,15 +49,15 @@ namespace EssentialUIKit.DataService
 
             var assembly = typeof(App).GetTypeInfo().Assembly;
 
-            T obj;
+            T data;
 
             using (var stream = assembly.GetManifestResourceStream(file))
             {
                 var serializer = new DataContractJsonSerializer(typeof(T));
-                obj = (T)serializer.ReadObject(stream);
+                data = (T)serializer.ReadObject(stream);
             }
 
-            return obj;
+            return data;
         }
 
         #endregion

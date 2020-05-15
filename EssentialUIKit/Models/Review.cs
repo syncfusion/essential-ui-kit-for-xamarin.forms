@@ -17,7 +17,7 @@ namespace EssentialUIKit.Models
         /// <summary>
         /// Gets or sets the images
         /// </summary>
-        private List<string> images;
+        private List<string> customerreviewimages;
 
         /// <summary>
         /// Gets or sets the profile image
@@ -40,23 +40,23 @@ namespace EssentialUIKit.Models
         /// Gets or sets the property that has been bound with an image, which displays the customer added image.
         /// </summary>
         [DataMember(Name = "images")]
-        public List<string> Images
+        public List<string> CustomerReviewImages
         {
             get
             {
-                if ( images != null )
+                if (customerreviewimages != null )
                 {
-                    for ( var i = 0; i < this.images.Count; i++ )
+                    for ( var i = 0; i < this.customerreviewimages.Count; i++ )
                     {
-                        this.images[i] = this.images[i].Contains(App.BaseImageUrl) ? this.images[i] : App.BaseImageUrl + this.images[i];
+                        this.customerreviewimages[i] = this.customerreviewimages[i].Contains(App.BaseImageUrl) ? this.customerreviewimages[i] : App.BaseImageUrl + this.customerreviewimages[i];
                     }
                 }
-                return this.images;
+                return this.customerreviewimages;
             }
 
             set
             {
-                this.images = value;
+                this.customerreviewimages = value;
             }
         }
 

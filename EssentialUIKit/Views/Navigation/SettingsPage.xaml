@@ -2,9 +2,16 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Navigation"
              x:Class="EssentialUIKit.Views.Navigation.SettingsPage" 
-             BackgroundColor="{DynamicResource Gray-White}"
-             NavigationPage.HasNavigationBar="False">
+             BackgroundColor="{DynamicResource Gray-Bg}"
+             NavigationPage.HasNavigationBar="False"
+             x:Name="settings">
+
+    <ContentPage.BindingContext>
+        <viewModel:SettingsViewModel />
+    </ContentPage.BindingContext>
+
     <ContentPage.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -71,9 +78,9 @@
                         <buttons:CupertinoSwitchSettings
                                     x:TypeArguments="buttons:OffState"
                                     ThumbBorderColor="{DynamicResource Gray-200}"
-                                    ThumbColor="{DynamicResource Gray-White}"
+                                    ThumbColor="{DynamicResource Gray-Bg}"
                                     TrackBorderColor="{DynamicResource Gray-200}"
-                                    TrackColor="{DynamicResource Gray-White}" />
+                                    TrackColor="{DynamicResource Gray-200}" />
                       </Setter.Value>
                     </Setter>
                   </VisualState.Setters>
@@ -84,26 +91,20 @@
 
           <BoxView Style="{StaticResource BoxViewStyle}" Grid.Row="3"/>
           <Label Style="{StaticResource SettingsLabelStyle}" Text="Download quality" Grid.Row="4"/>
-          <Label Style="{StaticResource SettingsIconStyle}" Grid.Row="4">
-            <Label.GestureRecognizers>
-              <TapGestureRecognizer Command="{Binding }"/>
-            </Label.GestureRecognizers>
-          </Label>
+                <buttons:SfButton Style="{StaticResource SettingsIconStyle}" Grid.Row="4" 
+                                  Command="{Binding BindingContext.DownloadCommand, Source={x:Reference settings}}"/>
+            
           <BoxView Style="{StaticResource BoxViewStyle}" Grid.Row="5"/>
           <Label Style="{StaticResource SettingsLabelStyle}" Text="Show hidden files" Grid.Row="6"/>
-          <Label Style="{StaticResource SettingsIconStyle}" Grid.Row="6">
-            <Label.GestureRecognizers>
-              <TapGestureRecognizer Command="{Binding }"/>
-            </Label.GestureRecognizers>
-          </Label>
+                <buttons:SfButton Style="{StaticResource SettingsIconStyle}" Grid.Row="6" 
+                                  Command="{Binding BindingContext.ShowFilesCommand, Source={x:Reference settings}}"/>
+
           <BoxView Style="{StaticResource BoxViewStyle}" Grid.Row="7"/>
           <Label Style="{StaticResource SettingsLabelStyle}" Text="Privacy Policy" Grid.Row="8"/>
-          <Label Style="{StaticResource SettingsIconStyle}" Grid.Row="8">
-            <Label.GestureRecognizers>
-              <TapGestureRecognizer Command="{Binding }"/>
-            </Label.GestureRecognizers>
-          </Label>
-        </Grid>
+                <buttons:SfButton Style="{StaticResource SettingsIconStyle}" Grid.Row="8" 
+                                  Command="{Binding BindingContext.PolicyCommand, Source={x:Reference settings}}"/>
+            
+            </Grid>
       </ScrollView>
     </ContentPage.Content>
 </ContentPage>

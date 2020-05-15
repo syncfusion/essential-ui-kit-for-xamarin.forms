@@ -8,7 +8,7 @@
              xmlns:Behavior="clr-namespace:EssentialUIKit.Behaviors"
              mc:Ignorable="d"
              x:Class="EssentialUIKit.Views.Dashboard.DailyTimelinePage"
-             BackgroundColor="{DynamicResource Gray-White}"
+             BackgroundColor="{DynamicResource Gray-Bg}"
              NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Content>

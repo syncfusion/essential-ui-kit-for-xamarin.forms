@@ -7,7 +7,7 @@
              android:TabbedPage.ToolbarPlacement="Bottom"
              android:TabbedPage.BarSelectedItemColor="{DynamicResource PrimaryColor}"
              android:TabbedPage.BarItemColor="{DynamicResource Gray-600}"
-             BarBackgroundColor="White"
+             BarBackgroundColor="{DynamicResource Gray-Bg}"  BackgroundColor="{DynamicResource Gray-Bg}"
              NavigationPage.HasNavigationBar="False">
     <TabbedPage.Resources>
         <ResourceDictionary>

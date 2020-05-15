@@ -8,7 +8,7 @@
              xmlns:controls="clr-namespace:EssentialUIKit.Controls"
              mc:Ignorable="d"
              x:Class="EssentialUIKit.Views.Navigation.MoviesListPage"
-             BackgroundColor="{DynamicResource Gray-White}"
+             BackgroundColor="{DynamicResource Gray-Bg}"
              NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Resources>
@@ -28,16 +28,16 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <StackLayout x:Name="TitleView"  Padding="8,8" HeightRequest="64"  Grid.Row="0"
-                         BackgroundColor="{DynamicResource Gray-White}" Spacing="0"
+            <StackLayout x:Name="TitleView"  Padding="8,8" Grid.Row="0"
+                         BackgroundColor="{DynamicResource Gray-Bg}" Spacing="0"
                          HorizontalOptions="FillAndExpand" Orientation="Horizontal">
 
-                <StackLayout x:Name="Title" HorizontalOptions="FillAndExpand"  IsVisible="True"
+                <StackLayout x:Name="TitleLayout" HorizontalOptions="FillAndExpand"  IsVisible="True"
                              Orientation="Horizontal"  VerticalOptions="FillAndExpand"  Spacing="0">
 
                     <!--  Back button command  -->
                     <buttons:SfButton  x:Name="backButton"  Command="{Binding BackButtonCommand}"
-                                       CommandParameter="{x:Reference backButton}" CornerRadius="4"
+                                       CommandParameter="{x:Reference backButton}" CornerRadius="20"
                                        Style="{StaticResource IconButtonStyle}" Text="{StaticResource Back}"/>
 
                     <!--  Movie List page Title  -->

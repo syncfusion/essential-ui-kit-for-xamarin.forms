@@ -57,18 +57,24 @@ namespace EssentialUIKit.Converters
             {
                 var emailEntry = parameter as BorderlessEntry;
 
-                if (!(emailEntry?.BindingContext is LoginViewModel bindingContext)) return Color.FromHex("#ced2d9");
-
-                var isFocused1 = (bool)value;
-                bindingContext.IsInvalidEmail = !isFocused1 && !CheckValidEmail(bindingContext.Email);
-
-                if (isFocused1)
+                if (emailEntry?.BindingContext is LoginViewModel)
                 {
-                    return Color.FromHex("#959eac");
+                    var bindingContext = emailEntry?.BindingContext as LoginViewModel;
+                    var isFocused1 = (bool)value;
+                    bindingContext.IsInvalidEmail = !isFocused1 && !CheckValidEmail(bindingContext.Email);
+
+                    if (isFocused1)
+                    {
+                        Application.Current.Resources.TryGetValue("Gray-500", out var focusVal);
+                        return (Color)focusVal;
+                    }
+                    else if (bindingContext.IsInvalidEmail)
+                    {
+                        return Color.FromHex("#FF4A4A");
+                    }
                 }
-
-                return bindingContext.IsInvalidEmail ? Color.FromHex("#FF4A4A") : Color.FromHex("#ced2d9");
-
+                Application.Current.Resources.TryGetValue("Gray-300", out var val);
+                return (Color)val;
             }
         }
 

@@ -5,7 +5,7 @@ using Xamarin.Forms.Xaml;
 namespace EssentialUIKit.Views.Templates
 {
     /// <summary>
-    /// Navigation tile template.
+    /// My wallet page's chart template.
     /// </summary>
     [Preserve(AllMembers = true)]
     [XamlCompilation(XamlCompilationOptions.Compile)]

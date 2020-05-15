@@ -5,7 +5,8 @@
       xmlns:gradient="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
       xmlns:cards="clr-namespace:Syncfusion.XForms.Cards;assembly=Syncfusion.Cards.XForms"
       xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
-      x:Class="EssentialUIKit.Views.Templates.EventListTemplate">
+      x:Class="EssentialUIKit.Views.Templates.EventListTemplate"
+      x:Name="eventListTemplate">
 
     <Grid.Resources>
         <ResourceDictionary>
@@ -71,11 +72,11 @@
                         <StackLayout  Spacing="0" Margin="0,3,0,0">
 
                             <!--  Event month label  -->
-                            <Label Text="{Binding EventMonth}"  TextColor="{StaticResource Gray-White}" 
+                            <Label Text="{Binding EventMonth}"  TextColor="{DynamicResource Gray-White}" 
                                    FontSize="12"  FontFamily="{StaticResource Montserrat-SemiBold}" 
                                     HorizontalOptions="Center" />
                             <!--  Event event label  -->
-                            <Label Text="{Binding EventDate}"  TextColor="{StaticResource Gray-White}" 
+                            <Label Text="{Binding EventDate}"  TextColor="{DynamicResource Gray-White}" 
                                    FontSize="12"  FontFamily="{StaticResource Montserrat-SemiBold}" 
                                    HorizontalOptions="Center" />
                         </StackLayout>
@@ -97,10 +98,13 @@
             </StackLayout>
 
             <!-- Menu button -->
-            <buttons:SfButton HorizontalOptions="End" Margin="0" WidthRequest="{OnIdiom Phone=30,Default=40}" VerticalOptions="Center"
+            <buttons:SfButton x:Name="menuIcon"
+                 HorizontalOptions="End" Margin="0" WidthRequest="{OnIdiom Phone=30,Default=40}" VerticalOptions="Center"
                  Grid.Column="2"
                  Style="{StaticResource MoreButton}"
-                 Text="{StaticResource More}" />
+                 Text="{StaticResource More}"           
+                 Command="{Binding Path=ParentBindingContext.MenuCommand, Source={x:Reference eventListTemplate}}"
+                 CommandParameter="{Binding .}"/>
         </Grid>
     </Grid>
 </Grid>

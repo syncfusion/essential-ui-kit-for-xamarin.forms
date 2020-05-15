@@ -9,7 +9,7 @@
     xmlns:template="clr-namespace:EssentialUIKit.Views.Templates"
     xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Detail"
     x:Name="detailPage"
-    BackgroundColor="{DynamicResource Gray-White}"
+    BackgroundColor="{DynamicResource Gray-Bg}"
     NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Resources>
@@ -39,8 +39,8 @@
                                 x:Name="favouriteButton"
                                 Command="{TemplateBinding BindingContext.FavouriteCommand}"
                                 CommandParameter="{x:Reference favouriteButton}"
-                                CornerRadius="4"
-                                HeightRequest="40"
+                                CornerRadius="20"
+                                HeightRequest="40" 
                                 Style="{StaticResource NavigationBarButtonStyle}"
                                 Text="{StaticResource Favourite}"
                                 WidthRequest="40" />
@@ -50,7 +50,7 @@
                                 x:Name="bookmarkButton"
                                 Command="{TemplateBinding BindingContext.BookmarkCommand}"
                                 CommandParameter="{x:Reference bookmarkButton}"
-                                CornerRadius="4"
+                                CornerRadius="20"
                                 HeightRequest="40"
                                 Style="{StaticResource NavigationBarButtonStyle}"
                                 Text="{StaticResource ClearBookmark}"

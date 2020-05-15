@@ -5,7 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
     xmlns:helper="clr-namespace:EssentialUIKit.Helpers"
-    BackgroundColor="{DynamicResource Gray-White}">
+    BackgroundColor="{DynamicResource Gray-Bg}">
 
     <ContentView.Resources>
         <ResourceDictionary>
@@ -24,7 +24,7 @@
         <!--  Header  -->
         <Grid
             Padding="0,16,0,0"
-            BackgroundColor="{DynamicResource Gray-White}"
+            BackgroundColor="{DynamicResource Gray-Bg}"
             RowSpacing="16">
 
             <Grid.ColumnDefinitions>

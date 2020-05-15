@@ -10,7 +10,7 @@
 
         <cards:SfCardView
             helper:RTLHelper.CornerRadius="10, 0, 10, 10"
-            helper:RTLHelper.Margin="38, 12, 22, 0"
+            helper:RTLHelper.Margin="38, 12, 22, 4"
             BackgroundColor="{DynamicResource PrimaryLight}"
             BorderWidth="0"
             HasShadow="False"
@@ -34,7 +34,7 @@
                         HorizontalOptions="End"
                         LineHeight="1.25"
                         Text="{Binding Message}"
-                        TextColor="{DynamicResource Gray-900}"
+                        TextColor="{DynamicResource Gray-Black}"
                         VerticalOptions="Center" />
 
                     <!--  Time  -->
@@ -44,7 +44,7 @@
                         HorizontalOptions="End"
                         LineHeight="1.25"
                         Text="{Binding Time, StringFormat='{0:h:mm tt}'}"
-                        TextColor="{DynamicResource Gray-700}"
+                        TextColor="{DynamicResource Gray-Black}"
                         VerticalOptions="Center" />
 
                 </StackLayout>

@@ -10,7 +10,7 @@
              xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
              mc:Ignorable="d"
              x:Name="helpPage"
-             BackgroundColor="{DynamicResource Gray-100}"
+             BackgroundColor="{DynamicResource Gray-Bg}"
              NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Resources>
@@ -28,14 +28,14 @@
         <StackLayout
                 x:Name="TitleView"
                 Padding="16,8"
-                BackgroundColor="{DynamicResource Gray-White} "
+                BackgroundColor="{DynamicResource Gray-Bg} "
                 HeightRequest="48"
                 HorizontalOptions="FillAndExpand"
                 Orientation="Horizontal"
                 Spacing="0">
 
             <StackLayout
-                    x:Name="Title"
+                    x:Name="TitleLayout"
                     HorizontalOptions="FillAndExpand"
                     IsVisible="True"
                     Orientation="Horizontal"
@@ -46,7 +46,7 @@
                             x:Name="backButton"
                             Command="{Binding BackButtonCommand}"
                             CommandParameter="{x:Reference backButton}"
-                            CornerRadius="4"
+                            CornerRadius="20"
                             Style="{StaticResource IconButtonStyle}"
                             Text="{StaticResource Back}" />
                 <Label
@@ -96,9 +96,11 @@
 
         </StackLayout>
 
+        <BoxView Style="{StaticResource SeparatorStyle}" />
+
         <ScrollView>
 
-            <StackLayout BackgroundColor="{DynamicResource Gray-100}" Spacing="0">
+            <StackLayout BackgroundColor="{DynamicResource Gray-Bg}" Spacing="0">
 
                 <!--  Header label for help with recent orders -->
                 <Label 
@@ -114,10 +116,12 @@
                     Text="HELP WITH RECENT ORDERS"
                     TextColor="{DynamicResource Gray-800}" />
 
+                <BoxView Style="{StaticResource SeparatorStyle}" />
+
                 <!--  Previous order label and navigation bar icon  -->
                 <controls:TapAnimationGrid
                     HeightRequest="48"
-                    BackgroundColor="{DynamicResource Gray-White}"
+                    BackgroundColor="{DynamicResource Gray-Bg}"
                     ColumnSpacing="0"
                     Command="{Binding IssuePreviousOrderCommand}"
                     RowSpacing="0"
@@ -142,7 +146,7 @@
                 <!--  Return & refund label and navigation bar icon  -->
                 <controls:TapAnimationGrid
                      HeightRequest="48"
-                    BackgroundColor="{DynamicResource Gray-White}"
+                    BackgroundColor="{DynamicResource Gray-Bg}"
                     ColumnSpacing="0"
                     Command="{Binding Return_RefundCommand}"
                     RowSpacing="0"
@@ -178,10 +182,12 @@
                     Text="HELP WITH OTHER QUERIES"
                     TextColor="{DynamicResource Gray-800}" />
 
+                <BoxView Style="{StaticResource SeparatorStyle}" />
+
                 <!-- Payment related queries and navigation bar icon  -->
                 <controls:TapAnimationGrid
                      HeightRequest="48"
-                    BackgroundColor="{DynamicResource Gray-White}"
+                    BackgroundColor="{DynamicResource Gray-Bg}"
                     ColumnSpacing="0"
                     Command="{Binding PaymentQueriesCommand}"
                     RowSpacing="0"
@@ -206,7 +212,7 @@
                 <!--  Offers related queries and navigation bar icon  -->
                 <controls:TapAnimationGrid
                     HeightRequest="48"
-                    BackgroundColor="{DynamicResource Gray-White}"
+                    BackgroundColor="{DynamicResource Gray-Bg}"
                     ColumnSpacing="0"
                     Command="{Binding OffersQueriesCommand}"
                     RowSpacing="0"
@@ -231,7 +237,7 @@
                 <!--  Account related queries and navigation bar icon  -->
                 <controls:TapAnimationGrid
                     HeightRequest="48"
-                    BackgroundColor="{DynamicResource Gray-White}"
+                    BackgroundColor="{DynamicResource Gray-Bg}"
                     ColumnSpacing="0"
                     Command="{Binding AccountQueriesCommand}"
                     RowSpacing="0"
@@ -256,7 +262,7 @@
                 <!--  Other queries and navigation bar icon  -->
                 <controls:TapAnimationGrid
                     HeightRequest="48"  
-                    BackgroundColor="{DynamicResource Gray-White}"
+                    BackgroundColor="{DynamicResource Gray-Bg}"
                     ColumnSpacing="0"
                     Command="{Binding OtherQueriesCommand}"
                     RowSpacing="0"

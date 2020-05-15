@@ -11,7 +11,7 @@ namespace EssentialUIKit.Models.Shopping
     {
         #region Fields
 
-        private View rotatorItem;
+        private View rotatorView;
 
         #endregion
 
@@ -35,10 +35,10 @@ namespace EssentialUIKit.Models.Shopping
         /// <summary>
         /// Gets or sets the view.
         /// </summary>
-        public View RotatorItem
+        public View RotatorView
         {
-            get { return this.rotatorItem; }
-            set { this.rotatorItem = value; }
+            get { return this.rotatorView; }
+            set { this.rotatorView = value; }
         }
 
         #endregion

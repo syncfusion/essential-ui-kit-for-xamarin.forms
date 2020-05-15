@@ -13,7 +13,7 @@ namespace EssentialUIKit.DataService
     {
         #region fields
 
-        private static ShoppingDataService instance;
+        private static ShoppingDataService shoppingDataService;
 
         private CatalogPageViewModel catalogPageViewModel;
 
@@ -37,7 +37,7 @@ namespace EssentialUIKit.DataService
         /// <summary>
         /// Gets an instance of the <see cref="CatalogDataService"/>.
         /// </summary>
-        public static ShoppingDataService Instance => instance ?? (instance = new ShoppingDataService());
+        public static ShoppingDataService Instance => shoppingDataService ?? (shoppingDataService = new ShoppingDataService());
 
         /// <summary>
         /// Gets or sets the value of catalog page view model.
@@ -68,15 +68,15 @@ namespace EssentialUIKit.DataService
 
             var assembly = typeof(App).GetTypeInfo().Assembly;
 
-            T obj;
+            T data;
 
             using (var stream = assembly.GetManifestResourceStream(file))
             {
                 var serializer = new DataContractJsonSerializer(typeof(T));
-                obj = (T)serializer.ReadObject(stream);
+                data = (T)serializer.ReadObject(stream);
             }
 
-            return obj;
+            return data;
         }
 
         #endregion

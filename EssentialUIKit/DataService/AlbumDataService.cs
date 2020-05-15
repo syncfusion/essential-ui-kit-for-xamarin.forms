@@ -8,7 +8,7 @@ namespace EssentialUIKit.DataService
     {
         #region fields
 
-        private static AlbumDataService instance;
+        private static AlbumDataService albumDataService;
 
         private AlbumViewModel albumViewModel;
 
@@ -19,7 +19,7 @@ namespace EssentialUIKit.DataService
         /// <summary>
         /// Gets an instance of the <see cref="AlbumDataService"/>.
         /// </summary>
-        public static AlbumDataService Instance => instance ?? (instance = new AlbumDataService());
+        public static AlbumDataService Instance => albumDataService ?? (albumDataService = new AlbumDataService());
 
         /// <summary>
         /// Gets or sets the value of album page view model.
@@ -44,15 +44,15 @@ namespace EssentialUIKit.DataService
 
             var assembly = typeof(App).GetTypeInfo().Assembly;
 
-            T obj;
+            T data;
 
             using (var stream = assembly.GetManifestResourceStream(file))
             {
                 var serializer = new DataContractJsonSerializer(typeof(T));
-                obj = (T)serializer.ReadObject(stream);
+                data = (T)serializer.ReadObject(stream);
             }
 
-            return obj;
+            return data;
         }
 
         #endregion

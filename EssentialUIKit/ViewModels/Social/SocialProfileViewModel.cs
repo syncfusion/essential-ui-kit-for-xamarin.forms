@@ -89,6 +89,7 @@ namespace EssentialUIKit.ViewModels.Social
             this.AddConnectionCommand = new Command(this.AddConnectionClicked);
             this.ImageTapCommand = new Command(this.ImageClicked);
             this.ProfileSelectedCommand = new Command(this.ProfileClicked);
+            this.SettingsCommand = new Command(this.SettingButtonClicked);
         }
 
         #endregion
@@ -119,6 +120,11 @@ namespace EssentialUIKit.ViewModels.Social
         /// Gets or sets the command that is executed when the profile item is tapped.
         /// </summary>
         public ICommand ProfileSelectedCommand { get; set; }
+
+        /// <summary>
+        /// Gets or sets the command that is executed when the setting button is tapped.
+        /// </summary>
+        public ICommand SettingsCommand { get; set; }
 
         #endregion
 
@@ -295,6 +301,15 @@ namespace EssentialUIKit.ViewModels.Social
         /// </summary>
         /// <param name="obj">The Object</param>
         private void ProfileClicked(object obj)
+        {
+            // Do something
+        }
+
+        /// <summary>
+        /// Invoked when the setting button is tapped.
+        /// </summary>
+        /// <param name="obj">The Object</param>
+        private void SettingButtonClicked(object obj)
         {
             // Do something
         }

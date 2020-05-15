@@ -19,6 +19,8 @@
     <x:String x:Key="Share">&#xe704;</x:String>
     <x:String x:Key="Close">&#xe724;</x:String>
     <x:String x:Key="Favourite">&#xe701;</x:String>
+    <x:String x:Key="Filter">&#xe702;</x:String>
+    <x:String x:Key="Sort">&#xe70a;</x:String>
     <x:String x:Key="ClearBookmark">&#xe734;</x:String>
     <x:String x:Key="Back">&#xe709;</x:String>
     <x:String x:Key="Call">&#xe71c;</x:String>
@@ -30,16 +32,27 @@
     <x:String x:Key="Edit">&#xe727;</x:String>
     <x:String x:Key="Delete">&#xe716;</x:String>
     <x:String x:Key="Phone">&#xe71c;</x:String>
+    <x:String x:Key="Add">&#xe730;</x:String>
 
     <converter:DynamicResourceToColorConverter x:Key="DynamicResourceToColorConverter" />
 
+    <!--  Common style for font icons  -->
+    <Style x:Key="CommonIconStyle" TargetType="Label">
+        <Setter Property="TextColor" Value="{DynamicResource Gray-600}" />
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="HorizontalOptions" Value="Fill" />
+        <Setter Property="BackgroundColor" Value="Transparent" />
+        <Setter Property="FontFamily" Value="{StaticResource FontIcons}" />
+    </Style>
+    
     <!--  Common style for Content pages  -->
     <Style x:Key="ContentPageStyle" TargetType="ContentPage">
-        <Setter Property="BackgroundColor" Value="{OnIdiom Default={DynamicResource Gray-White}, Desktop={DynamicResource Gray-100}, Converter={StaticResource DynamicResourceToColorConverter}}" />
+        <Setter Property="BackgroundColor" Value="{OnIdiom Default={DynamicResource Gray-Bg}, Desktop={DynamicResource Gray-100}, Converter={StaticResource DynamicResourceToColorConverter}}" />
     </Style>
 
     <Style TargetType="control:TitleView">
-        <Setter Property="BackgroundColor" Value="{DynamicResource Gray-White}" />
+        <Setter Property="BackgroundColor" Value="{DynamicResource Gray-Bg}" />
     </Style>
 
     <!--  Common style for labels  -->
@@ -151,10 +164,10 @@
         <Setter Property="FontSize" Value="16" />
         <Setter Property="FontFamily" Value="Montserrat-Medium" />
         <Setter Property="FontColor" Value="{DynamicResource Gray-700}" />
-        <Setter Property="SelectionTextColor" Value="{DynamicResource Gray-White}" />
+        <Setter Property="SelectionTextColor" Value="{DynamicResource Gray-Bg}" />
         <Setter Property="BackgroundColor" Value="Transparent" />
         <Setter Property="BorderThickness" Value="0" />
-        <Setter Property="SegmentBackgroundColor" Value="{DynamicResource Gray-White}" />
+        <Setter Property="SegmentBackgroundColor" Value="{DynamicResource Gray-Bg}" />
         <Setter Property="SegmentBorderColor" Value="{DynamicResource Gray-300}" />
         <Setter Property="SegmentBorderThickness" Value="1" />
         <Setter Property="SegmentCornerRadius" Value="20" />
@@ -183,7 +196,8 @@
     <rating:SfRatingSettings
         x:Key="RatingSettings"
         RatedFill="{StaticResource OrangeyYellow}"
-        RatedStroke="{StaticResource OrangeyYellow}" />
+        RatedStroke="{StaticResource OrangeyYellow}"
+        UnRatedStroke="{DynamicResource Gray-600}"/>
 
     <!--  Common style for SfRating  -->
     <Style x:Key="SfRatingStyle" TargetType="rating:SfRating">
@@ -220,9 +234,9 @@
 
     <!--  Common style for sfBorder  -->
     <Style x:Key="CommonSfBorderStyle" TargetType="border:SfBorder">
-        <Setter Property="BackgroundColor" Value="{DynamicResource Gray-White}" />
+        <Setter Property="BackgroundColor" Value="{DynamicResource Gray-Bg}" />
         <Setter Property="BorderWidth" Value="{OnIdiom Default=2, Desktop=0}" />
-        <Setter Property="BorderColor" Value="{DynamicResource Gray-White}" />
+        <Setter Property="BorderColor" Value="{DynamicResource Gray-Bg}" />
         <Setter Property="HorizontalOptions" Value="Center" />
         <Setter Property="VerticalOptions" Value="Center" />
     </Style>
@@ -257,6 +271,10 @@
         <Setter Property="WatermarkColor" Value="{DynamicResource Gray-700}"/>
         <Setter Property="Margin" Value="8,3,0,-3"/>
         <Setter Property="HeightRequest" Value="40"/>
+        <Setter Property="DropDownBorderColor" Value="{DynamicResource Gray-300}"/>
+        <Setter Property="SelectedDropDownItemColor" Value="Transparent"/>
+        <Setter Property="DropDownBackgroundColor" Value="{DynamicResource Gray-Bg}"/>
+        <Setter Property="DropDownTextColor" Value="{DynamicResource Gray-700}"/>
     </Style>
 
     <!--  Common style for former border style  -->
@@ -265,7 +283,7 @@
         <Setter Property="CornerRadius" Value="4"/>
         <Setter Property="Padding" Value="12,8"/>
         <Setter Property="Margin" Value="0,8"/>
-        <Setter Property="BackgroundColor" Value="{DynamicResource Gray-White}"/>
+        <Setter Property="BackgroundColor" Value="{DynamicResource Gray-Bg}"/>
     </Style>
 
     <!--  Common style for buttons  -->
@@ -344,12 +362,12 @@
         <Setter Property="CornerRadius" Value="16" />
     </Style>
 
-    
+
     <Style x:Key="MenuIcon" TargetType="buttons:SfButton">
         <Setter Property="TextColor" Value="{DynamicResource Gray-600}" />
         <Setter Property="FontSize" Value="18" />
         <Setter Property="VerticalOptions" Value="Center" />
-        <Setter Property="BackgroundColor" Value="{StaticResource Gray-200}" />
+        <Setter Property="BackgroundColor" Value="{DynamicResource Gray-200}" />
         <Setter Property="FontFamily" Value="{StaticResource FontIcons}" />
         <Setter Property="HeightRequest" Value="40" />
         <Setter Property="WidthRequest" Value="40" />
@@ -360,7 +378,63 @@
         <Setter Property="BorderColor" Value="{DynamicResource Gray-300}"/>
         <Setter Property="CornerRadius" Value="4"/>
         <Setter Property="VerticalOptions" Value="CenterAndExpand" />
-        <Setter Property="BackgroundColor" Value="{DynamicResource Gray-White}"/>
+        <Setter Property="BackgroundColor" Value="{DynamicResource Gray-Bg}"/>
     </Style>
+
+    <DataTemplate x:Key="HeaderTemplate">
+
+        <StackLayout Padding="16,8,8,0"
+                     HorizontalOptions="End"
+                     Orientation="Horizontal"
+                     Spacing="8">
+
+            <!--  Filter label and icon  -->
+            <buttons:SfButton BorderWidth="0"
+                              Command="{Binding FilterCommand}"
+                              CornerRadius="4"
+                              HeightRequest="32"
+                              Style="{StaticResource SfButtonStyle}">
+                <buttons:SfButton.Content>
+                    <StackLayout Padding="8,5,8,6"
+                                 Orientation="Horizontal"
+                                 Spacing="8">
+                        
+                        <Label HorizontalOptions="End"
+                               Style="{StaticResource CommonIconStyle}"
+                               Text="{StaticResource Filter}" />
+
+                        <Label FontFamily="{StaticResource Montserrat-SemiBold}"
+                               HorizontalOptions="End"
+                               Style="{StaticResource LabelStyle}"
+                               Text="Filter" />
+                    </StackLayout>
+                </buttons:SfButton.Content>
+            </buttons:SfButton>
+
+            <!--  Sort label and icon  -->
+            <buttons:SfButton BorderWidth="0"
+                              Command="{Binding SortCommand}"
+                              CornerRadius="4"
+                              HeightRequest="32"
+                              Style="{StaticResource SfButtonStyle}">
+                <buttons:SfButton.Content>
+                    <StackLayout Padding="8,5,8,6"
+                                 Orientation="Horizontal"
+                                 Spacing="8">
+
+                        <Label HorizontalOptions="End"
+                               Style="{StaticResource CommonIconStyle}"
+                               Text="{StaticResource Sort}" />
+
+                        <Label FontFamily="{StaticResource Montserrat-SemiBold}"
+                               HorizontalOptions="End"
+                               Style="{StaticResource LabelStyle}"
+                               Text="Sorting" />
+                    </StackLayout>
+                </buttons:SfButton.Content>
+            </buttons:SfButton>
+
+        </StackLayout>
+    </DataTemplate>
 
 </ResourceDictionary>

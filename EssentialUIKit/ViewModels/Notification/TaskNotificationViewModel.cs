@@ -17,9 +17,9 @@ namespace EssentialUIKit.ViewModels.Notification
 
         private Command<object> itemTappedCommand;
 
-        private Command<object> backCommand;
-
         private Command<object> menuCommand;
+
+        private Command<object> markAllCommand;
 
         #endregion
 
@@ -49,17 +49,6 @@ namespace EssentialUIKit.ViewModels.Notification
         }
 
         /// <summary>
-        /// Gets the command that will be executed when back button is selected.
-        /// </summary>
-        public Command<object> BackCommand
-        {
-            get
-            {
-                return this.backCommand ?? (this.backCommand = new Command<object>(this.BackButtonClicked));
-            }
-        }
-
-        /// <summary>
         /// Gets the command that will be executed when menu button is selected.
         /// </summary>
         public Command<object> MenuCommand
@@ -67,6 +56,17 @@ namespace EssentialUIKit.ViewModels.Notification
             get
             {
                 return this.menuCommand ?? (this.menuCommand = new Command<object>(this.MenuButtonClicked));
+            }
+        }
+
+        /// <summary>
+        /// Gets the command that will be executed when an mark all as read is selected.
+        /// </summary>
+        public Command<object> MarkAllCommand
+        {
+            get
+            {
+                return this.markAllCommand ?? (this.markAllCommand = new Command<object>(this.MarkAllClicked));
             }
         }
 
@@ -91,19 +91,19 @@ namespace EssentialUIKit.ViewModels.Notification
         }
 
         /// <summary>
-        /// Invoked when back button is clicked in the task notification page.
+        /// Invoked when menu button is clicked in the task notification page.
         /// </summary>
         /// <param name="obj">The object.</param>
-        private void BackButtonClicked(object obj)
+        private void MenuButtonClicked(object obj)
         {
             // Do something
         }
 
         /// <summary>
-        /// Invoked when menu button is clicked in the task notification page.
+        /// Invoked when mark all as read button is clicked in the task notification page.
         /// </summary>
         /// <param name="obj">The object.</param>
-        private void MenuButtonClicked(object obj)
+        private void MarkAllClicked(object obj)
         {
             // Do something
         }

@@ -6,7 +6,7 @@
     xmlns:progressBar="clr-namespace:Syncfusion.XForms.ProgressBar;assembly=Syncfusion.SfProgressBar.XForms"
     xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Tracking"
     Title="Order Status"
-    BackgroundColor="{StaticResource Gray-100}"
+    BackgroundColor="{DynamicResource Gray-100}"
     NavigationPage.HasNavigationBar="False"
     Shell.NavBarIsVisible="False">
 
@@ -23,7 +23,7 @@
             <StackLayout HorizontalOptions="FillAndExpand" Spacing="0">
                 <Grid
                     Margin="0,16,0,0"
-                    BackgroundColor="{DynamicResource Gray-White}"
+                    BackgroundColor="{DynamicResource Gray-Bg}"
                     ColumnSpacing="0"
                     RowSpacing="0">
 
@@ -94,7 +94,7 @@
                 <progressBar:SfStepProgressBar
                     x:Name="stepProgress"
                     Margin="0,20,0,0"
-                    BackgroundColor="{StaticResource Gray-White}"
+                    BackgroundColor="{DynamicResource Gray-Bg}"
                     BindableLayout.ItemsSource="{Binding ProductDeliveryTrackings}"
                     HorizontalOptions="FillAndExpand"
                     Orientation="Vertical"
@@ -107,28 +107,30 @@
                         <progressBar:StepStyle
                             x:TypeArguments="progressBar:NotStartedStepState"
                             MarkerContentSize="12"
-                            MarkerShapeType="Circle" />
+                            MarkerShapeType="Circle" 
+                            TrackColor="{DynamicResource Gray-200}"
+                            MarkerContentFillColor="{DynamicResource Gray-200}"/>
                     </progressBar:SfStepProgressBar.NotStartedStepStyle>
 
                     <!--  Style for step progress inprogress  -->
                     <progressBar:SfStepProgressBar.InProgressStepStyle>
                         <progressBar:StepStyle
                             x:TypeArguments="progressBar:InProgressStepState"
-                            MarkerFillColor="{StaticResource PrimaryColor}"
+                            MarkerFillColor="{DynamicResource PrimaryColor}"
                             MarkerShapeType="Circle"
-                            MarkerStrokeColor="{StaticResource PrimaryDarkColor}"
-                            ProgressLineColor="{StaticResource PrimaryColor}" />
+                            MarkerStrokeColor="{DynamicResource PrimaryDarkColor}"
+                            ProgressLineColor="{DynamicResource PrimaryColor}" />
                     </progressBar:SfStepProgressBar.InProgressStepStyle>
 
                     <!--  Style for step progress completed  -->
                     <progressBar:SfStepProgressBar.CompletedStepStyle>
                         <progressBar:StepStyle
                             x:TypeArguments="progressBar:CompletedStepState"
-                            MarkerContentFillColor="{StaticResource Gray-White}"
+                            MarkerContentFillColor="{DynamicResource Gray-White}"
                             MarkerContentType="Tick"
-                            MarkerFillColor="{StaticResource PrimaryColor}"
+                            MarkerFillColor="{DynamicResource PrimaryColor}"
                             MarkerShapeType="Circle"
-                            MarkerStrokeColor="{StaticResource PrimaryDarkColor}" />
+                            MarkerStrokeColor="{DynamicResource PrimaryDarkColor}" />
                     </progressBar:SfStepProgressBar.CompletedStepStyle>
 
                     <BindableLayout.ItemTemplate>
@@ -150,7 +152,7 @@
                                             FontFamily="{StaticResource Montserrat-Medium}"
                                             Style="{StaticResource SpanStyle}"
                                             Text="{Binding Date}"
-                                            TextColor="{StaticResource Gray-700}" />
+                                            TextColor="{DynamicResource Gray-700}" />
                                         <Span Text="&#10;&#10;" />
                                         <Span Style="{StaticResource SpanStyle}" Text="{Binding OrderStatus}" />
                                         <Span Text="&#10;" />
@@ -158,7 +160,7 @@
                                             FontFamily="{StaticResource Montserrat-Medium}"
                                             Style="{StaticResource SpanStyle}"
                                             Text="{Binding OrderDate}"
-                                            TextColor="{StaticResource Gray-700}" />
+                                            TextColor="{DynamicResource Gray-700}" />
                                         <Span Text="&#10;&#10;" />
                                     </FormattedString>
                                 </progressBar:StepView.PrimaryFormattedText>

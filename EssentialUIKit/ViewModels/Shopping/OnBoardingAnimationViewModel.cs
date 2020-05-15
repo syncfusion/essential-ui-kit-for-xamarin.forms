@@ -47,28 +47,28 @@ namespace EssentialUIKit.ViewModels.Shopping
                     ImagePath = "ChooseGradient.svg",
                     Header = "CHOOSE",
                     Content = "Pick the item that is right for you",
-                    RotatorItem = new WalkthroughItemPage()
+                    RotatorView = new WalkthroughItemPage()
                 },
                 new Boarding()
                 {
                     ImagePath = "ConfirmGradient.svg",
                     Header = "ORDER CONFIRMED",
                     Content = "Your order is confirmed and will be on its way soon",
-                    RotatorItem = new WalkthroughItemPage()
+                    RotatorView = new WalkthroughItemPage()
                 },
                 new Boarding()
                 {
                     ImagePath = "DeliverGradient.svg",
                     Header = "DELIVERY",
                     Content = "Your item will arrive soon. Email us if you have any issues",
-                    RotatorItem = new WalkthroughItemPage()
+                    RotatorView = new WalkthroughItemPage()
                 }
             };
 
             // Set bindingcontext to content view.
             foreach (var boarding in this.Boardings)
             {
-                boarding.RotatorItem.BindingContext = boarding;
+                boarding.RotatorView.BindingContext = boarding;
             }
         }
 

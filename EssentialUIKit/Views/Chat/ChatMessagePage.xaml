@@ -11,7 +11,7 @@
     xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
     xmlns:local="clr-namespace:EssentialUIKit.Views.Chat"
     xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Chat"
-    BackgroundImage="ChatMessageBackground.png"
+    BackgroundColor="{DynamicResource Gray-Bg}" 
     NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Resources>
@@ -31,6 +31,7 @@
     <ContentPage.Content>
 
         <Grid>
+            <Image Source="ChatMessageBackground.png" Opacity="0.15" Aspect="AspectFill"/>
             <ScrollView>
 
                 <!--  List view to show the recent chat history  -->
@@ -69,15 +70,15 @@
                         <DataTemplate>
                             <StackLayout
                                 Padding="10"
-                                BackgroundColor="{DynamicResource Gray-White}"
+                                BackgroundColor="{DynamicResource Gray-Bg}"
                                 HorizontalOptions="FillAndExpand"
                                 Orientation="Horizontal"
                                 Spacing="0"
                                 VerticalOptions="Fill">
 
                                 <!--  Back Button  -->
-                                <buttons:SfButton
-                                    Command="{Binding BackCommand}"
+                                <buttons:SfButton CornerRadius="20"
+                                    Command="{Binding BackButtonCommand}"
                                     Style="{StaticResource NavigationBarButtonStyle}"
                                     Text="{StaticResource Back}" />
 
@@ -112,19 +113,19 @@
                                 </Label>
 
                                 <!--  Video call button  -->
-                                <buttons:SfButton
+                                <buttons:SfButton CornerRadius="20"
                                     Command="{Binding MakeVideoCall}"
                                     Style="{StaticResource NavigationBarButtonStyle}"
                                     Text="{StaticResource VideoCall}" />
 
                                 <!--  Voice call button  -->
-                                <buttons:SfButton
+                                <buttons:SfButton CornerRadius="20"
                                     Command="{Binding MakeVoiceCall}"
                                     Style="{StaticResource NavigationBarButtonStyle}"
                                     Text="{StaticResource VoiceCall}" />
 
                                 <!--  Menu Button  -->
-                                <buttons:SfButton
+                                <buttons:SfButton CornerRadius="20"
                                     Command="{Binding MenuCommand}"
                                     Style="{StaticResource NavigationBarButtonStyle}"
                                     Text="{StaticResource Menu}" />
@@ -147,7 +148,8 @@
                                 </Grid.ColumnDefinitions>
 
                                 <!--  Rounded Border  -->
-                                <border:SfBorder Padding="5,0" Style="{DynamicResource SfBorderStyle}">
+                                <border:SfBorder Padding="5,0" Style="{DynamicResource SfBorderStyle}"
+                                                 HasShadow="True" BorderWidth="0">
 
                                     <Grid ColumnSpacing="0">
 
@@ -165,12 +167,14 @@
                                         <controls:BorderlessEditor
                                             Placeholder="Type here"
                                             Style="{StaticResource ChatMessageEditorStyle}"
-                                            Text="{Binding NewMessage}" />
+                                            Text="{Binding NewMessage}"
+                                            BackgroundColor="Transparent"/>
 
                                         <!--  Camera Button  -->
                                         <buttons:SfButton
                                             Grid.Column="1"
                                             Command="{Binding ShowCamera}"
+                                            CornerRadius="20"
                                             Style="{StaticResource NavigationBarButtonStyle}"
                                             Text="{StaticResource Camera}"
                                             VerticalOptions="End" />
@@ -178,6 +182,7 @@
                                         <!--  Attachment Button  -->
                                         <buttons:SfButton
                                             Grid.Column="2"
+                                            CornerRadius="20"
                                             Command="{Binding SendAttachment}"
                                             Style="{StaticResource NavigationBarButtonStyle}"
                                             Text="{StaticResource Attachment}"
@@ -202,6 +207,7 @@
                                             Margin="0,2,2,0"
                                             FontFamily="{StaticResource FontIcons}"
                                             FontSize="18"
+                                            HorizontalTextAlignment="Center"
                                             HorizontalOptions="Center"
                                             Text="{StaticResource Send}"
                                             TextColor="{DynamicResource Gray-White}"

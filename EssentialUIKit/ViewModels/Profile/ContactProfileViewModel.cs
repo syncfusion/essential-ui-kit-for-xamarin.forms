@@ -100,7 +100,7 @@ namespace EssentialUIKit.ViewModels.Profile
             (obj as SfBorder).BackgroundColor = (Color)retVal;
             await Task.Delay(100);
 
-            Application.Current.Resources.TryGetValue("Gray-White", out var oldVal);
+            Application.Current.Resources.TryGetValue("Gray-Bg", out var oldVal);
             (obj as SfBorder).BackgroundColor = (Color)oldVal;
         }
 

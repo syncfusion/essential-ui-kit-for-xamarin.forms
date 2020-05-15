@@ -117,12 +117,9 @@ namespace EssentialUIKit.ViewModels.Forms
         /// Invoked when the Forgot Password button is clicked.
         /// </summary>
         /// <param name="obj">The Object</param>
-        private async void ForgotPasswordClicked(object obj)
+        private void ForgotPasswordClicked(object obj)
         {
-            var label = obj as Label;
-            label.BackgroundColor = Color.FromHex("#70FFFFFF");
-            await Task.Delay(100);
-            label.BackgroundColor = Color.Transparent;
+            // Do something
         }
 
         /// <summary>

@@ -5,12 +5,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
-             xmlns:cards="clr-namespace:Syncfusion.XForms.Cards;assembly=Syncfusion.Cards.XForms"
              xmlns:gradient="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
              xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
              xmlns:svg="clr-namespace:EssentialUIKit.Controls"
              xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Profile"
              x:Class="EssentialUIKit.Views.Profile.HealthProfilePage"
+             BackgroundColor="{DynamicResource GrayShadowBackgroundColor}"
              NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Resources>
@@ -62,10 +62,10 @@
                                      HorizontalOptions="CenterAndExpand"
                                      VerticalOptions="StartAndExpand"
                                      BorderColor="{DynamicResource Gray-White}"
-                                     BackgroundColor="{DynamicResource Gray-White}">
+                                     BackgroundColor="{DynamicResource GrayShadowBackgroundColor}">
 
                         <Image Aspect="AspectFill"
-                               BackgroundColor="{DynamicResource Gray-White}">
+                               BackgroundColor="{DynamicResource GrayShadowBackgroundColor}">
                             <Image.Source>
                                 <UriImageSource Uri="{Binding ProfileImage}"
                                                 CacheValidity="14"
@@ -104,14 +104,15 @@
                     </Label>
                 </Grid>
 
-                <border:SfBorder Grid.Row="1" Margin="0,-69,0,0" Padding="0,61,0,0" BackgroundColor="{DynamicResource Gray-100}" CornerRadius="14,14,0,0"
+                <border:SfBorder Grid.Row="1" Margin="0,-69,0,0" Padding="0,61,0,0" BackgroundColor="{DynamicResource GrayShadowBackgroundColor}" CornerRadius="14,14,0,0"
                                  VerticalOptions="Start" BorderWidth="0">
-                    <listView:SfListView SelectionMode="None" ItemSpacing="16,8" ItemSize="74" IsScrollingEnabled="False" AutoFitMode="Height"
-                                         ItemsSource="{Binding CardItems}">
+                    <listView:SfListView SelectionMode="None" ItemSize="74" IsScrollingEnabled="False" AutoFitMode="Height"
+                                         ItemsSource="{Binding CardItems}" TapCommand="{Binding ItemTappedCommand}">
                         <listView:SfListView.ItemTemplate>
                             <DataTemplate>
-                                <cards:SfCardView CornerRadius="4" BorderWidth="0" HasShadow="True" WidthRequest="{OnIdiom Phone=343, Default=736}"
-                                                  HorizontalOptions="CenterAndExpand" BackgroundColor="{DynamicResource Gray-White}">
+                                <svg:CustomShadowFrame WidthRequest="{OnIdiom Phone=343, Default=736}" Padding="0" BackgroundColor="{DynamicResource GrayShadowColor}"
+                                                       BorderWidth="0" HorizontalOptions="CenterAndExpand" Margin="16,8" CornerRadius="4" Radius="4" HasShadow="True">
+
                                     <Grid RowSpacing="0" Padding="16">
 
                                         <Grid.RowDefinitions>
@@ -130,22 +131,24 @@
                                         <!-- Category Image -->
                                         <svg:SVGImage Grid.RowSpan="2" 
                                                       BackgroundColor="Transparent"
-                                                      Source="{Binding ImagePath}"
+                                                      Source="{Binding CategoryImage}"
                                                       HorizontalOptions="End"
                                                       VerticalOptions="Center"
                                                       WidthRequest="32" 
                                                       HeightRequest="31" />
-
                                     </Grid>
-                                </cards:SfCardView>
+
+                                </svg:CustomShadowFrame>
                             </DataTemplate>
                         </listView:SfListView.ItemTemplate>
                     </listView:SfListView>
                 </border:SfBorder>
 
-                <cards:SfCardView Grid.Row="0" CornerRadius="4" VerticalOptions="End" Margin="16,0,16,24"  BorderWidth="0" HasShadow="True"  
-                                 BackgroundColor="{DynamicResource Gray-White}" HorizontalOptions="CenterAndExpand" WidthRequest="{OnIdiom Phone=343, Default=736}" >
-                   
+                <svg:CustomShadowFrame Grid.Row="0" VerticalOptions="End" Margin="16,0,16,24" Padding="0" BackgroundColor="{DynamicResource GrayShadowColor}"
+                                       BorderWidth="0" HorizontalOptions="CenterAndExpand" WidthRequest="{OnIdiom Phone=343, Default=736}"
+                                       CornerRadius="4" Radius="4" HasShadow="True">
+
+                    <svg:CustomShadowFrame.Content>
                     <Grid RowSpacing="0" ColumnSpacing="0" WidthRequest="{OnIdiom Phone=343, Default=480}" 
                           HeightRequest="90">
 
@@ -193,7 +196,9 @@
                                TextColor="{DynamicResource Gray-700}" />
 
                     </Grid>
-                </cards:SfCardView>
+                    </svg:CustomShadowFrame.Content>
+                    
+                </svg:CustomShadowFrame>
             </Grid>
         </ScrollView>
     </ContentPage.Content>

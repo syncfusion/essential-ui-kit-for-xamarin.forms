@@ -119,7 +119,7 @@ namespace EssentialUIKit.Controls
 
             // To make the selected item color changes for 100 milliseconds.
             await Task.Delay(100);
-            Application.Current.Resources.TryGetValue("Gray-White", out var retValue);
+            Application.Current.Resources.TryGetValue("Gray-Bg", out var retValue);
             grid.BackgroundColor = (Color)retValue;
         }
         #endregion

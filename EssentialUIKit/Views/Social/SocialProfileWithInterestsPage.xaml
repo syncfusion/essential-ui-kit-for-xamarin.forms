@@ -31,7 +31,7 @@
 
             <StackLayout 
                 Spacing="0" 
-                BackgroundColor="{DynamicResource Gray-White}">
+                BackgroundColor="{DynamicResource Gray-Bg}">
 
                 <Grid 
                     Margin="0"
@@ -45,13 +45,13 @@
                         Source="{Binding HeaderImagePath}"
                         BackgroundColor="{DynamicResource Gray-200}"/>
 
-                    <!--  Edit button -->
+                    <!--  Settings button -->
                     <buttons:SfButton                        
                         Margin="0,8,8,0"
                         Padding="2"
                         BackgroundColor="Transparent"
-                        Command="{Binding EditCommand}"
-                        CornerRadius="4"
+                        Command="{Binding SettingsCommand}"
+                        CornerRadius="20"
                         FontFamily="{StaticResource FontIcons}"
                         FontSize="18"
                         HorizontalOptions="End"
@@ -69,7 +69,7 @@
                     HorizontalOptions="FillAndExpand" 
                     BorderWidth="0" 
                     BorderColor="Transparent" 
-                    BackgroundColor="{DynamicResource Gray-White}" />
+                    BackgroundColor="{DynamicResource Gray-Bg}" />
 
                 <border:SfBorder
                     Margin="24,-55,0,16"
@@ -242,7 +242,7 @@
                     Margin="16,0,0,0" />
 
                 <listView:SfListView                    
-                    Margin="0,0,0,32"
+                    Margin="16,0,0,32"
                     HeightRequest="100"
                     ItemSpacing="0"
                     Padding="0"

@@ -31,11 +31,11 @@
                     <control:BorderlessEntry
                         x:Name="EmailEntry"
                         Placeholder="Email"
-                        PlaceholderColor="{DynamicResource Gray-700}"
+                        PlaceholderColor="#606a7b"
                         Style="{StaticResource EntryStyle}"
                         Keyboard="Email"
                         Text="{Binding Email}"
-                        TextColor="{DynamicResource Gray-900}" />
+                        TextColor="#333942" />
                     
                     <!--  Login entry label -->
 

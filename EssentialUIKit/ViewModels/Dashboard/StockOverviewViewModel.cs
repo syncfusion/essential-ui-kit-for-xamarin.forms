@@ -21,8 +21,6 @@ namespace EssentialUIKit.ViewModels.Dashboard
 
         private int selectedDataVariantIndex;
 
-        ObservableCollection<ChartDataPoint> oneMonthData;
-
         ObservableCollection<ChartDataPoint> threeMonthData;
 
         ObservableCollection<ChartDataPoint> sixMonthData;
@@ -41,7 +39,7 @@ namespace EssentialUIKit.ViewModels.Dashboard
         public StockOverviewViewModel()
         {
             GetChartData();
-            var variants = new List<string> { "1M", "3M", "6M", "9M", "1Y" };
+            var variants = new List<string> { "3M", "6M", "9M", "1Y" };
             items = new ObservableCollection<Stock>()
             {
                 new Stock()
@@ -85,8 +83,8 @@ namespace EssentialUIKit.ViewModels.Dashboard
 
             this.ProfileImage = App.BaseImageUrl + "ProfileImage1.png";
             this.DataVariantCommand = new Command(this.DataVariantClicked);
-            this.MenuCommand = new Command(this.MenuClicked);
             this.SelectionCommand = new Command(this.ItemClicked);
+            this.MenuCommand = new Command(this.MenuButtonClicked);
         }
 
         #endregion
@@ -141,7 +139,7 @@ namespace EssentialUIKit.ViewModels.Dashboard
         public Command DataVariantCommand { get; set; }
 
         /// <summary>
-        /// Gets or sets the command that will be executed when the menu button is clicked.
+        /// Gets or sets the command is executed when the menu button is clicked.
         /// </summary>
         public Command MenuCommand { get; set; }
 
@@ -265,8 +263,6 @@ namespace EssentialUIKit.ViewModels.Dashboard
                 new ChartDataPoint(dateTime.AddDays(88), 5390),
             };
 
-            oneMonthData = new ObservableCollection<ChartDataPoint>(threeMonthData.Take(15));
-
             nineMonthData = new ObservableCollection<ChartDataPoint>()
             {
                 new ChartDataPoint(dateTime, 4478),
@@ -316,28 +312,23 @@ namespace EssentialUIKit.ViewModels.Dashboard
         {
             var item = obj as Stock;
             switch (SelectedDataVariantIndex)
-            {
+            {              
                 case 0:
-                    {
-                        item.ChartData = oneMonthData;
-                        break;
-                    }
-                case 1:
                     {
                         item.ChartData = threeMonthData;
                         break;
                     }
-                case 2:
+                case 1:
                     {
                         item.ChartData = sixMonthData;
                         break;
                     }
-                case 3:
+                case 2:
                     {
                         item.ChartData = nineMonthData;
                         break;
                     }
-                case 4:
+                case 3:
                     {
                         item.ChartData = yearData;
                         break;
@@ -346,16 +337,16 @@ namespace EssentialUIKit.ViewModels.Dashboard
         }
 
         /// <summary>
-        /// Invoked when the menu button is clicked.
+        /// Invoked when the menu button clicked
         /// </summary>
-        /// <param name="obj">The Object</param>
-        private void MenuClicked(object obj)
+        /// <param name="obj">The object</param>
+        private void MenuButtonClicked(object obj)
         {
             // Do something
         }
 
         /// <summary>
-        /// Invoked when the menu button is clicked.
+        /// Invoked when the item is clicked.
         /// </summary>
         /// <param name="obj">The Object</param>
         private void ItemClicked(object obj)

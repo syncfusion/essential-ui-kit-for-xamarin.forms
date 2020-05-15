@@ -11,7 +11,7 @@
              xmlns:data="clr-namespace:Syncfusion.DataSource;assembly=Syncfusion.DataSource.Portable"
              mc:Ignorable="d"
              x:Class="EssentialUIKit.Views.Navigation.ContactsPage"
-             BackgroundColor="{DynamicResource Gray-White}"
+             BackgroundColor="{DynamicResource Gray-Bg}"
              NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Resources>
@@ -31,8 +31,8 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <StackLayout x:Name="ContactsTitleView"  Padding="8,8" Grid.Row="0" HeightRequest="64"
-                         BackgroundColor="{DynamicResource Gray-White}" Spacing="0"
+            <StackLayout x:Name="ContactsTitleView"  Padding="8" Grid.Row="0" 
+                         BackgroundColor="{DynamicResource Gray-Bg}" Spacing="0"
                          HorizontalOptions="FillAndExpand" Orientation="Horizontal">
 
                 <StackLayout x:Name="ContactsTitle" HorizontalOptions="FillAndExpand"  IsVisible="True"
@@ -40,7 +40,7 @@
 
                     <!--  Back button command  -->
                     <buttons:SfButton  x:Name="backButton"  Command="{Binding BackButtonCommand}"
-                                       CommandParameter="{x:Reference backButton}" CornerRadius="4"
+                                       CommandParameter="{x:Reference backButton}" CornerRadius="20"
                                        Style="{StaticResource IconButtonStyle}" Text="{StaticResource Back}"/>
 
                     <!--   Contacts List page Title  -->
@@ -86,7 +86,7 @@
                                                  SearchText="{Binding SearchText}"
                                                  TapCommand="{Binding ItemTappedCommand}"
                                                  ItemsSource="{Binding ContactList}"
-                                                 SelectionBackgroundColor="{DynamicResource TappedBackgroundColor}">
+                                                 SelectionBackgroundColor="{DynamicResource Gray-200}">
 
                     <controls:SearchableContactsList.DataSource>
                         <data:DataSource>

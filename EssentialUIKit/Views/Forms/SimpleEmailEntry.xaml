@@ -20,7 +20,7 @@
     <ContentView.Content>
         <StackLayout>
             <border:SfBorder
-                BackgroundColor="{DynamicResource Gray-White}"
+                BackgroundColor="{DynamicResource Gray-Bg}"
                 BorderColor="{Binding Path=IsFocused, Source={x:Reference EmailEntry}, Converter={x:StaticResource ErrorValidationColorConverter}, ConverterParameter={x:Reference EmailEntry}}"
                 Style="{StaticResource SfBorderStyle}">
                 <Grid>

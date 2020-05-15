@@ -18,12 +18,12 @@ namespace EssentialUIKit.ViewModels.Dashboard
         /// <summary>
         /// To store the health care data collection.
         /// </summary>
-        private ObservableCollection<HealthCare> cardItems;
+        private ObservableCollection<HealthCare> healthCareCardItems;
 
         /// <summary>
         /// To store the health care data collection.
         /// </summary>
-        private ObservableCollection<HealthCare> listItems;
+        private ObservableCollection<HealthCare> healthCareListItems;
 
         /// <summary>
         /// To store the heart rate data collection.
@@ -55,7 +55,7 @@ namespace EssentialUIKit.ViewModels.Dashboard
         public HealthCareViewModel()
         {
             GetChartData();
-            cardItems = new ObservableCollection<HealthCare>()
+            healthCareCardItems = new ObservableCollection<HealthCare>()
             {
                 new HealthCare()
                 {
@@ -91,7 +91,7 @@ namespace EssentialUIKit.ViewModels.Dashboard
                 }
             };
 
-            listItems = new ObservableCollection<HealthCare>()
+            healthCareListItems = new ObservableCollection<HealthCare>()
             {
                 new HealthCare()
                 {
@@ -103,7 +103,7 @@ namespace EssentialUIKit.ViewModels.Dashboard
                 new HealthCare()
                 {
                     Category = "Body Weight",
-                    CategoryValue = "80kg",
+                    CategoryValue = "176 lbs",
                     CategoryPercentage = "50%",
                     BackgroundGradientStart = "#8691ff"
                 },
@@ -117,7 +117,7 @@ namespace EssentialUIKit.ViewModels.Dashboard
             };
 
             this.ProfileImage = App.BaseImageUrl + "ProfileImage1.png";
-            this.MenuCommand = new Command(this.MenuClicked);
+            this.MenuCommand = new Command(this.MenuButtonClicked);
         }
 
         #endregion
@@ -132,16 +132,16 @@ namespace EssentialUIKit.ViewModels.Dashboard
         /// <summary>
         /// Gets or sets the health care items collection.
         /// </summary>
-        public ObservableCollection<HealthCare> CardItems
+        public ObservableCollection<HealthCare> HealthCareCardItems
         {
             get
             {
-                return this.cardItems;
+                return this.healthCareCardItems;
             }
 
             set
             {
-                this.cardItems = value;
+                this.healthCareCardItems = value;
                 this.NotifyPropertyChanged();
             }
         }
@@ -149,16 +149,16 @@ namespace EssentialUIKit.ViewModels.Dashboard
         /// <summary>
         /// Gets or sets the health care items collection.
         /// </summary>
-        public ObservableCollection<HealthCare> ListItems
+        public ObservableCollection<HealthCare> HealthCareListItems
         {
             get
             {
-                return this.listItems;
+                return this.healthCareListItems;
             }
 
             set
             {
-                this.listItems = value;
+                this.healthCareListItems = value;
                 this.NotifyPropertyChanged();
             }
         }
@@ -168,7 +168,7 @@ namespace EssentialUIKit.ViewModels.Dashboard
         #region Comments
         
         /// <summary>
-        /// Gets or sets the command that will be executed when the menu button is clicked.
+        /// Gets or sets the command is executed when the menu button is clicked.
         /// </summary>
         public Command MenuCommand { get; set; }
 
@@ -230,14 +230,14 @@ namespace EssentialUIKit.ViewModels.Dashboard
         }
 
         /// <summary>
-        /// Invoked when the menu button is clicked.
+        /// Invoked when the menu button is clicked
         /// </summary>
-        /// <param name="obj">The Object</param>
-        private void MenuClicked(object obj)
+        /// <param name="obj">The object</param>
+        private void MenuButtonClicked(object obj)
         {
             // Do something
         }
-        
+
         #endregion
     }
 }

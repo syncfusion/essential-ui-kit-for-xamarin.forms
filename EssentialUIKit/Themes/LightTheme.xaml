@@ -29,7 +29,10 @@
     <Color x:Key="Gray-900">#333942</Color>
     <Color x:Key="Gray-Black">#000000</Color>
     <Color x:Key="Gray-White">#ffffff</Color>
-
+    <Color x:Key="Gray-Bg">#ffffff</Color>
+    <Color x:Key="GrayShadowColor">#ffffff</Color>
+    <Color x:Key="GrayShadowBackgroundColor">#f6f7f8</Color>
+    
     <OnPlatform x:Key="FontIcons" x:TypeArguments="x:String">
         <OnPlatform.Platforms>
             <On Platform="Android" Value="UIFontIcons.ttf#UIFontIcons" />

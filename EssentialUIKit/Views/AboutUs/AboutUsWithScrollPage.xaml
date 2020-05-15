@@ -8,7 +8,7 @@
     xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
     xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.About"
     Title="About Us"
-    BackgroundColor="{DynamicResource Gray-White}"
+    BackgroundColor="{DynamicResource Gray-Bg}"
     NavigationPage.HasNavigationBar="False">
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -20,7 +20,7 @@
     <ContentPage.Content>
 
         <ScrollView>
-            <Grid RowSpacing="0" VerticalOptions="Center">
+            <Grid RowSpacing="0">
                 <Grid.BindingContext>
                     <viewModel:AboutUsViewModel />
                 </Grid.BindingContext>
@@ -49,12 +49,14 @@
                     <Label
                         Margin="0,24,0,16"
                         FontSize="20"
+                        TextColor="#333942"
                         Style="{StaticResource HeaderLabelStyle}"
                         Text="About Us" />
 
                     <!--  Product description  -->
                     <Label
                         Margin="16,0,16,0"
+                        TextColor="#606a7b"
                         Style="{StaticResource DescriptionLabelStyle}"
                         Text="{Binding ProductDescription}" />
                 </StackLayout>

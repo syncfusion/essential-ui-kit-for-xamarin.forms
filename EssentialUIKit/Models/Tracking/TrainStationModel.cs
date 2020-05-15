@@ -13,7 +13,7 @@ namespace EssentialUIKit.Models.Tracking
     /// </summary>
     [Preserve(AllMembers = true)]
     [DataContract]
-    public class Station : INotifyPropertyChanged
+    public class TrainStationModel : INotifyPropertyChanged
     {
         #region Fields
 

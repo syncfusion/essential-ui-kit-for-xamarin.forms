@@ -11,6 +11,7 @@
     xmlns:converter="clr-namespace:EssentialUIKit.Converters"
     xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Forms"
     xmlns:behaviours="clr-namespace:EssentialUIKit.Behaviors"
+    xmlns:local="clr-namespace:EssentialUIKit.Views.Forms"
     Title="Business Registration Form"
     BackgroundColor="{DynamicResource Gray-100}"
     NavigationPage.HasNavigationBar="False">
@@ -30,7 +31,7 @@
 
     <ContentPage.ControlTemplate>
         <ControlTemplate>
-            <StackLayout Spacing="0" BackgroundColor="{DynamicResource Gray-White}">
+            <StackLayout Spacing="0" BackgroundColor="{DynamicResource Gray-Bg}">
                 
                 <!-- Title -->
                 <Label 
@@ -136,25 +137,18 @@
                 <!-- Email -->
                 <Label
                         FontFamily="{StaticResource Montserrat-Medium}"
-                        Margin="0,24,0,4"
+                        Margin="0,24,0,-4"
                         HeightRequest="18"
                         FontSize="12"
                         Text="Email"
                         TextColor="{DynamicResource Gray-800}" />
 
-                <border:SfBorder BorderColor="{Binding Source={x:Reference EmailEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}" 
-                                 Style="{StaticResource BusinessFormBorderStyle}">
-                    <controls:BorderlessEntry
-                            x:Name="EmailEntry"
-                            Placeholder="Email" Keyboard="Email"
-                            Text="{Binding Email}"
-                            Style="{StaticResource EntryTextBoxStyle}" />
-                </border:SfBorder>
+                <local:ContactEmailEntry />
 
                 <!-- Street Address -->
                 <Label
                         FontFamily="{StaticResource Montserrat-Medium}"
-                        Margin="0,24,0,4"
+                        Margin="0,16,0,4"
                         HeightRequest="18"
                         FontSize="12"
                         Text="Street Address"

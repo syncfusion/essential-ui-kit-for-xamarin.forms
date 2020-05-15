@@ -1,6 +1,7 @@
 using System;
 using EssentialUIKit.AppLayout.Controls;
 using EssentialUIKit.AppLayout.Models;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
@@ -86,6 +87,7 @@ namespace EssentialUIKit.AppLayout.Views
         protected override void OnAppearing()
         {
             this.isNavigationInQueue = false;
+            SettingsView.UpdatePrimaryColorIndex();
             base.OnAppearing();
         }
 
@@ -152,7 +154,7 @@ namespace EssentialUIKit.AppLayout.Views
 
         private void GotoCodeViewer(object sender, EventArgs e)
         {
-            Device.OpenUri(new Uri("https://github.com/syncfusion/essential-ui-kit-for-xamarin.forms"));
+            Launcher.OpenAsync(new Uri("https://github.com/syncfusion/essential-ui-kit-for-xamarin.forms"));
         }
 
         #endregion

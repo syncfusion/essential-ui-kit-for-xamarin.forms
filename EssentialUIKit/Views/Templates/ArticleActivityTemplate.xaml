@@ -23,7 +23,7 @@
         <buttons:SfButton
             Command="{Binding Path=ParentBindingContext.BookmarkCommand, Source={x:Reference articleActivityTemplate}}"
             CommandParameter="{Binding .}" 
-            CornerRadius="4" Style="{StaticResource NavigationBarButtonStyle}"
+            CornerRadius="20" Style="{StaticResource NavigationBarButtonStyle}"
             Text="{Binding IsBookmarked, Converter={StaticResource boolToStringConverter}, 
             ConverterParameter=0}" WidthRequest="35"  />
 
@@ -33,7 +33,7 @@
         <!--  Favourite Icon  -->
         <buttons:SfButton
             Command="{Binding ParentBindingContext.AddFavouriteCommand, Source={x:Reference articleActivityTemplate}}"
-            CommandParameter="{Binding}" CornerRadius="4" Style="{StaticResource NavigationBarButtonStyle}" WidthRequest="35" 
+            CommandParameter="{Binding}" CornerRadius="20" Style="{StaticResource NavigationBarButtonStyle}" WidthRequest="35" 
             Text="{Binding IsFavourite, Converter={StaticResource boolToStringConverter}, ConverterParameter=1}"
             TextColor="{Binding IsFavourite, Converter={x:StaticResource boolToColorConverter}, ConverterParameter=4}" />
 
@@ -41,9 +41,9 @@
         <Label Text="{Binding FavouritesCount}" Margin="0,0,10,0" Style="{StaticResource ActivityCount}" />
 
         <!--  Share Icon  -->
-        <buttons:SfButton Text="{StaticResource Share}" Style="{StaticResource NavigationBarButtonStyle}" CornerRadius="4"
+        <buttons:SfButton Text="{StaticResource Share}" Style="{StaticResource NavigationBarButtonStyle}" CornerRadius="20"
                           x:Name="shareButton" Command="{Binding Path=ParentBindingContext.ShareCommand, Source={x:Reference articleActivityTemplate}}"
-                          CommandParameter="{Binding .}" WidthRequest="35" Margin="0" Padding="0"   />
+                          CommandParameter="{Binding .}" WidthRequest="35" Margin="0" Padding="0" HorizontalTextAlignment="Center"  />
         <!--  Shared Count  -->
         <Label Text="{Binding SharedCount}" Style="{StaticResource ActivityCount}"/>
     </StackLayout>

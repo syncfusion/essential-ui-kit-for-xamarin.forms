@@ -8,7 +8,7 @@
              xmlns:behavior="clr-namespace:EssentialUIKit.Behaviors"
              x:Class="EssentialUIKit.Views.Notification.SocialNotificationPage"
              x:Name="socialNotificationPage"
-             BackgroundColor="{DynamicResource Gray-White}"
+             BackgroundColor="{DynamicResource Gray-Bg}"
              NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Resources>
@@ -25,12 +25,12 @@
             <StackLayout Spacing="0">
 
                 <!--  Title View  -->
-                <controls:TitleView Title="Notifications" BackgroundColor="{DynamicResource Gray-White} ">
+                <controls:TitleView Title="Notifications" BackgroundColor="{DynamicResource Gray-Bg} ">
 
                     <!-- Back button -->
                     <controls:TitleView.LeadingView>
-                        <buttons:SfButton Text="{StaticResource Back}" Style="{StaticResource IconButtonStyle}" CornerRadius="4"
-                                          Command="{Binding Path=BindingContext.BackCommand, Source={x:Reference socialNotificationPage}}"/>
+                        <buttons:SfButton Text="{StaticResource Back}" Style="{StaticResource IconButtonStyle}" CornerRadius="20"
+                                          Command="{Binding Path=BindingContext.BackButtonCommand, Source={x:Reference socialNotificationPage}}"/>
                     </controls:TitleView.LeadingView>
 
                     <!-- More button -->
@@ -83,10 +83,11 @@
                                                   BorderWidth="0" 
                                                   WidthRequest="134" 
                                                   HeightRequest="18"
-                                                  BackgroundColor="{DynamicResource Gray-White}"
+                                                  BackgroundColor="{DynamicResource Gray-Bg}"
                                                   TextColor="{DynamicResource Gray-600}"
                                                   CornerRadius="4"
-                                                  HorizontalOptions="End">
+                                                  HorizontalOptions="End"
+                                                  Command="{Binding MarkAllCommand}">
 
                                     <Label Text="MARK ALL AS READ"
                                            TextColor="{DynamicResource Link}"

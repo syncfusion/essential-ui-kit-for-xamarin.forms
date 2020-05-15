@@ -45,7 +45,7 @@ namespace EssentialUIKit.Views.Navigation
         private void SearchButton_Clicked(object sender, EventArgs e)
         {
             this.Search.IsVisible = true;
-            this.Title.IsVisible = false;
+            this.TitleLayout.IsVisible = false;
 
             if (this.TitleView != null)
             {
@@ -95,7 +95,7 @@ namespace EssentialUIKit.Views.Navigation
         private void SearchBoxAnimationCompleted()
         {
             this.Search.IsVisible = false;
-            this.Title.IsVisible = true;
+            this.TitleLayout.IsVisible = true;
         }
 
         /// <summary>

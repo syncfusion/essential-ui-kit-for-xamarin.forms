@@ -19,7 +19,7 @@ namespace EssentialUIKit.ViewModels.Tracking
     {
         #region Fields
 
-        private ObservableCollection<Station> stationInfoCollection;
+        private ObservableCollection<TrainStationModel> stationInfoCollection;
         private string nextStationTime;
         private double trainStartTimeDiff;
         private StepStatus lastStationStatus;
@@ -53,7 +53,7 @@ namespace EssentialUIKit.ViewModels.Tracking
         /// Gets or sets the station info collection.
         /// </summary>
         [DataMember(Name = "stationinfo")]
-        public ObservableCollection<Station> StationInfoCollection
+        public ObservableCollection<TrainStationModel> StationInfoCollection
         {
             get
             {
@@ -189,7 +189,7 @@ namespace EssentialUIKit.ViewModels.Tracking
         /// <param name="toArrival">String value</param>
         /// <param name="toDistance">Double value</param>
         /// <returns>Date time</returns>
-        public Station CreateStationInfo(string name, string toArrival, double toDistance)
+        public TrainStationModel CreateStationInfo(string name, string toArrival, double toDistance)
         {
             DateTime dateTimeArr;
 
@@ -215,7 +215,7 @@ namespace EssentialUIKit.ViewModels.Tracking
 
             this.lastStationStatus = currentStatus;
 
-            var station = new Station()
+            var station = new TrainStationModel()
             {
                 Name = name,
                 Arrival = dateTimeArr.TimeOfDay.ToString().Remove(5),

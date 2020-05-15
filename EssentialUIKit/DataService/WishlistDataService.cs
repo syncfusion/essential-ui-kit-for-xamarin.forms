@@ -13,7 +13,7 @@ namespace EssentialUIKit.DataService
     {
         #region fields
 
-        private static WishlistDataService instance;
+        private static WishlistDataService wishlistDataService;
 
         private WishlistViewModel wishlistViewModel;
 
@@ -35,7 +35,7 @@ namespace EssentialUIKit.DataService
         /// <summary>
         /// Gets an instance of the <see cref="WishlistDataService"/>.
         /// </summary>
-        public static WishlistDataService Instance => instance ?? (instance = new WishlistDataService());
+        public static WishlistDataService Instance => wishlistDataService ?? (wishlistDataService = new WishlistDataService());
 
         /// <summary>
         /// Gets or sets the value of wishlist page view model.
@@ -59,15 +59,15 @@ namespace EssentialUIKit.DataService
 
             var assembly = typeof(App).GetTypeInfo().Assembly;
 
-            T obj;
+            T data;
 
             using (var stream = assembly.GetManifestResourceStream(file))
             {
                 var serializer = new DataContractJsonSerializer(typeof(T));
-                obj = (T)serializer.ReadObject(stream);
+                data = (T)serializer.ReadObject(stream);
             }
 
-            return obj;
+            return data;
         }
 
         #endregion

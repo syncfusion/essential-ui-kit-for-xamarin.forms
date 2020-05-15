@@ -10,7 +10,7 @@
              xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
              xmlns:template="clr-namespace:EssentialUIKit.Views.Templates"
              x:Class="EssentialUIKit.Views.Catalog.EventListPage"
-             BackgroundColor="{DynamicResource Gray-White}"
+             BackgroundColor="{DynamicResource Gray-Bg}"
              NavigationPage.HasNavigationBar="False"
              x:Name="eventListPage">
 
@@ -35,15 +35,15 @@
             </Grid.RowDefinitions>
 
             <StackLayout x:Name="TitleView"  Padding="8,8" Grid.Row="0" HeightRequest="50"
-                         BackgroundColor="{DynamicResource Gray-White}" Spacing="0"
+                         BackgroundColor="{DynamicResource Gray-Bg}" Spacing="0"
                          HorizontalOptions="FillAndExpand" Orientation="Horizontal">
 
-                <StackLayout x:Name="Title" HorizontalOptions="FillAndExpand"  IsVisible="True"
+                <StackLayout x:Name="TitleLayout" HorizontalOptions="FillAndExpand"  IsVisible="True"
                              Orientation="Horizontal"  VerticalOptions="FillAndExpand"  Spacing="0">
 
                     <!--  Back button command  -->
                     <buttons:SfButton  x:Name="backButton"  Command="{Binding BackButtonCommand}"
-                                       CommandParameter="{x:Reference backButton}" CornerRadius="4"
+                                       CommandParameter="{x:Reference backButton}" CornerRadius="20"
                                        Style="{StaticResource IconButtonStyle}" Text="{StaticResource Back}"/>
 
                     <!--   Event list page Title  -->
@@ -97,7 +97,6 @@
                                     x:Name="EventList" 
                                     AutoFitMode="DynamicHeight"
                                     IsScrollBarVisible="false"
-                                    ItemSpacing="16"
                                     SearchText="{Binding AllListSearchText}"
                                     ItemsSource="{Binding EventItems}"
                                     SelectionBackgroundColor="Transparent"
@@ -110,16 +109,18 @@
                                                 <!--  View of each card item  -->
                                                 <StackLayout>
                                                     <controls:CustomShadowFrame
-                                                         Margin="4"
+                                                         Margin="16"
                                                          Padding="0"
-                                                         BackgroundColor="{DynamicResource Gray-White}"
-                                                         BorderColor="{DynamicResource Gray-White}"
+                                                         BackgroundColor="{DynamicResource GrayShadowColor}"
+                                                         BorderColor="{DynamicResource GrayShadowColor}"
                                                          BorderWidth="1"
-                                                         CornerRadius="4"
+                                                         CornerRadius="4" Radius="4"
                                                          HasShadow="True"
                                                          HorizontalOptions="FillAndExpand"
                                                          VerticalOptions="FillAndExpand">
-                                                        <template:EventListTemplate />
+                                                        <border:SfBorder BorderWidth="0" BorderColor="Transparent" CornerRadius="4">
+                                                            <template:EventListTemplate ParentBindingContext="{Binding Path=BindingContext, Source={x:Reference eventListPage}}"/>
+                                                        </border:SfBorder>
                                                     </controls:CustomShadowFrame >
                                                 </StackLayout>
                                             </ViewCell>
@@ -147,7 +148,6 @@
 
                                 <controls:SearchableEventList  AutoFitMode="DynamicHeight"  
                                     IsScrollBarVisible="false"
-                                    ItemSpacing="16"
                                     ItemsSource="{Binding PopularEventItems}"
                                     SearchText="{Binding UpcomingListSearchText}"
                                     SelectionBackgroundColor="Transparent"
@@ -160,16 +160,18 @@
                                                 <!--  View of each card item  -->
                                                 <StackLayout>
                                                     <controls:CustomShadowFrame
-                                                         Margin="4"
+                                                         Margin="16"
                                                          Padding="0"
-                                                         BackgroundColor="{DynamicResource Gray-White}"
-                                                         BorderColor="{DynamicResource Gray-White}"
+                                                         BackgroundColor="{DynamicResource GrayShadowColor}"
+                                                         BorderColor="{DynamicResource GrayShadowColor}"
                                                          BorderWidth="1"
-                                                         CornerRadius="4"
+                                                         CornerRadius="4" Radius="4"
                                                          HasShadow="True"
                                                          HorizontalOptions="FillAndExpand"
                                                          VerticalOptions="FillAndExpand">
-                                                        <template:EventListTemplate />
+                                                        <border:SfBorder BorderWidth="0" BorderColor="Transparent" CornerRadius="4">
+                                                            <template:EventListTemplate ParentBindingContext="{Binding Path=BindingContext, Source={x:Reference eventListPage}}"/>
+                                                        </border:SfBorder>
                                                     </controls:CustomShadowFrame>
                                                 </StackLayout>
                                             </ViewCell>
@@ -196,8 +198,7 @@
                                 <controls:SearchableEventList                                       
                                        AutoFitMode="DynamicHeight"
                                        IsScrollBarVisible="false"
-                                       ItemSpacing="16"
-                                        SearchText="{Binding PopularListSearchText}"
+                                       SearchText="{Binding PopularListSearchText}"
                                        ItemsSource="{Binding UpcomingEventItems}"
                                        SelectionBackgroundColor="Transparent"
                                        TapCommand="{Binding ItemTappedCommand}"
@@ -208,16 +209,18 @@
                                                 <!--  View of each card item  -->
                                                 <StackLayout>
                                                     <controls:CustomShadowFrame
-                                                         Margin="4" 
+                                                         Margin="16" 
                                                          Padding="0" 
-                                                         BackgroundColor="{DynamicResource Gray-White}"
-                                                         BorderColor="{DynamicResource Gray-White}"
+                                                         BackgroundColor="{DynamicResource GrayShadowColor}"
+                                                         BorderColor="{DynamicResource GrayShadowColor}"
                                                          BorderWidth="1"
-                                                         CornerRadius="4"
+                                                         CornerRadius="4" Radius="4"
                                                          HasShadow="True"
                                                          HorizontalOptions="FillAndExpand"
                                                          VerticalOptions="FillAndExpand">
-                                                        <template:EventListTemplate />
+                                                        <border:SfBorder BorderWidth="0" BorderColor="Transparent" CornerRadius="4">
+                                                            <template:EventListTemplate ParentBindingContext="{Binding Path=BindingContext, Source={x:Reference eventListPage}}"/>
+                                                        </border:SfBorder>
                                                     </controls:CustomShadowFrame>
                                                 </StackLayout>
                                             </ViewCell>

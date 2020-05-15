@@ -16,7 +16,6 @@ namespace EssentialUIKit.ViewModels.Settings
         /// </summary>
         public HelpViewModel()
         {
-            this.BackButtonCommand = new Command(this.BackButtonClicked);
             this.IssuePreviousOrderCommand = new Command(this.IssuePreviousOrderClicked);
             this.Return_RefundCommand = new Command(this.RefundClicked);
             this.PaymentQueriesCommand = new Command(this.PaymentQueriesClicked);
@@ -83,22 +82,9 @@ namespace EssentialUIKit.ViewModels.Settings
             // Do something
         }
 
-        /// <summary>
-        /// Invoked when the back button clicked
-        /// </summary>
-        /// <param name="obj">The object</param>
-        private void BackButtonClicked(object obj)
-        {
-            // Do something
-        }
         #endregion
 
         #region Command
-
-        /// <summary>
-        /// Gets or sets the command is executed when the back button is clicked.
-        /// </summary>
-        public Command BackButtonCommand { get; set; }
 
         /// <summary>
         /// Gets or sets the command is executed when the issue previous order option is clicked.

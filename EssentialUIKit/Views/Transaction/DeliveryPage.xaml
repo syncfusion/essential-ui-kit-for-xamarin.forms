@@ -28,7 +28,7 @@
             <StackLayout Spacing="0">
 
                 <!--  Title View  -->
-                <controls:TitleView Title="Delivery" BackgroundColor="{DynamicResource Gray-White}" />
+                <controls:TitleView Title="Delivery" BackgroundColor="{DynamicResource Gray-Bg}" />
 
                 <ContentPresenter />
 

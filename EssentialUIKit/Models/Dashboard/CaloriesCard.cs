@@ -17,7 +17,7 @@ namespace EssentialUIKit.Models.Dashboard
         /// <summary>
         /// To store the button checkable status.
         /// </summary>
-        private bool enableButton = false;
+        private bool enableButton;
 
         #endregion
 

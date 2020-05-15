@@ -71,7 +71,7 @@
 
     <!--  Common style for SfborderStyle  -->
     <Style x:Key="SfBorderStyle" TargetType="border:SfBorder">
-        <Setter Property="BackgroundColor" Value="{DynamicResource Gray-White}" />
+        <Setter Property="BackgroundColor" Value="{DynamicResource Gray-Bg}" />
         <Setter Property="BorderColor" Value="Transparent" />
         <Setter Property="CornerRadius" Value="25" />
         <Setter Property="HorizontalOptions" Value="FillAndExpand" />

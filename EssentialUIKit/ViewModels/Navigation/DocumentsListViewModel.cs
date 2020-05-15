@@ -17,6 +17,8 @@ namespace EssentialUIKit.ViewModels.Navigation
 
         private Command<object> itemTappedCommand;
 
+        private Command<object> menuCommand;
+
         #endregion
 
         #region Constructor
@@ -45,6 +47,17 @@ namespace EssentialUIKit.ViewModels.Navigation
         }
 
         /// <summary>
+        /// Gets the command that will be executed when an menu button is selected.
+        /// </summary>
+        public Command<object> MenuCommand
+        {
+            get
+            {
+                return this.menuCommand ?? (this.menuCommand = new Command<object>(this.MenuButtonClicked));
+            }
+        }
+
+        /// <summary>
         /// Gets or sets a collction of value to be displayed in documents list page.
         /// </summary>
         [DataMember(Name = "documentsPageList")]
@@ -63,6 +76,14 @@ namespace EssentialUIKit.ViewModels.Navigation
             // Do something
         }
 
+        /// <summary>
+        /// Invoked when the more button clicked
+        /// </summary>
+        /// <param name="obj">The object</param>
+        private void MenuButtonClicked(object obj)
+        {
+            // Do something
+        }
         #endregion
     }
 }

@@ -44,9 +44,9 @@
 
     <!--  Common style for sfBorder  -->
     <Style x:Key="SfBorderStyle" TargetType="border:SfBorder">
-        <Setter Property="BackgroundColor" Value="{DynamicResource Gray-White}" />
+        <Setter Property="BackgroundColor" Value="{DynamicResource Gray-Bg}" />
         <Setter Property="BorderWidth" Value="{OnIdiom Default=2, Desktop=0}" />
-        <Setter Property="BorderColor" Value="{DynamicResource Gray-White}" />
+        <Setter Property="BorderColor" Value="{DynamicResource Gray-Bg}" />
         <Setter Property="HorizontalOptions" Value="Center" />
         <Setter Property="VerticalOptions" Value="Center" />
     </Style>

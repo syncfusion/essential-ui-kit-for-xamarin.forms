@@ -148,7 +148,7 @@ namespace EssentialUIKit.Behaviors
                 }
                 if (mainStack != null || mainListview != null)
                 {
-                    await selectedElement.TranslateTo(-100, 0, 100);
+                    await selectedElement.TranslateTo(-100, 0, 200);
                     await selectedElement.FadeTo(0, 20);
 
                     List<Task> animations = new List<Task>();

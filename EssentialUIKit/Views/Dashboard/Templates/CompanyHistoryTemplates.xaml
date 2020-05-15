@@ -11,7 +11,7 @@
 
     <DataTemplate x:Key="headerTemplate">
         <ViewCell>
-            <border:SfBorder BackgroundColor="{StaticResource PrimaryColor}" WidthRequest="48" HeightRequest="48" BorderWidth="4"  
+            <border:SfBorder BackgroundColor="{DynamicResource PrimaryColor}" WidthRequest="48" HeightRequest="48" BorderWidth="4"  
                               VerticalOptions="Center" CornerRadius="24" HorizontalOptions="Start" BorderColor="{DynamicResource PrimaryLighterColor}">
                 <border:SfBorder.Content>
                     <Label  Text="{Binding Year}" TextColor="{DynamicResource Gray-White}" VerticalOptions="Center" HorizontalOptions="Center"

@@ -19,7 +19,7 @@
     </Grid.Resources>
 
     <Grid
-        BackgroundColor="{DynamicResource Gray-White}"
+        BackgroundColor="{DynamicResource Gray-Bg}"
         ColumnSpacing="0"
         RowSpacing="0">
 
@@ -120,9 +120,9 @@
         </StackLayout>
 
         <StackLayout
-            Grid.Row="3"
+            Grid.Row="3" 
             Grid.Column="1"
-            Margin="0"
+            Margin="0,0,0,27"
             Padding="0"
             HorizontalOptions="Start"
             Orientation="Horizontal"

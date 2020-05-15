@@ -21,13 +21,13 @@
         <ControlTemplate>
             <StackLayout Spacing="0">
                 <!--  Title View  -->
-                <controls:TitleView Title="Settings" BackgroundColor="{DynamicResource Gray-White} ">
+                <controls:TitleView Title="Settings" BackgroundColor="{DynamicResource Gray-Bg} ">
                     <controls:TitleView.LeadingView>
                         <buttons:SfButton
                             x:Name="backButton"
                             Command="{TemplateBinding BindingContext.BackButtonCommand}"
                             CommandParameter="{x:Reference backButton}"
-                            CornerRadius="4"
+                            CornerRadius="20"
                             Style="{StaticResource IconButtonStyle}"
                             Text="{StaticResource Back}" />
                     </controls:TitleView.LeadingView>
@@ -43,7 +43,7 @@
 
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout BackgroundColor="{DynamicResource Gray-100}" Spacing="0">
+            <StackLayout BackgroundColor="{DynamicResource Gray-Bg}" Spacing="0">
 
                 <!--  Header label for account setting  -->
                 <Label
@@ -59,10 +59,11 @@
                     VerticalOptions="Center"
                     VerticalTextAlignment="Center" />
 
+                <BoxView Style="{StaticResource SeparatorStyle}" />
 
                 <!--  Grid for Edit profile label and navigation bar icon  -->
                 <controls:TapAnimationGrid
-                    BackgroundColor="{DynamicResource Gray-White}"
+                    BackgroundColor="{DynamicResource Gray-Bg}"
                     ColumnSpacing="0"
                     Command="{Binding EditProfileCommand}"
                     RowSpacing="0"
@@ -93,7 +94,7 @@
 
                 <!--  Grid for Change password label and navigation bar icon  -->
                 <controls:TapAnimationGrid
-                    BackgroundColor="{DynamicResource Gray-White}"
+                    BackgroundColor="{DynamicResource Gray-Bg}"
                     ColumnSpacing="0"
                     Command="{Binding ChangePasswordCommand}"
                     RowSpacing="0"
@@ -124,7 +125,7 @@
 
                 <!--  Grid for Account link label and navigation bar icon  -->
                 <controls:TapAnimationGrid
-                    BackgroundColor="{DynamicResource Gray-White}"
+                    BackgroundColor="{DynamicResource Gray-Bg}"
                     ColumnSpacing="0"
                     Command="{Binding LinkAccountCommand}"
                     RowSpacing="0"
@@ -151,7 +152,10 @@
                         Style="{StaticResource IconLabelStyle}"
                         Text="{StaticResource Next}"/>
                 </controls:TapAnimationGrid>
-                <BoxView BackgroundColor="{DynamicResource Gray-100}" HeightRequest="20" />
+
+                <BoxView Style="{StaticResource SeparatorStyle}" />
+
+                <BoxView BackgroundColor="{DynamicResource Gray-Bg}" HeightRequest="20" />
 
                 <!--  Header lable for notifications  -->
                 <Label
@@ -167,9 +171,11 @@
                     VerticalOptions="Center"
                     VerticalTextAlignment="Center" />
 
+                <BoxView Style="{StaticResource SeparatorStyle}" />
+
                 <!--  Grid for Notifications label and switch  -->
                 <Grid
-                    BackgroundColor="{DynamicResource Gray-White}"
+                    BackgroundColor="{DynamicResource Gray-Bg}"
                     ColumnSpacing="0"
                     RowSpacing="0">
                     <Grid.ColumnDefinitions>
@@ -218,7 +224,7 @@
                                                 <buttons:CupertinoSwitchSettings
                                                     x:TypeArguments="buttons:OffState"
                                                     ThumbBorderColor="{DynamicResource Gray-200}"
-                                                    ThumbColor="{DynamicResource Gray-White}"
+                                                    ThumbColor="{DynamicResource Gray-Bg}"
                                                     TrackBorderColor="{DynamicResource Gray-200}"
                                                     TrackColor="{DynamicResource Gray-200}" />
                                             </Setter.Value>
@@ -233,7 +239,7 @@
 
                 <!--  Grid for Email notifications and switch  -->
                 <Grid
-                    BackgroundColor="{DynamicResource Gray-White}"
+                    BackgroundColor="{DynamicResource Gray-Bg}"
                     ColumnSpacing="0"
                     RowSpacing="0">
                     <Grid.ColumnDefinitions>
@@ -282,7 +288,7 @@
                                                 <buttons:CupertinoSwitchSettings
                                                     x:TypeArguments="buttons:OffState"
                                                     ThumbBorderColor="{DynamicResource Gray-200}"
-                                                    ThumbColor="{DynamicResource Gray-White}"
+                                                    ThumbColor="{DynamicResource Gray-Bg}"
                                                     TrackBorderColor="{DynamicResource Gray-200}"
                                                     TrackColor="{DynamicResource Gray-200}" />
                                             </Setter.Value>
@@ -293,7 +299,10 @@
                         </VisualStateManager.VisualStateGroups>
                     </buttons:SfSwitch>
                 </Grid>
-                <BoxView BackgroundColor="{DynamicResource Gray-100}" HeightRequest="20" />
+
+                <BoxView Style="{StaticResource SeparatorStyle}" />
+
+                <BoxView BackgroundColor="{DynamicResource Gray-Bg}" HeightRequest="20" />
 
                 <!--  Header label for Support setting  -->
                 <Label
@@ -309,9 +318,11 @@
                     VerticalOptions="Center"
                     VerticalTextAlignment="Center" />
 
+                <BoxView Style="{StaticResource SeparatorStyle}" />
+
                 <!--  Grid for Help label and navigation bar icon  -->
                 <controls:TapAnimationGrid
-                    BackgroundColor="{DynamicResource Gray-White}"
+                    BackgroundColor="{DynamicResource Gray-Bg}"
                     ColumnSpacing="0"
                     Command="{Binding HelpCommand}"
                     RowSpacing="0"
@@ -342,7 +353,7 @@
 
                 <!--  Grid for Terms of service label and navigation bar icon  -->
                 <controls:TapAnimationGrid
-                    BackgroundColor="{DynamicResource Gray-White}"
+                    BackgroundColor="{DynamicResource Gray-Bg}"
                     ColumnSpacing="0"
                     Command="{Binding TermsCommand}"
                     RowSpacing="0"
@@ -373,7 +384,7 @@
 
                 <!--  Grid for Privacy policy label and navigation bar icon  -->
                 <controls:TapAnimationGrid
-                    BackgroundColor="{DynamicResource Gray-White}"
+                    BackgroundColor="{DynamicResource Gray-Bg}"
                     ColumnSpacing="0"
                     Command="{Binding PolicyCommand}"
                     RowSpacing="0"
@@ -404,7 +415,7 @@
 
                 <!--  Grid for FAQs label and navigation bar icon  -->
                 <controls:TapAnimationGrid
-                    BackgroundColor="{DynamicResource Gray-White}"
+                    BackgroundColor="{DynamicResource Gray-Bg}"
                     ColumnSpacing="0"
                     Command="{Binding FAQCommand}"
                     RowSpacing="0"
@@ -432,6 +443,8 @@
                         Text="{StaticResource Next}" />
                 </controls:TapAnimationGrid>
 
+                <BoxView Style="{StaticResource SeparatorStyle}" />
+
                 <!--  Logout button  -->
                 <buttons:SfButton
                     Margin="0,24,0,32"
@@ -444,7 +457,8 @@
                     Style="{StaticResource RoundButtonStyle}"
                     Text="LOG OUT"
                     TextColor="{DynamicResource Gray-White}"
-                    WidthRequest="245" />
+                    WidthRequest="245" 
+                    Command="{Binding LogoutCommand}"/>
 
             </StackLayout>
         </ScrollView>

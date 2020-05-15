@@ -26,6 +26,35 @@
     <x:String x:Key="Google">&#xe74d;</x:String>
     <x:String x:Key="Twitter">&#xe749;</x:String>
     <x:String x:Key="Share">&#xe704;</x:String>
+    <x:String x:Key="Back">&#xe709;</x:String>
+    <x:String x:Key="Search">&#xe705;</x:String>
+    <x:String x:Key="Menu">&#xe719;</x:String>
+    <x:String x:Key="VoiceCall">&#xe71c;</x:String>
+    <x:String x:Key="VideoCall">&#xe721;</x:String>
+    <x:String x:Key="Settings">&#xe715;</x:String>
+    <x:String x:Key="Camera">&#xe713;</x:String>
+    <x:String x:Key="Attachment">&#xe71e;</x:String>
+    <x:String x:Key="Send">&#xe71f;</x:String>
+    <x:String x:Key="Sent">&#xe717;</x:String>
+    <x:String x:Key="Received">&#xe71b;</x:String>
+    <x:String x:Key="Viewed">&#xe71b;</x:String>
+    <x:String x:Key="New">&#xe720;</x:String>
+    <x:String x:Key="Audio">&#xe722;</x:String>
+    <x:String x:Key="Photo">&#xe71d;</x:String>
+    <x:String x:Key="Video">&#xe718;</x:String>
+    <x:String x:Key="Contact">&#xe723;</x:String>
+    <x:String x:Key="Available">&#xe720;</x:String>
+    <x:String x:Key="Next">&#xe71a;</x:String>
+    <x:String x:Key="Mail">&#xe725;</x:String>
+    <x:String x:Key="Notification">&#xe700;</x:String>
+    <x:String x:Key="Help">&#xe72c;</x:String>
+    <x:String x:Key="Edit">&#xe727;</x:String>
+    <x:String x:Key="PhoneFill">&#xe72a;</x:String>
+    <x:String x:Key="New Message">&#xe720;</x:String>
+    <x:String x:Key="Delivered">&#xe741;</x:String>
+    <x:String x:Key="Offer">&#xe736;</x:String>
+    <x:String x:Key="FlashSale">&#xe743;</x:String>
+    <x:String x:Key="Arrived">&#xe740;</x:String>
 
     <!--  Common style for Navigation bar SfButton  -->
     <Style x:Key="NavigationBarButtonStyle" TargetType="buttons:SfButton">
@@ -50,9 +79,9 @@
 
     <!--  Common style for sfBorder  -->
     <Style x:Key="SfBorderStyle" TargetType="border:SfBorder">
-        <Setter Property="BackgroundColor" Value="{DynamicResource Gray-White}" />
+        <Setter Property="BackgroundColor" Value="{DynamicResource Gray-Bg}" />
         <Setter Property="BorderWidth" Value="{OnIdiom Default=2, Desktop=0}" />
-        <Setter Property="BorderColor" Value="{DynamicResource Gray-White}" />
+        <Setter Property="BorderColor" Value="{DynamicResource Gray-Bg}" />
         <Setter Property="HorizontalOptions" Value="Center" />
         <Setter Property="VerticalOptions" Value="Center" />
     </Style>
@@ -121,6 +150,10 @@
         TargetType="combobox:SfComboBox">
         <Setter Property="WidthRequest" Value="84" />
         <Setter Property="HeightRequest" Value="32" />
+        <Setter Property="DropDownBorderColor" Value="{DynamicResource Gray-300}"/>
+        <Setter Property="SelectedDropDownItemColor" Value="Transparent"/>
+        <Setter Property="DropDownBackgroundColor" Value="{DynamicResource Gray-Bg}"/>
+        <Setter Property="DropDownTextColor" Value="{DynamicResource Gray-700}"/>
     </Style>
 
     <!--  Common style for arrow label  -->
@@ -215,6 +248,60 @@
                                                Android=1.5}" />
         <Setter Property="VerticalOptions" Value="Center"/>
         <Setter Property="TextColor" Value="{DynamicResource Gray-800}"/>
+    </Style>
+
+    <!-- Common style for seperators -->
+    <Style x:Key="SeparatorStyle" TargetType="BoxView">
+        <Setter Property="HeightRequest" Value="1" />
+        <Setter Property="BackgroundColor" Value="{DynamicResource Gray-200}" />
+    </Style>
+
+    <!--  Common style for profile border style  -->
+    <Style x:Key="ProfileBorderStyle" TargetType="border:SfBorder">
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="BorderWidth" Value="1" />
+        <Setter Property="BorderColor" Value="{DynamicResource Gray-Bg}" />
+        <Setter Property="CornerRadius" Value="20" />
+    </Style>
+
+    <!--  Common style for message icon  -->
+    <Style x:Key="MessageIconStyle" TargetType="Label">
+        <Setter Property="TextColor" Value="{DynamicResource Gray-600}" />
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="LineBreakMode" Value="NoWrap" />
+        <Setter Property="FontFamily" Value="{StaticResource FontIcons}" />
+        <Setter Property="LineHeight" Value="{OnPlatform Default=1.5, iOS=-1}" />
+    </Style>
+
+    <!--  Common style for message text  -->
+    <Style x:Key="MessageTextStyle" TargetType="Label">
+        <Setter Property="TextColor" Value="{DynamicResource Gray-800}" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="LineBreakMode" Value="TailTruncation" />
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="LineHeight" Value="{OnPlatform Default=1.5, iOS=-1}" />
+        <Setter Property="FontFamily" Value="{StaticResource Montserrat-Medium}" />
+    </Style>
+
+    <!--  Common style for show time  -->
+    <Style x:Key="TimeTextStyle" TargetType="Label">
+        <Setter Property="TextColor" Value="{DynamicResource Gray-700}" />
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="LineBreakMode" Value="NoWrap" />
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="LineHeight" Value="{OnPlatform Default=1.5, iOS=-1}" />
+        <Setter Property="FontFamily" Value="{StaticResource Montserrat-Regular}" />
+    </Style>
+
+    <!--  Common style for Notification icon label  -->
+    <Style x:Key="NotificationIconStyle" TargetType="Label">
+        <Setter Property="TextColor" Value="{DynamicResource Gray-600}" />
+        <Setter Property="HorizontalOptions" Value="End" />
+        <Setter Property="HorizontalTextAlignment" Value="End" />
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="FontFamily" Value="{StaticResource FontIcons}" />
     </Style>
 
 </ResourceDictionary>

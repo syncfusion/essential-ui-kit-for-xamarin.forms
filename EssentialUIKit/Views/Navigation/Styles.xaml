@@ -9,7 +9,6 @@
     xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
     xmlns:graphics="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms">
 
-    <Color x:Key="TappedBackgroundColor">#eaeaea</Color>
     <Color x:Key="Transparent">Transparent</Color>
     <Color x:Key="LightGreen">#35c659</Color>
     <Color x:Key="OrangeyYellow">#fcbc0f</Color>
@@ -37,6 +36,7 @@
     <x:String x:Key="MoreIcon">&#xe715;</x:String>
     <x:String x:Key="Category">&#xe733;</x:String>
     <x:String x:Key="FileExplorer">&#xe74a;</x:String>
+    <x:String x:Key="FileExplorerList">&#xe70d;</x:String>
 
     <!-- Common style for rating labels -->
     <Style x:Key="RatingLabelStyle" TargetType="Label">
@@ -52,7 +52,7 @@
         <Setter Property="HorizontalOptions" Value="Center" />
         <Setter Property="VerticalOptions" Value="Center" />
         <Setter Property="BorderWidth" Value="1" />
-        <Setter Property="BorderColor" Value="{DynamicResource Gray-White}" />
+        <Setter Property="BorderColor" Value="{DynamicResource Gray-Bg}" />
         <Setter Property="CornerRadius" Value="4" />
     </Style>
 
@@ -67,7 +67,7 @@
 
     <!-- Common style for setting labels -->
     <Style x:Key="SettingsLabelStyle" TargetType="Label">
-        <Setter Property="TextColor" Value="{StaticResource Gray-900}" />
+        <Setter Property="TextColor" Value="{DynamicResource Gray-900}" />
         <Setter Property="FontSize" Value="16" />
         <Setter Property="VerticalOptions" Value="Center" />
         <Setter Property="FontFamily" Value="{StaticResource Montserrat-Medium}" />
@@ -78,14 +78,16 @@
     </Style>
 
     <!-- Common style for setting icons -->
-    <Style x:Key="SettingsIconStyle" TargetType="Label">
-        <Setter Property="TextColor" Value="{StaticResource Gray-600}" />
+    <Style x:Key="SettingsIconStyle" TargetType="buttons:SfButton">
+        <Setter Property="TextColor" Value="{DynamicResource Gray-600}" />
         <Setter Property="FontSize" Value="16" />
         <Setter Property="VerticalOptions" Value="Center" />
         <Setter Property="Text" Value="{StaticResource Next}" />
         <Setter Property="FontFamily" Value="{StaticResource FontIcons}" />
         <Setter Property="Margin" Value="0,0,12,0"/>
         <Setter Property="HorizontalOptions" Value="End"/>
+        <Setter Property="BackgroundColor" Value="Transparent"/>
+        <Setter Property="CornerRadius" Value="4"/>
     </Style>
   
     <!--  Common style for BoxView  -->
@@ -141,7 +143,7 @@
         <Setter Property="TextColor" Value="{DynamicResource Gray-800}" />
         <Setter Property="VerticalOptions" Value="Center" />
         <Setter Property="HorizontalOptions" Value="Start" />
-        <Setter Property="BackgroundColor" Value="{StaticResource Gray-White}" />
+        <Setter Property="BackgroundColor" Value="{DynamicResource Gray-Bg}" />
         <Setter Property="LineHeight" Value="{OnPlatform Default=-1, Android=1.5}" />
     </Style>
 
@@ -153,14 +155,14 @@
         <Setter Property="VerticalOptions" Value="Center" />
         <Setter Property="HorizontalOptions" Value="Start" />
         <Setter Property="HorizontalTextAlignment" Value="Start"/>
-        <Setter Property="BackgroundColor" Value="{StaticResource Gray-White}" />
+        <Setter Property="BackgroundColor" Value="{DynamicResource Gray-Bg}" />
         <Setter Property="LineHeight" Value="{OnPlatform Default=-1, Android=1.5}" />
         <Setter Property="MaxLines" Value="2" />
     </Style>
 
     <!-- Common style for borders -->
     <Style x:Key="SfBorderStyle" TargetType="border:SfBorder">
-        <Setter Property="BackgroundColor" Value="{DynamicResource Gray-White}" />
+        <Setter Property="BackgroundColor" Value="{DynamicResource Gray-Bg}" />
         <Setter Property="BorderColor" Value="Transparent" />
         <Setter Property="CornerRadius" Value="25" />
         <Setter Property="HorizontalOptions" Value="FillAndExpand" />
@@ -296,7 +298,6 @@
         <Setter Property="FontSize" Value="12" />
         <Setter Property="CornerRadius" Value="16" />
         <Setter Property="HorizontalOptions" Value="End"/>
-
     </Style>
 
 </ResourceDictionary>

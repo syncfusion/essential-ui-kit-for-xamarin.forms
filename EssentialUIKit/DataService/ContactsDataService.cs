@@ -13,7 +13,7 @@ namespace EssentialUIKit.DataService
     {
         #region fields 
 
-        private static ContactsDataService instance;
+        private static ContactsDataService contactsDataService;
 
         private ContactsViewModel contactsViewModel;
 
@@ -24,7 +24,7 @@ namespace EssentialUIKit.DataService
         /// <summary>
         /// Gets an instance of the <see cref="ContactsDataService"/>.
         /// </summary>
-        public static ContactsDataService Instance => instance ?? (instance = new ContactsDataService());
+        public static ContactsDataService Instance => contactsDataService ?? (contactsDataService = new ContactsDataService());
 
         /// <summary>
         /// Gets or sets the value of contacts page view model.
@@ -49,15 +49,15 @@ namespace EssentialUIKit.DataService
 
             var assembly = typeof(App).GetTypeInfo().Assembly;
 
-            T obj;
+            T data;
 
             using (var stream = assembly.GetManifestResourceStream(file))
             {
                 var serializer = new DataContractJsonSerializer(typeof(T));
-                obj = (T)serializer.ReadObject(stream);
+                data = (T)serializer.ReadObject(stream);
             }
 
-            return obj;
+            return data;
         }
 
         #endregion

@@ -93,7 +93,7 @@
     <StackLayout
         Grid.Row="1"
         Grid.ColumnSpan="2"
-        BindableLayout.ItemsSource="{Binding Images}"
+        BindableLayout.ItemsSource="{Binding CustomerReviewImages}"
         Orientation="Horizontal"
         Spacing="8">
         <BindableLayout.ItemTemplate>

@@ -5,7 +5,7 @@ using Xamarin.Forms.Internals;
 namespace EssentialUIKit.Models.Catalog
 {
     /// <summary>
-    /// Model for Event list page
+    /// Model for Event list page.
     /// </summary>
     [Preserve(AllMembers = true)]
     public class EventList
@@ -90,7 +90,7 @@ namespace EssentialUIKit.Models.Catalog
             else
             {
                 button.Text = "\ue701";
-                Application.Current.Resources.TryGetValue("Gray-600", out var retVal);
+                Application.Current.Resources.TryGetValue("Gray-White", out var retVal);
                 button.TextColor = (Color)retVal;
             }
         }

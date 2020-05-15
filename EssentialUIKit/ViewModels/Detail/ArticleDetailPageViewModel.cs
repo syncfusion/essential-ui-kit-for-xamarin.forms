@@ -74,7 +74,7 @@ namespace EssentialUIKit.ViewModels.Detail
         #region Constructor
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="DetailViewModel" /> class
+        /// Initializes a new instance of the <see cref="ArticleDetailPageViewModel" /> class
         /// </summary>
         public ArticleDetailPageViewModel()
         {
@@ -407,24 +407,26 @@ namespace EssentialUIKit.ViewModels.Detail
         /// <param name="obj">The object</param>
         private void FavouriteButtonClicked(object obj)
         {
-            var button = obj as SfButton;
+            var favouriteButton = obj as SfButton;
 
-            if (button == null)
+            if (favouriteButton == null)
             {
                 return;
             }
 
-            if (button.Text == "\ue701")
+            if (favouriteButton.Text == "\ue701")
             {
-                button.Text = "\ue732";
+                // Changed to filled favourite button from unfilled favourite button.
+                favouriteButton.Text = "\ue732";
                 Application.Current.Resources.TryGetValue("PrimaryColor", out var retVal);
-                button.TextColor = (Color)retVal;
+                favouriteButton.TextColor = (Color)retVal;
             }
             else
             {
-                button.Text = "\ue701";
+                // Changed to unfilled favourite button from filled favourite button.
+                favouriteButton.Text = "\ue701";
                 Application.Current.Resources.TryGetValue("Gray-600", out var retVal);
-                button.TextColor = (Color)retVal;
+                favouriteButton.TextColor = (Color)retVal;
             }
         }
 
@@ -449,10 +451,10 @@ namespace EssentialUIKit.ViewModels.Detail
             }
             else
             {
-                var button = obj as SfButton;
-                if (button != null)
+                var bookmarkutton = obj as SfButton;
+                if (bookmarkutton != null)
                 {
-                    button.Text = (button.Text == "\ue72f") ? "\ue734" : "\ue72f";
+                    bookmarkutton.Text = (bookmarkutton.Text == "\ue72f") ? "\ue734" : "\ue72f";
                 }
             }
         }

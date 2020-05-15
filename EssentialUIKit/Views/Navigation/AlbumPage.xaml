@@ -7,7 +7,8 @@
     xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
     xmlns:data="clr-namespace:Syncfusion.DataSource;assembly=Syncfusion.DataSource.Portable"
     xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
-    BackgroundColor="{DynamicResource Gray-White}"
+    xmlns:template="clr-namespace:EssentialUIKit.Views.Templates"   
+    BackgroundColor="{DynamicResource Gray-Bg}"
     NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Resources>
@@ -40,16 +41,15 @@
                 <!--  Add button  -->
                 <buttons:SfButton
                     Padding="0"
-                    BackgroundColor="{DynamicResource Gray-White}"
+                    BackgroundColor="{DynamicResource Gray-Bg}"
                     Command="{Binding AddCommand}"
-                    CornerRadius="5"
+                    CornerRadius="20"
                     FontFamily="{StaticResource FontIcons}"
                     FontSize="18"
                     HorizontalOptions="End"
                     Text="{StaticResource Add}"
                     TextColor="{DynamicResource PrimaryColor}"
-                    VerticalOptions="Center"
-                    WidthRequest="40" />
+                    VerticalOptions="Center" />
 
             </Grid>
 
@@ -98,7 +98,7 @@
                             <!--  View all  -->
                             <buttons:SfButton
                                 Padding="0"
-                                BackgroundColor="{DynamicResource Gray-White}"
+                                BackgroundColor="{DynamicResource Gray-Bg}"
                                 Command="{Binding BindingContext.ViewAllCommand, Source={x:Reference ListView}}"
                                 CornerRadius="4"
                                 FontFamily="{StaticResource Montserrat-SemiBold}"
@@ -119,52 +119,7 @@
 
                 <listView:SfListView.ItemTemplate>
                     <DataTemplate>
-
-                        <Frame
-                            Padding="0"
-                            BackgroundColor="{DynamicResource Gray-White}"
-                            BorderColor="{DynamicResource Gray-White}"
-                            CornerRadius="8"
-                            HasShadow="True"
-                            HeightRequest="130"
-                            HorizontalOptions="FillAndExpand"
-                            VerticalOptions="FillAndExpand">
-
-                            <Grid>
-                                
-                                <!--  Album cover image  -->
-                                <Image Aspect="AspectFill">
-                                    <Image.Source>
-                                        <UriImageSource Uri="{Binding AlbumImage}" 
-			                                 CacheValidity="14" 
-			                                 CachingEnabled="true"/>
-                                    </Image.Source>
-                                </Image>
-
-                                <StackLayout
-                                    Padding="24,0,0,16"
-                                    Spacing="2"
-                                    VerticalOptions="End">
-
-                                    <!--  Album name  -->
-                                    <Label
-                                        FontFamily="{StaticResource Montserrat-SemiBold}"
-                                        FontSize="16"
-                                        Text="{Binding AlbumName}"
-                                        TextColor="{DynamicResource Gray-White}" />
-
-                                    <!--  Total number of photos  -->
-                                    <Label
-                                        FontFamily="{StaticResource Montserrat-Medium}"
-                                        FontSize="12"
-                                        Text="{Binding PhotosCount}"
-                                        TextColor="{DynamicResource Gray-White}" />
-
-                                </StackLayout>
-
-                            </Grid>
-                        </Frame>
-
+                        <template:BottomNavigationAlbumTemplate/>
                     </DataTemplate>
                 </listView:SfListView.ItemTemplate>
 

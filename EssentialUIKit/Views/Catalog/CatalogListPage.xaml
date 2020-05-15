@@ -35,7 +35,7 @@
 
     <ContentPage.Content>
 
-        <Grid>
+        <Grid RowSpacing="0" ColumnSpacing="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
@@ -56,7 +56,7 @@
                             <badge:SfBadgeView.Content>
                                 <buttons:SfButton
                                     Command="{Binding Path=BindingContext.CardItemCommand, Source={x:Reference ListViewList}}"
-                                    CornerRadius="4"
+                                    CornerRadius="20"
                                     Style="{StaticResource IconButtonStyle}"
                                     Text="{StaticResource Cart}" />
                             </badge:SfBadgeView.Content>
@@ -76,7 +76,7 @@
             <listView:SfListView
                 x:Name="ListViewList"
                 Grid.Row="1"
-                Margin="{OnIdiom Default='0,8,8,0',
+                Padding="{OnIdiom Default='0,8,8,0',
                                  Desktop='15,15,15,0'}"
                 AutoFitMode="Height"
                 HeaderTemplate="{StaticResource CatalogDefaultHeaderTemplate}"

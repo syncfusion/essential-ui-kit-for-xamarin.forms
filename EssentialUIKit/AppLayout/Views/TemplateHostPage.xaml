@@ -51,7 +51,7 @@
                 Style="{StaticResource ActionBarBackButtonStyle}"
                 Clicked="BackButtonPressed"/>
 
-            <Label x:Name="Title"
+            <Label x:Name="TitleView"
                    Margin="-10,0,0,0"
                    Style="{StaticResource ActionBarLabelStyle}"
                    HorizontalOptions="StartAndExpand"

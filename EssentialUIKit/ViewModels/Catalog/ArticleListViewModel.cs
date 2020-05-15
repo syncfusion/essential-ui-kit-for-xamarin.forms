@@ -73,7 +73,7 @@ namespace EssentialUIKit.ViewModels.Catalog
             {
                 new Model
                 {
-                    ImagePath = App.BaseImageUrl + "Article_image1.png",
+                    ImagePath = App.BaseImageUrl + "ArticleImage2.png",
                     Name = "Learning to Reset",
                     Author = "John Doe",
                     Date = "Apr 16",
@@ -81,7 +81,7 @@ namespace EssentialUIKit.ViewModels.Catalog
                 },
                 new Model
                 {
-                    ImagePath = App.BaseImageUrl + "Article_image2.png",
+                    ImagePath = App.BaseImageUrl + "ArticleImage3.png",
                     Name = "Holistic Approach to UI Design",
                     Author = "John Doe",
                     Date = "May 26",
@@ -89,7 +89,7 @@ namespace EssentialUIKit.ViewModels.Catalog
                 },
                 new Model
                 {
-                    ImagePath = App.BaseImageUrl + "Article_image3.png",
+                    ImagePath = App.BaseImageUrl + "ArticleImage4.png",
                     Name = "Guiding Your Flock to Success",
                     Author = "John Doe",
                     Date = "Apr 10",
@@ -97,7 +97,7 @@ namespace EssentialUIKit.ViewModels.Catalog
                 },
                 new Model
                 {
-                    ImagePath = App.BaseImageUrl + "Article_image4.png",
+                    ImagePath = App.BaseImageUrl + "ArticleImage5.png",
                     Name = "Holistic Approach to UI Design",
                     Author = "John Doe",
                     Date = "Apr 16",

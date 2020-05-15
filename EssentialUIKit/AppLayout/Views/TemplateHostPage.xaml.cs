@@ -31,7 +31,7 @@ namespace EssentialUIKit.AppLayout.Views
 
             if (selectedTemplate != null)
             {
-                Title.Text = selectedTemplate.Name;
+                TitleView.Text = selectedTemplate.Name;
                 this.LoadPage(selectedTemplate.PageName);
             }
         }

@@ -10,7 +10,7 @@
              xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
              mc:Ignorable="d"
              x:Class="EssentialUIKit.Views.Navigation.FileExploreGridPage"
-             BackgroundColor="{DynamicResource Gray-White}"
+             BackgroundColor="{DynamicResource Gray-Bg}"
              NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Resources>
@@ -33,14 +33,13 @@
 
             <StackLayout x:Name="TitleView"
                          Padding="8"
-                         HeightRequest="64"
                          Grid.Row="0"
-                         BackgroundColor="{DynamicResource Gray-White}"
+                         BackgroundColor="{DynamicResource Gray-Bg}"
                          HorizontalOptions="FillAndExpand"
                          Orientation="Horizontal"
                          Spacing="0">
 
-                <StackLayout x:Name="Title"
+                <StackLayout x:Name="TitleLayout"
                              HorizontalOptions="FillAndExpand"
                              IsVisible="True"
                              Orientation="Horizontal"
@@ -51,7 +50,7 @@
                     <buttons:SfButton x:Name="backButton"
                                       Command="{Binding BackButtonCommand}"
                                       CommandParameter="{x:Reference backButton}"
-                                      CornerRadius="4"
+                                      CornerRadius="20"
                                       Style="{StaticResource IconButtonStyle}"
                                       Text="{StaticResource Back}" />
 
@@ -114,14 +113,15 @@
                        VerticalOptions="Center" />
 
                 <buttons:SfButton Margin="23,0" 
-                                  Text="{StaticResource Category}"
+                                  Text="{StaticResource FileExplorerList}"
                                   TextColor="{DynamicResource Gray-600}"
-                                  BackgroundColor="{DynamicResource Gray-White}"
+                                  BackgroundColor="{DynamicResource Gray-Bg}"
                                   FontFamily="{DynamicResource FontIcons}"
                                   FontSize="20"
                                   CornerRadius="4"
                                   HorizontalOptions="End"
-                                  VerticalOptions="Center" />
+                                  VerticalOptions="Center" 
+                                  Command="{Binding CategoryCommand}"/>
 
             </Grid>
 
@@ -138,13 +138,12 @@
                                                 SearchText="{Binding SearchText}"
                                                 TapCommand="{Binding ItemTappedCommand}"
                                                 ItemsSource="{Binding FileExploreList}"
-                                                SelectionBackgroundColor="{DynamicResource TappedBackgroundColor}">
+                                                SelectionBackgroundColor="{DynamicResource Gray-200}">
 
                 <controls:SearchableFileExploreList.ItemTemplate>
                     <DataTemplate>
                         <Grid RowSpacing="0" ColumnSpacing="0">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
@@ -159,20 +158,10 @@
 
                             <!--  Folder Name  -->
                             <Label Grid.Row="1"
+                                   Margin="0,0,0,8"
                                    Text="{Binding FolderName}"
                                    TextColor="{DynamicResource Gray-900}"
                                    FontSize="14" 
-                                   LineBreakMode="TailTruncation"
-                                   HorizontalOptions="Center"
-                                   FontFamily="{DynamicResource Montserrat-Medium}"
-                                   LineHeight="{OnPlatform Android=1.5, Default=-1}"/>
-
-                            <!--  Number of Items  -->
-                            <Label Grid.Row="2"
-                                   Margin="0,0,0,8"
-                                   Text="{Binding Items}"
-                                   TextColor="{DynamicResource Gray-700}"
-                                   FontSize="14"
                                    LineBreakMode="TailTruncation"
                                    HorizontalOptions="Center"
                                    FontFamily="{DynamicResource Montserrat-Medium}"

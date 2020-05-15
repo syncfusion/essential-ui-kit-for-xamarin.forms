@@ -61,10 +61,10 @@ namespace EssentialUIKit.Controls
             }
 
             // Get the assembly information to access the local image
-            var assembly = typeof(SVGImage).GetTypeInfo().Assembly.GetName();
+            Assembly assembly = typeof(SVGImage).Assembly;
 
             // Update the canvas with the SVG image
-            using (Stream stream = typeof(SVGImage).GetTypeInfo().Assembly.GetManifestResourceStream(assembly.Name + ".Images." + Source))
+            using (Stream stream = assembly.GetManifestResourceStream(assembly.GetName().Name + ".Images." + Source))
             {
                 SkiaSharp.Extended.Svg.SKSvg skSVG = new SkiaSharp.Extended.Svg.SKSvg();
                 skSVG.Load(stream);

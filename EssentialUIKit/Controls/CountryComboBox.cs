@@ -190,7 +190,7 @@ namespace EssentialUIKit.Controls
         /// <summary>
         /// Occurs when the property is changed.
         /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
+        public new event PropertyChangedEventHandler PropertyChanged;
 
         #endregion
 

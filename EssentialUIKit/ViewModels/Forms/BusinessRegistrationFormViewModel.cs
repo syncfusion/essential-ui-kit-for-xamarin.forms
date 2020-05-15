@@ -8,7 +8,7 @@ namespace EssentialUIKit.ViewModels.Forms
     /// ViewModel for Business Registration Form page 
     /// </summary> 
     [Preserve(AllMembers = true)]
-    public class BusinessRegistrationFormViewModel : BaseViewModel
+    public class BusinessRegistrationFormViewModel : LoginViewModel
     {        
         #region Constructor
 
@@ -37,12 +37,7 @@ namespace EssentialUIKit.ViewModels.Forms
         /// Gets or sets the property that bounds with a ComboBox that gets the Business from user.
         /// </summary>
         public string Business { get; set; }
-
-        /// <summary>
-        /// Gets or sets the property that bounds with an entry that gets the Email ID from user.
-        /// </summary>
-        public string Email { get; set; }
-
+      
         /// <summary>
         /// Gets or sets the property that bounds with an entry that gets the Phone Number from user.
         /// </summary>

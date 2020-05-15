@@ -19,7 +19,7 @@
 
     <ContentPage.Content>
 
-        <tabView:SfTabView BackgroundColor="{DynamicResource Gray-White}" VisibleHeaderCount="4">
+        <tabView:SfTabView BackgroundColor="{DynamicResource Gray-Bg}" VisibleHeaderCount="4">
             <tabView:SfTabView.SelectionIndicatorSettings>
                 <tabView:SelectionIndicatorSettings StrokeThickness="3" Color="{DynamicResource PrimaryColor}" />
 
@@ -46,7 +46,7 @@
                             <DataTemplate>
                                 <Grid
                                     Margin="0,16,0,0"
-                                    BackgroundColor="{DynamicResource Gray-White}"
+                                    BackgroundColor="{DynamicResource Gray-Bg}"
                                     ColumnSpacing="0"
                                     RowSpacing="0">
 
@@ -123,7 +123,8 @@
                                             FontFamily="{StaticResource Montserrat-Medium}"
                                             FontSize="12"
                                             Text="{Binding OrderID, StringFormat='Order ID: {0}'}"
-                                            VerticalOptions="Center" />
+                                            VerticalOptions="Center"
+                                            TextColor="{StaticResource Gray-700}"/>
 
                                         <!--  Order status  -->
 

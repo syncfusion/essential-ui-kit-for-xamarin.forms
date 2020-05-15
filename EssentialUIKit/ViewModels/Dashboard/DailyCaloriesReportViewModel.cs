@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using EssentialUIKit.Models.Dashboard;
+using Syncfusion.SfGauge.XForms;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 
@@ -13,11 +14,12 @@ namespace EssentialUIKit.ViewModels.Dashboard
     public class DailyCaloriesReportViewModel : BaseViewModel
     {
         #region Field
-        
-        /// <summary>
-        /// Gets or sets the selected session card item.
-        /// </summary>
-        public CaloriesCard SelectedSessionCaloriesCard { get; set; }
+
+        private ObservableCollection<Calorie> selectedCalorieItems;
+
+        private ObservableCollection<Pointer> pointers;
+
+        private double scaleEndValue;
 
         #endregion
 
@@ -28,6 +30,8 @@ namespace EssentialUIKit.ViewModels.Dashboard
         /// </summary>
         public DailyCaloriesReportViewModel()
         {
+            Pointers = new ObservableCollection<Pointer>();
+
             CardItems = new List<CaloriesCard>()
             {
                 new CaloriesCard()
@@ -170,7 +174,11 @@ namespace EssentialUIKit.ViewModels.Dashboard
 
             SelectedSessionCaloriesCard = CardItems[0];
 
+            this.SelectedCalorieItems = BreakfastCalories;
+
             this.SessionCommand = new Command(this.SessionButtonClicked);
+
+            this.UpdateGauge();
         }
 
         #endregion
@@ -211,6 +219,55 @@ namespace EssentialUIKit.ViewModels.Dashboard
         /// </summary>
         public ObservableCollection<Calorie> SnackCalories { get; set; }
 
+        /// <summary>
+        /// Gets or sets the selected session calorie item.
+        /// </summary>
+        public ObservableCollection<Calorie> SelectedCalorieItems 
+        { 
+            get
+            {
+                return selectedCalorieItems;
+            }
+            set
+            {
+                selectedCalorieItems = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the selected session card item.
+        /// </summary>
+        public CaloriesCard SelectedSessionCaloriesCard { get; set; }
+                
+        /// <summary>
+        /// Gets or sets the calorie range
+        /// </summary>
+        public ObservableCollection<Pointer> Pointers
+        {
+            get { return pointers; }
+
+            set
+            {
+                pointers = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the gauge scale end value
+        /// </summary>
+        public double ScaleEndValue 
+        {
+            get { return scaleEndValue; }
+
+            set 
+            {
+                scaleEndValue = value;
+                NotifyPropertyChanged();
+            }
+        }
+
         #endregion
 
         #region Methods
@@ -221,9 +278,86 @@ namespace EssentialUIKit.ViewModels.Dashboard
         /// <param name="obj">The Object</param>
         private void SessionButtonClicked(object obj)
         {
-            // Do something
+            SelectedSessionCaloriesCard.EnableButton = false;
+
+            var context = obj as CaloriesCard;
+            context.EnableButton = true;
+            SelectedSessionCaloriesCard = context;
+            switch (SelectedSessionCaloriesCard.Session)
+            {
+                case "Breakfast":
+                    {
+                        SelectedCalorieItems = BreakfastCalories;
+                        UpdateGauge();
+                        break;
+                    }
+                case "Lunch":
+                    {
+                        SelectedCalorieItems = LunchCalories;
+                        UpdateGauge();
+                        break;
+                    }
+                case "Dinner":
+                    {
+                        SelectedCalorieItems = DinnerCalories;
+                        UpdateGauge();
+                        break;
+                    }
+                case "Snack":
+                    {
+                        SelectedCalorieItems = SnackCalories;
+                        UpdateGauge();
+                        break;
+                    }
+            }
         }
-        
+
+        /// <summary>
+        /// Update the gauge range. 
+        /// </summary>
+        private void UpdateGauge()
+        {
+            Pointers.Clear();
+            var ranges = new ObservableCollection<Pointer>();
+            double rangeStart = 0;
+
+           // var items = selectedCalorieItems;
+            var proteinRange = new RangePointer();
+
+            for (int i = 0; i < SelectedCalorieItems.Count; i++)
+            {
+                RangePointer range = new RangePointer()
+                {
+                    RangeStart = rangeStart,
+                    Value = rangeStart + SelectedCalorieItems[i].Quantity,
+                    Offset = 0.9,
+                    Thickness = 12,
+                    EnableAnimation = false,
+                    Color = Color.FromHex(SelectedCalorieItems[i].Indicator)
+                };
+
+                if (SelectedCalorieItems[i].Nutrient == "Protein")
+                {
+                    range.Offset = 0.93;
+                    range.Thickness = 18;
+                    range.RangeStart -= 3;
+                    range.Value += 3;
+                    range.RangeCap = RangeCap.Both;
+                    proteinRange = range;
+                }
+                else
+                {
+                    ranges.Add(range);
+                }
+
+                rangeStart += SelectedCalorieItems[i].Quantity;
+            }
+
+            ScaleEndValue = rangeStart;
+            Pointers = ranges;
+            Pointers.Add(proteinRange);
+        }
+
         #endregion
 
     }

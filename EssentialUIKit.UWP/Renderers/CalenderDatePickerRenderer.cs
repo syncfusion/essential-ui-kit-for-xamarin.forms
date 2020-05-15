@@ -16,13 +16,13 @@ namespace EssentialUIKit.UWP
         /// <param name="e">The DatePicker</param>
         protected override void OnElementChanged(ElementChangedEventArgs<DatePicker> e)
         {
-            base.OnElementChanged(e);
+            base.OnElementChanged(e);        
 
             if (this.Control == null && e.NewElement != null)
             {
                 Windows.UI.Xaml.Controls.CalendarDatePicker datePicker = new Windows.UI.Xaml.Controls.CalendarDatePicker();
                 datePicker.BorderThickness = new Windows.UI.Xaml.Thickness(0);
-                this.SetNativeControl(datePicker);
+                this.SetNativeControl(datePicker);            
             }
         }
     }

@@ -9,7 +9,8 @@
     xmlns:viewModels="clr-namespace:EssentialUIKit.AppLayout.ViewModels;assembly=EssentialUIKit"
     xmlns:views="clr-namespace:EssentialUIKit.AppLayout.Views;assembly=EssentialUIKit"
     Title="{Binding SelectedCategory.Name}"
-    Style="{StaticResource ContentPageStyle}">
+    Style="{StaticResource ContentPageStyle}"
+    BackgroundColor="{DynamicResource Gray-Bg}">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -66,7 +67,7 @@
                 Clicked="GotoCodeViewer"
                 HorizontalOptions="End"
                 Text="&#xe753;"
-                FontSize="16"
+                FontSize="16" WidthRequest="35"
                 Style="{StaticResource ActionBarSettingIconStyle}"
                 VerticalOptions="CenterAndExpand" />
 
@@ -81,7 +82,7 @@
             Grid.Row="2"
             Grid.RowSpan="2"
             Padding="0,10,0,0"
-            BackgroundColor="{DynamicResource Gray-White}"
+            BackgroundColor="{DynamicResource Gray-Bg}"
             BorderWidth="0"
             CornerRadius="10,10,0,0">
 
@@ -91,7 +92,8 @@
                 ItemsSource="{Binding SelectedCategory.Pages}"
                 RowHeight="96"
                 SelectionChanged="ListView_OnSelectionChanged"
-                SeparatorVisibility="None">
+                SeparatorVisibility="None"
+                BackgroundColor="Transparent">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -118,7 +120,7 @@
                                                 FontFamily="{StaticResource Montserrat-Medium}"
                                                 FontSize="10"
                                                 Text="{Binding UpdateType}"
-                                                TextColor="{DynamicResource Gray-White}" />
+                                                TextColor="{DynamicResource Gray-Bg}" />
                                         </Frame.Content>
                                     </Frame>
                                 </StackLayout>

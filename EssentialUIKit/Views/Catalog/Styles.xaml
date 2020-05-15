@@ -30,11 +30,11 @@
 
     <!--  Common style for Content pages  -->
     <Style x:Key="ContentPageStyle" TargetType="ContentPage">
-        <Setter Property="BackgroundColor" Value="{OnIdiom Default={DynamicResource Gray-White}, Desktop={DynamicResource Gray-100}, Converter={StaticResource DynamicResourceToColorConverter}}" />
+        <Setter Property="BackgroundColor" Value="{OnIdiom Default={DynamicResource Gray-Bg}, Desktop={DynamicResource Gray-100}, Converter={StaticResource DynamicResourceToColorConverter}}" />
     </Style>
 
     <Style TargetType="control:TitleView">
-        <Setter Property="BackgroundColor" Value="{DynamicResource Gray-White}" />
+        <Setter Property="BackgroundColor" Value="{DynamicResource Gray-Bg}" />
     </Style>
 
     <!--  Common style for icon buttons  -->
@@ -65,7 +65,7 @@
 
     <!--  Common style for SfListView  -->
     <Style x:Key="SfListViewStyle" TargetType="listView:SfListView">
-        <Setter Property="BackgroundColor" Value="{DynamicResource Gray-White}" />
+        <Setter Property="BackgroundColor" Value="{DynamicResource Gray-Bg}" />
         <Setter Property="FocusBorderThickness" Value="0" />
         <Setter Property="SelectionBackgroundColor" Value="Transparent" />
         <Setter Property="IsScrollBarVisible" Value="False" />
@@ -75,7 +75,7 @@
     <!--  Header Template for Catalog SfListView  -->
     <DataTemplate x:Key="CatalogDefaultHeaderTemplate">
         <StackLayout
-            BackgroundColor="{DynamicResource Gray-White}"
+            BackgroundColor="{DynamicResource Gray-Bg}"
             HorizontalOptions="End"
             Orientation="Horizontal"
             Spacing="8"
@@ -202,7 +202,7 @@
 
     <!-- Common style for borders -->
     <Style x:Key="SfBorderStyle" TargetType="border:SfBorder">
-        <Setter Property="BackgroundColor" Value="{DynamicResource Gray-White}" />
+        <Setter Property="BackgroundColor" Value="{DynamicResource Gray-Bg}" />
         <Setter Property="BorderColor" Value="Transparent" />
         <Setter Property="CornerRadius" Value="25" />
         <Setter Property="HorizontalOptions" Value="FillAndExpand" />

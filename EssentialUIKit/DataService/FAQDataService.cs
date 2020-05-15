@@ -13,7 +13,7 @@ namespace EssentialUIKit.DataService
     {
         #region fields
 
-        private static FAQDataService instance;
+        private static FAQDataService faqDataService;
 
         private FAQViewModel FAQsViewModel;
 
@@ -24,7 +24,7 @@ namespace EssentialUIKit.DataService
         /// <summary>
         /// Gets an instance of the <see cref="FAQDataService"/>.
         /// </summary>
-        public static FAQDataService Instance => instance ?? (instance = new FAQDataService());
+        public static FAQDataService Instance => faqDataService ?? (faqDataService = new FAQDataService());
 
         /// <summary>
         /// Gets or sets the value of FAQ page view model.
@@ -49,15 +49,15 @@ namespace EssentialUIKit.DataService
 
             var assembly = typeof(App).GetTypeInfo().Assembly;
 
-            T obj;
+            T data;
 
             using (var stream = assembly.GetManifestResourceStream(file))
             {
                 var serializer = new DataContractJsonSerializer(typeof(T));
-                obj = (T)serializer.ReadObject(stream);
+                data = (T)serializer.ReadObject(stream);
             }
 
-            return obj;
+            return data;
         }
 
         #endregion

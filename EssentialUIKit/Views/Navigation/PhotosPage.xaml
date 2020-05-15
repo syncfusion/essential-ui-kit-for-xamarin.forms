@@ -6,7 +6,7 @@
              xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
              xmlns:data="clr-namespace:Syncfusion.DataSource;assembly=Syncfusion.DataSource.Portable"
              xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
-             BackgroundColor="{DynamicResource Gray-White}"
+             BackgroundColor="{DynamicResource Gray-Bg}"
              NavigationPage.HasNavigationBar="False">
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -34,19 +34,19 @@
                     TextColor="{DynamicResource Gray-900}"
                     VerticalOptions="Center" />
 
-                <!--  Add button  -->
+                <!--  Edit button  -->
                 <buttons:SfButton
                     Padding="0"
-                    BackgroundColor="{DynamicResource Gray-White}"
+                    BackgroundColor="{DynamicResource Gray-Bg}"
                     Command="{Binding EditCommand}"
-                    CornerRadius="5"
+                    CornerRadius="20"
                     FontFamily="{StaticResource FontIcons}"
                     FontSize="18"
                     HorizontalOptions="End"
                     Text="{StaticResource EditIcon}"
                     TextColor="{DynamicResource Gray-600}"
                     VerticalOptions="Center"
-                    WidthRequest="40" />
+                     />
 
             </Grid>
             

@@ -12,7 +12,7 @@ namespace EssentialUIKit.Models.Transaction
         /// <summary>
         /// Gets or sets the card type.
         /// </summary>
-        public string Type { get; set; }
+        public string CardType { get; set; }
 
         /// <summary>
         /// Gets or sets the card number.
@@ -32,7 +32,7 @@ namespace EssentialUIKit.Models.Transaction
         /// <summary>
         /// Gets or sets the card cvv.
         /// </summary>
-        public int Cvv { get; set; }
+        public int CardCvv { get; set; }
 
         /// <summary>
         /// Gets or sets the property that has been displays  background gradient start.

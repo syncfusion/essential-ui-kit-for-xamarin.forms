@@ -109,7 +109,7 @@
     <Style x:Key="SpanStyle" TargetType="Span">
         <Setter Property="FontSize" Value="12" />
         <Setter Property="LineHeight" Value="{OnPlatform Default=1.25, iOS=-1}" />
-        <Setter Property="TextColor" Value="{StaticResource Gray-900}" />
+        <Setter Property="TextColor" Value="{DynamicResource Gray-900}"/>
         <Setter Property="FontFamily" Value="{StaticResource Montserrat-SemiBold}" />
     </Style>
 

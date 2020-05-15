@@ -49,7 +49,7 @@
 
     <!--  Common implicit style for ParallaxListView  -->
     <Style TargetType="controls:ParallaxListView">
-        <Setter Property="BackgroundColor" Value="{DynamicResource Gray-White}" />
+        <Setter Property="BackgroundColor" Value="{DynamicResource Gray-Bg}" />
         <Setter Property="SeparatorVisibility" Value="None" />
         <Setter Property="VerticalScrollBarVisibility" Value="Never" />
     </Style>
@@ -130,7 +130,7 @@
                 </graphics:SfLinearGradientBrush>
             </Setter.Value>
         </Setter>
-        <Setter Property="TextColor" Value="{DynamicResource Gray-White}" />
+        <Setter Property="TextColor" Value="{DynamicResource Gray-Bg}" />
         <Setter Property="VerticalOptions" Value="FillAndExpand" />
     </Style>
 

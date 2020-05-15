@@ -17,7 +17,7 @@
 
         <buttons:SfButton    BackgroundColor="{DynamicResource FacebookLogin}" HorizontalOptions="Start"
                                             Style="{StaticResource SocialIconButtonStyle}"  Command="{Binding FaceBookLoginCommand}"
-                                            Text="{StaticResource FaceBook}" TextColor="{StaticResource Gray-White}"/>
+                                            Text="{StaticResource FaceBook}" />
 
         <buttons:SfButton   BackgroundColor="{DynamicResource TwitterBlue}" HorizontalOptions="Center"
                                             Style="{StaticResource SocialIconButtonStyle}"  Command="{Binding TwitterLoginCommand}"

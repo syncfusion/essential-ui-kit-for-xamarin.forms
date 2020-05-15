@@ -5,10 +5,11 @@
              xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
              xmlns:ListView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
              xmlns:cards="clr-namespace:Syncfusion.XForms.Cards;assembly=Syncfusion.Cards.XForms"
+             xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
              xmlns:ViewModel="clr-namespace:EssentialUIKit.ViewModels.Detail"
              x:Class="EssentialUIKit.Views.Detail.MyAddressPage"
              x:Name="MyAdressPage"
-             BackgroundColor="{DynamicResource Gray-100}"
+             BackgroundColor="{DynamicResource GrayShadowBackgroundColor}"
              NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Resources>
@@ -26,11 +27,11 @@
     <ContentPage.ControlTemplate>
         <ControlTemplate>
             <StackLayout x:Name="titleLayout" Spacing="0">
-                <controls:TitleView Title="My Address">
+                <controls:TitleView Title="My Address" BackgroundColor="{DynamicResource Gray-Bg}">
                     <controls:TitleView.LeadingView>
                         <!--  Back button command  -->
-                        <buttons:SfButton x:Name="backButton" Command="{Binding Path=BindingContext.BackCommand, Source={x:Reference MyAdressPage}}" 
-                                          CornerRadius="4" Text="{StaticResource Back}"
+                        <buttons:SfButton x:Name="backButton" Command="{Binding Path=BindingContext.BackButtonCommand, Source={x:Reference MyAdressPage}}" 
+                                          CornerRadius="20" Text="{StaticResource Back}"
                                           CommandParameter="{x:Reference backButton}" Style="{StaticResource IconButtonStyle}"/>
                         
                     </controls:TitleView.LeadingView>
@@ -48,13 +49,15 @@
             </Grid.RowDefinitions>
             
             <!--  ListView displaying address  -->
-            <ListView:SfListView x:Name="myAddress" AutoFitMode="Height" IsScrollBarVisible="False" Padding="8" ItemSpacing="8" BackgroundColor="Transparent"
+            <ListView:SfListView x:Name="myAddress" AutoFitMode="Height" IsScrollBarVisible="False" Padding="8" BackgroundColor="Transparent"
                                  SelectionGesture="Tap" SelectionBackgroundColor="Transparent" SelectionMode="Single" AllowSwiping="True" 
                                  ItemsSource="{Binding AddressDetails}">
                 <ListView:SfListView.ItemTemplate>
                     <DataTemplate>
-                        <cards:SfCardView CornerRadius="4" HasShadow="True" WidthRequest="343" BackgroundColor="{DynamicResource Gray-White}" 
-                                          HorizontalOptions="Center" Padding="16,16,8,16">
+                        <controls:CustomShadowFrame CornerRadius="4" HasShadow="True" BackgroundColor="{DynamicResource GrayShadowColor}" 
+                                          HorizontalOptions="CenterAndExpand" 
+                                                    WidthRequest="343"
+                                                    Padding="16,16,8,16" BorderWidth="0" Margin="8" Radius="4">
                             <Grid ColumnSpacing="8" RowSpacing="8" >
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto"/>
@@ -84,13 +87,13 @@
                                 </Label>
 
                                 <!--  Edit button command  -->
-                                <buttons:SfButton  x:Name="editButton" CornerRadius="4" Grid.Column="2" HorizontalOptions="EndAndExpand"
+                                <buttons:SfButton  x:Name="editButton" CornerRadius="20" Grid.Column="2" HorizontalOptions="EndAndExpand"
                                                    VerticalOptions="StartAndExpand" Style="{StaticResource IconButtonStyle}"
                                                    Text="{StaticResource Edit}" Command="{Binding Path=BindingContext.EditCommand, Source={x:Reference myAddress}}"
                                                    CommandParameter="{x:Reference editButton }"/>
 
                                 <!--  Delete button command  -->
-                                <buttons:SfButton  x:Name="DeleteButton" CornerRadius="4" Grid.Column="3" HorizontalOptions="EndAndExpand"
+                                <buttons:SfButton  x:Name="DeleteButton" CornerRadius="20" Grid.Column="3" HorizontalOptions="EndAndExpand"
                                                    VerticalOptions="StartAndExpand" Style="{StaticResource IconButtonStyle}"
                                                    Text="{StaticResource Delete}" Command="{Binding Path=BindingContext.DeleteCommand,Source={x:Reference myAddress}}"
                                                    CommandParameter="{x:Reference DeleteButton}"/>
@@ -121,18 +124,23 @@
                                     </Label.FormattedText>
                                 </Label>
                             </Grid>
-                        </cards:SfCardView>
+                        </controls:CustomShadowFrame>
                     </DataTemplate>
                 </ListView:SfListView.ItemTemplate>
+                <ListView:SfListView.LayoutManager>
+                    <ListView:GridLayout SpanCount="{core:OnPlatformOrientationIntValue Desktop=2, PhonePortrait=1, PhoneLandscape=2, TabletPortrait=2, TabletLandscape=3}">
+                    </ListView:GridLayout>
+                </ListView:SfListView.LayoutManager>
             </ListView:SfListView>
 
             <!--  Add Card button command  -->
-            <buttons:SfButton x:Name="addCardButton" Style="{StaticResource MagentaButtonStyle}" Text="ADD NEW ADDRESS"
-                              FontFamily="{StaticResource Montserrat-SemiBold}"  BorderWidth="0" HeightRequest="44"
-                              Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="End"
+            <buttons:SfButton x:Name="addCardButton" Style="{StaticResource MagentaButtonStyle}" 
+                              Text="{StaticResource Add}" Margin="0,0,20,20"
+                              FontFamily="{StaticResource FontIcons}"  BorderWidth="0" HeightRequest="56" 
+                              Grid.Row="1" HorizontalOptions="End" VerticalOptions="End" CornerRadius="30"
                               Command="{Binding Path=BindingContext.AddCardCommand , Source={x:Reference myAddress}}"
-                              TextColor="{DynamicResource Gray-White}" WidthRequest="{OnIdiom Default=200,
-                                                       Phone=-1}"  CommandParameter="{x:Reference addCardButton}"/>
+                              TextColor="{DynamicResource Gray-White}" WidthRequest="56"  CommandParameter="{x:Reference addCardButton}"/>
+
         </Grid>
     </ContentPage.Content>
 </ContentPage>

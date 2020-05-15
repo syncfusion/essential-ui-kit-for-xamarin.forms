@@ -12,7 +12,7 @@
         <!--  Outgoing image template  -->
         <cards:SfCardView
             helper:RTLHelper.CornerRadius="5, 0, 5, 5"
-            helper:RTLHelper.Margin="38, 12, 22, 0"
+            helper:RTLHelper.Margin="38, 12, 22, 4"
             BackgroundColor="{DynamicResource PrimaryLight}"
             BorderWidth="0"
             HasShadow="False"
@@ -49,8 +49,9 @@
                         FontSize="12"
                         HorizontalOptions="End"
                         Text="{Binding Time, StringFormat='{0:h:mm tt}'}"
-                        TextColor="{DynamicResource Gray-White}"
-                        VerticalOptions="End" />
+                        TextColor="{DynamicResource Gray-Black}"
+                        VerticalOptions="End" 
+                        FontFamily="{StaticResource Montserrat-Medium}"/>
 
                 </Grid>
 

@@ -11,7 +11,7 @@
              xmlns:progressBar="clr-namespace:Syncfusion.XForms.ProgressBar;assembly=Syncfusion.SfProgressBar.XForms"
              x:Class="EssentialUIKit.Views.Navigation.AppUsagePage"
              xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
-             BackgroundColor="{DynamicResource Gray-White}"
+             BackgroundColor="{DynamicResource Gray-Bg}"
              NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Resources>
@@ -31,14 +31,15 @@
                 <controls:TitleView Title="App Usage" 
                                     FontSize="16" 
                                     FontFamily="{StaticResource Montserrat-Medium}" 
-                                    BackgroundColor="{DynamicResource Gray-White}">
+                                    BackgroundColor="{DynamicResource Gray-Bg}">
 
                     <!-- Back button command -->
                     <controls:TitleView.LeadingView>
                         <buttons:SfButton x:Name="backButton"
-                                          Command="{Binding BackButtonCommand}"
+                                          Command="{Binding BindingContext.BackButtonCommand, 
+                            Source={x:Reference appUsageList}}"
                                           CommandParameter="{x:Reference backButton}"
-                                          CornerRadius="4"
+                                          CornerRadius="20"
                                           Style="{StaticResource IconButtonStyle}"
                                           Text="{StaticResource Back}" />
                     </controls:TitleView.LeadingView>
@@ -56,8 +57,9 @@
             <listView:SfListView IsScrollBarVisible="false"
                                  ItemSpacing="0"
                                  RowSpacing="0"
+                                 x:Name="appUsageList"
                                  ItemsSource="{Binding AppUsageList}"
-                                 SelectionBackgroundColor="{DynamicResource TappedBackgroundColor}"
+                                 SelectionBackgroundColor="{DynamicResource Gray-200}"
                                  TapCommand="{Binding ItemTappedCommand}"
                                  ItemSize="72">
 

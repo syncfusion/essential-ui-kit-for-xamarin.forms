@@ -10,7 +10,7 @@
     xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
     x:Name="categoryPage"
     Title="Categories"
-    BackgroundColor="{DynamicResource Gray-White}"
+    BackgroundColor="{DynamicResource Gray-Bg}"
     NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Resources>
@@ -36,7 +36,7 @@
                         x:Name="backButton"
                         Command="{Binding BindingContext.BackButtonCommand, Source={x:Reference CategoryTile}}"
                         CommandParameter="{x:Reference backButton}"
-                        CornerRadius="4"
+                        CornerRadius="20"
                         Style="{StaticResource IconButtonStyle}"
                         Text="{StaticResource Back}" />
                 </controls:TitleView.LeadingView>
@@ -44,7 +44,7 @@
                     <StackLayout HorizontalOptions="End" Orientation="Horizontal">
                         <buttons:SfButton
                             Command="{Binding BindingContext.NotificationCommand, Source={x:Reference CategoryTile}}"
-                            CornerRadius="4"
+                            CornerRadius="20"
                             Style="{StaticResource IconButtonStyle}"
                             Text="{StaticResource Bell}" />
                     </StackLayout>

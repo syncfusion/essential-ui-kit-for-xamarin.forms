@@ -6,7 +6,7 @@
              xmlns:controls="clr-namespace:EssentialUIKit.Controls"
              xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Detail"
              x:Class="EssentialUIKit.Views.Detail.DataTablePage"
-             BackgroundColor="{DynamicResource Gray-White}"
+             BackgroundColor="{DynamicResource Gray-Bg}"
              NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Resources>
@@ -32,15 +32,15 @@
             </Grid.RowDefinitions>
 
             <StackLayout x:Name="TitleView"  Padding="8,8" Grid.Row="0" HeightRequest="64"
-                         BackgroundColor="{DynamicResource Gray-White}" Spacing="0"
+                         BackgroundColor="{DynamicResource Gray-Bg}" Spacing="0"
                          HorizontalOptions="FillAndExpand" Orientation="Horizontal">
 
-                <StackLayout x:Name="Title" HorizontalOptions="FillAndExpand"  IsVisible="True"
+                <StackLayout x:Name="TitleLayout" HorizontalOptions="FillAndExpand"  IsVisible="True"
                              Orientation="Horizontal"  VerticalOptions="FillAndExpand"  Spacing="0">
 
                     <!--  Back button command  -->
                     <buttons:SfButton  x:Name="backButton"  Command="{Binding BackButtonCommand}"
-                                       CommandParameter="{x:Reference backButton}" CornerRadius="4"
+                                       CommandParameter="{x:Reference backButton}" CornerRadius="20"
                                        Style="{StaticResource IconButtonStyle}" Text="{StaticResource Back}"/>
 
                     <!--   Data table page Title  -->
@@ -72,7 +72,7 @@
 
             <BoxView Grid.Row="1" Style="{StaticResource SeparatorStyle}"/>
 
-            <StackLayout Grid.Row="4" Spacing="0" >
+            <StackLayout Grid.Row="4" Spacing="0">
 
                 <controls:SearchableDataTable  x:Name="dataTable"
                     Padding="0"
@@ -81,14 +81,14 @@
                     ItemSpacing="0"
                     ItemsSource="{Binding Items}"
                     SearchText="{Binding SearchText}"
-                    SelectionBackgroundColor="Transparent"
+                    SelectionBackgroundColor="Transparent" 
                     TapCommand="{Binding ItemTappedCommand}"
                     VerticalOptions="FillAndExpand"
                     StickyFooterPosition="Body">
 
                     <controls:SearchableDataTable.HeaderTemplate>
                         <DataTemplate>
-                            <Grid Grid.Row="2" HeightRequest="48" Margin="0,8,0,0" Padding="16,0,8,0" ColumnSpacing="0" BackgroundColor="{StaticResource Gray-100}">
+                            <Grid Grid.Row="2" HeightRequest="48" Margin="0" Padding="16,0,8,0" ColumnSpacing="0" BackgroundColor="{StaticResource Gray-100}">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="{OnIdiom Desktop=0.5*, Tablet=1*, Phone=0.8*}" />
                                     <ColumnDefinition Width="{OnIdiom Desktop=2.5*, Tablet=1*, Phone=2*}" />
@@ -150,7 +150,7 @@
                                                     <UriImageSource
                                                        CacheValidity="14"
                                                        CachingEnabled="true"
-                                                       Uri="{Binding ImagePath}" />
+                                                       Uri="{Binding ImageIcon}" />
                                                  </Image.Source>
                                                 
                                             </Image>

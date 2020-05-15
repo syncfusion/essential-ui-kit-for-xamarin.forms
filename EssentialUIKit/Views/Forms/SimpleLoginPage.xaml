@@ -85,7 +85,7 @@
                     <!--  Entry to get password from user  -->
                     <border:SfBorder
                         Grid.Row="3"
-                        BackgroundColor="{DynamicResource Gray-White}"
+                        BackgroundColor="{DynamicResource Gray-Bg}"
                         BorderColor="{Binding Source={x:Reference PasswordEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}"
                         Style="{StaticResource SfBorderStyle}">
                         <control:BorderlessEntry
@@ -99,19 +99,18 @@
                     </border:SfBorder>
 
                     <!--  Forgot password link  -->
-                    <Label
+                    <buttons:SfButton
                         x:Name="ForgotPasswordLabel"
-                        Grid.Row="4"
+                        Grid.Row="4" CornerRadius="4"
                         Margin="0,16"
                         FontFamily="{StaticResource Montserrat-SemiBold}"
-                        FontSize="12"
-                        HorizontalOptions="End"
+                        FontSize="12" 
+                        HorizontalOptions="End" 
+                        Style="{StaticResource SfFlatButtonStyle}"
                         Text="FORGOT PASSWORD?"
-                        TextColor="{DynamicResource Gray-800}">
-                        <Label.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding ForgotPasswordCommand}" CommandParameter="{x:Reference ForgotPasswordLabel}" />
-                        </Label.GestureRecognizers>
-                    </Label>
+                        TextColor="{DynamicResource Gray-800}"
+                        Command="{Binding ForgotPasswordCommand}"/>
+
 
                     <!--  Login button  -->
                     <buttons:SfButton

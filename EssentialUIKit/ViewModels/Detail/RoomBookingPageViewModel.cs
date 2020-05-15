@@ -82,9 +82,19 @@ namespace EssentialUIKit.ViewModels.Detail
         private Command bookCommand;
 
         /// <summary>
-        /// Gets or sets the command is executed when the carousel item is swiped.
+        /// Gets or sets the command is executed when the  selection button is clicked.
         /// </summary>
         private Command selectionCommand;
+
+        /// <summary>
+        /// Gets or sets the command is executed when the more button is clicked.
+        /// </summary>
+        private Command moreCommand;
+
+        /// <summary>
+        /// Gets or sets the command is executed when the  showAll button is clicked.
+        /// </summary>
+        private Command showAllCommand;
 
         #endregion
 
@@ -148,7 +158,7 @@ namespace EssentialUIKit.ViewModels.Detail
                     Comment = "Great Resort, excellent hospitality!",
                     ReviewedDate = "29 Dec, 2019",
                     Rating = 5,
-                    Images = new List<string>
+                    CustomerReviewImages = new List<string>
                     {
                         "HotelImage1.png",
                         "HotelImage4.jpeg",
@@ -162,7 +172,7 @@ namespace EssentialUIKit.ViewModels.Detail
                     Comment = "Best resort on the planet. LOVE our visits there.",
                     ReviewedDate = "29 Dec, 2019",
                     Rating = 5,
-                    Images = new List<string>
+                    CustomerReviewImages = new List<string>
                     {
                        "HotelImage2.jpeg",
                        "HotelImage3.jpeg",
@@ -447,6 +457,29 @@ namespace EssentialUIKit.ViewModels.Detail
                 return this.selectionCommand ?? (this.selectionCommand = new Command(this.SelectionClicked));
             }
         }
+
+        // <summary>
+        /// Gets or sets the command that will be executed when an more button is selected.
+        /// </summary>   
+        public Command MoreCommand
+        {
+            get
+            {
+                return this.moreCommand ?? (this.moreCommand = new Command(this.MoreClicked));
+            }
+        }
+
+        // <summary>
+        /// Gets or sets the command that will be executed when an more button is selected.
+        /// </summary>   
+        public Command ShowAllCommand
+        {
+            get
+            {
+                return this.showAllCommand ?? (this.showAllCommand = new Command(this.ShowAllClicked));
+            }
+        }
+
         #endregion
 
         #region Methods
@@ -469,8 +502,11 @@ namespace EssentialUIKit.ViewModels.Detail
         private void SelectionChanged( SelectionChangedEventArgs e)
         {
             selectedDates = e.DateAdded;
-            this.RoomDetail.SelectedRanges = (selectedDates[0].Date.ToString("MMM dd")) + " - " + (selectedDates[selectedDates.Count - 1].Date.ToString("MMM dd"));
-            IsDropDownOpen = false;
+            if (selectedDates.Count != 0)
+            {
+                this.RoomDetail.SelectedRanges = (selectedDates[0].Date.ToString("MMM dd")) + " - " + (selectedDates[selectedDates.Count - 1].Date.ToString("MMM dd"));
+                IsDropDownOpen = false;
+            }
         }
 
         private void GuestSelectionChanged(object obj)
@@ -524,6 +560,23 @@ namespace EssentialUIKit.ViewModels.Detail
             this.SelectedIndex = this.PreviewImages.IndexOf(obj);
         }
 
+        /// <summary>
+        /// Invoked when the more button is clicked.
+        /// </summary>
+        /// <param name="obj">The Object</param>
+        private void MoreClicked(object obj)
+        {
+            //Do something
+        }
+
+        // <summary>
+        /// Invoked when the show all button is clicked.
+        /// </summary>
+        /// <param name="obj">The Object</param>
+        private void ShowAllClicked(object obj)
+        {
+            //Do something
+        }
         #endregion
     }
 

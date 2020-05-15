@@ -18,7 +18,6 @@ namespace EssentialUIKit.ViewModels.Detail
         #region Constructor
         public MyAddressViewModel()
         {
-            this.BackCommand = new Command(this.BackButtonClicked);
             this.EditCommand = new Command(this.EditButtonClicked);
             this.DeleteCommand = new Command(this.DeleteButtonClicked);
             this.AddCardCommand = new Command(this.AddCardButtonClicked);
@@ -45,15 +44,6 @@ namespace EssentialUIKit.ViewModels.Detail
         #endregion
 
         #region Methods
-
-        /// <summary>
-        /// Invoked when the back button clicked
-        /// </summary>
-        /// <param name="obj">The object</param>
-        private void BackButtonClicked(object obj)
-        {
-            // Do something
-        }
 
         /// <summary>
         /// Invoked when the edit button clicked
@@ -84,11 +74,6 @@ namespace EssentialUIKit.ViewModels.Detail
         #endregion
 
         #region Command
-
-        /// <summary>
-        /// Gets or sets the command is executed when the back button is clicked.
-        /// </summary>
-        public Command BackCommand { get; set; }
 
         /// <summary>
         /// Gets or sets the command is executed when the edit button is clicked.

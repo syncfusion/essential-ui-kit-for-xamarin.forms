@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
+using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 
 namespace EssentialUIKit.ViewModels.Catalog
@@ -31,6 +32,11 @@ namespace EssentialUIKit.ViewModels.Catalog
 
         public string popularListSearchText;
 
+        private Command menuCommand;
+
+        private Command itemTappedCommand;
+
+
         #endregion
 
         #region Constructor
@@ -38,9 +44,10 @@ namespace EssentialUIKit.ViewModels.Catalog
         /// <summary>
         /// Initializes a new instance for the <see cref="EventListViewModel" /> class.
         /// </summary>
-         
+
         public EventListViewModel()
         {
+
             this.EventItems = new List<EventList>()
             {
                  new EventList { ImagePath = App.BaseImageUrl +"Event-Image-two.png" , EventMonth="Dec",
@@ -206,8 +213,53 @@ namespace EssentialUIKit.ViewModels.Catalog
 
         #endregion
 
+        #region Command
+
+        /// <summary>
+        /// Gets or sets the command that is executed when the item is selected.
+        /// </summary>
+        public Command ItemTappedCommand
+        {
+            get
+            {
+                return this.itemTappedCommand ?? (this.itemTappedCommand = new Command(this.ItemSelected));
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the command that is executed when the menu button is clicked.
+        /// </summary>
+        public Command MenuCommand
+        {
+            get
+            {
+                return this.menuCommand ?? (this.menuCommand = new Command(this.MenuButtonClicked));
+            }
+        }
+
+        #endregion
+
         #region Methods
 
+        /// <summary>
+        /// Invoked when item is clicked.
+        /// </summary>
+        public void ItemSelected(object obj)
+        {
+            // Do something
+        }
+
+        /// <summary>
+        /// Invoked when menu button is changed.
+        /// </summary>
+        public void MenuButtonClicked(object obj)
+        {
+            // Do something
+        }
+
+        /// <summary>
+        /// Invoked when search text is changed.
+        /// </summary>
         private void UpdateSelectedText()
         {
             switch (selectedIndex)

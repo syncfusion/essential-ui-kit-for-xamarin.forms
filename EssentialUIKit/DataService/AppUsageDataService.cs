@@ -13,7 +13,7 @@ namespace EssentialUIKit.DataService
     {
         #region fields 
 
-        private static AppUsageDataService instance;
+        private static AppUsageDataService appUsageDataService;
 
         private AppUsageViewModel appUsageViewModel;
 
@@ -24,7 +24,7 @@ namespace EssentialUIKit.DataService
         /// <summary>
         /// Gets an instance of the <see cref="AppUsageDataService"/>.
         /// </summary>
-        public static AppUsageDataService Instance => instance ?? (instance = new AppUsageDataService());
+        public static AppUsageDataService Instance => appUsageDataService ?? (appUsageDataService = new AppUsageDataService());
 
         /// <summary>
         /// Gets or sets the value of app usage page view model.
@@ -49,15 +49,15 @@ namespace EssentialUIKit.DataService
 
             var assembly = typeof(App).GetTypeInfo().Assembly;
 
-            T obj;
+            T data;
 
             using (var stream = assembly.GetManifestResourceStream(file))
             {
                 var serializer = new DataContractJsonSerializer(typeof(T));
-                obj = (T)serializer.ReadObject(stream);
+                data = (T)serializer.ReadObject(stream);
             }
 
-            return obj;
+            return data;
         }
 
         #endregion

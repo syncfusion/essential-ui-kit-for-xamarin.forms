@@ -179,34 +179,6 @@
         <Setter Property="HeightRequest" Value="48" />
     </Style>
 
-    <!--  Common style for SfSegmentedControl  -->
-    <Style x:Key="SfSegmentedControlStyle" TargetType="buttons:SfSegmentedControl">
-        <Setter Property="FontSize" Value="16" />
-        <Setter Property="FontFamily" Value="Montserrat-Medium" />
-        <Setter Property="FontColor" Value="{DynamicResource Gray-700}" />
-        <Setter Property="SelectionTextColor" Value="{DynamicResource Gray-White}" />
-        <Setter Property="BackgroundColor" Value="Transparent" />
-        <Setter Property="BorderThickness" Value="0" />
-        <Setter Property="SegmentBackgroundColor" Value="{DynamicResource Gray-White}" />
-        <Setter Property="SegmentBorderColor" Value="{DynamicResource Gray-300}" />
-        <Setter Property="SegmentBorderThickness" Value="1" />
-        <Setter Property="SegmentCornerRadius" Value="20" />
-        <Setter Property="SegmentHeight" Value="40" />
-        <Setter Property="SegmentWidth" Value="40" />
-        <Setter Property="SegmentPadding" Value="8" />
-        <Setter Property="SelectionAnimationDuration" Value="0" />
-        <Setter Property="HorizontalOptions" Value="{OnIdiom Default=Start, Phone=Center}" />
-        <Setter Property="SelectionIndicatorSettings">
-            <Setter.Value>
-                <buttons:SelectionIndicatorSettings
-                    CornerRadius="20"
-                    StrokeThickness="0"
-                    Color="{DynamicResource PrimaryColor}" />
-            </Setter.Value>
-        </Setter>
-
-    </Style>
-
     <!--  Common style for SfListView  -->
     <Style x:Key="SfListViewStyle" TargetType="listView:SfListView">
         <Setter Property="BackgroundColor" Value="{DynamicResource Gray-White}" />

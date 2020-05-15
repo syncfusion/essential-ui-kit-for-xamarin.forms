@@ -9,7 +9,7 @@
     xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
     xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.About"
     Title="About Us"
-    BackgroundColor="{DynamicResource Gray-White}"
+    BackgroundColor="{DynamicResource Gray-Bg}"
     NavigationPage.HasNavigationBar="False">
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -51,12 +51,12 @@
                 <Image
                     Grid.Row="0"
                     Grid.ColumnSpan="3"
-                    Aspect="Fill"
-                    BackgroundColor="{DynamicResource Gray-200}"
+                    Aspect="AspectFit"
+                    BackgroundColor="{DynamicResource Gray-Bg}"
                     HeightRequest="253"
                     HorizontalOptions="Fill">
                       <Image.Source>
-                         <UriImageSource Uri="{Binding CardsTopImage}"
+                         <UriImageSource Uri="{Binding BannerImage}"
                                  CacheValidity="14"
                                  CachingEnabled="true"/>
                       </Image.Source>
@@ -68,16 +68,9 @@
                     Grid.Column="1"
                     Margin="0,-40,0,0"
                     Padding="16,24,16,0"
-                    BackgroundColor="White"
-                    BorderColor="White"
-                    BorderWidth="1"
-                    CornerRadius="4"
-                    HasShadow="true"
                     HorizontalOptions="FillAndExpand"
-                    Radius="4"
-                    ShadowOffSetHeight="4"
-                    ShadowOffsetWidth="0"
-                    ShadowOpacity="0.12">
+                    BackgroundColor="{DynamicResource GrayShadowColor}" BorderWidth="0"
+                    CornerRadius="4" Radius="4" HasShadow="True">
 
                     <StackLayout>
 
@@ -136,12 +129,10 @@
                             <!--  Frame to have rounded corners  -->
                             <control:CustomShadowFrame
                                 Margin="12"
-                                BackgroundColor="White"
-                                BorderColor="White"
-                                CornerRadius="4"
-                                HasShadow="true"
                                 HeightRequest="160"
-                                WidthRequest="160">
+                                WidthRequest="160"
+                                Padding="0" BackgroundColor="{DynamicResource GrayShadowColor}"
+                                BorderWidth="0" HasShadow="True" CornerRadius="4" Radius="4">
 
                                 <StackLayout
                                     Padding="0"

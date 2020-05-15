@@ -193,7 +193,7 @@ namespace EssentialUIKit.ViewModels.Profile
 
             // Makes the selected item color change for 100 milliseconds.
             await Task.Delay(100);
-            Application.Current.Resources.TryGetValue("Gray-White", out var retValue);
+            Application.Current.Resources.TryGetValue("Gray-Bg", out var retValue);
             grid.BackgroundColor = (Color)retValue;
         }
 

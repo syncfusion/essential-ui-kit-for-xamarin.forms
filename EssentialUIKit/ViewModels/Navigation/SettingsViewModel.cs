@@ -41,6 +41,7 @@ namespace EssentialUIKit.ViewModels.Navigation
         /// <param name="obj">The Object.</param>
         private void DownloadQualityTapped(object obj)
         {
+            // Do something
         }
 
         /// <summary>
@@ -49,6 +50,7 @@ namespace EssentialUIKit.ViewModels.Navigation
         /// <param name="obj">The Object.</param>
         private void ShowHiddenFilesTapped(object obj)
         {
+            // Do something
         }
 
         /// <summary>
@@ -57,6 +59,7 @@ namespace EssentialUIKit.ViewModels.Navigation
         /// <param name="obj">The Object.</param>
         private void PrivacyPolicyTapped(object obj)
         {
+            // Do something
         }
     }
 }

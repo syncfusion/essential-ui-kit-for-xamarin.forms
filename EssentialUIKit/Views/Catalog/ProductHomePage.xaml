@@ -9,8 +9,9 @@
     xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    BackgroundColor="{DynamicResource Gray-White}"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+    xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Catalog"
+    BackgroundColor="{DynamicResource Gray-Bg}"
     NavigationPage.HasNavigationBar="False"
     Shell.NavBarIsVisible="False"
     mc:Ignorable="d">
@@ -31,7 +32,7 @@
                     BackgroundColor="{DynamicResource Gray-200}"
                     Source="{Binding BannerImage}" />
 
-                <StackLayout
+                <StackLayout x:Name="stackLayout"
                     Margin="16,25,16,0"
                     Orientation="Horizontal"
                     Spacing="0">
@@ -47,16 +48,17 @@
                         TextColor="{DynamicResource Gray-800}"
                         VerticalOptions="Center" />
 
-                    <buttons:SfButton
+                    <buttons:SfButton 
                         Margin="0"
                         Padding="0"
-                        BackgroundColor="{DynamicResource Gray-White}"
+                        BackgroundColor="{DynamicResource Gray-Bg}"
                         CornerRadius="4"
                         FontFamily="{StaticResource Montserrat-SemiBold}"
                         FontSize="12"
                         HorizontalOptions="End"
                         Text="VIEW ALL"
-                        TextColor="{DynamicResource HyperLink}" />
+                        TextColor="{DynamicResource HyperLink}" 
+                        Command="{Binding ViewAllCommand}"/>
 
                 </StackLayout>
 
@@ -81,14 +83,15 @@
                             <control:CustomShadowFrame
                                 Margin="8"
                                 Padding="0"
-                                BackgroundColor="White"
-                                BorderColor="White"
-                                CornerRadius="4"
-                                HasShadow="true"
+                                BackgroundColor="{DynamicResource GrayShadowColor}"
+                                BorderColor="{DynamicResource GrayShadowColor}"
+                                CornerRadius="4" Radius="4"
+                                HasShadow="True"
                                 HeightRequest="189"
                                 WidthRequest="165">
 
-                                <StackLayout
+                                <border:SfBorder BorderWidth="0" BorderColor="Transparent" CornerRadius="4">
+                                    <StackLayout
                                     Margin="0"
                                     Padding="0"
                                     HorizontalOptions="CenterAndExpand"
@@ -100,7 +103,7 @@
                                     <Image
                                         Margin="0,0,0,8"
                                         Aspect="AspectFill"
-                                        BackgroundColor="{DynamicResource Gray-200}"
+                                        BackgroundColor="Transparent"
                                         HeightRequest="150"
                                         HorizontalOptions="Center"
                                         Source="{Binding PreviewImage}"
@@ -116,8 +119,9 @@
                                         LineHeight="1.25"
                                         Text="{Binding Name}"
                                         TextColor="{DynamicResource Gray-900}" />
-
-                                </StackLayout>
+                                    </StackLayout>
+                                </border:SfBorder>
+                                
                             </control:CustomShadowFrame>
                         </DataTemplate>
                     </listView:SfListView.ItemTemplate>
@@ -151,13 +155,14 @@
                     <buttons:SfButton
                         Margin="0"
                         Padding="0"
-                        BackgroundColor="{DynamicResource Gray-White}"
+                        BackgroundColor="{DynamicResource Gray-Bg}"
                         CornerRadius="4"
                         FontFamily="{StaticResource Montserrat-SemiBold}"
                         FontSize="12"
                         HorizontalOptions="End"
                         Text="VIEW ALL"
-                        TextColor="{DynamicResource HyperLink}" />
+                        TextColor="{DynamicResource HyperLink}" 
+                        Command="{Binding ViewAllCommand}"/>
 
                 </StackLayout>
 
@@ -186,14 +191,15 @@
                             <control:CustomShadowFrame
                                 Margin="8"
                                 Padding="0"
-                                BackgroundColor="White"
-                                BorderColor="White"
-                                CornerRadius="4"
+                                BackgroundColor="{DynamicResource GrayShadowColor }"
+                                BorderColor="{DynamicResource GrayShadowColor}"
+                                CornerRadius="4" Radius="4"
                                 HasShadow="true"
                                 HeightRequest="181"
                                 WidthRequest="200">
 
-                                <StackLayout
+                                <border:SfBorder BorderWidth="0" BorderColor="Transparent" CornerRadius="4">
+                                    <StackLayout
                                     Margin="0"
                                     Padding="0"
                                     HorizontalOptions="CenterAndExpand"
@@ -205,7 +211,7 @@
                                     <Image
                                         Margin="0,0,0,8"
                                         Aspect="AspectFill"
-                                        BackgroundColor="{DynamicResource Gray-200}"
+                                        BackgroundColor="Transparent"
                                         HeightRequest="120"
                                         HorizontalOptions="Center"
                                         Source="{Binding PreviewImage}"
@@ -231,7 +237,9 @@
                                         Text="{Binding DiscountPercent, StringFormat=' Min {0}% OFF'}"
                                         TextColor="{DynamicResource PrimaryColor}" />
 
-                                </StackLayout>
+                                    </StackLayout>
+                                </border:SfBorder>
+                                
                             </control:CustomShadowFrame>
                         </DataTemplate>
                     </listView:SfListView.ItemTemplate>
@@ -257,13 +265,14 @@
                     <buttons:SfButton
                         Margin="0"
                         Padding="0"
-                        BackgroundColor="{DynamicResource Gray-White}"
+                        BackgroundColor="{DynamicResource Gray-Bg}"
                         CornerRadius="4"
                         FontFamily="{StaticResource Montserrat-SemiBold}"
                         FontSize="12"
                         HorizontalOptions="End"
                         Text="VIEW ALL"
-                        TextColor="{DynamicResource HyperLink}" />
+                        TextColor="{DynamicResource HyperLink}" 
+                        Command="{Binding ViewAllCommand}"/>
 
                 </StackLayout>
 
@@ -291,14 +300,15 @@
                             <control:CustomShadowFrame
                                 Margin="8"
                                 Padding="0"
-                                BackgroundColor="White"
-                                BorderColor="White"
-                                CornerRadius="4"
+                                BackgroundColor="{DynamicResource GrayShadowColor}"
+                                BorderColor="{DynamicResource GrayShadowColor}"
+                                CornerRadius="4" Radius="4"
                                 HasShadow="true"
                                 HeightRequest="266"
                                 WidthRequest="230">
 
-                                <StackLayout
+                                <border:SfBorder BorderWidth="0" BorderColor="Transparent" CornerRadius="4">
+                                    <StackLayout
                                     Margin="0"
                                     Padding="0"
                                     HorizontalOptions="FillAndExpand"
@@ -310,7 +320,7 @@
                                     <Image
                                         Margin="0,0,0,16"
                                         Aspect="AspectFill"
-                                        BackgroundColor="{DynamicResource Gray-200}"
+                                        BackgroundColor="Transparent"
                                         HeightRequest="150"
                                         HorizontalOptions="Center"
                                         Source="{Binding PreviewImage}"
@@ -325,7 +335,7 @@
                                         HorizontalOptions="StartAndExpand"
                                         LineHeight="{OnPlatform Android=1.25,Default=-1}"
                                         Text="{Binding Name}"
-                                        TextColor="{DynamicResource Gray-900}" />
+                                        TextColor="{DynamicResource Gray-800}" />
 
                                     <!--  Product Description  -->
                                     <Label
@@ -371,6 +381,8 @@
                                     </StackLayout>
 
                                 </StackLayout>
+                                </border:SfBorder>
+                                
                             </control:CustomShadowFrame>
                         </DataTemplate>
                     </listView:SfListView.ItemTemplate>

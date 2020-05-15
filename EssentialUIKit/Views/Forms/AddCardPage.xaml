@@ -12,7 +12,7 @@
     xmlns:converter="clr-namespace:EssentialUIKit.Converters"
     xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Forms"
     Title="Add Card"
-    BackgroundColor="{DynamicResource Gray-100}"
+    BackgroundColor="{DynamicResource GrayShadowBackgroundColor}"
     NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Resources>
@@ -55,15 +55,15 @@
                 <control:CustomShadowFrame
                     Margin="16,24,16,32"
                     Padding="16"
-                    BackgroundColor="{DynamicResource Gray-White}"
-                    BorderColor="{DynamicResource Gray-White}"
-                    CornerRadius="4"
+                    BackgroundColor="{DynamicResource GrayShadowColor}"
+                    BorderColor="{DynamicResource GrayShadowColor}"
                     HasShadow="True"
+                    CornerRadius="4" Radius="4"
                     HorizontalOptions="Center"
                     WidthRequest="{OnIdiom Default='550',
                                            Phone='-1'}">
 
-                    <StackLayout BackgroundColor="{DynamicResource Gray-White}" Spacing="0">
+                    <StackLayout BackgroundColor="Transparent" Spacing="0">
 
                         <Label
                             FontFamily="{StaticResource Montserrat-Medium}"
@@ -74,7 +74,7 @@
                         <!--  Card number entry and card image  -->
                         <border:SfBorder
                             Margin="0,4"
-                            BackgroundColor="{DynamicResource Gray-White}"
+                            BackgroundColor="{DynamicResource Gray-Bg}"
                             BorderColor="{Binding Source={x:Reference cardNumberEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}"
                             CornerRadius="4">
 
@@ -89,14 +89,13 @@
                                     x:Name="cardNumberEntry"
                                     Grid.Column="0"
                                     Margin="12,0"
-                                    FontSize="16"
                                     HeightRequest="40"
                                     Keyboard="Numeric"
                                     MaxLength="19"
                                     Placeholder="Enter Card Number"
-                                    PlaceholderColor="{DynamicResource Gray-700}"
                                     Text="{Binding CardNumber}"
-                                    TextColor="{DynamicResource Gray-900}">
+                                    Style="{StaticResource EntryTextStyle}">
+
                                     <control:BorderlessEntry.Behaviors>
                                         <behavior:PaymentCardNumberEntryBehavior />
                                     </control:BorderlessEntry.Behaviors>
@@ -157,7 +156,9 @@
                                     FontSize="16"
                                     Format="MM/yy"
                                     PlaceHolderText="MM/YY"
-                                    TextColor="{DynamicResource Gray-900}" />
+                                    TextColor="{DynamicResource Gray-900}" 
+                                    FontFamily="{StaticResource Montserrat-Regular}"
+                                    BackgroundColor="Transparent"/>
 
                             </border:SfBorder>
 
@@ -165,22 +166,20 @@
                             <border:SfBorder
                                 Grid.Row="1"
                                 Grid.Column="1"
-                                BackgroundColor="{DynamicResource Gray-White}"
+                                BackgroundColor="{DynamicResource Gray-Bg}"
                                 BorderColor="{Binding Source={x:Reference cvvEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}"
                                 CornerRadius="4">
 
                                 <control:BorderlessEntry
                                     x:Name="cvvEntry"
                                     Margin="12,0"
-                                    FontSize="16"
                                     HeightRequest="40"
                                     IsPassword="True"
                                     Keyboard="Numeric"
                                     MaxLength="3"
                                     Placeholder="Enter CVV"
-                                    PlaceholderColor="{DynamicResource Gray-700}"
                                     Text="{Binding CVV}"
-                                    TextColor="{DynamicResource Gray-900}">
+                                    Style="{StaticResource EntryTextStyle}">
                                     <control:BorderlessEntry.Behaviors>
                                         <behavior:BorderlessEntryCVVBehavior />
                                     </control:BorderlessEntry.Behaviors>
@@ -198,19 +197,17 @@
                         <!--  Entry for card holder name  -->
                         <border:SfBorder
                             Margin="0,4"
-                            BackgroundColor="{DynamicResource Gray-White}"
+                            BackgroundColor="{DynamicResource Gray-Bg}"
                             BorderColor="{Binding Source={x:Reference nameEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}"
                             CornerRadius="4">
 
                             <control:BorderlessEntry
                                 x:Name="nameEntry"
                                 Margin="12,0"
-                                FontSize="16"
                                 HeightRequest="40"
                                 Placeholder="Enter Name"
-                                PlaceholderColor="{DynamicResource Gray-700}"
                                 Text="{Binding Name}"
-                                TextColor="{DynamicResource Gray-900}" />
+                                Style="{StaticResource EntryTextStyle}"/>
                         </border:SfBorder>
 
                         <!--  Checkbox to save the card  -->
@@ -220,7 +217,9 @@
                             FontFamily="{StaticResource Montserrat-Medium}"
                             FontSize="16"
                             IsChecked="{Binding IsChecked}"
-                            Text="Save this card"
+                            Text="Save this card" 
+                            UncheckedColor="{DynamicResource Gray-300}"
+                            CheckedColor="{DynamicResource PrimaryColor}"
                             TextColor="{DynamicResource Gray-900}"
                             VerticalOptions="Center" />
 
