@@ -1,0 +1,164 @@
+{
+  "chatItems": [
+    {
+      "imagePath": "ProfileImage2.png",
+      "senderName": "Alice Russell",
+      "messageType": "Text",
+      "message": "https://app.syncfusion",
+      "time": "15 min",
+      "notificationType": "New"
+    },
+    {
+      "imagePath": "ProfileImage3.png",
+      "senderName": "Danielle Schneider",
+      "messageType": "Audio",
+      "time": "23 min",
+      "availableStatus": "Available",
+      "notificationType": "Viewed"
+    },
+    {
+      "imagePath": "ProfileImage4.png",
+      "senderName": "Jessica Park",
+      "messageType": "Text",
+      "message": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      "time": "1 hr",
+      "notificationType": "New"
+    },
+    {
+      "imagePath": "ProfileImage5.png",
+      "senderName": "Julia Grant",
+      "messageType": "Video",
+      "availableStatus": "Available",
+      "time": "3 hr",
+      "notificationType": "Received"
+    },
+    {
+      "imagePath": "ProfileImage6.png",
+      "senderName": "kyle Greene",
+      "messageType": "Contact",
+      "message": "Jhone Deo Sync",
+      "time": "Yesterday",
+      "notificationType": "Viewed"
+    },
+    {
+      "imagePath": "ProfileImage7.png",
+      "senderName": "Danielle Booker",
+      "messageType": "Text",
+      "message": "Val Geisier is a writer who",
+      "time": "Jan 30",
+      "availableStatus": "Available",
+      "notificationType": "Received"
+    },
+    {
+      "imagePath": "ProfileImage8.png",
+      "senderName": "Jazmine Simmons",
+      "messageType": "Text",
+      "message": "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.",
+      "availableStatus": "Available",
+      "time": "12/8/2018",
+      "notificationType": "Sent"
+    },
+    {
+      "imagePath": "ProfileImage9.png",
+      "senderName": "Ira Membrit",
+      "messageType": "Photo",
+      "message": "8/8/2018",
+      "availableStatus": "Available",
+      "notificationType": "Viewed"
+    },
+    {
+      "imagePath": "ProfileImage10.png",
+      "senderName": "Serina Willams",
+      "messageType": "Text",
+      "message": "A customer who bought your",
+      "time": "10/6/2018",
+      "notificationType": "Sent"
+    },
+    {
+      "imagePath": "ProfileImage11.png",
+      "senderName": "Alise Valasquez",
+      "messageType": "Text",
+      "message": "Syncfusion components help you deliver applications with great user experiences across iOS, Android, and Universal Windows Platform from a single code base.",
+      "time": "2/5/2018",
+      "notificationType": "New"
+    },
+    {
+      "imagePath": "ProfileImage12.png",
+      "senderName": "Allie Bellew",
+      "messageType": "Audio",
+      "availableStatus": "Available",
+      "time": "24/4/2018",
+      "notificationType": "Viewed"
+    },
+    {
+      "imagePath": "ProfileImage13.png",
+      "senderName": "Navya Sharma",
+      "messageType": "Text",
+      "message": "https://www.syncfusion.com",
+      "time": "10/4/2018",
+      "notificationType": "New"
+    },
+    {
+      "imagePath": "ProfileImage14.png",
+      "senderName": "Carly Ling",
+      "messageType": "Video",
+      "availableStatus": "Available",
+      "time": "22/3/2018",
+      "notificationType": "Received"
+    },
+    {
+      "imagePath": "ProfileImage15.png",
+      "senderName": "Diayana Sebastine",
+      "messageType": "Contact",
+      "message": "Kishore Nisanth",
+      "time": "15/3/2018",
+      "notificationType": "Viewed"
+    },
+    {
+      "imagePath": "ProfileImage16.png",
+      "senderName": "Marc Sherry",
+      "messageType": "Text",
+      "message": "Val Geisier is a writer who",
+      "time": "12/3/2018",
+      "availableStatus": "Available",
+      "notificationType": "Sent"
+    },
+    {
+      "imagePath": "ProfileImage17.png",
+      "senderName": "Dona Merina",
+      "messageType": "Text",
+      "message": "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.",
+      "time": "3/2/2018",
+      "notificationType": "Sent"
+    }
+  ],
+
+  "profileImage": "ProfileImage1.png",
+  "profileName": "Alex Russell",
+  "image": "ProfileImage3.png",
+
+  "chatMessageInfo": [
+    {
+      "isReceived": true,
+      "message": "Hi, can you tell me the specifications of the Dell Inspiron 5370 laptop?",
+      "time": "\/Date(1530144000000+0530)\/"
+    },
+    {
+      "time": "\/Date(1530150000000+0530)\/",
+      "message": "* Processor: Intel Core i5-8250U processor \n* Display: 13.3-inch FHD (1920 x 1080) LED display \n* Memory: 8GB DDR RAM with Intel UHD 620 Graphics \n* Battery: Lithium battery"
+    },
+    {
+      "time": "\/Date(1530153000000+0530)\/",
+      "imagePath": "Electronics.png"
+    },
+    {
+      "time": "\/Date(1530171000000+0530)\/",
+      "message": "How much battery life does it have with wifi and without?",
+      "isReceived": true
+    },
+    {
+      "time": "\/Date(1530180000000+0530)\/",
+      "message": "Approximately 5 hours with wifi. About 7 hours without."
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<StackLayout
+    x:Class="EssentialUIKit.Views.Detail.BookingFeedbackView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:template="clr-namespace:EssentialUIKit.Views.Templates"
+    x:Name="bookingFeedbackView"
+    BackgroundColor="{DynamicResource Gray-Bg}">
+
+    <StackLayout Spacing="0">
+        <!--  Rating and Reviews Header  -->
+        <StackLayout Margin="0" Orientation="Horizontal">
+
+            <Label
+                Margin="16,0,8,8"
+                HorizontalOptions="StartAndExpand"
+                Style="{StaticResource TitleLabelStyle}"
+                Text="Ratings and Reviews"
+                VerticalOptions="Center" />
+
+            <!--  See all review button  -->
+            <buttons:SfButton
+                x:Name="ShowButton"
+                Margin="0,0,8,8"
+                Padding="0"
+                Command="{Binding Path=ParentBindingContext.ShowAllCommand, Source={x:Reference bookingFeedbackView}}"
+                CommandParameter="{Binding .}"
+                FontSize="{OnIdiom Default=12,
+                                   Desktop=14}"
+                HorizontalOptions="End"
+                Style="{StaticResource TransparentButtonStyle}"
+                Text="SHOW ALL" />
+
+        </StackLayout>
+
+    </StackLayout>
+
+    <StackLayout
+        x:Name="StackLayout"
+        BindableLayout.ItemsSource="{Binding RoomDetail.Reviews}"
+        Spacing="0">
+        <BindableLayout.ItemTemplate>
+            <DataTemplate>
+                <StackLayout Spacing="0">
+
+                    <BoxView HeightRequest="{OnIdiom Default=1, Desktop=0}" Style="{StaticResource HorizontalSeparatorStyle}" />
+
+                    <template:BookingReviewTemplate Padding="16,8,16,8" ColumnSpacing="0" />
+
+                </StackLayout>
+            </DataTemplate>
+        </BindableLayout.ItemTemplate>
+    </StackLayout>
+
+</StackLayout>

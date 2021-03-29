@@ -1,0 +1,221 @@
+{
+  "featuredStories": [
+    {
+      "itemImage": "ArticleImage2.png",
+      "author": "John Doe",
+      "averageReadingTime": "5 min read",
+      "date": "Aug 2010",
+      "name": "Learning to Reset"
+    },
+    {
+      "itemImage": "ArticleImage3.png",
+      "author": "John Doe",
+      "averageReadingTime": "5 min read",
+      "date": "Apr 16",
+      "name": "Holistic Approach to UI Design"
+    },
+    {
+      "itemImage": "ArticleImage4.png",
+      "author": "John Doe",
+      "averageReadingTime": "5 min read",
+      "date": "May 2012",
+      "name": "Guiding Your Flock to Success"
+    },
+    {
+      "itemImage": "ArticleImage5.png",
+      "author": "John Doe",
+      "averageReadingTime": "5 min read",
+      "date": "Apr 16",
+      "name": "Be a Nurturing, Fierce Team Leader"
+    },
+    {
+      "itemImage": "ArticleImage6.png",
+      "author": "John Doe",
+      "averageReadingTime": "5 min read",
+      "date": "Dec 2013",
+      "name": "Holistic Approach to UI Design"
+    }
+  ],
+  "latestStories": [
+    {
+      "itemImage": "ArticleImage2.png",
+      "author": "John Doe",
+      "averageReadingTime": "5 min read",
+      "date": "Apr 16",
+      "name": "Learning to Reset"
+    },
+    {
+      "itemImage": "ArticleImage3.png",
+      "author": "John Doe",
+      "averageReadingTime": "5 min read",
+      "date": "May 26",
+      "name": "Holistic Approach to UI Design"
+    },
+    {
+      "itemImage": "ArticleImage4.png",
+      "author": "John Doe",
+      "averageReadingTime": "5 min read",
+      "date": "Apr 10",
+      "name": "Guiding Your Flock to Success"
+    },
+    {
+      "itemImage": "ArticleImage5.png",
+      "author": "John Doe",
+      "averageReadingTime": "5 min read",
+      "date": "Apr 16",
+      "name": "Holistic Approach to UI Design"
+    }
+  ],
+  "travelPlacesList": [
+    {
+      "imagePath": "Surf-hotel-in-dubai.jpeg",
+      "place": "Dubai",
+      "details": "A melting pot of cultures, Dubai is the most advanced city in the Arab world. Lined with luxury resorts, there are activities for every interest, from camel racing to fossil cliffs to extravagant shopping opportunities."
+    },
+    {
+      "imagePath": "Mount-fuji.jpeg",
+      "place": "Mount Fuji",
+      "details": "Japan most famous, holy mountain dominates the landscape of three prefectures when you can see it. Fuji-san is shy and often obscured by clouds, but take the slow train through Shizuoka, or go shopping at the grand Gotemba outlet mall and you might get lucky"
+    },
+    {
+      "imagePath": "London.jpeg",
+      "place": "London",
+      "details": "The bustling capital of the United Kingdom has enough historical landmarks, architectural beauties, and free museums to keep even the pickiest traveler occupied for days, if not weeks."
+    },
+    {
+      "imagePath": "Singapore.jpeg",
+      "place": "Singapore",
+      "details": "At only 725 sq. km., Singapore is one of the smallest countries in the world, but it packs a major punch in terms of reasons to visit."
+    }
+  ],
+  "topDestinationsList": [
+    {
+      "imagePath": "Venice.jpeg",
+      "place": "Venice, Italy",
+      "details": "Venice is arguably the most beautiful city in the world. The world seems to agree, sending 30 million tourists to walk its cobblestone streets, cross its ornate bridges, and sail down its elegant canals every year.",
+      "price": "$1500"
+    },
+    {
+      "imagePath": "Santorini-greece.jpeg",
+      "place": "Santorini, Greece",
+      "details": "The result of volcanic eruptions that devastated ancient civilizations, Santorini, locally known as Thira, is now a tourism must-do. The white buildings and blue roofs of Oia town are an icon of Greece itself.",
+      "price": "$2000"
+    },
+    {
+      "imagePath": "Salt-Pond-Bay-Thailand.jpeg",
+      "place": "Maya Beach, Thailand",
+      "details": "The crystal blue waters of this cove were made famous by the 2000 movie The Beach. Surrounded by dramatic cliffs and a white-sand beach, Maya Beach is a popular day trip.",
+      "price": "$2500"
+    },
+    {
+      "imagePath": "Gran-via-Valencia.jpeg",
+      "place": "Madrid, Spain",
+      "details": "The capital of Spain tends to be overlooked in favor of the colorful Barcelona, but this city has a glamor of its own.",
+      "price": "$1700"
+    }
+  ],
+  "bestPlacesList": [
+    {
+      "imagePath": "Salt-Pond-Bay-Thailand.jpeg",
+      "place": "Maya Bay, Thailand"
+    },
+    {
+      "imagePath": "Gran-via-Valencia.jpeg",
+      "place": "Madrid, Spain"
+    },
+    {
+      "imagePath": "Venice.jpeg",
+      "place": "Venice, Italy"
+    },
+    {
+      "imagePath": "Santorini-greece.jpeg",
+      "place": "Santorini, Greece"
+    }
+  ],
+  "articles": [
+    {
+      "name": "Better Brainstorming by Hand",
+      "author": "John Doe",
+      "date": "Apr 16",
+      "averageReadingTime": "5 min read",
+      "itemImage": "ArticleParallaxHeaderImage.png",
+      "bookmarkedCount": 157,
+      "favouritesCount": 100,
+      "sharedCount": 170
+    },
+    {
+      "name": "Holistic Approach to UI Design",
+      "author": "John Doe",
+      "date": "Apr 28",
+      "averageReadingTime": "5 min read",
+      "itemImage": "Event-Image.png",
+      "bookmarkedCount": 123,
+      "favouritesCount": 60,
+      "sharedCount": 100
+    },
+    {
+      "name": "Learning to Reset",
+      "author": "John Doe",
+      "date": "Aug 16",
+      "averageReadingTime": "5 min read",
+      "itemImage": "ArticleImage2.png",
+      "bookmarkedCount": 213,
+      "favouritesCount": 250,
+      "sharedCount": 210
+    },
+    {
+      "name": "Music",
+      "author": "John Doe",
+      "date": "Aug 25",
+      "averageReadingTime": "5 min read",
+      "itemImage": "ArticleImage7.jpg",
+      "bookmarkedCount": 263,
+      "favouritesCount": 350,
+      "sharedCount": 300
+    },
+    {
+      "name": "Guiding Your Flock to Success",
+      "author": "John Doe",
+      "date": "Apr 16",
+      "averageReadingTime": "5 min read",
+      "itemImage": "ArticleImage4.png",
+      "bookmarkedCount": 113,
+      "favouritesCount": 90,
+      "sharedCount": 190
+    }
+  ],
+  "eventItems": [
+    {
+      "eventDate": "24",
+      "eventMonth": "Dec",
+      "eventName": "Build Your Base, New York",
+      "eventTime": "2:00 PM - 6:00 PM",
+      "imagePath": "Event-Image-two.png",
+      "isPopular": true
+    },
+    {
+      "eventDate": "22",
+      "eventMonth": "Dec",
+      "eventName": "Ignite Music, New York",
+      "eventTime": "7:00 PM - 11:00 PM",
+      "imagePath": "Event-Image.png",
+      "isUpcoming": true
+    },
+    {
+      "eventDate": "27",
+      "eventMonth": "Dec",
+      "eventName": "John Weds Jane, New York",
+      "eventTime": "10:00 AM - 2:00 PM",
+      "imagePath": "Event-Image-three.png",
+      "isPopular": true
+    },
+    {
+      "eventDate": "23",
+      "eventMonth": "Dec",
+      "eventName": "BigSounds, New York",
+      "eventTime": "BigSounds, New York",
+      "imagePath": "Event-Image-one.png",
+      "isUpcoming": true
+    }
+  ]
+}

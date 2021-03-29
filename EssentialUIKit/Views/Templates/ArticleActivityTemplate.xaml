@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<StackLayout
+    x:Class="EssentialUIKit.Views.Templates.ArticleActivityTemplate"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:converter="clr-namespace:EssentialUIKit.Converters"
+    x:Name="articleActivityTemplate">
+
+    <StackLayout.Resources>
+        <ResourceDictionary>
+            <converter:BooleanToStringConverter x:Key="boolToStringConverter" />
+            <converter:BooleanToColorConverter x:Key="boolToColorConverter" />
+        </ResourceDictionary>
+    </StackLayout.Resources>
+
+    <StackLayout
+        Margin="0,8,16,8"
+        HorizontalOptions="EndAndExpand"
+        Orientation="Horizontal"
+        Spacing="0">
+
+        <!--  Bookmark Button  -->
+        <buttons:SfButton
+            Command="{Binding Path=ParentBindingContext.BookmarkCommand, Source={x:Reference articleActivityTemplate}}"
+            CommandParameter="{Binding .}"
+            HeightRequest="-1"
+            Style="{StaticResource IconButtonStyle}"
+            Text="{Binding IsBookmarked, Converter={StaticResource boolToStringConverter}, ConverterParameter=0}"
+            WidthRequest="-1" />
+
+        <!--  Bookmarked Count  -->
+        <Label
+            Margin="0,0,10,0"
+            Style="{StaticResource SimpleLabelStyle}"
+            Text="{Binding BookmarkedCount}"
+            TextColor="{DynamicResource Gray-800}" />
+
+        <!--  Favourite Icon  -->
+        <buttons:SfButton
+            Command="{Binding ParentBindingContext.AddFavouriteCommand, Source={x:Reference articleActivityTemplate}}"
+            CommandParameter="{Binding}"
+            HeightRequest="-1"
+            Style="{StaticResource IconButtonStyle}"
+            Text="{Binding IsFavourite, Converter={StaticResource boolToStringConverter}, ConverterParameter=1}"
+            TextColor="{Binding IsFavourite, Converter={x:StaticResource boolToColorConverter}, ConverterParameter=4}"
+            WidthRequest="-1" />
+
+        <!--  Favourites Count  -->
+        <Label
+            Margin="0,0,10,0"
+            Style="{StaticResource SimpleLabelStyle}"
+            Text="{Binding FavouritesCount}"
+            TextColor="{DynamicResource Gray-800}" />
+
+        <!--  Share Icon  -->
+        <buttons:SfButton
+            x:Name="shareButton"
+            Margin="0"
+            Padding="0"
+            Command="{Binding Path=ParentBindingContext.ShareCommand, Source={x:Reference articleActivityTemplate}}"
+            CommandParameter="{Binding .}"
+            HeightRequest="-1"
+            HorizontalTextAlignment="Center"
+            Style="{StaticResource IconButtonStyle}"
+            Text="{StaticResource Share}"
+            WidthRequest="-1" />
+        <!--  Shared Count  -->
+        <Label
+            Style="{StaticResource SimpleLabelStyle}"
+            Text="{Binding SharedCount}"
+            TextColor="{DynamicResource Gray-800}" />
+    </StackLayout>
+
+</StackLayout>

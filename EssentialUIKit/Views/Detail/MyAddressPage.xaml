@@ -1,0 +1,224 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="EssentialUIKit.Views.Detail.MyAddressPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ListView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:cards="clr-namespace:Syncfusion.XForms.Cards;assembly=Syncfusion.Cards.XForms"
+    xmlns:controls="clr-namespace:EssentialUIKit.Controls"
+    xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
+    x:Name="MyAdressPage"
+    BackgroundColor="{DynamicResource GrayShadowBackgroundColor}"
+    NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.ControlTemplate>
+        <ControlTemplate>
+            <StackLayout x:Name="titleLayout" Spacing="0">
+                <controls:TitleView Title="My Address">
+                    <controls:TitleView.LeadingView>
+                        <!--  Back button command  -->
+                        <buttons:SfButton
+                            x:Name="backButton"
+                            Command="{Binding Path=BindingContext.BackButtonCommand, Source={x:Reference MyAdressPage}}"
+                            CommandParameter="{x:Reference backButton}"
+                            Style="{StaticResource IconButtonStyle}"
+                            Text="{StaticResource Back}" />
+
+                    </controls:TitleView.LeadingView>
+                </controls:TitleView>
+                <ContentPresenter />
+            </StackLayout>
+        </ControlTemplate>
+    </ContentPage.ControlTemplate>
+
+    <ContentPage.Content>
+        <Grid
+            ColumnSpacing="0"
+            RowDefinitions="*, Auto"
+            RowSpacing="0">
+
+            <!--  ListView displaying address  -->
+            <ListView:SfListView
+                x:Name="myAddress"
+                Padding="8"
+                AllowSwiping="True"
+                AutoFitMode="Height"
+                BackgroundColor="Transparent"
+                IsScrollBarVisible="False"
+                ItemsSource="{Binding AddressDetails}"
+                SelectionBackgroundColor="Transparent"
+                SelectionGesture="Tap"
+                SelectionMode="Single">
+                <ListView:SfListView.ItemTemplate>
+                    <DataTemplate>
+                        <controls:CustomShadowFrame
+                            Margin="8"
+                            Padding="16,16,8,16"
+                            BackgroundColor="{DynamicResource GrayShadowColor}"
+                            BorderWidth="0"
+                            CornerRadius="4"
+                            HasShadow="True"
+                            HorizontalOptions="CenterAndExpand"
+                            Radius="4"
+                            WidthRequest="343">
+                            <Grid
+                                ColumnDefinitions="Auto, *, Auto, Auto"
+                                ColumnSpacing="8"
+                                RowDefinitions="Auto, *, Auto"
+                                RowSpacing="8">
+
+                                <!--  Name and Type of the address  -->
+                                <Label
+                                    Grid.ColumnSpan="2"
+                                    HorizontalOptions="Start"
+                                    LineBreakMode="NoWrap"
+                                    LineHeight="{OnPlatform Default=-1,
+                                                            Android=1.5}"
+                                    VerticalOptions="Center">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span
+                                                FontFamily="Montserrat-SemiBold"
+                                                FontSize="16"
+                                                Text="{Binding Name}"
+                                                TextColor="{DynamicResource Gray-900}" />
+                                            <Span Text="  " />
+                                            <Span
+                                                FontFamily="Montserrat-SemiBold"
+                                                FontSize="12"
+                                                Text="{Binding AddressType}"
+                                                TextColor="{DynamicResource Gray-800}" />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+
+                                <!--  Edit button command  -->
+                                <buttons:SfButton
+                                    x:Name="editButton"
+                                    Grid.Column="2"
+                                    Command="{Binding Path=BindingContext.EditCommand, Source={x:Reference myAddress}}"
+                                    CommandParameter="{x:Reference editButton}"
+                                    CornerRadius="16"
+                                    HeightRequest="32"
+                                    HorizontalOptions="EndAndExpand"
+                                    Style="{StaticResource IconButtonStyle}"
+                                    TextColor="{DynamicResource Gray-900}"
+                                    VerticalOptions="StartAndExpand"
+                                    WidthRequest="32">
+                                    <buttons:SfButton.Content>
+                                        <Label
+                                            FontFamily="FontIcons"
+                                            FontSize="18"
+                                            HorizontalOptions="Center"
+                                            Text="{StaticResource Edit}"
+                                            TextColor="{DynamicResource Gray-700}"
+                                            VerticalOptions="Center" />
+                                    </buttons:SfButton.Content>
+                                </buttons:SfButton>
+
+                                <!--  Delete button command  -->
+                                <buttons:SfButton
+                                    x:Name="DeleteButton"
+                                    Grid.Column="3"
+                                    Command="{Binding Path=BindingContext.DeleteCommand, Source={x:Reference myAddress}}"
+                                    CommandParameter="{x:Reference DeleteButton}"
+                                    CornerRadius="16"
+                                    HeightRequest="32"
+                                    HorizontalOptions="EndAndExpand"
+                                    Style="{StaticResource IconButtonStyle}"
+                                    TextColor="{DynamicResource Gray-900}"
+                                    VerticalOptions="StartAndExpand"
+                                    WidthRequest="32">
+                                    <buttons:SfButton.Content>
+                                        <Label
+                                            FontFamily="FontIcons"
+                                            FontSize="18"
+                                            HorizontalOptions="Center"
+                                            Text="{StaticResource Delete}"
+                                            TextColor="{DynamicResource Gray-700}"
+                                            VerticalOptions="Center" />
+                                    </buttons:SfButton.Content>
+                                </buttons:SfButton>
+
+                                <!--  Map Pin Icon  -->
+                                <Label
+                                    Grid.Row="1"
+                                    Grid.Column="0"
+                                    FontFamily="FontIcons"
+                                    FontSize="18"
+                                    LineHeight="{OnPlatform Default=-1,
+                                                            Android=1.5}"
+                                    Text="{StaticResource MapPin}"
+                                    TextColor="{DynamicResource Gray-600}"
+                                    VerticalOptions="Start" />
+
+                                <!--  Delivery Address  -->
+                                <Label
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    Grid.ColumnSpan="2"
+                                    HorizontalOptions="StartAndExpand"
+                                    HorizontalTextAlignment="Start"
+                                    LineBreakMode="WordWrap"
+                                    Style="{StaticResource DescriptionLabelStyle}"
+                                    Text="{Binding Location}"
+                                    VerticalOptions="Start" />
+
+                                <!--  Phone Icon  -->
+                                <Label
+                                    Grid.Row="2"
+                                    Grid.Column="0"
+                                    FontFamily="FontIcons"
+                                    FontSize="18"
+                                    LineHeight="{OnPlatform Default=-1,
+                                                            Android=1.5}"
+                                    Text="{StaticResource Phone}"
+                                    TextColor="{DynamicResource Gray-600}" />
+
+                                <!--  Contact Number  -->
+                                <Label
+                                    Grid.Row="2"
+                                    Grid.Column="1"
+                                    Grid.ColumnSpan="2"
+                                    HorizontalOptions="Start"
+                                    Style="{StaticResource DescriptionLabelStyle}"
+                                    VerticalOptions="Start">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="Mobile: " />
+                                            <Span Text="{Binding ContactNumber}" TextColor="{DynamicResource Gray-900}" />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                            </Grid>
+                        </controls:CustomShadowFrame>
+                    </DataTemplate>
+                </ListView:SfListView.ItemTemplate>
+                <ListView:SfListView.LayoutManager>
+                    <ListView:GridLayout SpanCount="{core:OnPlatformOrientationIntValue Desktop=2, PhonePortrait=1, PhoneLandscape=2, TabletPortrait=2, TabletLandscape=3}" />
+                </ListView:SfListView.LayoutManager>
+            </ListView:SfListView>
+
+            <!--  Add Card button command  -->
+            <buttons:SfButton
+                x:Name="addCardButton"
+                Grid.Row="1"
+                Margin="0,0,20,20"
+                BorderColor="{DynamicResource PrimaryColor}"
+                BorderWidth="1"
+                Command="{Binding Path=BindingContext.AddCardCommand, Source={x:Reference myAddress}}"
+                CommandParameter="{x:Reference addCardButton}"
+                CornerRadius="30"
+                FontFamily="FontIcons"
+                FontSize="20"
+                HeightRequest="56"
+                HorizontalOptions="End"
+                Style="{StaticResource GradientButtonStyle}"
+                Text="{StaticResource Add}"
+                VerticalOptions="End"
+                WidthRequest="56" />
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

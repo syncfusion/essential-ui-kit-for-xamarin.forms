@@ -1,0 +1,243 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="EssentialUIKit.Views.Profile.HealthProfilePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:gradient="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
+    xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:svg="clr-namespace:EssentialUIKit.Controls"
+    BackgroundColor="{DynamicResource GrayShadowBackgroundColor}"
+    NavigationPage.HasNavigationBar="False"
+    mc:Ignorable="d">
+
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid RowDefinitions="Auto, *">
+
+                <Grid
+                    HeightRequest="361"
+                    RowDefinitions="Auto, Auto, *"
+                    RowSpacing="0">
+                    <gradient:SfGradientView Grid.RowSpan="3">
+                        <gradient:SfGradientView.BackgroundBrush>
+                            <gradient:SfLinearGradientBrush>
+                                <gradient:SfLinearGradientBrush.GradientStops>
+                                    <gradient:SfGradientStop Offset="0.0" Color="{StaticResource Dull-Red}" />
+                                    <gradient:SfGradientStop Offset="1.0" Color="{StaticResource Deep-Purple}" />
+                                </gradient:SfLinearGradientBrush.GradientStops>
+                            </gradient:SfLinearGradientBrush>
+                        </gradient:SfGradientView.BackgroundBrush>
+                    </gradient:SfGradientView>
+
+                    <!--  Profile Image  -->
+                    <border:SfBorder
+                        Margin="0,56,0,8"
+                        BackgroundColor="{DynamicResource GrayShadowBackgroundColor}"
+                        BorderColor="{DynamicResource Gray-White}"
+                        BorderWidth="2"
+                        CornerRadius="60"
+                        HeightRequest="120"
+                        HorizontalOptions="CenterAndExpand"
+                        VerticalOptions="StartAndExpand"
+                        WidthRequest="120">
+
+                        <Image Aspect="AspectFill" BackgroundColor="{DynamicResource GrayShadowBackgroundColor}">
+                            <Image.Source>
+                                <UriImageSource
+                                    CacheValidity="14"
+                                    CachingEnabled="True"
+                                    Uri="{Binding ProfileImage}" />
+                            </Image.Source>
+                        </Image>
+
+                    </border:SfBorder>
+
+                    <!--  Profile Name  -->
+                    <Label
+                        Grid.Row="1"
+                        Margin="0,0,0,2"
+                        FontSize="20"
+                        Style="{StaticResource TitleLabelStyle}"
+                        Text="{Binding ProfileName}"
+                        TextColor="{DynamicResource Gray-White}" />
+
+                    <!--  State and Country  -->
+                    <Label
+                        Grid.Row="2"
+                        FontSize="12"
+                        Style="{StaticResource DescriptionLabelStyle}"
+                        TextColor="{DynamicResource Gray-White}">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{Binding State}" />
+                                <Span Text=" " />
+                                <Span Text="{Binding Country}" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Grid>
+
+                <border:SfBorder
+                    Grid.Row="1"
+                    Margin="0,-69,0,0"
+                    Padding="0,61,0,0"
+                    BackgroundColor="{DynamicResource GrayShadowBackgroundColor}"
+                    BorderWidth="0"
+                    CornerRadius="14,14,0,0"
+                    VerticalOptions="Start">
+                    <listView:SfListView
+                        AutoFitMode="Height"
+                        IsScrollingEnabled="False"
+                        ItemSize="74"
+                        ItemsSource="{Binding CardItems}"
+                        SelectionMode="None"
+                        TapCommand="{Binding ItemTappedCommand}">
+                        <listView:SfListView.ItemTemplate>
+                            <DataTemplate>
+                                <svg:CustomShadowFrame
+                                    Margin="16,8"
+                                    Padding="0"
+                                    BackgroundColor="{DynamicResource GrayShadowColor}"
+                                    BorderWidth="0"
+                                    CornerRadius="4"
+                                    HasShadow="True"
+                                    HorizontalOptions="CenterAndExpand"
+                                    Radius="4"
+                                    WidthRequest="{OnIdiom Phone=343,
+                                                           Default=736}">
+
+                                    <Grid
+                                        Padding="16"
+                                        RowDefinitions="Auto, *"
+                                        RowSpacing="0">
+
+                                        <!--  Category  -->
+                                        <Label
+                                            HeightRequest="24"
+                                            HorizontalOptions="Start"
+                                            Style="{StaticResource TitleLabelStyle}"
+                                            Text="{Binding CategoryValue}" />
+
+                                        <!--  Category Value  -->
+                                        <Label
+                                            Grid.Row="1"
+                                            FontSize="12"
+                                            HeightRequest="18"
+                                            HorizontalOptions="Start"
+                                            Style="{StaticResource DescriptionLabelStyle}"
+                                            Text="{Binding Category}" />
+
+                                        <!--  Category Image  -->
+                                        <svg:SVGImage
+                                            Grid.RowSpan="2"
+                                            BackgroundColor="Transparent"
+                                            HeightRequest="31"
+                                            HorizontalOptions="End"
+                                            Source="{Binding CategoryImage}"
+                                            VerticalOptions="Center"
+                                            WidthRequest="32" />
+                                    </Grid>
+
+                                </svg:CustomShadowFrame>
+                            </DataTemplate>
+                        </listView:SfListView.ItemTemplate>
+                    </listView:SfListView>
+                </border:SfBorder>
+
+                <svg:CustomShadowFrame
+                    Grid.Row="0"
+                    Margin="16,0,16,24"
+                    Padding="0"
+                    BackgroundColor="{DynamicResource GrayShadowColor}"
+                    BorderWidth="0"
+                    CornerRadius="4"
+                    HasShadow="True"
+                    HorizontalOptions="CenterAndExpand"
+                    Radius="4"
+                    VerticalOptions="End"
+                    WidthRequest="{OnIdiom Phone=343,
+                                           Default=736}">
+
+                    <svg:CustomShadowFrame.Content>
+                        <Grid
+                            ColumnDefinitions="*, Auto, *, Auto, *"
+                            ColumnSpacing="0"
+                            HeightRequest="90"
+                            RowDefinitions="*, *"
+                            RowSpacing="0"
+                            WidthRequest="{OnIdiom Phone=343,
+                                                   Default=480}">
+
+                            <!--  Age  -->
+                            <Label
+                                HeightRequest="24"
+                                Style="{StaticResource TitleLabelStyle}"
+                                Text="{Binding Age}"
+                                VerticalOptions="End" />
+
+                            <Label
+                                Grid.Row="1"
+                                FontSize="12"
+                                Style="{StaticResource DescriptionLabelStyle}"
+                                Text="Age" />
+
+                            <!--  Seperator  -->
+                            <BoxView
+                                Grid.RowSpan="2"
+                                Grid.Column="1"
+                                BackgroundColor="{DynamicResource Gray-400}"
+                                HeightRequest="24"
+                                Style="{StaticResource VerticalSeparatorStyle}" />
+
+
+                            <!--  Weight  -->
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="2"
+                                HeightRequest="24"
+                                Style="{StaticResource TitleLabelStyle}"
+                                Text="{Binding Weight}"
+                                VerticalOptions="End" />
+
+                            <Label
+                                Grid.Row="1"
+                                Grid.Column="2"
+                                FontSize="12"
+                                Style="{StaticResource DescriptionLabelStyle}"
+                                Text="Weight" />
+
+                            <!--  Seperator  -->
+                            <BoxView
+                                Grid.RowSpan="2"
+                                Grid.Column="3"
+                                BackgroundColor="{DynamicResource Gray-400}"
+                                HeightRequest="24"
+                                Style="{StaticResource VerticalSeparatorStyle}" />
+
+                            <!--  Height  -->
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="4"
+                                HeightRequest="24"
+                                Style="{StaticResource TitleLabelStyle}"
+                                Text="{Binding Height}"
+                                VerticalOptions="End" />
+
+                            <Label
+                                Grid.Row="1"
+                                Grid.Column="4"
+                                FontSize="12"
+                                Style="{StaticResource DescriptionLabelStyle}"
+                                Text="Height" />
+
+                        </Grid>
+                    </svg:CustomShadowFrame.Content>
+
+                </svg:CustomShadowFrame>
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary
+    x:Class="EssentialUIKit.Styles.ListViewStyles"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms">
+
+    <Style x:Key="TransparentSelectionListView" TargetType="listView:SfListView">
+        <Setter Property="BackgroundColor" Value="{DynamicResource Gray-Bg}" />
+        <Setter Property="FocusBorderThickness" Value="0" />
+        <Setter Property="SelectionBackgroundColor" Value="Transparent" />
+        <Setter Property="IsScrollBarVisible" Value="False" />
+        <Setter Property="VerticalOptions" Value="FillAndExpand" />
+    </Style>
+
+</ResourceDictionary>

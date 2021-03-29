@@ -1,0 +1,110 @@
+{
+  "cardDetails": [
+    {
+      "cardType": "CREDIT CARD",
+      "number": "XXXX  XXXX  XXXX  5838",
+      "name": "Peter Wilson",
+      "expiry": "08/20",
+      "cardCvv": 846,
+      "backgroundGradientStart": "#d54381",
+      "backgroundGradientEnd": "#7644ad",
+      "cardTypeIcon": "Card.png"
+    },
+    {
+      "cardType": "DEBIT CARD",
+      "number": "XXXX  XXXX  XXXX  0743",
+      "name": "Peter Wilson",
+      "expiry": "03/21",
+      "cardCvv": 543,
+      "backgroundGradientStart": "#af4aff",
+      "backgroundGradientEnd": "#3e5aff",
+      "cardTypeIcon": "Visa.png"
+    },
+    {
+      "cardType": "CREDIT CARD",
+      "number": "XXXX  XXXX  XXXX  0629",
+      "name": "Peter Wilson",
+      "expiry": "18/22",
+      "cardCvv": 346,
+      "backgroundGradientStart": "#d54381",
+      "backgroundGradientEnd": "#7644ad",
+      "cardTypeIcon": "Card.png"
+    }
+  ],
+
+  "paymentSuccessIcon": "PaymentSuccess.svg",
+
+  "paymentFailureIcon": "PaymentFailure.svg",
+
+
+  "deliveryAddress": [
+    {
+      "customerId": 1,
+      "customerName": "John Doe",
+      "addressType": "Home",
+      "address": "410 Terry Ave N, USA",
+      "mobileNumber": "+1-202-555-0101"
+    },
+    {
+      "customerId": 1,
+      "customerName": "John Doe",
+      "addressType": "Office",
+      "address": "388 Fort Worth, Texas, United States",
+      "mobileNumber": "+1-356-636-8572"
+    }
+  ],
+  "cartDetails": [
+    {
+      "previewImage": "Image1.png",
+      "name": "Full-Length Skirt",
+      "summary": "This plaid, cotton skirt will keep you warm in the air-conditioned office or outside on cooler days.",
+      "sellerName": "New Fashion Company",
+      "actualprice": 245,
+      "discountpercent": 30,
+      "totalquantity": 1
+    },
+    {
+      "previewImage": "Image2.png",
+      "name": "Peasant Blouse",
+      "summary": "Look your best this fall in this V-neck, pleated peasant blouse with full sleeves. Comes in white, chocolate, forest green, and more.",
+      "sellerName": "New Fashion Company",
+      "actualprice": 245,
+      "discountpercent": 30,
+      "totalquantity": 1
+    }
+  ],
+  "paymentModes": [
+    {
+      "paymentMode": "Goldman Sachs Bank Credit Card",
+      "cardNumber": "48** **** **** 9876",
+      "cardTypeIcon": "Card.png"
+    },
+    {
+      "paymentMode": "Wells Fargo Bank Credit Card"
+    },
+    {
+      "paymentMode": "Debit / Credit Card"
+    },
+    {
+      "paymentMode": "NetBanking"
+    },
+    {
+      "paymentMode": "Cash on Delivery"
+    },
+    {
+      "paymentMode": "Wallet"
+    }
+  ],
+  "priceDetails": [
+    {
+      "actualprice": 245,
+      "discountpercent": 30,
+      "totalquantity": 1
+    },
+    {
+      "actualprice": 245,
+      "discountpercent": 30,
+      "totalquantity": 1
+    }
+  ]
+}
