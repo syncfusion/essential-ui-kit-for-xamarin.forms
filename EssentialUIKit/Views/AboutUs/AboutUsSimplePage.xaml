@@ -3,29 +3,40 @@
     x:Class="EssentialUIKit.Views.AboutUs.AboutUsSimplePage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.About"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:controls="clr-namespace:EssentialUIKit.Controls"
+    x:Name="AboutUsPage"
     Title="About"
-    BackgroundColor="{DynamicResource Gray-White}"
+    BackgroundColor="{DynamicResource Gray-Bg}"
     NavigationPage.HasNavigationBar="False">
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Styles.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </ContentPage.Resources>
 
     <ContentPage.Content>
-        <Grid ColumnSpacing="0" RowSpacing="0">
-            <ScrollView HorizontalOptions="Center" VerticalOptions="Center">
+        <Grid
+            ColumnSpacing="0"
+            RowDefinitions="Auto,*"
+            RowSpacing="0">
+
+            <!--  Title View  -->
+            <controls:TitleView Title="About Us">
+                <controls:TitleView.LeadingView>
+                    <!--  Back button command  -->
+                    <buttons:SfButton
+                        x:Name="backButton"
+                        Command="{Binding Path=BindingContext.BackButtonCommand, Source={x:Reference AboutUsPage}}"
+                        CommandParameter="{x:Reference backButton}"
+                        Style="{StaticResource IconButtonStyle}"
+                        Text="{StaticResource Back}" />
+                </controls:TitleView.LeadingView>
+            </controls:TitleView>
+
+            <ScrollView
+                Grid.Row="1"
+                HorizontalOptions="Center"
+                VerticalOptions="Center">
                 <StackLayout
                     HorizontalOptions="Center"
                     Spacing="0"
                     VerticalOptions="Center">
-
-                    <StackLayout.BindingContext>
-                        <viewModel:AboutUsViewModel />
-                    </StackLayout.BindingContext>
 
                     <!--  Product image  -->
                     <Image HeightRequest="110" WidthRequest="124">
@@ -41,14 +52,17 @@
                     <Label
                         Margin="0,8.7,0,0"
                         HorizontalOptions="CenterAndExpand"
-                        Style="{StaticResource VersionLabelStyle}"
-                        Text="{Binding ProductVersion, StringFormat='Version {0}'}" />
+                        HorizontalTextAlignment="Start"
+                        Style="{StaticResource SimpleLabelStyle}"
+                        Text="{Binding ProductVersion, StringFormat='Version {0}'}"
+                        VerticalOptions="Start"
+                        VerticalTextAlignment="Start" />
 
                     <!--  Product title  -->
                     <Label
-                        FontFamily="{StaticResource Montserrat-SemiBold}"
-                        HorizontalOptions="CenterAndExpand"
-                        Style="{StaticResource HeaderLabelStyle}"
+                        LineHeight="{OnPlatform Android=1.25,
+                                                Default=-1}"
+                        Style="{StaticResource TitleLabelStyle}"
                         Text="Acme Products">
                         <Label.Margin>
                             <OnIdiom
@@ -61,8 +75,6 @@
                     <!--  Product description  -->
                     <Label
                         Margin="15,0,15,0"
-                        HorizontalOptions="Center"
-                        HorizontalTextAlignment="Center"
                         Style="{StaticResource DescriptionLabelStyle}"
                         Text="{Binding ProductDescription}" />
                 </StackLayout>

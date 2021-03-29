@@ -1,6 +1,6 @@
-﻿using EssentialUIKit.Models.Notification;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Runtime.Serialization;
+using EssentialUIKit.Models.Notification;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 
@@ -17,9 +17,9 @@ namespace EssentialUIKit.ViewModels.Notification
 
         private Command<object> itemTappedCommand;
 
-        private Command<object> backCommand;
-
         private Command<object> menuCommand;
+
+        private Command<object> markAllCommand;
 
         #endregion
 
@@ -30,7 +30,6 @@ namespace EssentialUIKit.ViewModels.Notification
         /// </summary>
         public SocialNotificationViewModel()
         {
-
         }
 
         #endregion
@@ -51,22 +50,22 @@ namespace EssentialUIKit.ViewModels.Notification
         /// <summary>
         /// Gets the command that will be executed when an item is selected.
         /// </summary>
-        public Command<object> BackCommand
-        {
-            get
-            {
-                return this.backCommand ?? (this.backCommand = new Command<object>(this.BackButtonClicked));
-            }
-        }
-
-        /// <summary>
-        /// Gets the command that will be executed when an item is selected.
-        /// </summary>
         public Command<object> MenuCommand
         {
             get
             {
                 return this.menuCommand ?? (this.menuCommand = new Command<object>(this.MenuButtonClicked));
+            }
+        }
+
+        /// <summary>
+        /// Gets the command that will be executed when an mark all as read is selected.
+        /// </summary>
+        public Command<object> MarkAllCommand
+        {
+            get
+            {
+                return this.markAllCommand ?? (this.markAllCommand = new Command<object>(this.MarkAllClicked));
             }
         }
 
@@ -92,17 +91,10 @@ namespace EssentialUIKit.ViewModels.Notification
         /// <param name="selectedItem">Selected item from the list view.</param>
         private void ItemSelected(object selectedItem)
         {
-            ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as SocialNotificationModel).IsRead = true;
-            // Do something
-        }
-
-        /// <summary>
-        /// Invoked when back button is clicked in the social notification page.
-        /// </summary>
-        /// <param name="obj">The object.</param>
-        private void BackButtonClicked(object obj)
-        {
-            // Do something
+            if (((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as SocialNotificationModel) != null)
+            {
+                ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as SocialNotificationModel).IsRead = true;
+            }
         }
 
         /// <summary>
@@ -110,6 +102,15 @@ namespace EssentialUIKit.ViewModels.Notification
         /// </summary>
         /// <param name="obj">The object.</param>
         private void MenuButtonClicked(object obj)
+        {
+            // Do something
+        }
+
+        /// <summary>
+        /// Invoked when mark all as read button is clicked in the social notification page.
+        /// </summary>
+        /// <param name="obj">The object.</param>
+        private void MarkAllClicked(object obj)
         {
             // Do something
         }

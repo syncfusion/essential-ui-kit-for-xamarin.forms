@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms.Internals;
+﻿using EssentialUIKit.ViewModels.Detail;
+using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
 
 namespace EssentialUIKit.Views.Detail
@@ -15,7 +16,8 @@ namespace EssentialUIKit.Views.Detail
         /// </summary>
         public ArticleDetailPage()
         {
-            InitializeComponent();
+            this.InitializeComponent();
+            this.BindingContext = ArticleDetailPageViewModel.BindingContext;
         }
     }
 }

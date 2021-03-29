@@ -16,15 +16,48 @@ namespace EssentialUIKit.ViewModels.Settings
         /// </summary>
         public HelpViewModel()
         {
-            this.BackButtonCommand = new Command(this.BackButtonClicked);
             this.IssuePreviousOrderCommand = new Command(this.IssuePreviousOrderClicked);
-            this.Return_RefundCommand = new Command(this.RefundClicked);
+            this.ReturnRefundCommand = new Command(this.RefundClicked);
             this.PaymentQueriesCommand = new Command(this.PaymentQueriesClicked);
             this.OffersQueriesCommand = new Command(this.OffersQueriesClicked);
             this.AccountQueriesCommand = new Command(this.AccountQueriesClicked);
             this.OtherQueriesCommand = new Command(this.OtherQueriesClicked);
-           
         }
+
+        #endregion
+
+        #region Command
+
+        /// <summary>
+        /// Gets or sets the command is executed when the issue previous order option is clicked.
+        /// </summary>
+        public Command IssuePreviousOrderCommand { get; set; }
+
+        /// <summary>
+        /// Gets or sets the command is executed when the return refund option is clicked.
+        /// </summary>
+        public Command ReturnRefundCommand { get; set; }
+
+        /// <summary>
+        /// Gets or sets the command is executed when the payment queries option is clicked.
+        /// </summary>
+        public Command PaymentQueriesCommand { get; set; }
+
+        /// <summary>
+        /// Gets or sets the command is executed when the offer queries  option is clicked.
+        /// </summary>
+        public Command OffersQueriesCommand { get; set; }
+
+        /// <summary>
+        /// Gets or sets the command is executed when the account queries option is clicked.
+        /// </summary>
+        public Command AccountQueriesCommand { get; set; }
+
+        /// <summary>
+        /// Gets or sets the command is executed when the other queries option is clicked.
+        /// </summary>
+        public Command OtherQueriesCommand { get; set; }
+
         #endregion
 
         #region Method
@@ -83,54 +116,6 @@ namespace EssentialUIKit.ViewModels.Settings
             // Do something
         }
 
-        /// <summary>
-        /// Invoked when the back button clicked
-        /// </summary>
-        /// <param name="obj">The object</param>
-        private void BackButtonClicked(object obj)
-        {
-            // Do something
-        }
-        #endregion
-
-        #region Command
-
-        /// <summary>
-        /// Gets or sets the command is executed when the back button is clicked.
-        /// </summary>
-        public Command BackButtonCommand { get; set; }
-
-        /// <summary>
-        /// Gets or sets the command is executed when the issue previous order option is clicked.
-        /// </summary>
-        public Command IssuePreviousOrderCommand { get; set; }
-
-        /// <summary>
-        /// Gets or sets the command is executed when the return refund option is clicked.
-        /// </summary>
-        public Command Return_RefundCommand { get; set; }
-
-        /// <summary>
-        /// Gets or sets the command is executed when the payment queries option is clicked.
-        /// </summary>
-        public Command PaymentQueriesCommand { get; set; }
-
-        /// <summary>
-        /// Gets or sets the command is executed when the offer queries  option is clicked.
-        /// </summary>
-        public Command OffersQueriesCommand { get; set; }
-
-        /// <summary>
-        /// Gets or sets the command is executed when the account queries option is clicked.
-        /// </summary>
-        public Command AccountQueriesCommand { get; set; }
-
-        /// <summary>
-        /// Gets or sets the command is executed when the other queries option is clicked.
-        /// </summary>
-        public Command OtherQueriesCommand { get; set; }
         #endregion
     }
-
-
 }

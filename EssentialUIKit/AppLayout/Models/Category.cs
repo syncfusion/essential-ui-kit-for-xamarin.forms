@@ -29,7 +29,7 @@ namespace EssentialUIKit.AppLayout.Models
 
         public string Description { get; set; }
 
-        public List<Template> Pages { get; set; }
+        public List<Template> Pages { get; private set; }
 
         public string TemplateCount
         {

@@ -12,8 +12,9 @@ namespace EssentialUIKit.Views.Feedback
     {
         public ReviewPage()
         {
-            InitializeComponent();
-            this.ProductImage.Source = App.BaseImageUrl + "Image1.png";
+            this.InitializeComponent();
+            this.ProductImage.Source = App.ImageServerPath + "Image1.png";
+            this.dashedBorder.DashArray = new double[2] { 5, 5 };
         }
     }
 }

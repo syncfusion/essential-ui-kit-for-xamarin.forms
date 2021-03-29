@@ -1,58 +1,33 @@
-﻿using EssentialUIKit.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System;
+using EssentialUIKit.Validators;
+using EssentialUIKit.Validators.Rules;
 using Xamarin.Forms;
+using Xamarin.Forms.Internals;
 
 namespace EssentialUIKit.ViewModels.Forms
 {
     /// <summary>
     /// ViewModel for add contact page.
     /// </summary>
+    [Preserve(AllMembers = true)]
     public class AddContactViewModel : LoginViewModel
     {
         #region Fields
 
-        private object country;
-
-        private object state;
+        private DateTime date = DateTime.Now;
 
         #endregion
 
         #region Constructor
+
         /// <summary>
         /// Initializes a new instance for the <see cref="AddContactViewModel" /> class.
         /// </summary>
         public AddContactViewModel()
         {
+            this.InitializeProperties();
+            this.AddValidationRules();
             this.SubmitCommand = new Command(this.SubmitButtonClicked);
-
-            Countries = new List<CountryModel>();
-            Countries.Add(new CountryModel()
-            {
-                Country = "Australia",
-                States = new string[] { "Tasmania", "Victoria", "Queensland", "Northen Territory" }
-            });
-            Countries.Add(new CountryModel()
-            {
-                Country = "Brazil",
-                States = new string[] { "Bahia", "Ceara", "Goias", "Maranhao" }
-            });
-            Countries.Add(new CountryModel()
-            {
-                Country = "Canada",
-                States = new string[] { "Manitoba", "Ontario", "Quebec", "Yukon" }
-            });
-            Countries.Add(new CountryModel()
-            {
-                Country = "India",
-                States = new string[] { "Assam", "Gujarat", "Haryana", "Tamil Nadu" }
-            });
-            Countries.Add(new CountryModel()
-            {
-                Country = "USA",
-                States = new string[] { "California", "Florida", "New York", "Washington" }
-            });
         }
 
         #endregion
@@ -62,17 +37,33 @@ namespace EssentialUIKit.ViewModels.Forms
         /// <summary>
         /// Gets or sets the property that bounds with an entry that gets the first name from user in the Add Contact page.
         /// </summary>
-        public string FirstName { get; set; }
+        public ValidatableObject<string> FirstName { get; set; }
 
         /// <summary>
         /// Gets or sets the property that bounds with an entry that gets the last name from user in the Add Contact page.
         /// </summary>
-        public string LastName { get; set; }
+        public ValidatableObject<string> LastName { get; set; }
 
         /// <summary>
         /// Gets or sets the property that bounds with a date picker that gets the date from user in the Add Contact page.
         /// </summary>
-        public DateTime Date{ get; set; }
+        public DateTime Date 
+        {
+            get
+            {
+                return this.date;
+            }
+
+            set
+            {
+                if (this.date == value)
+                {
+                    return;
+                }
+
+                this.SetProperty(ref this.date, value);
+            }
+        }
 
         /// <summary>
         /// Gets or sets the property that bounds with a combo box that gets the gender from user in the Add Contact page.
@@ -94,37 +85,6 @@ namespace EssentialUIKit.ViewModels.Forms
         /// </summary>
         public string City { get; set; }
 
-        /// <summary>
-        /// Gets or sets the property that bounds with a ComboBox that gets the Country from user.
-        /// </summary>
-        public object Country
-        {
-            get { return country; }
-            set
-            {
-                country = value;
-                State = null;
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the property that bounds with a ComboBox that gets the State from user.
-        /// </summary>
-        public object State
-        {
-            get { return state; }
-            set
-            {
-                state = value;
-                NotifyPropertyChanged();
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the collection property, which contains the countries data. 
-        /// </summary>
-        public List<CountryModel> Countries { get; set; }
-
         #endregion
 
         #region Comments
@@ -139,15 +99,47 @@ namespace EssentialUIKit.ViewModels.Forms
         #region Methods
 
         /// <summary>
+        /// Intialize the methods for validation
+        /// </summary>
+        private void InitializeProperties()
+        {
+            this.FirstName = new ValidatableObject<string>();
+            this.LastName = new ValidatableObject<string>();
+        }
+
+        /// <summary>
+        /// Validation Rules for firstname and lastname
+        /// </summary>
+        private void AddValidationRules()
+        {
+            this.FirstName.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = "Name Required" });
+            this.LastName.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = "Name Required" });
+        }
+
+        /// <summary>
+        /// check the fields are valid or not
+        /// </summary>
+        /// <returns>returns bool value</returns>
+        public bool AreFieldsValid()
+        {
+            bool isEmailValid = this.Email.Validate();
+            bool isFirstNameValid = this.FirstName.Validate();
+            bool isLastNameValid = this.LastName.Validate();
+            return isFirstNameValid && isLastNameValid && isEmailValid;
+        }
+
+        /// <summary>
         /// Invoked when the submit button is clicked.
         /// </summary>
         /// <param name="obj">The Object</param>
         private void SubmitButtonClicked(object obj)
         {
-            // Do something
+            if (this.AreFieldsValid())
+            {
+                // Do Something
+            }
         }
 
         #endregion
-
     }
 }

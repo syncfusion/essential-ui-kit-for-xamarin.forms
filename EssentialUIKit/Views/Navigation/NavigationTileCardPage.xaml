@@ -3,59 +3,74 @@
     x:Class="EssentialUIKit.Views.Navigation.NavigationTileCardPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
     xmlns:controls="clr-namespace:EssentialUIKit.Controls"
     xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
     xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+    xmlns:syncEffectsView="clr-namespace:Syncfusion.XForms.EffectsView;assembly=Syncfusion.Core.XForms"
     xmlns:template="clr-namespace:EssentialUIKit.Views.Templates"
-    xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Navigation"
-    BackgroundColor="{DynamicResource Gray-White}"
+    x:Name="NavigationTileCard"
+    BackgroundColor="{DynamicResource Gray-Bg}"
     NavigationPage.HasNavigationBar="False">
-
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Styles.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </ContentPage.Resources>
 
     <ContentPage.Content>
 
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
+        <Grid RowDefinitions="Auto, *">
 
             <!--  Title View  -->
-            <controls:TitleView Title="Home" Grid.Row="0" />
+            <controls:TitleView Title="Home" Grid.Row="0">
+                <controls:TitleView.LeadingView>
+                    <buttons:SfButton
+                        x:Name="backButton"
+                        Command="{Binding BindingContext.BackButtonCommand, Source={x:Reference navigationList}}"
+                        CommandParameter="{x:Reference backButton}"
+                        Style="{StaticResource IconButtonStyle}"
+                        Text="{StaticResource Back}" />
+                </controls:TitleView.LeadingView>
+            </controls:TitleView>
 
-            <Grid Grid.Row="1" Padding="{core:OnPlatformOrientationThickness Default='16,0,11,0', TabletPortrait='24,16,20,0', TabletLandscape='24,16,20,0', Desktop='24,24,20,0'}">
+            <Grid Grid.Row="1" Padding="{core:OnPlatformOrientationThickness Default='11,0', TabletPortrait='20,16,20,0', TabletLandscape='20,16,20,0', Desktop='20,24,20,0'}">
 
                 <listView:SfListView
+                    x:Name="navigationList"
                     AutoFitMode="Height"
                     IsScrollBarVisible="false"
                     ItemSpacing="{core:OnPlatformOrientationThickness PhonePortrait='0,11,0,0',
                                                                       PhoneLandscape='0,11,0,0',
                                                                       Default='0,0,27,27'}"
                     ItemsSource="{Binding NavigationList}"
-                    SelectionBackgroundColor="Transparent"
-                    TapCommand="{Binding ItemTappedCommand}">
+                    SelectionBackgroundColor="Transparent">
                     <listView:SfListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
                                 <!--  View of each tile item  -->
                                 <controls:CustomShadowFrame
-                                    Margin="0,2,5,5"
+                                    Margin="5,2,5,5"
                                     Padding="0"
-                                    BackgroundColor="{DynamicResource Gray-White}"
-                                    BorderColor="{DynamicResource Gray-White}"
+                                    BackgroundColor="{DynamicResource GrayShadowColor}"
+                                    BorderColor="{DynamicResource GrayShadowColor}"
                                     BorderWidth="1"
                                     CornerRadius="4"
                                     HasShadow="True"
                                     HorizontalOptions="FillAndExpand"
+                                    Radius="4"
                                     VerticalOptions="FillAndExpand">
-                                    <template:NavigationTileTemplate />
+
+                                    <syncEffectsView:SfEffectsView
+                                        RippleColor="{DynamicResource Gray-300}"
+                                        TouchDownEffects="Ripple"
+                                        TouchUpCommand="{Binding Path=BindingContext.ItemTappedCommand, Source={x:Reference NavigationTileCard}}"
+                                        TouchUpCommandParameter="{Binding}">
+
+                                        <border:SfBorder
+                                            BorderColor="Transparent"
+                                            BorderWidth="0"
+                                            CornerRadius="4">
+                                            <template:NavigationTileTemplate />
+                                        </border:SfBorder>
+                                    </syncEffectsView:SfEffectsView>
+
                                 </controls:CustomShadowFrame>
                             </ViewCell>
                         </DataTemplate>

@@ -1,196 +1,193 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
-             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
-             xmlns:controls="clr-namespace:EssentialUIKit.Controls"
-             mc:Ignorable="d"
-             x:Class="EssentialUIKit.Views.Navigation.DocumentsListPage"
-             BackgroundColor="{DynamicResource Gray-White}"
-             NavigationPage.HasNavigationBar="False">
-
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Styles.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </ContentPage.Resources>
+<ContentPage
+    x:Class="EssentialUIKit.Views.Navigation.DocumentsListPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:behaviors="clr-namespace:EssentialUIKit.Behaviors"
+    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:controls="clr-namespace:EssentialUIKit.Controls"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Name="documentList"
+    BackgroundColor="{DynamicResource Gray-Bg}"
+    NavigationPage.HasNavigationBar="False"
+    mc:Ignorable="d">
 
     <ContentPage.Content>
 
-        <Grid RowSpacing="0" ColumnSpacing="0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="64"/>
-                <RowDefinition Height="1"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
+        <Grid
+            ColumnSpacing="0"
+            RowDefinitions="Auto, Auto, *"
+            RowSpacing="0">
 
-            <StackLayout x:Name="TitleView"
-                         Padding="8,8"
-                         HeightRequest="48"
-                         Grid.Row="0"
-                         BackgroundColor="{DynamicResource Gray-White}"
-                         HorizontalOptions="FillAndExpand"
-                         Orientation="Horizontal"
-                         Spacing="0">
+            <StackLayout
+                x:Name="TitleView"
+                Grid.Row="0"
+                Padding="8,8"
+                BackgroundColor="{DynamicResource Gray-Bg}"
+                HorizontalOptions="FillAndExpand"
+                Orientation="Horizontal"
+                Spacing="0">
 
-                <StackLayout x:Name="Title"
-                             HorizontalOptions="FillAndExpand"
-                             IsVisible="True"
-                             Orientation="Horizontal"
-                             Spacing="0"
-                             VerticalOptions="FillAndExpand">
+                <StackLayout
+                    x:Name="TitleLayout"
+                    HorizontalOptions="FillAndExpand"
+                    IsVisible="True"
+                    Orientation="Horizontal"
+                    Spacing="0"
+                    VerticalOptions="FillAndExpand">
 
                     <!--  Back button command  -->
-                    <buttons:SfButton x:Name="backButton"
-                                      Command="{Binding BackButtonCommand}"
-                                      CommandParameter="{x:Reference backButton}"
-                                      CornerRadius="4"
-                                      Style="{StaticResource IconButtonStyle}"
-                                      Text="{StaticResource Back}" />
+                    <buttons:SfButton
+                        x:Name="backButton"
+                        Command="{Binding BackButtonCommand}"
+                        CommandParameter="{x:Reference backButton}"
+                        Style="{StaticResource IconButtonStyle}"
+                        Text="{StaticResource Back}" />
 
-                    <!--  Documents page Title  -->
-                    <Label Margin="16,0"
-                           FontFamily="{StaticResource Montserrat-Medium}"
-                           FontSize="16"
-                           HorizontalOptions="CenterAndExpand"
-                           LineHeight="1.25"
-                           Text="Documents"
-                           TextColor="{DynamicResource Gray-900}"
-                           VerticalOptions="Center"
-                           VerticalTextAlignment="Center" />
+                    <!--  Documents List page Title  -->
+                    <Label
+                        Margin="16,0"
+                        FontFamily="Montserrat-Medium"
+                        HorizontalOptions="FillAndExpand"
+                        Style="{StaticResource TitleLabelStyle}"
+                        Text="Documents List"
+                        VerticalOptions="Center"
+                        VerticalTextAlignment="Center" />
 
                 </StackLayout>
 
-                <StackLayout x:Name="Search"
-                             HorizontalOptions="EndAndExpand"
-                             IsVisible="False"
-                             Orientation="Horizontal"
-                             Spacing="0">
+                <StackLayout
+                    x:Name="Search"
+                    HorizontalOptions="EndAndExpand"
+                    IsVisible="False"
+                    Orientation="Horizontal"
+                    Spacing="0">
 
                     <!--  Back to title layout  -->
-                    <buttons:SfButton x:Name="BackToTitle"
-                                      Clicked="BackToTitle_Clicked"
-                                      Style="{StaticResource NavigationBarButtonStyle}"
-                                      Text="{StaticResource Back}" />
+                    <buttons:SfButton
+                        x:Name="BackToTitle"
+                        Style="{StaticResource IconButtonStyle}"
+                        Text="{StaticResource Back}">
+                        <buttons:SfButton.Behaviors>
+                            <behaviors:SearchBarAnimationBehavior AnimationType="shrink" />
+                        </buttons:SfButton.Behaviors>
+                    </buttons:SfButton>
 
                     <!--  Rounded Search Entry  -->
-                    <border:SfBorder Style="{DynamicResource SfBorderStyle}">
-                        <controls:BorderlessEntry x:Name="SearchEntry"
-                                                  BindingContext="{x:Reference DocumentsList}"
-                                                  Text="{Binding SearchText, Mode=TwoWay}"
-                                                  HorizontalOptions="FillAndExpand"
-                                                  Placeholder="Search here"
-                                                  Style="{StaticResource SearchEntryStyle}" />
+                    <border:SfBorder Style="{DynamicResource ThemeBorderStyle}">
+                        <controls:BorderlessEntry
+                            x:Name="SearchEntry"
+                            BindingContext="{x:Reference DocumentsList}"
+                            HorizontalOptions="FillAndExpand"
+                            Placeholder="Search here"
+                            Style="{StaticResource BorderlessEntryStyle}"
+                            Text="{Binding SearchText, Mode=TwoWay}" />
                     </border:SfBorder>
                 </StackLayout>
 
                 <!--  Search Button  -->
-                <buttons:SfButton x:Name="SearchButton"
-                                  BindingContext="{x:Reference Title}"
-                                  IsVisible="{Binding Path=IsVisible,Mode=TwoWay}"
-                                  Clicked="SearchButton_Clicked"
-                                  Style="{StaticResource IconButtonStyle }"
-                                  Text="{StaticResource Search}" />
-
+                <buttons:SfButton
+                    x:Name="SearchButton"
+                    IsVisible="True"
+                    Style="{StaticResource IconButtonStyle}"
+                    Text="{StaticResource Search}">
+                    <buttons:SfButton.Behaviors>
+                        <behaviors:SearchBarAnimationBehavior AnimationType="expand" />
+                    </buttons:SfButton.Behaviors>
+                </buttons:SfButton>
             </StackLayout>
 
-            <BoxView Grid.Row="1" Style="{DynamicResource SeparatorStyle}" />
+            <BoxView Grid.Row="1" Style="{DynamicResource HorizontalSeparatorStyle}" />
 
             <StackLayout Grid.Row="2" Spacing="0">
 
-                <controls:SearchableDocumentsList x:Name="DocumentsList"
-                                                  IsScrollBarVisible="False"
-                                                  AllowSwiping="True"
-                                                  AutoFitMode="Height"
-                                                  ItemSpacing="0"
-                                                  SelectionGesture="Tap"
-                                                  SelectionMode="Single"
-                                                  VerticalOptions="FillAndExpand"
-                                                  SearchText="{Binding SearchText}"
-                                                  TapCommand="{Binding ItemTappedCommand}"
-                                                  ItemsSource="{Binding DocumentsList}"
-                                                  SelectionBackgroundColor="{DynamicResource TappedBackgroundColor}">
+                <controls:SearchableDocumentsList
+                    x:Name="DocumentsList"
+                    AllowSwiping="True"
+                    AutoFitMode="Height"
+                    IsScrollBarVisible="False"
+                    ItemSpacing="0"
+                    ItemsSource="{Binding DocumentsList}"
+                    SearchText="{Binding SearchText}"
+                    SelectionBackgroundColor="{DynamicResource Gray-200}"
+                    SelectionGesture="Tap"
+                    SelectionMode="Single"
+                    TapCommand="{Binding ItemTappedCommand}"
+                    VerticalOptions="FillAndExpand">
 
                     <controls:SearchableDocumentsList.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
                                 <StackLayout Spacing="0">
 
-                                    <Grid RowSpacing="0" ColumnSpacing="0" HeightRequest="72">
+                                    <Grid
+                                        ColumnDefinitions="Auto, Auto, Auto, *"
+                                        ColumnSpacing="0"
+                                        HeightRequest="72"
+                                        RowDefinitions="Auto, Auto, Auto"
+                                        RowSpacing="0">
 
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="Auto" />
-                                        </Grid.RowDefinitions>
+                                        <!--  Account Icon  -->
+                                        <Label
+                                            Grid.RowSpan="3"
+                                            Margin="17,0"
+                                            FontFamily="FontIcons"
+                                            FontSize="18"
+                                            Text="{StaticResource Account}"
+                                            TextColor="{DynamicResource Gray-600}"
+                                            VerticalOptions="CenterAndExpand" />
 
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="Auto" />
-                                            <ColumnDefinition Width="Auto" />
-                                            <ColumnDefinition Width="Auto" />
-                                            <ColumnDefinition Width="*" />
-                                        </Grid.ColumnDefinitions>
+                                        <!--  Document Name  -->
+                                        <Label
+                                            Grid.Column="1"
+                                            Grid.ColumnSpan="3"
+                                            Margin="0,13,0,0"
+                                            FontFamily="Montserrat-Medium"
+                                            FontSize="16"
+                                            HeightRequest="24"
+                                            Text="{Binding DocumentName}"
+                                            TextColor="{DynamicResource Gray-900}" />
 
-                                        <!-- Account Icon -->
-                                        <Label Grid.RowSpan="3" 
-                                               Margin="17,0"
-                                               TextColor="{DynamicResource Gray-600}"
-                                               VerticalOptions="CenterAndExpand"
-                                               Text="{StaticResource Account}"
-                                               FontSize="18"
-                                               FontFamily="{StaticResource FontIcons}" />
+                                        <!--  Time  -->
+                                        <Label
+                                            Grid.Row="1"
+                                            Grid.Column="1"
+                                            Margin="0,0,0,14"
+                                            FontFamily="Montserrat-Medium"
+                                            FontSize="14"
+                                            HeightRequest="21"
+                                            Text="{Binding Time}"
+                                            TextColor="{DynamicResource Gray-700}" />
 
-                                        <!-- Document Name -->
-                                        <Label Grid.Column="1"
-                                               Grid.ColumnSpan="3"
-                                               Margin="0,13,0,0"
-                                               Text="{Binding DocumentName}"
-                                               TextColor="{DynamicResource Gray-900}"
-                                               FontSize="16"
-                                               FontFamily="{StaticResource Montserrat-Medium}"
-                                               HeightRequest="24" />
+                                        <!--  Document Size  -->
+                                        <Label
+                                            Grid.Row="1"
+                                            Grid.Column="2"
+                                            Margin="24,0,0,14"
+                                            FontFamily="Montserrat-Medium"
+                                            FontSize="14"
+                                            HeightRequest="21"
+                                            Text="{Binding DocumentSize}"
+                                            TextColor="{DynamicResource Gray-700}" />
 
-                                        <!-- Time -->
-                                        <Label Grid.Row="1"
-                                               Grid.Column="1"
-                                               Margin="0,0,0,14"
-                                               Text="{Binding Time}"
-                                               TextColor="{DynamicResource Gray-700}"
-                                               FontSize="14"
-                                               FontFamily="{StaticResource Montserrat-Medium}"
-                                               HeightRequest="21" />
+                                        <!--  More Button  -->
+                                        <buttons:SfButton
+                                            Grid.RowSpan="3"
+                                            Grid.Column="3"
+                                            Margin="15,0,15,0"
+                                            Command="{Binding Path=BindingContext.MenuCommand, Source={x:Reference documentList}}"
+                                            CornerRadius="4"
+                                            HorizontalOptions="End"
+                                            Style="{StaticResource IconButtonStyle}"
+                                            Text="{StaticResource Menu}" />
 
-                                        <!-- Document Size -->
-                                        <Label Grid.Row="1"
-                                               Grid.Column="2"
-                                               Margin="24,0,0,14"
-                                               Text="{Binding DocumentSize}"
-                                               TextColor="{DynamicResource Gray-700}"
-                                               FontSize="14"
-                                               FontFamily="{StaticResource Montserrat-Medium}"
-                                               HeightRequest="21" />
-
-                                        <!-- More Button -->
-                                        <buttons:SfButton Grid.Column="3" 
-                                                          Grid.RowSpan="3" 
-                                                          Margin="15,0,15,0"
-                                                          TextColor="{DynamicResource Gray-600}"
-                                                          BackgroundColor="{DynamicResource Transparent}"
-                                                          HorizontalOptions="End"
-                                                          HorizontalTextAlignment="End"
-                                                          VerticalOptions="Center"
-                                                          Text="{StaticResource MoreIcon}"
-                                                          FontSize="18"
-                                                          WidthRequest="38"
-                                                          HeightRequest="38"
-                                                          FontFamily="{StaticResource FontIcons}" />
-
-                                        <!-- Seperator -->
-                                        <BoxView Grid.Row="2" Grid.ColumnSpan="4" Style="{DynamicResource SeparatorStyle}" />
+                                        <!--  Seperator  -->
+                                        <BoxView
+                                            Grid.Row="2"
+                                            Grid.ColumnSpan="4"
+                                            Style="{DynamicResource HorizontalSeparatorStyle}" />
 
                                     </Grid>
                                 </StackLayout>

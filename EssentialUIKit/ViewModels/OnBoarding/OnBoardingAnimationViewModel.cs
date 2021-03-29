@@ -1,11 +1,8 @@
 ﻿using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using EssentialUIKit.Models.OnBoarding;
 using EssentialUIKit.Views.OnBoarding;
-using Syncfusion.SfRotator.XForms;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 
@@ -45,28 +42,28 @@ namespace EssentialUIKit.ViewModels.OnBoarding
                     ImagePath = "ReSchedule.png",
                     Header = "RESCHEDULE",
                     Content = "Drag and drop meetings in order to reschedule them easily.",
-                    RotatorItem = new WalkthroughItemPage()
+                    RotatorView = new WalkthroughItemPage(),
                 },
                 new Boarding()
                 {
                     ImagePath = "ViewMode.png",
                     Header = "VIEW MODE",
                     Content = "Display your meetings using four configurable view modes",
-                    RotatorItem = new WalkthroughItemPage()
+                    RotatorView = new WalkthroughItemPage(),
                 },
                 new Boarding()
                 {
                     ImagePath = "TimeZone.png",
                     Header = "TIME ZONE",
                     Content = "Display meetings created for different time zones.",
-                    RotatorItem = new WalkthroughItemPage()
-                }
+                    RotatorView = new WalkthroughItemPage(),
+                },
             };
 
             // Set bindingcontext to content view.
             foreach (var boarding in this.Boardings)
             {
-                boarding.RotatorItem.BindingContext = boarding;
+                boarding.RotatorView.BindingContext = boarding;
             }
         }
 
@@ -81,15 +78,14 @@ namespace EssentialUIKit.ViewModels.OnBoarding
                 return this.boardings;
             }
 
-            set
+            private set
             {
                 if (this.boardings == value)
                 {
                     return;
                 }
 
-                this.boardings = value;
-                this.NotifyPropertyChanged();
+                this.SetProperty(ref this.boardings, value);
             }
         }
 
@@ -107,8 +103,7 @@ namespace EssentialUIKit.ViewModels.OnBoarding
                     return;
                 }
 
-                this.nextButtonText = value;
-                this.NotifyPropertyChanged();
+                this.SetProperty(ref this.nextButtonText, value);
             }
         }
 
@@ -126,8 +121,7 @@ namespace EssentialUIKit.ViewModels.OnBoarding
                     return;
                 }
 
-                this.isSkipButtonVisible = value;
-                this.NotifyPropertyChanged();
+                this.SetProperty(ref this.isSkipButtonVisible, value);
             }
         }
 
@@ -145,8 +139,7 @@ namespace EssentialUIKit.ViewModels.OnBoarding
                     return;
                 }
 
-                this.selectedIndex = value;
-                this.NotifyPropertyChanged();
+                this.SetProperty(ref this.selectedIndex, value);
             }
         }
 
@@ -168,6 +161,18 @@ namespace EssentialUIKit.ViewModels.OnBoarding
 
         #region Methods
 
+        private static void MoveToNextPage()
+        {
+            if (Device.RuntimePlatform == Device.UWP && Application.Current.MainPage.Navigation.NavigationStack.Count > 1)
+            {
+                Application.Current.MainPage.Navigation.PopAsync();
+            }
+            else if (Device.RuntimePlatform != Device.UWP && Application.Current.MainPage.Navigation.NavigationStack.Count > 0)
+            {
+                Application.Current.MainPage.Navigation.PopAsync();
+            }
+        }
+
         private bool ValidateAndUpdateSelectedIndex(int itemCount)
         {
             if (this.SelectedIndex >= itemCount - 1)
@@ -185,7 +190,7 @@ namespace EssentialUIKit.ViewModels.OnBoarding
         /// <param name="obj">The Object</param>
         private void Skip(object obj)
         {
-            this.MoveToNextPage();
+            MoveToNextPage();
         }
 
         /// <summary>
@@ -194,16 +199,10 @@ namespace EssentialUIKit.ViewModels.OnBoarding
         /// <param name="obj">The Object</param>
         private void Next(object obj)
         {
-            var itemCount = (obj as SfRotator).ItemsSource.Count();
-            if (this.ValidateAndUpdateSelectedIndex(itemCount))
+            if (this.ValidateAndUpdateSelectedIndex(this.Boardings.Count))
             {
-                this.MoveToNextPage();
+                MoveToNextPage();
             }
-        }
-
-        private void MoveToNextPage()
-        {
-            Application.Current.MainPage.Navigation.PopAsync();
         }
 
         #endregion

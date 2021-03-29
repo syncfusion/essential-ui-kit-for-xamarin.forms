@@ -7,115 +7,169 @@
     xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
     xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
     xmlns:control="clr-namespace:EssentialUIKit.Controls"
+    xmlns:behaviours="clr-namespace:EssentialUIKit.Behaviors"
     xmlns:converter="clr-namespace:EssentialUIKit.Converters"
     xmlns:sfavatar="clr-namespace:Syncfusion.XForms.AvatarView;assembly=Syncfusion.Core.XForms"
-    Title="New Contact"
-    BackgroundColor="{DynamicResource Gray-White}"
-    NavigationPage.HasNavigationBar="False">
+    xmlns:ViewModel="clr-namespace:EssentialUIKit.ViewModels.Forms" 
+    xmlns:behaviour="clr-namespace:EssentialUIKit.Behaviors.Forms"
+    BackgroundColor="{DynamicResource Gray-Bg}"
+    NavigationPage.HasNavigationBar="False"
+    x:Name="AddProfile">
+
+    <ContentPage.BindingContext>
+        <ViewModel:AddProfileViewModel/>
+    </ContentPage.BindingContext>
+
     <ContentPage.Resources>
         <ResourceDictionary>
             <converter:BooleanToColorConverter x:Key="ColorConverter" />
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Styles.xaml" />
-            </ResourceDictionary.MergedDictionaries>
+            <converter:InverseBoolConverter x:Key="InverseBoolConverter"/>
+            <converter:NameValidationConverter x:Key="FirstValidationErrorConverter"/>
         </ResourceDictionary>
     </ContentPage.Resources>
+
+    <ContentPage.ControlTemplate>
+        <ControlTemplate>
+            <StackLayout x:Name="titleLayout" Spacing="0">
+                <control:TitleView Title="New Profile">
+                    <control:TitleView.LeadingView>
+                        <!--  Back button command  -->
+                        <buttons:SfButton x:Name="backButton" Command="{Binding Path=BindingContext.BackButtonCommand, Source={x:Reference AddProfile}}" 
+                                          Text="{StaticResource Back}" CommandParameter="{x:Reference backButton}" 
+                                          Style="{StaticResource IconButtonStyle}" />
+
+                    </control:TitleView.LeadingView>
+                </control:TitleView>
+                <ContentPresenter />
+            </StackLayout>
+        </ControlTemplate>
+    </ContentPage.ControlTemplate>
+
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Padding="16" Spacing="16">
-
-                <!--  To display the Avatar with add icon  -->
-                <badge:SfBadgeView
-                    Padding="0"
-                    HeightRequest="90"
-                    HorizontalOptions="Center"
-                    VerticalOptions="Center"
-                    WidthRequest="90">
-                    <badge:SfBadgeView.Content>
-
-                        <!--  Avatar view to display the profile picture  -->
-                        <sfavatar:SfAvatarView
+                <Grid>
+                <!--  Avatar view to display the profile picture  -->                  
+                    <sfavatar:SfAvatarView
                             Padding="13"
                             BackgroundColor="{DynamicResource Gray-200}"
                             BorderWidth="0"
                             ContentType="Custom"
-                            CornerRadius="45"
-                            HeightRequest="90"
+                            CornerRadius="80"
+                            HeightRequest="80"
                             HorizontalOptions="Center"
                             VerticalOptions="Center"
-                            WidthRequest="90">
-                            <sfavatar:SfAvatarView.ImageSource>
-                                <FontImageSource
-                                    FontFamily="{StaticResource FontIcons}"
-                                    Glyph="{StaticResource AvatarIcon}"
+                            WidthRequest="80">
+                        <sfavatar:SfAvatarView.ImageSource>
+                            <FontImageSource
+                                    FontFamily="FontIcons"
+                                    Glyph="{StaticResource Contact}"
                                     Size="29"
                                     Color="{DynamicResource Gray-600}" />
-                            </sfavatar:SfAvatarView.ImageSource>
-                        </sfavatar:SfAvatarView>
-                    </badge:SfBadgeView.Content>
+                        </sfavatar:SfAvatarView.ImageSource>
+                    </sfavatar:SfAvatarView>
 
-                    <!--  Badge setting to display the add icon above the profile picture  -->
-                    <badge:SfBadgeView.BadgeSettings>
-                        <badge:BadgeSetting
-                            BackgroundColor="{DynamicResource Gray-100}"
-                            BadgeAnimation="None"
-                            BadgeIcon="Add"
-                            BadgePosition="BottomRight"
-                            BadgeType="None"
-                            FontSize="15"
-                            Stroke="{DynamicResource Gray-White}"
-                            StrokeWidth="4"
-                            TextColor="{DynamicResource Gray-600}"
-                            TextPadding="7"
-                            Offset="-5,-10" />
-                    </badge:SfBadgeView.BadgeSettings>
-                </badge:SfBadgeView>
+                    <border:SfBorder HorizontalOptions="Center" VerticalOptions="Center" 
+                        HeightRequest="110" WidthRequest="110" BorderColor="Transparent" >
+                        <border:SfBorder.Content>
+                            <buttons:SfButton Text="{StaticResource Add}" HeightRequest="36"
+                                              WidthRequest="36" CornerRadius="36" VerticalOptions="End" 
+                                              HorizontalOptions="End" BorderWidth="2" BackgroundColor="{DynamicResource Gray-200}"
+                                              BorderColor="{DynamicResource Gray-Bg}"
+                                              TextColor="{DynamicResource Steel}" Style="{StaticResource IconButtonStyle}"
+                                              Command="{Binding AddProfileCommand}" />
+                        </border:SfBorder.Content>
+                    </border:SfBorder>
+                </Grid>
 
                 <!--  Displaying the label of Add profile picture below to the badgeview  -->
-                <Label
-                    FontFamily="{DynamicResource Montserrat-Medium}"
-                    FontSize="14"
-                    HorizontalOptions="Center"
-                    Text="Add Profile Picture"
-                    TextColor="{DynamicResource Gray-700}" />
+                <Label Text="Add Profile Picture"
+                       Style="{StaticResource DescriptionLabelStyle}" />
 
+                <StackLayout>
                 <!--  First name entry with border  -->
-                <border:SfBorder BorderColor="{Binding Source={x:Reference FirstNameEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}" Style="{StaticResource FormBorderStyle}">
-                    <control:BorderlessEntry
+                <border:SfBorder BorderColor="{Binding Source={x:Reference FirstNameEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}" Style="{StaticResource DataFormBorderlessEntryBorderStyle}"
+                                 Padding="12,8" Margin="0,8,0,0" VerticalOptions="Start">
+                        <Grid ColumnDefinitions="*, Auto">
+
+                            <control:BorderlessEntry
                         x:Name="FirstNameEntry"
                         Placeholder="First Name"
-                        Style="{StaticResource EntryTextStyle}" />
-                </border:SfBorder>
+                        Style="{StaticResource BorderlessEntryStyle}" 
+                        Text="{Binding FirstName.Value}">
+                                <Entry.Behaviors>
+                                    <behaviour:EntryLineValidationBehaviour IsValid="{Binding FirstName.IsValid}"/>
+                                </Entry.Behaviors>
+                            </control:BorderlessEntry>
 
+                            <!--  Label to display error icon  -->
+                            <Label Grid.Column="1" Style="{StaticResource ErrorIconLabelStyle}" Margin="0"
+                                   IsVisible="{Binding Path=IsVisible, Source={x:Reference FirstNameValidationLabel}}"
+                                   Text="{StaticResource Error}"/>
+                        </Grid>
+                    </border:SfBorder>
+
+                    <!--  Label to display error message  -->
+                    <Label x:Name="FirstNameValidationLabel" Margin="15,-3,0,0" VerticalOptions="FillAndExpand"
+                           Text="{Binding FirstName.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                           IsVisible="{Binding FirstName.IsValid, Converter={StaticResource InverseBoolConverter}}"
+                           Style="{StaticResource SimpleLabelStyle}" TextColor="{DynamicResource Red}"/>
+                </StackLayout>
+
+                <StackLayout>
                 <!--  Last name entry with border  -->
                 <border:SfBorder
                     Grid.Column="2"
                     BorderColor="{Binding Source={x:Reference LastNameEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}"
-                    Style="{StaticResource FormBorderStyle}">
-                    <control:BorderlessEntry
+                    Style="{StaticResource DataFormBorderlessEntryBorderStyle}" Padding="12,8" Margin="0,8,0,0" VerticalOptions="Start" >
+                        <Grid ColumnDefinitions="*, Auto">
+
+                            <control:BorderlessEntry
                         x:Name="LastNameEntry"
                         Placeholder="Last Name"
-                        Style="{StaticResource EntryTextStyle}" />
-                </border:SfBorder>
+                        Style="{StaticResource BorderlessEntryStyle}" 
+                        Text="{Binding LastName.Value}">
+                                <Entry.Behaviors>
+                                    <behaviour:EntryLineValidationBehaviour IsValid="{Binding LastName.IsValid}"/>
+                                </Entry.Behaviors>
+                            </control:BorderlessEntry>
+
+                            <!--  Label to display error icon  -->
+                            <Label Grid.Column="1" Style="{StaticResource ErrorIconLabelStyle}" Margin="0"
+                                   IsVisible="{Binding Path=IsVisible, Source={x:Reference LastNameValidationLabel}}"
+                                   Text="{StaticResource Error}"/>
+                        </Grid>
+                    </border:SfBorder>
+
+                    <!--  Label to display error message  -->
+                    <Label x:Name="LastNameValidationLabel" Margin="15,-3,0,0" VerticalOptions="FillAndExpand"
+                           Text="{Binding LastName.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                           IsVisible="{Binding LastName.IsValid, Converter={StaticResource InverseBoolConverter}}"
+                           Style="{StaticResource SimpleLabelStyle}" TextColor="{DynamicResource Red}"/>
+                </StackLayout>
 
                 <!--  Phone number entry with border  -->
                 <border:SfBorder
                     Grid.Column="2"
                     BorderColor="{Binding Source={x:Reference PhoneNoEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}"
-                    Style="{StaticResource FormBorderStyle}">
+                    Style="{StaticResource DataFormBorderlessEntryBorderStyle}"  Padding="12,8" Margin="0,8" VerticalOptions="Start" >
                     <control:BorderlessEntry
                         x:Name="PhoneNoEntry"
                         Keyboard="Telephone" 
-                        Placeholder="Phone Number"
-                        Style="{StaticResource EntryTextStyle}" />
+                        Placeholder="Phone Number : e.g. XXXX-XXXXXX"
+                        Style="{StaticResource BorderlessEntryStyle}">
+                        <control:BorderlessEntry.Behaviors>
+                            <behaviours:EntryMaskedBehavior Mask="(+91)XXXXX-XXXXX" Prefix="(+91)"/>
+                        </control:BorderlessEntry.Behaviors>
+                    </control:BorderlessEntry>
                 </border:SfBorder>
 
                 <buttons:SfButton
                     Margin="0,16,0,0"
-                    HorizontalOptions="Center"
-                    Style="{StaticResource SfButtonStyle}"
+                    Style="{StaticResource GradientButtonStyle}"
                     Text="ADD CONTACT"
-                    WidthRequest="200" />
+                    WidthRequest="200" 
+                    Command="{Binding AddContactCommand}"/>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

@@ -12,7 +12,7 @@ namespace EssentialUIKit.Models
     public class Category
     {
         private string icon;
-        private bool isExpanded;
+        private bool isSelected;
 
         /// <summary>
         /// Gets or sets the property that has been bound with an image, which displays the category.
@@ -20,19 +20,20 @@ namespace EssentialUIKit.Models
         [DataMember(Name = "icon")]
         public string Icon
         {
-            get { return App.BaseImageUrl + this.icon; }
+            get { return App.ImageServerPath + this.icon; }
             set { this.icon = value; }
         }
-		
-		/// <summary>
+
+        /// <summary>
         /// Gets or sets the property that is Expanded.
         /// </summary>
-		public bool IsExpanded
+        public bool IsSelected
         {
-            get { return isExpanded; }
+            get { return this.isSelected; }
+
             set
             {
-                isExpanded = value;
+                this.isSelected = value;
             }
         }
 

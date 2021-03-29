@@ -18,7 +18,12 @@
     <TargetFrameworkVersion>v9.0</TargetFrameworkVersion>
     <AndroidHttpClientHandlerType>Xamarin.Android.Net.AndroidClientHandler</AndroidHttpClientHandlerType>
     <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>    
+    </NuGetPackageImportStamp>
+    <AndroidKeyStore>true</AndroidKeyStore>
+    <AndroidSigningKeyStore>..\PlayStore\keystore.jks</AndroidSigningKeyStore>
+    <AndroidSigningStorePass>syncfusion</AndroidSigningStorePass>
+    <AndroidSigningKeyAlias>com.syncfusion.xamarin.uikit</AndroidSigningKeyAlias>
+    <AndroidSigningKeyPass>syncfusion</AndroidSigningKeyPass>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -32,17 +37,39 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <AndroidEnableProfiledAot>true</AndroidEnableProfiledAot>
-    <DebugSymbols>true</DebugSymbols>
+    <DebugSymbols>false</DebugSymbols>
     <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
+    <Optimize>false</Optimize>
     <OutputPath>bin\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AndroidManagedSymbols>true</AndroidManagedSymbols>
-    <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>    
+    <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
+    <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
+    <AndroidLinkMode>Full</AndroidLinkMode>
+    <AotAssemblies>true</AotAssemblies>
+    <EnableLLVM>false</EnableLLVM>
+    <BundleAssemblies>true</BundleAssemblies>
+    <AndroidKeyStore>true</AndroidKeyStore>
+    <AndroidPackageFormat>aab</AndroidPackageFormat>
+    <AndroidUseAapt2>true</AndroidUseAapt2>
+    <AndroidCreatePackagePerAbi>false</AndroidCreatePackagePerAbi>
+    <AndroidSigningKeyStore>..\PlayStore\keystore.jks</AndroidSigningKeyStore>
+    <AndroidEnableMultiDex>false</AndroidEnableMultiDex>
+    <MandroidI18n />
+    <PlatformTarget>x86</PlatformTarget>
+    <AndroidSigningKeyAlias>com.syncfusion.xamarin.uikit</AndroidSigningKeyAlias>
+    <AndroidLinkTool>r8</AndroidLinkTool>
+    <AndroidDexTool>d8</AndroidDexTool>
   </PropertyGroup>
+
+  <PropertyGroup>
+    <CodeAnalysisRuleSet>..\EssentialUIKit\StyleCop.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  
   <ItemGroup>
     <Reference Include="Mono.Android" />
+    <Reference Include="Mono.Android.Export" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -58,45 +85,60 @@
     <PackageReference Include="SkiaSharp.Views.Forms">
       <Version>1.68.0</Version>
     </PackageReference>
-    <PackageReference Include="Syncfusion.Xamarin.Buttons" Version="17.4.0.44" />
-    <PackageReference Include="Syncfusion.Xamarin.Cards" Version="17.4.0.44" />
-    <PackageReference Include="Syncfusion.Xamarin.Core" Version="17.4.0.44" />
+    <PackageReference Include="Syncfusion.Xamarin.Buttons" Version="18.4.0.31" />
+    <PackageReference Include="Syncfusion.Xamarin.Cards" Version="18.4.0.31" />
+    <PackageReference Include="Syncfusion.Xamarin.Core" Version="18.4.0.31" />
     <PackageReference Include="Syncfusion.Xamarin.DataSource">
-      <Version>17.4.0.44</Version>
+      <Version>18.4.0.31</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.GridCommon">
-      <Version>17.4.0.44</Version>
+      <Version>18.4.0.31</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfCalendar">
-      <Version>17.4.0.44</Version>
+      <Version>18.4.0.31</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfChart">
-      <Version>17.4.0.44</Version>
+      <Version>18.4.0.31</Version>
     </PackageReference>
-    <PackageReference Include="Syncfusion.Xamarin.SfComboBox" Version="17.4.0.44" />
-    <PackageReference Include="Syncfusion.Xamarin.SfMaps" Version="17.4.0.44" />
+    <PackageReference Include="Syncfusion.Xamarin.SfComboBox" Version="18.4.0.31" />
+    <PackageReference Include="Syncfusion.Xamarin.SfGauge">
+      <Version>18.4.0.31</Version>
+    </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.SfMaps" Version="18.4.0.31" />
     <PackageReference Include="Syncfusion.Xamarin.SfParallaxView">
-      <Version>17.4.0.44</Version>
+      <Version>18.4.0.31</Version>
+    </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.SfPicker">
+      <Version>18.4.0.31</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfProgressBar">
-      <Version>17.4.0.44</Version>
+      <Version>18.4.0.31</Version>
     </PackageReference>
-    <PackageReference Include="Syncfusion.Xamarin.SfRating" Version="17.4.0.44" />
-    <PackageReference Include="Syncfusion.Xamarin.SfRotator" Version="17.4.0.44" />
-    <PackageReference Include="Syncfusion.Xamarin.SfPopupLayout" Version="17.4.0.44" />
-    <PackageReference Include="Syncfusion.Xamarin.Expander" Version="17.4.0.44" />
-    <PackageReference Include="Syncfusion.Xamarin.SfListView" Version="17.4.0.44" />
-    <PackageReference Include="Syncfusion.Xamarin.SfBadgeView" Version="17.4.0.44" />
+    <PackageReference Include="Syncfusion.Xamarin.SfRating" Version="18.4.0.31" />
+    <PackageReference Include="Syncfusion.Xamarin.SfRotator" Version="18.4.0.31" />
+    <PackageReference Include="Syncfusion.Xamarin.SfPopupLayout" Version="18.4.0.31" />
+    <PackageReference Include="Syncfusion.Xamarin.Expander" Version="18.4.0.31" />
+    <PackageReference Include="Syncfusion.Xamarin.SfListView" Version="18.4.0.31" />
+    <PackageReference Include="Syncfusion.Xamarin.SfBadgeView" Version="18.4.0.31" />
     <PackageReference Include="Syncfusion.Xamarin.SfTabView">
-      <Version>17.4.0.44</Version>
+      <Version>18.4.0.31</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.Forms" Version="4.4.0.991265" />
-    <PackageReference Include="Xamarin.Android.Support.Design" Version="28.0.0.1" />
-    <PackageReference Include="Xamarin.Android.Support.v7.AppCompat" Version="28.0.0.1" />
-    <PackageReference Include="Xamarin.Android.Support.v4" Version="28.0.0.1" />
-    <PackageReference Include="Xamarin.Android.Support.v7.CardView" Version="28.0.0.1" />
-    <PackageReference Include="Xamarin.Android.Support.v7.MediaRouter" Version="28.0.0.1" />
-    <PackageReference Include="Xamarin.Android.Support.CustomTabs" Version="28.0.0.1" />
+    <PackageReference Include="Xamarin.Essentials">
+      <Version>1.6.0</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Forms" Version="4.8.0.1821" />
+    <PackageReference Include="Xamarin.AndroidX.Legacy.Support.V4">
+      <Version>1.0.0.6</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Google.Android.Material">
+      <Version>1.2.1.1</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.AndroidX.Lifecycle.LiveData">
+      <Version>2.2.0.4</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.AndroidX.Browser">
+      <Version>1.3.0.4</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
@@ -104,17 +146,13 @@
     <Compile Include="Renderers\ParallaxListViewRenderer.cs" />
     <Compile Include="Renderers\BorderlessEditorRenderer.cs" />
     <Compile Include="Renderers\BorderlessEntryRenderer.cs" />
+    <Compile Include="Renderers\TransitionNavigationPageRenderer.cs" />
     <Compile Include="Renderers\TemplateHostViewRenderer.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SplashScreenActivity.cs" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidAsset Include="Assets\UIFontIcons.ttf" />
-    <AndroidAsset Include="Assets\Montserrat-Bold.ttf" />
-    <AndroidAsset Include="Assets\Montserrat-Medium.ttf" />
-    <AndroidAsset Include="Assets\Montserrat-Regular.ttf" />
-    <AndroidAsset Include="Assets\Montserrat-SemiBold.ttf" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
     <None Include="Properties\AndroidManifest.xml">
@@ -229,9 +267,6 @@
     <AndroidResource Include="Resources\drawable-xxxhdpi\SplashScreen.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ChatMessageBackground.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable-land\ChatMessageBackground.png" />
   </ItemGroup>
   <ItemGroup>
@@ -266,6 +301,12 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\ReSchedule.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\Visa.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ChatMessageBackground.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\build\tools\Syncfusion.CodeAnalysis.StyleCop\tools\StyleCop.MsBuild.targets" Condition="Exists('..\build\tools\Syncfusion.CodeAnalysis.StyleCop\tools\StyleCop.MsBuild.targets')" />

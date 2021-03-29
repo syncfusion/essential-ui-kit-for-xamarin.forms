@@ -4,56 +4,42 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:controls="clr-namespace:EssentialUIKit.Controls"
     xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
     xmlns:data="clr-namespace:Syncfusion.DataSource;assembly=Syncfusion.DataSource.Portable"
     xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
-    BackgroundColor="{DynamicResource Gray-White}"
+    xmlns:syncEffectsView="clr-namespace:Syncfusion.XForms.EffectsView;assembly=Syncfusion.Core.XForms"
+    xmlns:template="clr-namespace:EssentialUIKit.Views.Templates"
+    x:Name="albumPage"
+    BackgroundColor="{DynamicResource Gray-Bg}"
     NavigationPage.HasNavigationBar="False">
-
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Styles.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </ContentPage.Resources>
 
     <ContentPage.Content>
         <StackLayout>
-            <Grid Padding="10,10,10,5">
+            <Grid RowDefinitions="Auto">
 
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-
-                <!--  Title  -->
-                <Label
-                    FontFamily="{StaticResource Montserrat-Medium}"
-                    FontSize="16"
-                    HorizontalOptions="CenterAndExpand"
-                    LineHeight="{OnPlatform Android=1.5,
-                                            Default=-1}"
-                    Text="Albums"
-                    TextColor="{DynamicResource Gray-900}"
-                    VerticalOptions="Center" />
-
-                <!--  Add button  -->
-                <buttons:SfButton
-                    Padding="0"
-                    BackgroundColor="{DynamicResource Gray-White}"
-                    Command="{Binding AddCommand}"
-                    CornerRadius="5"
-                    FontFamily="{StaticResource FontIcons}"
-                    FontSize="18"
-                    HorizontalOptions="End"
-                    Text="{StaticResource Add}"
-                    TextColor="{DynamicResource PrimaryColor}"
-                    VerticalOptions="Center"
-                    WidthRequest="40" />
+                <!--  Title View  -->
+                <controls:TitleView Title="Albums">
+                    <controls:TitleView.LeadingView>
+                        <buttons:SfButton
+                            x:Name="backButton"
+                            Command="{Binding BindingContext.BackButtonCommand, Source={x:Reference ListView}}"
+                            CommandParameter="{x:Reference backButton}"
+                            Style="{StaticResource IconButtonStyle}"
+                            Text="{StaticResource Back}" />
+                    </controls:TitleView.LeadingView>
+                    <controls:TitleView.TrailingView>
+                        <StackLayout HorizontalOptions="End" Orientation="Horizontal">
+                            <buttons:SfButton
+                                Command="{Binding BindingContext.AddCommand, Source={x:Reference ListView}}"
+                                Style="{StaticResource IconButtonStyle}"
+                                Text="{StaticResource Add}"
+                                TextColor="{DynamicResource PrimaryColor}" />
+                        </StackLayout>
+                    </controls:TitleView.TrailingView>
+                </controls:TitleView>
 
             </Grid>
-
-            <BoxView Style="{StaticResource BoxViewStyle}" />
 
             <!--  Album images  -->
             <listView:SfListView
@@ -67,7 +53,6 @@
                                                                   Desktop='0,0,24,24'}"
                 ItemsSource="{Binding AlbumInfo}"
                 SelectionBackgroundColor="Transparent"
-                TapCommand="{Binding ImageTapCommand}"
                 VerticalOptions="FillAndExpand">
 
                 <listView:SfListView.DataSource>
@@ -86,7 +71,7 @@
                             <!--  Group category  -->
                             <Label
                                 Margin="0,5,0,0"
-                                FontFamily="{StaticResource Montserrat-SemiBold}"
+                                FontFamily="Montserrat-SemiBold"
                                 FontSize="12"
                                 HorizontalOptions="StartAndExpand"
                                 LineHeight="{OnPlatform Android=1.25,
@@ -98,14 +83,12 @@
                             <!--  View all  -->
                             <buttons:SfButton
                                 Padding="0"
-                                BackgroundColor="{DynamicResource Gray-White}"
+                                BackgroundColor="{DynamicResource Gray-Bg}"
                                 Command="{Binding BindingContext.ViewAllCommand, Source={x:Reference ListView}}"
-                                CornerRadius="4"
-                                FontFamily="{StaticResource Montserrat-SemiBold}"
                                 FontSize="12"
                                 HorizontalOptions="End"
-                                Text="VIEW ALL"
-                                TextColor="{DynamicResource HyperLink}" />
+                                Style="{StaticResource TransparentButtonStyle}"
+                                Text="VIEW ALL" />
 
                         </StackLayout>
 
@@ -119,56 +102,20 @@
 
                 <listView:SfListView.ItemTemplate>
                     <DataTemplate>
-
-                        <Frame
-                            Padding="0"
-                            BackgroundColor="{DynamicResource Gray-White}"
-                            BorderColor="{DynamicResource Gray-White}"
-                            CornerRadius="8"
-                            HasShadow="True"
-                            HeightRequest="130"
-                            HorizontalOptions="FillAndExpand"
-                            VerticalOptions="FillAndExpand">
-
-                            <Grid>
-                                
-                                <!--  Album cover image  -->
-                                <Image Aspect="AspectFill">
-                                    <Image.Source>
-                                        <UriImageSource Uri="{Binding AlbumImage}" 
-			                                 CacheValidity="14" 
-			                                 CachingEnabled="true"/>
-                                    </Image.Source>
-                                </Image>
-
-                                <StackLayout
-                                    Padding="24,0,0,16"
-                                    Spacing="2"
-                                    VerticalOptions="End">
-
-                                    <!--  Album name  -->
-                                    <Label
-                                        FontFamily="{StaticResource Montserrat-SemiBold}"
-                                        FontSize="16"
-                                        Text="{Binding AlbumName}"
-                                        TextColor="{DynamicResource Gray-White}" />
-
-                                    <!--  Total number of photos  -->
-                                    <Label
-                                        FontFamily="{StaticResource Montserrat-Medium}"
-                                        FontSize="12"
-                                        Text="{Binding PhotosCount}"
-                                        TextColor="{DynamicResource Gray-White}" />
-
-                                </StackLayout>
-
-                            </Grid>
-                        </Frame>
-
+                        <syncEffectsView:SfEffectsView
+                            RippleColor="{DynamicResource Gray-300}"
+                            TouchDownEffects="Ripple"
+                            TouchUpCommand="{Binding Path=BindingContext.ImageTapCommand, Source={x:Reference albumPage}}"
+                            TouchUpCommandParameter="{Binding}">
+                            <template:BottomNavigationAlbumTemplate />
+                        </syncEffectsView:SfEffectsView>
                     </DataTemplate>
                 </listView:SfListView.ItemTemplate>
 
             </listView:SfListView>
+
+            <!--  Separator  -->
+            <BoxView Style="{StaticResource HorizontalSeparatorStyle}" />
 
         </StackLayout>
 

@@ -1,45 +1,39 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:controls="clr-namespace:EssentialUIKit.Controls"
-             xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
-             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
-             xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
-             mc:Ignorable="d"
-             x:Class="EssentialUIKit.Views.Navigation.SongsPage"
-             BackgroundColor="{DynamicResource Gray-White}"
-             NavigationPage.HasNavigationBar="False">
-
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Styles.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </ContentPage.Resources>
+<ContentPage
+    x:Class="EssentialUIKit.Views.Navigation.SongsPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:behaviors="clr-namespace:EssentialUIKit.Behaviors"
+    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:controls="clr-namespace:EssentialUIKit.Controls"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:syncEffectsView="clr-namespace:Syncfusion.XForms.EffectsView;assembly=Syncfusion.Core.XForms"
+    x:Name="songsPage"
+    BackgroundColor="{DynamicResource Gray-Bg}"
+    NavigationPage.HasNavigationBar="False"
+    mc:Ignorable="d">
 
     <ContentPage.Content>
 
-        <Grid >
-            <Grid.RowDefinitions>
-                <RowDefinition Height="64" />
-                <RowDefinition Height="1" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
+        <Grid
+            ColumnSpacing="0"
+            RowDefinitions="Auto, Auto, *"
+            RowSpacing="0">
 
             <StackLayout
                 x:Name="TitleView"
-                Padding="16,8"
                 Grid.Row="0"
-                BackgroundColor="{DynamicResource Gray-White}"
+                Padding="8"
+                BackgroundColor="{DynamicResource Gray-Bg}"
                 HorizontalOptions="FillAndExpand"
                 Orientation="Horizontal"
                 Spacing="0">
 
                 <StackLayout
-                    x:Name="Title"
+                    x:Name="TitleLayout"
                     HorizontalOptions="FillAndExpand"
                     IsVisible="True"
                     Orientation="Horizontal"
@@ -48,22 +42,19 @@
 
                     <!--  Back button command  -->
                     <buttons:SfButton
-                            x:Name="backButton"
-                            Command="{Binding BackButtonCommand}"
-                            CommandParameter="{x:Reference backButton}"
-                            CornerRadius="4"
-                            Style="{StaticResource IconButtonStyle}"
-                            Text="{StaticResource Back}" />
+                        x:Name="backButton"
+                        Command="{Binding BackButtonCommand}"
+                        CommandParameter="{x:Reference backButton}"
+                        Style="{StaticResource IconButtonStyle}"
+                        Text="{StaticResource Back}" />
 
                     <!--  Songs page Title  -->
                     <Label
                         Margin="16,0"
-                        FontFamily="{StaticResource Montserrat-Medium}"
-                        FontSize="16"
-                        HorizontalOptions="CenterAndExpand"
-                        LineHeight="1.25"
+                        FontFamily="Montserrat-Medium"
+                        HorizontalOptions="FillAndExpand"
+                        Style="{StaticResource TitleLabelStyle}"
                         Text="Songs"
-                        TextColor="{DynamicResource Gray-900}"
                         VerticalOptions="Center"
                         VerticalTextAlignment="Center" />
 
@@ -79,17 +70,20 @@
                     <!--  Back to title layout  -->
                     <buttons:SfButton
                         x:Name="BackToTitle"
-                        Clicked="BackToTitle_Clicked"
-                        Style="{StaticResource NavigationBarButtonStyle}"
-                        Text="{StaticResource Back}" />
+                        Style="{StaticResource IconButtonStyle}"
+                        Text="{StaticResource Back}">
+                        <buttons:SfButton.Behaviors>
+                            <behaviors:SearchBarAnimationBehavior AnimationType="shrink" />
+                        </buttons:SfButton.Behaviors>
+                    </buttons:SfButton>
 
                     <!--  Rounded Search Entry  -->
-                    <border:SfBorder Style="{DynamicResource SfBorderStyle}">
+                    <border:SfBorder Style="{DynamicResource ThemeBorderStyle}">
                         <controls:BorderlessEntry
                             x:Name="SearchEntry"
                             HorizontalOptions="FillAndExpand"
                             Placeholder="Search here"
-                            Style="{StaticResource SearchEntryStyle}"/>
+                            Style="{StaticResource BorderlessEntryStyle}" />
                     </border:SfBorder>
                 </StackLayout>
 
@@ -97,80 +91,86 @@
                 <buttons:SfButton
                     x:Name="SearchButton"
                     IsVisible="True"
-                    Clicked="SearchButton_Clicked"
-                    Style="{StaticResource IconButtonStyle }"
-                    Text="{StaticResource Search}" />
-            
+                    Style="{StaticResource IconButtonStyle}"
+                    Text="{StaticResource Search}">
+                    <buttons:SfButton.Behaviors>
+                        <behaviors:SearchBarAnimationBehavior AnimationType="expand" />
+                    </buttons:SfButton.Behaviors>
+                </buttons:SfButton>
+
             </StackLayout>
 
-            <BoxView  Grid.Row="1" BackgroundColor="{DynamicResource Gray-200}" HeightRequest="1" />
+            <BoxView
+                Grid.Row="1"
+                BackgroundColor="{DynamicResource Gray-200}"
+                HeightRequest="1" />
 
             <StackLayout Grid.Row="2" Spacing="0">
 
                 <listView:SfListView
                     IsScrollBarVisible="false"
+                    ItemSize="72"
                     ItemSpacing="0"
                     ItemsSource="{Binding SongsPageList}"
                     RowSpacing="0"
-                    SelectionBackgroundColor="Transparent"
-                    TapCommand="{Binding ItemTappedCommand}"
-                    ItemSize="72">
+                    SelectionBackgroundColor="Transparent">
 
                     <listView:SfListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                    <StackLayout >
-                                        <Grid Margin="16,0" RowSpacing="0" ColumnSpacing="0" HeightRequest="56">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="Auto" />
-                                                <ColumnDefinition Width="*" />
-                                            </Grid.ColumnDefinitions>
+                                <syncEffectsView:SfEffectsView
+                                    RippleColor="{DynamicResource Gray-300}"
+                                    TouchDownEffects="Ripple"
+                                    TouchUpCommand="{Binding Path=BindingContext.ItemTappedCommand, Source={x:Reference songsPage}}"
+                                    TouchUpCommandParameter="{Binding}">
+                                    <StackLayout>
+                                        <Grid
+                                            Margin="16,8,16,0"
+                                            ColumnDefinitions="Auto, *"
+                                            ColumnSpacing="0"
+                                            HeightRequest="56"
+                                            RowSpacing="0">
 
                                             <border:SfBorder
-                                              BackgroundColor="{DynamicResource Gray-200}"
-                                                 BorderColor="{DynamicResource Gray-White}"
-                                                  Style="{StaticResource ProfileBorderStyle}">
+                                                BackgroundColor="{DynamicResource Gray-200}"
+                                                BorderColor="{DynamicResource Gray-Bg}"
+                                                CornerRadius="4"
+                                                Style="{StaticResource ProfileBorderStyle}">
                                                 <Image HeightRequest="56" WidthRequest="56">
                                                     <Image.Source>
                                                         <UriImageSource
-                                                             CacheValidity="14"
-                                                             CachingEnabled="true"
-                                                             Uri="{Binding SongImage}"/>
+                                                            CacheValidity="14"
+                                                            CachingEnabled="true"
+                                                            Uri="{Binding SongImage}" />
                                                     </Image.Source>
                                                 </Image>
                                             </border:SfBorder>
 
                                             <StackLayout
-                                                     Grid.Column="1"
-                                                     Margin="16,0"
-                                                     HorizontalOptions="FillAndExpand"
-                                                     Spacing="0"
-                                                     VerticalOptions="Center">
+                                                Grid.Column="1"
+                                                Margin="16,0"
+                                                HorizontalOptions="FillAndExpand"
+                                                Spacing="0"
+                                                VerticalOptions="Center">
 
                                                 <!--  Name of the Song  -->
                                                 <Label
-                                                     
-                                                     FontFamily="{StaticResource Montserrat-Medium}"
-                                                     FontSize="16"
-                                                     LineHeight="{OnPlatform Android=1.5,
-                                                     Default=-1}"
-                                                     Text="{Binding SongName}"
-                                                     TextColor="{DynamicResource Gray-900}" />
+                                                    FontFamily="Montserrat-Medium"
+                                                    HorizontalOptions="Start"
+                                                    Style="{StaticResource TitleLabelStyle}"
+                                                    Text="{Binding SongName}" />
 
                                                 <!--  Composer of the song  -->
                                                 <Label
-                                                      
-                                                      FontFamily="{StaticResource Montserrat-Medium}"
-                                                      FontSize="14"
-                                                      LineHeight="{OnPlatform Android=1.25,
-                                                         Default=-1}"
-                                                      Text="{Binding Composer}"
-                                                      TextColor="{DynamicResource Gray-700}" />
+                                                    HorizontalOptions="Start"
+                                                    Style="{StaticResource DescriptionLabelStyle}"
+                                                    Text="{Binding Composer}" />
                                             </StackLayout>
                                         </Grid>
 
-                                        <BoxView  VerticalOptions="End" Style="{StaticResource BoxViewStyle}" />
+                                        <BoxView Style="{StaticResource HorizontalSeparatorStyle}" VerticalOptions="End" />
                                     </StackLayout>
+                                </syncEffectsView:SfEffectsView>
                             </ViewCell>
                         </DataTemplate>
                     </listView:SfListView.ItemTemplate>

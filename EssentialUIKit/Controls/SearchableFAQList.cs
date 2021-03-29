@@ -1,7 +1,4 @@
-﻿using Syncfusion.ListView.XForms;
-using System.Threading.Tasks;
-using Xamarin.Forms;
-using Xamarin.Forms.Internals;
+﻿using Xamarin.Forms.Internals;
 
 namespace EssentialUIKit.Controls
 {
@@ -10,7 +7,7 @@ namespace EssentialUIKit.Controls
     /// </summary>
     [Preserve(AllMembers = true)]
     public class SearchableFAQList : SearchableListView
-    {      
+    {
         #region Method
 
         /// <summary>
@@ -24,18 +21,18 @@ namespace EssentialUIKit.Controls
             {
                 var taskInfo = obj as Models.Navigation.FAQ;
 
-                if(taskInfo == null || string.IsNullOrEmpty(taskInfo.Question))
+                if (taskInfo == null || string.IsNullOrEmpty(taskInfo.Question))
                 {
                     return false;
                 }
 
-                return taskInfo.Question.ToUpperInvariant().Contains(SearchText.ToUpperInvariant()) ||
-                    taskInfo.Answer.Exists(item => item.ToUpperInvariant().Contains(SearchText.ToUpperInvariant()));
+                return taskInfo.Question.ToUpperInvariant().Contains(this.SearchText.ToUpperInvariant()) ||
+                    taskInfo.Answer.Exists(item => item.ToUpperInvariant().Contains(this.SearchText.ToUpperInvariant()));
             }
 
             return false;
         }
-        
+
         #endregion
     }
 }

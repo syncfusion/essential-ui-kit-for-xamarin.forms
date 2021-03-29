@@ -10,16 +10,9 @@
     xmlns:helper="clr-namespace:EssentialUIKit.Helpers"
     x:Name="cartItemTemplate">
 
-    <Grid.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Styles.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </Grid.Resources>
-
     <Grid
-        BackgroundColor="{DynamicResource Gray-White}"
+        BackgroundColor="{DynamicResource Gray-Bg}"
+        ColumnDefinitions="Auto, *"
         ColumnSpacing="0"
         RowSpacing="0">
 
@@ -30,11 +23,6 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="{OnIdiom Default=1, Phone=0}" />
         </Grid.RowDefinitions>
-
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
 
         <!--  Product image  -->
         <Image
@@ -59,27 +47,26 @@
             Grid.Row="0"
             Grid.Column="1"
             Margin="0,16,0,4"
-            FontFamily="{StaticResource Montserrat-SemiBold}"
             FontSize="14"
             HorizontalOptions="StartAndExpand"
             LineBreakMode="TailTruncation"
             MaxLines="1"
-            Style="{StaticResource CommonLabelStyle}"
-            Text="{Binding Name}"
-            TextColor="{DynamicResource Gray-900}" />
+            Style="{StaticResource TitleLabelStyle}"
+            Text="{Binding Name}" />
 
         <!--  Product summary  -->
         <Label
             Grid.Row="1"
             Grid.Column="1"
             Margin="0,0,0,8"
-            FontFamily="{StaticResource Montserrat-Medium}"
             FontSize="12"
+            HorizontalOptions="Start"
+            HorizontalTextAlignment="Start"
             LineBreakMode="TailTruncation"
             LineHeight="{OnPlatform Android=1.25,
                                     Default=-1}"
             MaxLines="2"
-            Style="{StaticResource CommonLabelStyle}"
+            Style="{StaticResource DescriptionLabelStyle}"
             Text="{Binding Summary}" />
 
         <StackLayout
@@ -92,39 +79,30 @@
 
             <!--  Product price  -->
             <Label
-                FontFamily="{StaticResource Montserrat-SemiBold}"
                 FontSize="20"
                 HorizontalOptions="Start"
-                Style="{StaticResource CommonLabelStyle}"
+                Style="{StaticResource TitleLabelStyle}"
                 Text="{Binding DiscountPrice, StringFormat='${0:0 }'}"
                 TextColor="{DynamicResource PrimaryColor}" />
 
             <Label
-                FontFamily="{DynamicResource Montserrat-Medium}"
-                FontSize="12"
-                HorizontalOptions="Start"
-                Style="{StaticResource CommonLabelStyle}"
+                Style="{StaticResource SimpleLabelStyle}"
                 Text="{Binding ActualPrice, StringFormat='${0:0.00}'}"
-                TextDecorations="Strikethrough"
-                VerticalTextAlignment="Center" />
+                TextDecorations="Strikethrough" />
 
             <Label
-                FontFamily="{DynamicResource Montserrat-Medium}"
-                FontSize="12"
-                HorizontalOptions="Start"
-                Style="{StaticResource CommonLabelStyle}"
+                Style="{StaticResource SimpleLabelStyle}"
                 Text="{Binding DiscountPercent, StringFormat=' ({0}% OFF)'}"
-                TextColor="{DynamicResource PrimaryColor}"
-                VerticalTextAlignment="Center" />
+                TextColor="{DynamicResource PrimaryColor}" />
 
         </StackLayout>
 
         <StackLayout
             Grid.Row="3"
             Grid.Column="1"
-            Margin="0"
+            Margin="0,0,0,27"
             Padding="0"
-            HorizontalOptions="Start"
+            HorizontalOptions="StartAndExpand"
             Orientation="Horizontal"
             Spacing="0"
             VerticalOptions="Start">
@@ -143,11 +121,16 @@
                     x:Name="QuantityComboBox"
                     BorderColor="{DynamicResource Gray-300}"
                     DataSource="{Binding Quantities}"
+                    DropDownBackgroundColor="{DynamicResource Gray-Bg}"
+                    DropDownBorderColor="{DynamicResource Gray-300}"
+                    DropDownTextColor="{DynamicResource Gray-700}"
+                    HeightRequest="32"
                     HorizontalOptions="StartAndExpand"
                     MaximumDropDownHeight="200"
+                    SelectedDropDownItemColor="Transparent"
                     SelectedItem="{Binding TotalQuantity, Mode=TwoWay}"
                     ShowBorder="False"
-                    Style="{StaticResource CartComboBoxStyle}"
+                    Style="{StaticResource SimpleComboBoxStyle}"
                     TextColor="Transparent"
                     WidthRequest="90">
 
@@ -155,11 +138,10 @@
                         <Label
                             Margin="10,0,24,0"
                             BackgroundColor="Transparent"
-                            FontFamily="{DynamicResource Montserrat-Regular}"
-                            FontSize="14"
-                            HorizontalTextAlignment="Center"
-                            Style="{StaticResource CommonLabelStyle}"
-                            Text="{Binding Source={x:Reference QuantityComboBox}, Path=SelectedItem, StringFormat='QTY: {0}'}" />
+                            FontFamily="Montserrat-Regular"
+                            Style="{StaticResource DescriptionLabelStyle}"
+                            Text="{Binding Source={x:Reference QuantityComboBox}, Path=SelectedItem, StringFormat='QTY: {0}'}"
+                            VerticalTextAlignment="Center" />
                     </combobox:SfComboBox.CustomView>
 
                     <combobox:SfComboBox.DropDownButtonSettings>
@@ -167,7 +149,7 @@
                             <combobox:DropDownButtonSettings.View>
                                 <Label
                                     Margin="0"
-                                    FontFamily="{StaticResource FontIcons}"
+                                    FontFamily="FontIcons"
                                     FontSize="25"
                                     HorizontalTextAlignment="Center"
                                     Text="{StaticResource DropDownButtonIcon}"
@@ -187,12 +169,11 @@
             <!--  Remove button  -->
             <buttons:SfButton
                 helper:RTLHelper.Margin="{OnIdiom Default='44,0,16,0',
-                                                  Phone='24,0,0,0'}"
+                                                  Phone='24,0,16,0'}"
                 CommandParameter="{Binding}"
-                CornerRadius="4"
                 HeightRequest="32"
-                HorizontalOptions="Start"
-                Style="{StaticResource SfButtonStyle}"
+                HorizontalOptions="EndAndExpand"
+                Style="{StaticResource TransparentButtonStyle}"
                 VerticalOptions="Center"
                 WidthRequest="92">
                 <buttons:SfButton.Behaviors>
@@ -203,13 +184,11 @@
                 </buttons:SfButton.Behaviors>
                 <buttons:SfButton.Content>
                     <Label
-                        FontFamily="{StaticResource Montserrat-SemiBold}"
                         FontSize="14"
-                        HorizontalOptions="Center"
-                        HorizontalTextAlignment="Center"
-                        Style="{StaticResource CommonLabelStyle}"
+                        Style="{StaticResource TitleLabelStyle}"
                         Text="Remove"
-                        TextColor="{DynamicResource HyperLink}" />
+                        TextColor="{DynamicResource HyperLink}"
+                        VerticalOptions="Center" />
                 </buttons:SfButton.Content>
             </buttons:SfButton>
         </StackLayout>

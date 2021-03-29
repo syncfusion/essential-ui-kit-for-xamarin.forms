@@ -13,7 +13,7 @@ namespace EssentialUIKit.Views.Navigation
     {
         public AlbumPage()
         {
-            InitializeComponent();
+            this.InitializeComponent();
             this.BindingContext = AlbumDataService.Instance.AlbumViewModel;
         }
     }

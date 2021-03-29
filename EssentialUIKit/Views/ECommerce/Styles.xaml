@@ -51,7 +51,7 @@
     <Style x:Key="IconButtonStyle" TargetType="buttons:SfButton">
         <Setter Property="TextColor" Value="{DynamicResource Gray-600}" />
         <Setter Property="BackgroundColor" Value="{StaticResource Transparent}" />
-        <Setter Property="FontFamily" Value="{StaticResource FontIcons}" />
+        <Setter Property="FontFamily" Value="FontIcons" />
         <Setter Property="FontSize" Value="18" />
         <Setter Property="HorizontalTextAlignment" Value="Center" />
         <Setter Property="VerticalTextAlignment" Value="Center" />
@@ -128,7 +128,7 @@
     <Style x:Key="IconLabelStyle" TargetType="Label">
         <Setter Property="TextColor" Value="{DynamicResource Gray-600}" />
         <Setter Property="BackgroundColor" Value="Transparent" />
-        <Setter Property="FontFamily" Value="{StaticResource FontIcons}" />
+        <Setter Property="FontFamily" Value="FontIcons" />
         <Setter Property="FontSize" Value="18" />
         <Setter Property="HorizontalTextAlignment" Value="Center" />
         <Setter Property="VerticalTextAlignment" Value="Center" />
@@ -179,92 +179,11 @@
         <Setter Property="HeightRequest" Value="48" />
     </Style>
 
-    <!--  Common style for SfSegmentedControl  -->
-    <Style x:Key="SfSegmentedControlStyle" TargetType="buttons:SfSegmentedControl">
-        <Setter Property="FontSize" Value="16" />
-        <Setter Property="FontFamily" Value="Montserrat-Medium" />
-        <Setter Property="FontColor" Value="{DynamicResource Gray-700}" />
-        <Setter Property="SelectionTextColor" Value="{DynamicResource Gray-White}" />
-        <Setter Property="BackgroundColor" Value="Transparent" />
-        <Setter Property="BorderThickness" Value="0" />
-        <Setter Property="SegmentBackgroundColor" Value="{DynamicResource Gray-White}" />
-        <Setter Property="SegmentBorderColor" Value="{DynamicResource Gray-300}" />
-        <Setter Property="SegmentBorderThickness" Value="1" />
-        <Setter Property="SegmentCornerRadius" Value="20" />
-        <Setter Property="SegmentHeight" Value="40" />
-        <Setter Property="SegmentWidth" Value="40" />
-        <Setter Property="SegmentPadding" Value="8" />
-        <Setter Property="SelectionAnimationDuration" Value="0" />
-        <Setter Property="HorizontalOptions" Value="{OnIdiom Default=Start, Phone=Center}" />
-        <Setter Property="SelectionIndicatorSettings">
-            <Setter.Value>
-                <buttons:SelectionIndicatorSettings
-                    CornerRadius="20"
-                    StrokeThickness="0"
-                    Color="{DynamicResource PrimaryColor}" />
-            </Setter.Value>
-        </Setter>
-
-    </Style>
-
-    <!--  Common style for SfListView  -->
-    <Style x:Key="SfListViewStyle" TargetType="listView:SfListView">
-        <Setter Property="BackgroundColor" Value="{DynamicResource Gray-White}" />
-        <Setter Property="FocusBorderThickness" Value="0" />
-        <Setter Property="SelectionBackgroundColor" Value="Transparent" />
-        <Setter Property="IsScrollBarVisible" Value="False" />
-        <Setter Property="VerticalOptions" Value="FillAndExpand" />
-    </Style>
-
-    <!--  Common style for BoxView  -->
-    <Style x:Key="BoxViewStyle" TargetType="BoxView">
-        <Setter Property="Color" Value="{DynamicResource Gray-200}" />
-        <Setter Property="VerticalOptions" Value="Center" />
-    </Style>
-
+   
     <rating:SfRatingSettings
         x:Key="RatingSettings"
         RatedFill="{StaticResource OrangeyYellow}"
         RatedStroke="{StaticResource OrangeyYellow}" />
-
-    <!--  Common style for SfRating  -->
-    <Style x:Key="SfRatingStyle" TargetType="rating:SfRating">
-        <Setter Property="ItemCount" Value="5" />
-        <Setter Property="ReadOnly" Value="True" />
-        <Setter Property="ItemSize" Value="14" />
-        <Setter Property="ItemSpacing" Value="0" />
-        <Setter Property="VerticalOptions" Value="Center" />
-        <Setter Property="HorizontalOptions" Value="Start" />
-    </Style>
-
-    <!--  Common style for SfComboBox  -->
-    <Style x:Key="SfComboBoxStyle" TargetType="combobox:SfComboBox">
-        <Setter Property="DropDownTextColor" Value="{DynamicResource Gray-900}" />
-        <Setter Property="TextSize" Value="16" />
-        <Setter Property="DropDownTextSize" Value="16" />
-        <Setter Property="VerticalOptions" Value="Center" />
-        <Setter Property="FontFamily" Value="Montserrat-Regular" />
-        <Setter Property="DropDownItemFontFamily" Value="Montserrat-Regular" />
-    </Style>
-
-    <!--  Common style for Sort ComboBox  -->
-    <Style
-        x:Key="SortComboBoxStyle"
-        BasedOn="{StaticResource SfComboBoxStyle}"
-        TargetType="combobox:SfComboBox">
-        <Setter Property="HorizontalOptions" Value="Start" />
-        <Setter Property="BorderColor" Value="{DynamicResource Gray-300}" />
-        <Setter Property="HeightRequest" Value="40" />
-        <Setter Property="WidthRequest" Value="246" />
-    </Style>
-
-    <Style
-        x:Key="CartComboBoxStyle"
-        BasedOn="{StaticResource SfComboBoxStyle}"
-        TargetType="combobox:SfComboBox">
-        <Setter Property="WidthRequest" Value="84" />
-        <Setter Property="HeightRequest" Value="32" />
-    </Style>
 
     <combobox:DropDownButtonSettings
         x:Key="DropDownButtonSettings"
@@ -289,7 +208,7 @@
         BasedOn="{StaticResource SfRadioButtonStyle}"
         TargetType="buttons:SfRadioButton">
         <Setter Property="FontSize" Value="14" />
-        <Setter Property="FontFamily" Value="{StaticResource Montserrat-SemiBold}" />
+        <Setter Property="FontFamily" Value="Montserrat-SemiBold" />
     </Style>
 
     <!--  Header Template for Catalog SfListView  -->
@@ -316,13 +235,13 @@
                         Spacing="8"
                         VerticalOptions="Center">
                         <Label
-                            FontFamily="{StaticResource FontIcons}"
+                            FontFamily="FontIcons"
                             FontSize="18"
                             Style="{StaticResource OptionButtonLabelStyle}"
                             Text="{StaticResource Filter}"
                             VerticalTextAlignment="End" />
                         <Label
-                            FontFamily="{StaticResource Montserrat-SemiBold}"
+                            FontFamily="Montserrat-SemiBold"
                             Style="{StaticResource OptionButtonLabelStyle}"
                             Text="Filter"
                             VerticalTextAlignment="Center" />
@@ -341,13 +260,13 @@
                         Orientation="Horizontal"
                         Spacing="8">
                         <Label
-                            FontFamily="{StaticResource FontIcons}"
+                            FontFamily="FontIcons"
                             FontSize="18"
                             Style="{StaticResource OptionButtonLabelStyle}"
                             Text="{StaticResource Sort}"
                             VerticalTextAlignment="End" />
                         <Label
-                            FontFamily="{StaticResource Montserrat-SemiBold}"
+                            FontFamily="Montserrat-SemiBold"
                             Style="{StaticResource OptionButtonLabelStyle}"
                             Text="Sorting" />
                     </StackLayout>
@@ -361,8 +280,7 @@
         <combobox:SfComboBox
             x:Name="comboBox"
             DataSource="{Binding SortOptions}"
-            SelectedValue="{Binding SortOptions[0]}"
-            Style="{StaticResource SortComboBoxStyle}">
+            SelectedValue="{Binding SortOptions[0]}">
 
             <combobox:SfComboBox.CustomView>
                 <Grid>
@@ -385,8 +303,7 @@
             x:Name="comboBox"
             Margin="15"
             DataSource="{Binding SortOptions}"
-            SelectedValue="{Binding SortOptions[0]}"
-            Style="{StaticResource SortComboBoxStyle}">
+            SelectedValue="{Binding SortOptions[0]}">
 
             <combobox:SfComboBox.CustomView>
                 <Grid>
@@ -407,15 +324,11 @@
     </DataTemplate>
 
     <ControlTemplate x:Key="CartTemplate">
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
+        <Grid ColumnDefinitions="Auto, Auto">
             <ContentPresenter />
             <Label
                 Grid.Column="1"
-                FontFamily="{StaticResource Montserrat-SemiBold}"
+                FontFamily="Montserrat-SemiBold"
                 FontSize="14"
                 HorizontalOptions="{OnIdiom Default=EndAndExpand,
                                             Desktop=End}"
@@ -436,7 +349,7 @@
 
     <Style x:Key="FavouriteButtonStyle" TargetType="Button">
         <Setter Property="BackgroundColor" Value="Transparent" />
-        <Setter Property="FontFamily" Value="{StaticResource FontIcons}" />
+        <Setter Property="FontFamily" Value="FontIcons" />
         <Setter Property="FontSize" Value="16" />
         <Setter Property="HeightRequest" Value="32" />
         <Setter Property="HorizontalOptions" Value="End" />

@@ -1,6 +1,4 @@
 ﻿using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
 using EssentialUIKit.Models.Navigation;
 using Xamarin.Forms;
@@ -13,7 +11,7 @@ namespace EssentialUIKit.ViewModels.Navigation
     /// </summary>
     [Preserve(AllMembers = true)]
     [DataContract]
-    public class PhotosViewModel: BaseViewModel
+    public class PhotosViewModel : BaseViewModel
     {
         #region Fields
 
@@ -52,7 +50,7 @@ namespace EssentialUIKit.ViewModels.Navigation
             {
                 return this.imageTapCommand ?? (this.imageTapCommand = new Command(this.OnImageTapped));
             }
-        }       
+        }
 
         #endregion
 

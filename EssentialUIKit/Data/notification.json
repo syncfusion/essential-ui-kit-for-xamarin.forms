@@ -90,5 +90,35 @@
       "time": "2 mins ago",
       "isRead": "true"
     }
+  ],
+  "ecommerceNotificationPageList": [
+    {
+      "notificationIcon": "Delivered",
+      "description": "Delivered: Your package of boAt BassHeads 100 Stereo In-Ear Earphones (Black)",
+      "backgroundColor": "#f29f40",
+      "time": "5 Mins ago",
+      "isRead": "false"
+    },
+    {
+      "notificationIcon": "Offer",
+      "description": "Get 20% OFF on Home Products. Offer Valid for 24 hours.",
+      "backgroundColor": "#6c88ff",
+      "time": "4 hours ago",
+      "isRead": "true"
+    },
+    {
+      "notificationIcon": "FlashSale",
+      "description": "Flash Sale starting tomorrow. Don't forget to check it out.",
+      "backgroundColor": "#a8d35f",
+      "time": "9 hours ago",
+      "isRead": "true"
+    },
+    {
+      "notificationIcon": "Arrived",
+      "description": "Package order #246734 has arrived.",
+      "backgroundColor": "#cf62e2",
+      "time": "9 hours ago",
+      "isRead": "true"
+    }
   ]
 }

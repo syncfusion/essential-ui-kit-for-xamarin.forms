@@ -37,7 +37,7 @@ namespace EssentialUIKit.Behaviors
         /// </summary>
         public ICommand Command
         {
-            get { return (ICommand)GetValue(CommandProperty); }
+            get { return (ICommand)this.GetValue(CommandProperty); }
             set { this.SetValue(CommandProperty, value); }
         }
 
@@ -69,6 +69,20 @@ namespace EssentialUIKit.Behaviors
         #region Method
 
         /// <summary>
+        /// Set animation for header content.
+        /// </summary>
+        private static void SetAnimation(SfExpander expander)
+        {
+            var expanderHeader = (expander as SfExpander).Header as Grid;
+            if (expanderHeader != null && expanderHeader.Children != null && expanderHeader.Children.Count > 0)
+            {
+                var headerContent = expanderHeader.Children[0];
+                headerContent.ScaleTo(1.25, 350, Easing.Linear);
+                headerContent.TranslateTo(5, 0, 350, Easing.Linear);
+            }
+        }
+
+        /// <summary>
         /// Invoked when adding segmentedControl to the view.
         /// </summary>
         /// <param name="expander">Segmented Control</param>
@@ -79,11 +93,10 @@ namespace EssentialUIKit.Behaviors
                 base.OnAttachedTo(expander);
                 this.ExpanderControl = expander;
                 expander.BindingContextChanged += this.OnBindingContextChanged;
-                expander.Expanded += Expander_Expanded;
-                expander.Collapsed += Expander_Collapsed;
+                expander.Expanded += this.Expander_Expanded;
+                expander.Collapsed += this.Expander_Collapsed;
             }
         }
-
 
         /// <summary>
         /// Invoked when exit from the view.
@@ -96,7 +109,7 @@ namespace EssentialUIKit.Behaviors
                 base.OnDetachingFrom(expander);
                 expander.BindingContextChanged -= this.OnBindingContextChanged;
                 expander.Expanded -= this.Expander_Expanded;
-                expander.Collapsed -= Expander_Collapsed;
+                expander.Collapsed -= this.Expander_Collapsed;
                 this.ExpanderControl = null;
             }
         }
@@ -124,10 +137,10 @@ namespace EssentialUIKit.Behaviors
         private void Expander_Expanded(object sender, ExpandedAndCollapsedEventArgs e)
         {
             // Set default value for header content
-            SetDefaultValue();
+            this.SetDefaultValue();
 
             // Set animation for header content.
-            if(sender != null && sender is SfExpander)
+            if (sender != null && sender is SfExpander)
             {
                 SetAnimation(sender as SfExpander);
             }
@@ -137,23 +150,9 @@ namespace EssentialUIKit.Behaviors
                 return;
             }
 
-            if (this.Command.CanExecute(CommandParameter))
+            if (this.Command.CanExecute(this.CommandParameter))
             {
-                this.Command.Execute(CommandParameter);
-            }
-        }
-
-        /// <summary>
-        /// Set animation for header content.
-        /// </summary>
-        private void SetAnimation(SfExpander expander)
-        {
-            var expanderHeader = (expander as SfExpander).Header as Grid;
-            if (expanderHeader != null && expanderHeader.Children != null && expanderHeader.Children.Count > 0)
-            {
-                var headerContent = expanderHeader.Children[0];
-                headerContent.ScaleTo(1.25, 350, Easing.Linear);
-                headerContent.TranslateTo(5, 0, 350, Easing.Linear);
+                this.Command.Execute(this.CommandParameter);
             }
         }
 
@@ -174,10 +173,10 @@ namespace EssentialUIKit.Behaviors
             }
             else
             {
-                if(this.ChildElement != null)
+                if (this.ChildElement != null)
                 {
                     var parentLayout = this.ChildElement as StackLayout;
-                    if (parentLayout != null && parentLayout.Children != null && parentLayout.Children.Count >0 && parentLayout.Children[0] is Frame)
+                    if (parentLayout != null && parentLayout.Children != null && parentLayout.Children.Count > 0 && parentLayout.Children[0] is Frame)
                     {
                         foreach (Frame frame in parentLayout.Children)
                         {
@@ -208,7 +207,7 @@ namespace EssentialUIKit.Behaviors
             // Set default value for header content after collapsed.
             if (sender != null && sender is SfExpander)
             {
-                SetDefaultValue(sender as SfExpander);
+                this.SetDefaultValue(sender as SfExpander);
             }
         }
 

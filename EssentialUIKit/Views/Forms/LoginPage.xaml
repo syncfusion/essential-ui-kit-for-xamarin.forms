@@ -3,6 +3,7 @@
     x:Class="EssentialUIKit.Views.Forms.LoginPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:behaviour="clr-namespace:EssentialUIKit.Behaviors.Forms"
     xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
     xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
     xmlns:control="clr-namespace:EssentialUIKit.Controls"
@@ -14,15 +15,13 @@
     BackgroundImageSource="{core:OnPlatformOrientationStringValue Default=LoginBackground.png,
                                                                   iOSPhoneLandscape=LoginBackground-Landscape.png,
                                                                   iOSTabletLandscape=LoginBackground-Landscape.png}"
-    NavigationPage.HasNavigationBar="False"
-    Style="{StaticResource ContentPageStyle}">
+    NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Resources>
         <ResourceDictionary>
             <converter:BooleanToColorConverter x:Key="ColorConverter" />
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Styles.xaml" />
-            </ResourceDictionary.MergedDictionaries>
+            <converter:InverseBoolConverter x:Key="InverseBoolConverter" />
+            <converter:NameValidationConverter x:Key="FirstValidationErrorConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
 
@@ -33,7 +32,7 @@
 
     <ContentPage.Content>
         <Grid>
-            <gradient:SfGradientView Style="{StaticResource SfGradientViewStyle}" />
+            <gradient:SfGradientView Style="{StaticResource BlueGradientStyle}" />
 
             <ScrollView HorizontalOptions="Center">
                 <ScrollView.VerticalOptions>
@@ -54,82 +53,97 @@
                     WidthRequest="{OnPlatform Default='-1',
                                               UWP='350'}">
 
-                    <Grid RowSpacing="0" VerticalOptions="CenterAndExpand">
-
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
+                    <Grid
+                        RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto"
+                        RowSpacing="0"
+                        VerticalOptions="CenterAndExpand">
 
                         <!--  Label to display the title of this page  -->
                         <Label
-                            FontFamily="{StaticResource Montserrat-SemiBold}"
                             FontSize="20"
-                            HorizontalTextAlignment="Center"
-                            Style="{StaticResource LabelStyle}"
-                            Text="Log In" />
+                            Style="{StaticResource TitleLabelStyle}"
+                            Text="Log In"
+                            TextColor="{DynamicResource Gray-White}" />
 
                         <!--  Label to display the description of this page  -->
                         <Label
                             Grid.Row="1"
                             Margin="0,8"
-                            FontFamily="{StaticResource Montserrat-Medium}"
-                            HorizontalTextAlignment="Center"
-                            Style="{StaticResource LabelStyle}"
-                            Text="Let's get to work" />
+                            Style="{StaticResource DescriptionLabelStyle}"
+                            Text="Let's get to work"
+                            TextColor="{DynamicResource Gray-White}" />
 
                         <!--  Entry to get email ID from user  -->
                         <local:EmailEntry Grid.Row="2" Padding="0,24" />
 
-                        <!--  Entry to get password from user  -->
-                        <border:SfBorder
-                            Grid.Row="3"
-                            BorderColor="{Binding Source={x:Reference PasswordEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=0}"
-                            Style="{StaticResource SfBorderStyle}">
-                            <control:BorderlessEntry
-                                x:Name="PasswordEntry"
-                                IsPassword="True"
-                                Placeholder="Password"
-                                Style="{StaticResource EntryStyle}"
-                                Text="{Binding Password}" />
-                        </border:SfBorder>
+                        <StackLayout Grid.Row="3">
+                            <!--  Entry to get password from user  -->
+                            <border:SfBorder BorderColor="{Binding Source={x:Reference PasswordEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=0}" Style="{StaticResource LoginFormBorderlessEntryBorderStyle}">
+                                <Grid ColumnDefinitions="*, Auto">
+
+                                    <control:BorderlessEntry
+                                        x:Name="PasswordEntry"
+                                        Margin="15,0"
+                                        HeightRequest="40"
+                                        IsPassword="True"
+                                        Placeholder="Password"
+                                        PlaceholderColor="{StaticResource EntryPlaceholderColor}"
+                                        Style="{StaticResource BorderlessEntryStyle}"
+                                        Text="{Binding Password.Value}"
+                                        TextColor="{StaticResource Gray-White}">
+                                        <Entry.Behaviors>
+                                            <behaviour:EntryLineValidationBehaviour IsValid="{Binding Password.IsValid}" />
+                                        </Entry.Behaviors>
+                                    </control:BorderlessEntry>
+
+                                    <!--  Label to display error icon  -->
+                                    <Label
+                                        Grid.Column="1"
+                                        IsVisible="{Binding Path=IsVisible, Source={x:Reference PasswordValidationLabel}}"
+                                        Style="{StaticResource ErrorIconLabelStyle}"
+                                        Text="{StaticResource Error}" />
+                                </Grid>
+                            </border:SfBorder>
+
+                            <!--  Label to display error message  -->
+                            <Label
+                                x:Name="PasswordValidationLabel"
+                                Margin="15,-3,0,0"
+                                IsVisible="{Binding Password.IsValid, Converter={StaticResource InverseBoolConverter}}"
+                                Style="{StaticResource SimpleLabelStyle}"
+                                Text="{Binding Password.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                                TextColor="{DynamicResource Red}"
+                                VerticalOptions="FillAndExpand" />
+                        </StackLayout>
 
                         <!--  Forgot password link  -->
-                        <Label
+                        <buttons:SfButton
                             x:Name="ForgotPasswordLabel"
                             Grid.Row="4"
                             Margin="0,16"
-                            FontFamily="{StaticResource Montserrat-SemiBold}"
+                            Command="{Binding ForgotPasswordCommand}"
                             FontSize="12"
                             HorizontalOptions="End"
+                            Style="{StaticResource TransparentButtonStyle}"
                             Text="FORGOT PASSWORD?"
-                            TextColor="White">
-                            <Label.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding ForgotPasswordCommand}" CommandParameter="{x:Reference ForgotPasswordLabel}" />
-                            </Label.GestureRecognizers>
-                        </Label>
+                            TextColor="{DynamicResource Gray-White}" />
+
 
                         <!--  Login button  -->
                         <buttons:SfButton
                             Grid.Row="5"
                             Margin="0,16"
                             Command="{Binding LoginCommand}"
-                            Style="{StaticResource SfButtonStyle}"
+                            HorizontalOptions="Fill"
+                            Style="{StaticResource GradientButtonStyle}"
                             Text="LOG IN" />
 
 
                         <Label
                             Grid.Row="6"
-                            FontFamily="{StaticResource Montserrat-Medium}"
-                            HorizontalTextAlignment="Center"
-                            Style="{StaticResource LabelStyle}"
-                            Text="Or create an account using social media" />
+                            Style="{StaticResource DescriptionLabelStyle}"
+                            Text="Or log in with your Facebook credentials"
+                            TextColor="{DynamicResource Gray-White}" />
 
                         <!--  Login through facebook account  -->
                         <buttons:SfButton
@@ -145,15 +159,15 @@
                                     Orientation="Horizontal"
                                     VerticalOptions="Center">
                                     <Label
-                                        FontFamily="{StaticResource FontIcons}"
+                                        FontFamily="FontIcons"
                                         FontSize="18"
                                         Text="&#xe735;"
                                         TextColor="{DynamicResource Gray-White}"
                                         VerticalTextAlignment="Center" />
                                     <Label
-                                        FontFamily="{StaticResource Montserrat-Medium}"
+                                        FontFamily="Montserrat-Medium"
                                         FontSize="16"
-                                        Text="Login with Facebook"
+                                        Text="Log In with Facebook"
                                         TextColor="{DynamicResource Gray-White}" />
                                 </StackLayout>
                             </buttons:SfButton.Content>
@@ -175,24 +189,34 @@
                         </StackLayout.Padding>
 
                         <Label
-                            FontFamily="{StaticResource Montserrat-Medium}"
-                            HorizontalOptions="CenterAndExpand"
-                            HorizontalTextAlignment="Center"
-                            Style="{StaticResource LabelStyle}"
+                            Style="{StaticResource DescriptionLabelStyle}"
                             Text="Don't have an account?"
+                            TextColor="{DynamicResource Gray-White}"
                             VerticalTextAlignment="Center" />
 
                         <!--  Sign-up button  -->
                         <buttons:SfButton
                             Command="{Binding SignUpCommand}"
-                            CornerRadius="4"
-                            Style="{StaticResource SfFlatButtonStyle}"
-                            Text="Sign Up" />
+                            Style="{StaticResource TransparentButtonStyle}"
+                            Text="Sign Up"
+                            TextColor="{DynamicResource PrimaryColor}" />
 
                     </StackLayout>
 
                 </StackLayout>
             </ScrollView>
+
+            <!--  Close button  -->
+            <buttons:SfButton
+                Margin="8"
+                Command="{Binding BackButtonCommand}"
+                FontSize="20"
+                HorizontalOptions="End"
+                Style="{StaticResource IconButtonStyle}"
+                Text="{StaticResource Close}"
+                TextColor="{DynamicResource Gray-White}"
+                VerticalOptions="Start" />
+
         </Grid>
     </ContentPage.Content>
 

@@ -21,7 +21,7 @@ namespace EssentialUIKit.Controls
             {
                 var taskInfo = obj as Models.Navigation.Restaurant;
 
-                if ( taskInfo == null || string.IsNullOrEmpty(taskInfo.Name) || string.IsNullOrEmpty(taskInfo.Description) ||
+                if (taskInfo == null || string.IsNullOrEmpty(taskInfo.Name) || string.IsNullOrEmpty(taskInfo.Description) ||
                     string.IsNullOrEmpty(taskInfo.Offer) || string.IsNullOrEmpty(taskInfo.ItemRating))
                 {
                     return false;
@@ -32,6 +32,7 @@ namespace EssentialUIKit.Controls
                        taskInfo.Offer.ToUpperInvariant().Contains(this.SearchText.ToUpperInvariant()) ||
                        taskInfo.ItemRating.ToUpperInvariant().Contains(this.SearchText.ToUpperInvariant());
             }
+
             return false;
         }
         #endregion

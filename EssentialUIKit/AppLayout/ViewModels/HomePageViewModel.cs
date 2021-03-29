@@ -2,38 +2,40 @@
 using System.IO;
 using System.Reflection;
 using System.Xml;
+using EssentialUIKit.AppLayout.Models;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
-using EssentialUIKit.AppLayout.Models;
 
 namespace EssentialUIKit.AppLayout.ViewModels
 {
     [Preserve(AllMembers = true)]
     public class HomePageViewModel
     {
-        private const string sampleListFile = "EssentialUIKit.AppLayout.TemplateList.xml";
-
-        public List<Category> Templates { get; set; }
+        private const string SampleListFile = "EssentialUIKit.AppLayout.TemplateList.xml";
 
         /// <summary>
         /// Initializes a new instance for the <see cref="HomePageViewModel" /> class.
         /// </summary>
         public HomePageViewModel()
         {
-            Templates = new List<Category>();
-            PopulateList();
+            this.Templates = new List<Category>();
+            this.PopulateList();
         }
+
+        public List<Category> Templates { get; private set; }
 
         private void PopulateList()
         {
-            Templates.Clear();
+            this.Templates.Clear();
 
             var assembly = typeof(App).GetTypeInfo().Assembly;
-            var stream = assembly.GetManifestResourceStream(sampleListFile);
+            var stream = assembly.GetManifestResourceStream(SampleListFile);
 
             using (var reader = new StreamReader(stream))
             {
+#pragma warning disable CA2000 // Dispose objects before losing scope
                 var xmlReader = XmlReader.Create(reader);
+#pragma warning restore CA2000 // Dispose objects before losing scope
                 xmlReader.Read();
                 Category category = null;
                 var hasAdded = false;
@@ -44,15 +46,15 @@ namespace EssentialUIKit.AppLayout.ViewModels
                     switch (xmlReader.Name)
                     {
                         case "Category" when xmlReader.IsStartElement() && xmlReader.HasAttributes:
-                        {
-                            if (!hasAdded && category != null)
                             {
-                                Templates.Add(category);
-                                category = null;
-                                hasAdded = true;
-                            }
+                                if (!hasAdded && category != null)
+                                {
+                                    this.Templates.Add(category);
+                                    category = null;
+                                    hasAdded = true;
+                                }
 
-                            var platform = GetDataFromXmlReader(xmlReader, "Platform");
+                                var platform = GetDataFromXmlReader(xmlReader, "Platform");
                                 if (string.IsNullOrEmpty(platform) || platform.ToUpperInvariant().Contains(runtimePlatform))
                                 {
                                     var categoryName = GetDataFromXmlReader(xmlReader, "Name");
@@ -63,7 +65,7 @@ namespace EssentialUIKit.AppLayout.ViewModels
                                     string updateType = string.Empty;
                                     bool isUpdate = false;
 
-                                    if (null != xmlReader.GetAttribute("IsUpdated"))
+                                    if (xmlReader.GetAttribute("IsUpdated") != null)
                                     {
                                         if (GetDataFromXmlReader(xmlReader, "IsUpdated") == "True")
                                         {
@@ -72,7 +74,7 @@ namespace EssentialUIKit.AppLayout.ViewModels
                                         }
                                     }
 
-                                    if (null != xmlReader.GetAttribute("IsNew"))
+                                    if (xmlReader.GetAttribute("IsNew") != null)
                                     {
                                         if (GetDataFromXmlReader(xmlReader, "IsNew") == "True")
                                         {
@@ -80,28 +82,34 @@ namespace EssentialUIKit.AppLayout.ViewModels
                                             isUpdate = true;
                                         }
                                     }
-                                    
+
                                     category = new Category(categoryName, icon, description, updateType, isUpdate);
                                 }
 
-                            break;
-                        }
+                                break;
+                            }
 
                         case "Page" when xmlReader.IsStartElement() && xmlReader.HasAttributes && category != null:
-                        {
-                            var platform = GetDataFromXmlReader(xmlReader, "Platform");
-
-                            if (string.IsNullOrEmpty(platform) || platform.ToUpperInvariant().Contains(runtimePlatform))
                             {
-                                var templateName = GetDataFromXmlReader(xmlReader, "Name");
-                                var description = GetDataFromXmlReader(xmlReader, "Description");
-                                var pageName = GetDataFromXmlReader(xmlReader, "PageName");
-                                bool.TryParse(GetDataFromXmlReader(xmlReader, "LayoutFullscreen"),
-                                    out var layoutFullScreen);
+                                var platform = GetDataFromXmlReader(xmlReader, "Platform");
+
+                                if (string.IsNullOrEmpty(platform) || platform.ToUpperInvariant().Contains(runtimePlatform))
+                                {
+                                    var templateName = GetDataFromXmlReader(xmlReader, "Name");
+                                    var description = GetDataFromXmlReader(xmlReader, "Description");
+                                    var pageName = GetDataFromXmlReader(xmlReader, "PageName");
+                                    var templateImage = $"EssentialUIKit.TemplateImage.LightTheme.{GetDataFromXmlReader(xmlReader, "Image")}";
+                                    var templateDarkImage = $"EssentialUIKit.TemplateImage.DarkTheme.{GetDataFromXmlReader(xmlReader, "DarkImage")}";
+
+                                    if (bool.TryParse(GetDataFromXmlReader(xmlReader, "LayoutFullscreen"), out var layoutFullScreen))
+                                    {
+                                        // Do Nothing
+                                    }
+
                                     string updateType = string.Empty;
                                     bool isUpdate = false;
 
-                                    if (null != xmlReader.GetAttribute("IsUpdated"))
+                                    if (xmlReader.GetAttribute("IsUpdated") != null)
                                     {
                                         if (GetDataFromXmlReader(xmlReader, "IsUpdated") == "True")
                                         {
@@ -110,7 +118,7 @@ namespace EssentialUIKit.AppLayout.ViewModels
                                         }
                                     }
 
-                                    if (null != xmlReader.GetAttribute("IsNew"))
+                                    if (xmlReader.GetAttribute("IsNew") != null)
                                     {
                                         if (GetDataFromXmlReader(xmlReader, "IsNew") == "True")
                                         {
@@ -119,16 +127,16 @@ namespace EssentialUIKit.AppLayout.ViewModels
                                         }
                                     }
 
-                                    var template = new Template(templateName, description, pageName, layoutFullScreen, updateType, isUpdate);
-                                Routing.RegisterRoute(templateName,
-                                    assembly.GetType($"EssentialUIKit.{pageName}"));
+                                    var template = new Template(templateName, description, pageName, layoutFullScreen, updateType, isUpdate, templateImage, templateDarkImage);
 
-                                category.Pages.Add(template);
-                                hasAdded = false;
+                                    Routing.RegisterRoute(templateName, assembly.GetType($"EssentialUIKit.{pageName}"));
+
+                                    category.Pages.Add(template);
+                                    hasAdded = false;
+                                }
+
+                                break;
                             }
-
-                            break;
-                        }
                     }
 
                     xmlReader.Read();
@@ -136,7 +144,7 @@ namespace EssentialUIKit.AppLayout.ViewModels
 
                 if (!hasAdded)
                 {
-                    Templates.Add(category);
+                    this.Templates.Add(category);
                 }
             }
         }
@@ -148,10 +156,11 @@ namespace EssentialUIKit.AppLayout.ViewModels
                 reader.MoveToAttribute(attribute);
                 return reader.Value;
             }
+
             return string.Empty;
         }
 
-        private string GetUpdateType(string value, string type)
+        private static string GetUpdateType(string value, string type)
         {
             if (value == "true" && (type == "IsNew" || type == "IsPreview"))
             {
@@ -165,6 +174,5 @@ namespace EssentialUIKit.AppLayout.ViewModels
 
             return string.Empty;
         }
-
     }
 }

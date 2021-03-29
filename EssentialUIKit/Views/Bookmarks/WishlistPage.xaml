@@ -8,6 +8,7 @@
     xmlns:controls="clr-namespace:EssentialUIKit.Controls"
     xmlns:converter="clr-namespace:EssentialUIKit.Converters"
     xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+    xmlns:syncEffectsView="clr-namespace:Syncfusion.XForms.EffectsView;assembly=Syncfusion.Core.XForms"
     xmlns:template="clr-namespace:EssentialUIKit.Views.Templates"
     x:Name="wishlistPage"
     Title="Wishlist"
@@ -16,34 +17,22 @@
 
     <ContentPage.Resources>
         <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Styles.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-
             <converter:IntToThicknessConverter x:Key="intToThicknessConverter" />
-
+            <converter:DynamicResourceToColorConverter x:Key="DynamicResourceToColorConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
 
     <ContentPage.Content>
 
-        <Grid RowSpacing="0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
+        <Grid RowDefinitions="Auto, *" RowSpacing="0">
 
             <!--  Title View  -->
-            <controls:TitleView
-                Title="Wishlist"
-                Grid.Row="0"
-                BackgroundColor="{DynamicResource Gray-White}">
+            <controls:TitleView Title="Wishlist" Grid.Row="0">
                 <controls:TitleView.LeadingView>
                     <buttons:SfButton
                         x:Name="backButton"
                         Command="{Binding Path=BindingContext.BackButtonCommand, Source={x:Reference wishlistPage}}"
                         CommandParameter="{x:Reference backButton}"
-                        CornerRadius="4"
                         Style="{StaticResource IconButtonStyle}"
                         Text="{StaticResource Back}" />
                 </controls:TitleView.LeadingView>
@@ -60,7 +49,6 @@
                             <badge:SfBadgeView.Content>
                                 <buttons:SfButton
                                     Command="{Binding Path=BindingContext.CardItemCommand, Source={x:Reference WishlistLayout}}"
-                                    CornerRadius="4"
                                     Style="{StaticResource IconButtonStyle}"
                                     Text="{StaticResource Cart}" />
                             </badge:SfBadgeView.Content>
@@ -71,7 +59,7 @@
                                     BadgeIcon="None"
                                     BadgeType="None"
                                     FontSize="10"
-                                    Stroke="{DynamicResource Gray-White}"
+                                    Stroke="{DynamicResource Gray-Bg}"
                                     StrokeWidth="1"
                                     Offset="-10,10" />
                             </badge:SfBadgeView.BadgeSettings>
@@ -86,9 +74,9 @@
                 Grid.Row="1"
                 AllowSwiping="True"
                 BackgroundColor="{OnIdiom Default={StaticResource Transparent},
-                                          Desktop={StaticResource Gray-White},
+                                          Desktop={StaticResource Gray-Bg},
                                           Converter={StaticResource DynamicResourceToColorConverter}}"
-                ItemSize="120"
+                ItemSize="130"
                 ItemsSource="{Binding WishlistDetails}"
                 SelectionMode="None"
                 SwipeOffset="88"
@@ -96,7 +84,14 @@
 
                 <listView:SfListView.ItemTemplate>
                     <DataTemplate>
-                        <template:WishlistItemTemplate ParentBindingContext="{Binding Path=BindingContext, Source={x:Reference wishlistPage}}" />
+                        <syncEffectsView:SfEffectsView
+                            Margin="0,16,0,0"
+                            RippleColor="{DynamicResource Gray-300}"
+                            TouchDownEffects="Ripple"
+                            TouchUpCommand="{Binding Path=BindingContext.ItemTappedCommand, Source={x:Reference wishlistPage}}"
+                            TouchUpCommandParameter="{Binding}">
+                            <template:WishlistItemTemplate ParentBindingContext="{Binding Path=BindingContext, Source={x:Reference wishlistPage}}" />
+                        </syncEffectsView:SfEffectsView>
                     </DataTemplate>
                 </listView:SfListView.ItemTemplate>
 
@@ -109,7 +104,7 @@
                             VerticalOptions="Fill">
                             <Label
                                 BackgroundColor="Transparent"
-                                FontFamily="{StaticResource FontIcons}"
+                                FontFamily="FontIcons"
                                 FontSize="30"
                                 HorizontalOptions="Center"
                                 Text="{StaticResource Delete}"

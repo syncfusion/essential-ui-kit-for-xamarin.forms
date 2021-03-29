@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
 
@@ -16,7 +13,7 @@ namespace EssentialUIKit.Views.Forms
     {
         public AddProfilePage()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }

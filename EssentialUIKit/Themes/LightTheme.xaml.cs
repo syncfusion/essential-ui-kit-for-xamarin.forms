@@ -9,7 +9,7 @@ namespace EssentialUIKit.Themes
     {
         public LightTheme()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }

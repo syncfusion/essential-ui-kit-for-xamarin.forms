@@ -1,10 +1,11 @@
 ﻿using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
+using System.Reflection;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Json;
 using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
-using ProfileModel = EssentialUIKit.Models.Profile;
+using ProfileModel = EssentialUIKit.Models.UserProfile;
 
 namespace EssentialUIKit.ViewModels.Social
 {
@@ -12,15 +13,34 @@ namespace EssentialUIKit.ViewModels.Social
     /// ViewModel for social profile pages.
     /// </summary>
     [Preserve(AllMembers = true)]
+    [DataContract]
     public class SocialProfileViewModel : BaseViewModel
     {
         #region Fields
+
+        private static SocialProfileViewModel socialProfileViewModel;
 
         private ObservableCollection<ProfileModel> interests;
 
         private ObservableCollection<ProfileModel> connnections;
 
-        private ObservableCollection<string> pictures;
+        private ObservableCollection<ProfileModel> pictures;
+
+        private string headerImagePath;
+
+        private string profileImage;
+
+        private string backgroundImage;
+
+        private Command messageCommand;
+
+        private Command addConnectionCommand;
+
+        private Command imageTapCommand;
+
+        private Command profileSelectedCommand;
+
+        private Command settingsCommand;
 
         #endregion
 
@@ -29,92 +49,24 @@ namespace EssentialUIKit.ViewModels.Social
         /// <summary>
         /// Initializes a new instance for the <see cref="SocialProfileViewModel" /> class.
         /// </summary>
-        public SocialProfileViewModel()
+        static SocialProfileViewModel()
         {
-            this.HeaderImagePath = App.BaseImageUrl + "Album2.png";
-            this.ProfileImage = App.BaseImageUrl + "ProfileImage16.png";
-            this.ProfileName = "Lela Cortez";
-            this.Designation = "Designer";
-            this.State = "San Francisco";
-            this.Country = "CA";
-            this.About = "I’m a UMN graduate (go Gophers!) and Minnesota native, but I’m already loving my new home in the Golden Gate City! I can’t wait to explore more of the great music scene here.";
-            this.PostsCount = 8;
-            this.FollowersCount = 45;
-            this.FollowingCount = 45;
-
-            this.Interests = new ObservableCollection<ProfileModel>()
-            {
-                 new ProfileModel { Name = "Food", ImagePath = App.BaseImageUrl + "Recipe12.png" },
-                 new ProfileModel { Name = "Travel", ImagePath = App.BaseImageUrl + "Album5.png" },
-                 new ProfileModel { Name = "Music", ImagePath = App.BaseImageUrl + "ArticleImage7.jpg" },
-                 new ProfileModel { Name = "Bags", ImagePath = App.BaseImageUrl + "Accessories.png" },
-                 new ProfileModel { Name = "Market", ImagePath = App.BaseImageUrl + "PersonalCare.png" },
-                 new ProfileModel { Name = "Food", ImagePath = App.BaseImageUrl + "Recipe12.png" },
-                 new ProfileModel { Name = "Travel", ImagePath = App.BaseImageUrl + "Album5.png" },
-                 new ProfileModel { Name = "Music", ImagePath = App.BaseImageUrl + "ArticleImage7.jpg" },
-                 new ProfileModel { Name = "Bags", ImagePath = App.BaseImageUrl + "Accessories.png" },
-                 new ProfileModel { Name = "Market", ImagePath = App.BaseImageUrl + "PersonalCare.png" },
-            };
-
-            this.Connections = new ObservableCollection<ProfileModel>()
-            {
-                 new ProfileModel { Name = "Rose King", ImagePath = App.BaseImageUrl + "ProfileImage7.png" },
-                 new ProfileModel { Name = "Jeanette Bell", ImagePath = App.BaseImageUrl + "ProfileImage9.png" },
-                 new ProfileModel { Name = "Lily Castro", ImagePath = App.BaseImageUrl + "ProfileImage10.png" },
-                 new ProfileModel { Name = "Susie Moss", ImagePath = App.BaseImageUrl + "ProfileImage11.png" },
-                 new ProfileModel { Name = "Rose King", ImagePath = App.BaseImageUrl + "ProfileImage7.png" },
-                 new ProfileModel { Name = "Jeanette Bell", ImagePath = App.BaseImageUrl + "ProfileImage9.png" },
-                 new ProfileModel { Name = "Lily Castro", ImagePath = App.BaseImageUrl + "ProfileImage10.png" },
-                 new ProfileModel { Name = "Susie Moss", ImagePath = App.BaseImageUrl + "ProfileImage11.png" },
-            };
-
-            this.Pictures = new ObservableCollection<string>()
-            {
-                 App.BaseImageUrl + "ProfileImage8.png",
-                 App.BaseImageUrl + "Album6.png",
-                 App.BaseImageUrl + "ArticleImage4.jpg",
-                 App.BaseImageUrl + "Recipe17.png",
-                 App.BaseImageUrl + "ArticleImage5.jpg",
-                 App.BaseImageUrl + "Mask.png",
-            };
-
-            this.FollowCommand = new Command(this.FollowClicked);
-            this.AddConnectionCommand = new Command(this.AddConnectionClicked);
-            this.ImageTapCommand = new Command(this.ImageClicked);
-            this.ProfileSelectedCommand = new Command(this.ProfileClicked);
         }
-
-        #endregion
-
-        #region Commands
-
-        /// <summary>
-        /// Gets or sets the command that is executed when the Follow button is clicked.
-        /// </summary>
-        public ICommand FollowCommand { get; set; }
-
-        /// <summary>
-        /// Gets or sets the command that is executed when the AddConnection button is clicked.
-        /// </summary>
-        public ICommand AddConnectionCommand { get; set; }
-
-        /// <summary>
-        /// Gets or sets the command that is executed when the Image is tapped.
-        /// </summary>
-        public ICommand ImageTapCommand { get; set; }
-
-        /// <summary>
-        /// Gets or sets the command that is executed when the profile item is tapped.
-        /// </summary>
-        public ICommand ProfileSelectedCommand { get; set; }
 
         #endregion
 
         #region Properties
 
         /// <summary>
+        /// Gets or sets the value of social profile view model.
+        /// </summary>
+        public static SocialProfileViewModel BindingContext =>
+            socialProfileViewModel = PopulateData<SocialProfileViewModel>("social.json");
+
+        /// <summary>
         /// Gets or sets the interests collection.
         /// </summary>
+        [DataMember(Name = "interests")]
         public ObservableCollection<ProfileModel> Interests
         {
             get
@@ -124,14 +76,14 @@ namespace EssentialUIKit.ViewModels.Social
 
             set
             {
-                this.interests = value;
-                this.NotifyPropertyChanged();
+                this.SetProperty(ref this.interests, value);
             }
         }
 
         /// <summary>
         /// Gets or sets the connections collection.
         /// </summary>
+        [DataMember(Name = "connections")]
         public ObservableCollection<ProfileModel> Connections
         {
             get
@@ -141,15 +93,15 @@ namespace EssentialUIKit.ViewModels.Social
 
             set
             {
-                this.connnections = value;
-                this.NotifyPropertyChanged();
+                this.SetProperty(ref this.connnections, value);
             }
         }
 
         /// <summary>
         /// Gets or sets the photos collection.
         /// </summary>
-        public ObservableCollection<string> Pictures
+        [DataMember(Name = "pictures")]
+        public ObservableCollection<ProfileModel> Pictures
         {
             get
             {
@@ -158,70 +110,179 @@ namespace EssentialUIKit.ViewModels.Social
 
             set
             {
-                this.pictures = value;
-                this.NotifyPropertyChanged();
+                this.SetProperty(ref this.pictures, value);
             }
         }
 
         /// <summary>
         /// Gets or sets the header image path.
         /// </summary>
-        public string HeaderImagePath { get; set; }
+        [DataMember(Name = "headerImagePath")]
+        public string HeaderImagePath
+        {
+            get { return App.ImageServerPath + this.headerImagePath; }
+            set { this.headerImagePath = value; }
+        }
 
         /// <summary>
         /// Gets or sets the profile image.
         /// </summary>
-        public string ProfileImage { get; set; }
+        [DataMember(Name = "profileImage")]
+        public string ProfileImage
+        {
+            get { return App.ImageServerPath + this.profileImage; }
+            set { this.profileImage = value; }
+        }
+
+        /// <summary>
+        /// Gets or sets the background image.
+        /// </summary>
+        [DataMember(Name = "backgroundImage")]
+        public string BackgroundImage
+        {
+            get { return App.ImageServerPath + this.backgroundImage; }
+            set { this.backgroundImage = value; }
+        }
 
         /// <summary>
         /// Gets or sets the profile name
         /// </summary>
+        [DataMember(Name = "profileName")]
         public string ProfileName { get; set; }
 
         /// <summary>
         /// Gets or sets the designation
         /// </summary>
+        [DataMember(Name = "designation")]
         public string Designation { get; set; }
 
         /// <summary>
         /// Gets or sets the state
         /// </summary>
+        [DataMember(Name = "state")]
         public string State { get; set; }
 
         /// <summary>
         /// Gets or sets the country
         /// </summary>
+        [DataMember(Name = "country")]
         public string Country { get; set; }
 
         /// <summary>
         /// Gets or sets the about
         /// </summary>
+        [DataMember(Name = "about")]
         public string About { get; set; }
 
         /// <summary>
         /// Gets or sets the posts count
         /// </summary>
+        [DataMember(Name = "postsCount")]
         public int PostsCount { get; set; }
 
         /// <summary>
         /// Gets or sets the followers count
         /// </summary>
+        [DataMember(Name = "followersCount")]
         public int FollowersCount { get; set; }
 
         /// <summary>
         /// Gets or sets the followings count
         /// </summary>
+        [DataMember(Name = "followingCount")]
         public int FollowingCount { get; set; }
 
         #endregion
-        
+
+        #region Commands
+
+        /// <summary>
+        /// Gets or sets the command that is executed when the message button is clicked.
+        /// </summary>
+        public ICommand MessageCommand
+        {
+            get
+            {
+                return this.messageCommand ?? (this.messageCommand = new Command(this.MessageClicked));
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the command that is executed when the AddConnection button is clicked.
+        /// </summary>
+        public ICommand AddConnectionCommand
+        {
+            get
+            {
+                return this.addConnectionCommand ?? (this.addConnectionCommand = new Command(this.AddConnectionClicked));
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the command that is executed when the Image is tapped.
+        /// </summary>
+        public ICommand ImageTapCommand
+        {
+            get
+            {
+                return this.imageTapCommand ?? (this.imageTapCommand = new Command(this.ImageClicked));
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the command that is executed when the profile item is tapped.
+        /// </summary>
+        public ICommand ProfileSelectedCommand
+        {
+            get
+            {
+                return this.profileSelectedCommand ?? (this.profileSelectedCommand = new Command(this.ProfileClicked));
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the command that is executed when the setting button is tapped.
+        /// </summary>
+        public ICommand SettingsCommand
+        {
+            get
+            {
+                return this.settingsCommand ?? (this.settingsCommand = new Command(this.SettingButtonClicked));
+            }
+        }
+
+        #endregion
+
         #region Methods
 
         /// <summary>
-        /// Invoked when the Follow button is clicked.
+        /// Populates the data for view model from json file.
+        /// </summary>
+        /// <typeparam name="T">Type of view model.</typeparam>
+        /// <param name="fileName">Json file to fetch data.</param>
+        /// <returns>Returns the view model object.</returns>
+        private static T PopulateData<T>(string fileName)
+        {
+            var file = "EssentialUIKit.Data." + fileName;
+
+            var assembly = typeof(App).GetTypeInfo().Assembly;
+
+            T data;
+
+            using (var stream = assembly.GetManifestResourceStream(file))
+            {
+                var serializer = new DataContractJsonSerializer(typeof(T));
+                data = (T)serializer.ReadObject(stream);
+            }
+
+            return data;
+        }
+
+        /// <summary>
+        /// Invoked when the message button is clicked.
         /// </summary>
         /// <param name="obj">The Object</param>
-        private void FollowClicked(object obj)
+        private void MessageClicked(object obj)
         {
             // Do something
         }
@@ -249,6 +310,15 @@ namespace EssentialUIKit.ViewModels.Social
         /// </summary>
         /// <param name="obj">The Object</param>
         private void ProfileClicked(object obj)
+        {
+            // Do something
+        }
+
+        /// <summary>
+        /// Invoked when the setting button is tapped.
+        /// </summary>
+        /// <param name="obj">The Object</param>
+        private void SettingButtonClicked(object obj)
         {
             // Do something
         }

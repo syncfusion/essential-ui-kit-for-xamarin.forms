@@ -14,20 +14,20 @@ namespace EssentialUIKit.iOS
         protected override void OnElementChanged(ElementChangedEventArgs<ListView> e)
         {
             base.OnElementChanged(e);
-            if (e.NewElement != null)
+            if (e?.NewElement != null)
             {
                 (e.NewElement as ParallaxListView).WidthInPixel =
                     UIScreen.MainScreen.Scale * UIScreen.MainScreen.Bounds.Width;
                 if (this.Control != null)
                 {
-                    this.Control.Delegate = new TableViewDelegate(e.NewElement as ParallaxListView, Control);
+                    this.Control.Delegate = new TableViewDelegate(e.NewElement as ParallaxListView, this.Control);
                 }
 
                 this.Control.Bounces = false;
             }
         }
 
-        public class TableViewDelegate : UITableViewDelegate
+        internal class TableViewDelegate : UITableViewDelegate
         {
             private ParallaxListView listView;
 

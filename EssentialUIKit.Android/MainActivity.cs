@@ -2,6 +2,7 @@
 using Android.Content.PM;
 using Android.OS;
 using Android.Views;
+using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration.AndroidSpecific;
 
 namespace EssentialUIKit.Droid
@@ -11,12 +12,14 @@ namespace EssentialUIKit.Droid
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         protected override void OnCreate(Bundle savedInstanceState)
-        {   
-            Window.AddFlags(WindowManagerFlags.DrawsSystemBarBackgrounds);
+        {
+            this.Window.AddFlags(WindowManagerFlags.DrawsSystemBarBackgrounds);
 
             base.OnCreate(savedInstanceState);
 
-            Xamarin.Forms.Forms.Init(this, savedInstanceState);
+            Forms.SetFlags("CollectionView_Experimental");
+
+            Forms.Init(this, savedInstanceState);
 
             Syncfusion.XForms.Android.PopupLayout.SfPopupLayoutRenderer.Init();
 

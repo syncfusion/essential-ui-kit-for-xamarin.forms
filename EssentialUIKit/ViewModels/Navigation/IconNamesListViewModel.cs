@@ -1,7 +1,7 @@
-﻿using Xamarin.Forms;
-using EssentialUIKit.Models.Navigation;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Runtime.Serialization;
+using EssentialUIKit.Models.Navigation;
+using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 
 namespace EssentialUIKit.ViewModels.Navigation
@@ -28,7 +28,6 @@ namespace EssentialUIKit.ViewModels.Navigation
         /// </summary>
         public IconNamesListViewModel()
         {
-
         }
         #endregion
 
@@ -81,7 +80,7 @@ namespace EssentialUIKit.ViewModels.Navigation
         /// <param name="obj">The Object</param>
         private void NextClicked(object obj)
         {
-            //Do something
+            // Do something
         }
 
         #endregion

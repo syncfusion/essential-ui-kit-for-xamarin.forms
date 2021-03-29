@@ -1,64 +1,47 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="EssentialUIKit.Views.Navigation.PhotosPage"
-             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
-             xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
-             xmlns:data="clr-namespace:Syncfusion.DataSource;assembly=Syncfusion.DataSource.Portable"
-             xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
-             BackgroundColor="{DynamicResource Gray-White}"
-             NavigationPage.HasNavigationBar="False">
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Styles.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </ContentPage.Resources>
+<ContentPage
+    x:Class="EssentialUIKit.Views.Navigation.PhotosPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:controls="clr-namespace:EssentialUIKit.Controls"
+    xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
+    xmlns:data="clr-namespace:Syncfusion.DataSource;assembly=Syncfusion.DataSource.Portable"
+    xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+    xmlns:syncEffectsView="clr-namespace:Syncfusion.XForms.EffectsView;assembly=Syncfusion.Core.XForms"
+    x:Name="photosPage"
+    BackgroundColor="{DynamicResource Gray-Bg}"
+    NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <StackLayout>
-            <Grid Padding="10,10,10,5">
+            <!--  Title View  -->
+            <controls:TitleView Title="Photos" Grid.Row="0">
+                <controls:TitleView.LeadingView>
+                    <buttons:SfButton
+                        x:Name="backButton"
+                        Command="{Binding BindingContext.BackButtonCommand, Source={x:Reference listView}}"
+                        CommandParameter="{x:Reference backButton}"
+                        Style="{StaticResource IconButtonStyle}"
+                        Text="{StaticResource Back}" />
+                </controls:TitleView.LeadingView>
+                <controls:TitleView.TrailingView>
+                    <StackLayout HorizontalOptions="End" Orientation="Horizontal">
+                        <buttons:SfButton
+                            Command="{Binding BindingContext.EditCommand, Source={x:Reference listView}}"
+                            Style="{StaticResource IconButtonStyle}"
+                            Text="{StaticResource Edit}" />
+                    </StackLayout>
+                </controls:TitleView.TrailingView>
+            </controls:TitleView>
 
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-
-                <!--  Title  -->
-                <Label
-                    FontFamily="{StaticResource Montserrat-Medium}"
-                    FontSize="16"
-                    HorizontalOptions="CenterAndExpand"
-                    LineHeight="{OnPlatform Android=1.5,
-                                            Default=-1}"
-                    Text="Photos"
-                    TextColor="{DynamicResource Gray-900}"
-                    VerticalOptions="Center" />
-
-                <!--  Add button  -->
-                <buttons:SfButton
-                    Padding="0"
-                    BackgroundColor="{DynamicResource Gray-White}"
-                    Command="{Binding EditCommand}"
-                    CornerRadius="5"
-                    FontFamily="{StaticResource FontIcons}"
-                    FontSize="18"
-                    HorizontalOptions="End"
-                    Text="{StaticResource EditIcon}"
-                    TextColor="{DynamicResource Gray-600}"
-                    VerticalOptions="Center"
-                    WidthRequest="40" />
-
-            </Grid>
-            
-            <BoxView Style="{StaticResource BoxViewStyle}" />
-
-            <listView:SfListView ItemsSource="{Binding Photos}" 
-                                 Padding="15,0,15,15"
-                                 ItemSize="90" 
-                                 ItemSpacing="4"  
-                                 IsScrollBarVisible="False"
-                                 SelectionBackgroundColor="Transparent"              
-                                 TapCommand="{Binding ImageTapCommand}">
+            <listView:SfListView
+                x:Name="listView"
+                Padding="15,0,15,15"
+                IsScrollBarVisible="False"
+                ItemSize="90"
+                ItemSpacing="4"
+                ItemsSource="{Binding Photos}"
+                SelectionBackgroundColor="Transparent">
 
                 <listView:SfListView.DataSource>
                     <data:DataSource>
@@ -71,40 +54,53 @@
                 <listView:SfListView.GroupHeaderTemplate>
                     <DataTemplate>
                         <StackLayout Orientation="Horizontal">
-                            <Label Text="{Binding Key,StringFormat='{0:MMMM dd, yyyy}'}" 
-                                   FontFamily="{StaticResource Montserrat-SemiBold}"
-                                   FontSize="12"
-                                   Margin="0,5,0,0"
-                                   LineHeight="{OnPlatform Android=1.25,
+                            <Label
+                                Margin="0,5,0,0"
+                                FontFamily="Montserrat-SemiBold"
+                                FontSize="12"
+                                HorizontalOptions="StartAndExpand"
+                                LineHeight="{OnPlatform Android=1.25,
                                                         Default=-1}"
-                                   TextColor="{DynamicResource Gray-800}"
-                                   VerticalOptions="Center"
-                                   HorizontalOptions="StartAndExpand"/>
+                                Text="{Binding Key, StringFormat='{0:MMMM dd, yyyy}'}"
+                                TextColor="{DynamicResource Gray-800}"
+                                VerticalOptions="Center" />
                         </StackLayout>
                     </DataTemplate>
                 </listView:SfListView.GroupHeaderTemplate>
 
                 <listView:SfListView.ItemTemplate>
                     <DataTemplate>
-                        <Grid BackgroundColor="{DynamicResource Gray-200}">
-                            <Image Aspect="Fill"
-                                   BackgroundColor="{DynamicResource Gray-200}"
-                                   HeightRequest="90" 
-                                   WidthRequest="114">
-                                  <Image.Source>
-                                      <UriImageSource Uri="{Binding ImageURL}"
-                                                      CacheValidity="14"
-                                                      CachingEnabled="true"/>
-                                </Image.Source>
-                            </Image>
-                        </Grid>
+                        <syncEffectsView:SfEffectsView
+                            RippleColor="{DynamicResource Gray-300}"
+                            TouchDownEffects="Ripple"
+                            TouchUpCommand="{Binding Path=BindingContext.ImageTapCommand, Source={x:Reference photosPage}}"
+                            TouchUpCommandParameter="{Binding}">
+                            <Grid BackgroundColor="{DynamicResource Gray-200}">
+                                <Image
+                                    Aspect="AspectFill"
+                                    BackgroundColor="{DynamicResource Gray-200}"
+                                    HeightRequest="90"
+                                    WidthRequest="114">
+                                    <Image.Source>
+                                        <UriImageSource
+                                            CacheValidity="14"
+                                            CachingEnabled="true"
+                                            Uri="{Binding GalleryImage}" />
+                                    </Image.Source>
+                                </Image>
+                            </Grid>
+                        </syncEffectsView:SfEffectsView>
                     </DataTemplate>
                 </listView:SfListView.ItemTemplate>
 
                 <listView:SfListView.LayoutManager>
-                    <listView:GridLayout SpanCount="{core:OnPlatformOrientationIntValue PhonePortrait=3,PhoneLandscape=5,TabletPortrait=6,TabletLandscape=10,Desktop=10}"/>
+                    <listView:GridLayout SpanCount="{core:OnPlatformOrientationIntValue PhonePortrait=3, PhoneLandscape=5, TabletPortrait=6, TabletLandscape=10, Desktop=10}" />
                 </listView:SfListView.LayoutManager>
             </listView:SfListView>
+
+            <!--  Separator  -->
+            <BoxView Style="{StaticResource HorizontalSeparatorStyle}" />
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

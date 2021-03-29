@@ -8,7 +8,7 @@ namespace EssentialUIKit.DataService
     {
         #region fields
 
-        private static ProductHomeDataService instance;
+        private static ProductHomeDataService productHomeDataService;
 
         private ProductHomePageViewModel productHomePageViewModel;
 
@@ -30,13 +30,13 @@ namespace EssentialUIKit.DataService
         /// <summary>
         /// Gets an instance of the <see cref="ProductHomeDataService"/>.
         /// </summary>
-        public static ProductHomeDataService Instance => instance ?? (instance = new ProductHomeDataService());
+        public static ProductHomeDataService Instance => productHomeDataService ?? (productHomeDataService = new ProductHomeDataService());
 
         /// <summary>
         /// Gets or sets the value of home page view model.
         /// </summary>
         public ProductHomePageViewModel ProductHomePageViewModel =>
-            (this.productHomePageViewModel = PopulateData<ProductHomePageViewModel>("ecommerce.json"));
+            this.productHomePageViewModel = PopulateData<ProductHomePageViewModel>("ecommerce.json");
 
         #endregion
 
@@ -54,15 +54,15 @@ namespace EssentialUIKit.DataService
 
             var assembly = typeof(App).GetTypeInfo().Assembly;
 
-            T obj;
+            T data;
 
             using (var stream = assembly.GetManifestResourceStream(file))
             {
                 var serializer = new DataContractJsonSerializer(typeof(T));
-                obj = (T)serializer.ReadObject(stream);
+                data = (T)serializer.ReadObject(stream);
             }
 
-            return obj;
+            return data;
         }
 
         #endregion

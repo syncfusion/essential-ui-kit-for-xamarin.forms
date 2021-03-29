@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms.Internals;
+﻿using System.Collections.Generic;
+using Xamarin.Forms.Internals;
 
 namespace EssentialUIKit.Models
 {
@@ -18,7 +19,7 @@ namespace EssentialUIKit.Models
         /// <summary>
         /// Gets or sets the states collection.
         /// </summary>
-        public string[] States { get; set; }
+        public IReadOnlyCollection<string> States { get; set; }
 
         #endregion
     }

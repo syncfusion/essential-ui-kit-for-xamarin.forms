@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
+using System.Reflection;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Json;
 using EssentialUIKit.Models.Chat;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
@@ -11,206 +12,71 @@ namespace EssentialUIKit.ViewModels.Chat
     /// View model for recent chat page 
     /// </summary> 
     [Preserve(AllMembers = true)]
+    [DataContract]
     public class RecentChatViewModel : BaseViewModel
     {
         #region Fields
 
+        private static RecentChatViewModel recentChatViewModel;
+
         private ObservableCollection<ChatDetail> chatItems;
 
-        private string profileImage = App.BaseImageUrl + "ProfileImage1.png";
+        private string profileImage;
 
         private Command itemSelectedCommand;
+
+        private Command makeVoiceCallCommand;
+
+        private Command makeVideoCallCommand;
+
+        private Command showSettingsCommand;
+
+        private Command menuCommand;
+
+        private Command profileImageCommand;
 
         #endregion
 
         #region Constructor
+
         /// <summary>
         /// Initializes a new instance of the <see cref="RecentChatViewModel" /> class.
         /// </summary>
-        public RecentChatViewModel()
+        static RecentChatViewModel()
         {
-            this.ChatItems = new ObservableCollection<ChatDetail>
-            {
-                new ChatDetail
-                {
-                    ImagePath = App.BaseImageUrl + "ProfileImage2.png",
-                    SenderName = "Alice Russell",
-                    MessageType = "Text",
-                    Message = "https://app.syncfusion",
-                    Time = "15 min",
-                    NotificationType = "New"
-                },
-                new ChatDetail
-                {
-                    ImagePath = App.BaseImageUrl + "ProfileImage3.png",
-                    SenderName = "Danielle Schneider",
-                    MessageType = "Audio",
-                    Time = "23 min",
-                    AvailableStatus = "Available",
-                    NotificationType = "Viewed"
-                },
-                new ChatDetail
-                {
-                    ImagePath = App.BaseImageUrl + "ProfileImage4.png",
-                    SenderName = "Jessica Park",
-                    MessageType = "Text",
-                    Message = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-                    Time = "1 hr",
-                    NotificationType = "New"
-                },
-                new ChatDetail
-                {
-                    ImagePath = App.BaseImageUrl + "ProfileImage5.png",
-                    SenderName = "Julia Grant",
-                    MessageType = "Video",
-                    Time = "3 hr",
-                    AvailableStatus = "Available",
-                    NotificationType = "Received"
-                },
-                new ChatDetail
-                {
-                    ImagePath = App.BaseImageUrl + "ProfileImage6.png",
-                    SenderName = "kyle Greene",
-                    MessageType = "Contact",
-                    Message = "Jhone Deo Sync",
-                    Time = "Yesterday",
-                    NotificationType = "Viewed"
-                },
-                new ChatDetail
-                {
-                    ImagePath = App.BaseImageUrl + "ProfileImage7.png",
-                    SenderName = "Danielle Booker",
-                    MessageType = "Text",
-                    Message = "Val Geisier is a writer who",
-                    Time = "Jan 30",
-                    AvailableStatus = "Available",
-                    NotificationType = "Sent"
-                },
-                new ChatDetail
-                {
-                    ImagePath = App.BaseImageUrl + "ProfileImage8.png",
-                    SenderName = "Jazmine Simmons",
-                    MessageType = "Text",
-                    Message = "Contrary to popular belief, Lorem Ipsum is not simply random text." +
-                              "It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.",
-                    Time = "12/8/2018",
-                    NotificationType = "Sent"
-                },
-                new ChatDetail
-                {
-                    ImagePath = App.BaseImageUrl + "ProfileImage9.png",
-                    SenderName = "Ira Membrit",
-                    MessageType = "Photo",
-                    Time = "8/8/2018",
-                    AvailableStatus = "Available",
-                    NotificationType = "Viewed"
-                },
-                new ChatDetail
-                {
-                    ImagePath = App.BaseImageUrl + "ProfileImage10.png",
-                    MessageType = "Text",
-                    Message = "A customer who bought your",
-                    SenderName = "Serina Willams",
-                    Time = "10/6/2018",
-                    NotificationType = "Sent"
-                },
-                 new ChatDetail
-                 {
-                    ImagePath = App.BaseImageUrl + "ProfileImage11.png",
-                    SenderName = "Alise Valasquez",
-                    MessageType = "Text",
-                    Message = "Syncfusion components help you deliver applications with great user experiences across iOS, Android, and Universal Windows Platform from a single code base.",
-                    Time = "2/5/2018",
-                    NotificationType = "New"
-                },
-                new ChatDetail
-                {
-                    ImagePath = App.BaseImageUrl + "ProfileImage12.png",
-                    SenderName = "Allie Bellew",
-                    MessageType = "Audio",
-                    Time = "24/4/2018",
-                    AvailableStatus = "Available",
-                    NotificationType = "Viewed"
-                },
-                new ChatDetail
-                {
-                    ImagePath = App.BaseImageUrl + "ProfileImage13.png",
-                    SenderName = "Navya Sharma",
-                    MessageType = "Text",
-                    Message = "https://www.syncfusion.com",
-                    Time = "10/4/2018",
-                    NotificationType = "New"
-                },
-                new ChatDetail
-                {
-                    ImagePath = App.BaseImageUrl + "ProfileImage14.png",
-                    SenderName = "Carly Ling",
-                    MessageType = "Video",
-                    Time = "22/3/2018",
-                    AvailableStatus = "Available",
-                    NotificationType = "Received"
-                },
-                new ChatDetail
-                {
-                    ImagePath = App.BaseImageUrl + "ProfileImage15.png",
-                    SenderName = "Diayana Sebastine",
-                    MessageType = "Contact",
-                    Message = "Kishore Nisanth",
-                    Time = "15/3/2018",
-                    NotificationType = "Viewed"
-                },
-                new ChatDetail
-                {
-                    ImagePath = App.BaseImageUrl + "ProfileImage16.png",
-                    SenderName = "Marc Sherry",
-                    MessageType = "Text",
-                    Message = "Val Geisier is a writer who",
-                    Time = "12/3/2018",
-                    AvailableStatus = "Available",
-                    NotificationType = "Sent"
-                },
-                new ChatDetail
-                {
-                    ImagePath = App.BaseImageUrl + "ProfileImage17.png",
-                    SenderName = "Dona Merina",
-                    MessageType = "Text",
-                    Message = "Contrary to popular belief, Lorem Ipsum is not simply random text." +
-                              "It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.",
-                    Time = "3/2/2018",
-                    NotificationType = "Sent"
-                },
-            };
-
-            this.MakeVoiceCallCommand = new Command(this.VoiceCallClicked);
-            this.MakeVideoCallCommand = new Command(this.VideoCallClicked);
-            this.ShowSettingsCommand = new Command(this.SettingsClicked);
-            this.MenuCommand = new Command(this.MenuClicked);
-            this.ProfileImageCommand = new Command(this.ProfileImageClicked);
         }
+
         #endregion
 
         #region Public Properties
 
         /// <summary>
+        /// Gets or sets the value of recent chat page view model.
+        /// </summary>
+        public static RecentChatViewModel BindingContext =>
+            recentChatViewModel = PopulateData<RecentChatViewModel>("chat.json");
+
+        /// <summary>
         /// Gets or sets the profile image.
         /// </summary>
+        [DataMember(Name = "profileImage")]
         public string ProfileImage
         {
             get
             {
-                return this.profileImage;
+                return App.ImageServerPath + this.profileImage;
             }
 
             set
             {
-                this.profileImage = value;
-                this.NotifyPropertyChanged();
+                this.SetProperty(ref this.profileImage, value);
             }
         }
-        
+
         /// <summary>
         /// Gets or sets the property that has been bound with a list view, which displays the profile items.
         /// </summary>
+        [DataMember(Name = "chatItems")]
         public ObservableCollection<ChatDetail> ChatItems
         {
             get
@@ -225,33 +91,45 @@ namespace EssentialUIKit.ViewModels.Chat
                     return;
                 }
 
-                this.chatItems = value;
-                this.NotifyPropertyChanged();
+                this.SetProperty(ref this.chatItems, value);
             }
         }
 
         #endregion
 
         #region Commands
+
         /// <summary>
         /// Gets or sets the command that is executed when the voice call button is clicked.
         /// </summary>
-        public Command MakeVoiceCallCommand { get; set; }
+        public Command MakeVoiceCallCommand
+        {
+            get { return this.makeVoiceCallCommand ?? (this.makeVoiceCallCommand = new Command(this.VoiceCallClicked)); }
+        }
 
         /// <summary>
         /// Gets or sets the command that is executed when the video call button is clicked.
         /// </summary>
-        public Command MakeVideoCallCommand { get; set; }
+        public Command MakeVideoCallCommand
+        {
+            get { return this.makeVideoCallCommand ?? (this.makeVideoCallCommand = new Command(this.VideoCallClicked)); }
+        }
 
         /// <summary>
         /// Gets or sets the command that is executed when the settings button is clicked.
         /// </summary>
-        public Command ShowSettingsCommand { get; set; }
-                
+        public Command ShowSettingsCommand
+        {
+            get { return this.showSettingsCommand ?? (this.showSettingsCommand = new Command(this.SettingsClicked)); }
+        }
+
         /// <summary>
         /// Gets or sets the command that is executed when the menu button is clicked.
         /// </summary>
-        public Command MenuCommand { get; set; }
+        public Command MenuCommand
+        {
+            get { return this.menuCommand ?? (this.menuCommand = new Command(this.MenuClicked)); }
+        }
 
         /// <summary>
         /// Gets the command that is executed when an item is selected.
@@ -264,12 +142,38 @@ namespace EssentialUIKit.ViewModels.Chat
         /// <summary>
         /// Gets or sets the command that is executed when the profile image is clicked.
         /// </summary>
-        public Command ProfileImageCommand { get; set; }
+        public Command ProfileImageCommand
+        {
+            get { return this.profileImageCommand ?? (this.profileImageCommand = new Command(this.ProfileImageClicked)); }
+        }
 
         #endregion
 
         #region Methods
-         
+
+        /// <summary>
+        /// Populates the data for view model from json file.
+        /// </summary>
+        /// <typeparam name="T">Type of view model.</typeparam>
+        /// <param name="fileName">Json file to fetch data.</param>
+        /// <returns>Returns the view model object.</returns>
+        private static T PopulateData<T>(string fileName)
+        {
+            var file = "EssentialUIKit.Data." + fileName;
+
+            var assembly = typeof(App).GetTypeInfo().Assembly;
+
+            T data;
+
+            using (var stream = assembly.GetManifestResourceStream(file))
+            {
+                var serializer = new DataContractJsonSerializer(typeof(T));
+                data = (T)serializer.ReadObject(stream);
+            }
+
+            return data;
+        }
+
         /// <summary>
         /// Invoked when an item is selected.
         /// </summary>
@@ -312,7 +216,7 @@ namespace EssentialUIKit.ViewModels.Chat
         {
             // Do something
         }
-        
+
         /// <summary>
         /// Invoked when the menu button is clicked.
         /// </summary>

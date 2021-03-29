@@ -1,6 +1,6 @@
-﻿using Xamarin.Forms.Internals;
+﻿using EssentialUIKit.DataService;
+using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
-using EssentialUIKit.DataService;
 
 namespace EssentialUIKit.Views.Notification
 {
@@ -15,10 +15,9 @@ namespace EssentialUIKit.Views.Notification
         /// Initializes a new instance of the <see cref="TaskNotificationPage" /> class.
         /// </summary>
         public TaskNotificationPage()
-        { 
-            InitializeComponent();
+        {
+            this.InitializeComponent();
             this.BindingContext = TaskNotificationDataService.Instance.TaskNotificationViewModel;
         }
-
     }
 }

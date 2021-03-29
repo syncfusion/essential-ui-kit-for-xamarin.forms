@@ -1,6 +1,4 @@
-﻿using System.Threading.Tasks;
-using EssentialUIKit.Models.Chat;
-using Syncfusion.ListView.XForms;
+﻿using Syncfusion.ListView.XForms;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 
@@ -17,7 +15,7 @@ namespace EssentialUIKit.Controls
         /// <summary>
         /// Gets or sets the text value used to search.
         /// </summary>
-        public static readonly BindableProperty SearchTextProperty = 
+        public static readonly BindableProperty SearchTextProperty =
             BindableProperty.Create(nameof(SearchText), typeof(string), typeof(SearchableListView), null, BindingMode.Default, null, OnSearchTextChanged);
 
         /// <summary>
@@ -26,7 +24,7 @@ namespace EssentialUIKit.Controls
         private string searchText;
 
         #endregion
-        
+
         #region Property
 
         /// <summary>
@@ -34,7 +32,7 @@ namespace EssentialUIKit.Controls
         /// </summary>
         public string SearchText
         {
-            get { return (string)GetValue(SearchTextProperty); }
+            get { return (string)this.GetValue(SearchTextProperty); }
             set { this.SetValue(SearchTextProperty, value); }
         }
 
@@ -60,7 +58,7 @@ namespace EssentialUIKit.Controls
 
             listView.RefreshView();
         }
-        
+
         /// <summary>
         /// Filtering the list view items based on the search text.
         /// </summary>
