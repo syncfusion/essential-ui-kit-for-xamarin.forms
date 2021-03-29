@@ -19,11 +19,6 @@
     <AndroidHttpClientHandlerType>Xamarin.Android.Net.AndroidClientHandler</AndroidHttpClientHandlerType>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <AndroidKeyStore>true</AndroidKeyStore>
-    <AndroidSigningKeyStore>..\PlayStore\keystore.jks</AndroidSigningKeyStore>
-    <AndroidSigningStorePass>syncfusion</AndroidSigningStorePass>
-    <AndroidSigningKeyAlias>com.syncfusion.xamarin.uikit</AndroidSigningKeyAlias>
-    <AndroidSigningKeyPass>syncfusion</AndroidSigningKeyPass>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -37,39 +32,22 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <AndroidEnableProfiledAot>true</AndroidEnableProfiledAot>
-    <DebugSymbols>false</DebugSymbols>
+    <DebugSymbols>true</DebugSymbols>
     <DebugType>pdbonly</DebugType>
-    <Optimize>false</Optimize>
+    <Optimize>true</Optimize>
     <OutputPath>bin\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AndroidManagedSymbols>true</AndroidManagedSymbols>
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
-    <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
-    <AndroidLinkMode>Full</AndroidLinkMode>
-    <AotAssemblies>true</AotAssemblies>
-    <EnableLLVM>false</EnableLLVM>
-    <BundleAssemblies>true</BundleAssemblies>
-    <AndroidKeyStore>true</AndroidKeyStore>
-    <AndroidPackageFormat>aab</AndroidPackageFormat>
-    <AndroidUseAapt2>true</AndroidUseAapt2>
-    <AndroidCreatePackagePerAbi>false</AndroidCreatePackagePerAbi>
-    <AndroidSigningKeyStore>..\PlayStore\keystore.jks</AndroidSigningKeyStore>
-    <AndroidEnableMultiDex>false</AndroidEnableMultiDex>
-    <MandroidI18n />
-    <PlatformTarget>x86</PlatformTarget>
-    <AndroidSigningKeyAlias>com.syncfusion.xamarin.uikit</AndroidSigningKeyAlias>
-    <AndroidLinkTool>r8</AndroidLinkTool>
-    <AndroidDexTool>d8</AndroidDexTool>
   </PropertyGroup>
 
   <PropertyGroup>
     <CodeAnalysisRuleSet>..\EssentialUIKit\StyleCop.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
-  
+
   <ItemGroup>
     <Reference Include="Mono.Android" />
-    <Reference Include="Mono.Android.Export" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
