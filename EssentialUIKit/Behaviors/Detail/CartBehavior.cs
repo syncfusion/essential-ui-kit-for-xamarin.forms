@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 
@@ -41,7 +39,7 @@ namespace EssentialUIKit.Behaviors.Detail
         /// <param name="e">Event Args</param>
         private void Bindable_Appearing(object sender, EventArgs e)
         {
-           // Do something
+            // Do something
         }
 
         /// <summary>

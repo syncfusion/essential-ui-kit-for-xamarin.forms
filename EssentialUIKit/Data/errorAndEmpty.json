@@ -1,0 +1,46 @@
+{
+  "emptyCartImagePath": "EmptyCart.svg",
+  "emptyCartHeader": "CART IS EMPTY",
+  "emptyCartContent": "You don\u0027t have any items in your cart",
+
+  "locationDeniedImagePath": "LocationAccessDenied.svg",
+  "locationDeniedHeader": "LOCATION BLOCKED",
+  "locationDeniedContent": "You cannot access this location at this time",
+
+  "noCreditsImagePath": "NoCredits.svg",
+  "noCreditsHeader": "NO CREDITS",
+  "noCreditsContent": "You don\u0027t have any credits",
+
+  "noInternetImagePath": "NoInternet.svg",
+  "noInternetHeader": "NO INTERNET",
+  "noInternetContent": "You must be connected to the internet to complete this action",
+
+  "noItemImagePath": "NoItem.svg",
+  "noItemHeader": "NO ITEMS",
+  "noItemContent": "You haven\u0027t selected any items yet",
+
+  "noPhotosImagePath": "NoPhotos.svg",
+  "noPhotosHeader": "NO PHOTOS",
+  "noPhotosContent": "You haven\u0027t selected any photos yet",
+
+  "noTasksImagePath": "NoTasks.svg",
+  "noTasksHeader": "NO TASKS",
+  "noTasksContent": "You haven\u0027t been assigned any tasks yet",
+
+  "notEnoughCreditImagePath": "NotEnoughCredit.svg",
+  "notEnoughCreditHeader": "NOT ENOUGH CREDIT",
+  "notEnoughCreditContent": "You don\u0027t have enough credit to access this benefit",
+
+  "noVideosImagePath": "NoVideos.svg",
+  "noVideosHeader": "NO VIDEOS",
+  "noVideosContent": "You haven\u0027t selected any videos yet",
+
+  "paymentFailedImagePath": "PaymentFailed.svg",
+  "paymentFailedHeader": "PAYMENT FAILED",
+  "paymentFailedContent": "An error occurred while processing your payment",
+
+  "somethingWentWrongImagePath": "SomethingWentWrong.svg",
+  "somethingWentWrongHeader": "SOMETHING WENT WRONG",
+  "somethingWentWrongContent": "We are not sure what happened, but we know an error occurred"
+
+}

@@ -3,27 +3,50 @@
     x:Class="EssentialUIKit.Views.Tracking.ProductDeliveryTrackingPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:control="clr-namespace:EssentialUIKit.Controls"
+    xmlns:converter="clr-namespace:EssentialUIKit.Converters"
     xmlns:progressBar="clr-namespace:Syncfusion.XForms.ProgressBar;assembly=Syncfusion.SfProgressBar.XForms"
     xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Tracking"
+    x:Name="ProductTrackingPage"
     Title="Order Status"
-    BackgroundColor="{StaticResource Gray-100}"
+    BackgroundColor="{DynamicResource Gray-100}"
     NavigationPage.HasNavigationBar="False"
     Shell.NavBarIsVisible="False">
 
     <ContentPage.Resources>
         <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Styles.xaml" />
-            </ResourceDictionary.MergedDictionaries>
+            <converter:StringToColorConverter x:Key="StringToColorConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
+
+    <ContentPage.ControlTemplate>
+        <ControlTemplate>
+            <StackLayout x:Name="titleLayout" Spacing="0">
+                <control:TitleView Title="Order Status">
+                    <control:TitleView.LeadingView>
+                        <!--  Back button command  -->
+                        <buttons:SfButton
+                            x:Name="backButton"
+                            Command="{Binding BindingContext.BackButtonCommand, Source={x:Reference ProductTrackingPage}}"
+                            CommandParameter="{x:Reference backButton}"
+                            Style="{StaticResource IconButtonStyle}"
+                            Text="{StaticResource Back}" />
+                    </control:TitleView.LeadingView>
+                </control:TitleView>
+                <ContentPresenter />
+            </StackLayout>
+        </ControlTemplate>
+    </ContentPage.ControlTemplate>
+
 
     <ContentPage.Content>
         <ScrollView>
             <StackLayout HorizontalOptions="FillAndExpand" Spacing="0">
                 <Grid
                     Margin="0,16,0,0"
-                    BackgroundColor="{DynamicResource Gray-White}"
+                    BackgroundColor="{DynamicResource Gray-Bg}"
+                    ColumnDefinitions="Auto, *"
                     ColumnSpacing="0"
                     RowSpacing="0">
 
@@ -34,11 +57,6 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="{OnIdiom Default=1, Phone=0}" />
                     </Grid.RowDefinitions>
-
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
 
                     <!--  Product image  -->
                     <Image
@@ -63,30 +81,29 @@
                         Grid.Row="0"
                         Grid.Column="1"
                         Margin="0,12,0,4"
-                        FontFamily="{StaticResource Montserrat-SemiBold}"
                         FontSize="14"
-                        LineBreakMode="TailTruncation"
-                        MaxLines="1"
-                        Style="{StaticResource LabelStyle}"
-                        Text="{Binding ProductName}"
-                        TextColor="{DynamicResource Gray-900}" />
+                        HorizontalOptions="Start"
+                        Style="{StaticResource TitleLabelStyle}"
+                        Text="{Binding ProductName}" />
 
                     <!--  Description label  -->
                     <Label
                         Grid.Row="1"
                         Grid.Column="1"
                         Margin="0,0,0,8"
-                        Style="{StaticResource LabelStyle}"
+                        FontSize="12"
+                        HorizontalOptions="Start"
+                        Style="{StaticResource DescriptionLabelStyle}"
                         Text="{Binding Description}" />
 
                     <!--  Order ID  -->
                     <Label
                         Grid.Row="2"
                         Grid.Column="1"
+                        FontSize="12"
                         HorizontalOptions="Start"
-                        Style="{StaticResource LabelStyle}"
-                        Text="{Binding OrderID, StringFormat='Order ID: {0}'}"
-                        VerticalOptions="Center" />
+                        Style="{StaticResource DescriptionLabelStyle}"
+                        Text="{Binding OrderID, StringFormat='Order ID: {0}'}" />
 
                 </Grid>
 
@@ -94,7 +111,7 @@
                 <progressBar:SfStepProgressBar
                     x:Name="stepProgress"
                     Margin="0,20,0,0"
-                    BackgroundColor="{StaticResource Gray-White}"
+                    BackgroundColor="{DynamicResource Gray-Bg}"
                     BindableLayout.ItemsSource="{Binding ProductDeliveryTrackings}"
                     HorizontalOptions="FillAndExpand"
                     Orientation="Vertical"
@@ -106,29 +123,31 @@
                     <progressBar:SfStepProgressBar.NotStartedStepStyle>
                         <progressBar:StepStyle
                             x:TypeArguments="progressBar:NotStartedStepState"
+                            MarkerContentFillColor="{DynamicResource Gray-200}"
                             MarkerContentSize="12"
-                            MarkerShapeType="Circle" />
+                            MarkerShapeType="Circle"
+                            TrackColor="{DynamicResource Gray-200}" />
                     </progressBar:SfStepProgressBar.NotStartedStepStyle>
 
                     <!--  Style for step progress inprogress  -->
                     <progressBar:SfStepProgressBar.InProgressStepStyle>
                         <progressBar:StepStyle
                             x:TypeArguments="progressBar:InProgressStepState"
-                            MarkerFillColor="{StaticResource PrimaryColor}"
+                            MarkerFillColor="{DynamicResource PrimaryColor}"
                             MarkerShapeType="Circle"
-                            MarkerStrokeColor="{StaticResource PrimaryDarkColor}"
-                            ProgressLineColor="{StaticResource PrimaryColor}" />
+                            MarkerStrokeColor="{DynamicResource PrimaryDarkColor}"
+                            ProgressLineColor="{DynamicResource PrimaryColor}" />
                     </progressBar:SfStepProgressBar.InProgressStepStyle>
 
                     <!--  Style for step progress completed  -->
                     <progressBar:SfStepProgressBar.CompletedStepStyle>
                         <progressBar:StepStyle
                             x:TypeArguments="progressBar:CompletedStepState"
-                            MarkerContentFillColor="{StaticResource Gray-White}"
+                            MarkerContentFillColor="{DynamicResource Gray-White}"
                             MarkerContentType="Tick"
-                            MarkerFillColor="{StaticResource PrimaryColor}"
+                            MarkerFillColor="{DynamicResource PrimaryColor}"
                             MarkerShapeType="Circle"
-                            MarkerStrokeColor="{StaticResource PrimaryDarkColor}" />
+                            MarkerStrokeColor="{DynamicResource PrimaryDarkColor}" />
                     </progressBar:SfStepProgressBar.CompletedStepStyle>
 
                     <BindableLayout.ItemTemplate>
@@ -140,25 +159,44 @@
                                 <progressBar:StepView.PrimaryFormattedText>
                                     <FormattedString>
                                         <Span
+                                            FontFamily="Montserrat-SemiBold"
                                             FontSize="16"
-                                            Style="{StaticResource SpanStyle}"
-                                            Text="{Binding Title}" />
+                                            LineHeight="{OnPlatform Default=1.25,
+                                                                    iOS=-1}"
+                                            Text="{Binding Title}"
+                                            TextColor="{Binding Status, Converter={x:StaticResource StringToColorConverter}, ConverterParameter=1}" />
                                         <Span Text="&#10;&#10;" />
-                                        <Span Style="{StaticResource SpanStyle}" Text="{Binding TitleStatus}" />
+                                        <Span
+                                            FontFamily="Montserrat-SemiBold"
+                                            FontSize="12"
+                                            LineHeight="{OnPlatform Default=1.25,
+                                                                    iOS=-1}"
+                                            Text="{Binding TitleStatus}"
+                                            TextColor="{DynamicResource Gray-900}" />
                                         <Span Text="&#10;" />
                                         <Span
-                                            FontFamily="{StaticResource Montserrat-Medium}"
-                                            Style="{StaticResource SpanStyle}"
+                                            FontFamily="Montserrat-Medium"
+                                            FontSize="12"
+                                            LineHeight="{OnPlatform Default=1.25,
+                                                                    iOS=-1}"
                                             Text="{Binding Date}"
-                                            TextColor="{StaticResource Gray-700}" />
+                                            TextColor="{DynamicResource Gray-700}" />
                                         <Span Text="&#10;&#10;" />
-                                        <Span Style="{StaticResource SpanStyle}" Text="{Binding OrderStatus}" />
+                                        <Span
+                                            FontFamily="Montserrat-SemiBold"
+                                            FontSize="12"
+                                            LineHeight="{OnPlatform Default=1.25,
+                                                                    iOS=-1}"
+                                            Text="{Binding OrderStatus}"
+                                            TextColor="{DynamicResource Gray-900}" />
                                         <Span Text="&#10;" />
                                         <Span
-                                            FontFamily="{StaticResource Montserrat-Medium}"
-                                            Style="{StaticResource SpanStyle}"
+                                            FontFamily="Montserrat-Medium"
+                                            FontSize="12"
+                                            LineHeight="{OnPlatform Default=1.25,
+                                                                    iOS=-1}"
                                             Text="{Binding OrderDate}"
-                                            TextColor="{StaticResource Gray-700}" />
+                                            TextColor="{DynamicResource Gray-700}" />
                                         <Span Text="&#10;&#10;" />
                                     </FormattedString>
                                 </progressBar:StepView.PrimaryFormattedText>

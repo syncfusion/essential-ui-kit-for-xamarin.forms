@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using EssentialUIKit.Models.Dashboard;
-using Syncfusion.SfChart.XForms;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 
@@ -18,32 +17,32 @@ namespace EssentialUIKit.ViewModels.Dashboard
         /// <summary>
         /// To store the health care data collection.
         /// </summary>
-        private ObservableCollection<HealthCare> cardItems;
+        private ObservableCollection<HealthCare> healthCareCardItems;
 
         /// <summary>
         /// To store the health care data collection.
         /// </summary>
-        private ObservableCollection<HealthCare> listItems;
+        private ObservableCollection<HealthCare> healthCareListItems;
 
         /// <summary>
         /// To store the heart rate data collection.
         /// </summary>
-        private ObservableCollection<ChartDataPoint> heartRateData;
+        private ObservableCollection<ChartModel> heartRateData;
 
         /// <summary>
         /// To store the calories burned data collection.
         /// </summary>
-        private ObservableCollection<ChartDataPoint> caloriesBurnedData;
+        private ObservableCollection<ChartModel> caloriesBurnedData;
 
         /// <summary>
         /// To store the sleep time data collection.
         /// </summary>
-        private ObservableCollection<ChartDataPoint> sleepTimeData;
+        private ObservableCollection<ChartModel> sleepTimeData;
 
         /// <summary>
         /// To store the water consumed data collection.
         /// </summary>
-        private ObservableCollection<ChartDataPoint> waterConsumedData;
+        private ObservableCollection<ChartModel> waterConsumedData;
 
         #endregion
 
@@ -54,8 +53,8 @@ namespace EssentialUIKit.ViewModels.Dashboard
         /// </summary>
         public HealthCareViewModel()
         {
-            GetChartData();
-            cardItems = new ObservableCollection<HealthCare>()
+            this.GetChartData();
+            this.healthCareCardItems = new ObservableCollection<HealthCare>()
             {
                 new HealthCare()
                 {
@@ -71,7 +70,7 @@ namespace EssentialUIKit.ViewModels.Dashboard
                     CategoryValue = "948 cal",
                     ChartData = caloriesBurnedData,
                     BackgroundGradientStart = "#ff7272",
-                    BackgroundGradientEnd = "#f650c5"
+                    BackgroundGradientEnd = "#f650c5",
                 },
                 new HealthCare()
                 {
@@ -79,7 +78,7 @@ namespace EssentialUIKit.ViewModels.Dashboard
                     CategoryValue = "7.3 hrs",
                     ChartData = sleepTimeData,
                     BackgroundGradientStart = "#5e7cea",
-                    BackgroundGradientEnd = "#1dcce3"
+                    BackgroundGradientEnd = "#1dcce3",
                 },
                 new HealthCare()
                 {
@@ -87,37 +86,38 @@ namespace EssentialUIKit.ViewModels.Dashboard
                     CategoryValue = "38.6 ltr",
                     ChartData = waterConsumedData,
                     BackgroundGradientStart = "#255ea6",
-                    BackgroundGradientEnd = "#b350d1"
-                }
+                    BackgroundGradientEnd = "#b350d1",
+                },
             };
 
-            listItems = new ObservableCollection<HealthCare>()
+            this.healthCareListItems = new ObservableCollection<HealthCare>()
             {
                 new HealthCare()
                 {
                     Category = "Blood Pressure",
                     CategoryValue = "141/90 mmgh",
                     CategoryPercentage = "30%",
-                    BackgroundGradientStart = "#cf86ff"
+                    BackgroundGradientStart = "#cf86ff",
                 },
                 new HealthCare()
                 {
                     Category = "Body Weight",
-                    CategoryValue = "80kg",
+                    CategoryValue = "176 lbs",
                     CategoryPercentage = "50%",
-                    BackgroundGradientStart = "#8691ff"
+                    BackgroundGradientStart = "#8691ff",
                 },
                 new HealthCare()
                 {
                     Category = "Steps",
                     CategoryValue = "3463",
                     CategoryPercentage = "60%",
-                    BackgroundGradientStart = "#ff9686"
-                }
+                    BackgroundGradientStart = "#ff9686",
+                },
             };
 
-            this.ProfileImage = App.BaseImageUrl + "ProfileImage1.png";
-            this.MenuCommand = new Command(this.MenuClicked);
+            this.ProfileImage = App.ImageServerPath + "ProfileImage1.png";
+            this.MenuCommand = new Command(this.MenuButtonClicked);
+            this.ProfileSelectedCommand = new Command(this.ProfileImageClicked);
         }
 
         #endregion
@@ -132,45 +132,48 @@ namespace EssentialUIKit.ViewModels.Dashboard
         /// <summary>
         /// Gets or sets the health care items collection.
         /// </summary>
-        public ObservableCollection<HealthCare> CardItems
+        public ObservableCollection<HealthCare> HealthCareCardItems
         {
             get
             {
-                return this.cardItems;
+                return this.healthCareCardItems;
             }
 
-            set
+            private set
             {
-                this.cardItems = value;
-                this.NotifyPropertyChanged();
+                this.SetProperty(ref this.healthCareCardItems, value);
             }
         }
 
         /// <summary>
         /// Gets or sets the health care items collection.
         /// </summary>
-        public ObservableCollection<HealthCare> ListItems
+        public ObservableCollection<HealthCare> HealthCareListItems
         {
             get
             {
-                return this.listItems;
+                return this.healthCareListItems;
             }
 
-            set
+            private set
             {
-                this.listItems = value;
-                this.NotifyPropertyChanged();
+                this.SetProperty(ref this.healthCareListItems, value);
             }
         }
 
         #endregion
 
         #region Comments
-        
+
         /// <summary>
-        /// Gets or sets the command that will be executed when the menu button is clicked.
+        /// Gets or sets the command is executed when the menu button is clicked.
         /// </summary>
         public Command MenuCommand { get; set; }
+
+        /// <summary>
+        /// Gets or sets the command is executed when the profile image is clicked.
+        /// </summary>
+        public Command ProfileSelectedCommand { get; set; }
 
         #endregion
 
@@ -183,61 +186,70 @@ namespace EssentialUIKit.ViewModels.Dashboard
         {
             DateTime dateTime = new DateTime(2019, 5, 1);
 
-            heartRateData = new ObservableCollection<ChartDataPoint>()
+            this.heartRateData = new ObservableCollection<ChartModel>()
             {
-                new ChartDataPoint(dateTime, 15),
-                new ChartDataPoint(dateTime.AddMonths(1), 20),
-                new ChartDataPoint(dateTime.AddMonths(2), 17),
-                new ChartDataPoint(dateTime.AddMonths(3), 23),
-                new ChartDataPoint(dateTime.AddMonths(4), 18),
-                new ChartDataPoint(dateTime.AddMonths(5), 25),
-                new ChartDataPoint(dateTime.AddMonths(6), 19),
-                new ChartDataPoint(dateTime.AddMonths(7), 21),
+                new ChartModel(dateTime, 15),
+                new ChartModel(dateTime.AddMonths(1), 20),
+                new ChartModel(dateTime.AddMonths(2), 17),
+                new ChartModel(dateTime.AddMonths(3), 23),
+                new ChartModel(dateTime.AddMonths(4), 18),
+                new ChartModel(dateTime.AddMonths(5), 25),
+                new ChartModel(dateTime.AddMonths(6), 19),
+                new ChartModel(dateTime.AddMonths(7), 21),
             };
 
-            caloriesBurnedData = new ObservableCollection<ChartDataPoint>()
+            this.caloriesBurnedData = new ObservableCollection<ChartModel>()
             {
-                new ChartDataPoint(dateTime, 940),
-                new ChartDataPoint(dateTime.AddMonths(1), 960),
-                new ChartDataPoint(dateTime.AddMonths(2), 942),
-                new ChartDataPoint(dateTime.AddMonths(3), 957),
-                new ChartDataPoint(dateTime.AddMonths(4), 940),
-                new ChartDataPoint(dateTime.AddMonths(5), 942),
+                new ChartModel(dateTime, 940),
+                new ChartModel(dateTime.AddMonths(1), 960),
+                new ChartModel(dateTime.AddMonths(2), 942),
+                new ChartModel(dateTime.AddMonths(3), 957),
+                new ChartModel(dateTime.AddMonths(4), 940),
+                new ChartModel(dateTime.AddMonths(5), 942),
             };
 
-            sleepTimeData = new ObservableCollection<ChartDataPoint>()
+            this.sleepTimeData = new ObservableCollection<ChartModel>()
             {
-                new ChartDataPoint(dateTime, 7.8),
-                new ChartDataPoint(dateTime.AddMonths(1), 7.2),
-                new ChartDataPoint(dateTime.AddMonths(2), 8.0),
-                new ChartDataPoint(dateTime.AddMonths(3), 6.8),
-                new ChartDataPoint(dateTime.AddMonths(4), 7.6),
-                new ChartDataPoint(dateTime.AddMonths(5), 7.0),
-                new ChartDataPoint(dateTime.AddMonths(6), 7.5),
+                new ChartModel(dateTime, 7.8),
+                new ChartModel(dateTime.AddMonths(1), 7.2),
+                new ChartModel(dateTime.AddMonths(2), 8.0),
+                new ChartModel(dateTime.AddMonths(3), 6.8),
+                new ChartModel(dateTime.AddMonths(4), 7.6),
+                new ChartModel(dateTime.AddMonths(5), 7.0),
+                new ChartModel(dateTime.AddMonths(6), 7.5),
             };
 
-            waterConsumedData = new ObservableCollection<ChartDataPoint>()
+            this.waterConsumedData = new ObservableCollection<ChartModel>()
             {
-                new ChartDataPoint(dateTime, 36),
-                new ChartDataPoint(dateTime.AddMonths(1), 41),
-                new ChartDataPoint(dateTime.AddMonths(2), 38),
-                new ChartDataPoint(dateTime.AddMonths(3), 41),
-                new ChartDataPoint(dateTime.AddMonths(4), 35),
-                new ChartDataPoint(dateTime.AddMonths(5), 37),
-                new ChartDataPoint(dateTime.AddMonths(6), 38),
-                new ChartDataPoint(dateTime.AddMonths(7), 36),
+                new ChartModel(dateTime, 36),
+                new ChartModel(dateTime.AddMonths(1), 41),
+                new ChartModel(dateTime.AddMonths(2), 38),
+                new ChartModel(dateTime.AddMonths(3), 41),
+                new ChartModel(dateTime.AddMonths(4), 35),
+                new ChartModel(dateTime.AddMonths(5), 37),
+                new ChartModel(dateTime.AddMonths(6), 38),
+                new ChartModel(dateTime.AddMonths(7), 36),
             };
         }
 
         /// <summary>
-        /// Invoked when the menu button is clicked.
+        /// Invoked when the menu button is clicked
         /// </summary>
-        /// <param name="obj">The Object</param>
-        private void MenuClicked(object obj)
+        /// <param name="obj">The object</param>
+        private void MenuButtonClicked(object obj)
         {
             // Do something
         }
-        
+
+        /// <summary>
+        /// Invoked when the profile image is clicked.
+        /// </summary>
+        /// <param name="obj">The object</param>
+        private void ProfileImageClicked(object obj)
+        {
+            // Do something
+        }
+
         #endregion
     }
 }

@@ -1,0 +1,61 @@
+{
+  "latestStories": [
+    {
+      "itemImage": "ArticleImage2.png",
+      "name": "Learning to Reset",
+      "author": "John Doe",
+      "date": "Apr 16",
+      "averageReadingTime": "5 mins read",
+      "isBookmarked": true
+    },
+    {
+      "itemImage": "ArticleImage3.png",
+      "name": "Holistic Approach to UI Design",
+      "author": "John Doe",
+      "date": "Apr 18",
+      "averageReadingTime": "5 mins read",
+      "isBookmarked": true
+    },
+    {
+      "itemImage": "ArticleImage4.png",
+      "name": "Guiding Your Flock to Success",
+      "author": "John Doe",
+      "date": "May 10",
+      "averageReadingTime": "5 mins read",
+      "isBookmarked": true
+    },
+    {
+      "itemImage": "ArticleImage5.png",
+      "name": "Be a Nurturing, Fierce Team Leader",
+      "author": "John Doe",
+      "date": "Apr 16",
+      "averageReadingTime": "5 mins read",
+      "isBookmarked": true
+    },
+    {
+      "itemImage": "ArticleImage6.png",
+      "name": "Holistic Approach to UI Design",
+      "author": "John Doe",
+      "date": "Apr 10",
+      "averageReadingTime": "5 mins read",
+      "isBookmarked": true
+    },
+    {
+      "itemImage": "ArticleImage7.jpg",
+      "name": "Guiding Your Flock to Success",
+      "author": "John Doe",
+      "date": "Apr 16",
+      "averageReadingTime": "5 mins read",
+      "isBookmarked": true
+    },
+    {
+      "itemImage": "ArticleImage8.jpg",
+      "name": "Be a Nurturing, Fierce Team Leader",
+      "author": "John Doe",
+      "date": "May 05",
+      "averageReadingTime": "5 mins read",
+      "isBookmarked": true
+    }
+  
+  ]
+}

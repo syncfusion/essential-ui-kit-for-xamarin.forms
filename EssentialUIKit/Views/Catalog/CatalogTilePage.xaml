@@ -6,16 +6,18 @@
     xmlns:badge="clr-namespace:Syncfusion.XForms.BadgeView;assembly=Syncfusion.SfBadgeView.XForms"
     xmlns:behavior="clr-namespace:EssentialUIKit.Behaviors.Catalog"
     xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
-    xmlns:commonBehavior="clr-namespace:EssentialUIKit.Behaviors"
     xmlns:controls="clr-namespace:EssentialUIKit.Controls"
     xmlns:converter="clr-namespace:EssentialUIKit.Converters"
     xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
     xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+    xmlns:syncEffectsView="clr-namespace:Syncfusion.XForms.EffectsView;assembly=Syncfusion.Core.XForms"
     xmlns:template="clr-namespace:EssentialUIKit.Views.Templates"
     x:Name="catalogTilePage"
     Title="Catalog Tile page"
-    NavigationPage.HasNavigationBar="False"
-    Style="{StaticResource ContentPageStyle}">
+    BackgroundColor="{OnIdiom Default={DynamicResource Gray-Bg},
+                              Desktop={DynamicResource Gray-100},
+                              Converter={StaticResource DynamicResourceToColorConverter}}"
+    NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Behaviors>
         <behavior:CartBehavior />
@@ -24,27 +26,102 @@
     <ContentPage.Resources>
         <ResourceDictionary>
 
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Styles.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-
             <OnIdiom x:Key="ListItemMargin" x:TypeArguments="Thickness" />
             <converter:BooleanToColorConverter x:Key="BoolToColorConverter" />
             <converter:BooleanToStringConverter x:Key="BoolToStringConverter" />
             <converter:IntToThicknessConverter x:Key="intToThicknessConverter" />
+            <converter:DynamicResourceToColorConverter x:Key="DynamicResourceToColorConverter" />
+
+            <!--  Header Template for Catalog SfListView  -->
+            <DataTemplate x:Key="CatalogDefaultHeaderTemplate">
+                <StackLayout
+                    BackgroundColor="{DynamicResource Gray-Bg}"
+                    HorizontalOptions="End"
+                    Orientation="Horizontal"
+                    Spacing="8"
+                    VerticalOptions="Center">
+
+                    <!--  Filter Button  -->
+                    <buttons:SfButton
+                        BackgroundColor="Transparent"
+                        Command="{Binding FilterCommand}"
+                        CornerRadius="4"
+                        HeightRequest="32"
+                        TextColor="{DynamicResource Gray-700}">
+                        <buttons:SfButton.Content>
+                            <StackLayout
+                                Padding="8,5,8,6"
+                                Orientation="Horizontal"
+                                Spacing="8"
+                                VerticalOptions="Center">
+                                <Label
+                                    FontFamily="FontIcons"
+                                    FontSize="18"
+                                    Style="{StaticResource DescriptionLabelStyle}"
+                                    Text="{StaticResource Filter}"
+                                    VerticalOptions="Center"
+                                    VerticalTextAlignment="End" />
+                                <Label
+                                    FontFamily="Montserrat-SemiBold"
+                                    Style="{StaticResource DescriptionLabelStyle}"
+                                    Text="Filter"
+                                    VerticalOptions="Center"
+                                    VerticalTextAlignment="Center" />
+                            </StackLayout>
+                        </buttons:SfButton.Content>
+                    </buttons:SfButton>
+
+                    <!--  Sort Button  -->
+                    <buttons:SfButton
+                        BackgroundColor="Transparent"
+                        Command="{Binding SortCommand}"
+                        CornerRadius="4"
+                        TextColor="{DynamicResource Gray-700}">
+                        <buttons:SfButton.Content>
+                            <StackLayout
+                                Padding="8,5,8,6"
+                                Orientation="Horizontal"
+                                Spacing="8">
+                                <Label
+                                    FontFamily="FontIcons"
+                                    FontSize="18"
+                                    Style="{StaticResource DescriptionLabelStyle}"
+                                    Text="{StaticResource Sort}"
+                                    VerticalOptions="Center"
+                                    VerticalTextAlignment="End" />
+                                <Label
+                                    FontFamily="Montserrat-SemiBold"
+                                    Style="{StaticResource DescriptionLabelStyle}"
+                                    Text="Sorting"
+                                    VerticalOptions="Center"
+                                    VerticalTextAlignment="Center" />
+                            </StackLayout>
+                        </buttons:SfButton.Content>
+                    </buttons:SfButton>
+
+                </StackLayout>
+            </DataTemplate>
+
         </ResourceDictionary>
     </ContentPage.Resources>
 
     <ContentPage.Content>
 
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
+        <Grid
+            ColumnSpacing="0"
+            RowDefinitions="Auto, *"
+            RowSpacing="0">
 
             <!--  Title View  -->
             <controls:TitleView Title="Dress" Grid.Row="0">
+                <controls:TitleView.LeadingView>
+                    <buttons:SfButton
+                        x:Name="backButton"
+                        Command="{Binding BindingContext.BackButtonCommand, Source={x:Reference ListViewTile}}"
+                        CommandParameter="{x:Reference backButton}"
+                        Style="{StaticResource IconButtonStyle}"
+                        Text="{StaticResource Back}" />
+                </controls:TitleView.LeadingView>
                 <controls:TitleView.TrailingView>
                     <StackLayout HorizontalOptions="End" Orientation="Horizontal">
                         <badge:SfBadgeView
@@ -58,7 +135,6 @@
                             <badge:SfBadgeView.Content>
                                 <buttons:SfButton
                                     Command="{Binding Path=BindingContext.CardItemCommand, Source={x:Reference ListViewTile}}"
-                                    CornerRadius="4"
                                     Style="{StaticResource IconButtonStyle}"
                                     Text="{StaticResource Cart}" />
                             </badge:SfBadgeView.Content>
@@ -83,17 +159,19 @@
                 HeaderTemplate="{StaticResource CatalogDefaultHeaderTemplate}"
                 HorizontalOptions="FillAndExpand"
                 IsStickyHeader="False"
-                ItemSpacing="0, 8, 0, 8"
+                ItemSpacing="0, 8, 8, 8"
                 ItemsSource="{Binding Products}"
-                Style="{StaticResource SfListViewStyle}">
-
-                <listView:SfListView.Behaviors>
-                    <commonBehavior:SfListViewTapBehavior Command="{Binding Path=BindingContext.ItemSelectedCommand, Source={x:Reference catalogTilePage}}" />
-                </listView:SfListView.Behaviors>
+                Style="{StaticResource TransparentSelectionListView}">
 
                 <listView:SfListView.ItemTemplate>
                     <DataTemplate>
-                        <template:ProductTileTemplate ParentBindingContext="{Binding Path=BindingContext, Source={x:Reference catalogTilePage}}" />
+                        <syncEffectsView:SfEffectsView
+                            RippleColor="{DynamicResource Gray-300}"
+                            TouchDownEffects="Ripple"
+                            TouchUpCommand="{Binding Path=BindingContext.ItemSelectedCommand, Source={x:Reference catalogTilePage}}"
+                            TouchUpCommandParameter="{Binding}">
+                            <template:ProductTileTemplate ParentBindingContext="{Binding Path=BindingContext, Source={x:Reference catalogTilePage}}" />
+                        </syncEffectsView:SfEffectsView>
                     </DataTemplate>
                 </listView:SfListView.ItemTemplate>
 

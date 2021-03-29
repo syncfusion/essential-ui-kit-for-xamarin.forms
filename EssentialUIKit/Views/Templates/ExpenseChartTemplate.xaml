@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Grid
+    x:Class="EssentialUIKit.Views.Templates.ExpenseChartTemplate"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <!--  Income and expense chart  -->
+    <chart:SfChart
+        Margin="10,0,10,26"
+        BackgroundColor="{DynamicResource Transparent}"
+        HorizontalOptions="FillAndExpand"
+        VerticalOptions="FillAndExpand">
+
+        <chart:SfChart.PrimaryAxis>
+            <chart:CategoryAxis Interval="1" ShowMajorGridLines="False">
+                <chart:CategoryAxis.LabelStyle>
+                    <chart:ChartAxisLabelStyle
+                        Margin="0,8,0,0"
+                        FontFamily="Montserrat-Medium"
+                        FontSize="12"
+                        TextColor="{DynamicResource Gray-White}" />
+                </chart:CategoryAxis.LabelStyle>
+                <chart:CategoryAxis.AxisLineStyle>
+                    <chart:ChartLineStyle StrokeWidth="0" />
+                </chart:CategoryAxis.AxisLineStyle>
+                <chart:CategoryAxis.MajorTickStyle>
+                    <chart:ChartAxisTickStyle StrokeWidth="0" TickSize="0" />
+                </chart:CategoryAxis.MajorTickStyle>
+            </chart:CategoryAxis>
+        </chart:SfChart.PrimaryAxis>
+
+        <chart:SfChart.SecondaryAxis>
+            <chart:NumericalAxis
+                Interval="10"
+                IsVisible="False"
+                Maximum="100"
+                Minimum="0"
+                ShowMajorGridLines="False"
+                ShowMinorGridLines="False">
+                <chart:NumericalAxis.AxisLineStyle>
+                    <chart:ChartLineStyle StrokeWidth="0" />
+                </chart:NumericalAxis.AxisLineStyle>
+            </chart:NumericalAxis>
+        </chart:SfChart.SecondaryAxis>
+
+        <chart:SfChart.Legend>
+            <chart:ChartLegend
+                Margin="0,29,0,0"
+                DockPosition="Bottom"
+                IconHeight="8"
+                IconWidth="8"
+                Orientation="Horizontal"
+                ToggleSeriesVisibility="True">
+                <chart:ChartLegend.LabelStyle>
+                    <chart:ChartLegendLabelStyle
+                        Margin="10,0,24,0"
+                        FontFamily="Montserrat-Medium"
+                        FontSize="12"
+                        TextColor="{DynamicResource Gray-White}" />
+                </chart:ChartLegend.LabelStyle>
+            </chart:ChartLegend>
+        </chart:SfChart.Legend>
+
+        <chart:SfChart.Series>
+            <chart:StackingColumn100Series
+                Width="0.1"
+                CornerRadius="4"
+                EnableAnimation="True"
+                EnableTooltip="False"
+                ItemsSource="{Binding ChartData}"
+                Label="Expense"
+                LegendIcon="Circle"
+                XBindingPath="Section"
+                YBindingPath="Expense"
+                Color="{DynamicResource Lemon-Lime}" />
+
+            <chart:StackingColumn100Series
+                Width="0.1"
+                CornerRadius="4"
+                IsVisibleOnLegend="False"
+                ItemsSource="{Binding ChartData}"
+                XBindingPath="Section"
+                YBindingPath="Difference"
+                Color="Transparent" />
+
+            <chart:StackingColumn100Series
+                Width="0.1"
+                CornerRadius="4"
+                EnableAnimation="True"
+                EnableTooltip="False"
+                ItemsSource="{Binding ChartData}"
+                Label="Income"
+                LegendIcon="Circle"
+                XBindingPath="Section"
+                YBindingPath="Income"
+                Color="{DynamicResource Bright-Cyan}" />
+        </chart:SfChart.Series>
+
+    </chart:SfChart>
+
+</Grid>

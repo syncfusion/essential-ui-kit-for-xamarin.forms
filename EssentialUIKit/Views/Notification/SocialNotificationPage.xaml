@@ -1,21 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:controls="clr-namespace:EssentialUIKit.Controls"
-             xmlns:converter="clr-namespace:EssentialUIKit.Converters"
-             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
-             xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
-             xmlns:behavior="clr-namespace:EssentialUIKit.Behaviors"
-             x:Class="EssentialUIKit.Views.Notification.SocialNotificationPage"
-             x:Name="socialNotificationPage"
-             BackgroundColor="{DynamicResource Gray-White}"
-             NavigationPage.HasNavigationBar="False">
+<ContentPage
+    x:Class="EssentialUIKit.Views.Notification.SocialNotificationPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:behavior="clr-namespace:EssentialUIKit.Behaviors"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:controls="clr-namespace:EssentialUIKit.Controls"
+    xmlns:converter="clr-namespace:EssentialUIKit.Converters"
+    xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+    x:Name="socialNotificationPage"
+    BackgroundColor="{DynamicResource Gray-Bg}"
+    NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Resources>
         <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Styles.xaml" />
-            </ResourceDictionary.MergedDictionaries>
             <converter:BooleanToColorConverter x:Key="BoolToColorConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
@@ -25,18 +23,23 @@
             <StackLayout Spacing="0">
 
                 <!--  Title View  -->
-                <controls:TitleView Title="Notifications" BackgroundColor="{DynamicResource Gray-White} ">
+                <controls:TitleView Title="Notifications">
 
-                    <!-- Back button -->
+                    <!--  Back button  -->
                     <controls:TitleView.LeadingView>
-                        <buttons:SfButton Text="{StaticResource Back}" Style="{StaticResource IconButtonStyle}" CornerRadius="4"
-                                          Command="{Binding Path=BindingContext.BackCommand, Source={x:Reference socialNotificationPage}}"/>
+                        <buttons:SfButton
+                            Command="{Binding Path=BindingContext.BackButtonCommand, Source={x:Reference socialNotificationPage}}"
+                            Style="{StaticResource IconButtonStyle}"
+                            Text="{StaticResource Back}" />
                     </controls:TitleView.LeadingView>
 
-                    <!-- More button -->
+                    <!--  More button  -->
                     <controls:TitleView.TrailingView>
-                        <buttons:SfButton Text="{StaticResource More}" Style="{StaticResource IconButtonStyle}" CornerRadius="4"
-                                          Command="{Binding Path=BindingContext.MenuCommand, Source={x:Reference socialNotificationPage}}" />
+                        <buttons:SfButton
+                            Command="{Binding Path=BindingContext.MenuCommand, Source={x:Reference socialNotificationPage}}"
+                            CornerRadius="4"
+                            Style="{StaticResource IconButtonStyle}"
+                            Text="{StaticResource More}" />
                     </controls:TitleView.TrailingView>
 
                 </controls:TitleView>
@@ -50,51 +53,56 @@
 
         <ScrollView>
 
-            <StackLayout Padding="0, 16" Spacing="24">
+            <StackLayout Padding="0,16" Spacing="24">
 
-                <listView:SfListView x:Name="RecentList"
-                                     IsScrollBarVisible="False" IsScrollingEnabled="False"
-                                     AllowSwiping="True"
-                                     AutoFitMode="Height"
-                                     ItemSpacing="0"
-                                     SelectionGesture="Tap"
-                                     SelectionMode="Single"
-                                     VerticalOptions="FillAndExpand"
-                                     TapCommand="{Binding ItemTappedCommand}"
-                                     ItemsSource="{Binding RecentList}"
-                                     SelectionBackgroundColor="Transparent">
+                <listView:SfListView
+                    x:Name="RecentList"
+                    AllowSwiping="True"
+                    AutoFitMode="Height"
+                    IsScrollBarVisible="False"
+                    IsScrollingEnabled="False"
+                    ItemSpacing="0"
+                    ItemsSource="{Binding RecentList}"
+                    SelectionBackgroundColor="Transparent"
+                    SelectionGesture="Tap"
+                    SelectionMode="Single"
+                    TapCommand="{Binding ItemTappedCommand}"
+                    VerticalOptions="FillAndExpand">
 
                     <listView:SfListView.HeaderTemplate>
                         <DataTemplate>
-                            <Grid RowSpacing="0" Margin="16, 0, 16, 8" ColumnSpacing="0">
+                            <Grid
+                                Margin="16,0,16,8"
+                                ColumnDefinitions="Auto, *"
+                                ColumnSpacing="0"
+                                RowSpacing="0">
 
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
+                                <Label
+                                    FontFamily="Montserrat-SemiBold"
+                                    FontSize="12"
+                                    HorizontalOptions="Start"
+                                    Text="RECENT"
+                                    TextColor="{DynamicResource Gray-900}" />
 
-                                <Label Text="RECENT"
-                                       TextColor="{DynamicResource Gray-900}"
-                                       FontSize="12"
-                                       FontFamily="{DynamicResource Montserrat-SemiBold}"
-                                       HorizontalOptions="Start"/>
+                                <buttons:SfButton
+                                    Grid.Column="1"
+                                    BackgroundColor="{DynamicResource Gray-Bg}"
+                                    Command="{Binding MarkAllCommand}"
+                                    HeightRequest="18"
+                                    HorizontalOptions="End"
+                                    Style="{StaticResource TransparentButtonStyle}"
+                                    TextColor="{DynamicResource Gray-600}"
+                                    WidthRequest="134">
 
-                                <buttons:SfButton Grid.Column="1" 
-                                                  BorderWidth="0" 
-                                                  WidthRequest="134" 
-                                                  HeightRequest="18"
-                                                  BackgroundColor="{DynamicResource Gray-White}"
-                                                  TextColor="{DynamicResource Gray-600}"
-                                                  CornerRadius="4"
-                                                  HorizontalOptions="End">
-
-                                    <Label Text="MARK ALL AS READ"
-                                           TextColor="{DynamicResource Link}"
-                                           FontSize="12"
-                                           VerticalTextAlignment="Center"
-                                           HorizontalTextAlignment="Center"
-                                           LineHeight="{OnPlatform Android=1.5,Default=-1}"
-                                           FontFamily="{DynamicResource Montserrat-SemiBold}" />
+                                    <Label
+                                        FontFamily="Montserrat-SemiBold"
+                                        FontSize="12"
+                                        HorizontalTextAlignment="Center"
+                                        LineHeight="{OnPlatform Android=1.5,
+                                                                Default=-1}"
+                                        Text="MARK ALL AS READ"
+                                        TextColor="{DynamicResource HyperLink}"
+                                        VerticalTextAlignment="Center" />
 
                                 </buttons:SfButton>
 
@@ -104,118 +112,143 @@
 
                     <listView:SfListView.ItemTemplate>
                         <DataTemplate>
-                            <Grid RowSpacing="0" ColumnSpacing="16" BackgroundColor="{Binding IsRead,  Converter={x:StaticResource BoolToColorConverter}, ConverterParameter=7}">
+                            <Grid
+                                BackgroundColor="{Binding IsRead, Converter={x:StaticResource BoolToColorConverter}, ConverterParameter=7}"
+                                ColumnDefinitions="Auto, *"
+                                ColumnSpacing="16"
+                                RowDefinitions="Auto, Auto, Auto"
+                                RowSpacing="0">
 
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                </Grid.RowDefinitions>
+                                <!--  Notify icon for readable item  -->
+                                <Label
+                                    Margin="16,20,0,0"
+                                    FontFamily="FontIcons"
+                                    FontSize="12"
+                                    Text="{StaticResource New}"
+                                    TextColor="{Binding IsRead, Converter={x:StaticResource BoolToColorConverter}, ConverterParameter=6}" />
 
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
+                                <!--  Notification Detail  -->
+                                <Label
+                                    Grid.Row="0"
+                                    Grid.Column="1"
+                                    Margin="0,16,16,0"
+                                    FontFamily="Montserrat-Medium"
+                                    FontSize="16"
+                                    LineHeight="{OnPlatform Android=1.25,
+                                                            Default=-1}"
+                                    Text="{Binding Name}"
+                                    TextColor="{DynamicResource Gray-900}" />
 
-                                <!-- Notify icon for readable item  -->
-                                <Label Text="{StaticResource 'New Message'}" 
-                                           TextColor="{Binding IsRead, Converter={x:StaticResource BoolToColorConverter}, ConverterParameter=6}" 
-                                           FontSize="12" Margin="16, 20, 0, 0" 
-                                           FontFamily="{StaticResource FontIcons}"/>
+                                <!--  Received Time  -->
+                                <Label
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    Margin="0,4,16,16"
+                                    FontFamily="Montserrat-Medium"
+                                    FontSize="12"
+                                    LineBreakMode="TailTruncation"
+                                    LineHeight="{OnPlatform Android=1.5,
+                                                            Default=-1}"
+                                    Text="{Binding ReceivedTime}"
+                                    TextColor="{DynamicResource Gray-700}" />
 
-                                <!-- Notification Detail -->
-                                <Label Grid.Row="0" Grid.Column="1" Text="{Binding Name}" TextColor="{DynamicResource Gray-900}" FontSize="16" FontFamily="{StaticResource Montserrat-Medium}" Margin="0, 16, 16, 0" LineHeight="{OnPlatform Android=1.25,Default=-1}"></Label>
-
-                                <!-- Received Time -->
-                                <Label Grid.Row="1"
-                                           Grid.Column="1" Margin="0, 4, 16, 16"
-                                           Text="{Binding ReceivedTime}"
-                                           TextColor="{DynamicResource Gray-700}"
-                                           FontSize="12"
-                                           LineHeight="{OnPlatform Android=1.5,Default=-1}"
-                                           LineBreakMode="TailTruncation"
-                                           FontFamily="{DynamicResource Montserrat-Medium}"/>
-
-                                <!-- Seperator -->
-                                <BoxView Grid.Row="2" Grid.ColumnSpan="2" Style="{StaticResource SeparatorStyle}" />
+                                <!--  Seperator  -->
+                                <BoxView
+                                    Grid.Row="2"
+                                    Grid.ColumnSpan="2"
+                                    Style="{StaticResource HorizontalSeparatorStyle}" />
 
                             </Grid>
                         </DataTemplate>
                     </listView:SfListView.ItemTemplate>
 
                     <listView:SfListView.Behaviors>
-                        <behavior:SfListViewExtendHeightBehavior ></behavior:SfListViewExtendHeightBehavior>
+                        <behavior:SfListViewExtendHeightBehavior />
                     </listView:SfListView.Behaviors>
                 </listView:SfListView>
 
-                <listView:SfListView x:Name="EarlierList"
-                                     IsScrollBarVisible="False" IsScrollingEnabled="False"
-                                     AllowSwiping="True"
-                                     AutoFitMode="Height"
-                                     ItemSpacing="0"
-                                     SelectionGesture="Tap"
-                                     SelectionMode="Single"
-                                     VerticalOptions="FillAndExpand"
-                                     TapCommand="{Binding ItemTappedCommand}"
-                                     ItemsSource="{Binding EarlierList}"
-                                     SelectionBackgroundColor="Transparent">
+                <listView:SfListView
+                    x:Name="EarlierList"
+                    AllowSwiping="True"
+                    AutoFitMode="Height"
+                    IsScrollBarVisible="False"
+                    IsScrollingEnabled="False"
+                    ItemSpacing="0"
+                    ItemsSource="{Binding EarlierList}"
+                    SelectionBackgroundColor="Transparent"
+                    SelectionGesture="Tap"
+                    SelectionMode="Single"
+                    TapCommand="{Binding ItemTappedCommand}"
+                    VerticalOptions="FillAndExpand">
 
                     <listView:SfListView.HeaderTemplate>
                         <DataTemplate>
-                           
-                                <Label Text="EARLIER"
-                                       Margin="16, 0, 16, 8"
-                                       TextColor="{DynamicResource Gray-900}"
-                                       FontSize="12"
-                                       FontFamily="{DynamicResource Montserrat-SemiBold}"
-                                       HorizontalOptions="Start"/>
-                               
+
+                            <Label
+                                Margin="16,0,16,8"
+                                FontFamily="Montserrat-SemiBold"
+                                FontSize="12"
+                                HorizontalOptions="Start"
+                                Text="EARLIER"
+                                TextColor="{DynamicResource Gray-900}" />
+
                         </DataTemplate>
                     </listView:SfListView.HeaderTemplate>
 
                     <listView:SfListView.ItemTemplate>
                         <DataTemplate>
-                            <Grid RowSpacing="0" ColumnSpacing="16" BackgroundColor="{Binding IsRead,  Converter={x:StaticResource BoolToColorConverter}, ConverterParameter=7}">
+                            <Grid
+                                BackgroundColor="{Binding IsRead, Converter={x:StaticResource BoolToColorConverter}, ConverterParameter=7}"
+                                ColumnDefinitions="Auto, *"
+                                ColumnSpacing="16"
+                                RowDefinitions="Auto, Auto, Auto"
+                                RowSpacing="0">
 
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                </Grid.RowDefinitions>
+                                <!--  Notify icon for readable item  -->
+                                <Label
+                                    Margin="16,20,0,0"
+                                    FontFamily="FontIcons"
+                                    FontSize="12"
+                                    Text="{StaticResource New}"
+                                    TextColor="{Binding IsRead, Converter={x:StaticResource BoolToColorConverter}, ConverterParameter=6}" />
 
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
+                                <!--  Notification Detail  -->
+                                <Label
+                                    Grid.Row="0"
+                                    Grid.Column="1"
+                                    Margin="0,16,16,0"
+                                    FontFamily="Montserrat-Medium"
+                                    FontSize="16"
+                                    LineHeight="{OnPlatform Android=1.25,
+                                                            Default=-1}"
+                                    Text="{Binding Name}"
+                                    TextColor="{DynamicResource Gray-900}" />
 
-                                <!-- Notify icon for readable item  -->
-                                <Label Text="{StaticResource 'New Message'}" 
-                                           TextColor="{Binding IsRead, Converter={x:StaticResource BoolToColorConverter}, ConverterParameter=6}" 
-                                           FontSize="12" Margin="16, 20, 0, 0" 
-                                           FontFamily="{StaticResource FontIcons}"/>
+                                <!--  Received Time  -->
+                                <Label
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    Margin="0,4,16,16"
+                                    FontFamily="Montserrat-Medium"
+                                    FontSize="12"
+                                    LineBreakMode="TailTruncation"
+                                    LineHeight="{OnPlatform Android=1.5,
+                                                            Default=-1}"
+                                    Text="{Binding ReceivedTime}"
+                                    TextColor="{DynamicResource Gray-700}" />
 
-                                <!-- Notification Detail -->
-                                <Label Grid.Row="0" Grid.Column="1" Text="{Binding Name}" TextColor="{DynamicResource Gray-900}" FontSize="16" FontFamily="{StaticResource Montserrat-Medium }" Margin="0, 16, 16, 0" LineHeight="{OnPlatform Android=1.25,Default=-1}"></Label>
-
-                                <!-- Received Time -->
-                                <Label Grid.Row="1"
-                                           Grid.Column="1" Margin="0, 4, 16, 16"
-                                           Text="{Binding ReceivedTime}"
-                                           TextColor="{DynamicResource Gray-700}"
-                                           FontSize="12"
-                                           LineHeight="{OnPlatform Android=1.5,Default=-1}"
-                                           LineBreakMode="TailTruncation"
-                                           FontFamily="{DynamicResource Montserrat-Medium}"/>
-
-                                <!-- Seperator -->
-                                <BoxView Grid.Row="2" Grid.ColumnSpan="2" Style="{StaticResource SeparatorStyle}" />
+                                <!--  Seperator  -->
+                                <BoxView
+                                    Grid.Row="2"
+                                    Grid.ColumnSpan="2"
+                                    Style="{StaticResource HorizontalSeparatorStyle}" />
 
                             </Grid>
                         </DataTemplate>
                     </listView:SfListView.ItemTemplate>
 
                     <listView:SfListView.Behaviors>
-                        <behavior:SfListViewExtendHeightBehavior ></behavior:SfListViewExtendHeightBehavior>
+                        <behavior:SfListViewExtendHeightBehavior />
                     </listView:SfListView.Behaviors>
                 </listView:SfListView>
 

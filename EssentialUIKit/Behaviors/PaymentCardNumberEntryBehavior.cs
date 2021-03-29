@@ -11,12 +11,38 @@ namespace EssentialUIKit.Behaviors
     [Preserve(AllMembers = true)]
     public class PaymentCardNumberEntryBehavior : Behavior<BorderlessEntry>
     {
+        #region fields
+
+        /// <summary>
+        /// Gets or sets the IsValidProperty, and it is a bindable property.
+        /// </summary>
+        public static readonly BindableProperty IsValidProperty =
+            BindableProperty.Create(nameof(IsValid), typeof(bool), typeof(PaymentCardNumberEntryBehavior), true, BindingMode.TwoWay, null);
+
+        #endregion
+
         #region Properties
 
         /// <summary>
         /// Gets the BorderlessEntry.
         /// </summary>
         public BorderlessEntry BorderlessEntry { get; private set; }
+
+        /// <summary>
+        /// Gets or Sets the IsValid
+        /// </summary>
+        public bool IsValid
+        {
+            get
+            {
+                return (bool)this.GetValue(IsValidProperty);
+            }
+
+            set
+            {
+                this.SetValue(IsValidProperty, value);
+            }
+        }
 
         #endregion
 
@@ -34,6 +60,7 @@ namespace EssentialUIKit.Behaviors
                 this.BorderlessEntry = borderlessEntry;
                 borderlessEntry.BindingContextChanged += this.OnBindingContextChanged;
                 borderlessEntry.TextChanged += this.OnTextChanged;
+                borderlessEntry.Focused += this.borderlessEntry_Focused;
             }
         }
 
@@ -48,6 +75,7 @@ namespace EssentialUIKit.Behaviors
                 base.OnDetachingFrom(borderlessEntry);
                 borderlessEntry.BindingContextChanged -= this.OnBindingContextChanged;
                 borderlessEntry.TextChanged -= this.OnTextChanged;
+                borderlessEntry.Focused -= this.borderlessEntry_Focused;
                 this.BorderlessEntry = null;
             }
         }
@@ -94,6 +122,10 @@ namespace EssentialUIKit.Behaviors
             this.OnBindingContextChanged();
         }
 
+        private void borderlessEntry_Focused(object sender, FocusEventArgs e)
+        {
+            this.IsValid = true;
+        }
         #endregion
     }
 }

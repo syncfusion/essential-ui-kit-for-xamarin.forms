@@ -26,7 +26,7 @@ namespace EssentialUIKit.Models.Navigation
         {
             get
             {
-                return App.BaseImageUrl + this.imagePath;
+                return App.ImageServerPath + this.imagePath;
             }
 
             set

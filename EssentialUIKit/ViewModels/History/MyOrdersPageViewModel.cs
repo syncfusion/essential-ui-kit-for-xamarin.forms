@@ -1,6 +1,4 @@
 ﻿using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
 using EssentialUIKit.Models.History;
 using Xamarin.Forms;
@@ -45,8 +43,7 @@ namespace EssentialUIKit.ViewModels.History
                     return;
                 }
 
-                this.myOrders = value;
-                this.NotifyPropertyChanged();
+                this.SetProperty(ref this.myOrders, value);
                 this.GetProducts(this.MyOrders);
             }
         }
@@ -61,15 +58,14 @@ namespace EssentialUIKit.ViewModels.History
                 return this.orderDetails;
             }
 
-            set
+            private set
             {
                 if (this.orderDetails == value)
                 {
                     return;
                 }
 
-                this.orderDetails = value;
-                this.NotifyPropertyChanged();
+                this.SetProperty(ref this.orderDetails, value);
             }
         }
 

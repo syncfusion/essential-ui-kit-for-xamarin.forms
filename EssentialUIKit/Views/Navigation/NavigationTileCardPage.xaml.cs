@@ -10,7 +10,7 @@ namespace EssentialUIKit.Views.Navigation
     {
         public NavigationTileCardPage()
         {
-            InitializeComponent();
+            this.InitializeComponent();
             this.BindingContext = NavigationDataService.Instance.NavigationViewModel;
         }
     }

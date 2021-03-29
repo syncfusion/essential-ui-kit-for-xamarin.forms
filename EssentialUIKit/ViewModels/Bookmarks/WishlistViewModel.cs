@@ -1,8 +1,5 @@
 ﻿using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
-using EssentialUIKit.Controls;
 using EssentialUIKit.Models;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
@@ -17,7 +14,7 @@ namespace EssentialUIKit.ViewModels.Bookmarks
     public class WishlistViewModel : BaseViewModel
     {
         #region Fields
-        
+
         private ObservableCollection<Product> wishlistDetails;
 
         private double totalPrice;
@@ -28,7 +25,7 @@ namespace EssentialUIKit.ViewModels.Bookmarks
 
         private double percent;
 
-        private int? cartItemCount = null;
+        private int? cartItemCount;
 
         private ObservableCollection<Product> produts;
 
@@ -40,7 +37,7 @@ namespace EssentialUIKit.ViewModels.Bookmarks
 
         private Command quantitySelectedCommand;
 
-        private Command backButtonCommand;
+        private Command itemTappedCommand;
 
         #endregion
 
@@ -56,15 +53,14 @@ namespace EssentialUIKit.ViewModels.Bookmarks
                 return this.wishlistDetails;
             }
 
-            set
+            private set
             {
                 if (this.wishlistDetails == value)
                 {
                     return;
                 }
 
-                this.wishlistDetails = value;
-                this.NotifyPropertyChanged();
+                this.SetProperty(ref this.wishlistDetails, value);
             }
         }
 
@@ -85,8 +81,7 @@ namespace EssentialUIKit.ViewModels.Bookmarks
                     return;
                 }
 
-                this.totalPrice = value;
-                this.NotifyPropertyChanged();
+                this.SetProperty(ref this.totalPrice, value);
             }
         }
 
@@ -107,8 +102,7 @@ namespace EssentialUIKit.ViewModels.Bookmarks
                     return;
                 }
 
-                this.discountPrice = value;
-                this.NotifyPropertyChanged();
+                this.SetProperty(ref this.discountPrice, value);
             }
         }
 
@@ -129,8 +123,7 @@ namespace EssentialUIKit.ViewModels.Bookmarks
                     return;
                 }
 
-                this.discountPercent = value;
-                this.NotifyPropertyChanged();
+                this.SetProperty(ref this.discountPercent, value);
             }
         }
 
@@ -146,8 +139,7 @@ namespace EssentialUIKit.ViewModels.Bookmarks
 
             set
             {
-                this.cartItemCount = value;
-                this.NotifyPropertyChanged();
+                this.SetProperty(ref this.cartItemCount, value);
             }
         }
 
@@ -169,8 +161,7 @@ namespace EssentialUIKit.ViewModels.Bookmarks
                     return;
                 }
 
-                this.produts = value;
-                this.NotifyPropertyChanged();
+                this.SetProperty(ref this.produts, value);
                 this.GetProducts(this.Products);
                 this.UpdatePrice();
             }
@@ -225,13 +216,13 @@ namespace EssentialUIKit.ViewModels.Bookmarks
         }
 
         /// <summary>
-        /// Gets or sets the command is executed when the back button is clicked.
+        /// Gets or sets the command that is executed when the item is selected.
         /// </summary>
-        public Command BackButtonCommand
+        public Command ItemTappedCommand
         {
             get
             {
-                return this.backButtonCommand ?? (this.backButtonCommand = new Command(this.BackButtonClicked));
+                return this.itemTappedCommand ?? (this.itemTappedCommand = new Command(this.ItemSelected));
             }
         }
 
@@ -267,24 +258,8 @@ namespace EssentialUIKit.ViewModels.Bookmarks
             if (this.WishlistDetails.Count > 0)
             {
                 this.WishlistDetails.Remove(obj as Product);
-
-                if ( this.WishlistDetails.Count == 0 )
-                {
-                    SfPopupView sfPopupView = new SfPopupView();
-                    sfPopupView.ShowPopUp(content: "Your wishlist is empty!", buttonText: "START SHOPPING");
-                }
             }
         }
-
-        /// <summary>
-        /// Invoked when an back button is clicked.
-        /// </summary>
-        /// <param name="obj">The Object</param>
-        private void BackButtonClicked(object obj)
-        {
-            // Do something
-        }
-
 
         /// <summary>
         /// Invoked when the quantity is selected.
@@ -292,12 +267,14 @@ namespace EssentialUIKit.ViewModels.Bookmarks
         /// <param name="selectedItem">The Object</param>
         private void QuantitySelected(object selectedItem)
         {
-            // Incident - 249030 - Issue in ComboBox Slection changed event.
+        }
 
-            // var item = selectedItem as Product;
-            // this.UpdatePrice();
-            // item.ActualPrice = item.ActualPrice * item.TotalQuantity;
-            // item.DiscountPrice = item.DiscountPrice * item.TotalQuantity;
+        /// <summary>
+        /// Invoked when item is clicked.
+        /// </summary>
+        private void ItemSelected(object obj)
+        {
+            // Do something
         }
 
         /// <summary>

@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms.Internals;
+﻿using EssentialUIKit.ViewModels.About;
+using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
 
 namespace EssentialUIKit.Views.AboutUs
@@ -15,7 +16,8 @@ namespace EssentialUIKit.Views.AboutUs
         /// </summary>
         public AboutUsWithScrollPage()
         {
-            InitializeComponent();
+            this.InitializeComponent();
+            this.BindingContext = AboutUsViewModel.BindingContext;
         }
     }
 }

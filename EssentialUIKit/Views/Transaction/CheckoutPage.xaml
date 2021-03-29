@@ -3,32 +3,29 @@
     x:Class="EssentialUIKit.Views.Transaction.CheckoutPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
     xmlns:controls="clr-namespace:EssentialUIKit.Controls"
     xmlns:local="clr-namespace:EssentialUIKit.Views.Transaction"
-    xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Transaction"
-    Title="Checkout"
+    x:Name="checkoutPage"
+    Title="checkout"
     BackgroundColor="{DynamicResource Gray-100}"
     NavigationPage.HasNavigationBar="False">
-
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Styles.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </ContentPage.Resources>
-
-    <!--  Binding context for Checkout Page  -->
-    <ContentPage.BindingContext>
-        <viewModel:CheckoutPageViewModel />
-    </ContentPage.BindingContext>
 
     <ContentPage.ControlTemplate>
         <ControlTemplate>
             <StackLayout Spacing="0">
 
                 <!--  Title View  -->
-                <controls:TitleView Title="Checkout" BackgroundColor="{DynamicResource Gray-White}" />
+                <controls:TitleView Title="Checkout">
+                    <controls:TitleView.LeadingView>
+                        <buttons:SfButton
+                            x:Name="backButton"
+                            Command="{Binding BindingContext.BackButtonCommand, Source={x:Reference checkoutPage}}"
+                            CommandParameter="{x:Reference backButton}"
+                            Style="{StaticResource IconButtonStyle}"
+                            Text="{StaticResource Back}" />
+                    </controls:TitleView.LeadingView>
+                </controls:TitleView>
 
                 <ContentPresenter />
 
@@ -42,13 +39,8 @@
                 Padding="{OnIdiom Default='0',
                                   Desktop='16,16,16,0'}"
                 ColumnSpacing="0"
+                RowDefinitions="Auto, Auto, Auto"
                 RowSpacing="16">
-
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
 
                 <!--  ListView for Delivery  -->
                 <local:DeliveryView Margin="{OnIdiom Phone='0,16,0,0', Tablet='0,24,0,0', Desktop=0}" />

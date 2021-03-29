@@ -14,7 +14,7 @@ namespace EssentialUIKit.Views.Bookmarks
     {
         public WishlistPage()
         {
-            InitializeComponent();
+            this.InitializeComponent();
             this.BindingContext = WishlistDataService.Instance.WishlistViewModel;
         }
     }

@@ -8,7 +8,7 @@ namespace EssentialUIKit.Controls
     /// </summary>
     [Preserve(AllMembers = true)]
     public class TitleView : Grid
-    {    
+    {
         #region Bindable Properties
 
         /// <summary>
@@ -64,28 +64,29 @@ namespace EssentialUIKit.Controls
             this.ColumnSpacing = 2;
             this.RowSpacing = 8;
             this.Padding = new Thickness(0, 8, 0, 0);
+            this.BackgroundColor = (Color)Application.Current.Resources["Gray-Bg"];
 
             this.ColumnDefinitions = new ColumnDefinitionCollection
             {
-                new ColumnDefinition { Width = 8 },
+                new ColumnDefinition { Width = 4 },
                 new ColumnDefinition(),
+                new ColumnDefinition { Width = GridLength.Auto },
                 new ColumnDefinition(),
-                new ColumnDefinition(),
-                new ColumnDefinition { Width = 8 },
+                new ColumnDefinition { Width = 4 },
             };
 
             this.RowDefinitions = new RowDefinitionCollection
             {
                 new RowDefinition { Height = GridLength.Auto },
-                new RowDefinition { Height = 1 }
+                new RowDefinition { Height = 1 },
             };
 
             var boxView = new BoxView { Color = (Color)Application.Current.Resources["Gray-200"] };
 
-            Children.Add(this.LeadingView, 1, 0);
-            Children.Add(this.Content, 2, 0);
-            Children.Add(this.TrailingView, 3, 0);
-            Children.Add(boxView, 0, 1);
+            this.Children.Add(this.LeadingView, 1, 0);
+            this.Children.Add(this.Content, 2, 0);
+            this.Children.Add(this.TrailingView, 3, 0);
+            this.Children.Add(boxView, 0, 1);
             SetColumnSpan(boxView, 5);
         }
 
@@ -98,7 +99,7 @@ namespace EssentialUIKit.Controls
         /// </summary>
         public View LeadingView
         {
-            get { return (View)GetValue(LeadingViewProperty); }
+            get { return (View)this.GetValue(LeadingViewProperty); }
             set { this.SetValue(LeadingViewProperty, value); }
         }
 
@@ -107,7 +108,7 @@ namespace EssentialUIKit.Controls
         /// </summary>
         public View TrailingView
         {
-            get { return (View)GetValue(TrailingViewProperty); }
+            get { return (View)this.GetValue(TrailingViewProperty); }
             set { this.SetValue(TrailingViewProperty, value); }
         }
 
@@ -116,7 +117,7 @@ namespace EssentialUIKit.Controls
         /// </summary>
         public View Content
         {
-            get { return (View)GetValue(ContentProperty); }
+            get { return (View)this.GetValue(ContentProperty); }
             set { this.SetValue(ContentProperty, value); }
         }
 
@@ -125,7 +126,7 @@ namespace EssentialUIKit.Controls
         /// </summary>
         public string Title
         {
-            get { return (string)GetValue(TitleProperty); }
+            get { return (string)this.GetValue(TitleProperty); }
             set { this.SetValue(TitleProperty, value); }
         }
 
@@ -134,7 +135,7 @@ namespace EssentialUIKit.Controls
         /// </summary>
         public string FontFamily
         {
-            get { return (string)GetValue(FontFamilyProperty); }
+            get { return (string)this.GetValue(FontFamilyProperty); }
             set { this.SetValue(FontFamilyProperty, value); }
         }
 
@@ -143,7 +144,7 @@ namespace EssentialUIKit.Controls
         /// </summary>
         public FontAttributes FontAttributes
         {
-            get { return (FontAttributes)GetValue(FontAttributesProperty); }
+            get { return (FontAttributes)this.GetValue(FontAttributesProperty); }
             set { this.SetValue(FontAttributesProperty, value); }
         }
 
@@ -152,7 +153,7 @@ namespace EssentialUIKit.Controls
         /// </summary>
         public double FontSize
         {
-            get { return (double)GetValue(FontSizeProperty); }
+            get { return (double)this.GetValue(FontSizeProperty); }
             set { this.SetValue(FontSizeProperty, value); }
         }
 
@@ -226,11 +227,7 @@ namespace EssentialUIKit.Controls
                     TextColor = (Color)Application.Current.Resources["Gray-900"],
                     FontSize = 16,
                     Margin = new Thickness(0, 8),
-                    FontFamily = Device.RuntimePlatform == Device.Android
-                            ? "Montserrat-Medium.ttf#Montserrat-Medium"
-                            : Device.RuntimePlatform == Device.iOS
-                                ? "Montserrat-Medium"
-                                : "Assets/Montserrat-Medium.ttf#Montserrat-Medium",
+                    FontFamily = "Montserrat-Medium",
                     HorizontalTextAlignment = TextAlignment.Center,
                     VerticalTextAlignment = TextAlignment.Center,
                     VerticalOptions = LayoutOptions.Center,

@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="EssentialUIKit.Views.Notification.ECommerceNotificationPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:controls="clr-namespace:EssentialUIKit.Controls"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:template="clr-namespace:EssentialUIKit.Views.Templates"
+    x:Name="eCommerceNotificationPage"
+    BackgroundColor="{DynamicResource Gray-Bg}"
+    NavigationPage.HasNavigationBar="False"
+    mc:Ignorable="d">
+
+    <ContentPage.ControlTemplate>
+        <ControlTemplate>
+            <StackLayout Spacing="0">
+
+                <!--  Title View  -->
+                <controls:TitleView Title="Notifications">
+
+                    <!--  Back button  -->
+                    <controls:TitleView.LeadingView>
+                        <buttons:SfButton
+                            Command="{Binding Path=BindingContext.BackButtonCommand, Source={x:Reference eCommerceNotificationPage}}"
+                            Style="{StaticResource IconButtonStyle}"
+                            Text="{StaticResource Back}" />
+                    </controls:TitleView.LeadingView>
+
+                    <!--  More button  -->
+                    <controls:TitleView.TrailingView>
+                        <buttons:SfButton
+                            Command="{Binding Path=BindingContext.MenuCommand, Source={x:Reference eCommerceNotificationPage}}"
+                            CornerRadius="4"
+                            Style="{StaticResource IconButtonStyle}"
+                            Text="{StaticResource More}" />
+                    </controls:TitleView.TrailingView>
+
+                </controls:TitleView>
+                <ContentPresenter />
+
+            </StackLayout>
+        </ControlTemplate>
+    </ContentPage.ControlTemplate>
+
+    <ContentPage.Content>
+        <StackLayout Spacing="0">
+
+            <listView:SfListView
+                x:Name="ECommerceNotifications"
+                AllowSwiping="True"
+                AutoFitMode="Height"
+                IsScrollBarVisible="False"
+                ItemSpacing="0"
+                ItemsSource="{Binding ECommerceNotificationsList}"
+                SelectionBackgroundColor="Transparent"
+                SelectionGesture="Tap"
+                SelectionMode="Single"
+                TapCommand="{Binding ItemTappedCommand}"
+                VerticalOptions="FillAndExpand">
+
+                <listView:SfListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <template:EcommerceNotificationTemplate />
+                        </ViewCell>
+                    </DataTemplate>
+                </listView:SfListView.ItemTemplate>
+            </listView:SfListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

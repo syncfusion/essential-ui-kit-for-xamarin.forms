@@ -13,10 +13,10 @@
     </Grid.Resources>
 
     <Grid
-        Margin="0,16,0,0"
-        BackgroundColor="{DynamicResource Gray-White}"
+        BackgroundColor="{DynamicResource Gray-Bg}"
         ColumnSpacing="0"
-        RowSpacing="0">
+        RowSpacing="0"
+        ColumnDefinitions="Auto, *">
 
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -25,11 +25,6 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="{OnIdiom Default=1, Phone=0}" />
         </Grid.RowDefinitions>
-
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
 
         <!--  Product image  -->
         <Image
@@ -54,7 +49,7 @@
             Grid.Row="0"
             Grid.Column="1"
             Margin="0,8,0,4"
-            FontFamily="{StaticResource Montserrat-SemiBold}"
+            FontFamily="Montserrat-SemiBold"
             FontSize="14"
             HorizontalOptions="StartAndExpand"
             LineBreakMode="TailTruncation"
@@ -68,7 +63,7 @@
             Grid.Row="1"
             Grid.Column="1"
             Margin="0,0,0,8"
-            FontFamily="{StaticResource Montserrat-Medium}"
+            FontFamily="Montserrat-Medium"
             FontSize="12"
             HorizontalOptions="StartAndExpand"
             LineHeight="1.5"
@@ -79,11 +74,12 @@
         <Label
             Grid.Row="2"
             Grid.Column="1"
-            FontFamily="{StaticResource Montserrat-Medium}"
+            FontFamily="Montserrat-Medium"
             FontSize="12"
             HorizontalOptions="Start"
             Text="{Binding OrderID, StringFormat='Order ID: {0}'}"
-            VerticalOptions="Center" />
+            VerticalOptions="Center"
+            TextColor="{DynamicResource Gray-700}"/>
 
     </Grid>
 </Grid>

@@ -1,44 +1,38 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"            
-             xmlns:controls="clr-namespace:EssentialUIKit.Controls"         
-             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
-             xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
-             xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Navigation"
-             BackgroundColor="{DynamicResource Gray-White}"
-             NavigationPage.HasNavigationBar="False"
-             x:Class="EssentialUIKit.Views.Navigation.RestaurantPage">
+<ContentPage
+    x:Class="EssentialUIKit.Views.Navigation.RestaurantPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:behaviors="clr-namespace:EssentialUIKit.Behaviors"
+    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:controls="clr-namespace:EssentialUIKit.Controls"
+    xmlns:syncEffectsView="clr-namespace:Syncfusion.XForms.EffectsView;assembly=Syncfusion.Core.XForms"
+    xmlns:template="clr-namespace:EssentialUIKit.Views.Templates"
+    xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Navigation"
+    x:Name="restaurantPage"
+    BackgroundColor="{DynamicResource Gray-Bg}"
+    NavigationPage.HasNavigationBar="False">
 
     <ContentPage.BindingContext>
         <viewModel:RestaurantViewModel />
     </ContentPage.BindingContext>
 
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Styles.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </ContentPage.Resources>
-
     <ContentPage.Content>
 
-        <Grid RowSpacing="0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="64" />
-                <RowDefinition Height="1" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
+        <Grid RowDefinitions="Auto, Auto, *" RowSpacing="0">
 
-            <StackLayout x:Name="TitleView"
-                Padding="16,8"
+            <StackLayout
+                x:Name="TitleView"
                 Grid.Row="0"
-                BackgroundColor="{DynamicResource Gray-White}"
+                Padding="8"
+                BackgroundColor="{DynamicResource Gray-Bg}"
                 HorizontalOptions="FillAndExpand"
                 Orientation="Horizontal"
                 Spacing="0">
 
-                <StackLayout  x:Name="Title"
+                <StackLayout
+                    x:Name="TitleLayout"
                     HorizontalOptions="FillAndExpand"
                     IsVisible="True"
                     Orientation="Horizontal"
@@ -46,149 +40,95 @@
                     VerticalOptions="FillAndExpand">
 
                     <!--  Back button command  -->
-                    <buttons:SfButton x:Name="backButton"
+                    <buttons:SfButton
+                        x:Name="backButton"
                         Command="{Binding BackButtonCommand}"
                         CommandParameter="{x:Reference backButton}"
-                        CornerRadius="4"
                         Style="{StaticResource IconButtonStyle}"
                         Text="{StaticResource Back}" />
 
                     <!--  Restaurant page Title  -->
-                    <Label Margin="16,0"
-                        HeightRequest="24"
-                        FontFamily="{StaticResource Montserrat-Medium}"
-                        FontSize="16"
-                        HorizontalOptions="CenterAndExpand"
-                        LineHeight="1.25"
+                    <Label
+                        Margin="16,0"
+                        FontFamily="Montserrat-Medium"
+                        HorizontalOptions="FillAndExpand"
+                        Style="{StaticResource TitleLabelStyle}"
                         Text="Restaurants"
-                        TextColor="{DynamicResource Gray-900}"
                         VerticalOptions="Center"
                         VerticalTextAlignment="Center" />
 
                 </StackLayout>
 
-                <StackLayout x:Name="Search"
+                <StackLayout
+                    x:Name="Search"
                     HorizontalOptions="EndAndExpand"
                     IsVisible="False"
                     Orientation="Horizontal"
                     Spacing="0">
 
                     <!--  Back to title layout  -->
-                    <buttons:SfButton x:Name="BackToTitle"
-                        Clicked="BackToTitle_Clicked"
-                        Style="{StaticResource NavigationBarButtonStyle}"
-                        Text="{StaticResource Back}" />
+                    <buttons:SfButton
+                        x:Name="BackToTitle"
+                        Style="{StaticResource IconButtonStyle}"
+                        Text="{StaticResource Back}">
+                        <buttons:SfButton.Behaviors>
+                            <behaviors:SearchBarAnimationBehavior AnimationType="shrink" />
+                        </buttons:SfButton.Behaviors>
+                    </buttons:SfButton>
 
                     <!--  Rounded Search Entry  -->
-                    <border:SfBorder Style="{DynamicResource SfBorderStyle}">
+                    <border:SfBorder Style="{DynamicResource ThemeBorderStyle}">
 
-                        <controls:BorderlessEntry x:Name="SearchEntry"
+                        <controls:BorderlessEntry
+                            x:Name="SearchEntry"
                             BindingContext="{x:Reference RestaurantList}"
                             HorizontalOptions="FillAndExpand"
                             Placeholder="Search here"
-                            Text="{Binding SearchText, Mode=TwoWay}"
-                            Style="{StaticResource SearchEntryStyle}"/>
+                            Style="{StaticResource BorderlessEntryStyle}"
+                            Text="{Binding SearchText, Mode=TwoWay}" />
                     </border:SfBorder>
 
                 </StackLayout>
 
                 <!--  Search Button  -->
-                <buttons:SfButton x:Name="SearchButton"
+                <buttons:SfButton
+                    x:Name="SearchButton"
                     IsVisible="True"
-                    Clicked="SearchButton_Clicked"
-                    Style="{StaticResource NavigationBarButtonStyle }"
-                    Text="{StaticResource Search}" />
+                    Style="{StaticResource IconButtonStyle}"
+                    Text="{StaticResource Search}">
+                    <buttons:SfButton.Behaviors>
+                        <behaviors:SearchBarAnimationBehavior AnimationType="expand" />
+                    </buttons:SfButton.Behaviors>
+                </buttons:SfButton>
 
             </StackLayout>
 
-                <!--  Separator  -->
-            <BoxView   Grid.Row="1" Style="{StaticResource SeparatorStyle}" />
+            <!--  Separator  -->
+            <BoxView Grid.Row="1" Style="{StaticResource HorizontalSeparatorStyle}" />
 
-            <StackLayout Grid.Row="2"  Spacing="0" >
+            <StackLayout Grid.Row="2" Spacing="0">
 
-                <controls:SearchableRestaurantPage  x:Name="RestaurantList"
+                <controls:SearchableRestaurantPage
+                    x:Name="RestaurantList"
                     Padding="0"
                     AutoFitMode="Height"
                     IsScrollBarVisible="false"
                     ItemSpacing="0"
                     ItemsSource="{Binding NavigationList}"
                     SelectionBackgroundColor="Transparent"
-                    TapCommand="{Binding ItemTappedCommand}"
-                    VerticalOptions="FillAndExpand"
-                    StickyFooterPosition="Body">
+                    StickyFooterPosition="Body"
+                    VerticalOptions="FillAndExpand">
 
                     <controls:SearchableRestaurantPage.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <!--  View of each card item  -->
-                                <StackLayout BackgroundColor="{DynamicResource Gray-White}" Spacing="0">
-
-                                    <Grid Margin="16,8,8,8"  ColumnSpacing="0" RowSpacing="0" >
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="Auto"/>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="Auto"/>
-                                        </Grid.ColumnDefinitions>
-
-                                        <border:SfBorder  BackgroundColor="{DynamicResource Gray-200}"
-                                            Style="{StaticResource ProfileBorderStyle}" HorizontalOptions="Start">
-                                            <Image HeightRequest="80" WidthRequest="80" BackgroundColor="{DynamicResource Gray-200}" 
-                                                   Aspect="AspectFill" >
-                                                <Image.Source>
-                                                    <UriImageSource
-                                                             CacheValidity="14"
-                                                             CachingEnabled="true"
-                                                             Uri="{Binding ItemImage}"/>
-                                                </Image.Source>
-                                            </Image>
-                                        </border:SfBorder>
-
-                                        <StackLayout Grid.Column="1"
-                                            Margin="16,5"
-                                            HorizontalOptions="Start"
-                                            Spacing="2"
-                                            VerticalOptions="FillAndExpand">
-
-                                                <!--  Name of the Restaurant  -->
-                                                <Label 
-                                                    FontFamily="{StaticResource Montserrat-Medium}"
-                                                    FontSize="16" 
-                                                    LineHeight="{OnPlatform Android=1.5,
-                                                                             Default=-1}"
-                                                    Text="{Binding Name}"
-                                                    TextColor="{DynamicResource Gray-800}" />
-
-                                                <!--  Description about the item  -->
-                                                <Label 
-                                                    FontFamily="{StaticResource Montserrat-Medium}"
-                                                    FontSize="14"
-                                                    LineHeight="{OnPlatform Android=1.25,
-                                                                        Default=-1}"
-                                                    Text="{Binding Description}"
-                                                    TextColor="{DynamicResource Gray-700}" />
-
-                                                <!--  Label for Offer  -->
-                                                <Label 
-                                                     FontFamily="{StaticResource Montserrat-Medium}"
-                                                     FontSize="14"
-                                                     LineHeight="{OnPlatform Android=1.25,
-                                                     Default=-1}"
-                                                     Text="{Binding Offer}"
-                                                     TextColor="{DynamicResource PrimaryColor}" />
-                                        </StackLayout>
-
-                                            <border:SfBorder BackgroundColor="{DynamicResource LightGreen}" WidthRequest="24" HeightRequest="20"
-                                                      HorizontalOptions="End" Margin="0,8,0,0" VerticalOptions="Start"
-                                                      Grid.Column="2" CornerRadius="4" BorderColor="Transparent">
-                                                <Label  FontFamily="{StaticResource Montserrat-Medium}" 
-                                                        Text="{Binding ItemRating}" HorizontalOptions="Center"
-                                                        FontSize="12" LineHeight="{OnPlatform Android=1.5,
-                                                        Default=-1}" TextColor="{DynamicResource Gray-White}" VerticalTextAlignment="Center" />
-                                            </border:SfBorder>
-                                    </Grid>
-                                    <!--  Separator -->
-                                    <BoxView Style="{StaticResource SeparatorStyle}" />
-                                </StackLayout>
+                                <syncEffectsView:SfEffectsView
+                                    RippleColor="{DynamicResource Gray-300}"
+                                    TouchDownEffects="Ripple"
+                                    TouchUpCommand="{Binding Path=BindingContext.ItemTappedCommand, Source={x:Reference restaurantPage}}"
+                                    TouchUpCommandParameter="{Binding}">
+                                    <template:RestaurantCardTemplate />
+                                </syncEffectsView:SfEffectsView>
                             </ViewCell>
                         </DataTemplate>
                     </controls:SearchableRestaurantPage.ItemTemplate>

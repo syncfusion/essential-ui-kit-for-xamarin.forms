@@ -11,21 +11,12 @@
     xmlns:template="clr-namespace:EssentialUIKit.Views.Templates"
     xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Article"
     x:Name="articleParallaxPage"
-    BackgroundColor="{DynamicResource Gray-White}"
+    BackgroundColor="{DynamicResource Gray-Bg}"
     NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Styles.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
         <converter:BooleanToStringConverter x:Key="boolToStringConverter" />
     </ContentPage.Resources>
-
-    <ContentPage.BindingContext>
-        <viewModel:ArticleParallaxHeaderPageViewModel />
-    </ContentPage.BindingContext>
 
     <ContentPage.ControlTemplate>
         <ControlTemplate>
@@ -37,7 +28,6 @@
                             x:Name="backButton"
                             Command="{TemplateBinding BindingContext.BackButtonCommand}"
                             CommandParameter="{x:Reference backButton}"
-                            CornerRadius="4"
                             Style="{StaticResource IconButtonStyle}"
                             Text="{StaticResource Back}" />
                     </controls:TitleView.LeadingView>
@@ -48,22 +38,21 @@
                                 x:Name="shareButton"
                                 Command="{TemplateBinding BindingContext.ShareButtonCommand}"
                                 CommandParameter="{x:Reference shareButton}"
-                                CornerRadius="4"
-                                HeightRequest="40"
                                 Style="{StaticResource IconButtonStyle}"
-                                Text="{StaticResource Share}"
-                                WidthRequest="40" />
+                                Text="{StaticResource Share}" />
 
                             <!--  Bookmark button  -->
                             <buttons:SfButton
                                 x:Name="bookmarkButton"
-                                Command="{TemplateBinding BindingContext.BookmarkCommand}"
-                                CommandParameter="{x:Reference bookmarkButton}"
-                                CornerRadius="4"
-                                HeightRequest="40"
-                                Style="{StaticResource NavigationBarButtonStyle}"
-                                Text="{StaticResource ClearBookmark}"
-                                WidthRequest="40" />
+                                Command="{Binding Path=BindingContext.BookmarkCommand, Source={x:Reference articleParallaxPage}}"
+                                CommandParameter="{Binding}"
+                                Style="{StaticResource IconButtonStyle}"
+                                Text="{Binding IsBookmarked, Converter={StaticResource boolToStringConverter}, ConverterParameter=0}" />
+
+                            <StackLayout.BindingContext>
+                                <viewModel:ArticleParallaxHeaderPageViewModel />
+                            </StackLayout.BindingContext>
+
                         </StackLayout>
                     </controls:TitleView.TrailingView>
                 </controls:TitleView>
@@ -74,11 +63,7 @@
 
     <ContentPage.Content>
 
-        <Grid RowSpacing="0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
+        <Grid RowDefinitions="Auto, *" RowSpacing="0">
             <Grid Grid.Row="1">
                 <!--  Parallx header view  -->
                 <ScrollView>
@@ -86,10 +71,7 @@
                         x:Name="headerView"
                         HorizontalOptions="FillAndExpand"
                         VerticalOptions="FillAndExpand">
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
+                        <Grid RowDefinitions="Auto">
                             <!--  Article header image  -->
                             <Image
                                 x:Name="headerImage"
@@ -110,6 +92,13 @@
                     </ContentView>
                 </ScrollView>
 
+                <!--  OverLay Effect  -->
+                <Frame
+                    Grid.Row="0"
+                    BackgroundColor="{DynamicResource Gray-Black}"
+                    CornerRadius="0"
+                    Opacity="0.2" />
+
                 <!--  Custom control for parallax scroll view  -->
                 <controls:ParallaxScrollView
                     HorizontalOptions="FillAndExpand"
@@ -117,13 +106,9 @@
                     VerticalOptions="FillAndExpand">
                     <Grid
                         ColumnSpacing="0"
+                        RowDefinitions="265, Auto, *"
                         RowSpacing="0"
                         VerticalOptions="FillAndExpand">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="265" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
 
                         <StackLayout
                             Grid.Row="1"
@@ -132,7 +117,7 @@
                             <!--  Article Tile  -->
                             <Label
                                 Margin="0,0,0,8"
-                                FontFamily="{StaticResource Montserrat-Bold}"
+                                FontFamily="Montserrat-Bold"
                                 FontSize="20"
                                 LineHeight="{OnPlatform Default=-1,
                                                         Android=1.25}"
@@ -149,17 +134,17 @@
                                 <Label.FormattedText>
                                     <FormattedString>
                                         <Span
-                                            FontFamily="{StaticResource Montserrat-Medium}"
+                                            FontFamily="Montserrat-Medium"
                                             Text="{Binding ArticleAuthor}"
                                             TextColor="{DynamicResource Gray-White}" />
                                         <Span Text="    " />
                                         <Span
-                                            FontFamily="{StaticResource Montserrat-Regular}"
+                                            FontFamily="Montserrat-Regular"
                                             Text="{Binding ArticleDate}"
                                             TextColor="{DynamicResource Gray-White}" />
-                                        <Span Text=" | " TextColor="{DynamicResource Gray-White}" />
+                                        <Span Text=" | " TextColor="{DynamicResource Gray-Bg}" />
                                         <Span
-                                            FontFamily="{StaticResource Montserrat-Regular}"
+                                            FontFamily="Montserrat-Regular"
                                             Text="{Binding ArticleReadingTime}"
                                             TextColor="{DynamicResource Gray-White}" />
                                     </FormattedString>
@@ -169,12 +154,12 @@
 
                         <StackLayout
                             Grid.Row="2"
-                            BackgroundColor="{DynamicResource Gray-White}"
+                            BackgroundColor="{DynamicResource Gray-Bg}"
                             Spacing="0">
                             <!--  Subtitle of the blog  -->
                             <Label
                                 Margin="16,16,0,8"
-                                FontFamily="{StaticResource Montserrat-SemiBold}"
+                                FontFamily="Montserrat-SemiBold"
                                 FontSize="16"
                                 LineHeight="{OnPlatform Default=-1,
                                                         Android=1.25}"
@@ -191,13 +176,13 @@
                                             <Label
                                                 Margin="{OnPlatform Default='0,3,0,0',
                                                                     iOS='0,10,0,0'}"
-                                                FontFamily="{StaticResource FontIcons}"
+                                                FontFamily="FontIcons"
                                                 FontSize="14"
                                                 Text="&#xe720;"
                                                 TextColor="{DynamicResource Gray-500}" />
 
                                             <Label
-                                                FontFamily="{StaticResource Montserrat-Medium}"
+                                                FontFamily="Montserrat-Medium"
                                                 FontSize="14"
                                                 LineHeight="1.5"
                                                 Text="{Binding Description}"
@@ -210,7 +195,7 @@
                             <!--  Article content  -->
                             <Label
                                 Margin="16,0,16,32"
-                                FontFamily="{StaticResource Montserrat-Medium}"
+                                FontFamily="Montserrat-Medium"
                                 FontSize="14"
                                 LineHeight="{OnPlatform Default=-1,
                                                         Android=1.5}"
@@ -220,7 +205,7 @@
                             <!--  Related stroies label  -->
                             <Label
                                 Margin="16,0,0,16"
-                                FontFamily="{StaticResource Montserrat-SemiBold}"
+                                FontFamily="Montserrat-SemiBold"
                                 FontSize="12"
                                 LineHeight="{OnPlatform Default=-1,
                                                         Android=1.25}"
@@ -230,13 +215,13 @@
                             <!--  Related blog list  -->
                             <listView:SfListView
                                 x:Name="SfListView"
-                                Margin="16,0,16,8"
+                                Margin="8,0"
                                 AutoFitMode="Height"
-                                BackgroundColor="{DynamicResource Gray-White}"
                                 HorizontalOptions="FillAndExpand"
                                 ItemSpacing="8"
                                 ItemsSource="{Binding RelatedStories}"
                                 SelectionBackgroundColor="Transparent"
+                                TapCommand="{Binding ItemSelectedCommand}"
                                 VerticalOptions="FillAndExpand">
                                 <listView:SfListView.Behaviors>
                                     <behavior:SfListViewExtendHeightBehavior />
@@ -268,14 +253,11 @@
                                     Padding="0"
                                     Command="{Binding LoadMoreCommand}"
                                     CommandParameter="{x:Reference ShowButton}"
-                                    CornerRadius="4"
-                                    FontFamily="{StaticResource Montserrat-SemiBold}"
                                     FontSize="{OnIdiom Default=12,
                                                        Desktop=14}"
                                     HorizontalOptions="End"
-                                    Style="{StaticResource SfButtonStyle}"
+                                    Style="{StaticResource TransparentButtonStyle}"
                                     Text="SHOW LESS"
-                                    TextColor="{DynamicResource HyperLink}"
                                     VerticalOptions="Center" />
 
                             </StackLayout>
@@ -288,7 +270,7 @@
                                 <BindableLayout.ItemTemplate>
                                     <DataTemplate>
                                         <StackLayout Spacing="0">
-                                            <BoxView HeightRequest="{OnIdiom Default=1, Desktop=0}" Style="{StaticResource BoxViewStyle}" />
+                                            <BoxView HeightRequest="{OnIdiom Default=1, Desktop=0}" Style="{StaticResource HorizontalSeparatorStyle}" />
 
                                             <template:ReviewTemplate Padding="16,16,0,0" ColumnSpacing="0" />
                                         </StackLayout>
@@ -299,17 +281,10 @@
                             <!--  See all reviews Button  -->
                             <buttons:SfButton
                                 Margin="50,8,50,24"
-                                BackgroundColor="{DynamicResource PrimaryColor}"
-                                BorderColor="{DynamicResource PrimaryColor}"
-                                BorderWidth="1"
                                 Command="{Binding AddNewCommentCommand}"
                                 CommandParameter="{Binding .}"
-                                FontFamily="{StaticResource Montserrat-SemiBold}"
-                                HeightRequest="40"
-                                HorizontalOptions="Center"
-                                Style="{StaticResource RoundButtonStyle}"
+                                Style="{StaticResource GradientButtonStyle}"
                                 Text="COMMENT"
-                                TextColor="{DynamicResource Gray-White}"
                                 WidthRequest="245" />
                         </StackLayout>
                     </Grid>

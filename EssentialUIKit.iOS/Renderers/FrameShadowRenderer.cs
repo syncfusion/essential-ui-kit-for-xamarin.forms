@@ -1,6 +1,6 @@
-﻿using EssentialUIKit.Controls;
+﻿using CoreGraphics;
+using EssentialUIKit.Controls;
 using EssentialUIKit.iOS;
-using CoreGraphics;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 
@@ -23,8 +23,8 @@ namespace EssentialUIKit.iOS
                 this.Layer.ShadowOpacity = customShadowFrame.ShadowOpacity;
                 this.Layer.ShadowOffset = new CGSize(customShadowFrame.ShadowOffsetWidth, customShadowFrame.ShadowOffSetHeight);
                 this.Layer.Bounds.Inset(customShadowFrame.BorderWidth, customShadowFrame.BorderWidth);
-                Layer.BorderColor = customShadowFrame.CustomBorderColor.ToCGColor();
-                Layer.BorderWidth = (float)customShadowFrame.BorderWidth;
+                this.Layer.BorderColor = customShadowFrame.CustomBorderColor.ToCGColor();
+                this.Layer.BorderWidth = (float)customShadowFrame.BorderWidth;
             }
         }
     }

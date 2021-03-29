@@ -11,7 +11,7 @@ namespace EssentialUIKit.Controls
     /// This is a helper class to render the SVG files. 
     /// </summary>
     public class SVGImage : ContentView
-    {       
+    {
         // Bindable property to set the SVG image path
         public static readonly BindableProperty SourceProperty = BindableProperty.Create(
           nameof(Source), typeof(string), typeof(SVGImage), default(string), propertyChanged: RedrawCanvas);
@@ -32,7 +32,7 @@ namespace EssentialUIKit.Controls
             get => (string)this.GetValue(SourceProperty);
             set => this.SetValue(SourceProperty, value);
         }
-            
+
         /// <summary>
         /// Method to invaldate the canvas to update the image
         /// </summary>
@@ -61,10 +61,10 @@ namespace EssentialUIKit.Controls
             }
 
             // Get the assembly information to access the local image
-            var assembly = typeof(SVGImage).GetTypeInfo().Assembly.GetName();
+            Assembly assembly = typeof(SVGImage).Assembly;
 
             // Update the canvas with the SVG image
-            using (Stream stream = typeof(SVGImage).GetTypeInfo().Assembly.GetManifestResourceStream(assembly.Name + ".Images." + Source))
+            using (Stream stream = assembly.GetManifestResourceStream(assembly.GetName().Name + ".Images." + this.Source))
             {
                 SkiaSharp.Extended.Svg.SKSvg skSVG = new SkiaSharp.Extended.Svg.SKSvg();
                 skSVG.Load(stream);

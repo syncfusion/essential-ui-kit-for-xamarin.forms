@@ -1,9 +1,6 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
-using Syncfusion.ListView.XForms;
 using EssentialUIKit.Models;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
@@ -54,8 +51,8 @@ namespace EssentialUIKit.ViewModels.Catalog
                     SubCategories = new List<string>
                     {
                         "Men",
-                        "Women"
-                    }
+                        "Women",
+                    },
                 },
                 new Category
                 {
@@ -63,8 +60,8 @@ namespace EssentialUIKit.ViewModels.Catalog
                     SubCategories = new List<string>
                     {
                         "Brand A",
-                        "Brand B"
-                    }
+                        "Brand B",
+                    },
                 },
                 new Category
                 {
@@ -72,8 +69,8 @@ namespace EssentialUIKit.ViewModels.Catalog
                     SubCategories = new List<string>
                     {
                         "Category A",
-                        "Category B"
-                    }
+                        "Category B",
+                    },
                 },
                 new Category
                 {
@@ -81,8 +78,8 @@ namespace EssentialUIKit.ViewModels.Catalog
                     SubCategories = new List<string>
                     {
                         "Maroon",
-                        "Pink"
-                    }
+                        "Pink",
+                    },
                 },
                 new Category
                 {
@@ -91,40 +88,40 @@ namespace EssentialUIKit.ViewModels.Catalog
                     {
                         "Above 3000",
                         "1000 to 3000",
-                        "Below 1000"
-                    }
+                        "Below 1000",
+                    },
                 },
                 new Category
                 {
                     Name = "Size",
                     SubCategories = new List<string>
                     {
-                        "S", "M", "L", "XL", "XXL"
-                    }
+                        "S", "M", "L", "XL", "XXL",
+                    },
                 },
                 new Category
                 {
                     Name = "Patterns",
                     SubCategories = new List<string>
                     {
-                        "Pattern 1", "Pattern 2"
-                    }
+                        "Pattern 1", "Pattern 2",
+                    },
                 },
                 new Category
                 {
                     Name = "Offers",
                     SubCategories = new List<string>
                     {
-                        "Buy 1 Get 1", "Buy 1 Get 2"
-                    }
+                        "Buy 1 Get 1", "Buy 1 Get 2",
+                    },
                 },
                 new Category
                 {
                     Name = "Coupons",
                     SubCategories = new List<string>
                     {
-                        "Coupon 1", "Coupon 2"
-                    }
+                        "Coupon 1", "Coupon 2",
+                    },
                 },
             };
 
@@ -134,7 +131,7 @@ namespace EssentialUIKit.ViewModels.Catalog
                 "Price - high to low",
                 "Price - Low to High",
                 "Popularity",
-                "Discount"
+                "Discount",
             };
         }
 
@@ -145,7 +142,7 @@ namespace EssentialUIKit.ViewModels.Catalog
         /// <summary>
         /// Gets or sets the property that has been bound with a list view, which displays the item details in tile.
         /// </summary>
-        [DataMember(Name="products")]
+        [DataMember(Name = "products")]
         public ObservableCollection<Product> Products
         {
             get; set;
@@ -161,15 +158,14 @@ namespace EssentialUIKit.ViewModels.Catalog
                 return this.filterOptions;
             }
 
-            set
+            private set
             {
                 if (this.filterOptions == value)
                 {
                     return;
                 }
 
-                this.filterOptions = value;
-                this.NotifyPropertyChanged();
+                this.SetProperty(ref this.filterOptions, value);
             }
         }
 
@@ -183,15 +179,14 @@ namespace EssentialUIKit.ViewModels.Catalog
                 return this.sortOptions;
             }
 
-            set
+            private set
             {
                 if (this.sortOptions == value)
                 {
                     return;
                 }
 
-                this.sortOptions = value;
-                this.NotifyPropertyChanged();
+                this.SetProperty(ref this.sortOptions, value);
             }
         }
 
@@ -204,10 +199,10 @@ namespace EssentialUIKit.ViewModels.Catalog
             {
                 return this.cartItemCount;
             }
+
             set
             {
-                this.cartItemCount = value;
-                this.NotifyPropertyChanged();
+                this.SetProperty(ref this.cartItemCount, value);
             }
         }
 
@@ -304,7 +299,9 @@ namespace EssentialUIKit.ViewModels.Catalog
         private void AddFavouriteClicked(object obj)
         {
             if (obj is Product product)
+            {
                 product.IsFavourite = !product.IsFavourite;
+            }
         }
 
         /// <summary>

@@ -9,7 +9,8 @@
       "titlestatus": "Your order has been placed.",
       "date": "Sat, 27th Oct 2018 - 10:40pm",
       "orderstatus": "Seller has processed your order.",
-      "orderdate": "Sun, 28th Oct 2018 - 11:13am"
+      "orderdate": "Sun, 28th Oct 2018 - 11:13am",
+      "stepstatus": "Completed"
     },
     {
       "title": "Packed",
@@ -19,10 +20,12 @@
       "stepstatus": "InProgress"
     },
     {
-      "title": "Shipped"
+      "title": "Shipped",
+      "stepstatus": "NotStarted"
     },
     {
-      "title": "Delivered"
+      "title": "Delivered",
+      "stepstatus": "NotStarted"
     }
   ]
 }

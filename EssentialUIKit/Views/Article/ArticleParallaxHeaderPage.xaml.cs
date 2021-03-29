@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
+using EssentialUIKit.ViewModels.Article;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
@@ -20,9 +16,10 @@ namespace EssentialUIKit.Views.Article
         /// <summary>
         /// Initializes a new instance of the <see cref="ArticleParallaxHeaderPage"/> class.
         /// </summary>
-        public ArticleParallaxHeaderPage ()
+        public ArticleParallaxHeaderPage()
         {
-            InitializeComponent();
+            this.InitializeComponent();
+            this.BindingContext = ArticleParallaxHeaderPageViewModel.BindingContext;
         }
     }
 }

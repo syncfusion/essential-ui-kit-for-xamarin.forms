@@ -10,7 +10,10 @@ namespace EssentialUIKit.Models.Navigation
     [DataContract]
     public class Movie
     {
+        private string posterImage;
+
         #region Properties
+
         /// <summary>
         /// Gets or sets the movie name.
         /// </summary>
@@ -28,6 +31,23 @@ namespace EssentialUIKit.Models.Navigation
         /// </summary>
         [DataMember(Name = "movierating")]
         public string MovieRating { get; set; }
+
+        /// <summary>
+        /// Gets or sets the  image of the movie.
+        /// </summary>
+        [DataMember(Name = "image")]
+        public string PosterImage
+        {
+            get
+            {
+                return App.ImageServerPath + this.posterImage;
+            }
+
+            set
+            {
+                this.posterImage = value;
+            }
+        }
 
         #endregion
     }

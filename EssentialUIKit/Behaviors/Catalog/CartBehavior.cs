@@ -30,7 +30,8 @@ namespace EssentialUIKit.Behaviors.Catalog
                 this.bindablePage = bindableContentPage;
                 bindableContentPage.Appearing += this.Bindable_Appearing;
             }
-        }               
+        }
+
         /// <summary>
         /// Invoked when exit from the page.
         /// </summary>

@@ -13,7 +13,7 @@ namespace EssentialUIKit.DataService
     {
         #region fields
 
-        private static RestaurantDataService instance;
+        private static RestaurantDataService restaurantDataService;
 
         private RestaurantViewModel restaurantViewModel;
 
@@ -24,7 +24,7 @@ namespace EssentialUIKit.DataService
         /// <summary>
         /// Gets an instance of the <see cref="RestaurantDataService"/>.
         /// </summary>
-        public static RestaurantDataService Instance => instance ?? (instance = new RestaurantDataService());
+        public static RestaurantDataService Instance => restaurantDataService ?? (restaurantDataService = new RestaurantDataService());
 
         /// <summary>
         /// Gets or sets the value of Restaurant view model.
@@ -49,15 +49,15 @@ namespace EssentialUIKit.DataService
 
             var assembly = typeof(App).GetTypeInfo().Assembly;
 
-            T obj;
+            T data;
 
             using (var stream = assembly.GetManifestResourceStream(file))
             {
                 var serializer = new DataContractJsonSerializer(typeof(T));
-                obj = (T)serializer.ReadObject(stream);
+                data = (T)serializer.ReadObject(stream);
             }
 
-            return obj;
+            return data;
         }
         #endregion
     }

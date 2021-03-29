@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary
+    x:Class="EssentialUIKit.Styles.FrameStyles"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:control="clr-namespace:EssentialUIKit.Controls">
+
+    <!--  Common style for custom shadow frames  -->
+    <Style x:Key="CustomShadowFrameStyle" TargetType="control:CustomShadowFrame">
+        <Setter Property="BackgroundColor" Value="{DynamicResource GrayShadowColor}" />
+        <Setter Property="BorderColor" Value="{DynamicResource GrayShadowColor}" />
+        <Setter Property="BorderWidth" Value="1" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="CornerRadius" Value="12" />
+        <Setter Property="HasShadow" Value="True" />
+        <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+        <Setter Property="Radius" Value="12" />
+        <Setter Property="ShadowOffSetHeight" Value="4" />
+        <Setter Property="ShadowOffsetWidth" Value="0" />
+        <Setter Property="ShadowOpacity" Value="0.12" />
+    </Style>
+
+</ResourceDictionary>

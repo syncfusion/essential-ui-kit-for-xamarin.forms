@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Grid
+    x:Class="EssentialUIKit.Views.Templates.BottomNavigationAlbumTemplate"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Frame
+        Padding="0"
+        BackgroundColor="{DynamicResource Gray-Bg}"
+        BorderColor="{DynamicResource Gray-Bg}"
+        CornerRadius="8"
+        HasShadow="True"
+        HeightRequest="130"
+        HorizontalOptions="FillAndExpand"
+        VerticalOptions="FillAndExpand">
+        <border:SfBorder
+            BorderColor="Transparent"
+            BorderWidth="0"
+            CornerRadius="8">
+
+            <Grid>
+
+                <!--  Album cover image  -->
+                <Image Aspect="AspectFill">
+                    <Image.Source>
+                        <UriImageSource
+                            CacheValidity="14"
+                            CachingEnabled="true"
+                            Uri="{Binding AlbumImage}" />
+                    </Image.Source>
+                </Image>
+
+                <!--  OverLay Effect  -->
+                <Frame
+                    BackgroundColor="{DynamicResource Gray-Black}"
+                    CornerRadius="0"
+                    Opacity="0.3" />
+
+                <StackLayout
+                    Padding="24,0,0,16"
+                    Spacing="2"
+                    VerticalOptions="End">
+
+                    <!--  Album name  -->
+                    <Label
+                        FontFamily="Montserrat-SemiBold"
+                        FontSize="16"
+                        Text="{Binding AlbumName}"
+                        TextColor="{DynamicResource Gray-White}" />
+
+                    <!--  Total number of photos  -->
+                    <Label
+                        FontFamily="Montserrat-Medium"
+                        FontSize="12"
+                        Text="{Binding ImagesCount}"
+                        TextColor="{DynamicResource Gray-White}" />
+
+                </StackLayout>
+
+            </Grid>
+        </border:SfBorder>
+    </Frame>
+
+</Grid>

@@ -2,21 +2,14 @@
 <Grid
     x:Class="EssentialUIKit.Views.Templates.NavigationListTemplate"
     xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:button="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Navigation">
 
-    <Grid.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Styles.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </Grid.Resources>
-
-    <Grid ColumnSpacing="0" RowSpacing="0">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="120" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
+    <Grid
+        ColumnDefinitions="120, *"
+        ColumnSpacing="0"
+        RowSpacing="0">
 
         <!--  Image to display the Item  -->
         <Image
@@ -40,22 +33,23 @@
 
             <!--  Name of the item  -->
             <Label
-                FontFamily="{StaticResource Montserrat-SemiBold}"
-                FontSize="16"
-                LineHeight="{OnPlatform Android=1.5,
-                                        Default=-1}"
-                Text="{Binding ItemName}"
-                TextColor="{DynamicResource Gray-900}" />
+                HorizontalOptions="Start"
+                HorizontalTextAlignment="Start"
+                Style="{StaticResource TitleLabelStyle}"
+                Text="{Binding ItemName}" />
 
             <!--  Description about the item  -->
             <Label
                 Margin="0,4,0,8"
-                FontFamily="{StaticResource Montserrat-Medium}"
                 FontSize="12"
+                HorizontalOptions="Start"
+                HorizontalTextAlignment="Start"
+                LineBreakMode="TailTruncation"
                 LineHeight="{OnPlatform Android=1.25,
                                         Default=-1}"
-                Text="{Binding ItemDescription}"
-                TextColor="{DynamicResource Gray-700}" />
+                MaxLines="2"
+                Style="{StaticResource DescriptionLabelStyle}"
+                Text="{Binding ItemDescription}" />
 
             <!--  Average rating from the overall rating  -->
             <StackLayout
@@ -65,10 +59,14 @@
                 VerticalOptions="EndAndExpand">
                 <Label
                     Margin="0,0,4,0"
-                    Style="{StaticResource RatingLabelStyle}"
+                    FontFamily="FontIcons"
+                    FontSize="16"
+                    Text="{StaticResource Rating}"
+                    TextColor="{DynamicResource PrimaryColor}"
+                    VerticalOptions="Center"
                     WidthRequest="16" />
                 <Label
-                    FontFamily="{StaticResource Montserrat-Regular}"
+                    FontFamily="Montserrat-Regular"
                     FontSize="12"
                     LineHeight="{OnPlatform Android=1.5,
                                             Default=-1}"
@@ -84,9 +82,21 @@
                 </Label>
 
                 <!--  Navigation icon  -->
-                <Label
+                <button:SfButton
+                    BackgroundColor="Transparent"
+                    Command="{Binding ItemTappedCommand}"
+                    CornerRadius="4"
+                    FontFamily="FontIcons"
+                    FontSize="14"
                     HorizontalOptions="EndAndExpand"
-                    Style="{StaticResource RightArrowLabelStyle}" />
+                    Text="{StaticResource ArrowRight}"
+                    TextColor="{DynamicResource Gray-600}"
+                    VerticalOptions="Center">
+                    <button:SfButton.BindingContext>
+                        <viewModel:NavigationViewModel />
+                    </button:SfButton.BindingContext>
+                </button:SfButton>
+
             </StackLayout>
         </StackLayout>
     </Grid>

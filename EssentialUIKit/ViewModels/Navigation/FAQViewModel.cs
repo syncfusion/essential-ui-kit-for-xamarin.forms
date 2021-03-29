@@ -1,6 +1,6 @@
-﻿using EssentialUIKit.Models.Navigation;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Runtime.Serialization;
+using EssentialUIKit.Models.Navigation;
 using Xamarin.Forms.Internals;
 
 namespace EssentialUIKit.ViewModels.Navigation
@@ -19,7 +19,6 @@ namespace EssentialUIKit.ViewModels.Navigation
         /// </summary>
         public FAQViewModel()
         {
-
         }
 
         #endregion

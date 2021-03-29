@@ -1,5 +1,6 @@
-﻿using System.ComponentModel;
-using System.Runtime.CompilerServices;
+﻿using System.Reflection;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Json;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
@@ -7,18 +8,29 @@ using Xamarin.Forms.Internals;
 namespace EssentialUIKit.ViewModels.Profile
 {
     /// <summary>
-    /// ViewModel for Article profile page 
+    /// ViewModel for profile page 
     /// </summary> 
     [Preserve(AllMembers = true)]
+    [DataContract]
     public class ProfileViewModel : BaseViewModel
     {
         #region Fields
+
+        private static ProfileViewModel profileViewModel;
 
         private string profileImage;
 
         private string profileName;
 
         private string email;
+
+        private Command editCommand;
+
+        private Command nightModeCommand;
+
+        private Command textSizeCommand;
+
+        private Command settingsCommand;
 
         #endregion
 
@@ -27,16 +39,8 @@ namespace EssentialUIKit.ViewModels.Profile
         /// <summary>
         /// Initializes a new instance for the <see cref="ProfileViewModel" /> class.
         /// </summary>
-        public ProfileViewModel()
+        static ProfileViewModel()
         {
-            this.profileImage = App.BaseImageUrl + "ProfileImage1.png";
-            this.profileName = "John Deo";
-            this.email = "johndoe@gmail.com";
-
-            this.EditCommand = new Command(this.EditButtonClicked);
-            this.NightModeCommand = new Command(this.NightModeOptionClicked);
-            this.TextSizeCommand = new Command(this.TextSizeOptionClicked);
-            this.SettingsCommand = new Command(this.SettingsOptionClicked);
         }
 
         #endregion
@@ -44,21 +48,27 @@ namespace EssentialUIKit.ViewModels.Profile
         #region Public properties
 
         /// <summary>
+        /// Gets or sets the value of profile page view model.
+        /// </summary>
+        public static ProfileViewModel BindingContext =>
+            profileViewModel = PopulateData<ProfileViewModel>("profile.json");
+
+        /// <summary>
         /// Gets or sets the profile image.
         /// </summary>
+        [DataMember(Name = "itemImage")]
         public string ProfileImage
         {
             get
             {
-                return this.profileImage;
+                return App.ImageServerPath + this.profileImage;
             }
 
             set
             {
                 if (this.profileImage != value)
                 {
-                    this.profileImage = value;
-                    this.NotifyPropertyChanged();
+                    this.SetProperty(ref this.profileImage, value);
                 }
             }
         }
@@ -66,6 +76,7 @@ namespace EssentialUIKit.ViewModels.Profile
         /// <summary>
         /// Gets or sets the profile name.
         /// </summary>
+        [DataMember(Name = "name")]
         public string ProfileName
         {
             get
@@ -77,8 +88,7 @@ namespace EssentialUIKit.ViewModels.Profile
             {
                 if (this.profileName != value)
                 {
-                    this.profileName = value;
-                    this.NotifyPropertyChanged();
+                    this.SetProperty(ref this.profileName, value);
                 }
             }
         }
@@ -86,6 +96,7 @@ namespace EssentialUIKit.ViewModels.Profile
         /// <summary>
         /// Gets or sets the email.
         /// </summary>
+        [DataMember(Name = "email")]
         public string Email
         {
             get
@@ -97,8 +108,7 @@ namespace EssentialUIKit.ViewModels.Profile
             {
                 if (this.email != value)
                 {
-                    this.email = value;
-                    this.NotifyPropertyChanged();
+                    this.SetProperty(ref this.email, value);
                 }
             }
         }
@@ -106,30 +116,78 @@ namespace EssentialUIKit.ViewModels.Profile
         #endregion
 
         #region Command
+
         /// <summary>
         /// Gets or sets the command that is executed when the edit button is clicked.
         /// </summary>
-        public Command EditCommand { get; set; }
+        public Command EditCommand
+        {
+            get
+            {
+                return this.editCommand ?? (this.editCommand = new Command(this.EditButtonClicked));
+            }
+        }
 
         /// <summary>
         /// Gets or sets the command that is executed when the night mode switch is clicked.
         /// </summary>
-        public Command NightModeCommand { get; set; }
+        public Command NightModeCommand
+        {
+            get
+            {
+                return this.nightModeCommand ?? (this.nightModeCommand = new Command(this.NightModeOptionClicked));
+            }
+        }
 
         /// <summary>
         /// Gets or sets the command that is executed when the settings option is clicked.
         /// </summary>
-        public Command SettingsCommand { get; set; }
+        public Command SettingsCommand
+        {
+            get
+            {
+                return this.settingsCommand ?? (this.settingsCommand = new Command(this.SettingsOptionClicked));
+            }
+        }
 
         /// <summary>
         /// Gets or sets the command that is executed when the Text size option is clicked.
         /// </summary>
-        public Command TextSizeCommand { get; set; }
+        public Command TextSizeCommand
+        {
+            get
+            {
+                return this.textSizeCommand ?? (this.textSizeCommand = new Command(this.TextSizeOptionClicked));
+            }
+        }
 
         #endregion
 
         #region Methods
-        
+
+        /// <summary>
+        /// Populates the data for view model from json file.
+        /// </summary>
+        /// <typeparam name="T">Type of view model.</typeparam>
+        /// <param name="fileName">Json file to fetch data.</param>
+        /// <returns>Returns the view model object.</returns>
+        private static T PopulateData<T>(string fileName)
+        {
+            var file = "EssentialUIKit.Data." + fileName;
+
+            var assembly = typeof(App).GetTypeInfo().Assembly;
+
+            T data;
+
+            using (var stream = assembly.GetManifestResourceStream(file))
+            {
+                var serializer = new DataContractJsonSerializer(typeof(T));
+                data = (T)serializer.ReadObject(stream);
+            }
+
+            return data;
+        }
+
         /// <summary>
         /// Invoked when the edit button is clicked.
         /// </summary>
@@ -155,12 +213,12 @@ namespace EssentialUIKit.ViewModels.Profile
         private async void TextSizeOptionClicked(object obj)
         {
             var grid = obj as Grid;
-            Application.Current.Resources.TryGetValue("Gray-100", out var retVal);            
+            Application.Current.Resources.TryGetValue("Gray-100", out var retVal);
             grid.BackgroundColor = (Color)retVal;
 
             // To make the selected item color changes for 100 milliseconds.
-            await Task.Delay(100);
-            Application.Current.Resources.TryGetValue("Gray-White", out var retValue);            
+            await Task.Delay(100).ConfigureAwait(true);
+            Application.Current.Resources.TryGetValue("Gray-Bg", out var retValue);
             grid.BackgroundColor = (Color)retValue;
         }
 
@@ -175,8 +233,8 @@ namespace EssentialUIKit.ViewModels.Profile
             grid.BackgroundColor = (Color)retVal;
 
             // To make the selected item color changes for 100 milliseconds.
-            await Task.Delay(100);
-            Application.Current.Resources.TryGetValue("Gray-White", out var retValue);
+            await Task.Delay(100).ConfigureAwait(true);
+            Application.Current.Resources.TryGetValue("Gray-Bg", out var retValue);
             grid.BackgroundColor = (Color)retValue;
         }
 

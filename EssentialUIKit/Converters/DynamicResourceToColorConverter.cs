@@ -28,7 +28,7 @@ namespace EssentialUIKit.Converters
             }
 
             Application.Current.Resources.TryGetValue(dynamicResource.Key, out var color);
-            return (Color) color;
+            return (Color)color;
         }
 
         /// <summary>

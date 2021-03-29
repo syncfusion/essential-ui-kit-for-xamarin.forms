@@ -1,6 +1,6 @@
-﻿using EssentialUIKit.Models.Navigation;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Runtime.Serialization;
+using EssentialUIKit.Models.Navigation;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 
@@ -11,7 +11,7 @@ namespace EssentialUIKit.ViewModels.Navigation
     /// </summary>
     [Preserve(AllMembers = true)]
     [DataContract]
-    public class RestaurantViewModel
+    public class RestaurantViewModel : BaseViewModel
     {
         #region Fields
 

@@ -7,19 +7,21 @@
     xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
     xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
     xmlns:control="clr-namespace:EssentialUIKit.Controls"
+    xmlns:converter="clr-namespace:EssentialUIKit.Converters"
     xmlns:templateSelector="clr-namespace:EssentialUIKit.Helpers"
     x:Name="paymentView"
-    BackgroundColor="{DynamicResource Gray-White}">
+    BackgroundColor="{DynamicResource Gray-Bg}">
 
     <ContentView.Resources>
         <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Styles.xaml" />
-            </ResourceDictionary.MergedDictionaries>
+            <converter:BooleanToColorConverter x:Key="ColorConverter" />
 
             <!--  Template for Saved card payment mode  -->
             <DataTemplate x:Key="CardTemplate">
-                <Grid ColumnSpacing="0" RowSpacing="0">
+                <Grid
+                    ColumnDefinitions="Auto, *"
+                    ColumnSpacing="0"
+                    RowSpacing="0">
 
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
@@ -27,11 +29,6 @@
                         <RowDefinition x:Name="cvvRow" Height="Auto" />
                         <RowDefinition Height="16" />
                     </Grid.RowDefinitions>
-
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
 
                     <buttons:SfRadioButton
                         Grid.Row="0"
@@ -47,7 +44,7 @@
                         Grid.Column="0"
                         Grid.ColumnSpan="2"
                         templateSelector:RTLHelper.Margin="42,0,0,0"
-                        FontFamily="{StaticResource Montserrat-Medium}"
+                        FontFamily="Montserrat-Medium"
                         FontSize="12"
                         HorizontalOptions="StartAndExpand"
                         Text="{Binding CardNumber}"
@@ -59,10 +56,12 @@
                         Padding="{OnPlatform Default='12,0',
                                              iOS='12,8'}"
                         templateSelector:RTLHelper.Margin="42,8,16,0"
-                        BorderColor="{DynamicResource Gray-300}"
+                        BorderColor="{Binding Source={x:Reference Entry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}"
                         CornerRadius="4">
                         <control:BorderlessEntry
-                            FontFamily="{StaticResource Montserrat-Regular}"
+                            x:Name="Entry"
+                            BackgroundColor="{DynamicResource Gray-Bg}"
+                            FontFamily="Montserrat-Regular"
                             FontSize="16"
                             HeightRequest="{OnPlatform Default=40,
                                                        iOS=-1}"
@@ -87,16 +86,16 @@
                         Margin="0,0,0,0"
                         HeightRequest="45"
                         HorizontalOptions="StartAndExpand"
+                        Source="{Binding CardTypeIcon}"
                         VerticalOptions="CenterAndExpand"
-                        WidthRequest="45" 
-                        Source="{Binding CardTypeIcon}" />
+                        WidthRequest="45" />
 
                     <!--  Separator  -->
                     <BoxView
                         Grid.Row="3"
                         Grid.ColumnSpan="2"
                         HeightRequest="1"
-                        Style="{StaticResource BoxViewStyle}"
+                        Style="{StaticResource HorizontalSeparatorStyle}"
                         VerticalOptions="End" />
 
                     <Grid.GestureRecognizers>
@@ -108,12 +107,10 @@
 
             <!--  Template for other payment mode  -->
             <DataTemplate x:Key="CommonTemplate">
-                <Grid ColumnSpacing="0" RowSpacing="0">
-
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="16" />
-                    </Grid.RowDefinitions>
+                <Grid
+                    ColumnSpacing="0"
+                    RowDefinitions="Auto, 16"
+                    RowSpacing="0">
 
                     <buttons:SfRadioButton
                         Grid.Row="0"
@@ -127,7 +124,7 @@
                     <BoxView
                         Grid.Row="1"
                         HeightRequest="1"
-                        Style="{StaticResource BoxViewStyle}"
+                        Style="{StaticResource HorizontalSeparatorStyle}"
                         VerticalOptions="End" />
 
                     <Grid.GestureRecognizers>
@@ -140,23 +137,21 @@
     </ContentView.Resources>
 
     <StackLayout
-        BackgroundColor="{DynamicResource Gray-White}"
+        BackgroundColor="{DynamicResource Gray-Bg}"
         Spacing="0"
         VerticalOptions="Start">
 
         <!--  Header  -->
         <Label
             Margin="16"
-            FontFamily="{StaticResource Montserrat-SemiBold}"
-            FontSize="16"
+            HorizontalOptions="Start"
             LineHeight="{OnPlatform Android=1.25,
                                     Default=-1}"
-            Style="{StaticResource PriceLabelStyle}"
-            Text="Payment Option"
-            TextColor="{DynamicResource Gray-900}" />
+            Style="{StaticResource TitleLabelStyle}"
+            Text="Payment Option" />
 
         <!--  Separator  -->
-        <BoxView HeightRequest="1" Style="{StaticResource BoxViewStyle}" />
+        <BoxView HeightRequest="1" Style="{StaticResource HorizontalSeparatorStyle}" />
 
         <!--  Payment modes  -->
         <buttons:SfRadioGroup BindableLayout.ItemsSource="{Binding PaymentModes}" Spacing="0">

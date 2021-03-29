@@ -1,25 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d"
-             xmlns:controls="clr-namespace:EssentialUIKit.Controls"
-             xmlns:converter="clr-namespace:EssentialUIKit.Converters"
-             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
-             xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
-             xmlns:progressBar="clr-namespace:Syncfusion.XForms.ProgressBar;assembly=Syncfusion.SfProgressBar.XForms"
-             x:Class="EssentialUIKit.Views.Navigation.AppUsagePage"
-             xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
-             BackgroundColor="{DynamicResource Gray-White}"
-             NavigationPage.HasNavigationBar="False">
+<ContentPage
+    x:Class="EssentialUIKit.Views.Navigation.AppUsagePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:controls="clr-namespace:EssentialUIKit.Controls"
+    xmlns:converter="clr-namespace:EssentialUIKit.Converters"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:progressBar="clr-namespace:Syncfusion.XForms.ProgressBar;assembly=Syncfusion.SfProgressBar.XForms"
+    BackgroundColor="{DynamicResource Gray-Bg}"
+    NavigationPage.HasNavigationBar="False"
+    mc:Ignorable="d">
 
     <ContentPage.Resources>
         <ResourceDictionary>
             <converter:StringToGlyphConverter x:Key="GlyphConverter" />
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Styles.xaml"/>
-            </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </ContentPage.Resources>
 
@@ -28,19 +26,19 @@
             <StackLayout Spacing="0">
 
                 <!--  Title View  -->
-                <controls:TitleView Title="App Usage" 
-                                    FontSize="16" 
-                                    FontFamily="{StaticResource Montserrat-Medium}" 
-                                    BackgroundColor="{DynamicResource Gray-White}">
+                <controls:TitleView
+                    Title="App Usage"
+                    FontFamily="Montserrat-Medium"
+                    FontSize="16">
 
-                    <!-- Back button command -->
+                    <!--  Back button command  -->
                     <controls:TitleView.LeadingView>
-                        <buttons:SfButton x:Name="backButton"
-                                          Command="{Binding BackButtonCommand}"
-                                          CommandParameter="{x:Reference backButton}"
-                                          CornerRadius="4"
-                                          Style="{StaticResource IconButtonStyle}"
-                                          Text="{StaticResource Back}" />
+                        <buttons:SfButton
+                            x:Name="backButton"
+                            Command="{Binding BindingContext.BackButtonCommand, Source={x:Reference appUsageList}}"
+                            CommandParameter="{x:Reference backButton}"
+                            Style="{StaticResource IconButtonStyle}"
+                            Text="{StaticResource Back}" />
                     </controls:TitleView.LeadingView>
 
                 </controls:TitleView>
@@ -53,56 +51,53 @@
     <ContentPage.Content>
         <StackLayout Spacing="0">
 
-            <listView:SfListView IsScrollBarVisible="false"
-                                 ItemSpacing="0"
-                                 RowSpacing="0"
-                                 ItemsSource="{Binding AppUsageList}"
-                                 SelectionBackgroundColor="{DynamicResource TappedBackgroundColor}"
-                                 TapCommand="{Binding ItemTappedCommand}"
-                                 ItemSize="72">
+            <listView:SfListView
+                x:Name="appUsageList"
+                IsScrollBarVisible="false"
+                ItemSize="72"
+                ItemSpacing="0"
+                ItemsSource="{Binding AppUsageList}"
+                RowSpacing="0"
+                SelectionBackgroundColor="{DynamicResource Gray-200}"
+                TapCommand="{Binding ItemTappedCommand}">
 
                 <listView:SfListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout Spacing="0">
 
-                                <Grid RowSpacing="0" ColumnSpacing="0" HeightRequest="72">
+                                <Grid
+                                    ColumnDefinitions="Auto, Auto, *"
+                                    ColumnSpacing="0"
+                                    HeightRequest="72"
+                                    RowDefinitions="Auto, Auto, Auto"
+                                    RowSpacing="0">
 
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                    </Grid.RowDefinitions>
+                                    <!--  App Icon  -->
+                                    <border:SfBorder
+                                        Grid.RowSpan="3"
+                                        Margin="16,0"
+                                        BackgroundColor="{Binding BackgroundColor}"
+                                        BorderWidth="0"
+                                        CornerRadius="20"
+                                        HorizontalOptions="Center"
+                                        VerticalOptions="Center">
 
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto" />
-                                        <ColumnDefinition Width="Auto" />
-                                        <ColumnDefinition Width="*" />
-                                    </Grid.ColumnDefinitions>
-
-                                    <!-- App Icon -->
-                                    <border:SfBorder Grid.RowSpan="3" 
-                                                     Margin="16,0"
-                                                     BackgroundColor="{Binding BackgroundColor}"
-                                                     BorderWidth="0"
-                                                     VerticalOptions="Center"
-                                                     HorizontalOptions="Center"
-                                                     CornerRadius="20">
-
-                                        <Label x:Name="AppIcon"
-                                               Text="{Binding AppName, Converter={StaticResource GlyphConverter}, ConverterParameter={x:Reference AppIcon}}" 
-                                               HorizontalTextAlignment="Center"
-                                               VerticalTextAlignment="Center"
-                                               TextColor="{DynamicResource Gray-White}"
-                                               FontFamily="{DynamicResource FontIcons}"
-                                               FontSize="20"
-                                               HeightRequest="40" 
-                                               WidthRequest="40">
+                                        <Label
+                                            x:Name="AppIcon"
+                                            FontFamily="FontIcons"
+                                            FontSize="20"
+                                            HeightRequest="40"
+                                            HorizontalTextAlignment="Center"
+                                            Text="{Binding AppName, Converter={StaticResource GlyphConverter}, ConverterParameter={x:Reference AppIcon}}"
+                                            TextColor="{DynamicResource Gray-White}"
+                                            VerticalTextAlignment="Center"
+                                            WidthRequest="40">
 
                                             <Label.Resources>
                                                 <ResourceDictionary>
                                                     <ResourceDictionary.MergedDictionaries>
-                                                        <ResourceDictionary Source="Styles.xaml" />
+                                                        <ResourceDictionary Source="../../Styles/FontIcons.xaml" />
                                                     </ResourceDictionary.MergedDictionaries>
                                                 </ResourceDictionary>
                                             </Label.Resources>
@@ -111,38 +106,44 @@
 
                                     </border:SfBorder>
 
-                                    <!-- App Name -->
-                                    <Label Grid.Column="1"
-                                           HeightRequest="24"
-                                           Margin="0,12,0,4"
-                                           FontSize="16"
-                                           FontFamily="{StaticResource Montserrat-Medium}"
-                                           Text="{Binding AppName}"
-                                           TextColor="{DynamicResource Gray-900}" />
+                                    <!--  App Name  -->
+                                    <Label
+                                        Grid.Column="1"
+                                        Margin="0,12,0,4"
+                                        FontFamily="Montserrat-Medium"
+                                        FontSize="16"
+                                        HeightRequest="24"
+                                        Text="{Binding AppName}"
+                                        TextColor="{DynamicResource Gray-900}" />
 
-                                    <!-- Progress Bar -->
-                                    <progressBar:SfLinearProgressBar Grid.Row="1"
-                                                                     Grid.Column="1"
-                                                                     Margin="0,7,0,20"
-                                                                     WidthRequest="200" 
-                                                                     HeightRequest="4"
-                                                                     Progress="{Binding ProgressBarValue}"
-                                                                     CornerRadius="4"
-                                                                     TrackColor="{DynamicResource Gray-200}"
-                                                                     ProgressColor="{DynamicResource PrimaryColor}" />
+                                    <!--  Progress Bar  -->
+                                    <progressBar:SfLinearProgressBar
+                                        Grid.Row="1"
+                                        Grid.Column="1"
+                                        Margin="0,7,0,20"
+                                        CornerRadius="4"
+                                        HeightRequest="4"
+                                        Progress="{Binding ProgressBarValue}"
+                                        ProgressColor="{DynamicResource PrimaryColor}"
+                                        TrackColor="{DynamicResource Gray-200}"
+                                        WidthRequest="200" />
 
-                                    <!-- Progress Value -->
-                                    <Label Grid.Row="1" 
-                                           Grid.Column="2" 
-                                           Margin="8,0,0,13"
-                                           HeightRequest="18"
-                                           FontSize="12"
-                                           FontFamily="{StaticResource Montserrat-Medium}"
-                                           Text="{Binding ProgressValue}"
-                                           TextColor="{DynamicResource Gray-800}" />
+                                    <!--  Progress Value  -->
+                                    <Label
+                                        Grid.Row="1"
+                                        Grid.Column="2"
+                                        Margin="8,0,0,13"
+                                        FontFamily="Montserrat-Medium"
+                                        FontSize="12"
+                                        HeightRequest="18"
+                                        Text="{Binding ProgressValue}"
+                                        TextColor="{DynamicResource Gray-800}" />
 
-                                    <!-- Seperator -->
-                                    <BoxView Grid.Row="2" Grid.ColumnSpan="3" Style="{DynamicResource SeparatorStyle}" />
+                                    <!--  Seperator  -->
+                                    <BoxView
+                                        Grid.Row="2"
+                                        Grid.ColumnSpan="3"
+                                        Style="{DynamicResource HorizontalSeparatorStyle}" />
 
                                 </Grid>
                             </StackLayout>

@@ -7,7 +7,9 @@
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:syncEffectsView="clr-namespace:Syncfusion.XForms.EffectsView;assembly=Syncfusion.Core.XForms"
     xmlns:template="clr-namespace:EssentialUIKit.Views.Templates"
+    x:Name="myOrdersView"
     mc:Ignorable="d">
 
     <ContentView.Resources>
@@ -26,12 +28,18 @@
             BackgroundColor="{DynamicResource Gray-100}"
             ItemsSource="{Binding OrderDetails}"
             SelectionMode="None"
-            TapCommand="{Binding ItemSelectedCommand}"
             VerticalOptions="Start">
 
             <listView:SfListView.ItemTemplate>
                 <DataTemplate>
-                    <template:OrderHistoryTemplate />
+                    <syncEffectsView:SfEffectsView
+                        Margin="0,16,0,0"
+                        RippleColor="{DynamicResource Gray-300}"
+                        TouchDownEffects="Ripple"
+                        TouchUpCommand="{Binding Path=BindingContext.ItemSelectedCommand, Source={x:Reference myOrdersView}}"
+                        TouchUpCommandParameter="{Binding}">
+                        <template:OrderHistoryTemplate />
+                    </syncEffectsView:SfEffectsView>
                 </DataTemplate>
             </listView:SfListView.ItemTemplate>
 

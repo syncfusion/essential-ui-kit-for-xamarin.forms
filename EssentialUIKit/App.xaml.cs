@@ -4,9 +4,16 @@ using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
 #endif
+using EssentialUIKit.AppLayout;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
+
+[assembly: ExportFont("Montserrat-Bold.ttf", Alias = "Montserrat-Bold")]
+[assembly: ExportFont("Montserrat-Medium.ttf", Alias = "Montserrat-Medium")]
+[assembly: ExportFont("Montserrat-Regular.ttf", Alias = "Montserrat-Regular")]
+[assembly: ExportFont("Montserrat-SemiBold.ttf", Alias = "Montserrat-SemiBold")]
+[assembly: ExportFont("UIFontIcons.ttf", Alias = "FontIcons")]
 
 namespace EssentialUIKit
 {
@@ -31,7 +38,19 @@ namespace EssentialUIKit
             //    typeof(Crashes));
 #endif
 
-            InitializeComponent();
+            // Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("Please replace the license key here");
+            this.InitializeComponent();
+
+            OSAppTheme currentTheme = Application.Current.RequestedTheme;
+
+            if (currentTheme == OSAppTheme.Light)
+            {
+                Application.Current.Resources.ApplyLightTheme();
+            }
+            else
+            {
+                Application.Current.Resources.ApplyDarkTheme();
+            }
 
             // this.MainPage = new AppShell();
             this.MainPage = new NavigationPage(new HomePage());
@@ -41,7 +60,7 @@ namespace EssentialUIKit
 
         #region Properties
 
-        public static string BaseImageUrl { get; } = "https://cdn.syncfusion.com/essential-ui-kit-for-xamarin.forms/common/uikitimages/";
+        public static string ImageServerPath { get; } = "https://cdn.syncfusion.com/essential-ui-kit-for-xamarin.forms/common/uikitimages/";
 
         #endregion
 

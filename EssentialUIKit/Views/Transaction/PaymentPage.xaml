@@ -5,30 +5,16 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:controls="clr-namespace:EssentialUIKit.Controls"
     xmlns:local="clr-namespace:EssentialUIKit.Views.Transaction"
-    xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Transaction"
     Title="Payment"
     BackgroundColor="{DynamicResource Gray-100}"
     NavigationPage.HasNavigationBar="False">
-
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Styles.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </ContentPage.Resources>
-
-    <!--  Binding context for Payment Page  -->
-    <ContentPage.BindingContext>
-        <viewModel:CheckoutPageViewModel />
-    </ContentPage.BindingContext>
 
     <ContentPage.ControlTemplate>
         <ControlTemplate>
             <StackLayout Spacing="0">
 
                 <!--  Title View  -->
-                <controls:TitleView Title="Payment" BackgroundColor="{DynamicResource Gray-White}" />
+                <controls:TitleView Title="Payment" />
 
                 <ContentPresenter />
 
