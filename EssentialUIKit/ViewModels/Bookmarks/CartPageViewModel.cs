@@ -1,9 +1,8 @@
 using System.Collections.ObjectModel;
+using System.Runtime.Serialization;
 using EssentialUIKit.Models;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
-using System.Runtime.Serialization;
-using EssentialUIKit.Controls;
 
 namespace EssentialUIKit.ViewModels.Bookmarks
 {
@@ -25,20 +24,20 @@ namespace EssentialUIKit.ViewModels.Bookmarks
         private double discountPercent;
 
         private double percent;
-        
+
         private ObservableCollection<Product> produts;
-        
+
         private Command placeOrderCommand;
-        
+
         private Command removeCommand;
-        
+
         private Command quantitySelectedCommand;
-        
+
         private Command variantSelectedCommand;
-        
+
         private Command applyCouponCommand;
 
-        private Command backButtonCommand;
+        private Command itemTappedCommand;
 
         #endregion
 
@@ -54,15 +53,14 @@ namespace EssentialUIKit.ViewModels.Bookmarks
                 return this.cartDetails;
             }
 
-            set
+            private set
             {
                 if (this.cartDetails == value)
                 {
                     return;
                 }
 
-                this.cartDetails = value;
-                this.NotifyPropertyChanged();
+                this.SetProperty(ref this.cartDetails, value);
             }
         }
 
@@ -83,8 +81,7 @@ namespace EssentialUIKit.ViewModels.Bookmarks
                     return;
                 }
 
-                this.totalPrice = value;
-                this.NotifyPropertyChanged();
+                this.SetProperty(ref this.totalPrice, value);
             }
         }
 
@@ -105,8 +102,7 @@ namespace EssentialUIKit.ViewModels.Bookmarks
                     return;
                 }
 
-                this.discountPrice = value;
-                this.NotifyPropertyChanged();
+                this.SetProperty(ref this.discountPrice, value);
             }
         }
 
@@ -119,7 +115,7 @@ namespace EssentialUIKit.ViewModels.Bookmarks
             {
                 return this.discountPercent;
             }
-        
+
             set
             {
                 if (this.discountPercent == value)
@@ -127,15 +123,13 @@ namespace EssentialUIKit.ViewModels.Bookmarks
                     return;
                 }
 
-                this.discountPercent = value;
-                this.NotifyPropertyChanged();
+                this.SetProperty(ref this.discountPercent, value);
             }
         }
 
         /// <summary>
         /// Gets or sets the property that has been bound with list view, which displays the collection of products from json.
         /// </summary>
-
         [DataMember(Name = "products")]
         public ObservableCollection<Product> Products
         {
@@ -150,9 +144,9 @@ namespace EssentialUIKit.ViewModels.Bookmarks
                 {
                     return;
                 }
-                this.produts = value;
-                this.NotifyPropertyChanged();
-                this.GetProducts(Products);
+
+                this.SetProperty(ref this.produts, value);
+                this.GetProducts(this.Products);
                 this.UpdatePrice();
             }
         }
@@ -202,11 +196,14 @@ namespace EssentialUIKit.ViewModels.Bookmarks
         }
 
         /// <summary>
-        /// Gets or sets the command is executed when the back button is clicked.
+        /// Gets or sets the command that is executed when the item is selected.
         /// </summary>
-        public Command BackButtonCommand
+        public Command ItemTappedCommand
         {
-            get { return this.backButtonCommand ?? (this.backButtonCommand = new Command(this.BackButtonClicked)); }
+            get
+            {
+                return this.itemTappedCommand ?? (this.itemTappedCommand = new Command(this.ItemSelected));
+            }
         }
 
         #endregion
@@ -232,12 +229,6 @@ namespace EssentialUIKit.ViewModels.Bookmarks
             {
                 this.CartDetails.Remove(product);
                 this.UpdatePrice();
-
-                if(this.CartDetails.Count == 0)
-                {
-                    SfPopupView sfPopupView = new SfPopupView();
-                    sfPopupView.ShowPopUp(content: "Your cart is empty!",buttonText:"CONTINUE SHOPPING");
-                }
             }
         }
 
@@ -247,13 +238,13 @@ namespace EssentialUIKit.ViewModels.Bookmarks
         /// <param name="selectedItem">The Object</param>
         private void QuantitySelected(object selectedItem)
         {
-            //Incident - 249030 - Issue in ComboBox Slection changed event.
+            // Incident - 249030 - Issue in ComboBox Slection changed event.
 
-            //var item = selectedItem as CartProduct;
+            // var item = selectedItem as CartProduct;
 
-            //this.UpdatePrice();
-            //item.ActualPrice = item.ActualPrice * item.TotalQuantity;
-            //item.DiscountPrice = item.DiscountPrice * item.TotalQuantity;
+            // this.UpdatePrice();
+            // item.ActualPrice = item.ActualPrice * item.TotalQuantity;
+            // item.DiscountPrice = item.DiscountPrice * item.TotalQuantity;
         }
 
         /// <summary>
@@ -275,10 +266,9 @@ namespace EssentialUIKit.ViewModels.Bookmarks
         }
 
         /// <summary>
-        /// Invoked when an back button is clicked.
+        /// Invoked when item is clicked.
         /// </summary>
-        /// <param name="obj">The Object</param>
-        private void BackButtonClicked(object obj)
+        private void ItemSelected(object obj)
         {
             // Do something
         }
@@ -286,12 +276,14 @@ namespace EssentialUIKit.ViewModels.Bookmarks
         /// <summary>
         /// This method is used to get the products from json.
         /// </summary>
-        /// <param name="Products">The Products</param>
-        private void GetProducts(ObservableCollection<Product> Products)
+        /// <param name="products">The Products</param>
+        private void GetProducts(ObservableCollection<Product> products)
         {
             this.CartDetails = new ObservableCollection<Product>();
-            if (Products != null && Products.Count > 0)
-                this.CartDetails = Products;
+            if (products != null && products.Count > 0)
+            {
+                this.CartDetails = products;
+            }
         }
 
         /// <summary>
@@ -306,9 +298,12 @@ namespace EssentialUIKit.ViewModels.Bookmarks
                 foreach (var cartDetail in this.CartDetails)
                 {
                     if (cartDetail.TotalQuantity == 0)
+                    {
                         cartDetail.TotalQuantity = 1;
-                    this.TotalPrice += (cartDetail.ActualPrice * cartDetail.TotalQuantity);
-                    this.DiscountPrice += (cartDetail.DiscountPrice * cartDetail.TotalQuantity);
+                    }
+
+                    this.TotalPrice += cartDetail.ActualPrice * cartDetail.TotalQuantity;
+                    this.DiscountPrice += cartDetail.DiscountPrice * cartDetail.TotalQuantity;
                     this.percent += cartDetail.DiscountPercent;
                 }
 

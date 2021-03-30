@@ -49,8 +49,8 @@
         <listView:SfListView
             x:Name="ListView"
             AutoFitMode="DynamicHeight"
-            ItemsSource="{Binding Categories}"
-            Style="{StaticResource SfListViewStyle}">
+            ItemsSource="{Binding Categories}" BackgroundColor="{DynamicResource Gray-White}"
+            Style="{StaticResource TransparentSelectionListView}">
 
             <listView:SfListView.Behaviors>
                 <commonBehavior:SfListViewTapBehavior Command="{Binding Path=BindingContext.CategorySelectedCommand, Source={x:Reference categoryPage}}" />
@@ -59,12 +59,7 @@
             <listView:SfListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <Grid RowSpacing="0">
-
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
+                        <Grid RowSpacing="0" RowDefinitions="*, Auto">
 
                             <expander:SfExpander
                                 Grid.Row="0"
@@ -77,7 +72,7 @@
                                     <Grid>
                                         <Label
                                             Margin="0,12"
-                                            FontFamily="{StaticResource Montserrat-SemiBold}"
+                                            FontFamily="Montserrat-SemiBold"
                                             Style="{StaticResource LabelStyle}"
                                             Text="{Binding Name}"
                                             TextColor="{DynamicResource Gray-900}"
@@ -123,7 +118,7 @@
                             <BoxView
                                 Grid.Row="1"
                                 HeightRequest="1"
-                                Style="{StaticResource BoxViewStyle}" />
+                                Style="{StaticResource HorizontalSeparatorStyle}" />
 
                         </Grid>
                     </ViewCell>

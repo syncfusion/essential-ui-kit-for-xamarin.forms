@@ -1,12 +1,12 @@
-﻿#if EnableAppCenterAnalytics
-using System.Collections.Generic;
-using Microsoft.AppCenter.Analytics;
-#endif
-using System;
+﻿using System;
 using EssentialUIKit.AppLayout.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
+#if EnableAppCenterAnalytics
+using System.Collections.Generic;
+using Microsoft.AppCenter.Analytics;
+#endif
 
 namespace EssentialUIKit.AppLayout
 {
@@ -16,7 +16,7 @@ namespace EssentialUIKit.AppLayout
     {
         public AppShell()
         {
-            InitializeComponent();
+            this.InitializeComponent();
 
             this.Navigating += this.AppShell_Navigating;
 
@@ -24,22 +24,14 @@ namespace EssentialUIKit.AppLayout
             Routing.RegisterRoute("templatehostpage", typeof(TemplateHostPage));
         }
 
-        private void AppShell_Navigating(object sender, ShellNavigatingEventArgs e)
-        {
-            // TODO:Pending
-            var uriString = e.Target.Location.OriginalString;
-            if (uriString.Contains("?"))
-            {
-                var pageNameEndIndex = uriString.IndexOf("?", StringComparison.Ordinal);
-            }
-        }
-
         /// <summary>
         /// Invoked when the list item is selected.
         /// </summary>
         /// <param name="category">The Category</param>
         /// <param name="page">The Page</param>
-        private void PushEvent(string category, string page)
+#pragma warning disable CA1801 // Review unused parameters
+        private static void PushEvent(string category, string page)
+#pragma warning restore CA1801 // Review unused parameters
         {
 #if EnableAppCenterAnalytics
             Analytics.TrackEvent(
@@ -54,6 +46,16 @@ namespace EssentialUIKit.AppLayout
                     }
                 });
 #endif
+        }
+
+        private void AppShell_Navigating(object sender, ShellNavigatingEventArgs e)
+        {
+            // TODO:Pending
+            var uriString = e.Target.Location.OriginalString;
+            if (uriString.Contains("?"))
+            {
+                var pageNameEndIndex = uriString.IndexOf("?", StringComparison.Ordinal);
+            }
         }
     }
 }

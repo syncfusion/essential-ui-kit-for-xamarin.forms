@@ -10,14 +10,13 @@ namespace EssentialUIKit.Behaviors
     /// This class extends the behavior of the SfComboBox to invoke a command when an event occurs.
     /// </summary>
     [Preserve(AllMembers = true)]
-    public class SelectedIndexBehavior: Behavior<SfComboBox>
+    public class SelectedIndexBehavior : Behavior<SfComboBox>
     {
         #region Properties
 
         /// <summary>
         /// Gets or sets the CommandProperty, and it is a bindable property.
         /// </summary>
-        
         public static readonly BindableProperty CommandProperty =
             BindableProperty.Create(nameof(Command), typeof(ICommand), typeof(SelectedIndexBehavior));
 
@@ -26,7 +25,7 @@ namespace EssentialUIKit.Behaviors
         /// </summary>
         public ICommand Command
         {
-            get { return (ICommand)GetValue(CommandProperty); }
+            get { return (ICommand)this.GetValue(CommandProperty); }
             set { this.SetValue(CommandProperty, value); }
         }
 
@@ -47,7 +46,7 @@ namespace EssentialUIKit.Behaviors
                 base.OnAttachedTo(comboBox);
                 this.ComboBox = comboBox;
                 comboBox.BindingContextChanged += this.OnBindingContextChanged;
-                comboBox.SelectionChanged += ComboBox_SelectionChanged;
+                comboBox.SelectionChanged += this.ComboBox_SelectionChanged;
             }
         }
 
@@ -81,12 +80,12 @@ namespace EssentialUIKit.Behaviors
         /// <param name="sender">The Sender</param>
         /// <param name="e">Selection Changed Event Args</param>
         private void ComboBox_SelectionChanged(object sender, Syncfusion.XForms.ComboBox.SelectionChangedEventArgs e)
-        {            
+        {
             if (this.Command == null)
             {
                 return;
             }
-            
+
             if (this.Command.CanExecute(e.Value))
             {
                 this.Command.Execute(e.Value);
@@ -102,7 +101,7 @@ namespace EssentialUIKit.Behaviors
         {
             this.OnBindingContextChanged();
         }
-        #endregion
 
+        #endregion
     }
 }

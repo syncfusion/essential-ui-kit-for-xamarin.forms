@@ -10,31 +10,27 @@
     xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
     xmlns:rotator="clr-namespace:Syncfusion.SfRotator.XForms;assembly=Syncfusion.SfRotator.XForms"
     xmlns:template="clr-namespace:EssentialUIKit.Views.Templates"
-    xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Catalog"
     x:Name="articleTilePage"
-    BackgroundColor="{DynamicResource Gray-White}"
+    BackgroundColor="{DynamicResource Gray-Bg}"
     NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Resources>
         <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Styles.xaml" />
-            </ResourceDictionary.MergedDictionaries>
 
             <converter:BooleanToStringConverter x:Key="BoolToStringConverter" />
 
             <DataTemplate x:Key="HorizontalArticleView">
-                <template:ArticleTileTemplate ParentBindingContext="{Binding Path=BindingContext, Source={x:Reference articleTilePage}}" />
+                <template:ArticleTileTemplate Margin="16" ParentBindingContext="{Binding Path=BindingContext, Source={x:Reference articleTilePage}}" />
             </DataTemplate>
 
             <DataTemplate x:Key="HeaderView">
                 <StackLayout Spacing="8">
                     <!--  Label for featured stories  -->
                     <Label
-                        Margin="0,8"
-                        FontFamily="{StaticResource Montserrat-SemiBold}"
+                        Margin="16,8"
                         FontSize="12"
                         HorizontalOptions="Start"
+                        Style="{StaticResource TitleLabelStyle}"
                         Text="FEATURED STORIES"
                         TextColor="{DynamicResource Gray-800}" />
 
@@ -65,11 +61,11 @@
                                         BackgroundColor="{DynamicResource PrimaryColor}"
                                         BorderWidth="0"
                                         HorizontalOptions="Start"
-                                        Opacity="0.6"
+                                        Opacity="0.8"
                                         VerticalOptions="Center">
                                         <Label
                                             Margin="16"
-                                            FontFamily="{StaticResource Montserrat-Bold}"
+                                            FontFamily="Montserrat-Bold"
                                             FontSize="20"
                                             LineBreakMode="TailTruncation"
                                             LineHeight="{OnPlatform Default=-1,
@@ -91,10 +87,10 @@
 
                     <!--  Label for Latest stories  -->
                     <Label
-                        Margin="0,16,0,0"
-                        FontFamily="{StaticResource Montserrat-SemiBold}"
+                        Margin="16,16,0,0"
                         FontSize="12"
                         HorizontalOptions="Start"
+                        Style="{StaticResource TitleLabelStyle}"
                         Text="LATEST STORIES"
                         TextColor="{DynamicResource Gray-800}" />
                 </StackLayout>
@@ -103,33 +99,31 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <ContentPage.BindingContext>
-        <viewModel:ArticleListViewModel />
-    </ContentPage.BindingContext>
-
     <ContentPage.Content>
-
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
+        <Grid RowDefinitions="Auto, *">
 
             <!--  Title View  -->
-            <controls:TitleView
-                Title="Blog"
-                Grid.Row="0"
-                BackgroundColor="{DynamicResource Gray-White}" />
+            <controls:TitleView Title="Blog" Grid.Row="0">
+                <controls:TitleView.LeadingView>
+                    <!--  Back button command  -->
+                    <buttons:SfButton
+                        x:Name="backButton"
+                        Command="{Binding Path=BindingContext.BackButtonCommand, Source={x:Reference articleTilePage}}"
+                        CommandParameter="{x:Reference backButton}"
+                        Style="{StaticResource IconButtonStyle}"
+                        Text="{StaticResource Back}" />
+
+                </controls:TitleView.LeadingView>
+            </controls:TitleView>
 
             <!--  List out the items for latest stories  -->
             <listView:SfListView
                 x:Name="SfListView"
                 Grid.Row="1"
-                Margin="8"
                 AutoFitMode="Height"
                 HeaderTemplate="{StaticResource HeaderView}"
                 HorizontalOptions="FillAndExpand"
-                ItemSpacing="8"
+                ItemSpacing="0"
                 ItemTemplate="{StaticResource HorizontalArticleView}"
                 ItemsSource="{Binding LatestStories}"
                 SelectionBackgroundColor="Transparent"

@@ -1,12 +1,14 @@
 ﻿using System.ComponentModel;
+using System.Runtime.Serialization;
 using Xamarin.Forms.Internals;
 
 namespace EssentialUIKit.Models.About
 {
     /// <summary>
-    /// Model for About us templates.
+    /// Model for AboutUs Page.
     /// </summary>
     [Preserve(AllMembers = true)]
+    [DataContract]
     public class AboutUsModel : INotifyPropertyChanged
     {
         #region Fields
@@ -34,6 +36,7 @@ namespace EssentialUIKit.Models.About
         /// Gets or sets the name of an employee.
         /// </summary>
         /// <value>The name.</value>
+        [DataMember(Name = "employeeName")]
         public string EmployeeName
         {
             get
@@ -44,7 +47,7 @@ namespace EssentialUIKit.Models.About
             set
             {
                 this.employeeName = value;
-                this.OnPropertyChanged(nameof(EmployeeName));
+                this.OnPropertyChanged(nameof(this.EmployeeName));
             }
         }
 
@@ -52,6 +55,7 @@ namespace EssentialUIKit.Models.About
         /// Gets or sets the designation of an employee.
         /// </summary>
         /// <value>The designation.</value>
+        [DataMember(Name = "designation")]
         public string Designation
         {
             get
@@ -62,7 +66,7 @@ namespace EssentialUIKit.Models.About
             set
             {
                 this.designation = value;
-                this.OnPropertyChanged(nameof(Designation));
+                this.OnPropertyChanged(nameof(this.Designation));
             }
         }
 
@@ -70,17 +74,18 @@ namespace EssentialUIKit.Models.About
         /// Gets or sets the image of an employee.
         /// </summary>
         /// <value>The image.</value>
+        [DataMember(Name = "image")]
         public string Image
         {
             get
             {
-                return this.image;
+                return App.ImageServerPath + this.image;
             }
 
             set
             {
                 this.image = value;
-                this.OnPropertyChanged(nameof(Image));
+                this.OnPropertyChanged(nameof(this.Image));
             }
         }
 

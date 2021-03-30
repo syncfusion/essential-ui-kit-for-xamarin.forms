@@ -103,7 +103,7 @@
                                 <badge:BadgeSetting
                                     BackgroundColor="{DynamicResource PrimaryColor}"
                                     BadgeType="None"
-                                    FontFamily="{StaticResource Montserrat-Medium}"
+                                    FontFamily="Montserrat-Medium"
                                     FontSize="10"
                                     Stroke="{DynamicResource Gray-White}"
                                     StrokeWidth="1"
@@ -203,7 +203,7 @@
                             Margin="{OnIdiom Phone='0,0,0,2',
                                              Desktop='0,8,0,0',
                                              Tablet='0,16,0,0'}"
-                            FontFamily="{StaticResource Montserrat-SemiBold}"
+                            FontFamily="Montserrat-SemiBold"
                             FontSize="16"
                             HorizontalOptions="StartAndExpand"
                             LineBreakMode="TailTruncation"
@@ -221,7 +221,7 @@
                             Grid.ColumnSpan="2"
                             helper:RTLHelper.Margin="{OnIdiom Default='0,0,3,2',
                                                               Tablet='0,8,3,8'}"
-                            FontFamily="{DynamicResource Montserrat-Medium}"
+                            FontFamily="Montserrat-Medium"
                             FontSize="14"
                             LineBreakMode="TailTruncation"
                             LineHeight="{OnPlatform Android=1.5,
@@ -238,14 +238,14 @@
                             HorizontalOptions="Start"
                             ItemSize="14"
                             RatingSettings="{StaticResource RatingSettings}"
-                            Style="{StaticResource SfRatingStyle}"
+                            Style="{StaticResource RatingStyle}"
                             Value="{Binding ProductDetail.OverallRating}" />
 
                         <Label
                             Grid.Row="2"
                             Grid.Column="2"
                             Margin="0,6,0,11"
-                            FontFamily="{StaticResource Montserrat-Medium}"
+                            FontFamily="Montserrat-Medium"
                             FontSize="{OnIdiom Default=12,
                                                Desktop=14}"
                             Style="{StaticResource LabelStyle}"
@@ -263,7 +263,7 @@
 
                             <!--  Product Price  -->
                             <Label
-                                FontFamily="{StaticResource Montserrat-SemiBold}"
+                                FontFamily="Montserrat-SemiBold"
                                 FontSize="{OnIdiom Default=20,
                                                    Desktop=24}"
                                 Style="{StaticResource LabelStyle}"
@@ -271,7 +271,7 @@
                                 TextColor="{DynamicResource PrimaryColor}" />
 
                             <Label
-                                FontFamily="{DynamicResource Montserrat-Medium}"
+                                FontFamily="Montserrat-Medium"
                                 FontSize="12"
                                 Style="{StaticResource LabelStyle}"
                                 Text="{Binding ProductDetail.ActualPrice, StringFormat='${0:0.00} '}"
@@ -279,7 +279,7 @@
                                 VerticalTextAlignment="Center" />
 
                             <Label
-                                FontFamily="{DynamicResource Montserrat-Medium}"
+                                FontFamily="Montserrat-Medium"
                                 FontSize="12"
                                 Style="{StaticResource LabelStyle}"
                                 Text="{Binding ProductDetail.DiscountPercent, StringFormat=' ({0}% OFF)'}"
@@ -339,7 +339,7 @@
                             HeightRequest="{OnIdiom Tablet=24,
                                                     Desktop=8,
                                                     Phone=16}"
-                            Style="{StaticResource BoxViewStyle}"
+                            Style="{StaticResource HorizontalSeparatorStyle}"
                             Color="{OnIdiom Default={DynamicResource Gray-100},
                                             Desktop={DynamicResource Gray-White},
                                             Converter={StaticResource DynamicResourceToColorConverter}}" />
@@ -352,7 +352,7 @@
                             Grid.ColumnSpan="3"
                             Margin="{OnIdiom Default='0,16',
                                              Desktop='0,0,0,16'}"
-                            FontFamily="{StaticResource Montserrat-SemiBold}"
+                            FontFamily="Montserrat-SemiBold"
                             FontSize="16"
                             Style="{StaticResource LabelStyle}"
                             Text="Select Size"
@@ -379,7 +379,7 @@
                             Grid.ColumnSpan="5"
                             HeightRequest="{OnIdiom Tablet=24,
                                                     Default=0}"
-                            Style="{StaticResource BoxViewStyle}"
+                            Style="{StaticResource HorizontalSeparatorStyle}"
                             Color="{OnIdiom Default={DynamicResource Gray-100},
                                             Desktop={DynamicResource Gray-White},
                                             Converter={StaticResource DynamicResourceToColorConverter}}" />
@@ -422,7 +422,7 @@
                                 BorderWidth="1"
                                 Command="{Binding AddToCartCommand}"
                                 CommandParameter="{Binding .}"
-                                FontFamily="{StaticResource Montserrat-SemiBold}"
+                                FontFamily="Montserrat-SemiBold"
                                 HeightRequest="44"
                                 HorizontalOptions="{OnIdiom Default=Center,
                                                             Phone=FillAndExpand}"
@@ -439,7 +439,7 @@
                             Grid.Column="1"
                             Grid.ColumnSpan="3"
                             Margin="0,16,0,8"
-                            FontFamily="{StaticResource Montserrat-SemiBold}"
+                            FontFamily="Montserrat-SemiBold"
                             FontSize="16"
                             Style="{StaticResource LabelStyle}"
                             Text="Product Description"
@@ -452,7 +452,7 @@
                             Grid.ColumnSpan="3"
                             Margin="{OnIdiom Default='0,0,0,16',
                                              Desktop='0,8'}"
-                            FontFamily="{DynamicResource Montserrat-Medium}"
+                            FontFamily="Montserrat-Medium"
                             FontSize="14"
                             LineHeight="{OnPlatform Default=1.25}"
                             Style="{StaticResource LabelStyle}"
@@ -464,7 +464,7 @@
                             Grid.ColumnSpan="5"
                             HeightRequest="{OnIdiom Tablet=24,
                                                     Default=16}"
-                            Style="{StaticResource BoxViewStyle}"
+                            Style="{StaticResource HorizontalSeparatorStyle}"
                             Color="{OnIdiom Default={DynamicResource Gray-100},
                                             Desktop={DynamicResource Gray-White},
                                             Converter={StaticResource DynamicResourceToColorConverter}}" />
@@ -477,7 +477,7 @@
                         <Label
                             Grid.Row="12"
                             Grid.ColumnSpan="5"
-                            FontFamily="{StaticResource Montserrat-SemiBold}"
+                            FontFamily="Montserrat-SemiBold"
                             FontSize="16"
                             HorizontalOptions="CenterAndExpand"
                             IsVisible="{Binding IsReviewVisible}"

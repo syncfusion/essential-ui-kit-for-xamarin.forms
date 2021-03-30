@@ -15,7 +15,7 @@ namespace EssentialUIKit.Views.Transaction
         /// </summary>
         public DeliveryView()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }

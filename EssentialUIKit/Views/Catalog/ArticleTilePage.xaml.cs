@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using EssentialUIKit.ViewModels.Catalog;
+using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
 
@@ -16,7 +17,8 @@ namespace EssentialUIKit.Views.Catalog
         /// </summary>
         public ArticleTilePage()
         {
-            InitializeComponent();
+            this.InitializeComponent();
+            this.BindingContext = ArticleListViewModel.BindingContext;
         }
 
         /// <summary>
@@ -30,11 +32,11 @@ namespace EssentialUIKit.Views.Catalog
 
             if (width > height)
             {
-                GridLayout.SpanCount = Device.Idiom == TargetIdiom.Phone ? 3 : 4;
+                this.GridLayout.SpanCount = Device.Idiom == TargetIdiom.Phone ? 3 : 4;
             }
             else
             {
-                GridLayout.SpanCount =
+                this.GridLayout.SpanCount =
                     Device.Idiom == TargetIdiom.Phone ? 2 : Device.Idiom == TargetIdiom.Tablet ? 3 : 4;
             }
         }

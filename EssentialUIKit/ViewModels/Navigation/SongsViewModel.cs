@@ -11,11 +11,9 @@ namespace EssentialUIKit.ViewModels.Navigation
     /// </summary>
     [Preserve(AllMembers = true)]
     [DataContract]
-    public class SongsViewModel
+    public class SongsViewModel : BaseViewModel
     {
         #region Fields
-
-        private Command<object> backButtonCommand;
 
         private Command<object> itemTappedCommand;
 
@@ -46,17 +44,6 @@ namespace EssentialUIKit.ViewModels.Navigation
         }
 
         /// <summary>
-        /// Gets the command that will be executed when an back button is clicked.
-        /// </summary>
-        public Command<object> BackButtonCommand
-        {
-            get
-            {
-                return this.backButtonCommand ?? (this.backButtonCommand = new Command<object>(this.BackButtonClicked));
-            }
-        }
-
-        /// <summary>
         /// Gets or sets a collection of values to be displayed in the songs list page.
         /// </summary>
         [DataMember(Name = "songsPageList")]
@@ -71,15 +58,6 @@ namespace EssentialUIKit.ViewModels.Navigation
         /// </summary>
         /// <param name="selectedItem">Selected item from the list view.</param>
         private void NavigateToNextPage(object selectedItem)
-        {
-            // Do something
-        }
-
-        /// <summary>
-        /// Invoked when the back button is clicked.
-        /// </summary>
-        /// <param name="obj">The sender.</param>
-        private void BackButtonClicked(object obj)
         {
             // Do something
         }

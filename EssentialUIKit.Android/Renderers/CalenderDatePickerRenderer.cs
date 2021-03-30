@@ -11,7 +11,8 @@ namespace EssentialUIKit.Droid
     /// </summary>
     public class CalenderDatePickerRenderer : DatePickerRenderer
     {
-        public CalenderDatePickerRenderer(Context context) : base(context)
+        public CalenderDatePickerRenderer(Context context)
+            : base(context)
         {
         }
 
@@ -25,10 +26,10 @@ namespace EssentialUIKit.Droid
             if (this.Control != null)
             {
                 this.Control.SetBackground(null);
-                Control.Text = (e.NewElement as Controls.CalenderDatePicker).PlaceHolderText;
-                Control.SetTextColor(new Android.Graphics.Color(96, 106, 123));
-                Control.Gravity = Android.Views.GravityFlags.CenterVertical;
-                Control.SetPadding(0, 0, 0, 0);
+                this.Control.Text = (e?.NewElement as Controls.CalenderDatePicker).PlaceHolderText;
+                this.Control.SetTextColor(new Android.Graphics.Color(96, 106, 123));
+                this.Control.Gravity = Android.Views.GravityFlags.CenterVertical;
+                this.Control.SetPadding(0, 0, 0, 0);
             }
         }
     }

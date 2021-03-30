@@ -1,6 +1,9 @@
-﻿using Xamarin.Forms;
+﻿using System.Collections.ObjectModel;
+using System.Reflection;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Json;
 using EssentialUIKit.Models.Detail;
-using System.Collections.ObjectModel;
+using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 
 namespace EssentialUIKit.ViewModels.Detail
@@ -9,37 +12,75 @@ namespace EssentialUIKit.ViewModels.Detail
     /// ViewModel for my address page.
     /// </summary>
     [Preserve(AllMembers = true)]
+    [DataContract]
     public class MyAddressViewModel : BaseViewModel
     {
-        #region Properties
-        public ObservableCollection<Address> AddressDetails { get; set; }
+        #region Fields
+
+        private static MyAddressViewModel myAddressViewModel;
+
+        private Command editCommand;
+
+        private Command deleteCommand;
+
+        private Command addCardCommand;
+
         #endregion
 
         #region Constructor
+
         public MyAddressViewModel()
         {
-            this.BackCommand = new Command(this.BackButtonClicked);
-            this.EditCommand = new Command(this.EditButtonClicked);
-            this.DeleteCommand = new Command(this.DeleteButtonClicked);
-            this.AddCardCommand = new Command(this.AddCardButtonClicked);
+        }
 
-            this.AddressDetails = new ObservableCollection<Address>()
+        #endregion
+
+        #region Properties
+
+        /// <summary>
+        /// Gets or sets the value of my address page view model.
+        /// </summary>
+        public static MyAddressViewModel BindingContext =>
+            myAddressViewModel = PopulateData<MyAddressViewModel>("detail.json");
+
+        [DataMember(Name = "addressDetails")]
+        public ObservableCollection<Address> AddressDetails { get; set; }
+
+        #endregion
+
+        #region Command
+
+        /// <summary>
+        /// Gets the command is executed when the edit button is clicked.
+        /// </summary>
+        public Command EditCommand
+        {
+            get
             {
-                new Address
-                {
-                    Name = "John Doe",
-                    AddressType = "Home",
-                    Location = "114 Ridge St NW, Hudson, NC 28638",
-                    ContactNumber = "(828) 228-2882"
-                },
-                new Address
-                {
-                    Name = "John Doe",
-                    AddressType = "Work",
-                    Location = "100 S 4th St, Bloomfield, NM 87413",
-                    ContactNumber = "(828) 295-1271"
-                },
-            };
+                return this.editCommand ?? (this.editCommand = new Command(this.EditButtonClicked));
+            }
+        }
+
+        /// <summary>
+        /// Gets the command is executed when the delete button is clicked.
+        /// </summary>
+        public Command DeleteCommand
+        {
+            get
+            {
+                return this.deleteCommand ?? (this.deleteCommand = new Command(this.DeleteButtonClicked));
+            }
+        }
+
+        /// <summary>
+        /// Gets the command is executed when the add card button is clicked.
+        /// </summary>
+        public Command AddCardCommand
+        {
+            get
+            {
+                return this.addCardCommand ?? (this.addCardCommand = new Command(this.AddCardButtonClicked));
+            }
         }
 
         #endregion
@@ -47,12 +88,26 @@ namespace EssentialUIKit.ViewModels.Detail
         #region Methods
 
         /// <summary>
-        /// Invoked when the back button clicked
+        /// Populates the data for view model from json file.
         /// </summary>
-        /// <param name="obj">The object</param>
-        private void BackButtonClicked(object obj)
+        /// <typeparam name="T">Type of view model.</typeparam>
+        /// <param name="fileName">Json file to fetch data.</param>
+        /// <returns>Returns the view model object.</returns>
+        private static T PopulateData<T>(string fileName)
         {
-            // Do something
+            var file = "EssentialUIKit.Data." + fileName;
+
+            var assembly = typeof(App).GetTypeInfo().Assembly;
+
+            T data;
+
+            using (var stream = assembly.GetManifestResourceStream(file))
+            {
+                var serializer = new DataContractJsonSerializer(typeof(T));
+                data = (T)serializer.ReadObject(stream);
+            }
+
+            return data;
         }
 
         /// <summary>
@@ -81,29 +136,6 @@ namespace EssentialUIKit.ViewModels.Detail
         {
             // Do something
         }
-        #endregion
-
-        #region Command
-
-        /// <summary>
-        /// Gets or sets the command is executed when the back button is clicked.
-        /// </summary>
-        public Command BackCommand { get; set; }
-
-        /// <summary>
-        /// Gets or sets the command is executed when the edit button is clicked.
-        /// </summary>
-        public Command EditCommand { get; set; }
-
-        /// <summary>
-        /// Gets or sets the command is executed when the delete button is clicked.
-        /// </summary>
-        public Command DeleteCommand { get; set; }
-
-        /// <summary>
-        /// Gets or sets the command is executed when the add card button is clicked.
-        /// </summary>
-        public Command AddCardCommand { get; set; }
 
         #endregion
     }

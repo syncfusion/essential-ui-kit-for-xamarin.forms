@@ -16,7 +16,7 @@ namespace EssentialUIKit.Views.Dashboard
         /// </summary>
         public HealthCarePage()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }

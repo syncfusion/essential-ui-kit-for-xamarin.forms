@@ -9,8 +9,7 @@
 
     <ContentView.Resources>
         <ResourceDictionary>
-            <converter:StringToBooleanConverter x:Key="StringToBooleanConverter" />
-            <converter:ErrorValidationColorConverter x:Key="ErrorValidationColorConverter" PageVariantParameter="0" />
+           
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
@@ -19,7 +18,7 @@
 
     <ContentView.Content>
         <StackLayout>
-            <border:SfBorder BorderColor="{Binding Path=IsFocused, Source={x:Reference Email}, Converter={x:StaticResource ErrorValidationColorConverter}, ConverterParameter={x:Reference Email}}" Style="{StaticResource CommonSfBorderStyle}">
+            <border:SfBorder BorderColor="{Binding Path=IsFocused, Source={x:Reference Email},  ConverterParameter={x:Reference Email}}" Style="{StaticResource CommonSfBorderStyle}">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
@@ -34,7 +33,7 @@
 
                     <Label
                         Margin="15,0"
-                        FontFamily="{StaticResource FontIcons}"
+                        FontFamily="FontIcons"
                         FontSize="18"
                         HorizontalOptions="EndAndExpand"
                         HorizontalTextAlignment="End"
@@ -51,7 +50,7 @@
                 x:Name="ValidationLabel"
                 Margin="15,-5,0,0"
                 FontSize="12"
-                IsVisible="{Binding Path=IsFocused, Source={x:Reference Email}, Converter={StaticResource StringToBooleanConverter}, ConverterParameter={x:Reference Email}}"
+                IsVisible="{Binding Path=IsFocused, Source={x:Reference Email},  ConverterParameter={x:Reference Email}}"
                 Text="Please enter the valid e-mail"
                 TextColor="{DynamicResource Red}"
                 VerticalOptions="FillAndExpand" />

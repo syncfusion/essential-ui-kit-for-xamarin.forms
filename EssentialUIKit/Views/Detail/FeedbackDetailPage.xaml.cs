@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms.Internals;
+﻿using EssentialUIKit.ViewModels.Detail;
+using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
 
 namespace EssentialUIKit.Views.Detail
@@ -12,7 +13,8 @@ namespace EssentialUIKit.Views.Detail
     {
         public FeedbackDetailPage()
         {
-            InitializeComponent();
+            this.InitializeComponent();
+            this.BindingContext = DetailViewModel.BindingContext;
         }
     }
 }

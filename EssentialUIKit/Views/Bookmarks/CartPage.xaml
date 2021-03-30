@@ -5,7 +5,9 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
     xmlns:controls="clr-namespace:EssentialUIKit.Controls"
+    xmlns:converter="clr-namespace:EssentialUIKit.Converters"
     xmlns:local="clr-namespace:EssentialUIKit.Views.Bookmarks"
+    xmlns:syncEffectsView="clr-namespace:Syncfusion.XForms.EffectsView;assembly=Syncfusion.Core.XForms"
     xmlns:template="clr-namespace:EssentialUIKit.Views.Templates"
     x:Name="cartPage"
     Title="Cart"
@@ -14,9 +16,7 @@
 
     <ContentPage.Resources>
         <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Styles.xaml" />
-            </ResourceDictionary.MergedDictionaries>
+            <converter:DynamicResourceToColorConverter x:Key="DynamicResourceToColorConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
 
@@ -25,13 +25,12 @@
             <StackLayout Spacing="0">
 
                 <!--  Title View  -->
-                <controls:TitleView Title="Cart" BackgroundColor="{DynamicResource Gray-White}">
+                <controls:TitleView Title="Cart">
                     <controls:TitleView.LeadingView>
                         <buttons:SfButton
                             x:Name="backButton"
                             Command="{TemplateBinding BindingContext.BackButtonCommand}"
                             CommandParameter="{x:Reference backButton}"
-                            CornerRadius="4"
                             Style="{StaticResource IconButtonStyle}"
                             Text="{StaticResource Back}" />
                     </controls:TitleView.LeadingView>
@@ -52,7 +51,7 @@
                 Margin="{OnIdiom Default='0,16,0,0',
                                  Desktop='16'}"
                 BackgroundColor="{OnIdiom Default={StaticResource Transparent},
-                                          Desktop={DynamicResource Gray-White},
+                                          Desktop={DynamicResource Gray-Bg},
                                           Converter={StaticResource DynamicResourceToColorConverter}}"
                 ColumnSpacing="0"
                 HorizontalOptions="{OnIdiom Default=Fill,
@@ -75,36 +74,32 @@
                 <!--  Cart Header  -->
                 <StackLayout
                     Padding="16"
-                    BackgroundColor="{DynamicResource Gray-White}"
+                    BackgroundColor="{DynamicResource Gray-Bg}"
                     Orientation="Horizontal">
                     <Label
-                        FontFamily="{StaticResource Montserrat-SemiBold}"
-                        Style="{StaticResource CommonLabelStyle}"
-                        Text="My Cart"
-                        TextColor="{DynamicResource Gray-900}" />
+                        HorizontalOptions="Start"
+                        Style="{StaticResource TitleLabelStyle}"
+                        Text="My Cart" />
 
                     <Label
-                        BackgroundColor="{DynamicResource Gray-White}"
-                        FontAttributes="Bold"
-                        FontFamily="{StaticResource Montserrat-SemiBold}"
+                        BackgroundColor="{DynamicResource Gray-Bg}"
                         HorizontalOptions="EndAndExpand"
                         HorizontalTextAlignment="End"
-                        Style="{StaticResource CommonLabelStyle}"
-                        Text="{Binding TotalPrice, StringFormat='Total: ${0}'}"
-                        TextColor="{DynamicResource Dray-56}" />
+                        Style="{StaticResource TitleLabelStyle}"
+                        Text="{Binding TotalPrice, StringFormat='Total: ${0}'}" />
                 </StackLayout>
 
                 <BoxView
                     Grid.Row="1"
                     HeightRequest="1"
-                    Style="{StaticResource BoxViewStyle}" />
+                    Style="{StaticResource HorizontalSeparatorStyle}" />
 
                 <!--  Cart items  -->
                 <StackLayout
                     x:Name="CartLayout"
                     Grid.Row="2"
                     BackgroundColor="{OnIdiom Default={StaticResource Transparent},
-                                              Desktop={StaticResource Gray-White},
+                                              Desktop={StaticResource Gray-Bg},
                                               Converter={StaticResource DynamicResourceToColorConverter}}"
                     BindableLayout.ItemsSource="{Binding CartDetails}"
                     Spacing="16"
@@ -112,11 +107,17 @@
 
                     <BindableLayout.ItemTemplate>
                         <DataTemplate>
-                            <template:CartItemListTemplate
-                                x:Name="template"
-                                ChildElement="{Binding Source={x:Reference template}}"
-                                ParentBindingContext="{Binding Path=BindingContext, Source={x:Reference cartPage}}"
-                                ParentElement="{Binding Source={x:Reference CartLayout}}" />
+                            <syncEffectsView:SfEffectsView
+                                RippleColor="{DynamicResource Gray-300}"
+                                TouchDownEffects="Ripple"
+                                TouchUpCommand="{Binding Path=BindingContext.ItemTappedCommand, Source={x:Reference cartPage}}"
+                                TouchUpCommandParameter="{Binding}">
+                                <template:CartItemListTemplate
+                                    x:Name="template"
+                                    ChildElement="{Binding Source={x:Reference template}}"
+                                    ParentBindingContext="{Binding Path=BindingContext, Source={x:Reference cartPage}}"
+                                    ParentElement="{Binding Source={x:Reference CartLayout}}" />
+                            </syncEffectsView:SfEffectsView>
                         </DataTemplate>
                     </BindableLayout.ItemTemplate>
                 </StackLayout>
@@ -126,7 +127,7 @@
                     Grid.Row="0"
                     Grid.RowSpan="4"
                     Grid.Column="1"
-                    Style="{StaticResource BoxViewStyle}"
+                    Style="{StaticResource HorizontalSeparatorStyle}"
                     VerticalOptions="Fill"
                     WidthRequest="{OnIdiom Default=0,
                                            Desktop=16}"

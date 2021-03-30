@@ -6,32 +6,21 @@
     xmlns:button="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
     xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
     xmlns:svg="clr-namespace:EssentialUIKit.Controls"
-    xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.ErrorAndEmpty"
     BackgroundColor="{StaticResource Gray-White}"
     NavigationPage.HasNavigationBar="False">
 
-    <!--  Binding context for Something went wrong page  -->
-    <ContentPage.BindingContext>
-        <viewModel:SomethingWentWrongPageViewModel />
-    </ContentPage.BindingContext>
-
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Styles.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </ContentPage.Resources>
-
     <ContentPage.Content>
 
-        <Grid BackgroundColor="{x:StaticResource Gray-White}">
+        <Grid BackgroundColor="{x:StaticResource Gray-White}" RowDefinitions="*, Auto">
 
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
-
+            <button:SfButton
+                Margin="8"
+                Command="{Binding BackButtonCommand}"
+                FontSize="20"
+                HorizontalOptions="End"
+                Style="{StaticResource IconButtonStyle}"
+                Text="{StaticResource Close}"
+                VerticalOptions="Start" />
 
             <StackLayout
                 BackgroundColor="Transparent"
@@ -39,17 +28,14 @@
                 VerticalOptions="Center">
 
                 <!--  Display the svg illustration image  -->
-                <svg:SVGImage 
+                <svg:SVGImage
                     x:Name="ErrorImage"
-                    Margin="{x:OnIdiom Phone='0,0,0,0',
-                                       Desktop='0',
-                                       Tablet='0'}"
                     HeightRequest="{core:OnPlatformOrientationDoubleValue Default=300,
                                                                           AndroidPhonePortrait=200,
                                                                           AndroidPhoneLandscape=140,
                                                                           iOSPhonePortrait=200,
                                                                           iOSPhoneLandscape=140}"
-                    Source = "{Binding ImagePath}"
+                    Source="{Binding ImagePath}"
                     VerticalOptions="Center"
                     WidthRequest="{x:OnIdiom Phone=200,
                                              Desktop=300,
@@ -58,29 +44,33 @@
                 <!--  Label to display header  -->
                 <Label
                     Margin="0,32,0,8"
-                    FontFamily="{StaticResource Montserrat-SemiBold}"
                     FontSize="20"
-                    HorizontalTextAlignment="Center"
-                    Style="{StaticResource LabelStyle}"
+                    Style="{StaticResource TitleLabelStyle}"
                     Text="{Binding Header}"
+                    TextColor="#333942"
                     VerticalTextAlignment="Center" />
 
                 <!--  Label to display content  -->
                 <Label
                     Margin="8,0,8,0"
-                    FontFamily="{StaticResource Montserrat-Medium}"
                     FontSize="16"
-                    Style="{StaticResource LabelStyle}"
+                    LineHeight="{OnPlatform Android=1.25,
+                                            Default=-1}"
+                    Style="{StaticResource DescriptionLabelStyle}"
                     Text="{Binding Content}"
+                    TextColor="#333942"
                     VerticalTextAlignment="Center" />
             </StackLayout>
 
             <!--  Try again button  -->
             <button:SfButton
                 Grid.Row="1"
+                Margin="0,10,0,24"
                 Command="{Binding TryAgainCommand}"
-                Style="{StaticResource SfGradientButtonStyle}"
-                Text="TRY AGAIN" />
+                Style="{StaticResource GradientButtonStyle}"
+                Text="TRY AGAIN"
+                VerticalOptions="End"
+                WidthRequest="245" />
 
         </Grid>
 

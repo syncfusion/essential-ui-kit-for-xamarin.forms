@@ -4,10 +4,7 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Windows.Input;
 using EssentialUIKit.Models;
-using EssentialUIKit.Models.ContactUs;
 using EssentialUIKit.Models.Detail;
-using Syncfusion.SfMaps.XForms;
-using Syncfusion.XForms.Buttons;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using SelectionChangedEventArgs = Syncfusion.SfCalendar.XForms.SelectionChangedEventArgs;
@@ -22,9 +19,9 @@ namespace EssentialUIKit.ViewModels.Detail
     {
         #region Fields
 
-        private RoomDetail roomDetail;
-
         private readonly double productRating;
+
+        private RoomDetail roomDetail;
 
         private ObservableCollection<Review> reviews;
 
@@ -34,7 +31,13 @@ namespace EssentialUIKit.ViewModels.Detail
 
         private bool isReviewVisible;
 
-        private ObservableCollection<MapMarker> customMarkers;
+        private bool isFavourite;
+
+        private string mapMarkerLatitude;
+
+        private string mapMarkerLongitude;
+
+        private string mapMarkerImage;
 
         private List<RoomDetail> guestsCollection;
 
@@ -44,7 +47,7 @@ namespace EssentialUIKit.ViewModels.Detail
 
         private bool isDropDownOpen;
 
-        IList<DateTime> selectedDates;
+        private IList<DateTime> selectedDates;
 
         private string selectionChangedCommand;
 
@@ -57,49 +60,39 @@ namespace EssentialUIKit.ViewModels.Detail
         #region Command
 
         /// <summary>
-        /// Gets or sets the command is executed when the combo box is clicked for guest.
-        /// </summary>
-        public Command GuestCommand { get; set; }
-
-        /// <summary>
-        /// Gets or sets the command is executed when the combo box is clicked for bed.
-        /// </summary>
-        public Command BedCommand { get; set; }
-
-        /// <summary>
-        /// Gets or sets the command is executed when the calender is clicked.
-        /// </summary>
-        public ICommand OnSelectionChanged { get; set; }
-
-        /// <summary>
-        /// Gets or sets the command is executed when the favourite button is clicked.
-        /// </summary>
-        public Command FavouriteCommand { get; set; }
-
-        /// <summary>
         /// Gets or sets the command is executed when the book button is clicked.
         /// </summary>
         private Command bookCommand;
 
         /// <summary>
-        /// Gets or sets the command is executed when the carousel item is swiped.
+        /// Gets or sets the command is executed when the  selection button is clicked.
         /// </summary>
         private Command selectionCommand;
+
+        /// <summary>
+        /// Gets or sets the command is executed when the more button is clicked.
+        /// </summary>
+        private Command moreCommand;
+
+        /// <summary>
+        /// Gets or sets the command is executed when the  showAll button is clicked.
+        /// </summary>
+        private Command showAllCommand;
 
         #endregion
 
         #region Constructor
+
         /// <summary>
         /// Initializes a new instance for the <see cref="RoomBookingPageViewModel" /> class.
         /// </summary>
-
         public RoomBookingPageViewModel()
-        {        
-            OnSelectionChanged = new Command<SelectionChangedEventArgs>(SelectionChanged);
+        {
+            this.OnSelectionChanged = new Command<SelectionChangedEventArgs>(this.SelectionChanged);
 
-            GuestCommand = new Command(this.GuestSelectionChanged);
+            this.GuestCommand = new Command(this.GuestSelectionChanged);
 
-            BedCommand = new Command(this.BedSelectionChanged);
+            this.BedCommand = new Command(this.BedSelectionChanged);
 
             this.FavouriteCommand = new Command(this.FavouriteButtonClicked);
 
@@ -107,36 +100,36 @@ namespace EssentialUIKit.ViewModels.Detail
 
             this.previewImages = new List<RoomDetail>()
             {
-                new RoomDetail{ImagePath="HotelImage1.png"},
-                new RoomDetail{ImagePath="HotelImage2.jpeg"},
-                new RoomDetail{ImagePath="HotelImage3.jpeg"},
-                new RoomDetail{ImagePath="HotelImage4.jpeg"},
-                new RoomDetail{ImagePath="HotelImage5.jpeg" },
-                new RoomDetail{ImagePath="HotelImage6.jpeg"}
-            };        
+                new RoomDetail { ImagePath = "HotelImage1.png" },
+                new RoomDetail { ImagePath = "HotelImage2.jpeg" },
+                new RoomDetail { ImagePath = "HotelImage3.jpeg" },
+                new RoomDetail { ImagePath = "HotelImage4.jpeg" },
+                new RoomDetail { ImagePath = "HotelImage5.jpeg" },
+                new RoomDetail { ImagePath = "HotelImage6.jpeg" },
+            };
 
             this.facilities = new List<RoomDetail>()
             {
                new RoomDetail
                {
-                   Icon="\ue704",
-                   Facility="Wi-Fi"
+                   Icon = "\ue704",
+                   Facility = "Wi-Fi",
                },
-                new RoomDetail
+               new RoomDetail
                {
-                   Icon="\ue74e",
-                   Facility="Kitchen"
+                   Icon = "\ue74e",
+                   Facility = "Kitchen",
                },
-                 new RoomDetail
+               new RoomDetail
                {
-                   Icon="\ue740",
-                   Facility="Parking"
+                   Icon = "\ue740",
+                   Facility = "Parking",
                },
-                  new RoomDetail
+               new RoomDetail
                {
-                   Icon="\ue74c",
-                   Facility="Gym"
-               }
+                   Icon = "\ue74c",
+                   Facility = "Gym",
+               },
             };
 
             this.reviews = new ObservableCollection<Review>
@@ -148,12 +141,12 @@ namespace EssentialUIKit.ViewModels.Detail
                     Comment = "Great Resort, excellent hospitality!",
                     ReviewedDate = "29 Dec, 2019",
                     Rating = 5,
-                    Images = new List<string>
+                    CustomerReviewImages = new List<string>
                     {
                         "HotelImage1.png",
                         "HotelImage4.jpeg",
-                        "HotelImage6.jpeg"
-                    }
+                        "HotelImage6.jpeg",
+                    },
                 },
                 new Review
                 {
@@ -162,43 +155,44 @@ namespace EssentialUIKit.ViewModels.Detail
                     Comment = "Best resort on the planet. LOVE our visits there.",
                     ReviewedDate = "29 Dec, 2019",
                     Rating = 5,
-                    Images = new List<string>
+                    CustomerReviewImages = new List<string>
                     {
                        "HotelImage2.jpeg",
                        "HotelImage3.jpeg",
-                       "HotelImage7.jpeg"
-                    }
-                }
+                       "HotelImage7.jpeg",
+                    },
+                },
             };
 
             this.BedsCollection = new List<RoomDetail>()
             {
-                new RoomDetail{ DisplayText="1 Bed", ValueText=1 },
-                new RoomDetail { DisplayText="2 Beds", ValueText=2 },
-                new RoomDetail{ DisplayText="3 Beds", ValueText=3 }
+                new RoomDetail { DisplayText = "1 Bed", ValueText = 1 },
+                new RoomDetail { DisplayText = "2 Beds", ValueText = 2 },
+                new RoomDetail { DisplayText = "3 Beds", ValueText = 3 },
             };
 
             this.GuestsCollection = new List<RoomDetail>()
             {
-                new RoomDetail{ DisplayText="1 Guest", ValueText=1 },
-                new RoomDetail { DisplayText="2 Guests", ValueText=2 },
-                new RoomDetail{ DisplayText="3 Guests", ValueText=3 }
+                new RoomDetail { DisplayText = "1 Guest", ValueText = 1 },
+                new RoomDetail { DisplayText = "2 Guests", ValueText = 2 },
+                new RoomDetail { DisplayText = "3 Guests", ValueText = 3 },
             };
-
-            this.CustomMarkers = new ObservableCollection<MapMarker>();
+            this.MapMarkerImage = "Pin.png";
+            this.MapMarkerLatitude = "40.133808";
+            this.MapMarkerLongitude = "-75.516279";
             this.GetPinLocation();
 
             this.RoomDetail = new RoomDetail
             {
-                Name = "Modern Resort", 
+                Name = "Modern Resort",
                 OverallRating = 5,
                 TotalReviews = "534 Reviews",
-                ResortDescription = "A charming oceanfront resort with 38 hotel rooms, studios, and suites, most with a balcony and jacuzzi, located on the turquoise water of the Atlantic Ocean.",              
+                ResortDescription = "A charming oceanfront resort with 38 hotel rooms, studios, and suites, most with a balcony and jacuzzi, located on the turquoise water of the Atlantic Ocean.",
                 Address = "7654 Cleveland Street, Phoenixville, PA 19460",
                 PhoneNumber = "+1 202-555-0101",
                 Cost = 30,
-                TotalDays=1,
-                Reviews = reviews
+                TotalDays = 1,
+                Reviews = this.reviews,
             };
 
             if (this.RoomDetail.Reviews == null || this.RoomDetail.Reviews.Count == 0)
@@ -214,7 +208,9 @@ namespace EssentialUIKit.ViewModels.Detail
             }
 
             if (this.productRating > 0)
+            {
                 this.RoomDetail.OverallRating = this.productRating / this.RoomDetail.Reviews.Count;
+            }
         }
 
         #endregion
@@ -238,34 +234,97 @@ namespace EssentialUIKit.ViewModels.Detail
                     return;
                 }
 
-                this.roomDetail = value;
-                this.NotifyPropertyChanged();
+                this.SetProperty(ref this.roomDetail, value);
             }
         }
 
         /// <summary>
-        /// Gets or sets the property IsReviewVisible.
+        /// Gets or sets a value indicating whether the review is visible or not.
         /// </summary>
         public bool IsReviewVisible
         {
             get
             {
-                if (RoomDetail.Reviews.Count == 0)
+                if (this.RoomDetail.Reviews.Count == 0)
                 {
                     this.isReviewVisible = true;
                 }
 
                 return this.isReviewVisible;
             }
+
             set
             {
-                this.isReviewVisible = value;
-                this.NotifyPropertyChanged();
+                this.SetProperty(ref this.isReviewVisible, value);
             }
         }
 
         /// <summary>
-        /// Gets or sets the beds collection.
+        /// Gets or sets a value indicating whether the room is favourite or not.
+        /// </summary>
+        public bool IsFavourite
+        {
+            get
+            {
+                return this.isFavourite;
+            }
+
+            set
+            {
+                this.SetProperty(ref this.isFavourite, value);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a value of map marker latitude.
+        /// </summary>
+        public string MapMarkerLatitude
+        {
+            get
+            {
+                return this.mapMarkerLatitude;
+            }
+
+            set
+            {
+                this.SetProperty(ref this.mapMarkerLatitude, value);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a value of map marker longitude.
+        /// </summary>
+        public string MapMarkerLongitude
+        {
+            get
+            {
+                return this.mapMarkerLongitude;
+            }
+
+            set
+            {
+                this.SetProperty(ref this.mapMarkerLongitude, value);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a value for map marker template image.
+        /// </summary>
+        public string MapMarkerImage
+        {
+            get
+            {
+                return this.mapMarkerImage;
+            }
+
+            set
+            {
+                this.SetProperty(ref this.mapMarkerImage, value);
+            }
+        }
+
+        /// <summary>
+        /// Gets the beds collection.
         /// </summary>
         public ObservableCollection<object> Calender
         {
@@ -274,15 +333,14 @@ namespace EssentialUIKit.ViewModels.Detail
                 return this.calender;
             }
 
-            set
+            private set
             {
-                this.calender = value;
-                this.NotifyPropertyChanged();
+                this.SetProperty(ref this.calender, value);
             }
         }
 
         /// <summary>
-        /// Gets or sets the facilities items collection.
+        /// Gets the facilities items collection.
         /// </summary>
         public List<RoomDetail> Facilities
         {
@@ -291,15 +349,14 @@ namespace EssentialUIKit.ViewModels.Detail
                 return this.facilities;
             }
 
-            set
+            private set
             {
-                this.facilities = value;
-                this.NotifyPropertyChanged();
+                this.SetProperty(ref this.facilities, value);
             }
         }
 
         /// <summary>
-        /// Gets or sets the previewImages collection.
+        /// Gets the previewImages collection.
         /// </summary>
         public List<RoomDetail> PreviewImages
         {
@@ -308,15 +365,14 @@ namespace EssentialUIKit.ViewModels.Detail
                 return this.previewImages;
             }
 
-            set
+            private set
             {
-                this.previewImages = value;
-                this.NotifyPropertyChanged();
+                this.SetProperty(ref this.previewImages, value);
             }
         }
 
         /// <summary>
-        /// Gets or sets the beds collection.
+        /// Gets the beds collection.
         /// </summary>
         public List<RoomDetail> BedsCollection
         {
@@ -325,15 +381,14 @@ namespace EssentialUIKit.ViewModels.Detail
                 return this.bedsCollection;
             }
 
-            set
+            private set
             {
-                this.bedsCollection = value;
-                this.NotifyPropertyChanged();
+                this.SetProperty(ref this.bedsCollection, value);
             }
         }
 
         /// <summary>
-        /// Gets or sets the guests collection.
+        /// Gets the guests collection.
         /// </summary>
         public List<RoomDetail> GuestsCollection
         {
@@ -342,27 +397,9 @@ namespace EssentialUIKit.ViewModels.Detail
                 return this.guestsCollection;
             }
 
-            set
+            private set
             {
-                this.guestsCollection = value;
-                this.NotifyPropertyChanged();
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the CustomMarkers collection.
-        /// </summary>
-        public ObservableCollection<MapMarker> CustomMarkers
-        {
-            get
-            {
-                return this.customMarkers;
-            }
-
-            set
-            {
-                this.customMarkers = value;
-                this.NotifyPropertyChanged();
+                this.SetProperty(ref this.guestsCollection, value);
             }
         }
 
@@ -378,13 +415,12 @@ namespace EssentialUIKit.ViewModels.Detail
 
             set
             {
-                this.geoCoordinate = value;
-                this.NotifyPropertyChanged();
+                this.SetProperty(ref this.geoCoordinate, value);
             }
         }
 
         /// <summary>
-        /// Gets or sets the IsDropDownOpen.
+        /// Gets or sets a value indicating whether the drop down is open or not.
         /// </summary>
         public bool IsDropDownOpen
         {
@@ -395,8 +431,7 @@ namespace EssentialUIKit.ViewModels.Detail
 
             set
             {
-                this.isDropDownOpen = value;
-                this.NotifyPropertyChanged();
+                this.SetProperty(ref this.isDropDownOpen, value);
             }
         }
 
@@ -405,16 +440,20 @@ namespace EssentialUIKit.ViewModels.Detail
         /// </summary>
         public int SelectedIndex
         {
-            get { return selectedIndex;}
+            get
+            {
+                return this.selectedIndex;
+            }
+
             set
             {
-                if (selectedIndex == value)
+                if (this.selectedIndex == value)
                 {
                     return;
                 }
-                selectedIndex = value;
-                this.NotifyPropertyChanged();
-            } 
+
+                this.SetProperty(ref this.selectedIndex, value);
+            }
         }
 
         /// <summary>
@@ -422,13 +461,13 @@ namespace EssentialUIKit.ViewModels.Detail
         /// </summary>
         public string SelectionChangedCommand
         {
-            get { return selectionChangedCommand; }
-            set { selectionChangedCommand = value; }
+            get { return this.selectionChangedCommand; }
+            set { this.selectionChangedCommand = value; }
         }
 
-        // <summary>
-        /// Gets or sets the command that will be executed when an book button is selected.
-        /// </summary>   
+        /// <summary>
+        /// Gets the command that will be executed when an book button is selected.
+        /// </summary>
         public Command BookCommand
         {
             get
@@ -437,9 +476,9 @@ namespace EssentialUIKit.ViewModels.Detail
             }
         }
 
-        // <summary>
-        /// Gets or sets the command that will be executed when an book button is selected.
-        /// </summary>   
+        /// <summary>
+        /// Gets the command that will be executed when an book button is selected.
+        /// </summary>
         public Command SelectionCommand
         {
             get
@@ -447,62 +486,82 @@ namespace EssentialUIKit.ViewModels.Detail
                 return this.selectionCommand ?? (this.selectionCommand = new Command(this.SelectionClicked));
             }
         }
+
+        /// <summary>
+        /// Gets the command that will be executed when an more button is selected.
+        /// </summary>
+        public Command MoreCommand
+        {
+            get
+            {
+                return this.moreCommand ?? (this.moreCommand = new Command(this.MoreClicked));
+            }
+        }
+
+        /// <summary>
+        /// Gets the command that will be executed when an more button is selected.
+        /// </summary>
+        public Command ShowAllCommand
+        {
+            get
+            {
+                return this.showAllCommand ?? (this.showAllCommand = new Command(this.ShowAllClicked));
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the command is executed when the combo box is clicked for guest.
+        /// </summary>
+        public Command GuestCommand { get; set; }
+
+        /// <summary>
+        /// Gets or sets the command is executed when the combo box is clicked for bed.
+        /// </summary>
+        public Command BedCommand { get; set; }
+
+        /// <summary>
+        /// Gets or sets the command is executed when the calender is clicked.
+        /// </summary>
+        public ICommand OnSelectionChanged { get; set; }
+
+        /// <summary>
+        /// Gets or sets the command is executed when the favourite button is clicked.
+        /// </summary>
+        public Command FavouriteCommand { get; set; }
+
         #endregion
 
         #region Methods
         private void GetPinLocation()
         {
-            this.CustomMarkers.Add(
-                new LocationMarker
-                {
-                    PinImage = "Pin.png",
-                    Latitude = "40.133808",
-                    Longitude = "-75.516279"
-                });
-
-            foreach (var marker in this.CustomMarkers)
-            {
-                this.GeoCoordinate = new Point(Convert.ToDouble(marker.Latitude, CultureInfo.CurrentCulture), Convert.ToDouble(marker.Longitude, CultureInfo.CurrentCulture));
-            }         
+            this.GeoCoordinate = new Point(Convert.ToDouble(this.MapMarkerLatitude, CultureInfo.CurrentCulture), Convert.ToDouble(this.MapMarkerLongitude, CultureInfo.CurrentCulture));
         }
 
-        private void SelectionChanged( SelectionChangedEventArgs e)
+        private void SelectionChanged(SelectionChangedEventArgs e)
         {
-            selectedDates = e.DateAdded;
-            this.RoomDetail.SelectedRanges = (selectedDates[0].Date.ToString("MMM dd")) + " - " + (selectedDates[selectedDates.Count - 1].Date.ToString("MMM dd"));
-            IsDropDownOpen = false;
+            this.selectedDates = e.DateAdded;
+            if (this.selectedDates.Count != 0)
+            {
+                this.RoomDetail.SelectedRanges = this.selectedDates[0].Date.ToString("MMM dd", CultureInfo.CurrentCulture) + " - " + this.selectedDates[this.selectedDates.Count - 1].Date.ToString("MMM dd", CultureInfo.CurrentCulture);
+                this.IsDropDownOpen = false;
+            }
         }
 
         private void GuestSelectionChanged(object obj)
         {
-            //Do your command action
+            // Do your command action
         }
 
         private void BedSelectionChanged(object obj)
         {
-            //Do your command action
+            // Do your command action
         }
 
         private void FavouriteButtonClicked(object obj)
         {
-            var button = obj as SfButton;
-
-            if (button == null)
+            if (obj != null && (obj is RoomBookingPageViewModel))
             {
-                return;
-            }
-
-            if (button.Text == "\ue701")
-            {
-                button.Text = "\ue732";
-                Application.Current.Resources.TryGetValue("PrimaryColor", out var retVal);
-                button.TextColor = (Color)retVal;
-            }
-            else
-            {
-                button.Text = "\ue701";
-                Application.Current.Resources.TryGetValue("Gray-600", out var retVal);
-                button.TextColor = (Color)retVal;
+                (obj as RoomBookingPageViewModel).IsFavourite = (obj as RoomBookingPageViewModel).IsFavourite ? false : true;
             }
         }
 
@@ -512,7 +571,7 @@ namespace EssentialUIKit.ViewModels.Detail
         /// <param name="obj">The Object</param>
         private void BookClicked(object obj)
         {
-            //Do something
+            // Do something
         }
 
         /// <summary>
@@ -524,7 +583,24 @@ namespace EssentialUIKit.ViewModels.Detail
             this.SelectedIndex = this.PreviewImages.IndexOf(obj);
         }
 
+        /// <summary>
+        /// Invoked when the more button is clicked.
+        /// </summary>
+        /// <param name="obj">The Object</param>
+        private void MoreClicked(object obj)
+        {
+            // Do something
+        }
+
+        /// <summary>
+        /// Invoked when the show all button is clicked.
+        /// </summary>
+        /// <param name="obj">The Object</param>
+        private void ShowAllClicked(object obj)
+        {
+            // Do something
+        }
+
         #endregion
     }
-
 }

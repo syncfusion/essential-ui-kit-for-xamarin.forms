@@ -2,6 +2,7 @@
 using Syncfusion.ListView.XForms.iOS;
 using Syncfusion.SfCalendar.XForms.iOS;
 using Syncfusion.SfChart.XForms.iOS.Renderers;
+using Syncfusion.SfGauge.XForms.iOS;
 using Syncfusion.SfMaps.XForms.iOS;
 using Syncfusion.SfRating.XForms.iOS;
 using Syncfusion.SfRotator.XForms.iOS;
@@ -11,12 +12,13 @@ using Syncfusion.XForms.iOS.Buttons;
 using Syncfusion.XForms.iOS.Cards;
 using Syncfusion.XForms.iOS.ComboBox;
 using Syncfusion.XForms.iOS.Core;
+using Syncfusion.XForms.iOS.EffectsView;
 using Syncfusion.XForms.iOS.Expander;
 using Syncfusion.XForms.iOS.Graphics;
 using Syncfusion.XForms.iOS.PopupLayout;
 using Syncfusion.XForms.iOS.ProgressBar;
 using Syncfusion.XForms.iOS.TabView;
-using Syncfusion.SfGauge.XForms.iOS;
+using Syncfusion.XForms.Pickers.iOS;
 using UIKit;
 using Xamarin.Forms;
 
@@ -37,9 +39,11 @@ namespace EssentialUIKit.iOS
         {
             Forms.SetFlags("CollectionView_Experimental");
             global::Xamarin.Forms.Forms.Init();
+            SfEffectsViewRenderer.Init();
             this.LoadApplication(new App());
             SfButtonRenderer.Init();
             SfCheckBoxRenderer.Init();
+            SfDatePickerRenderer.Init();
             SfBorderRenderer.Init();
             SfGradientViewRenderer.Init();
             SfListViewRenderer.Init();
@@ -53,7 +57,7 @@ namespace EssentialUIKit.iOS
             SfBadgeViewRenderer.Init();
             SfSegmentedControlRenderer.Init();
             Core.Init();
-            new SfMapsRenderer();
+            SfMapsRenderer.Init();
             SfTabViewRenderer.Init();
             SfCalendarRenderer.Init();
             SfLinearProgressBarRenderer.Init();

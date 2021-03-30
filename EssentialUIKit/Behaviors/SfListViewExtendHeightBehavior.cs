@@ -67,7 +67,7 @@ namespace EssentialUIKit.Behaviors
         {
             if (eventArgs.PropertyName == "Height")
             {
-                await Task.Delay(500);
+                await Task.Delay(500).ConfigureAwait(true);
                 var extent = (double)this.container.GetType().GetRuntimeProperties()
                     .FirstOrDefault(container => container.Name == "TotalExtent").GetValue(this.container);
                 this.ListView.HeightRequest = extent + 1;

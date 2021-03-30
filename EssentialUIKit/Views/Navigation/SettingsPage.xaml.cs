@@ -10,7 +10,7 @@ namespace EssentialUIKit.Views.Navigation
     {
         public SettingsPage()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }

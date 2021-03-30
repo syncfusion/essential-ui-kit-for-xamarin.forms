@@ -10,20 +10,46 @@ namespace EssentialUIKit
     [Preserve(AllMembers = true)]
     public class AppSettings
     {
+        private readonly OSAppTheme currentTheme;
+
         private bool enableRTL;
 
         private bool isDarkTheme;
 
         private int selectedPrimaryColor;
 
+        private bool isGridView;
+
         static AppSettings()
         {
             Instance = new AppSettings();
         }
 
+        private AppSettings()
+        {
+            this.IsGridView = true;
+            this.currentTheme = Application.Current.RequestedTheme;
+            this.selectedPrimaryColor = this.currentTheme == OSAppTheme.Light ? 0 : 1;
+        }
+
         public static AppSettings Instance { get; }
 
-        public bool IsSafeAreaEnabled { get; set; } = false;
+        /// <summary>
+        /// Gets the AndroidSecretCode.
+        /// </summary>
+        public static string AndroidSecretCode => "88dda0e2-da50-466e-9aa5-36fc504d9ed3";
+
+        /// <summary>
+        /// Gets the iOSSecretCode.
+        /// </summary>
+        public static string IOSSecretCode => "b327e367-8f04-4efe-ad7a-85be8c828ec3";
+
+        /// <summary>
+        /// Gets the UWPSecretCode.
+        /// </summary>
+        public static string UWPSecretCode => "ca0577ad-4cd2-4258-a35b-465e8f4669d9";
+
+        public bool IsSafeAreaEnabled { get; set; }
 
         public double SafeAreaHeight { get; set; }
 
@@ -42,21 +68,6 @@ namespace EssentialUIKit
                     this.enableRTL ? FlowDirection.RightToLeft : FlowDirection.LeftToRight;
             }
         }
-
-        /// <summary>
-        /// Gets the AndroidSecretCode.
-        /// </summary>
-        public string AndroidSecretCode => "88dda0e2-da50-466e-9aa5-36fc504d9ed3";
-
-        /// <summary>
-        /// Gets the iOSSecretCode.
-        /// </summary>
-        public string IOSSecretCode => "b327e367-8f04-4efe-ad7a-85be8c828ec3";
-
-        /// <summary>
-        /// Gets the UWPSecretCode.
-        /// </summary>
-        public string UWPSecretCode => "ca0577ad-4cd2-4258-a35b-465e8f4669d9";
 
         public bool IsDarkTheme
         {
@@ -82,6 +93,20 @@ namespace EssentialUIKit
             }
         }
 
+        public bool IsGridView
+        {
+            get => this.isGridView;
+            set
+            {
+                if (this.isGridView == value)
+                {
+                    return;
+                }
+
+                this.isGridView = value;
+            }
+        }
+
         public int SelectedPrimaryColor
         {
             get => this.selectedPrimaryColor;
@@ -93,7 +118,7 @@ namespace EssentialUIKit
                 }
 
                 this.selectedPrimaryColor = value;
-                Extensions.ApplyColorSet(this.selectedPrimaryColor);
+                ThemePalette.ApplyColorSet(this.selectedPrimaryColor);
             }
         }
     }

@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms.Internals;
+﻿using EssentialUIKit.ViewModels.Detail;
+using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
 
 namespace EssentialUIKit.Views.Detail
@@ -8,11 +9,12 @@ namespace EssentialUIKit.Views.Detail
     /// </summary>
     [Preserve(AllMembers = true)]
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class EventDetailPage 
+    public partial class EventDetailPage
     {
         public EventDetailPage()
         {
-            InitializeComponent();
+            this.InitializeComponent();
+            this.BindingContext = EventDetailViewModel.BindingContext;
         }
     }
 }

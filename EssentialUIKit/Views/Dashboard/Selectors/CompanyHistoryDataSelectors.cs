@@ -1,5 +1,5 @@
-﻿using Xamarin.Forms;
-using EssentialUIKit.Models.Dashboard;
+﻿using EssentialUIKit.Models.Dashboard;
+using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
 
@@ -13,7 +13,7 @@ namespace EssentialUIKit.Views.Dashboard.Selectors
     public class CompanyHistoryDataSelectors : DataTemplateSelector
     {
         #region Properties
-     
+
         /// <summary>
         /// Gets or sets the Header text template.
         /// </summary>
@@ -36,7 +36,7 @@ namespace EssentialUIKit.Views.Dashboard.Selectors
         /// <returns>Returns the data template</returns>
         protected override DataTemplate OnSelectTemplate(object item, BindableObject container)
         {
-            return ((Event)item).Description != null? Content : Header;
+            return ((Timeline)item)?.Description != null ? this.Content : this.Header;
         }
 
         #endregion

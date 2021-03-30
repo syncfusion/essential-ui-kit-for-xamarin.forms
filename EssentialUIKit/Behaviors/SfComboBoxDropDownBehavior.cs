@@ -13,8 +13,6 @@ namespace EssentialUIKit.Behaviors
     [Preserve(AllMembers = true)]
     public class SfComboBoxDropDownBehavior : Behavior<SfComboBox>
     {
-       
-
         #region Binable Properties
 
         /// <summary>
@@ -37,14 +35,14 @@ namespace EssentialUIKit.Behaviors
         /// </summary>
         public ICommand Command
         {
-            get { return (ICommand)GetValue(CommandProperty); }
+            get { return (ICommand)this.GetValue(CommandProperty); }
             set { this.SetValue(CommandProperty, value); }
         }
 
         /// <summary>
         /// Gets the comboBox.
         /// </summary>
-        public SfComboBox ComboBox { get; private set; }        
+        public SfComboBox ComboBox { get; private set; }
 
         #endregion
 
@@ -97,13 +95,16 @@ namespace EssentialUIKit.Behaviors
         private void SelectionChanged(object sender, Syncfusion.XForms.ComboBox.SelectionChangedEventArgs e)
         {
             int totalQuantity;
-            int.TryParse(e.Value.ToString(), out totalQuantity);
+            if (int.TryParse(e.Value.ToString(), out totalQuantity))
+            {
+                // Do Nothing
+            }
 
             var bindingContext = (sender as SfComboBox).BindingContext;
 
             PropertyInfo propertyInfo = bindingContext.GetType().GetProperty("TotalQuantity");
             propertyInfo.SetValue(bindingContext, totalQuantity);
-            
+
             if (this.isCheckboxLoaded)
             {
                 if (this.Command == null)

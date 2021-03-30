@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary
+    x:Class="EssentialUIKit.Styles.AvatarViewStyles"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:sfavatar="clr-namespace:Syncfusion.XForms.AvatarView;assembly=Syncfusion.Core.XForms">
+
+    <Style x:Key="AvatarViewStyle" TargetType="sfavatar:SfAvatarView">
+        <Setter Property="ContentType" Value="Initials" />
+        <Setter Property="InitialsType" Value="DoubleCharacter" />
+        <Setter Property="FontFamily" Value="Montserrat-Medium" />
+        <Setter Property="InitialsColor" Value="#ffffff" />
+        <Setter Property="AvatarShape" Value="Circle" />
+        <Setter Property="AvatarSize" Value="Medium" />
+        <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+        <Setter Property="BorderWidth" Value="0" />
+    </Style>
+
+</ResourceDictionary>

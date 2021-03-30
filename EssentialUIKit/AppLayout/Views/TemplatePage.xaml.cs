@@ -1,12 +1,18 @@
 ﻿using System;
 using EssentialUIKit.AppLayout.Models;
 using EssentialUIKit.AppLayout.ViewModels;
+using Syncfusion.ListView.XForms;
+using Syncfusion.XForms.EffectsView;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
 
 namespace EssentialUIKit.AppLayout.Views
 {
+    /// <summary>
+    /// UITemplate template host page.
+    /// </summary>
     [Preserve(AllMembers = true)]
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class TemplatePage
@@ -16,6 +22,7 @@ namespace EssentialUIKit.AppLayout.Views
         private double width;
         private double height;
         private bool isNavigationInQueue;
+        private Template selectedItem;
 
         #endregion
 
@@ -24,10 +31,13 @@ namespace EssentialUIKit.AppLayout.Views
         /// <summary>
         /// Initializes a new instance of the <see cref="TemplatePage" /> class.
         /// </summary>
-        public TemplatePage(Category selectedCategory)
+        public TemplatePage(Category selectedCategory, bool isDarkTheme, bool isGridView)
         {
-            InitializeComponent();
-            ((TemplatePageViewModel) BindingContext).SelectedCategory = selectedCategory;
+            this.InitializeComponent();
+            var bindingContext = (TemplatePageViewModel)this.BindingContext;
+            bindingContext.IsDarkTheme = isDarkTheme;
+            bindingContext.SelectedCategory = selectedCategory;
+            this.UpdateTemplatePageLayout(isGridView);
         }
 
         #endregion
@@ -38,22 +48,36 @@ namespace EssentialUIKit.AppLayout.Views
         {
             base.OnSizeAllocated(width, height);
 
-            if ((Device.RuntimePlatform == "iOS" || Device.RuntimePlatform == "Android") &&
-                AppSettings.Instance.IsSafeAreaEnabled)
+            if (width != this.width || height != this.height)
             {
-                if (width != this.width || height != this.height)
-                {
-                    var safeAreaHeight = AppSettings.Instance.SafeAreaHeight;
-                    this.width = width;
-                    this.height = height;
+                this.width = width;
+                this.height = height;
+                bool isItemsGridView = ((TemplatePageViewModel)this.BindingContext).IsItemsGridView;
 
-                    if (width < height)
+                if (width < height)
+                {
+                    if ((Device.RuntimePlatform == "iOS" || Device.RuntimePlatform == "Android")
+                        && AppSettings.Instance.IsSafeAreaEnabled)
                     {
-                        iOSSafeArea.Height = safeAreaHeight;
+                        this.iOSSafeArea.Height = AppSettings.Instance.SafeAreaHeight;
                     }
-                    else
+
+                    if (isItemsGridView && this.ListView.LayoutManager is GridLayout)
                     {
-                        iOSSafeArea.Height = 0;
+                        (this.ListView.LayoutManager as GridLayout).SpanCount = 2;
+                    }
+                }
+                else
+                {
+                    if ((Device.RuntimePlatform == "iOS" || Device.RuntimePlatform == "Android")
+                         && AppSettings.Instance.IsSafeAreaEnabled)
+                    {
+                        this.iOSSafeArea.Height = 0;
+                    }
+
+                    if (isItemsGridView && this.ListView.LayoutManager is GridLayout)
+                    {
+                        (this.ListView.LayoutManager as GridLayout).SpanCount = 4;
                     }
                 }
             }
@@ -61,15 +85,16 @@ namespace EssentialUIKit.AppLayout.Views
 
         protected override void OnAppearing()
         {
+            this.ListView.SelectedItem = null;
             this.isNavigationInQueue = false;
             base.OnAppearing();
         }
 
         protected override bool OnBackButtonPressed()
         {
-            if (SettingsView.IsVisible)
+            if (this.SettingsView.IsVisible)
             {
-                SettingsView.Hide();
+                this.SettingsView.Hide();
                 return true;
             }
 
@@ -78,30 +103,95 @@ namespace EssentialUIKit.AppLayout.Views
 
         private void ShowSettings(object sender, EventArgs e)
         {
-            SettingsView.Show();
+            this.SettingsView.Show(this.BindingContext);
         }
 
         private void BackButtonPressed(object sender, EventArgs e)
         {
-            Navigation.PopAsync(true);
+            this.Navigation.PopAsync(true);
         }
 
-        private void ListView_OnSelectionChanged(object sender, SelectedItemChangedEventArgs e)
+        private void GotoCodeViewer(object sender, EventArgs e)
         {
-            if (e.SelectedItem == null || this.isNavigationInQueue)
+            Launcher.OpenAsync(new Uri("https://github.com/syncfusion/essential-ui-kit-for-xamarin.forms"));
+        }
+
+        #endregion
+
+        private void SfEffectsView_AnimationCompleted(object sender, EventArgs e)
+        {
+            var effectsView = sender as SfEffectsView;
+            this.selectedItem = effectsView.BindingContext as Template;
+            if (this.selectedItem == null || this.isNavigationInQueue)
             {
                 return;
             }
 
             this.isNavigationInQueue = true;
-            Navigation.PushAsync(new TemplateHostPage(e.SelectedItem as Template));
+            Page page = new TemplateHostPage(this.selectedItem as Template);
+            this.Navigation.PushAsync(page, true);
         }
 
-       private void GotoCodeViewer(object sender, EventArgs e)
+        private void GridIcon_Clicked(object sender, EventArgs e)
         {
-            Device.OpenUri(new Uri("https://github.com/syncfusion/essential-ui-kit-for-xamarin.forms"));
+            if (this.GridIcon.Text == "\xe733")
+            {
+                this.UpdateTemplatePageLayout(true);
+            }
+            else
+            {
+                this.UpdateTemplatePageLayout(false);
+            }
         }
 
-       #endregion
+        private void UpdateTemplatePageLayout(bool isGridView)
+        {
+            if (isGridView)
+            {
+                this.GridIcon.Text = "\xe70d";
+                this.ListView.ItemSpacing = new Thickness(0);
+                ((TemplatePageViewModel)this.BindingContext).IsItemsGridView = true;
+
+                this.ListView.LayoutManager = new GridLayout() { SpanCount = 2 };
+
+                if (this.width < this.height)
+                {
+                    if (this.ListView.LayoutManager is GridLayout)
+                    {
+                        (this.ListView.LayoutManager as GridLayout).SpanCount = 2;
+                    }
+                    else
+                    {
+                        this.ListView.LayoutManager = new GridLayout() { SpanCount = 2 };
+                    }
+                }
+                else
+                {
+                    if (this.ListView.LayoutManager is GridLayout)
+                    {
+                        (this.ListView.LayoutManager as GridLayout).SpanCount = 4;
+                    }
+                    else
+                    {
+                        this.ListView.LayoutManager = new GridLayout() { SpanCount = 4 };
+                    }
+                }
+            }
+            else
+            {
+                this.GridIcon.Text = "\xe733";
+                this.ListView.ItemSpacing = new Thickness(0, 8, 0, 10);
+                ((TemplatePageViewModel)this.BindingContext).IsItemsGridView = false;
+
+                if (this.ListView.LayoutManager is GridLayout)
+                {
+                    (this.ListView.LayoutManager as GridLayout).SpanCount = 1;
+                }
+                else
+                {
+                    this.ListView.LayoutManager = new GridLayout() { SpanCount = 1 };
+                }
+            }
+        }
     }
 }

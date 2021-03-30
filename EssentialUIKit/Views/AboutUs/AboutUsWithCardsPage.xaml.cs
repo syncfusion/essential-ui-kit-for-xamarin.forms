@@ -1,4 +1,6 @@
-﻿using Xamarin.Forms.Internals;
+﻿using EssentialUIKit.ViewModels.About;
+using Syncfusion.ListView.XForms;
+using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
 
 namespace EssentialUIKit.Views.AboutUs
@@ -15,7 +17,28 @@ namespace EssentialUIKit.Views.AboutUs
         /// </summary>
         public AboutUsWithCardsPage()
         {
-            InitializeComponent();
+            this.InitializeComponent();
+            this.BindingContext = AboutUsViewModel.BindingContext;
+        }
+
+        protected override void OnSizeAllocated(double width, double height)
+        {
+            base.OnSizeAllocated(width, height);
+
+            if (width < height)
+            {
+                if (this.employeesList.LayoutManager is GridLayout)
+                {
+                    (this.employeesList.LayoutManager as GridLayout).SpanCount = 2;
+                }
+            }
+            else
+            {
+                if (this.employeesList.LayoutManager is GridLayout)
+                {
+                    (this.employeesList.LayoutManager as GridLayout).SpanCount = 4;
+                }
+            }
         }
     }
 }

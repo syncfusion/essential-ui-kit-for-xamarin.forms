@@ -12,9 +12,9 @@ namespace EssentialUIKit.Views.Detail.Templates
     {
         public MobileView()
         {
-            InitializeComponent();
-            this.ProductImage.Source = App.BaseImageUrl + "ReviewShoe.png";
-            this.ProfileImage.Source = App.BaseImageUrl + "ProfileImage11.png";
+            this.InitializeComponent();
+            this.ProductImage.Source = App.ImageServerPath + "ReviewShoe.png";
+            this.ProfileImage.Source = App.ImageServerPath + "ProfileImage11.png";
         }
     }
 }

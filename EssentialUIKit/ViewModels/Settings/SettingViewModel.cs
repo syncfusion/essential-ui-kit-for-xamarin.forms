@@ -1,10 +1,4 @@
-﻿using EssentialUIKit.Views.Settings;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Text;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 
 namespace EssentialUIKit.ViewModels.Settings
@@ -20,9 +14,8 @@ namespace EssentialUIKit.ViewModels.Settings
         /// <summary>
         /// Initializes a new instance of the <see cref="SettingViewModel" /> class
         /// </summary>
-        public SettingViewModel ()
+        public SettingViewModel()
         {
-            this.BackButtonCommand = new Command(this.BackButtonClicked);
             this.EditProfileCommand = new Command(this.EditProfileClicked);
             this.ChangePasswordCommand = new Command(this.ChangePasswordClicked);
             this.LinkAccountCommand = new Command(this.LinkAccountClicked);
@@ -30,16 +23,12 @@ namespace EssentialUIKit.ViewModels.Settings
             this.TermsCommand = new Command(this.TermsServiceClicked);
             this.PolicyCommand = new Command(this.PrivacyPolicyClicked);
             this.FAQCommand = new Command(this.FAQClicked);
+            this.LogoutCommand = new Command(this.LogoutClicked);
         }
 
         #endregion
 
         #region Commands
-
-        /// <summary>
-        /// Gets or sets the command is executed when the favourite button is clicked.
-        /// </summary>
-        public Command BackButtonCommand { get; set; }
 
         /// <summary>
         /// Gets or sets the command is executed when the edit profile option is clicked.
@@ -76,24 +65,20 @@ namespace EssentialUIKit.ViewModels.Settings
         /// </summary>
         public Command FAQCommand { get; set; }
 
+        /// <summary>
+        /// Gets or sets the command is executed when the logout is clicked.
+        /// </summary>
+        public Command LogoutCommand { get; set; }
+
         #endregion
 
         #region Methods
 
         /// <summary>
-        /// Invoked when the back button clicked
-        /// </summary>
-        /// <param name="obj">The object</param>
-        private void BackButtonClicked (object obj)
-        {
-            // Do something
-        }
-
-        /// <summary>
         /// Invoked when the edit profile option clicked
         /// </summary>
         /// <param name="obj">The object</param>
-        private void EditProfileClicked (object obj)
+        private void EditProfileClicked(object obj)
         {
             // Do something
         }
@@ -102,7 +87,7 @@ namespace EssentialUIKit.ViewModels.Settings
         /// Invoked when the change password clicked
         /// </summary>
         /// <param name="obj">The object</param>
-        private void ChangePasswordClicked (object obj)
+        private void ChangePasswordClicked(object obj)
         {
             // Do something
         }
@@ -111,7 +96,7 @@ namespace EssentialUIKit.ViewModels.Settings
         /// Invoked when the account link clicked
         /// </summary>
         /// <param name="obj">The object</param>
-        private void LinkAccountClicked (object obj)
+        private void LinkAccountClicked(object obj)
         {
             // Do something
         }
@@ -120,7 +105,7 @@ namespace EssentialUIKit.ViewModels.Settings
         /// Invoked when the terms of service clicked
         /// </summary>
         /// <param name="obj">The object</param>
-        private void TermsServiceClicked (object obj)
+        private void TermsServiceClicked(object obj)
         {
             // Do something
         }
@@ -129,7 +114,7 @@ namespace EssentialUIKit.ViewModels.Settings
         /// Invoked when the privacy and policy clicked
         /// </summary>
         /// <param name="obj">The object</param>
-        private void PrivacyPolicyClicked (object obj)
+        private void PrivacyPolicyClicked(object obj)
         {
             // Do something
         }
@@ -138,18 +123,25 @@ namespace EssentialUIKit.ViewModels.Settings
         /// Invoked when the FAQ clicked
         /// </summary>
         /// <param name="obj">The object</param>
-        /// 
-        
-        private void FAQClicked (object obj)
+        private void FAQClicked(object obj)
         {
-           // Do something
+            // Do something
         }
 
         /// <summary>
         /// Invoked when the help option is clicked
         /// </summary>
         /// <param name="obj">The object</param>
-        private void HelpClicked (object obj)
+        private void HelpClicked(object obj)
+        {
+            // Do something
+        }
+
+        /// <summary>
+        /// Invoked when the logout button is clicked
+        /// </summary>
+        /// <param name="obj">The object</param>
+        private void LogoutClicked(object obj)
         {
             // Do something
         }

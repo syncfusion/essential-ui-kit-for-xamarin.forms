@@ -13,7 +13,7 @@ namespace EssentialUIKit.DataService
     {
         #region fields
 
-        private static MyOrdersDataService instance;
+        private static MyOrdersDataService myOrdersDataService;
 
         private MyOrdersPageViewModel myOrderPageViewModel;
 
@@ -35,13 +35,13 @@ namespace EssentialUIKit.DataService
         /// <summary>
         /// Gets an instance of the <see cref="MyOrdersDataService"/>.
         /// </summary>
-        public static MyOrdersDataService Instance => instance ?? (instance = new MyOrdersDataService());
-                
+        public static MyOrdersDataService Instance => myOrdersDataService ?? (myOrdersDataService = new MyOrdersDataService());
+
         /// <summary>
         /// Gets or sets the value of my orders page view model.
         /// </summary>
         public MyOrdersPageViewModel MyOrdersPageViewModel =>
-            (this.myOrderPageViewModel = PopulateData<MyOrdersPageViewModel>("ecommerce.json"));
+            this.myOrderPageViewModel = PopulateData<MyOrdersPageViewModel>("ecommerce.json");
 
         #endregion
 
@@ -59,15 +59,15 @@ namespace EssentialUIKit.DataService
 
             var assembly = typeof(App).GetTypeInfo().Assembly;
 
-            T obj;
+            T data;
 
             using (var stream = assembly.GetManifestResourceStream(file))
             {
                 var serializer = new DataContractJsonSerializer(typeof(T));
-                obj = (T)serializer.ReadObject(stream);
+                data = (T)serializer.ReadObject(stream);
             }
 
-            return obj;
+            return data;
         }
 
         #endregion

@@ -1,5 +1,5 @@
-﻿using Xamarin.Forms.Internals;
-using EssentialUIKit.Models.Navigation;
+﻿using EssentialUIKit.Models.Navigation;
+using Xamarin.Forms.Internals;
 
 namespace EssentialUIKit.Controls
 {

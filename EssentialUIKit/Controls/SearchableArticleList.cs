@@ -19,14 +19,16 @@ namespace EssentialUIKit.Controls
         {
             if (base.FilterContacts(obj))
             {
-                var taskInfo = obj as Models.Article;
+                var taskInfo = obj as Models.Story;
                 if (taskInfo == null || string.IsNullOrEmpty(taskInfo.Name) || string.IsNullOrEmpty(taskInfo.Author))
                 {
                     return false;
                 }
+
                 return taskInfo.Name.ToUpperInvariant().Contains(this.SearchText.ToUpperInvariant())
                        || taskInfo.Author.ToUpperInvariant().Contains(this.SearchText.ToUpperInvariant());
             }
+
             return false;
         }
 

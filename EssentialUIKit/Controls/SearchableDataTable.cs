@@ -19,15 +19,16 @@ namespace EssentialUIKit.Controls
         {
             if (base.FilterContacts(obj))
             {
-                var taskInfo = obj as Models.Detail.DataTable;
+                var taskInfo = obj as Models.Detail.DataTableModel;
 
-                if (string.IsNullOrEmpty(taskInfo.ClubName))
+                if (taskInfo == null || string.IsNullOrEmpty(taskInfo.ClubName))
                 {
                     return false;
                 }
 
                 return taskInfo.ClubName.ToUpperInvariant().Contains(this.SearchText.ToUpperInvariant());
             }
+
             return false;
         }
         #endregion

@@ -7,7 +7,7 @@ namespace EssentialUIKit.ViewModels.Feedback
     /// ViewModel for review page.
     /// </summary>
     [Preserve(AllMembers = true)]
-    public class ReviewPageViewModel
+    public class ReviewPageViewModel : BaseViewModel
     {
         #region Constructor
 

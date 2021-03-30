@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms.Internals;
+﻿using EssentialUIKit.ViewModels.Bookmarks;
+using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
 
 namespace EssentialUIKit.Views.Bookmarks
@@ -15,7 +16,8 @@ namespace EssentialUIKit.Views.Bookmarks
         /// </summary>
         public BookmarksPage()
         {
-            InitializeComponent();
+            this.InitializeComponent();
+            this.BindingContext = BookmarksViewModel.BindingContext;
         }
     }
 }

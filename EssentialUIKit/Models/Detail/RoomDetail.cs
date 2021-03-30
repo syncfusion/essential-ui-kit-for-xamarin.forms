@@ -1,6 +1,7 @@
-﻿using EssentialUIKit.ViewModels;
-using System;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using EssentialUIKit.ViewModels;
 using Xamarin.Forms.Internals;
 
 namespace EssentialUIKit.Models.Detail
@@ -18,8 +19,8 @@ namespace EssentialUIKit.Models.Detail
         private int cost;
 
         private string selectedRanges;
-        
-        private ObservableCollection<Review> reviews = new ObservableCollection<Review>();
+
+        private IReadOnlyCollection<Review> reviews = new ObservableCollection<Review>();
 
         #endregion
 
@@ -30,7 +31,7 @@ namespace EssentialUIKit.Models.Detail
         /// </summary>
         public string ImagePath
         {
-            get { return App.BaseImageUrl + this.imagePath; }
+            get { return App.ImageServerPath + this.imagePath; }
             set { this.imagePath = value; }
         }
 
@@ -46,11 +47,10 @@ namespace EssentialUIKit.Models.Detail
 
             set
             {
-                this.selectedRanges = value;
-                this.NotifyPropertyChanged();
+                this.SetProperty(ref this.selectedRanges, value);
             }
         }
-       
+
         /// <summary>
         /// Gets or sets the cost of resort.
         /// </summary>
@@ -63,8 +63,7 @@ namespace EssentialUIKit.Models.Detail
 
             set
             {
-                this.cost = value;
-                this.NotifyPropertyChanged();
+                this.SetProperty(ref this.cost, value);
             }
         }
 
@@ -72,7 +71,7 @@ namespace EssentialUIKit.Models.Detail
         /// Gets or sets the total days.
         /// </summary>
         public int TotalDays { get; set; }
-       
+
         /// <summary>
         /// Gets or sets the name of the resort.
         /// </summary>
@@ -121,7 +120,7 @@ namespace EssentialUIKit.Models.Detail
         /// <summary>
         /// Gets or sets the count of bed.
         /// </summary>
-        public string[] BedCount { get; set; }
+        public ReadOnlyCollection<string> BedCount { get; set; }
 
         /// <summary>
         /// Gets or sets the addresss of the resort.
@@ -141,7 +140,7 @@ namespace EssentialUIKit.Models.Detail
         /// <summary>
         /// Gets or sets the review of the customers .
         /// </summary>
-        public ObservableCollection<Review> Reviews
+        public IReadOnlyCollection<Review> Reviews
         {
             get
             {
@@ -151,7 +150,7 @@ namespace EssentialUIKit.Models.Detail
             set
             {
                 this.reviews = value;
-                this.NotifyPropertyChanged(nameof(Reviews));
+                this.NotifyPropertyChanged(nameof(this.Reviews));
             }
         }
 
