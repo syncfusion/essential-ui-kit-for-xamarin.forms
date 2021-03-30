@@ -111,7 +111,7 @@
                         <Label
                             FontFamily="Montserrat-Medium"
                             FontSize="12"
-                            Text="Card Number"
+                            Text="Card number"
                             TextColor="{DynamicResource Gray-800}" />
 
                         <!--  Card number entry and card image  -->
@@ -174,7 +174,7 @@
                                 Grid.Column="0"
                                 FontFamily="Montserrat-Medium"
                                 FontSize="12"
-                                Text="Expire Date"
+                                Text="Expiration date"
                                 TextColor="{DynamicResource Gray-800}" />
 
                             <Label
@@ -253,7 +253,7 @@
                         <Label
                             FontFamily="Montserrat-Medium"
                             FontSize="12"
-                            Text="Name on Card"
+                            Text="Name on card"
                             TextColor="{DynamicResource Gray-800}" />
 
                         <!--  Entry for card holder name  -->
