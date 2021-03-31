@@ -62,7 +62,6 @@ namespace EssentialUIKit.AppLayout.ViewModels
             set
             {
                 AppSettings.Instance.IsGridView = value;
-                this.IsItemsListView = !value;
                 this.SetProperty(ref this.isItemsGridView, value);
             }
         }

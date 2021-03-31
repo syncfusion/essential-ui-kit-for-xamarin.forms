@@ -151,6 +151,7 @@ namespace EssentialUIKit.AppLayout.Views
                 this.GridIcon.Text = "\xe70d";
                 this.ListView.ItemSpacing = new Thickness(0);
                 ((TemplatePageViewModel)this.BindingContext).IsItemsGridView = true;
+                ((TemplatePageViewModel)this.BindingContext).IsItemsListView = false;
 
                 this.ListView.LayoutManager = new GridLayout() { SpanCount = 2 };
 
@@ -182,6 +183,7 @@ namespace EssentialUIKit.AppLayout.Views
                 this.GridIcon.Text = "\xe733";
                 this.ListView.ItemSpacing = new Thickness(0, 8, 0, 10);
                 ((TemplatePageViewModel)this.BindingContext).IsItemsGridView = false;
+                ((TemplatePageViewModel)this.BindingContext).IsItemsListView = true;
 
                 if (this.ListView.LayoutManager is GridLayout)
                 {

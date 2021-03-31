@@ -117,13 +117,13 @@
                                     FontSize="12"
                                     LineHeight="{OnPlatform Default=-1,
                                                             Android=1.5}"
-                                    Text="Expires"
+                                    Text="Expiration"
                                     TextColor="{DynamicResource Gray-White}" />
                                 <Label
                                     FontSize="14"
-                                    HorizontalOptions="Start"
+                                    HorizontalOptions="CenterAndExpand"
                                     Style="{StaticResource TitleLabelStyle}"
-                                    Text="{Binding CardExpirationDate, StringFormat='{0:MM/yy}'}"
+                                    Text="{Binding CardExpirationDate, StringFormat='{0:MM/yy}', Mode=TwoWay}"
                                     TextColor="{DynamicResource Gray-White}" />
                             </StackLayout>
 

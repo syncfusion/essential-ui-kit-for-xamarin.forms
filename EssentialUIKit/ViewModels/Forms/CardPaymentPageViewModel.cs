@@ -20,7 +20,7 @@ namespace EssentialUIKit.ViewModels.Forms
 
         private string cardHolderName;
 
-        private DateTime cardExpirationDate = DateTime.Now;
+        private String cardExpirationDate = string.Format("{0:MM/yy}", DateTime.Now);
 
         private DateTime minimumDate;
 
@@ -101,7 +101,7 @@ namespace EssentialUIKit.ViewModels.Forms
         /// <summary>
         /// Gets or sets the property that bounds with an entry that gets the expire date from user.
         /// </summary>
-        public DateTime CardExpirationDate
+        public String CardExpirationDate
         {
             get
             {

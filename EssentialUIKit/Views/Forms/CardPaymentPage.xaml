@@ -169,7 +169,7 @@
                                 VerticalOptions="FillAndExpand">
                                 
                                     <button:SfButton x:Name="pickerButton" 
-                                                     Text="{Binding CardExpirationDate, StringFormat='{0:MM/yy}'}"
+                                                     Text="{Binding CardExpirationDate, StringFormat='{0:MM/yy}', Mode=TwoWay}"
                                                      FontSize="16"
                                                      Padding="-5, 0, 0 ,0"                                            
                                                      FontFamily="Montserrat-Regular"
