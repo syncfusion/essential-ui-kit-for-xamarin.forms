@@ -7,7 +7,7 @@ namespace EssentialUIKit.Controls
     /// </summary>
     [Preserve(AllMembers = true)]
     public class SearchableSuggestionList : SearchableListView
-    {     
+    {
         #region Method
 
         /// <summary>
@@ -28,6 +28,7 @@ namespace EssentialUIKit.Controls
                 return taskInfo.SuggestionName.ToUpperInvariant().Contains(this.SearchText.ToUpperInvariant())
                        || taskInfo.Id.ToUpperInvariant().Contains(this.SearchText.ToUpperInvariant());
             }
+
             return false;
         }
 

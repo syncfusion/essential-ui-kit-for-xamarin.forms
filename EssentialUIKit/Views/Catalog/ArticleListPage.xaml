@@ -3,31 +3,16 @@
     x:Class="EssentialUIKit.Views.Catalog.ArticleListPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
     xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
-    xmlns:cards="clr-namespace:Syncfusion.XForms.Cards;assembly=Syncfusion.Cards.XForms"
     xmlns:controls="clr-namespace:EssentialUIKit.Controls"
     xmlns:converter="clr-namespace:EssentialUIKit.Converters"
     xmlns:helper="clr-namespace:EssentialUIKit.Helpers"
     xmlns:syncfusion="clr-namespace:Syncfusion.SfRotator.XForms;assembly=Syncfusion.SfRotator.XForms"
     xmlns:template="clr-namespace:EssentialUIKit.Views.Templates"
-    xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Catalog"
     x:Name="articleList"
-    BackgroundColor="{DynamicResource Gray-White}"
+    BackgroundColor="{DynamicResource Gray-Bg}"
     NavigationPage.HasNavigationBar="False">
-
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Styles.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-
-            <converter:BooleanToStringConverter x:Key="BoolToStringConverter" />
-        </ResourceDictionary>
-    </ContentPage.Resources>
-
-    <ContentPage.BindingContext>
-        <viewModel:ArticleListViewModel />
-    </ContentPage.BindingContext>
 
     <ContentPage.ControlTemplate>
         <ControlTemplate>
@@ -36,12 +21,9 @@
                 <controls:TitleView Title="Blog">
                     <controls:TitleView.LeadingView>
                         <buttons:SfButton
-                            Command="{TemplateBinding BindingContext.MenuCommand}"
-                            CornerRadius="4"
-                            HeightRequest="40"
-                            Style="{StaticResource NavigationBarButtonStyle}"
-                            Text="{StaticResource BurgerMenu}"
-                            WidthRequest="40" />
+                            Command="{TemplateBinding BindingContext.BackButtonCommand}"
+                            Style="{StaticResource IconButtonStyle}"
+                            Text="{StaticResource Back}" />
                     </controls:TitleView.LeadingView>
                 </controls:TitleView>
 
@@ -53,24 +35,27 @@
 
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout Padding="16" Spacing="16">
+            <StackLayout Padding="0" Spacing="16">
 
                 <!--  Header label  -->
                 <Label
-                    FontFamily="{StaticResource Montserrat-SemiBold}"
+                    Margin="16,16,0,0"
                     FontSize="12"
+                    HorizontalOptions="Start"
                     LineHeight="{OnPlatform Default=-1,
                                             Android=1.25}"
+                    Style="{StaticResource TitleLabelStyle}"
                     Text="FEATURED STORIES"
                     TextColor="{DynamicResource Gray-800}" />
 
                 <!--<Rotator for featured blog stories>-->
                 <syncfusion:SfRotator
                     x:Name="Rotator"
+                    Margin="16,0"
                     BackgroundColor="{StaticResource Transparent}"
                     DotPlacement="OutSide"
                     DotsBorderColor="Transparent"
-                    HeightRequest="266"
+                    HeightRequest="276"
                     HorizontalOptions="StartAndExpand"
                     ItemsSource="{Binding FeaturedStories}"
                     NavigationDirection="Horizontal"
@@ -84,8 +69,18 @@
                                 Margin="0"
                                 Padding="0"
                                 Spacing="0">
-                                <cards:SfCardView CornerRadius="4" HasShadow="True">
-                                    <cards:SfCardView.Content>
+                                <controls:CustomShadowFrame
+                                    Margin="4"
+                                    Padding="0"
+                                    BackgroundColor="{StaticResource GrayShadowColor}"
+                                    BorderWidth="0"
+                                    CornerRadius="4"
+                                    HasShadow="True"
+                                    Radius="4">
+                                    <border:SfBorder
+                                        BorderColor="Transparent"
+                                        BorderWidth="0"
+                                        CornerRadius="4">
                                         <StackLayout Spacing="0">
 
                                             <!--  Image of the blog  -->
@@ -104,19 +99,19 @@
                                             <!--  Blog tile  -->
                                             <Label
                                                 helper:RTLHelper.Margin="16,16,0,8"
-                                                FontFamily="{StaticResource Montserrat-Bold}"
-                                                FontSize="16"
+                                                FontFamily="Montserrat-Bold"
+                                                HorizontalOptions="Start"
                                                 LineBreakMode="TailTruncation"
                                                 LineHeight="{OnPlatform Default=-1,
                                                                         Android=1.25}"
                                                 MaxLines="1"
-                                                Text="{Binding Name}"
-                                                TextColor="{DynamicResource Gray-900}" />
+                                                Style="{StaticResource TitleLabelStyle}"
+                                                Text="{Binding Name}" />
 
                                             <!--  Author name  -->
                                             <Label
                                                 helper:RTLHelper.Margin="16,0,0,0"
-                                                FontFamily="{StaticResource Montserrat-Medium}"
+                                                FontFamily="Montserrat-Medium"
                                                 FontSize="12"
                                                 LineHeight="{OnPlatform Default=-1,
                                                                         Android=1.5}"
@@ -127,7 +122,7 @@
                                             <!--  Published date and average reading time  -->
                                             <Label
                                                 Margin="16,2,16,16"
-                                                FontFamily="{StaticResource Montserrat-Regular}"
+                                                FontFamily="Montserrat-Regular"
                                                 FontSize="12"
                                                 LineHeight="{OnPlatform Default=-1,
                                                                         Android=1.5}"
@@ -145,8 +140,8 @@
                                             </StackLayout.GestureRecognizers>
 
                                         </StackLayout>
-                                    </cards:SfCardView.Content>
-                                </cards:SfCardView>
+                                    </border:SfBorder>
+                                </controls:CustomShadowFrame>
                             </StackLayout>
                         </DataTemplate>
                     </syncfusion:SfRotator.ItemTemplate>
@@ -154,15 +149,20 @@
 
                 <!--  Header label  -->
                 <Label
-                    FontFamily="{StaticResource Montserrat-SemiBold}"
+                    Margin="16,0"
                     FontSize="12"
+                    HorizontalOptions="Start"
                     LineHeight="{OnPlatform Default=-1,
                                             Android=1.25}"
+                    Style="{StaticResource TitleLabelStyle}"
                     Text="LATEST STORIES"
                     TextColor="{DynamicResource Gray-800}" />
 
                 <!--  Featured blog list  -->
-                <StackLayout BindableLayout.ItemsSource="{Binding LatestStories}" Spacing="16">
+                <StackLayout
+                    Margin="0,0,0,16"
+                    BindableLayout.ItemsSource="{Binding LatestStories}"
+                    Spacing="16">
                     <BindableLayout.ItemTemplate>
                         <DataTemplate>
                             <template:ArticleListTemplate ParentBindingContext="{Binding Path=BindingContext, Source={x:Reference articleList}}" />

@@ -12,7 +12,7 @@ namespace EssentialUIKit.Models.Navigation
     {
         #region Field
 
-        private string itemImage;
+        private string restaurantImage;
 
         #endregion
 
@@ -22,16 +22,16 @@ namespace EssentialUIKit.Models.Navigation
         /// Gets or sets the image of an item.
         /// </summary>
         [DataMember(Name = "itemImage")]
-        public string ItemImage
+        public string RestaurantImage
         {
             get
             {
-                return App.BaseImageUrl + this.itemImage;
+                return App.ImageServerPath + this.restaurantImage;
             }
 
             set
             {
-                this.itemImage = value;
+                this.restaurantImage = value;
             }
         }
 
@@ -60,6 +60,5 @@ namespace EssentialUIKit.Models.Navigation
         public string ItemRating { get; set; }
 
         #endregion
-
     }
 }

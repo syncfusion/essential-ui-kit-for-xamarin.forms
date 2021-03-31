@@ -4,7 +4,7 @@ using Xamarin.Forms.Internals;
 namespace EssentialUIKit.Models.Navigation
 {
     /// <summary>
-    ///Model for suggestion Page.
+    /// Model for suggestion Page.
     /// </summary>
     [Preserve(AllMembers = true)]
     [DataContract]
@@ -26,7 +26,7 @@ namespace EssentialUIKit.Models.Navigation
         {
             get
             {
-                return App.BaseImageUrl + this.imagePath;
+                return App.ImageServerPath + this.imagePath;
             }
 
             set
@@ -48,6 +48,5 @@ namespace EssentialUIKit.Models.Navigation
         public string Id { get; set; }
 
         #endregion
-
     }
 }

@@ -1,126 +1,201 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
-             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
-             xmlns:controls="clr-namespace:EssentialUIKit.Controls"
-             mc:Ignorable="d"
-             x:Class="EssentialUIKit.Views.Navigation.MoviesListPage"
-             BackgroundColor="{DynamicResource Gray-White}"
-             NavigationPage.HasNavigationBar="False">
-
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Styles.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </ContentPage.Resources>
+<ContentPage
+    x:Class="EssentialUIKit.Views.Navigation.MoviesListPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+    xmlns:behaviors="clr-namespace:EssentialUIKit.Behaviors"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:controls="clr-namespace:EssentialUIKit.Controls"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    BackgroundColor="{DynamicResource Gray-Bg}"
+    NavigationPage.HasNavigationBar="False"
+    mc:Ignorable="d">
 
     <ContentPage.Content>
 
-        <Grid RowSpacing="0" ColumnSpacing="0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="1"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
+        <Grid
+            ColumnSpacing="0"
+            RowDefinitions="Auto, 1, *"
+            RowSpacing="0">
 
-            <StackLayout x:Name="TitleView"  Padding="8,8" HeightRequest="64"  Grid.Row="0"
-                         BackgroundColor="{DynamicResource Gray-White}" Spacing="0"
-                         HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+            <StackLayout
+                x:Name="TitleView"
+                Grid.Row="0"
+                Padding="8,8"
+                BackgroundColor="{DynamicResource Gray-Bg}"
+                HorizontalOptions="FillAndExpand"
+                Orientation="Horizontal"
+                Spacing="0">
 
-                <StackLayout x:Name="Title" HorizontalOptions="FillAndExpand"  IsVisible="True"
-                             Orientation="Horizontal"  VerticalOptions="FillAndExpand"  Spacing="0">
+                <StackLayout
+                    x:Name="TitleLayout"
+                    HorizontalOptions="FillAndExpand"
+                    IsVisible="True"
+                    Orientation="Horizontal"
+                    Spacing="0"
+                    VerticalOptions="FillAndExpand">
 
                     <!--  Back button command  -->
-                    <buttons:SfButton  x:Name="backButton"  Command="{Binding BackButtonCommand}"
-                                       CommandParameter="{x:Reference backButton}" CornerRadius="4"
-                                       Style="{StaticResource IconButtonStyle}" Text="{StaticResource Back}"/>
+                    <buttons:SfButton
+                        x:Name="backButton"
+                        Command="{Binding BackButtonCommand}"
+                        CommandParameter="{x:Reference backButton}"
+                        Style="{StaticResource IconButtonStyle}"
+                        Text="{StaticResource Back}" />
 
                     <!--  Movie List page Title  -->
-                    <Label  Margin="16,0" FontFamily="{StaticResource Montserrat-Medium}" FontSize="16"
-                            HorizontalOptions="CenterAndExpand" TextColor="{DynamicResource Gray-900}"
-                            LineHeight="1.25"  Text="Movies List"  VerticalOptions="Center" VerticalTextAlignment="Center" />
+                    <Label
+                        Margin="16,0"
+                        FontFamily="Montserrat-Medium"
+                        HorizontalOptions="FillAndExpand"
+                        Style="{StaticResource TitleLabelStyle}"
+                        Text="Movies List"
+                        VerticalOptions="Center"
+                        VerticalTextAlignment="Center" />
 
                 </StackLayout>
 
-                <StackLayout  x:Name="Search"   HorizontalOptions="EndAndExpand"   IsVisible="False"
-                                Orientation="Horizontal" Spacing="0">
+                <StackLayout
+                    x:Name="Search"
+                    HorizontalOptions="EndAndExpand"
+                    IsVisible="False"
+                    Orientation="Horizontal"
+                    Spacing="0">
 
                     <!--  Back to title layout  -->
-                    <buttons:SfButton x:Name="BackToTitle" Clicked="BackToTitle_Clicked"  Text="{StaticResource Back}"
-                                      Style="{StaticResource NavigationBarButtonStyle}" />
+                    <buttons:SfButton
+                        x:Name="BackToTitle"
+                        Style="{StaticResource IconButtonStyle}"
+                        Text="{StaticResource Back}">
+                        <buttons:SfButton.Behaviors>
+                            <behaviors:SearchBarAnimationBehavior AnimationType="shrink" />
+                        </buttons:SfButton.Behaviors>
+                    </buttons:SfButton>
 
                     <!--  Rounded Search Entry  -->
-                    <border:SfBorder Style="{DynamicResource SfBorderStyle}">
-                        <controls:BorderlessEntry x:Name="SearchEntry"  BindingContext="{x:Reference MoviesList}"
-                                                  Text="{Binding SearchText, Mode=TwoWay}" Placeholder="Search here"
-                                                  HorizontalOptions="FillAndExpand"  Style="{StaticResource SearchEntryStyle}"/>
+                    <border:SfBorder Style="{DynamicResource ThemeBorderStyle}">
+                        <controls:BorderlessEntry
+                            x:Name="SearchEntry"
+                            BindingContext="{x:Reference MoviesList}"
+                            HorizontalOptions="FillAndExpand"
+                            Placeholder="Search here"
+                            Style="{StaticResource BorderlessEntryStyle}"
+                            Text="{Binding SearchText, Mode=TwoWay}" />
                     </border:SfBorder>
                 </StackLayout>
 
                 <!--  Search Button  -->
-                <buttons:SfButton  x:Name="SearchButton" IsVisible="True" Clicked="SearchButton_Clicked" Style="{StaticResource IconButtonStyle }"
-                                   Text="{StaticResource Search}" />
+                <buttons:SfButton
+                    x:Name="SearchButton"
+                    IsVisible="True"
+                    Style="{StaticResource IconButtonStyle}"
+                    Text="{StaticResource Search}">
+                    <buttons:SfButton.Behaviors>
+                        <behaviors:SearchBarAnimationBehavior AnimationType="expand" />
+                    </buttons:SfButton.Behaviors>
+                </buttons:SfButton>
 
             </StackLayout>
-            <BoxView Grid.Row="1" Style="{StaticResource SeparatorStyle}"/>
+            <BoxView Grid.Row="1" Style="{StaticResource HorizontalSeparatorStyle}" />
 
             <StackLayout Grid.Row="2">
-                <controls:SearchableMoviesList  x:Name="MoviesList"  IsScrollBarVisible="False"  AllowSwiping="True"
-                                                AutoFitMode="Height" ItemSpacing="0" SelectionGesture="Tap"  SelectionMode="Single"
-                                                VerticalOptions="FillAndExpand"  SearchText="{Binding SearchText}" TapCommand="{Binding ItemTappedCommand}"
-                                                ItemsSource="{Binding MoviesList}" SelectionBackgroundColor="Transparent">
-               
+                <controls:SearchableMoviesList
+                    x:Name="MoviesList"
+                    AllowSwiping="True"
+                    AutoFitMode="Height"
+                    IsScrollBarVisible="False"
+                    ItemSpacing="0"
+                    ItemsSource="{Binding MoviesList}"
+                    SearchText="{Binding SearchText}"
+                    SelectionBackgroundColor="{DynamicResource Gray-200}"
+                    SelectionGesture="Tap"
+                    SelectionMode="Single"
+                    TapCommand="{Binding ItemTappedCommand}"
+                    VerticalOptions="FillAndExpand">
+
                     <controls:SearchableMoviesList.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <Grid RowSpacing="0" ColumnSpacing="0">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="72"/>
-                                        <RowDefinition Height="1"/>
-                                    </Grid.RowDefinitions>
+                                <Grid
+                                    ColumnDefinitions="*, 82"
+                                    ColumnSpacing="0"
+                                    RowDefinitions="72, 1"
+                                    RowSpacing="0">
 
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="82"/>
-                                    </Grid.ColumnDefinitions>
+                                    <StackLayout
+                                        Grid.Row="0"
+                                        Grid.Column="0"
+                                        Margin="16,13"
+                                        Spacing="0">
 
-                                    <StackLayout Spacing="0" Margin="16,13"
-                                                 Grid.Column="0" Grid.Row="0" >
+                                        <Label
+                                            FontFamily="Montserrat-Medium"
+                                            FontSize="16"
+                                            LineBreakMode="TailTruncation"
+                                            LineHeight="{OnPlatform Android=1.5,
+                                                                    Default=-1}"
+                                            Text="{Binding MovieName}"
+                                            TextColor="{DynamicResource Gray-900}"
+                                            VerticalOptions="Center"
+                                            VerticalTextAlignment="Center" />
 
-                                        <Label VerticalTextAlignment="Center" VerticalOptions="Center"
-                                               FontFamily="{StaticResource Montserrat-Medium}" FontSize="16"
-                                               LineHeight="{OnPlatform Android=1.5,Default=-1}"
-                                               TextColor="{DynamicResource Gray-900}" Text="{Binding MovieName}" LineBreakMode="TailTruncation"  />
-
-                                        <Label  VerticalOptions="FillAndExpand"   VerticalTextAlignment="Center" FontSize="14"
-                                                FontFamily="{StaticResource Montserrat-Medium}" Text="{Binding MovieYear}" 
-                                                 LineHeight="{OnPlatform Android=1.5,Default=-1}" TextColor="{DynamicResource Gray-700}"/>
+                                        <Label
+                                            FontFamily="Montserrat-Medium"
+                                            FontSize="14"
+                                            LineHeight="{OnPlatform Android=1.5,
+                                                                    Default=-1}"
+                                            Text="{Binding MovieYear}"
+                                            TextColor="{DynamicResource Gray-700}"
+                                            VerticalOptions="FillAndExpand"
+                                            VerticalTextAlignment="Center" />
 
 
                                     </StackLayout>
 
-                                        <border:SfBorder BackgroundColor="{DynamicResource LightGreen}" WidthRequest="50" HeightRequest="24"
-                                                     Grid.RowSpan="2" VerticalOptions="Center" Margin="16,24"
-                                                     Grid.Column="1" CornerRadius="12" BorderColor="Transparent">
+                                    <border:SfBorder
+                                        Grid.RowSpan="2"
+                                        Grid.Column="1"
+                                        Margin="16,24"
+                                        BackgroundColor="{DynamicResource LightGreen}"
+                                        BorderColor="Transparent"
+                                        CornerRadius="12"
+                                        HeightRequest="24"
+                                        VerticalOptions="Center"
+                                        WidthRequest="50">
 
-                                            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" 
-                                                     VerticalOptions="Center" Spacing="4.7">
-                                            <Label TextColor="{DynamicResource Gray-White}" Style="{StaticResource RatingLabelStyle}"
-                                                   VerticalTextAlignment="Center" LineHeight="{OnPlatform Android=1.5,
-                                                   Default=-1}" FontSize="12" />
+                                        <StackLayout
+                                            HorizontalOptions="Center"
+                                            Orientation="Horizontal"
+                                            Spacing="4.7"
+                                            VerticalOptions="Center">
+                                            <Label
+                                                FontFamily="FontIcons"
+                                                FontSize="12"
+                                                LineHeight="{OnPlatform Android=1.5,
+                                                                        Default=-1}"
+                                                Text="{StaticResource Rating}"
+                                                TextColor="{DynamicResource Gray-White}"
+                                                VerticalOptions="Center"
+                                                VerticalTextAlignment="Center" />
 
-                                            <Label  FontFamily="{StaticResource Montserrat-Medium}" VerticalTextAlignment="Center"
-                                                    FontSize="12" LineHeight="{OnPlatform Android=1.5,Default=-1}" HorizontalOptions="Start"
-                                                    Text="{Binding MovieRating}" TextColor="{DynamicResource Gray-White}"/>
-                                               
-                                            </StackLayout>
-                                        </border:SfBorder>
-                                    <BoxView Grid.Row="1" Grid.ColumnSpan="2" Style="{StaticResource SeparatorStyle}"/>
+                                            <Label
+                                                FontFamily="Montserrat-Medium"
+                                                FontSize="12"
+                                                HorizontalOptions="Start"
+                                                LineHeight="{OnPlatform Android=1.5,
+                                                                        Default=-1}"
+                                                Text="{Binding MovieRating}"
+                                                TextColor="{DynamicResource Gray-White}"
+                                                VerticalTextAlignment="Center" />
+
+                                        </StackLayout>
+                                    </border:SfBorder>
+                                    <BoxView
+                                        Grid.Row="1"
+                                        Grid.ColumnSpan="2"
+                                        Style="{StaticResource HorizontalSeparatorStyle}" />
                                 </Grid>
                             </ViewCell>
                         </DataTemplate>

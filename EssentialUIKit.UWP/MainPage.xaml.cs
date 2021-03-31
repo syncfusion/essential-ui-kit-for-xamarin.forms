@@ -8,8 +8,8 @@ namespace EssentialUIKit.UWP
         {
             this.InitializeComponent();
             SfListViewRenderer.Init();
-            new Syncfusion.SfMaps.XForms.UWP.SfMapsRenderer();
-            LoadApplication(new EssentialUIKit.App());
+            Syncfusion.SfMaps.XForms.UWP.SfMapsRenderer.Init();
+            this.LoadApplication(new EssentialUIKit.App());
         }
     }
 }

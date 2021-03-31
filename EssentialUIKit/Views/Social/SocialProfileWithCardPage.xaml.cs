@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using EssentialUIKit.ViewModels.Social;
+using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
 
@@ -16,7 +17,8 @@ namespace EssentialUIKit.Views.Social
         /// </summary>
         public SocialProfileWithCardPage()
         {
-            InitializeComponent();
+            this.InitializeComponent();
+            this.BindingContext = SocialProfileViewModel.BindingContext;
         }
     }
 }

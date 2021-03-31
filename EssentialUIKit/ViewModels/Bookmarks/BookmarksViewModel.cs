@@ -1,8 +1,10 @@
-﻿using EssentialUIKit.Controls;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
+using System.Reflection;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Json;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
-using Model = EssentialUIKit.Models.Article;
+using Model = EssentialUIKit.Models.Story;
 
 namespace EssentialUIKit.ViewModels.Bookmarks
 {
@@ -10,11 +12,18 @@ namespace EssentialUIKit.ViewModels.Bookmarks
     /// ViewModel for Article bookmark page 
     /// </summary> 
     [Preserve(AllMembers = true)]
+    [DataContract]
     public class BookmarksViewModel : BaseViewModel
     {
         #region Fields
 
+        private static BookmarksViewModel bookmarksViewModel;
+
         private ObservableCollection<Model> latestStories;
+
+        private Command bookmarkCommand;
+
+        private Command itemSelectedCommand;
 
         #endregion
 
@@ -23,86 +32,24 @@ namespace EssentialUIKit.ViewModels.Bookmarks
         /// <summary>
         /// Initializes a new instance for the <see cref="BookmarksViewModel" /> class.
         /// </summary>
-        public BookmarksViewModel()
+        static BookmarksViewModel()
         {
-            this.LatestStories = new ObservableCollection<Model>
-            {
-                new Model
-                {
-                    ImagePath = App.BaseImageUrl + "Article_image1.png",
-                    Name = "Learning to Reset",
-                    Author = "John Doe",
-                    Date = "Apr 16",
-                    AverageReadingTime = "5 mins read",
-                    IsBookmarked = true
-                },
-                new Model
-                {
-                    ImagePath = App.BaseImageUrl + "Article_image2.png",
-                    Name = "Holistic Approach to UI Design",
-                    Author = "John Doe",
-                    Date = "Apr 18",
-                    AverageReadingTime = "5 mins read",
-                    IsBookmarked = true
-                },
-                new Model
-                {
-                    ImagePath = App.BaseImageUrl + "Article_image3.png",
-                    Name = "Guiding Your Flock to Success",
-                    Author = "John Doe",
-                    Date = "May 10",
-                    AverageReadingTime = "5 mins read",
-                    IsBookmarked = true
-                },
-                new Model
-                {
-                    ImagePath = App.BaseImageUrl + "Article_image4.png",
-                    Name = "Be a Nurturing, Fierce Team Leader",
-                    Author = "John Doe",
-                    Date = "Apr 16",
-                    AverageReadingTime = "5 mins read",
-                    IsBookmarked = true
-                },
-                new Model
-                {
-                    ImagePath = App.BaseImageUrl + "Article_image5.png",
-                    Name = "Holistic Approach to UI Design",
-                    Author = "John Doe",
-                    Date = "Apr 10",
-                    AverageReadingTime = "5 mins read",
-                    IsBookmarked = true
-                },
-                new Model
-                {
-                    ImagePath = App.BaseImageUrl + "Article_image6.png",
-                    Name = "Guiding Your Flock to Success",
-                    Author = "John Doe",
-                    Date = "Apr 16",
-                    AverageReadingTime = "5 mins read",
-                    IsBookmarked = true
-                },
-                new Model
-                {
-                    ImagePath = App.BaseImageUrl + "Article_image7.png",
-                    Name = "Be a Nurturing, Fierce Team Leader",
-                    Author = "John Doe",
-                    Date = "May 05",
-                    AverageReadingTime = "5 mins read",
-                    IsBookmarked = true
-                }
-            };
-
-            this.BookmarkCommand = new Command(this.BookmarkButtonClicked);
-            this.ItemSelectedCommand = new Command(this.ItemSelected);
         }
 
         #endregion
 
-        #region Public Properties        
+        #region Public Properties
+
+        /// <summary>
+        /// Gets or sets the value of Bookmark page view model.
+        /// </summary>
+        public static BookmarksViewModel BindingContext =>
+            bookmarksViewModel = PopulateData<BookmarksViewModel>("bookmark.json");
 
         /// <summary>
         /// Gets or sets the property that has been bound with the list view, which displays the articles' latest stories items.
         /// </summary>
+        [DataMember(Name = "latestStories")]
         public ObservableCollection<Model> LatestStories
         {
             get { return this.latestStories; }
@@ -114,8 +61,7 @@ namespace EssentialUIKit.ViewModels.Bookmarks
                     return;
                 }
 
-                this.latestStories = value;
-                this.NotifyPropertyChanged();
+                this.SetProperty(ref this.latestStories, value);
             }
         }
 
@@ -126,16 +72,51 @@ namespace EssentialUIKit.ViewModels.Bookmarks
         /// <summary>
         /// Gets or sets the command that will be executed when the bookmark button is clicked.
         /// </summary>
-        public Command BookmarkCommand { get; set; }
+        public Command BookmarkCommand
+        {
+            get
+            {
+                return this.bookmarkCommand ?? (this.bookmarkCommand = new Command(this.BookmarkButtonClicked));
+            }
+        }
 
         /// <summary>
         /// Gets or sets the command that will be executed when an item is selected.
         /// </summary>
-        public Command ItemSelectedCommand { get; set; }
+        public Command ItemSelectedCommand
+        {
+            get
+            {
+                return this.itemSelectedCommand ?? (this.itemSelectedCommand = new Command(this.ItemSelected));
+            }
+        }
 
         #endregion
 
         #region Methods
+
+        /// <summary>
+        /// Populates the data for view model from json file.
+        /// </summary>
+        /// <typeparam name="T">Type of view model.</typeparam>
+        /// <param name="fileName">Json file to fetch data.</param>
+        /// <returns>Returns the view model object.</returns>
+        private static T PopulateData<T>(string fileName)
+        {
+            var file = "EssentialUIKit.Data." + fileName;
+
+            var assembly = typeof(App).GetTypeInfo().Assembly;
+
+            T data;
+
+            using (var stream = assembly.GetManifestResourceStream(file))
+            {
+                var serializer = new DataContractJsonSerializer(typeof(T));
+                data = (T)serializer.ReadObject(stream);
+            }
+
+            return data;
+        }
 
         /// <summary>
         /// Invoked when the bookmark button is clicked.
@@ -146,12 +127,6 @@ namespace EssentialUIKit.ViewModels.Bookmarks
             if (obj is Model article)
             {
                 this.LatestStories.Remove(article);
-
-                if(this.LatestStories.Count == 0 )
-                {
-                    SfPopupView sfPopupView = new SfPopupView();
-                    sfPopupView.ShowPopUp(content: "No bookmarks here");
-                }
             }
         }
 

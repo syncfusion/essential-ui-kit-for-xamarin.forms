@@ -14,9 +14,9 @@ namespace EssentialUIKit.Views.Settings
         /// <summary>
         /// Initializes a new instance of the <see cref="SettingPage" /> class.
         /// </summary>
-        public SettingPage ()
+        public SettingPage()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }

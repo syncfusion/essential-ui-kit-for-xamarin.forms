@@ -70,7 +70,7 @@
                     BackgroundColor="{DynamicResource Gray-White}"
                     Orientation="Horizontal">
                     <Label
-                        FontFamily="{StaticResource Montserrat-SemiBold}"
+                        FontFamily="Montserrat-SemiBold"
                         Style="{StaticResource LabelStyle}"
                         Text="My Cart"
                         TextColor="{DynamicResource Gray-900}" />
@@ -78,7 +78,7 @@
                     <Label
                         BackgroundColor="{DynamicResource Gray-White}"
                         FontAttributes="Bold"
-                        FontFamily="{StaticResource Montserrat-SemiBold}"
+                        FontFamily="Montserrat-SemiBold"
                         HorizontalOptions="EndAndExpand"
                         HorizontalTextAlignment="End"
                         Style="{StaticResource LabelStyle}"
@@ -89,7 +89,7 @@
                 <BoxView
                     Grid.Row="1"
                     HeightRequest="1"
-                    Style="{StaticResource BoxViewStyle}" />
+                    Style="{StaticResource HorizontalSeparatorStyle}" />
 
                 <!--  Cart items  -->
                 <StackLayout
@@ -145,7 +145,7 @@
                                     Grid.Row="0"
                                     Grid.Column="1"
                                     Margin="0,16,0,4"
-                                    FontFamily="{StaticResource Montserrat-SemiBold}"
+                                    FontFamily="Montserrat-SemiBold"
                                     FontSize="14"
                                     HorizontalOptions="StartAndExpand"
                                     LineBreakMode="TailTruncation"
@@ -159,7 +159,7 @@
                                     Grid.Row="1"
                                     Grid.Column="1"
                                     Margin="0,0,0,8"
-                                    FontFamily="{StaticResource Montserrat-Medium}"
+                                    FontFamily="Montserrat-Medium"
                                     FontSize="12"
                                     LineBreakMode="TailTruncation"
                                     LineHeight="{OnPlatform Android=1.25,
@@ -178,7 +178,7 @@
 
                                     <!--  Product price  -->
                                     <Label
-                                        FontFamily="{StaticResource Montserrat-SemiBold}"
+                                        FontFamily="Montserrat-SemiBold"
                                         FontSize="20"
                                         HorizontalOptions="Start"
                                         Style="{StaticResource LabelStyle}"
@@ -186,7 +186,7 @@
                                         TextColor="{DynamicResource PrimaryColor}" />
 
                                     <Label
-                                        FontFamily="{DynamicResource Montserrat-Medium}"
+                                        FontFamily="Montserrat-Medium"
                                         FontSize="12"
                                         HorizontalOptions="Start"
                                         Style="{StaticResource LabelStyle}"
@@ -195,7 +195,7 @@
                                         VerticalTextAlignment="Center" />
 
                                     <Label
-                                        FontFamily="{DynamicResource Montserrat-Medium}"
+                                        FontFamily="Montserrat-Medium"
                                         FontSize="12"
                                         HorizontalOptions="Start"
                                         Style="{StaticResource LabelStyle}"
@@ -233,15 +233,16 @@
                                             MaximumDropDownHeight="200"
                                             SelectedItem="{Binding TotalQuantity, Mode=TwoWay}"
                                             ShowBorder="False"
-                                            Style="{StaticResource CartComboBoxStyle}"
+                                            Style="{StaticResource SimpleComboBoxStyle}"
                                             TextColor="Transparent"
+                                            HeightRequest="32"
                                             WidthRequest="90">
 
                                             <combobox:SfComboBox.CustomView>
                                                 <Label
                                                     Margin="10,0,24,0"
                                                     BackgroundColor="Transparent"
-                                                    FontFamily="{DynamicResource Montserrat-Regular}"
+                                                    FontFamily="Montserrat-Regular"
                                                     FontSize="14"
                                                     HorizontalTextAlignment="Center"
                                                     Style="{StaticResource LabelStyle}"
@@ -253,7 +254,7 @@
                                                     <combobox:DropDownButtonSettings.View>
                                                         <Label
                                                             Margin="0"
-                                                            FontFamily="{StaticResource FontIcons}"
+                                                            FontFamily="FontIcons"
                                                             FontSize="25"
                                                             HorizontalTextAlignment="Center"
                                                             Text="{StaticResource DropDownButtonIcon}"
@@ -284,7 +285,7 @@
                                         WidthRequest="92">
                                         <buttons:SfButton.Content>
                                             <Label
-                                                FontFamily="{StaticResource Montserrat-SemiBold}"
+                                                FontFamily="Montserrat-SemiBold"
                                                 FontSize="14"
                                                 HorizontalOptions="Center"
                                                 HorizontalTextAlignment="Center"
@@ -305,7 +306,7 @@
                     Grid.Row="0"
                     Grid.RowSpan="4"
                     Grid.Column="1"
-                    Style="{StaticResource BoxViewStyle}"
+                    Style="{StaticResource HorizontalSeparatorStyle}"
                     VerticalOptions="Fill"
                     WidthRequest="{OnIdiom Default=0,
                                            Desktop=16}"

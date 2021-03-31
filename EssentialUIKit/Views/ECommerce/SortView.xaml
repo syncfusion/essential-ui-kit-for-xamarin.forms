@@ -19,7 +19,7 @@
 
         <Style TargetType="BoxView">
             <Setter Property="HeightRequest" Value="1" />
-            <Setter Property="Style" Value="{StaticResource BoxViewStyle}" />
+            <Setter Property="Style" Value="{StaticResource HorizontalSeparatorStyle}" />
         </Style>
 
     </ContentView.Resources>
@@ -40,7 +40,7 @@
                 <DataTemplate>
                     <StackLayout Padding="{OnIdiom Default=0, Phone='0,6,0,0'}">
                         <buttons:SfRadioButton
-                            FontFamily="{StaticResource Montserrat-SemiBold}"
+                            FontFamily="Montserrat-SemiBold"
                             GroupKey="{StaticResource SortOptionGroup}"
                             Style="{StaticResource SfRadioButtonStyle}"
                             Text="{Binding .}" />

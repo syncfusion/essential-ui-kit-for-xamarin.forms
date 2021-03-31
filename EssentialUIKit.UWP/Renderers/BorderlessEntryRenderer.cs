@@ -20,7 +20,7 @@ namespace EssentialUIKit.UWP
 
                 // Make the text vertically aligned at centre of the entry.
                 Style style = new Style(typeof(Windows.UI.Xaml.Controls.ContentControl));
-                style.Setters.Add(new Setter(VerticalAlignmentProperty, VerticalAlignment.Center));                
+                style.Setters.Add(new Setter(VerticalAlignmentProperty, VerticalAlignment.Center));
                 this.Control.Resources.Add(typeof(Windows.UI.Xaml.Controls.ContentControl), style);
             }
         }

@@ -25,6 +25,10 @@ namespace EssentialUIKit.ViewModels.Catalog
 
         private string bannerImage;
 
+        private Command viewAllCommand;
+
+        private Command notificationButtonCommand;
+
         #endregion
 
         #region Public properties
@@ -35,7 +39,7 @@ namespace EssentialUIKit.ViewModels.Catalog
         [DataMember(Name = "bannerimage")]
         public string BannerImage
         {
-            get { return App.BaseImageUrl + this.bannerImage; }
+            get { return App.ImageServerPath + this.bannerImage; }
             set { this.bannerImage = value; }
         }
 
@@ -57,11 +61,10 @@ namespace EssentialUIKit.ViewModels.Catalog
                     return;
                 }
 
-                this.newArrivalProduts = value;
-                this.NotifyPropertyChanged();
+                this.SetProperty(ref this.newArrivalProduts, value);
             }
         }
-        
+
         /// <summary>
         /// Gets or sets the property that has been bound with list view, which displays the collection of products from json.
         /// </summary>
@@ -80,8 +83,7 @@ namespace EssentialUIKit.ViewModels.Catalog
                     return;
                 }
 
-                this.offerProduts = value;
-                this.NotifyPropertyChanged();
+                this.SetProperty(ref this.offerProduts, value);
             }
         }
 
@@ -103,8 +105,7 @@ namespace EssentialUIKit.ViewModels.Catalog
                     return;
                 }
 
-                this.recommendedProduts = value;
-                this.NotifyPropertyChanged();
+                this.SetProperty(ref this.recommendedProduts, value);
             }
         }
 
@@ -123,6 +124,28 @@ namespace EssentialUIKit.ViewModels.Catalog
             }
         }
 
+        /// <summary>
+        /// Gets the command that is executed when the view all button is clicked.
+        /// </summary>
+        public Command ViewAllCommand
+        {
+            get
+            {
+                return this.viewAllCommand ?? (this.viewAllCommand = new Command(this.ViewAllClicked));
+            }
+        }
+
+        /// <summary>
+        /// Gets the command that will be executed when notification button is selected.
+        /// </summary>
+        public Command NotificationButtonCommand
+        {
+            get
+            {
+                return this.notificationButtonCommand ?? (this.notificationButtonCommand = new Command(this.NotificationButtonClicked));
+            }
+        }
+
         #endregion
 
         #region Methods
@@ -132,6 +155,24 @@ namespace EssentialUIKit.ViewModels.Catalog
         /// </summary>
         /// <param name="attachedObject">The Object</param>
         private void ItemSelected(object attachedObject)
+        {
+            // Do something
+        }
+
+        /// <summary>
+        /// Invoked when an view all is selected.
+        /// </summary>
+        /// <param name="obj">The Object</param>
+        private void ViewAllClicked(object obj)
+        {
+            // Do something
+        }
+
+        /// <summary>
+        /// Invoked when an notification icon is selected.
+        /// </summary>
+        /// <param name="obj">The Object</param>
+        private void NotificationButtonClicked(object obj)
         {
             // Do something
         }

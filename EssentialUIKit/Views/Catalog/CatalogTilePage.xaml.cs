@@ -1,4 +1,5 @@
 using EssentialUIKit.DataService;
+using Syncfusion.ListView.XForms;
 using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
 
@@ -16,8 +17,28 @@ namespace EssentialUIKit.Views.Catalog
         /// </summary>
         public CatalogTilePage()
         {
-            InitializeComponent();
+            this.InitializeComponent();
             this.BindingContext = CatalogDataService.Instance.CatalogPageViewModel;
-        }        
+        }
+
+        protected override void OnSizeAllocated(double width, double height)
+        {
+            base.OnSizeAllocated(width, height);
+
+            if (width < height)
+            {
+                if (this.ListViewTile.LayoutManager is GridLayout)
+                {
+                    (this.ListViewTile.LayoutManager as GridLayout).SpanCount = 2;
+                }
+            }
+            else
+            {
+                if (this.ListViewTile.LayoutManager is GridLayout)
+                {
+                    (this.ListViewTile.LayoutManager as GridLayout).SpanCount = 4;
+                }
+            }
+        }
     }
 }

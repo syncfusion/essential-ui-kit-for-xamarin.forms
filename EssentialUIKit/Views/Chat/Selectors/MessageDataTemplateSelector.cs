@@ -13,6 +13,7 @@ namespace EssentialUIKit.Views.Chat
     public class MessageDataTemplateSelector : DataTemplateSelector
     {
         #region Constructor
+
         /// <summary>
         /// Initializes a new instance of the <see cref="MessageDataTemplateSelector" /> class.
         /// </summary>
@@ -59,7 +60,7 @@ namespace EssentialUIKit.Views.Chat
         /// <returns>Returns the data template</returns>
         protected override DataTemplate OnSelectTemplate(object item, BindableObject container)
         {
-            if (((ChatMessage)item).IsReceived)
+            if (item != null && ((ChatMessage)item).IsReceived)
             {
                 if (string.IsNullOrEmpty(((ChatMessage)item).ImagePath))
                 {
@@ -72,7 +73,7 @@ namespace EssentialUIKit.Views.Chat
             }
             else
             {
-                if (string.IsNullOrEmpty(((ChatMessage)item).ImagePath))
+                if (item != null && string.IsNullOrEmpty(((ChatMessage)item).ImagePath))
                 {
                     return this.OutgoingTextTemplate;
                 }

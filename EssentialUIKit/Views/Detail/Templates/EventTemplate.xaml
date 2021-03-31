@@ -1,20 +1,21 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<ViewCell xmlns="http://xamarin.com/schemas/2014/forms" 
-          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-          xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-          xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-          xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
-          mc:Ignorable="d"
-          x:Class="EssentialUIKit.Views.Detail.Templates.EventTemplate">
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ViewCell
+    x:Class="EssentialUIKit.Views.Detail.Templates.EventTemplate"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
     <ViewCell.View>
 
         <StackLayout Margin="0,0,8,0" Spacing="0">
             <border:SfBorder
-                BorderColor="Transparent"
-                BorderWidth="0"
-                CornerRadius="35"
-                HeightRequest="32"                
                 Margin="0"
+                BorderColor="{DynamicResource Gray-Bg}"
+                BorderWidth="1"
+                CornerRadius="35"
+                HeightRequest="32"
                 HorizontalOptions="Center"
                 WidthRequest="32">
 
@@ -26,9 +27,10 @@
                     HorizontalOptions="Center"
                     WidthRequest="32">
                     <Image.Source>
-                        <UriImageSource Uri="{Binding  ImagePath}" 
-			                                 CacheValidity="12" 
-			                                 CachingEnabled="true"/>
+                        <UriImageSource
+                            CacheValidity="12"
+                            CachingEnabled="true"
+                            Uri="{Binding ImagePath}" />
                     </Image.Source>
                 </Image>
             </border:SfBorder>

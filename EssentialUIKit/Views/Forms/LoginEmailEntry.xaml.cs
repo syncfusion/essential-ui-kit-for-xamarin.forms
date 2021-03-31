@@ -9,14 +9,14 @@ namespace EssentialUIKit.Views.Forms
     [Preserve(AllMembers = true)]
     [XamlCompilation(XamlCompilationOptions.Compile)]
 
-    public partial class LoginEmailEntry 
+    public partial class LoginEmailEntry
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="LoginEmailEntry" /> class.
         /// </summary>
         public LoginEmailEntry()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }

@@ -14,9 +14,11 @@ namespace EssentialUIKit.iOS
         {
             base.OnElementChanged(e);
 
-            var pageView = e.NewElement as TemplateHostView;
+            var pageView = e?.NewElement as TemplateHostView;
 
-            var nativePage = this.GetNativeView(pageView.Template, pageView);
+#pragma warning disable CA2000 // Dispose objects before losing scope
+            var nativePage = GetNativeView(pageView.Template, pageView);
+#pragma warning restore CA2000 // Dispose objects before losing scope
 
             this.SetNativeControl((nativePage as UIViewController).View);
         }
@@ -34,7 +36,7 @@ namespace EssentialUIKit.iOS
             }
         }
 
-        private IVisualElementRenderer GetNativeView(Page formsView, TemplateHostView parent)
+        private static IVisualElementRenderer GetNativeView(Page formsView, TemplateHostView parent)
         {
             var safeAreaHeight = AppSettings.Instance.SafeAreaHeight;
 

@@ -30,8 +30,8 @@ namespace EssentialUIKit.Converters
                 case "Contact":
                     messageType = "John Deo Sync";
                     break;
-                case "Text":                   
-                    var message = bindingContext != null ? ((ChatDetail)bindingContext).Message : string.Empty;                    
+                case "Text":
+                    var message = bindingContext != null ? ((ChatDetail)bindingContext).Message : string.Empty;
                     messageType = message;
                     break;
                 default:
@@ -43,27 +43,19 @@ namespace EssentialUIKit.Converters
             {
                 Application.Current.Resources.TryGetValue("Gray-900", out var returnColor);
 
-                ((Label)parameter).FontFamily = Device.RuntimePlatform == Device.Android
-                    ? "Montserrat-SemiBold.ttf#Montserrat-SemiBold"
-                    : Device.RuntimePlatform == Device.iOS
-                        ? "Montserrat-SemiBold"
-                        : "Assets/Montserrat-SemiBold.ttf#Montserrat-SemiBold";
+                ((Label)parameter).FontFamily = "Montserrat-SemiBold";
 
                 ((Label)parameter).TextColor = (Color)returnColor;
             }
-            else 
+            else
             {
                 Application.Current.Resources.TryGetValue("Gray-600", out var returnColor);
 
-                ((Label)parameter).FontFamily = Device.RuntimePlatform == Device.Android
-                    ? "Montserrat-Medium.ttf#Montserrat-Medium"
-                    : Device.RuntimePlatform == Device.iOS
-                        ? "Montserrat-Medium"
-                        : "Assets/Montserrat-Medium.ttf#Montserrat-Medium";
+                ((Label)parameter).FontFamily = "Montserrat-Medium";
 
                 ((Label)parameter).TextColor = (Color)returnColor;
             }
-            
+
             return messageType;
         }
 

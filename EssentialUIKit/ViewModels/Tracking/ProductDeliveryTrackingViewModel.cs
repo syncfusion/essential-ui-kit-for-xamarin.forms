@@ -1,6 +1,4 @@
 ﻿using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
 using EssentialUIKit.Models.Tracking;
 using Xamarin.Forms.Internals;
@@ -45,8 +43,7 @@ namespace EssentialUIKit.ViewModels.Tracking
 
             set
             {
-                this.productDeliveryTrackings = value;
-                this.NotifyPropertyChanged();
+                this.SetProperty(ref this.productDeliveryTrackings, value);
             }
         }
 
@@ -58,13 +55,12 @@ namespace EssentialUIKit.ViewModels.Tracking
         {
             get
             {
-                return App.BaseImageUrl + this.productImage;
+                return App.ImageServerPath + this.productImage;
             }
 
             set
             {
-                this.productImage = value;
-                this.NotifyPropertyChanged();
+                this.SetProperty(ref this.productImage, value);
             }
         }
 
@@ -81,8 +77,7 @@ namespace EssentialUIKit.ViewModels.Tracking
 
             set
             {
-                this.productName = value;
-                this.NotifyPropertyChanged();
+                this.SetProperty(ref this.productName, value);
             }
         }
 
@@ -99,8 +94,7 @@ namespace EssentialUIKit.ViewModels.Tracking
 
             set
             {
-                this.description = value;
-                this.NotifyPropertyChanged();
+                this.SetProperty(ref this.description, value);
             }
         }
 
@@ -117,8 +111,7 @@ namespace EssentialUIKit.ViewModels.Tracking
 
             set
             {
-                this.status = value;
-                this.NotifyPropertyChanged();
+                this.SetProperty(ref this.status, value);
             }
         }
 
@@ -135,8 +128,7 @@ namespace EssentialUIKit.ViewModels.Tracking
 
             set
             {
-                this.orderId = value;
-                this.NotifyPropertyChanged();
+                this.SetProperty(ref this.orderId, value);
             }
         }
 

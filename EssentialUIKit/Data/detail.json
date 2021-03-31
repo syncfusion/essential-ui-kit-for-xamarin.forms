@@ -1,0 +1,388 @@
+{
+  "articleName": "Better Brainstorming by Hand",
+  "articleImage": "ArticleImage2.png",
+  "articleSubImage": "BlogDetail.png",
+  "articleAuthor": "John Doe",
+  "articleDate": "Apr 16",
+  "articleReadingTime": "5 mins read",
+  "articleContent": "Organizing projects is now predominantly a digital endeavor. Physical whiteboards have given way to electronic Gantt charts. Pocket calendars have yielded to smartphone scheduling apps. Even the most popular tool of the most ferocious organizers the sticky note now has a digital counterpart. Despite this digitization, one should not lose sight of the usefulness of articulating ideas on paper. Handwriting is still the most viable means for bringing ideas and concepts into the physical world for organizing and comparing.This is not to say you should remain in the archaic world of markers and pens; rather, handwriting should be harnessed as the initial step in understanding a project a free association of all the ideas that pop into your head. After organizing and reorganizing your thoughts on paper, moving them into the digital realm as tasks, reminders, and schedules serves as the final refinement of what you are trying to accomplishment and how you plan to accomplish it.",
+  "subTitle1": "Procedure for writing out your ideas",
+  "subTitle2": "RELATED STORIES",
+
+  "relatedStories": [
+    {
+      "itemImage": "ArticleImage2.png",
+      "name": "Learning to Reset",
+      "author": "John Doe",
+      "date": "Aug 2010",
+      "averageReadingTime": "5 mins read"
+    },
+    {
+      "itemImage": "ArticleImage3.png",
+      "name": "Holistic Approach to UI Design",
+      "author": "John Doe",
+      "date": "Apr 16",
+      "averageReadingTime": "5 mins read"
+    },
+    {
+      "itemImage": "ArticleImage4.png",
+      "name": "Guiding Your Flock to Success",
+      "author": "John Doe",
+      "date": "May 2012",
+      "averageReadingTime": "5 mins read"
+    },
+    {
+      "itemImage": "ArticleImage5.png",
+      "name": "Be a Nurturing, Fierce Team Leader",
+      "author": "John Doe",
+      "date": "Apr 16",
+      "averageReadingTime": "5 mins read"
+    },
+    {
+      "itemImage": "ArticleImage6.png",
+      "name": "Holistic Approach to UI Design",
+      "author": "John Doe",
+      "date": "Dec 2013",
+      "averageReadingTime": "5 mins read"
+    }
+  ],
+  "contentList": [
+    {
+      "description": "Write a one or two sentence summary of the goal or project you want to complete."
+    },
+    {
+      "description": "Then write every idea you associate with the goal or project on separate pieces of paper sticky notes are ideal. Don\"'t self edit at this point, write everything that comes to mind."
+    },
+    {
+      "description": "Spread all the pieces of paper onto a table, a desk, a bed, or even the floor."
+    },
+    {
+      "description": "Sort the ideas by category some will be tasks to do, others will be equipment or training you need."
+    },
+    {
+      "description": "Organize the categories from top to bottom according to the sequence in which they need to occur. This will help you remove items that are redundant and identify items that need to be added."
+    },
+    {
+      "description": "Now you are ready to enter the items in an organized fashion into your project management software"
+    }
+  ],
+  "dataTableList": [
+    {
+      "imageIcon": "Liverpool-FC.png",
+      "serialNumber": "1",
+      "clubName": "LIV",
+      "goldPoints": "+28",
+      "points": "49",
+      "matchResults": [ "#7ed321", "#7ed321", "#7ed321", "#7ed321", "#7ed321" ]
+    },
+    {
+      "imageIcon": "Leicester-City.png",
+      "serialNumber": "2",
+      "clubName": "LEI",
+      "goldPoints": "+29",
+      "points": "39",
+      "matchResults": [ "#7ed321", "#7ed321", "#7ed321", "#7ed321", "#b2b8c2" ]
+    },
+    {
+      "imageIcon": "Manchester-City.png",
+      "serialNumber": "3",
+      "clubName": "MCI",
+      "goldPoints": "+28",
+      "points": "49",
+      "matchResults": [ "#7ed321", "#b2b8c2", "#7ed321", "#ff4a4a", "#7ed321" ]
+    },
+    {
+      "imageIcon": "Chelsea.png",
+      "serialNumber": "4",
+      "clubName": "CHE",
+      "goldPoints": "+6",
+      "points": "29",
+      "matchResults": [ "#ff4a4a", "#ff4a4a", "#7ed321", "#ff4a4a", "#ff4a4a" ]
+    },
+    {
+      "imageIcon": "Tottenham-Hotspur.png",
+      "serialNumber": "5",
+      "clubName": "TOT",
+      "goldPoints": "+8",
+      "points": "26",
+      "matchResults": [ "#7ed321", "#7ed321", "#ff4a4a", "#7ed321", "#7ed321" ]
+    },
+    {
+      "imageIcon": "manchester-united-logo.png",
+      "serialNumber": "6",
+      "clubName": "MUN",
+      "goldPoints": "+6",
+      "points": "25",
+      "matchResults": [ "#b2b8c2", "#b2b8c2", "#7ed321", "#7ed321", "#b2b8c2" ]
+    },
+    {
+      "imageIcon": "Sheffield-United.png",
+      "serialNumber": "7",
+      "clubName": "SHU",
+      "goldPoints": "+5",
+      "points": "525",
+      "matchResults": [ "#b2b8c2", "#b2b8c2", "#ff4a4a", "#7ed321", "#7ed321" ]
+    },
+    {
+      "imageIcon": "Wolverhampton-Wanderers.png",
+      "serialNumber": "8",
+      "clubName": "WOL",
+      "goldPoints": "+3",
+      "points": "24",
+      "matchResults": [ "#7ed321", "#b2b8c2", "#7ed321", "#b2b8c2", "#ff4a4a" ]
+    },
+    {
+      "imageIcon": "Crystal-Palace.png",
+      "serialNumber": "9",
+      "clubName": "CRY",
+      "goldPoints": "-4",
+      "points": "23",
+      "matchResults": [ "#ff4a4a", "#7ed321", "#7ed321", "#b2b8c2", "#b2b8c2" ]
+    },
+    {
+      "imageIcon": "Arsenal.png",
+      "serialNumber": "10",
+      "clubName": "ARS",
+      "goldPoints": "-3",
+      "points": "22",
+      "matchResults": [ "#b2b8c2", "#b2b8c2", "#ff4a4a", "#7ed321", "#ff4a4a" ]
+    },
+    {
+      "imageIcon": "Newcastle-United.png",
+      "serialNumber": "11",
+      "clubName": "NEW",
+      "goldPoints": "-7",
+      "points": "22",
+      "matchResults": [ "#ff4a4a", "#b2b8c2", "#7ed321", "#7ed321", "#ff4a4a" ]
+    },
+    {
+      "imageIcon": "Burnley.png",
+      "serialNumber": "12",
+      "clubName": "BUR",
+      "goldPoints": "-7",
+      "points": "21",
+      "matchResults": [ "#7ed321", "#ff4a4a", "#ff4a4a", "#ff4a4a", "#7ed321" ]
+    },
+    {
+      "imageIcon": "Brighton-and-Hove-Albion.png",
+      "serialNumber": "13",
+      "clubName": "BHA",
+      "goldPoints": "-4",
+      "points": "20",
+      "matchResults": [ "#ff4a4a", "#ff4a4a", "#7ed321", "#b2b8c2", "#b2b8c2" ]
+    },
+    {
+      "imageIcon": "AFC-Bournemouth.png",
+      "serialNumber": "14",
+      "clubName": "BOU",
+      "goldPoints": "-5",
+      "points": "19",
+      "matchResults": [ "#ff4a4a", "#ff4a4a", "#ff4a4a", "#ff4a4a", "#7ed321" ]
+    },
+    {
+      "imageIcon": "West-Ham-United.png",
+      "serialNumber": "15",
+      "clubName": "WHU",
+      "goldPoints": "-9",
+      "points": "19",
+      "matchResults": [ "#ff4a4a", "#7ed321", "#ff4a4a", "#ff4a4a", "#7ed321" ]
+    },
+    {
+      "imageIcon": "Everton.png",
+      "serialNumber": "16",
+      "clubName": "EVE",
+      "goldPoints": "-9",
+      "points": "18",
+      "matchResults": [ "#ff4a4a", "#ff4a4a", "#ff4a4a", "#7ed321", "#b2b8c2" ]
+    },
+    {
+      "imageIcon": "Aston-Villa.png",
+      "serialNumber": "17",
+      "clubName": "AVL",
+      "goldPoints": "-7",
+      "points": "15",
+      "matchResults": [ "#b2b8c2", "#7ed321", "#7ed321", "#ff4a4a", "#ff4a4a" ]
+    },
+    {
+      "imageIcon": "southampton-football-club-vector-logo.png",
+      "serialNumber": "18",
+      "clubName": "SOU",
+      "goldPoints": "-18",
+      "points": "15",
+      "matchResults": [ "#b2b8c2", "#7ed321", "#7ed321", "#ff4a4a", "#ff4a4a" ]
+    },
+    {
+      "imageIcon": "Norwich-City.png",
+      "serialNumber": "19",
+      "clubName": "NOR",
+      "goldPoints": "-17",
+      "points": "12",
+      "matchResults": [ "#7ed321", "#b2b8c2", "#ff4a4a", "#ff4a4a", "#b2b8c2" ]
+    },
+    {
+      "imageIcon": "Watford.png",
+      "serialNumber": "20",
+      "clubName": "WAT",
+      "goldPoints": "-23",
+      "points": "9",
+      "matchResults": [ "#ff4a4a", "#ff4a4a", "#ff4a4a", "#b2b8c2", "#ff4a4a" ]
+    }
+  ],
+
+  "headerImagePath": "Event-Image-two.png",
+
+  "connections": [
+    {
+      "imagePath": "ProfileImage7.png"
+    },
+    {
+      "imagePath": "ProfileImage9.png"
+    },
+    {
+      "imagePath": "ProfileImage10.png"
+    },
+    {
+      "imagePath": "ProfileImage11.png"
+    },
+    {
+      "imagePath": "ProfileImage7.png"
+    },
+    {
+      "imagePath": "ProfileImage9.png"
+    },
+    {
+      "imagePath": "ProfileImage7.png"
+    },
+    {
+      "imagePath": "ProfileImage9.png"
+    },
+    {
+      "imagePath": "ProfileImage10.png"
+    },
+    {
+      "imagePath": "ProfileImage11.png"
+    },
+    {
+      "imagePath": "ProfileImage7.png"
+    },
+    {
+      "imagePath": "ProfileImage9.png"
+    },
+    {
+      "imagePath": "ProfileImage7.png"
+    },
+    {
+      "imagePath": "ProfileImage9.png"
+    },
+    {
+      "imagePath": "ProfileImage10.png"
+    },
+    {
+      "imagePath": "ProfileImage11.png"
+    }
+  ],
+  "addressDetails": [
+    {
+      "name": "John Doe",
+      "addressType": "Home",
+      "location": "114 Ridge St NW, Hudson, NC 28638",
+      "contactNumber": "(828) 228-2882"
+    },
+    {
+      "name": "John Doe",
+      "addressType": "Work",
+      "location": "100 S 4th St, Bloomfield, NM 87413",
+      "contactNumber": "(828) 295-1271"
+    }
+  ],
+
+  "name": "Full-Length Skirt",
+  "summary": "This plaid, cotton skirt will keep you warm in the air-conditioned office or outside on cooler days.",
+  "actualPrice": 245,
+  "discountPercent": 30,
+  "description": "Ankle-length skirt with high waistband. Lightweight, comfortable cotton construction with side zipper.",
+  "previewImages": [
+    "Image1.png",
+    "Image1.png",
+    "Image1.png",
+    "Image1.png",
+    "Image1.png"
+  ],
+  "sizevariants": [ "XS", "S", "M", "L", "XL" ],
+  "detailPageReviews": [
+    {
+      "profileimage": "ProfileImage10.png",
+      "customername": "Serina Williams",
+      "comment": "Greatest purchase I have ever made in my life.",
+      "revieweddate": "29 Dec, 2019",
+      "rating": 5,
+      "images": [
+        "Image1.png",
+        "Image1.png",
+        "Image1.png",
+        "Image1.png"
+      ]
+    },
+    {
+      "profileimage": "ProfileImage11.png",
+      "customername": "Alise Valasquez",
+      "comment": "Absolutely love them! Can't stop wearing!",
+      "revieweddate": "29 Dec, 2019",
+      "rating": 3,
+      "images": [
+        "Image1.png",
+        "Image1.png",
+        "Image1.png"
+      ]
+    }
+  ],
+
+  "feedbackInfo": [
+    {
+      "customerName": "Jessica Park",
+      "comment": "These boots are stunning and I look stunning in them.",
+      "images": [ "ReviewShoe.png", "ReviewShoe.png" ],
+      "customerImage": "ProfileImage5.png",
+      "rating": 3
+    },
+    {
+      "customerName": "Alice",
+      "comment": "Greatest purchase I have ever made in my life. No lie.",
+      "customerImage": "ProfileImage3.png",
+      "rating": 3
+    },
+    {
+      "customerName": "John",
+      "comment": "Absolutely love them! Can't stop wearing!",
+      "customerImage": "ProfileImage1.png",
+      "rating": 2
+    },
+    {
+      "customerName": "Lisa",
+      "comment": "These boots are very much comfortable for wearing.",
+      "images": [ "ReviewShoe.png", "ReviewShoe.png", "ReviewShoe.png" ],
+      "customerImage": "ProfileImage6.png",
+      "rating": 4
+    },
+    {
+      "customerName": "Rebacca",
+      "comment": "Absolutely love them! Can't stop wearing!",
+      "customerImage": "ProfileImage10.png",
+      "rating": 4
+    },
+    {
+      "customerName": "Jessica Park",
+      "comment": "Happy purchasing!",
+      "customerImage": "ProfileImage13.png",
+      "rating": 4
+    },
+    {
+      "customerName": "Alice",
+      "comment": "Happy buying!",
+      "images": [ "ReviewShoe.png", "ReviewShoe.png", "ReviewShoe.png", "ReviewShoe.png" ],
+      "customerImage": "ProfileImage8.png",
+      "rating": 4
+    }
+  ],
+  "images": [ "Shoe1.png", "Shoe1.png", "Shoe1.png" ]
+}

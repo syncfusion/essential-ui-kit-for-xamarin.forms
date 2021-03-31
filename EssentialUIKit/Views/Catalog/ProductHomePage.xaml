@@ -4,65 +4,82 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:behavior="clr-namespace:EssentialUIKit.Behaviors"
+    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
     xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
     xmlns:control="clr-namespace:EssentialUIKit.Controls"
     xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    BackgroundColor="{DynamicResource Gray-White}"
+    xmlns:syncEffectsView="clr-namespace:Syncfusion.XForms.EffectsView;assembly=Syncfusion.Core.XForms"
+    x:Name="ProductHome"
+    BackgroundColor="{DynamicResource Gray-Bg}"
     NavigationPage.HasNavigationBar="False"
     Shell.NavBarIsVisible="False"
     mc:Ignorable="d">
 
-    <ContentPage.Resources>
-        <ResourceDictionary>
+    <ContentPage.ControlTemplate>
+        <ControlTemplate>
+            <StackLayout x:Name="titleLayout" Spacing="0">
+                <control:TitleView>
+                    <control:TitleView.LeadingView>
+                        <!--  Back button command  -->
+                        <buttons:SfButton
+                            x:Name="backButton"
+                            Command="{Binding Path=BindingContext.BackButtonCommand, Source={x:Reference ProductHome}}"
+                            CommandParameter="{x:Reference backButton}"
+                            Style="{StaticResource IconButtonStyle}"
+                            Text="{StaticResource Back}" />
+                    </control:TitleView.LeadingView>
+                    <control:TitleView.TrailingView>
 
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Styles.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </ContentPage.Resources>
+                        <!--  Notification button command  -->
+                        <buttons:SfButton
+                            x:Name="notifyButton"
+                            Command="{Binding Path=BindingContext.NotificationButtonCommand, Source={x:Reference ProductHome}}"
+                            CommandParameter="{x:Reference notifyButton}"
+                            Style="{StaticResource IconButtonStyle}"
+                            Text="{StaticResource Notification}" />
+                    </control:TitleView.TrailingView>
+                </control:TitleView>
+                <ContentPresenter />
+            </StackLayout>
+        </ControlTemplate>
+    </ContentPage.ControlTemplate>
 
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Spacing="0">
-                <Image
-                    BackgroundColor="{DynamicResource Gray-200}"
-                    Source="{Binding BannerImage}" />
+                <Image BackgroundColor="{DynamicResource Gray-200}" Source="{Binding BannerImage}" />
 
                 <StackLayout
+                    x:Name="stackLayout"
                     Margin="16,25,16,0"
                     Orientation="Horizontal"
                     Spacing="0">
 
                     <Label
                         Margin="0,5,0,0"
-                        FontFamily="{StaticResource Montserrat-SemiBold}"
                         FontSize="12"
                         HorizontalOptions="StartAndExpand"
-                        LineHeight="{OnPlatform Android=1.25,
-                                                Default=-1}"
+                        Style="{StaticResource TitleLabelStyle}"
                         Text="NEW ARRIVAL"
                         TextColor="{DynamicResource Gray-800}"
                         VerticalOptions="Center" />
 
                     <buttons:SfButton
-                        Margin="0"
-                        Padding="0"
-                        BackgroundColor="{DynamicResource Gray-White}"
-                        CornerRadius="4"
-                        FontFamily="{StaticResource Montserrat-SemiBold}"
+                        BackgroundColor="{DynamicResource Gray-Bg}"
+                        Command="{Binding ViewAllCommand}"
                         FontSize="12"
                         HorizontalOptions="End"
-                        Text="VIEW ALL"
-                        TextColor="{DynamicResource HyperLink}" />
+                        Style="{StaticResource TransparentButtonStyle}"
+                        Text="VIEW ALL" />
 
                 </StackLayout>
 
                 <listView:SfListView
+                    x:Name="listView"
                     Margin="8,0"
-                    Padding="0"
                     AutoFitMode="Height"
                     ColumnSpacing="0"
                     FocusBorderColor="Transparent"
@@ -70,8 +87,7 @@
                     IsStickyHeader="True"
                     ItemsSource="{Binding NewArrivalProducts}"
                     RowSpacing="0"
-                    SelectionBackgroundColor="Transparent"
-                    TapCommand="{Binding ItemSelectedCommand}">
+                    SelectionBackgroundColor="Transparent">
 
                     <listView:SfListView.ItemTemplate>
 
@@ -81,43 +97,48 @@
                             <control:CustomShadowFrame
                                 Margin="8"
                                 Padding="0"
-                                BackgroundColor="White"
-                                BorderColor="White"
+                                BackgroundColor="{DynamicResource GrayShadowColor}"
+                                BorderColor="{DynamicResource GrayShadowColor}"
                                 CornerRadius="4"
-                                HasShadow="true"
+                                HasShadow="True"
                                 HeightRequest="189"
+                                Radius="4"
                                 WidthRequest="165">
+                                <syncEffectsView:SfEffectsView
+                                    RippleColor="{DynamicResource Gray-300}"
+                                    TouchDownEffects="Ripple"
+                                    TouchUpCommand="{Binding Path=BindingContext.ItemSelectedCommand, Source={x:Reference ProductHome}}"
+                                    TouchUpCommandParameter="{Binding}">
+                                    <border:SfBorder
+                                        BorderColor="Transparent"
+                                        BorderWidth="0"
+                                        CornerRadius="4">
+                                        <StackLayout
+                                            HorizontalOptions="CenterAndExpand"
+                                            Spacing="0"
+                                            VerticalOptions="CenterAndExpand">
 
-                                <StackLayout
-                                    Margin="0"
-                                    Padding="0"
-                                    HorizontalOptions="CenterAndExpand"
-                                    Spacing="0"
-                                    VerticalOptions="CenterAndExpand">
+                                            <!--  Product image  -->
 
-                                    <!--  Product image  -->
+                                            <Image
+                                                Margin="0,0,0,8"
+                                                Aspect="AspectFill"
+                                                BackgroundColor="Transparent"
+                                                HeightRequest="150"
+                                                HorizontalOptions="Center"
+                                                Source="{Binding PreviewImage}"
+                                                VerticalOptions="Center"
+                                                WidthRequest="165" />
 
-                                    <Image
-                                        Margin="0,0,0,8"
-                                        Aspect="AspectFill"
-                                        BackgroundColor="{DynamicResource Gray-200}"
-                                        HeightRequest="150"
-                                        HorizontalOptions="Center"
-                                        Source="{Binding PreviewImage}"
-                                        VerticalOptions="Center"
-                                        WidthRequest="165" />
-
-                                    <!--  Product name  -->
-                                    <Label
-                                        Margin="0,0,0,8"
-                                        FontFamily="{StaticResource Montserrat-Medium}"
-                                        FontSize="16"
-                                        HorizontalOptions="Center"
-                                        LineHeight="1.25"
-                                        Text="{Binding Name}"
-                                        TextColor="{DynamicResource Gray-900}" />
-
-                                </StackLayout>
+                                            <!--  Product name  -->
+                                            <Label
+                                                Margin="0,0,0,8"
+                                                FontFamily="Montserrat-Medium"
+                                                Style="{StaticResource TitleLabelStyle}"
+                                                Text="{Binding Name}" />
+                                        </StackLayout>
+                                    </border:SfBorder>
+                                </syncEffectsView:SfEffectsView>
                             </control:CustomShadowFrame>
                         </DataTemplate>
                     </listView:SfListView.ItemTemplate>
@@ -139,32 +160,26 @@
 
                     <Label
                         Margin="0,5,0,0"
-                        FontFamily="{StaticResource Montserrat-SemiBold}"
                         FontSize="12"
                         HorizontalOptions="StartAndExpand"
-                        LineHeight="{OnPlatform Android=1.25,
-                                                Default=-1}"
+                        Style="{StaticResource TitleLabelStyle}"
                         Text="OFFERS"
                         TextColor="{DynamicResource Gray-800}"
                         VerticalOptions="Center" />
 
                     <buttons:SfButton
-                        Margin="0"
-                        Padding="0"
-                        BackgroundColor="{DynamicResource Gray-White}"
-                        CornerRadius="4"
-                        FontFamily="{StaticResource Montserrat-SemiBold}"
+                        BackgroundColor="{DynamicResource Gray-Bg}"
+                        Command="{Binding ViewAllCommand}"
                         FontSize="12"
                         HorizontalOptions="End"
-                        Text="VIEW ALL"
-                        TextColor="{DynamicResource HyperLink}" />
+                        Style="{StaticResource TransparentButtonStyle}"
+                        Text="VIEW ALL" />
 
                 </StackLayout>
 
 
                 <listView:SfListView
                     Margin="8,0"
-                    Padding="0"
                     AutoFitMode="Height"
                     ColumnSpacing="0"
                     FocusBorderColor="Transparent"
@@ -175,8 +190,7 @@
                     ItemsSource="{Binding OfferProducts}"
                     Orientation="Horizontal"
                     RowSpacing="0"
-                    SelectionBackgroundColor="Transparent"
-                    TapCommand="{Binding ItemSelectedCommand}">
+                    SelectionBackgroundColor="Transparent">
 
                     <listView:SfListView.ItemTemplate>
 
@@ -186,52 +200,59 @@
                             <control:CustomShadowFrame
                                 Margin="8"
                                 Padding="0"
-                                BackgroundColor="White"
-                                BorderColor="White"
+                                BackgroundColor="{DynamicResource GrayShadowColor}"
+                                BorderColor="{DynamicResource GrayShadowColor}"
                                 CornerRadius="4"
                                 HasShadow="true"
                                 HeightRequest="181"
+                                Radius="4"
                                 WidthRequest="200">
 
-                                <StackLayout
-                                    Margin="0"
-                                    Padding="0"
-                                    HorizontalOptions="CenterAndExpand"
-                                    Spacing="0"
-                                    VerticalOptions="CenterAndExpand">
+                                <syncEffectsView:SfEffectsView
+                                    RippleColor="{DynamicResource Gray-300}"
+                                    TouchDownEffects="Ripple"
+                                    TouchUpCommand="{Binding Path=BindingContext.ItemSelectedCommand, Source={x:Reference ProductHome}}"
+                                    TouchUpCommandParameter="{Binding}">
 
-                                    <!--  Product image  -->
+                                    <border:SfBorder
+                                        BorderColor="Transparent"
+                                        BorderWidth="0"
+                                        CornerRadius="4">
+                                        <StackLayout
+                                            HorizontalOptions="CenterAndExpand"
+                                            Spacing="0"
+                                            VerticalOptions="CenterAndExpand">
 
-                                    <Image
-                                        Margin="0,0,0,8"
-                                        Aspect="AspectFill"
-                                        BackgroundColor="{DynamicResource Gray-200}"
-                                        HeightRequest="120"
-                                        HorizontalOptions="Center"
-                                        Source="{Binding PreviewImage}"
-                                        VerticalOptions="Center"
-                                        WidthRequest="200" />
+                                            <!--  Product image  -->
 
-                                    <!--  Product name  -->
-                                    <Label
-                                        FontFamily="{StaticResource Montserrat-Medium}"
-                                        FontSize="16"
-                                        HorizontalOptions="Center"
-                                        LineHeight="{OnPlatform Android=1.25,Default=-1}"
-                                        Text="{Binding Name}"
-                                        TextColor="{DynamicResource Gray-800}" />
+                                            <Image
+                                                Margin="0,0,0,8"
+                                                Aspect="AspectFill"
+                                                BackgroundColor="Transparent"
+                                                HeightRequest="120"
+                                                HorizontalOptions="Center"
+                                                Source="{Binding PreviewImage}"
+                                                VerticalOptions="Center"
+                                                WidthRequest="200" />
 
-                                    <!--  Discount percentage  -->
-                                    <Label
-                                        Margin="0,2,0,8"
-                                        FontFamily="{StaticResource Montserrat-Medium}"
-                                        FontSize="14"
-                                        HorizontalOptions="Center"
-                                        LineHeight="{OnPlatform Android=1.25,Default=-1}"
-                                        Text="{Binding DiscountPercent, StringFormat=' Min {0}% OFF'}"
-                                        TextColor="{DynamicResource PrimaryColor}" />
+                                            <!--  Product name  -->
+                                            <Label
+                                                FontFamily="Montserrat-Medium"
+                                                Style="{StaticResource TitleLabelStyle}"
+                                                Text="{Binding Name}"
+                                                TextColor="{DynamicResource Gray-800}" />
 
-                                </StackLayout>
+                                            <!--  Discount percentage  -->
+                                            <Label
+                                                Margin="0,2,0,8"
+                                                HorizontalOptions="Center"
+                                                Style="{StaticResource DescriptionLabelStyle}"
+                                                Text="{Binding DiscountPercent, StringFormat=' Min {0}% OFF'}"
+                                                TextColor="{DynamicResource PrimaryColor}" />
+
+                                        </StackLayout>
+                                    </border:SfBorder>
+                                </syncEffectsView:SfEffectsView>
                             </control:CustomShadowFrame>
                         </DataTemplate>
                     </listView:SfListView.ItemTemplate>
@@ -245,31 +266,27 @@
 
                     <Label
                         Margin="0,5,0,0"
-                        FontFamily="{StaticResource Montserrat-SemiBold}"
                         FontSize="12"
                         HorizontalOptions="StartAndExpand"
                         LineHeight="{OnPlatform Android=1.25,
                                                 Default=-1}"
+                        Style="{StaticResource TitleLabelStyle}"
                         Text="RECOMMENDED"
                         TextColor="{DynamicResource Gray-800}"
                         VerticalOptions="Center" />
 
                     <buttons:SfButton
-                        Margin="0"
-                        Padding="0"
-                        BackgroundColor="{DynamicResource Gray-White}"
-                        CornerRadius="4"
-                        FontFamily="{StaticResource Montserrat-SemiBold}"
+                        BackgroundColor="{DynamicResource Gray-Bg}"
+                        Command="{Binding ViewAllCommand}"
                         FontSize="12"
                         HorizontalOptions="End"
-                        Text="VIEW ALL"
-                        TextColor="{DynamicResource HyperLink}" />
+                        Style="{StaticResource TransparentButtonStyle}"
+                        Text="VIEW ALL" />
 
                 </StackLayout>
 
                 <listView:SfListView
                     Margin="8,0,8,32"
-                    Padding="0"
                     AutoFitMode="Height"
                     ColumnSpacing="0"
                     FocusBorderColor="Transparent"
@@ -280,8 +297,7 @@
                     ItemsSource="{Binding RecommendedProducts}"
                     Orientation="Horizontal"
                     RowSpacing="0"
-                    SelectionBackgroundColor="Transparent"
-                    TapCommand="{Binding ItemSelectedCommand}">
+                    SelectionBackgroundColor="Transparent">
 
                     <listView:SfListView.ItemTemplate>
 
@@ -291,86 +307,90 @@
                             <control:CustomShadowFrame
                                 Margin="8"
                                 Padding="0"
-                                BackgroundColor="White"
-                                BorderColor="White"
+                                BackgroundColor="{DynamicResource GrayShadowColor}"
+                                BorderColor="{DynamicResource GrayShadowColor}"
                                 CornerRadius="4"
                                 HasShadow="true"
                                 HeightRequest="266"
+                                Radius="4"
                                 WidthRequest="230">
 
-                                <StackLayout
-                                    Margin="0"
-                                    Padding="0"
-                                    HorizontalOptions="FillAndExpand"
-                                    Spacing="0"
-                                    VerticalOptions="FillAndExpand">
+                                <syncEffectsView:SfEffectsView
+                                    RippleColor="{DynamicResource Gray-300}"
+                                    TouchDownEffects="Ripple"
+                                    TouchUpCommand="{Binding Path=BindingContext.ItemSelectedCommand, Source={x:Reference ProductHome}}"
+                                    TouchUpCommandParameter="{Binding}">
+                                    <border:SfBorder
+                                        BorderColor="Transparent"
+                                        BorderWidth="0"
+                                        CornerRadius="4">
+                                        <StackLayout
+                                            HorizontalOptions="FillAndExpand"
+                                            Spacing="0"
+                                            VerticalOptions="FillAndExpand">
 
-                                    <!--  Product image  -->
+                                            <!--  Product image  -->
 
-                                    <Image
-                                        Margin="0,0,0,16"
-                                        Aspect="AspectFill"
-                                        BackgroundColor="{DynamicResource Gray-200}"
-                                        HeightRequest="150"
-                                        HorizontalOptions="Center"
-                                        Source="{Binding PreviewImage}"
-                                        VerticalOptions="Center"
-                                        WidthRequest="230" />
+                                            <Image
+                                                Margin="0,0,0,16"
+                                                Aspect="AspectFill"
+                                                BackgroundColor="Transparent"
+                                                HeightRequest="150"
+                                                HorizontalOptions="Center"
+                                                Source="{Binding PreviewImage}"
+                                                VerticalOptions="Center"
+                                                WidthRequest="230" />
 
-                                    <!--  Product name  -->
-                                    <Label
-                                        Margin="16,0"
-                                        FontFamily="{StaticResource Montserrat-SemiBold}"
-                                        FontSize="16"
-                                        HorizontalOptions="StartAndExpand"
-                                        LineHeight="{OnPlatform Android=1.25,Default=-1}"
-                                        Text="{Binding Name}"
-                                        TextColor="{DynamicResource Gray-900}" />
+                                            <!--  Product name  -->
+                                            <Label
+                                                Margin="16,0"
+                                                HorizontalOptions="StartAndExpand"
+                                                Style="{StaticResource TitleLabelStyle}"
+                                                Text="{Binding Name}"
+                                                TextColor="{DynamicResource Gray-800}" />
 
-                                    <!--  Product Description  -->
-                                    <Label
-                                        Margin="16,4"
-                                        FontFamily="{StaticResource Montserrat-Medium}"
-                                        FontSize="12"
-                                        HorizontalOptions="StartAndExpand"
-                                        LineHeight="1.25"
-                                        MaxLines="1"
-                                        Text="{Binding Description}"
-                                        TextColor="{DynamicResource Gray-700}" />
+                                            <!--  Product Description  -->
+                                            <Label
+                                                Margin="16,4"
+                                                FontSize="12"
+                                                HorizontalTextAlignment="Start"
+                                                MaxLines="1"
+                                                Style="{StaticResource DescriptionLabelStyle}"
+                                                Text="{Binding Description}" />
 
-                                    <!--  Employee name  -->
-                                    <StackLayout
-                                        Margin="16,4,16,16"
-                                        Orientation="Horizontal"
-                                        Spacing="2">
+                                            <!--  Employee name  -->
+                                            <StackLayout
+                                                Margin="16,4,16,16"
+                                                Orientation="Horizontal"
+                                                Spacing="2">
 
-                                        <!--  Product Price  -->
-                                        <Label
-                                            FontFamily="{StaticResource Montserrat-SemiBold}"
-                                            FontSize="{OnIdiom Default=20,
-                                                               Desktop=24}"
-                                            Style="{StaticResource LabelStyle}"
-                                            Text="{Binding DiscountPrice, StringFormat='${0:0 }'}"
-                                            TextColor="{DynamicResource PrimaryColor}" />
+                                                <!--  Product Price  -->
+                                                <Label
+                                                    FontSize="{OnIdiom Default=20,
+                                                                       Desktop=24}"
+                                                    Style="{StaticResource TitleLabelStyle}"
+                                                    Text="{Binding DiscountPrice, StringFormat='${0:0 }'}"
+                                                    TextColor="{DynamicResource PrimaryColor}" />
 
-                                        <Label
-                                            FontFamily="{DynamicResource Montserrat-Medium}"
-                                            FontSize="12"
-                                            Style="{StaticResource LabelStyle}"
-                                            Text="{Binding ActualPrice, StringFormat='${0:0.00} '}"
-                                            TextDecorations="Strikethrough"
-                                            VerticalTextAlignment="Center" />
+                                                <Label
+                                                    FontSize="12"
+                                                    Style="{StaticResource DescriptionLabelStyle}"
+                                                    Text="{Binding ActualPrice, StringFormat='${0:0.00} '}"
+                                                    TextDecorations="Strikethrough"
+                                                    VerticalTextAlignment="Center" />
 
-                                        <Label
-                                            FontFamily="{DynamicResource Montserrat-Medium}"
-                                            FontSize="12"
-                                            Style="{StaticResource LabelStyle}"
-                                            Text="{Binding DiscountPercent, StringFormat=' ({0}% OFF)'}"
-                                            TextColor="{DynamicResource PrimaryColor}" />
+                                                <Label
+                                                    FontSize="12"
+                                                    Style="{StaticResource DescriptionLabelStyle}"
+                                                    Text="{Binding DiscountPercent, StringFormat=' ({0}% OFF)'}"
+                                                    TextColor="{DynamicResource PrimaryColor}"
+                                                    VerticalTextAlignment="Center" />
 
-                                    </StackLayout>
+                                            </StackLayout>
 
-                                </StackLayout>
+                                        </StackLayout>
+                                    </border:SfBorder>
+                                </syncEffectsView:SfEffectsView>
                             </control:CustomShadowFrame>
                         </DataTemplate>
                     </listView:SfListView.ItemTemplate>

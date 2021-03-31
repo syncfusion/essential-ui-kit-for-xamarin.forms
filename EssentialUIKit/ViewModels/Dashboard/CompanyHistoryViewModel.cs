@@ -1,7 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.Runtime.Serialization;
-using Xamarin.Forms.Internals;
 using EssentialUIKit.Models.Dashboard;
+using Xamarin.Forms.Internals;
 
 namespace EssentialUIKit.ViewModels.Dashboard
 {
@@ -35,7 +35,7 @@ namespace EssentialUIKit.ViewModels.Dashboard
         /// Gets or sets a collction of value to be displayed in company history page.
         /// </summary>
         [DataMember(Name = "companyHistory")]
-        public ObservableCollection<Event> CompanyHistory { get; set; }
+        public ObservableCollection<Timeline> CompanyHistory { get; set; }
 
         /// <summary>
         /// Gets or sets name of the company to be displayed in company history page.
@@ -45,12 +45,12 @@ namespace EssentialUIKit.ViewModels.Dashboard
         {
             get
             {
-                return companyName;
+                return this.companyName;
             }
+
             set
             {
-                companyName = value;
-                this.NotifyPropertyChanged();
+                this.SetProperty(ref this.companyName, value);
             }
         }
 
@@ -62,12 +62,12 @@ namespace EssentialUIKit.ViewModels.Dashboard
         {
             get
             {
-                return companyDescription;
+                return this.companyDescription;
             }
+
             set
             {
-                companyDescription = value;
-                this.NotifyPropertyChanged();
+                this.SetProperty(ref this.companyDescription, value);
             }
         }
 

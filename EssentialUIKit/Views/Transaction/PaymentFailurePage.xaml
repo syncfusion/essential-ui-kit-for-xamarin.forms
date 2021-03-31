@@ -3,59 +3,66 @@
     x:Class="EssentialUIKit.Views.Transaction.PaymentFailurePage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:button="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"    
-    xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Transaction"
+    xmlns:button="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
     xmlns:svg="clr-namespace:EssentialUIKit.Controls"
     Title="Payment Failure Page"
     BackgroundColor="{DynamicResource Gray-100}"
     NavigationPage.HasNavigationBar="False">
 
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Styles.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </ContentPage.Resources>
-
     <ContentPage.Content>
 
-        <ScrollView HorizontalOptions="Center" VerticalOptions="Center">
-            <StackLayout
-                HorizontalOptions="Center"
-                Spacing="0"
-                VerticalOptions="Center">
+        <Grid>
+            <button:SfButton
+                Margin="8"
+                Command="{Binding BackButtonCommand}"
+                FontSize="20"
+                HorizontalOptions="End"
+                Style="{StaticResource IconButtonStyle}"
+                Text="{StaticResource Close}"
+                VerticalOptions="Start" />
 
-                <StackLayout.BindingContext>
-                    <viewModel:PaymentViewModel />
-                </StackLayout.BindingContext>
+            <ScrollView HorizontalOptions="Center" VerticalOptions="Center">
+                <StackLayout
+                    HorizontalOptions="Center"
+                    Spacing="0"
+                    VerticalOptions="Center">
 
-                <!--  Payment status image  -->
-                <svg:SVGImage
-                    Margin="0,10,0,0"
-                    HeightRequest="80"
-                    WidthRequest="80"
-                    Source="{Binding PaymentFailureIcon}"/>
-                
-                <!--  Payment status label  -->
-                <Label
-                    Margin="0,40,0,0"
-                    Style="{StaticResource LabelStyle}"
-                    Text="PAYMENT FAILURE" />
+                    <!--  Payment status image  -->
+                    <svg:SVGImage
+                        Margin="0,10,0,0"
+                        HeightRequest="80"
+                        Source="{Binding PaymentFailureIcon}"
+                        WidthRequest="80" />
 
-                <!--  Payment description label  -->
-                <Label
-                    Margin="17,8"
-                    Style="{StaticResource DescriptionLabelStyle}"
-                    Text="Please check your internet connection." />
+                    <!--  Payment status label  -->
+                    <Label
+                        Margin="0,40,0,0"
+                        FontSize="20"
+                        LineHeight="{OnPlatform Android=1.25,
+                                                Default=-1}"
+                        Style="{StaticResource TitleLabelStyle}"
+                        Text="PAYMENT FAILURE" />
 
-                <button:SfButton
-                    Command="{Binding MakePaymentCommand}"
-                    Style="{StaticResource SfGradientButtonStyle}"
-                    Text="MAKE PAYMENT" />
+                    <!--  Payment description label  -->
+                    <Label
+                        Margin="17,8"
+                        FontFamily="Montserrat-Medium"
+                        LineHeight="{OnPlatform Android=1.25,
+                                                Default=-1}"
+                        Style="{StaticResource TitleLabelStyle}"
+                        Text="Please check your internet connection." />
 
-            </StackLayout>
-        </ScrollView>
+                    <button:SfButton
+                        Margin="0,24"
+                        Command="{Binding MakePaymentCommand}"
+                        Style="{StaticResource GradientButtonStyle}"
+                        Text="MAKE PAYMENT"
+                        VerticalOptions="Start"
+                        WidthRequest="245" />
 
+                </StackLayout>
+            </ScrollView>
+
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

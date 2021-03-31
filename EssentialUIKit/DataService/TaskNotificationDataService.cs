@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
 using System.Runtime.Serialization.Json;
-using Xamarin.Forms.Internals;
 using EssentialUIKit.ViewModels.Notification;
+using Xamarin.Forms.Internals;
 
 namespace EssentialUIKit.DataService
 {
@@ -13,7 +13,7 @@ namespace EssentialUIKit.DataService
     {
         #region fields 
 
-        private static TaskNotificationDataService instance;
+        private static TaskNotificationDataService taskNotificationDataService;
 
         private TaskNotificationViewModel taskNotificationViewModel;
 
@@ -24,7 +24,7 @@ namespace EssentialUIKit.DataService
         /// <summary>
         /// Gets an instance of the <see cref="TaskNotificationDataService"/>.
         /// </summary>
-        public static TaskNotificationDataService Instance => instance ?? (instance = new TaskNotificationDataService());
+        public static TaskNotificationDataService Instance => taskNotificationDataService ?? (taskNotificationDataService = new TaskNotificationDataService());
 
         /// <summary>
         /// Gets or sets the value of task notification page view model.
@@ -49,15 +49,15 @@ namespace EssentialUIKit.DataService
 
             var assembly = typeof(App).GetTypeInfo().Assembly;
 
-            T obj;
+            T data;
 
             using (var stream = assembly.GetManifestResourceStream(file))
             {
                 var serializer = new DataContractJsonSerializer(typeof(T));
-                obj = (T)serializer.ReadObject(stream);
+                data = (T)serializer.ReadObject(stream);
             }
 
-            return obj;
+            return data;
         }
 
         #endregion

@@ -22,7 +22,7 @@ namespace EssentialUIKit.Models.Navigation
         /// Gets or sets the number of items in the folder.
         /// </summary>
         [DataMember(Name = "items")]
-        public string Items { get; set; }
+        public string FolderItems { get; set; }
 
         /// <summary>
         /// Gets or sets the date and time of the folder.

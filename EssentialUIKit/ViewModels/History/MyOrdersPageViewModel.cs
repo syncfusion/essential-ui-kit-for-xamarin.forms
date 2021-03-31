@@ -1,6 +1,4 @@
 ﻿using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
 using EssentialUIKit.Models.History;
 using Xamarin.Forms;
@@ -45,14 +43,13 @@ namespace EssentialUIKit.ViewModels.History
                     return;
                 }
 
-                this.myOrders = value;
-                this.NotifyPropertyChanged();
+                this.SetProperty(ref this.myOrders, value);
                 this.GetProducts(this.MyOrders);
             }
         }
 
         /// <summary>
-        /// Gets or sets the property that has been bound with a list view, which displays the order details in list.
+        /// Gets the property that has been bound with a list view, which displays the order details in list.
         /// </summary>
         public ObservableCollection<Orders> OrderDetails
         {
@@ -61,15 +58,14 @@ namespace EssentialUIKit.ViewModels.History
                 return this.orderDetails;
             }
 
-            set
+            private set
             {
                 if (this.orderDetails == value)
                 {
                     return;
                 }
 
-                this.orderDetails = value;
-                this.NotifyPropertyChanged();
+                this.SetProperty(ref this.orderDetails, value);
             }
         }
 

@@ -13,7 +13,7 @@ namespace EssentialUIKit.Views.Templates
     {
         public SocialIconTemplate()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }

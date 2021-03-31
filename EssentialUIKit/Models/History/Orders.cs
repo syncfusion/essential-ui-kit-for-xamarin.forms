@@ -24,7 +24,7 @@ namespace EssentialUIKit.Models.History
         [DataMember(Name = "productimage")]
         public string ProductImage
         {
-            get { return App.BaseImageUrl + this.productImage; }
+            get { return App.ImageServerPath + this.productImage; }
             set { this.productImage = value; }
         }
 

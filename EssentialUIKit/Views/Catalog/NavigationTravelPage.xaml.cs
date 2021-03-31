@@ -1,8 +1,12 @@
-﻿using Xamarin.Forms.Internals;
+﻿using EssentialUIKit.ViewModels.Catalog;
+using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
 
 namespace EssentialUIKit.Views.Catalog
 {
+    /// <summary>
+    /// Page to display the travel page.
+    /// </summary>
     [Preserve(AllMembers = true)]
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class NavigationTravelPage
@@ -12,7 +16,8 @@ namespace EssentialUIKit.Views.Catalog
         /// </summary>
         public NavigationTravelPage()
         {
-            InitializeComponent();
+            this.InitializeComponent();
+            this.BindingContext = NavigationTravelPageViewModel.BindingContext;
         }
     }
 }

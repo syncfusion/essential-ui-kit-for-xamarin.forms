@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms.Internals;
+﻿using EssentialUIKit.ViewModels.Profile;
+using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
 
 namespace EssentialUIKit.Views.Profile
@@ -15,7 +16,8 @@ namespace EssentialUIKit.Views.Profile
         /// </summary>
         public MasterPage()
         {
-            InitializeComponent();
+            this.InitializeComponent();
+            this.BindingContext = MasterPageViewModel.BindingContext;
         }
     }
 }

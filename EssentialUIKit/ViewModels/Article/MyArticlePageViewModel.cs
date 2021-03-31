@@ -1,7 +1,10 @@
 ﻿using System.Collections.ObjectModel;
+using System.Reflection;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Json;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
-using Model = EssentialUIKit.Models.Article;
+using Model = EssentialUIKit.Models.Story;
 
 namespace EssentialUIKit.ViewModels.Article
 {
@@ -9,14 +12,21 @@ namespace EssentialUIKit.ViewModels.Article
     /// ViewModel for My Article page 
     /// </summary> 
     [Preserve(AllMembers = true)]
+    [DataContract]
     public class MyArticlePageViewModel : BaseViewModel
     {
         #region Fields        
-        
+
+        private static MyArticlePageViewModel myArticlePageViewModel;
+
         /// <summary>
         /// Gets or sets the article list.
         /// </summary>
         private ObservableCollection<Model> articleList;
+
+        private Command searchCommand;
+
+        private Command articleListItemSelectionCommand;
 
         #endregion
 
@@ -27,22 +37,6 @@ namespace EssentialUIKit.ViewModels.Article
         /// </summary>
         public MyArticlePageViewModel()
         {
-            this.articleList = new ObservableCollection<Model>
-            {
-                new Model { ImagePath = App.BaseImageUrl + "Book1.png" },
-                new Model { ImagePath = App.BaseImageUrl + "Book2.png" },
-                new Model { ImagePath = App.BaseImageUrl + "Book3.png" },
-                new Model { ImagePath = App.BaseImageUrl + "Book4.png" },
-                new Model { ImagePath = App.BaseImageUrl + "Book5.png" },
-                new Model { ImagePath = App.BaseImageUrl + "Book6.png" },
-                new Model { ImagePath = App.BaseImageUrl + "Book7.png" },
-                new Model { ImagePath = App.BaseImageUrl + "Book8.png" },
-                new Model { ImagePath = App.BaseImageUrl + "Book9.png" },
-                new Model { ImagePath = App.BaseImageUrl + "Book10.png" },
-            };
-            
-            this.SearchCommand = new Command(this.SearchButtonClicked);
-            this.ArticleListIteSelectionCommand = new Command(this.ArticleListItemClicked);
         }
 
         #endregion
@@ -50,8 +44,15 @@ namespace EssentialUIKit.ViewModels.Article
         #region Public properties
 
         /// <summary>
+        /// Gets or sets the value of My aricle page view model.
+        /// </summary>
+        public static MyArticlePageViewModel BindingContext =>
+            myArticlePageViewModel = PopulateData<MyArticlePageViewModel>("article.json");
+
+        /// <summary>
         /// Gets or sets the property has been bound with the list view which displays the my article list items.
         /// </summary>
+        [DataMember(Name = "articleList")]
         public ObservableCollection<Model> ArticleList
         {
             get
@@ -66,8 +67,7 @@ namespace EssentialUIKit.ViewModels.Article
                     return;
                 }
 
-                this.articleList = value;
-                this.NotifyPropertyChanged();
+                this.SetProperty(ref this.articleList, value);
             }
         }
 
@@ -76,19 +76,54 @@ namespace EssentialUIKit.ViewModels.Article
         #region Command
 
         /// <summary>
-        /// Gets or sets the command is executed when the search button is clicked.
+        /// Gets the command is executed when the search button is clicked.
         /// </summary>
-        public Command SearchCommand { get; set; }
+        public Command SearchCommand
+        {
+            get
+            {
+                return this.searchCommand ?? (this.searchCommand = new Command(this.SearchButtonClicked));
+            }
+        }
 
         /// <summary>
-        /// Gets or sets the command is executed when the article list item is clicked.
+        /// Gets the command is executed when the article list item is clicked.
         /// </summary>
-        public Command ArticleListIteSelectionCommand { get; set; }
-        
+        public Command ArticleListItemSelectionCommand
+        {
+            get
+            {
+                return this.articleListItemSelectionCommand ?? (this.articleListItemSelectionCommand = new Command(this.ArticleListItemClicked));
+            }
+        }
+
         #endregion
 
         #region Methods
-        
+
+        /// <summary>
+        /// Populates the data for view model from json file.
+        /// </summary>
+        /// <typeparam name="T">Type of view model.</typeparam>
+        /// <param name="fileName">Json file to fetch data.</param>
+        /// <returns>Returns the view model object.</returns>
+        private static T PopulateData<T>(string fileName)
+        {
+            var file = "EssentialUIKit.Data." + fileName;
+
+            var assembly = typeof(App).GetTypeInfo().Assembly;
+
+            T data;
+
+            using (var stream = assembly.GetManifestResourceStream(file))
+            {
+                var serializer = new DataContractJsonSerializer(typeof(T));
+                data = (T)serializer.ReadObject(stream);
+            }
+
+            return data;
+        }
+
         /// <summary>
         /// Invoked when the article list item clicked
         /// </summary>

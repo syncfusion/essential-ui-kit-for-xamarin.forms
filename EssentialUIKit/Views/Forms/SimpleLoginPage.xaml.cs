@@ -15,7 +15,7 @@ namespace EssentialUIKit.Views.Forms
         /// </summary>
         public SimpleLoginPage()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }
