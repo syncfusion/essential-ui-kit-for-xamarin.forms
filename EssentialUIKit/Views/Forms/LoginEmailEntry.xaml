@@ -1,65 +1,64 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:control="clr-namespace:EssentialUIKit.Controls"
-             xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
-             xmlns:converter="clr-namespace:EssentialUIKit.Converters"
-             x:Class="EssentialUIKit.Views.Forms.LoginEmailEntry">
-    
+<ContentView
+    x:Class="EssentialUIKit.Views.Forms.LoginEmailEntry"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:behaviour="clr-namespace:EssentialUIKit.Behaviors.Forms"
+    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+    xmlns:control="clr-namespace:EssentialUIKit.Controls"
+    xmlns:converter="clr-namespace:EssentialUIKit.Converters">
+
     <ContentView.Resources>
         <ResourceDictionary>
-            <converter:StringToBooleanConverter x:Key="StringToBooleanConverter" />
-            <converter:ErrorValidationColorConverter x:Key="ErrorValidationColorConverter" PageVariantParameter="1" />
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Styles.xaml" />
-            </ResourceDictionary.MergedDictionaries>
+            <converter:InverseBoolConverter x:Key="InverseBoolConverter" />
+            <converter:NameValidationConverter x:Key="FirstValidationErrorConverter" />
+            <converter:BooleanToColorConverter x:Key="ColorConverter" />
         </ResourceDictionary>
     </ContentView.Resources>
 
     <ContentView.Content>
         <StackLayout>
             <border:SfBorder
-                BackgroundColor="{DynamicResource Gray-White}" CornerRadius="4"
-                BorderColor="{Binding Path=IsFocused, Source={x:Reference EmailEntry}, Converter={x:StaticResource ErrorValidationColorConverter}, ConverterParameter={x:Reference EmailEntry}}"
-                Style="{StaticResource SfBorderStyle}">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="Auto" />
-                    </Grid.ColumnDefinitions>
+                BackgroundColor="{DynamicResource Gray-White}"
+                BorderColor="{Binding Path=IsFocused, Source={x:Reference EmailEntry}, Converter={x:StaticResource ColorConverter}, ConverterParameter=3}"
+                CornerRadius="4"
+                Style="{StaticResource LoginFormBorderlessEntryBorderStyle}">
+
+                <Grid ColumnDefinitions="*, Auto">
 
                     <control:BorderlessEntry
                         x:Name="EmailEntry"
-                        Placeholder="Email"
-                        PlaceholderColor="{DynamicResource Gray-700}"
-                        Style="{StaticResource EntryStyle}"
+                        Margin="15,0"
+                        HeightRequest="40"
                         Keyboard="Email"
-                        Text="{Binding Email}"
-                        TextColor="{DynamicResource Gray-900}" />
-                    
-                    <!--  Login entry label -->
+                        Placeholder="Email"
+                        PlaceholderColor="#606a7b"
+                        Style="{StaticResource BorderlessEntryStyle}"
+                        Text="{Binding Email.Value}"
+                        TextColor="#333942">
+                        <Entry.Behaviors>
+                            <behaviour:EntryLineValidationBehaviour IsValid="{Binding Email.IsValid}" />
+                        </Entry.Behaviors>
+                    </control:BorderlessEntry>
+                    <!--  Login entry label  -->
 
                     <Label
-                        Margin="15,0"
-                        FontFamily="{StaticResource FontIcons}"
-                        FontSize="18"
-                        HorizontalOptions="EndAndExpand"
-                        HorizontalTextAlignment="End"
+                        Grid.Column="1"
                         IsVisible="{Binding Path=IsVisible, Source={x:Reference ValidationLabel}}"
-                        Text="&#xe707;"
-                        TextColor="{DynamicResource Red}"
-                        VerticalOptions="Center" />
+                        Style="{StaticResource ErrorIconLabelStyle}"
+                        Text="{StaticResource Error}" />
 
                 </Grid>
             </border:SfBorder>
 
-            <!--  Login validation label -->
+            <!--  Login validation label  -->
             <Label
                 x:Name="ValidationLabel"
                 Margin="15,-5,0,0"
                 FontSize="12"
-                IsVisible="{Binding Path=IsFocused, Source={x:Reference EmailEntry}, Converter={StaticResource StringToBooleanConverter}, ConverterParameter={x:Reference EmailEntry}}"
-                Text="Please enter the valid e-mail"
+                IsVisible="{Binding Email.IsValid, Converter={StaticResource InverseBoolConverter}}"
+                Style="{StaticResource SimpleLabelStyle}"
+                Text="{Binding Email.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
                 TextColor="{DynamicResource Red}"
                 VerticalOptions="FillAndExpand" />
 

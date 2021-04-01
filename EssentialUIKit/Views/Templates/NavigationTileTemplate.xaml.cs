@@ -10,13 +10,13 @@ namespace EssentialUIKit.Views.Templates
     [Preserve(AllMembers = true)]
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class NavigationTileTemplate : Grid
-	{
+    {
         /// <summary>
         /// Initializes a new instance of the <see cref="NavigationTileTemplate"/> class.
         /// </summary>
-		public NavigationTileTemplate ()
-		{
-			InitializeComponent ();
-		}
-	}
+        public NavigationTileTemplate()
+        {
+            this.InitializeComponent();
+        }
+    }
 }

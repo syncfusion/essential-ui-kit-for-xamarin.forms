@@ -10,7 +10,17 @@ namespace EssentialUIKit.Views.Forms
     {
         public AddContactPage()
         {
-            InitializeComponent();
+            this.InitializeComponent();
+        }
+
+        private void DatePicker_Clicked(object sender, System.EventArgs e)
+        {
+            datePicker.IsOpen = true;
+        }
+
+        private void DatePicker_OkButtonClicked(object sender, Syncfusion.XForms.Pickers.DateChangedEventArgs e)
+        {
+            pickerButton.Text = string.Format("{0:dd/MM/yyyy}", e.NewValue);
         }
     }
 }

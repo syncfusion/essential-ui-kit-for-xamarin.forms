@@ -1,8 +1,8 @@
 ﻿using System.Collections.ObjectModel;
 using System.Runtime.Serialization;
+using EssentialUIKit.Models.Notification;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
-using EssentialUIKit.Models.Notification;
 
 namespace EssentialUIKit.ViewModels.Notification
 {
@@ -17,8 +17,6 @@ namespace EssentialUIKit.ViewModels.Notification
 
         private Command<object> itemTappedCommand;
 
-        private Command<object> backCommand;
-
         private Command<object> menuCommand;
 
         #endregion
@@ -30,7 +28,6 @@ namespace EssentialUIKit.ViewModels.Notification
         /// </summary>
         public ECommerceNotificationViewModel()
         {
-
         }
 
         #endregion
@@ -45,17 +42,6 @@ namespace EssentialUIKit.ViewModels.Notification
             get
             {
                 return this.itemTappedCommand ?? (this.itemTappedCommand = new Command<object>(this.ItemSelected));
-            }
-        }
-
-        /// <summary>
-        /// Gets the command that will be executed when back button is clicked.
-        /// </summary>
-        public Command<object> BackCommand
-        {
-            get
-            {
-                return this.backCommand ?? (this.backCommand = new Command<object>(this.BackButtonClicked));
             }
         }
 
@@ -87,16 +73,6 @@ namespace EssentialUIKit.ViewModels.Notification
         private void ItemSelected(object selectedItem)
         {
             ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as ECommerceNotificationsListModel).IsRead = true;
-            // Do something
-        }
-
-        /// <summary>
-        /// Invoked when back button is clicked in the E-Commerce notification page.
-        /// </summary>
-        /// <param name="obj">The object.</param>
-        private void BackButtonClicked(object obj)
-        {
-            // Do something
         }
 
         /// <summary>

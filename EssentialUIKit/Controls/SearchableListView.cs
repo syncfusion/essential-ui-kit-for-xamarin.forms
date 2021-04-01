@@ -15,7 +15,7 @@ namespace EssentialUIKit.Controls
         /// <summary>
         /// Gets or sets the text value used to search.
         /// </summary>
-        public static readonly BindableProperty SearchTextProperty = 
+        public static readonly BindableProperty SearchTextProperty =
             BindableProperty.Create(nameof(SearchText), typeof(string), typeof(SearchableListView), null, BindingMode.Default, null, OnSearchTextChanged);
 
         /// <summary>
@@ -24,7 +24,7 @@ namespace EssentialUIKit.Controls
         private string searchText;
 
         #endregion
-        
+
         #region Property
 
         /// <summary>
@@ -32,13 +32,28 @@ namespace EssentialUIKit.Controls
         /// </summary>
         public string SearchText
         {
-            get { return (string)GetValue(SearchTextProperty); }
+            get { return (string)this.GetValue(SearchTextProperty); }
             set { this.SetValue(SearchTextProperty, value); }
         }
 
         #endregion
 
         #region Method
+
+        /// <summary>
+        /// Filtering the list view items based on the search text.
+        /// </summary>
+        /// <param name="obj">The list view item</param>
+        /// <returns>Returns the filtered item</returns>
+        public virtual bool FilterContacts(object obj)
+        {
+            if (this.SearchText == null)
+            {
+                return false;
+            }
+
+            return true;
+        }
 
         /// <summary>
         /// Invoked when the search text is changed.
@@ -57,21 +72,6 @@ namespace EssentialUIKit.Controls
             }
 
             listView.RefreshView();
-        }
-        
-        /// <summary>
-        /// Filtering the list view items based on the search text.
-        /// </summary>
-        /// <param name="obj">The list view item</param>
-        /// <returns>Returns the filtered item</returns>
-        public virtual bool FilterContacts(object obj)
-        {
-            if (this.SearchText == null)
-            {
-                return false;
-            }
-
-            return true;
         }
 
         #endregion

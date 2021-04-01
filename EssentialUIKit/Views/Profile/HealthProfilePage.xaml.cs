@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using EssentialUIKit.ViewModels.Profile;
+using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
 
@@ -16,7 +17,8 @@ namespace EssentialUIKit.Views.Profile
         /// </summary>
         public HealthProfilePage()
         {
-            InitializeComponent();
+            this.InitializeComponent();
+            this.BindingContext = HealthProfileViewModel.BindingContext;
         }
     }
 }

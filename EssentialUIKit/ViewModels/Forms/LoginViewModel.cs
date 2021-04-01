@@ -1,4 +1,6 @@
-﻿using Xamarin.Forms.Internals;
+﻿using EssentialUIKit.Validators;
+using EssentialUIKit.Validators.Rules;
+using Xamarin.Forms.Internals;
 
 namespace EssentialUIKit.ViewModels.Forms
 {
@@ -10,18 +12,29 @@ namespace EssentialUIKit.ViewModels.Forms
     {
         #region Fields
 
-        private string email;
-
-        private bool isInvalidEmail;
+        private ValidatableObject<string> email;
 
         #endregion
-        
+
+        #region Constructor
+
+        /// <summary>
+        /// Initializes a new instance for the <see cref="LoginViewModel" /> class.
+        /// </summary>
+        public LoginViewModel()
+        {
+            this.InitializeProperties();
+            this.AddValidationRules();
+        }
+
+        #endregion
+
         #region Property
 
         /// <summary>
         /// Gets or sets the property that bounds with an entry that gets the email ID from user in the login page.
         /// </summary>
-        public string Email
+        public ValidatableObject<string> Email
         {
             get
             {
@@ -35,31 +48,38 @@ namespace EssentialUIKit.ViewModels.Forms
                     return;
                 }
 
-                this.email = value;
-                this.NotifyPropertyChanged();
+                this.SetProperty(ref this.email, value);
             }
+        }
+        #endregion
+
+        #region Methods
+
+        /// <summary>
+        /// This method to validate the email
+        /// </summary>
+        /// <returns>returns bool value</returns>
+        public bool IsEmailFieldValid()
+        {
+            bool isEmailValid = this.Email.Validate();
+            return isEmailValid;
         }
 
         /// <summary>
-        /// Gets or sets a value indicating whether the entered email is valid or invalid.
+        /// Initializing the properties.
         /// </summary>
-        public bool IsInvalidEmail
+        private void InitializeProperties()
         {
-            get
-            {
-                return this.isInvalidEmail;
-            }
+            this.Email = new ValidatableObject<string>();
+        }
 
-            set
-            {
-                if (this.isInvalidEmail == value)
-                {
-                    return;
-                }
-
-                this.isInvalidEmail = value;
-                this.NotifyPropertyChanged();
-            }
+        /// <summary>
+        /// This method contains the validation rules
+        /// </summary>
+        private void AddValidationRules()
+        {
+            this.Email.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = "Email Required" });
+            this.Email.Validations.Add(new IsValidEmailRule<string> { ValidationMessage = "Invalid Email" });
         }
 
         #endregion

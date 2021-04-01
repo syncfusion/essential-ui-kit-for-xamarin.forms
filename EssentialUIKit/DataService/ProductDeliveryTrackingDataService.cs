@@ -13,7 +13,7 @@ namespace EssentialUIKit.DataService
     {
         #region fields
 
-        private static ProductDeliveryTrackingDataService instance;
+        private static ProductDeliveryTrackingDataService productDeliveryTrackingDataService;
 
         private ProductDeliveryTrackingViewModel productDeliveryTrackingViewModel;
 
@@ -35,13 +35,13 @@ namespace EssentialUIKit.DataService
         /// <summary>
         /// Gets an instance of the <see cref="ProductDeliveryTrackingDataService"/>.
         /// </summary>
-        public static ProductDeliveryTrackingDataService Instance => instance ?? (instance = new ProductDeliveryTrackingDataService());
+        public static ProductDeliveryTrackingDataService Instance => productDeliveryTrackingDataService ?? (productDeliveryTrackingDataService = new ProductDeliveryTrackingDataService());
 
         /// <summary>
         /// Gets or sets the value of product delivery tracking page view model.
         /// </summary>
         public ProductDeliveryTrackingViewModel ProductDeliveryTrackingViewModel =>
-            (this.productDeliveryTrackingViewModel = PopulateData<ProductDeliveryTrackingViewModel>("deliverytracking.json"));
+            this.productDeliveryTrackingViewModel = PopulateData<ProductDeliveryTrackingViewModel>("deliverytracking.json");
 
         #endregion
 
@@ -59,15 +59,15 @@ namespace EssentialUIKit.DataService
 
             var assembly = typeof(App).GetTypeInfo().Assembly;
 
-            T obj;
+            T data;
 
             using (var stream = assembly.GetManifestResourceStream(file))
             {
                 var serializer = new DataContractJsonSerializer(typeof(T));
-                obj = (T)serializer.ReadObject(stream);
+                data = (T)serializer.ReadObject(stream);
             }
 
-            return obj;
+            return data;
         }
 
         #endregion

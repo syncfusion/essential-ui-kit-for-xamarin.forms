@@ -1,6 +1,4 @@
 ﻿using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
 using EssentialUIKit.Models.Navigation;
 using Xamarin.Forms;
@@ -55,8 +53,7 @@ namespace EssentialUIKit.ViewModels.Navigation
                     return;
                 }
 
-                this.albumInfo = value;
-                this.NotifyPropertyChanged();
+                this.SetProperty(ref this.albumInfo, value);
             }
         }
 

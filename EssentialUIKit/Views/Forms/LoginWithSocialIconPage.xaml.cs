@@ -15,7 +15,7 @@ namespace EssentialUIKit.Views.Forms
         /// </summary>
         public LoginWithSocialIconPage()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }

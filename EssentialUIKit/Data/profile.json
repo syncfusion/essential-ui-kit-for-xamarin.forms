@@ -1,0 +1,60 @@
+{
+  "cardItems": [
+    {
+      "category": "Calories Eaten",
+      "categoryValue": "13,100",
+      "categoryImage": "CaloriesEaten.svg"
+    },
+    {
+      "category": "Heart Rate",
+      "categoryValue": "87 BPM",
+      "categoryImage": "HeartRate.svg"
+    },
+    {
+      "category": "Water Consumed",
+      "categoryValue": "38.6 L",
+      "categoryImage": "WaterConsumed.svg"
+    },
+    {
+      "category": "Sleep Duration",
+      "categoryValue": "7.3 H",
+      "categoryImage": "SleepDuration.svg"
+    }
+  ],
+
+  "profileImage": "ProfileImage16.png",
+  "profileName": "Lela Cortez",
+  "state": "San Francisco",
+  "country": "CA",
+  "age": "35",
+  "weight": "159 Ibs",
+  "height": "165 cm",
+  "itemImage": "ProfileImage1.png",
+  "name": "John Doe",
+  "email": "johndoe@gmail.com",
+
+  "contactProfileImage": "ContactProfileImage.png",
+
+  "profileInfo": [
+    {
+      "imagePath": "ProfileImage10.png"
+    },
+    {
+      "imagePath": "ProfileImage11.png"
+    },
+    {
+      "imagePath": "ProfileImage12.png"
+    },
+    {
+      "imagePath": "ProfileImage13.png"
+    },
+    {
+      "imagePath": "ProfileImage14.png"
+    },
+    {
+      "imagePath": "ProfileImage15.png"
+    }
+  ]
+
+
+}

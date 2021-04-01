@@ -1,6 +1,6 @@
-﻿using Xamarin.Forms.Internals;
+﻿using EssentialUIKit.DataService;
+using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
-using EssentialUIKit.DataService;
 
 namespace EssentialUIKit.Views.Notification
 {
@@ -16,9 +16,8 @@ namespace EssentialUIKit.Views.Notification
         /// </summary>
         public ECommerceNotificationPage()
         {
-            InitializeComponent();
+            this.InitializeComponent();
             this.BindingContext = ECommerceNotificationDataService.Instance.ECommerceNotificationViewModel;
         }
-
     }
 }

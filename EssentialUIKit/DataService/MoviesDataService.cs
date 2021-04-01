@@ -1,6 +1,6 @@
-﻿using EssentialUIKit.ViewModels.Navigation;
-using System.Reflection;
+﻿using System.Reflection;
 using System.Runtime.Serialization.Json;
+using EssentialUIKit.ViewModels.Navigation;
 using Xamarin.Forms.Internals;
 
 namespace EssentialUIKit.DataService
@@ -13,7 +13,7 @@ namespace EssentialUIKit.DataService
     {
         #region fields
 
-        private static MoviesDataService instance;
+        private static MoviesDataService moviesDataService;
 
         private MoviesPageViewModel moviesViewModel;
 
@@ -24,7 +24,7 @@ namespace EssentialUIKit.DataService
         /// <summary>
         /// Gets an instance of the <see cref="MoviesDataService"/>.
         /// </summary>
-        public static MoviesDataService Instance => instance ?? (instance = new MoviesDataService());
+        public static MoviesDataService Instance => moviesDataService ?? (moviesDataService = new MoviesDataService());
 
         /// <summary>
         /// Gets or sets the value of movie page view model.
@@ -49,15 +49,15 @@ namespace EssentialUIKit.DataService
 
             var assembly = typeof(App).GetTypeInfo().Assembly;
 
-            T obj;
+            T data;
 
             using (var stream = assembly.GetManifestResourceStream(file))
             {
                 var serializer = new DataContractJsonSerializer(typeof(T));
-                obj = (T)serializer.ReadObject(stream);
+                data = (T)serializer.ReadObject(stream);
             }
 
-            return obj;
+            return data;
         }
 
         #endregion

@@ -11,7 +11,7 @@ namespace EssentialUIKit.ViewModels.Navigation
     /// </summary>
     [Preserve(AllMembers = true)]
     [DataContract]
-    public class NavigationViewModel
+    public class NavigationViewModel : BaseViewModel
     {
         #region Fields
 
@@ -48,7 +48,7 @@ namespace EssentialUIKit.ViewModels.Navigation
         /// </summary>
         [DataMember(Name = "navigationList")]
         public ObservableCollection<NavigationModel> NavigationList { get; set; }
-        
+
         #endregion
 
         #region Methods

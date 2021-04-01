@@ -17,7 +17,7 @@
                              Phone=False}"
     ItemSpacing="1"
     ItemsSource="{Binding FilterOptions}"
-    Style="{StaticResource SfListViewStyle}"
+    Style="{StaticResource TransparentSelectionListView}" BackgroundColor="{DynamicResource Gray-White}"
     VerticalOptions="{OnIdiom Default=Start,
                               Desktop=FillAndExpand}">
 
@@ -60,12 +60,12 @@
                 <Label
                     Margin="{OnIdiom Default=15,
                                      Phone=0}"
-                    FontFamily="{StaticResource Montserrat-SemiBold}"
+                    FontFamily="Montserrat-SemiBold"
                     FontSize="18"
                     Style="{StaticResource LabelStyle}"
                     Text="Filters" />
 
-                <BoxView HeightRequest="1" Style="{StaticResource BoxViewStyle}" />
+                <BoxView HeightRequest="1" Style="{StaticResource HorizontalSeparatorStyle}" />
 
             </StackLayout>
         </DataTemplate>
@@ -75,16 +75,11 @@
         <DataTemplate>
             <ViewCell>
                 <ViewCell.View>
-                    <Grid RowSpacing="0">
-
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
+                    <Grid RowSpacing="0" RowDefinitions="*, Auto">
 
                         <expander:SfExpander
                             Grid.Row="0"
-							IsExpanded="{Binding IsExpanded,Mode=TwoWay}"
+							IsExpanded="{Binding IsSelected,Mode=TwoWay}"
                             Margin="{OnIdiom Default='15,0',
                                              Desktop='10,0,0,0'}"
                             BackgroundColor="Transparent"
@@ -94,7 +89,7 @@
                             <expander:SfExpander.Header>
                                 <Label
                                     Margin="0,10"
-                                    FontFamily="{StaticResource Montserrat-SemiBold}"
+                                    FontFamily="Montserrat-SemiBold"
                                     HorizontalOptions="StartAndExpand"
                                     Style="{StaticResource LabelStyle}"
                                     Text="{Binding Name}"
@@ -109,7 +104,7 @@
                                         <DataTemplate>
                                             <buttons:SfCheckBox
                                                 CheckedColor="{DynamicResource PrimaryColor}"
-                                                FontFamily="{StaticResource Montserrat-Medium}"
+                                                FontFamily="Montserrat-Medium"
                                                 FontSize="14"
                                                 HorizontalOptions="{OnIdiom Default=Fill,
                                                                             Desktop=Start}"
@@ -131,7 +126,7 @@
                         <BoxView
                             Grid.Row="1"
                             HeightRequest="1"
-                            Style="{StaticResource BoxViewStyle}" />
+                            Style="{StaticResource HorizontalSeparatorStyle}" />
 
                     </Grid>
                 </ViewCell.View>

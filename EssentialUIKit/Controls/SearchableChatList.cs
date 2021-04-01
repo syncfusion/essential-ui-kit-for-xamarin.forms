@@ -1,6 +1,6 @@
-﻿using EssentialUIKit.Models.Chat;
+﻿using System.Threading.Tasks;
+using EssentialUIKit.Models.Chat;
 using Syncfusion.ListView.XForms;
-using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 
@@ -41,6 +41,7 @@ namespace EssentialUIKit.Controls
                 {
                     return false;
                 }
+
                 var message = taskInfo.Message;
                 if (taskInfo.MessageType != "Text")
                 {
@@ -62,8 +63,8 @@ namespace EssentialUIKit.Controls
         private async void CustomListView_SelectionChanged(object sender, ItemSelectionChangedEventArgs e)
         {
             Application.Current.Resources.TryGetValue("Gray-100", out var retVal);
-            this.SelectionBackgroundColor = (Color) retVal;
-            await Task.Delay(100);
+            this.SelectionBackgroundColor = (Color)retVal;
+            await Task.Delay(100).ConfigureAwait(true);
             this.SelectionBackgroundColor = Color.Transparent;
             this.SelectedItems.Clear();
         }

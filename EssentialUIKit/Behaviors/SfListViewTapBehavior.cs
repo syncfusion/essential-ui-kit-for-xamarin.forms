@@ -22,7 +22,7 @@ namespace EssentialUIKit.Behaviors
         /// </summary>
         public ICommand Command
         {
-            get { return (ICommand)GetValue(CommandProperty); }
+            get { return (ICommand)this.GetValue(CommandProperty); }
             set { this.SetValue(CommandProperty, value); }
         }
 
@@ -42,7 +42,7 @@ namespace EssentialUIKit.Behaviors
                 bindableListView.ItemTapped += this.BindableListView_ItemTapped;
             }
         }
-            
+
         /// <summary>
         /// Invoked when exit from the page.
         /// </summary>

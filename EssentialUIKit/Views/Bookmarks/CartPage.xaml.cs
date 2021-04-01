@@ -16,7 +16,7 @@ namespace EssentialUIKit.Views.Bookmarks
         /// </summary>
         public CartPage()
         {
-            InitializeComponent();
+            this.InitializeComponent();
             this.BindingContext = CartDataService.Instance.CartPageViewModel;
         }
     }

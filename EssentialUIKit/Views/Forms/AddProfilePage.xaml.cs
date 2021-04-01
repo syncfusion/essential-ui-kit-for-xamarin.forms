@@ -13,7 +13,7 @@ namespace EssentialUIKit.Views.Forms
     {
         public AddProfilePage()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }

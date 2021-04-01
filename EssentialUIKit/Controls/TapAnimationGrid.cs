@@ -29,10 +29,10 @@ namespace EssentialUIKit.Controls
         /// Gets or sets the TappedProperty, and it is a bindable property.
         /// </summary>
         public static readonly BindableProperty TappedProperty =
-            BindableProperty.Create(nameof(Tapped), typeof(bool), typeof(TapAnimationGrid), false, BindingMode.TwoWay,
-                null, propertyChanged: OnTapped);
+            BindableProperty.Create(
+                nameof(Tapped), typeof(bool), typeof(TapAnimationGrid), false, BindingMode.TwoWay, null, propertyChanged: OnTapped);
 
-        ICommand tappedCommand;
+        private ICommand tappedCommand;
 
         #endregion
 
@@ -41,7 +41,7 @@ namespace EssentialUIKit.Controls
         /// <summary>
         /// Initializes a new instance of the <see cref="TapAnimationGrid" /> class.
         /// </summary>
-        public TapAnimationGrid () => Initialize();
+        public TapAnimationGrid() => this.Initialize();
 
         #endregion
 
@@ -52,8 +52,8 @@ namespace EssentialUIKit.Controls
         /// </summary>
         public ICommand Command
         {
-            get => (ICommand)GetValue(CommandProperty);
-            set => SetValue(CommandProperty, value);
+            get => (ICommand)this.GetValue(CommandProperty);
+            set => this.SetValue(CommandProperty, value);
         }
 
         /// <summary>
@@ -61,67 +61,70 @@ namespace EssentialUIKit.Controls
         /// </summary>
         public object CommandParameter
         {
-            get => GetValue(CommandParameterProperty);
-            set => SetValue(CommandParameterProperty, value);
+            get => this.GetValue(CommandParameterProperty);
+            set => this.SetValue(CommandParameterProperty, value);
         }
 
         /// <summary>
-        /// Gets or sets the tapped value.
+        /// Gets or sets a value indicating whether it is tapped or not.
         /// </summary>
         public bool Tapped
         {
-            get => (bool)GetValue(TappedProperty);
-            set => SetValue(TappedProperty, value);
+            get => (bool)this.GetValue(TappedProperty);
+            set => this.SetValue(TappedProperty, value);
         }
 
         /// <summary>
         /// Gets or sets the tapped command.
         /// </summary>
-        public ICommand TappedCommand => tappedCommand
-                ?? ( tappedCommand = new Command(() =>
+        public ICommand TappedCommand => this.tappedCommand
+                ?? (this.tappedCommand = new Command(() =>
                 {
-                    if (Tapped)
+                    if (this.Tapped)
                     {
-                        Tapped = false;
+                        this.Tapped = false;
                     }
                     else
                     {
-                        Tapped = true;
+                        this.Tapped = true;
                     }
-                    if (Command != null)
+
+                    if (this.Command != null)
                     {
-                        Command.Execute(CommandParameter);
+                        this.Command.Execute(this.CommandParameter);
                     }
-                }) );
+                }));
 
         #endregion
 
         #region Methods
 
         /// <summary>
-        /// Invoked when control is initialized.
-        /// </summary>
-        void Initialize ()
-        {
-            GestureRecognizers.Add(new TapGestureRecognizer
-            {
-                Command = TappedCommand
-            });
-        }
-        /// <summary>
         /// Invoked when tap on the item.
         /// </summary>
-        static async void OnTapped (BindableObject bindable, object oldValue, object newValue)
+        private static async void OnTapped(BindableObject bindable, object oldValue, object newValue)
         {
             var grid = (TapAnimationGrid)bindable;
             Application.Current.Resources.TryGetValue("Gray-100", out var retVal);
             grid.BackgroundColor = (Color)retVal;
 
             // To make the selected item color changes for 100 milliseconds.
-            await Task.Delay(100);
-            Application.Current.Resources.TryGetValue("Gray-White", out var retValue);
+            await Task.Delay(100).ConfigureAwait(true);
+            Application.Current.Resources.TryGetValue("Gray-Bg", out var retValue);
             grid.BackgroundColor = (Color)retValue;
         }
+
+        /// <summary>
+        /// Invoked when control is initialized.
+        /// </summary>
+        private void Initialize()
+        {
+            this.GestureRecognizers.Add(new TapGestureRecognizer
+            {
+                Command = this.TappedCommand,
+            });
+        }
+
         #endregion
     }
 }

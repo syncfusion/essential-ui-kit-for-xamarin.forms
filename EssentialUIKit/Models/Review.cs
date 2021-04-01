@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Runtime.Serialization;
 using Xamarin.Forms.Internals;
 
@@ -17,7 +16,7 @@ namespace EssentialUIKit.Models
         /// <summary>
         /// Gets or sets the images
         /// </summary>
-        private List<string> images;
+        private List<string> customerReviewImages;
 
         /// <summary>
         /// Gets or sets the profile image
@@ -32,7 +31,7 @@ namespace EssentialUIKit.Models
         [DataMember(Name = "profileimage")]
         public string CustomerImage
         {
-            get { return App.BaseImageUrl + this.customerImage; }
+            get { return App.ImageServerPath + this.customerImage; }
             set { this.customerImage = value; }
         }
 
@@ -40,23 +39,24 @@ namespace EssentialUIKit.Models
         /// Gets or sets the property that has been bound with an image, which displays the customer added image.
         /// </summary>
         [DataMember(Name = "images")]
-        public List<string> Images
+        public List<string> CustomerReviewImages
         {
             get
             {
-                if ( images != null )
+                if (this.customerReviewImages != null)
                 {
-                    for ( var i = 0; i < this.images.Count; i++ )
+                    for (var i = 0; i < this.customerReviewImages.Count; i++)
                     {
-                        this.images[i] = this.images[i].Contains(App.BaseImageUrl) ? this.images[i] : App.BaseImageUrl + this.images[i];
+                        this.customerReviewImages[i] = this.customerReviewImages[i].Contains(App.ImageServerPath) ? this.customerReviewImages[i] : App.ImageServerPath + this.customerReviewImages[i];
                     }
                 }
-                return this.images;
+
+                return this.customerReviewImages;
             }
 
             set
             {
-                this.images = value;
+                this.customerReviewImages = value;
             }
         }
 

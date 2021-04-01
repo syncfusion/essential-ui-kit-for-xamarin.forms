@@ -4,32 +4,18 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
-    xmlns:rating="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms">
-
-    <Grid.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Styles.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </Grid.Resources>
-
-    <Grid.RowDefinitions>
-        <RowDefinition Height="Auto" />
-        <RowDefinition Height="Auto" />
-        <RowDefinition Height="Auto" />
-    </Grid.RowDefinitions>
-
-    <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="Auto" />
-        <ColumnDefinition Width="*" />
-    </Grid.ColumnDefinitions>
+    xmlns:rating="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms"
+    ColumnDefinitions="Auto, *"
+    RowDefinitions="Auto, Auto, Auto">
 
     <!--  Profile Image  -->
     <border:SfBorder
+        BackgroundColor="{DynamicResource Gray-Bg}"
+        BorderWidth="{OnIdiom Default=2,
+                              Desktop=0}"
         CornerRadius="24"
         HeightRequest="48"
-        Style="{StaticResource SfBorderStyle}"
+        Style="{StaticResource ProfileBorderStyle}"
         WidthRequest="48">
         <Image BackgroundColor="{DynamicResource Gray-200}">
             <Image.Source>
@@ -57,16 +43,15 @@
 
             <!--  Customer Name  -->
             <Label
-                FontFamily="{StaticResource Montserrat-SemiBold}"
-                Style="{StaticResource LabelStyle}"
-                Text="{Binding CustomerName}"
-                TextColor="{DynamicResource Gray-900}" />
+                FontSize="14"
+                HorizontalOptions="Start"
+                Style="{StaticResource TitleLabelStyle}"
+                Text="{Binding CustomerName}" />
 
             <!--  Commented Date  -->
             <Label
-                FontFamily="{StaticResource Montserrat-Regular}"
-                FontSize="12"
-                Style="{StaticResource LabelStyle}"
+                FontFamily="Montserrat-Regular"
+                Style="{StaticResource SimpleLabelStyle}"
                 Text="{Binding ReviewedDate, StringFormat='{}{0:dd MMM, yyyy}'}" />
         </StackLayout>
 
@@ -74,8 +59,10 @@
         <rating:SfRating
             HorizontalOptions="{OnIdiom Default=FillAndExpand,
                                         Phone=EndAndExpand}"
-            RatingSettings="{StaticResource RatingSettings}"
-            Style="{StaticResource SfRatingStyle}"
+            ItemSize="13"
+            ItemSpacing="1"
+            RatingSettings="{StaticResource CommonRatingSettings}"
+            Style="{StaticResource RatingStyle}"
             VerticalOptions="Start"
             Value="{Binding Rating}">
             <rating:SfRating.Triggers>
@@ -93,7 +80,7 @@
     <StackLayout
         Grid.Row="1"
         Grid.ColumnSpan="2"
-        BindableLayout.ItemsSource="{Binding Images}"
+        BindableLayout.ItemsSource="{Binding CustomerReviewImages}"
         Orientation="Horizontal"
         Spacing="8">
         <BindableLayout.ItemTemplate>
@@ -120,11 +107,10 @@
         Grid.Row="2"
         Grid.ColumnSpan="2"
         Margin="0,0,0,16"
-        FontFamily="{StaticResource Montserrat-Medium}"
-        FontSize="14"
-        LineHeight="{OnPlatform Android=1.25,
-                                Default=-1}"
-        Style="{StaticResource LabelStyle}"
+        HorizontalOptions="Start"
+        HorizontalTextAlignment="Start"
+        LineHeight="1.25"
+        Style="{StaticResource DescriptionLabelStyle}"
         Text="{Binding Comment}" />
 
 </Grid>

@@ -1,4 +1,6 @@
-﻿using Xamarin.Forms;
+﻿using EssentialUIKit.Validators;
+using EssentialUIKit.Validators.Rules;
+using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 
 namespace EssentialUIKit.ViewModels.Forms
@@ -11,9 +13,7 @@ namespace EssentialUIKit.ViewModels.Forms
     {
         #region Fields
 
-        private string newPassword;
-
-        private string confirmPassword;
+        private ValidatablePair<string> password;
 
         #endregion
 
@@ -24,10 +24,11 @@ namespace EssentialUIKit.ViewModels.Forms
         /// </summary>
         public ResetPasswordViewModel()
         {
+            this.InitializeProperties();
+            this.AddValidationRules();
             this.SubmitCommand = new Command(this.SubmitClicked);
             this.SignUpCommand = new Command(this.SignUpClicked);
         }
-
         #endregion
 
         #region Command
@@ -41,7 +42,6 @@ namespace EssentialUIKit.ViewModels.Forms
         /// Gets or sets the command that is executed when the Sign Up button is clicked.
         /// </summary>
         public Command SignUpCommand { get; set; }
-
         #endregion
 
         #region Public property
@@ -49,58 +49,64 @@ namespace EssentialUIKit.ViewModels.Forms
         /// <summary>
         /// Gets or sets the property that bounds with an entry that gets the new password from user in the reset password page.
         /// </summary>
-        public string NewPassword
+        public ValidatablePair<string> Password
         {
             get
             {
-                return this.newPassword;
+                return this.password;
             }
 
             set
             {
-                if (this.newPassword == value)
+                if (this.password == value)
                 {
                     return;
                 }
 
-                this.newPassword = value;
-                this.NotifyPropertyChanged();
+                this.SetProperty(ref this.password, value);
             }
+        }
+        #endregion
+
+        #region Methods
+
+        /// <summary>
+        /// Initialize whether fieldsvalue are true or false.
+        /// </summary>
+        /// <returns>true or false </returns>
+        public bool AreFieldsValid()
+        {
+            bool isPassword = this.Password.Validate();
+            return isPassword;
         }
 
         /// <summary>
-        /// Gets or sets the property that bounds with an entry that gets the new password confirmation from the user in the reset password page.
+        /// Initializing the properties.
         /// </summary>
-        public string ConfirmPassword
+        private void InitializeProperties()
         {
-            get
-            {
-                return this.confirmPassword;
-            }
-
-            set
-            {
-                if (this.confirmPassword == value)
-                {
-                    return;
-                }
-
-                this.confirmPassword = value;
-                this.NotifyPropertyChanged();
-            }
+            this.Password = new ValidatablePair<string>();
         }
 
-        #endregion
-        
-        #region Methods
-        
+        /// <summary>
+        /// Validation rule for password
+        /// </summary>
+        private void AddValidationRules()
+        {
+            this.Password.Item1.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = "Password Required" });
+            this.Password.Item2.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = "Re-enter Password" });
+        }
+
         /// <summary>
         /// Invoked when the Submit button is clicked.
         /// </summary>
         /// <param name="obj">The Object</param>
         private void SubmitClicked(object obj)
         {
-            // Do something
+            if (this.AreFieldsValid())
+            {
+                // Do something
+            }
         }
 
         /// <summary>

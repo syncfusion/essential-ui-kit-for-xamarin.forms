@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
 using System.Runtime.Serialization.Json;
-using Xamarin.Forms.Internals;
 using EssentialUIKit.ViewModels.Notification;
+using Xamarin.Forms.Internals;
 
 namespace EssentialUIKit.DataService
 {
@@ -13,7 +13,7 @@ namespace EssentialUIKit.DataService
     {
         #region fields 
 
-        private static ECommerceNotificationDataService instance;
+        private static ECommerceNotificationDataService ecommerceNotificationDataService;
 
         private ECommerceNotificationViewModel ecommerceNotificationViewModel;
 
@@ -24,7 +24,7 @@ namespace EssentialUIKit.DataService
         /// <summary>
         /// Gets an instance of the <see cref="ECommerceNotificationDataService"/>.
         /// </summary>
-        public static ECommerceNotificationDataService Instance => instance ?? (instance = new ECommerceNotificationDataService());
+        public static ECommerceNotificationDataService Instance => ecommerceNotificationDataService ?? (ecommerceNotificationDataService = new ECommerceNotificationDataService());
 
         /// <summary>
         /// Gets or sets the value of E-Commerce notification page view model.
@@ -49,15 +49,15 @@ namespace EssentialUIKit.DataService
 
             var assembly = typeof(App).GetTypeInfo().Assembly;
 
-            T obj;
+            T data;
 
             using (var stream = assembly.GetManifestResourceStream(file))
             {
                 var serializer = new DataContractJsonSerializer(typeof(T));
-                obj = (T)serializer.ReadObject(stream);
+                data = (T)serializer.ReadObject(stream);
             }
 
-            return obj;
+            return data;
         }
 
         #endregion

@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Grid
+    x:Class="EssentialUIKit.Views.Templates.RecentChatTemplate"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:badge="clr-namespace:Syncfusion.XForms.BadgeView;assembly=Syncfusion.SfBadgeView.XForms"
+    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+    xmlns:converter="clr-namespace:EssentialUIKit.Converters"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid.Resources>
+        <ResourceDictionary>
+            <converter:StringToBadgeIconConverter x:Key="BadgeConverter" />
+            <converter:StringToGlyphConverter x:Key="GlyphConverter" />
+            <converter:StringToMessageTypeConverter x:Key="TextConverter" />
+        </ResourceDictionary>
+    </Grid.Resources>
+
+    <Grid
+        x:Name="Grid"
+        Padding="16,12"
+        ColumnDefinitions="Auto, *, Auto"
+        ColumnSpacing="16"
+        RowDefinitions="*, *"
+        RowSpacing="2">
+
+        <!--  Recent Sender Profile image  -->
+        <badge:SfBadgeView x:Name="BadgeView" Grid.RowSpan="2">
+            <badge:SfBadgeView.Content>
+                <border:SfBorder
+                    BackgroundColor="{DynamicResource Gray-200}"
+                    BorderColor="{DynamicResource Gray-Bg}"
+                    Style="{StaticResource ProfileBorderStyle}">
+                    <Image HeightRequest="40" WidthRequest="40">
+                        <Image.Source>
+                            <UriImageSource
+                                CacheValidity="14"
+                                CachingEnabled="true"
+                                Uri="{Binding ImagePath}" />
+                        </Image.Source>
+                    </Image>
+                </border:SfBorder>
+            </badge:SfBadgeView.Content>
+
+            <badge:SfBadgeView.BadgeSettings>
+                <badge:BadgeSetting
+                    BackgroundColor="{DynamicResource Green}"
+                    BadgeAlignment="End"
+                    BadgeIcon="{Binding AvailableStatus, Converter={StaticResource BadgeConverter}}"
+                    BadgePosition="BottomRight"
+                    BadgeType="None"
+                    Stroke="{DynamicResource Gray-Bg}"
+                    StrokeWidth="1" />
+            </badge:SfBadgeView.BadgeSettings>
+        </badge:SfBadgeView>
+
+        <!--  Recent Sender Profile Name  -->
+        <Label
+            Grid.Column="1"
+            FontFamily="Montserrat-SemiBold"
+            FontSize="16"
+            HorizontalOptions="Start"
+            LineBreakMode="NoWrap"
+            LineHeight="{OnPlatform Default=1.5,
+                                    iOS=-1}"
+            Text="{Binding SenderName}"
+            TextColor="{DynamicResource Gray-900}" />
+
+        <StackLayout
+            Grid.Row="1"
+            Grid.Column="1"
+            Orientation="Horizontal">
+
+            <!--  Recent Message Type  -->
+            <Label
+                x:Name="MessageIcon"
+                HorizontalOptions="Start"
+                HorizontalTextAlignment="Start"
+                Style="{StaticResource IconLabelStyle}"
+                Text="{Binding MessageType, Converter={StaticResource GlyphConverter}, ConverterParameter={x:Reference MessageIcon}}">
+                <Label.Resources>
+                    <ResourceDictionary>
+                        <ResourceDictionary.MergedDictionaries>
+                            <ResourceDictionary Source="../../Styles/FontIcons.xaml" />
+                        </ResourceDictionary.MergedDictionaries>
+                    </ResourceDictionary>
+                </Label.Resources>
+            </Label>
+
+            <!--  Recent Message  -->
+            <Label
+                x:Name="MessageLabel"
+                LineBreakMode="TailTruncation"
+                Style="{StaticResource SimpleLabelStyle}"
+                Text="{Binding MessageType, Converter={StaticResource TextConverter}, ConverterParameter={x:Reference MessageLabel}}"
+                TextColor="{DynamicResource Gray-800}" />
+
+        </StackLayout>
+
+        <!--  Recent Message Time  -->
+        <Label
+            Grid.Column="2"
+            FontFamily="Montserrat-Regular"
+            HorizontalOptions="Center"
+            LineBreakMode="NoWrap"
+            Style="{StaticResource SimpleLabelStyle}"
+            Text="{Binding Time}"
+            VerticalOptions="Start"
+            VerticalTextAlignment="Start" />
+
+        <!--  Recent Message Notification  -->
+        <Label
+            x:Name="NotificationLabel"
+            Grid.Row="1"
+            Grid.Column="2"
+            HorizontalOptions="End"
+            HorizontalTextAlignment="End"
+            Style="{StaticResource IconLabelStyle}"
+            Text="{Binding NotificationType, Converter={StaticResource GlyphConverter}, ConverterParameter={x:Reference NotificationLabel}}"
+            VerticalOptions="Start">
+            <Label.Resources>
+                <ResourceDictionary>
+                    <ResourceDictionary.MergedDictionaries>
+                        <ResourceDictionary Source="../../Styles/FontIcons.xaml" />
+                    </ResourceDictionary.MergedDictionaries>
+                </ResourceDictionary>
+            </Label.Resources>
+        </Label>
+
+    </Grid>
+</Grid>

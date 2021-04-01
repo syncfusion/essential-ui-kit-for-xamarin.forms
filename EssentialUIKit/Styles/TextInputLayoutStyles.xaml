@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary
+    x:Class="EssentialUIKit.Styles.TextInputLayoutStyles"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms">
+
+    <!--  Common style for TextInput Layouts  -->
+    <Style x:Key="TextInputLayoutStyle" TargetType="inputLayout:SfTextInputLayout">
+        <Setter Property="UnfocusedColor" Value="{DynamicResource Gray-300}" />
+        <Setter Property="ContainerType" Value="Outlined" />
+        <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+        <Setter Property="OutlineCornerRadius" Value="4" />
+        <Setter Property="ContainerBackgroundColor" Value="{DynamicResource Gray-Bg}" />
+        <Setter Property="FocusedColor" Value="{DynamicResource Gray-500}" />
+        <Setter Property="ReserveSpaceForAssistiveLabels" Value="False" />
+        <Setter Property="InputViewPadding" Value="12,0,0,0" />
+        <Setter Property="Margin" Value="0,-8,0,0" />
+        <Setter Property="FocusedStrokeWidth" Value="1" />
+    </Style>
+
+</ResourceDictionary>

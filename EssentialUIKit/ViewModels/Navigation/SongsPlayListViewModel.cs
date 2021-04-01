@@ -1,6 +1,6 @@
-﻿using EssentialUIKit.Models.Navigation;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Runtime.Serialization;
+using EssentialUIKit.Models.Navigation;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 
@@ -17,6 +17,8 @@ namespace EssentialUIKit.ViewModels.Navigation
 
         private Command<object> itemSelectedCommand;
 
+        private Command<object> menuCommand;
+
         #endregion
 
         #region Constructor
@@ -26,7 +28,6 @@ namespace EssentialUIKit.ViewModels.Navigation
         /// </summary>
         public SongsPlayListViewModel()
         {
-
         }
         #endregion
 
@@ -40,6 +41,17 @@ namespace EssentialUIKit.ViewModels.Navigation
             get
             {
                 return this.itemSelectedCommand ?? (this.itemSelectedCommand = new Command<object>(this.NavigateToNextPage));
+            }
+        }
+
+        /// <summary>
+        /// Gets the command that will be executed when an more button is selected.
+        /// </summary>
+        public Command<object> MenuCommand
+        {
+            get
+            {
+                return this.menuCommand ?? (this.menuCommand = new Command<object>(this.MoreButtonClicked));
             }
         }
 
@@ -58,6 +70,15 @@ namespace EssentialUIKit.ViewModels.Navigation
         /// </summary>
         /// <param name="selectedItem">Selected item from the list view.</param>
         private void NavigateToNextPage(object selectedItem)
+        {
+            // Do something
+        }
+
+        /// <summary>
+        /// Invoked when an more button is selected from the Songs play list.
+        /// </summary>
+        /// <param name="selectedItem">Selected item from the list view.</param>
+        private void MoreButtonClicked(object selectedItem)
         {
             // Do something
         }

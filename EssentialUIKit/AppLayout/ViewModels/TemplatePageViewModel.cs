@@ -1,9 +1,5 @@
-﻿using System.ComponentModel;
-using System.IO;
-using System.Runtime.CompilerServices;
-using System.Web;
-using System.Xml.Serialization;
-using EssentialUIKit.AppLayout.Models;
+﻿using EssentialUIKit.AppLayout.Models;
+using EssentialUIKit.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 
@@ -11,7 +7,7 @@ namespace EssentialUIKit.AppLayout.ViewModels
 {
     [Preserve(AllMembers = true)]
     [QueryProperty("QueryData", "data1")]
-    public class TemplatePageViewModel : INotifyPropertyChanged
+    public class TemplatePageViewModel : BaseViewModel
     {
         #region Fields
 
@@ -20,13 +16,9 @@ namespace EssentialUIKit.AppLayout.ViewModels
         /// </summary>
         private Category selectedCategory;
 
-        #endregion
-
-        #region event
-        /// <summary>
-        /// The declaration of the PropertyChanged event.
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
+        private bool isDarkTheme;
+        private bool isItemsGridView;
+        private bool isItemsListView = true;
         #endregion
 
         #region Public Properties
@@ -44,22 +36,48 @@ namespace EssentialUIKit.AppLayout.ViewModels
                     return;
                 }
 
-                this.selectedCategory = value;
-                this.OnPropertyChanged();
+                this.SetProperty(ref this.selectedCategory, value);
             }
         }
-        #endregion
-
-        #region Methods
 
         /// <summary>
-        /// The PropertyChanged event occurs when changing the value of property.
+        /// Gets or sets a value indicating whether dark theme applied or not.
         /// </summary>
-        /// <param name="propertyName">Property name</param>
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        public bool IsDarkTheme
         {
-            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            get => this.isDarkTheme;
+            set
+            {
+                this.SetProperty(ref this.isDarkTheme, value);
+                this.NotifyPropertyChanged();
+            }
         }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the sub category items are in grid view or not.
+        /// </summary>
+        public bool IsItemsGridView
+        {
+            get => this.isItemsGridView;
+            set
+            {
+                AppSettings.Instance.IsGridView = value;
+                this.SetProperty(ref this.isItemsGridView, value);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the sub category items are in list view or not.
+        /// </summary>
+        public bool IsItemsListView
+        {
+            get => this.isItemsListView;
+            set
+            {
+                this.SetProperty(ref this.isItemsListView, value);
+            }
+        }
+
         #endregion
     }
 }

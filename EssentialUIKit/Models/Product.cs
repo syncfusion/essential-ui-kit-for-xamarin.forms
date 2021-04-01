@@ -56,7 +56,7 @@ namespace EssentialUIKit.Models
         [DataMember(Name = "previewimage")]
         public string PreviewImage
         {
-            get { return App.BaseImageUrl + this.previewImage; }
+            get { return App.ImageServerPath + this.previewImage; }
             set { this.previewImage = value; }
         }
 
@@ -70,7 +70,7 @@ namespace EssentialUIKit.Models
             {
                 for (var i = 0; i < this.previewImages.Count; i++)
                 {
-                    this.previewImages[i] = this.previewImages[i].Contains(App.BaseImageUrl) ? this.previewImages[i] : App.BaseImageUrl + this.previewImages[i];
+                    this.previewImages[i] = this.previewImages[i].Contains(App.ImageServerPath) ? this.previewImages[i] : App.ImageServerPath + this.previewImages[i];
                 }
 
                 return this.previewImages;
@@ -114,7 +114,7 @@ namespace EssentialUIKit.Models
             set
             {
                 this.actualPrice = value;
-                this.NotifyPropertyChanged(nameof(ActualPrice));
+                this.NotifyPropertyChanged(nameof(this.ActualPrice));
             }
         }
 
@@ -125,13 +125,13 @@ namespace EssentialUIKit.Models
         {
             get
             {
-                return this.ActualPrice - (this.ActualPrice * ( this.DiscountPercent / 100 ));
+                return this.ActualPrice - (this.ActualPrice * (this.DiscountPercent / 100));
             }
 
             set
             {
                 this.discountPrice = value;
-                this.NotifyPropertyChanged(nameof(DiscountPrice));
+                this.NotifyPropertyChanged(nameof(this.DiscountPrice));
             }
         }
 
@@ -149,7 +149,7 @@ namespace EssentialUIKit.Models
             set
             {
                 this.discountPercent = value;
-                this.NotifyPropertyChanged(nameof(DiscountPercent));
+                this.NotifyPropertyChanged(nameof(this.DiscountPercent));
             }
         }
 
@@ -173,13 +173,14 @@ namespace EssentialUIKit.Models
             set
             {
                 this.reviews = value;
-                this.NotifyPropertyChanged(nameof(Reviews));
+                this.NotifyPropertyChanged(nameof(this.Reviews));
             }
         }
 
         /// <summary>
         /// Gets or sets the property that has been bound with label, which displays the seller.
         /// </summary>
+        [DataMember(Name = "sellerName")]
         public string SellerName { get; set; }
 
         /// <summary>
@@ -208,7 +209,7 @@ namespace EssentialUIKit.Models
             set
             {
                 this.isFavourite = value;
-                this.NotifyPropertyChanged(nameof(IsFavourite));
+                this.NotifyPropertyChanged(nameof(this.IsFavourite));
             }
         }
 
@@ -226,7 +227,7 @@ namespace EssentialUIKit.Models
             set
             {
                 this.totalQuantity = value;
-                this.NotifyPropertyChanged(nameof(TotalQuantity));
+                this.NotifyPropertyChanged(nameof(this.TotalQuantity));
             }
         }
 

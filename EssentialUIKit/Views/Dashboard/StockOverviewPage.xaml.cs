@@ -16,7 +16,7 @@ namespace EssentialUIKit.Views.Dashboard
         /// </summary>
         public StockOverviewPage()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }

@@ -12,8 +12,8 @@ namespace EssentialUIKit.Droid
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         protected override void OnCreate(Bundle savedInstanceState)
-        {   
-            Window.AddFlags(WindowManagerFlags.DrawsSystemBarBackgrounds);
+        {
+            this.Window.AddFlags(WindowManagerFlags.DrawsSystemBarBackgrounds);
 
             base.OnCreate(savedInstanceState);
 
@@ -24,7 +24,7 @@ namespace EssentialUIKit.Droid
             Syncfusion.XForms.Android.PopupLayout.SfPopupLayoutRenderer.Init();
 
             Syncfusion.XForms.Android.Core.Core.Init(this);
-            
+
             this.LoadApplication(new App());
 
             // Change the status bar color

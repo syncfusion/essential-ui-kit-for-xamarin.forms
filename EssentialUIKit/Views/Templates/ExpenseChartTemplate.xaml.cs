@@ -5,7 +5,7 @@ using Xamarin.Forms.Xaml;
 namespace EssentialUIKit.Views.Templates
 {
     /// <summary>
-    /// Navigation tile template.
+    /// My wallet page's chart template.
     /// </summary>
     [Preserve(AllMembers = true)]
     [XamlCompilation(XamlCompilationOptions.Compile)]
@@ -14,9 +14,9 @@ namespace EssentialUIKit.Views.Templates
         /// <summary>
         /// Initializes a new instance of the <see cref="ExpenseChartTemplate"/> class.
         /// </summary>
-		public ExpenseChartTemplate()
+        public ExpenseChartTemplate()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }

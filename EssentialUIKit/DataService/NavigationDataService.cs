@@ -8,7 +8,7 @@ namespace EssentialUIKit.DataService
     {
         #region fields
 
-        private static NavigationDataService instance;
+        private static NavigationDataService navigationDataService;
 
         private NavigationViewModel navigationViewModel;
 
@@ -19,7 +19,7 @@ namespace EssentialUIKit.DataService
         /// <summary>
         /// Gets an instance of the <see cref="NavigationDataService"/>.
         /// </summary>
-        public static NavigationDataService Instance => instance ?? (instance = new NavigationDataService());
+        public static NavigationDataService Instance => navigationDataService ?? (navigationDataService = new NavigationDataService());
 
         /// <summary>
         /// Gets or sets the value of navigation page view model.
@@ -44,15 +44,15 @@ namespace EssentialUIKit.DataService
 
             var assembly = typeof(App).GetTypeInfo().Assembly;
 
-            T obj;
+            T data;
 
             using (var stream = assembly.GetManifestResourceStream(file))
             {
                 var serializer = new DataContractJsonSerializer(typeof(T));
-                obj = (T)serializer.ReadObject(stream);
+                data = (T)serializer.ReadObject(stream);
             }
 
-            return obj;
+            return data;
         }
 
         #endregion

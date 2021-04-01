@@ -30,6 +30,7 @@ namespace EssentialUIKit.Controls
                 return taskInfo.SongName.ToUpperInvariant().Contains(this.SearchText.ToUpperInvariant())
                        || taskInfo.Composer.ToUpperInvariant().Contains(this.SearchText.ToUpperInvariant());
             }
+
             return false;
         }
         #endregion

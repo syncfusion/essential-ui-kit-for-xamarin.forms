@@ -1,0 +1,54 @@
+{
+  "productDescription": "Situated in the heart of Smith-town, Acme Products, Inc., has a long-standing tradition of selling the best products while providing the fastest service on the market. Since 1952, we have helped our customers identify their needs, understand their wants, and capture their dreams.",
+  "productIcon": "Icon.png",
+  "productVersion": "1.0",
+  "bannerImage": "Mask.png",
+
+  "employeeDetails": [
+    {
+      "employeeName": "Alice",
+      "image": "ProfileImage15.png",
+      "designation": "Project Manager"
+    },
+    {
+      "employeeName": "Jessica Park",
+      "image": "ProfileImage10.png",
+      "designation": "Senior Manager"
+    },
+    {
+      "employeeName": "Lisa",
+      "image": "ProfileImage11.png",
+      "designation": "Senior Developer"
+    },
+    {
+      "employeeName": "Rebecca",
+      "image": "ProfileImage12.png",
+      "designation": "Senior Designer"
+    },
+    {
+      "employeeName": "Alexander",
+      "image": "ProfileImage3.png",
+      "designation": "Senior Manager"
+    },
+    {
+      "employeeName": "Anthony",
+      "image": "ProfileImage1.png",
+      "designation": "Senior Developer"
+    },
+    {
+      "employeeName": "Danielle",
+      "image": "ProfileImage7.png",
+      "designation": "Senior Developer"
+    },
+    {
+      "employeeName": "Kyle Greene",
+      "image": "ProfileImage6.png",
+      "designation": "Senior Developer"
+    },
+    {
+      "employeeName": "Navya Sharma",
+      "image": "ProfileImage13.png",
+      "designation": "Senior Developer"
+    }
+  ]
+}

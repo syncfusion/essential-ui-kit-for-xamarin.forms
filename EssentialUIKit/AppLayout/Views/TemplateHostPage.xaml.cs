@@ -25,13 +25,13 @@ namespace EssentialUIKit.AppLayout.Views
         /// </summary>
         public TemplateHostPage(Template selectedTemplate)
         {
-            InitializeComponent();
-            TemplateHostView.HeightRequest = HostViewContainer.HeightRequest = Application.Current.MainPage.Height - 55;
-            TemplateHostView.WidthRequest = HostViewContainer.WidthRequest = Application.Current.MainPage.Width;
+            this.InitializeComponent();
+            this.TemplateHostView.HeightRequest = this.HostViewContainer.HeightRequest = Application.Current.MainPage.Height - 55;
+            this.TemplateHostView.WidthRequest = this.HostViewContainer.WidthRequest = Application.Current.MainPage.Width;
 
             if (selectedTemplate != null)
             {
-                Title.Text = selectedTemplate.Name;
+                this.TitleView.Text = selectedTemplate.Name;
                 this.LoadPage(selectedTemplate.PageName);
             }
         }
@@ -55,16 +55,16 @@ namespace EssentialUIKit.AppLayout.Views
 
                     if (width < height)
                     {
-                        iOSSafeArea.Height = safeAreaHeight;
+                        this.iOSSafeArea.Height = safeAreaHeight;
                     }
                     else
                     {
-                        iOSSafeArea.Height = 0;
+                        this.iOSSafeArea.Height = 0;
                     }
 
                     if (Device.RuntimePlatform == "iOS")
                     {
-                        (TemplateHostView.Template as NavigationPage).CurrentPage.Layout(new Rectangle(0, 0, width, height - safeAreaHeight));
+                        (this.TemplateHostView.Template as NavigationPage).CurrentPage.Layout(new Rectangle(0, 0, width, height - safeAreaHeight));
                     }
                 }
             }
@@ -76,12 +76,12 @@ namespace EssentialUIKit.AppLayout.Views
 
             var page = (Page)Activator.CreateInstance(assembly.GetType($"EssentialUIKit.{pageURL}"));
 
-            TemplateHostView.Template = new NavigationPage(page);
+            this.TemplateHostView.Template = new NavigationPage(page);
         }
 
         private void BackButtonPressed(object sender, EventArgs e)
         {
-            Navigation.PopAsync(true);
+            this.Navigation.PopAsync(true);
         }
 
         #endregion

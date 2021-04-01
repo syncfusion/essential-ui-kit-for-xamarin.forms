@@ -8,7 +8,7 @@ namespace EssentialUIKit.DataService
     {
         #region Fields
 
-        private static TrainStatusDataService instance;
+        private static TrainStatusDataService trainStatusDataService;
 
         private TrainStatusPageViewModel trainStatusPageViewModel;
 
@@ -19,13 +19,13 @@ namespace EssentialUIKit.DataService
         /// <summary>
         /// Gets an instance of the <see cref="TrainStatusDataService"/>.
         /// </summary>
-        public static TrainStatusDataService Instance => instance ?? (instance = new TrainStatusDataService());
+        public static TrainStatusDataService Instance => trainStatusDataService ?? (trainStatusDataService = new TrainStatusDataService());
 
         /// <summary>
         /// Gets or sets the value of train status page view model.
         /// </summary>
         public TrainStatusPageViewModel TrainStatusPageViewModel =>
-            (this.trainStatusPageViewModel = PopulateData<TrainStatusPageViewModel>("trainstatus.json"));
+            this.trainStatusPageViewModel = PopulateData<TrainStatusPageViewModel>("trainstatus.json");
 
         #endregion
 
@@ -43,15 +43,15 @@ namespace EssentialUIKit.DataService
 
             var assembly = typeof(App).GetTypeInfo().Assembly;
 
-            T obj;
+            T data;
 
             using (var stream = assembly.GetManifestResourceStream(file))
             {
                 var serializer = new DataContractJsonSerializer(typeof(T));
-                obj = (T)serializer.ReadObject(stream);
+                data = (T)serializer.ReadObject(stream);
             }
 
-            return obj;
+            return data;
         }
 
         #endregion
