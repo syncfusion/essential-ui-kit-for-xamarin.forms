@@ -10,7 +10,7 @@ namespace EssentialUIKit.Views.History
     {
         public MyOrdersView()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
     }
 }

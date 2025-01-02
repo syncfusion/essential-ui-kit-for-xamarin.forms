@@ -1,9 +1,6 @@
-﻿using System.Collections.ObjectModel;
-using System.Reflection;
-using System.Runtime.Serialization;
-using System.Runtime.Serialization.Json;
+﻿using Xamarin.Forms;
 using EssentialUIKit.Models.Transaction;
-using Xamarin.Forms;
+using System.Collections.ObjectModel;
 using Xamarin.Forms.Internals;
 
 namespace EssentialUIKit.ViewModels.Transaction
@@ -12,16 +9,11 @@ namespace EssentialUIKit.ViewModels.Transaction
     /// ViewModel for my cards page.
     /// </summary>
     [Preserve(AllMembers = true)]
-    [DataContract]
     public class MyCardsViewModel : BaseViewModel
     {
-        #region fields
+        #region Properties
 
-        private static MyCardsViewModel myCardsViewModel;
-
-        private Command addCardCommand;
-
-        private Command menuCommand;
+        public ObservableCollection<Card> CardDetails { get; set; }
 
         #endregion
 
@@ -29,45 +21,46 @@ namespace EssentialUIKit.ViewModels.Transaction
 
         public MyCardsViewModel()
         {
-        }
+            this.BackButtonCommand = new Command(this.BackButtonClicked);
+            this.MoreButtonCommand = new Command(this.MoreButtonClicked);
+            this.AddCardCommand = new Command(this.AddCardButtonClicked);
 
-        #endregion
-
-        #region Properties
-
-        /// <summary>
-        /// Gets or sets the value of my cards page view model.
-        /// </summary>
-        public static MyCardsViewModel BindingContext =>
-            myCardsViewModel = PopulateData<MyCardsViewModel>("transaction.json");
-
-        [DataMember(Name = "cardDetails")]
-        public ObservableCollection<Card> CardDetails { get; set; }
-
-        #endregion
-
-        #region Command
-
-        /// <summary>
-        /// Gets the command is executed when the more button is clicked.
-        /// </summary>
-        public Command MenuCommand
-        {
-            get
+            this.CardDetails = new ObservableCollection<Card>()
             {
-                return this.menuCommand ?? (this.menuCommand = new Command(this.MenuButtonClicked));
-            }
-        }
-
-        /// <summary>
-        /// Gets the command is executed when the add card button is clicked.
-        /// </summary>
-        public Command AddCardCommand
-        {
-            get
-            {
-                return this.addCardCommand ?? (this.addCardCommand = new Command(this.AddCardButtonClicked));
-            }
+                new Card
+                {
+                  Type = "CREDIT CARD",
+                  Number = "XXXX  XXXX  XXXX  5838",
+                  Name = "Peter Wilson",
+                  Expiry = "08/20",
+                  Cvv = 846,
+                  BackgroundGradientStart = "#d54381",
+                  BackgroundGradientEnd = "#7644ad",
+                  CardTypeIcon = "Card.png"
+                },
+                new Card
+                {
+                  Type = "DEBIT CARD",
+                  Number = "XXXX  XXXX  XXXX  0743",
+                  Name = "Peter Wilson",
+                  Expiry = "03/21",
+                  Cvv = 543,
+                  BackgroundGradientStart = "#af4aff",
+                  BackgroundGradientEnd = "#3e5aff",
+                  CardTypeIcon = "Visa.png"
+                },
+                 new Card
+                {
+                  Type = "CREDIT CARD",
+                  Number = "XXXX  XXXX  XXXX  0629",
+                  Name = "Peter Wilson",
+                  Expiry = "18/22",
+                  Cvv = 346,
+                  BackgroundGradientStart = "#d54381",
+                  BackgroundGradientEnd = "#7644ad",
+                  CardTypeIcon = "Card.png"
+                }
+            };
         }
 
         #endregion
@@ -75,33 +68,19 @@ namespace EssentialUIKit.ViewModels.Transaction
         #region Methods
 
         /// <summary>
-        /// Populates the data for view model from json file.
-        /// </summary>
-        /// <typeparam name="T">Type of view model.</typeparam>
-        /// <param name="fileName">Json file to fetch data.</param>
-        /// <returns>Returns the view model object.</returns>
-        private static T PopulateData<T>(string fileName)
-        {
-            var file = "EssentialUIKit.Data." + fileName;
-
-            var assembly = typeof(App).GetTypeInfo().Assembly;
-
-            T data;
-
-            using (var stream = assembly.GetManifestResourceStream(file))
-            {
-                var serializer = new DataContractJsonSerializer(typeof(T));
-                data = (T)serializer.ReadObject(stream);
-            }
-
-            return data;
-        }
-
-        /// <summary>
         /// Invoked when the more button clicked
         /// </summary>
         /// <param name="obj">The object</param>
-        private void MenuButtonClicked(object obj)
+        private void MoreButtonClicked(object obj)
+        {
+            // Do something
+        }
+
+        /// <summary>
+        /// Invoked when the back button clicked
+        /// </summary>
+        /// <param name="obj">The object</param>
+        private void BackButtonClicked(object obj)
         {
             // Do something
         }
@@ -114,6 +93,25 @@ namespace EssentialUIKit.ViewModels.Transaction
         {
             // Do something
         }
+
+        #endregion
+
+        #region Command
+
+            /// <summary>
+            /// Gets or sets the command is executed when the back button is clicked.
+            /// </summary>
+        public Command BackButtonCommand { get; set; }
+
+        /// <summary>
+        /// Gets or sets the command is executed when the more button is clicked.
+        /// </summary>
+        public Command MoreButtonCommand { get; set; }
+
+        /// <summary>
+        /// Gets or sets the command is executed when the add card button is clicked.
+        /// </summary>
+        public Command AddCardCommand { get; set; }
 
         #endregion
     }

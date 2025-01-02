@@ -10,13 +10,13 @@ namespace EssentialUIKit.Views.Templates
     [Preserve(AllMembers = true)]
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class OrderHistoryTemplate : Grid
-    {
+	{
         /// <summary>
         /// Initializes a new instance of the <see cref="OrderHistoryTemplate"/> class.
         /// </summary>
-        public OrderHistoryTemplate()
-        {
-            this.InitializeComponent();
-        }
-    }
+		public OrderHistoryTemplate ()
+		{
+			InitializeComponent ();
+		}
+	}
 }

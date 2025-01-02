@@ -17,7 +17,7 @@ namespace EssentialUIKit.Views.History
         /// </summary>
         public MyOrdersPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
             this.BindingContext = MyOrdersDataService.Instance.MyOrdersPageViewModel;
         }
     }

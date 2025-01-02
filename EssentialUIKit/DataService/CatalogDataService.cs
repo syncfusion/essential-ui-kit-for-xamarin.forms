@@ -13,7 +13,7 @@ namespace EssentialUIKit.DataService
     {
         #region fields
 
-        private static CatalogDataService catalogDataService;
+        private static CatalogDataService instance;
 
         private CatalogPageViewModel catalogPageViewModel;
 
@@ -35,7 +35,7 @@ namespace EssentialUIKit.DataService
         /// <summary>
         /// Gets an instance of the <see cref="CatalogDataService"/>.
         /// </summary>
-        public static CatalogDataService Instance => catalogDataService ?? (catalogDataService = new CatalogDataService());
+        public static CatalogDataService Instance => instance ?? (instance = new CatalogDataService());
 
         /// <summary>
         /// Gets or sets the value of catalog page view model.
@@ -43,7 +43,7 @@ namespace EssentialUIKit.DataService
         public CatalogPageViewModel CatalogPageViewModel =>
             this.catalogPageViewModel ??
             (this.catalogPageViewModel = PopulateData<CatalogPageViewModel>("ecommerce.json"));
-
+                
         #endregion
 
         #region Methods
@@ -60,15 +60,15 @@ namespace EssentialUIKit.DataService
 
             var assembly = typeof(App).GetTypeInfo().Assembly;
 
-            T data;
+            T obj;
 
             using (var stream = assembly.GetManifestResourceStream(file))
             {
                 var serializer = new DataContractJsonSerializer(typeof(T));
-                data = (T)serializer.ReadObject(stream);
+                obj = (T)serializer.ReadObject(stream);
             }
 
-            return data;
+            return obj;
         }
 
         #endregion

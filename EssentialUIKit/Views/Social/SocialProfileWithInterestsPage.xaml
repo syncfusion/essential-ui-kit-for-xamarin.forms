@@ -5,67 +5,71 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
     xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
-    xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
+    xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Social"    
     xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
-    xmlns:listviewBahavior="clr-namespace:EssentialUIKit.Behaviors"
     xmlns:local="clr-namespace:EssentialUIKit.Views.Social.Templates"
-    xmlns:syncEffectsView="clr-namespace:Syncfusion.XForms.EffectsView;assembly=Syncfusion.Core.XForms"
-    xmlns:triggers="clr-namespace:EssentialUIKit.Triggers"
-    x:Name="socialProfileWithInterests"
+    xmlns:listviewBahavior="clr-namespace:EssentialUIKit.Behaviors"
+    xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
     NavigationPage.HasNavigationBar="False"
     Shell.NavBarIsVisible="False">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <!--Binding context for social profile with connections page-->
+    <ContentPage.BindingContext>
+        <viewModel:SocialProfileViewModel/>
+    </ContentPage.BindingContext>
 
     <ContentPage.Content>
         <ScrollView>
 
-            <StackLayout BackgroundColor="{DynamicResource Gray-Bg}" Spacing="0">
+            <StackLayout 
+                Spacing="0" 
+                BackgroundColor="{DynamicResource Gray-White}">
 
-                <Grid Margin="0" HorizontalOptions="FillAndExpand">
+                <Grid 
+                    Margin="0"
+                    HorizontalOptions="FillAndExpand">
                     <!--  Header image path  -->
                     <Image
                         x:Name="ProfileImage"
+                        HorizontalOptions="FillAndExpand"                    
+                        HeightRequest="100"
                         Aspect="AspectFill"
-                        BackgroundColor="{DynamicResource Gray-200}"
-                        HeightRequest="200"
-                        HorizontalOptions="FillAndExpand"
-                        Source="{Binding HeaderImagePath}" />
+                        Source="{Binding HeaderImagePath}"
+                        BackgroundColor="{DynamicResource Gray-200}"/>
 
-                    <!--  Settings button  -->
-                    <buttons:SfButton
+                    <!--  Edit button -->
+                    <buttons:SfButton                        
                         Margin="0,8,8,0"
                         Padding="2"
-                        Command="{Binding SettingsCommand}"
-                        HeightRequest="32"
+                        BackgroundColor="Transparent"
+                        Command="{Binding EditCommand}"
+                        CornerRadius="4"
+                        FontFamily="{StaticResource FontIcons}"
+                        FontSize="18"
                         HorizontalOptions="End"
-                        Style="{StaticResource IconButtonStyle}"
                         Text="{StaticResource Settings}"
                         TextColor="{DynamicResource Gray-White}"
                         VerticalOptions="Start"
-                        WidthRequest="32" />
-
-                    <!--  Back button command  -->
-                    <buttons:SfButton
-                        x:Name="backButton"
-                        Margin="8"
-                        Padding="2"
-                        Command="{Binding BackButtonCommand}"
                         HeightRequest="32"
-                        HorizontalOptions="Start"
-                        Style="{StaticResource IconButtonStyle}"
-                        Text="{StaticResource Back}"
-                        TextColor="{DynamicResource Gray-White}"
-                        VerticalOptions="Start"
                         WidthRequest="32" />
                 </Grid>
 
-                <border:SfBorder
-                    Margin="0,-10,0,0"
-                    BackgroundColor="{DynamicResource Gray-Bg}"
-                    BorderColor="Transparent"
-                    BorderWidth="0"
-                    CornerRadius="10,10,0,0"
-                    HeightRequest="13"
-                    HorizontalOptions="FillAndExpand" />
+                <border:SfBorder 
+                    HeightRequest="13" 
+                    Margin="0,-10,0,0" 
+                    CornerRadius="10,10,0,0" 
+                    HorizontalOptions="FillAndExpand" 
+                    BorderWidth="0" 
+                    BorderColor="Transparent" 
+                    BackgroundColor="{DynamicResource Gray-White}" />
 
                 <border:SfBorder
                     Margin="24,-55,0,16"
@@ -73,236 +77,234 @@
                     BorderColor="{DynamicResource Gray-White}"
                     BorderWidth="2"
                     CornerRadius="10"
-                    HasShadow="True"
                     HeightRequest="80"
+                    HasShadow="True"
                     HorizontalOptions="StartAndExpand"
                     WidthRequest="80">
                     <!--  Profile image  -->
                     <Image
                         x:Name="picture"
                         Aspect="AspectFill"
-                        BackgroundColor="{DynamicResource Gray-200}"
-                        HeightRequest="80"
+                        BackgroundColor="{DynamicResource Gray-200}"                        
+                        HeightRequest="80"                        
                         Source="{Binding ProfileImage}"
                         WidthRequest="80" />
                 </border:SfBorder>
 
-                <Grid
-                    Margin="16,0,0,24"
-                    ColumnDefinitions="Auto, Auto"
-                    ColumnSpacing="0"
-                    RowDefinitions="Auto, Auto"
-                    RowSpacing="0">
+                <Grid 
+                    Margin="16,0,0,24" 
+                    RowSpacing="0"                     
+                    ColumnSpacing="0">
+                    
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
 
                     <!--  Profile name  -->
                     <Label
                         Grid.Row="0"
                         Grid.Column="0"
                         Margin="0,0,0,2"
-                        FontSize="20"
+                        Text="{Binding ProfileName}"
                         HorizontalOptions="Start"
                         HorizontalTextAlignment="Start"
-                        Style="{StaticResource TitleLabelStyle}"
-                        Text="{Binding ProfileName}" />
+                        Style="{StaticResource HeaderLabelStyle}"/>
                     <StackLayout
                         Grid.Row="1"
                         Grid.Column="0"
-                        Margin="0"
-                        HorizontalOptions="StartAndExpand"
                         Orientation="Horizontal"
-                        Spacing="5">
+                        Spacing="5"
+                        HorizontalOptions="StartAndExpand"
+                        Margin="0">
 
-                        <!--  Designation label  -->
+                        <!--Designation label-->
+                        <Label 
+                            Text="{Binding Designation}"                            
+                            Style="{StaticResource ContentLabelStyle}" />
+
+                        <BoxView 
+                           Style="{StaticResource BoxViewStyle}" />
+
+                        <!--State and country label-->
                         <Label
-                            FontSize="12"
-                            Style="{StaticResource DescriptionLabelStyle}"
-                            Text="{Binding Designation}" />
-
-                        <BoxView HorizontalOptions="Center" Style="{StaticResource VerticalSeparatorStyle}" />
-
-                        <!--  State and country label  -->
-                        <Label FontSize="12" Style="{StaticResource DescriptionLabelStyle}">
+                            Style="{StaticResource ContentLabelStyle}">
                             <Label.FormattedText>
                                 <FormattedString>
-                                    <Span Text="{Binding State}" />
-                                    <Span Text=" " />
-                                    <Span Text="{Binding Country}" />
+                                    <Span Text="{Binding State}"/>
+                                    <Span Text=" "/>
+                                    <Span Text="{Binding Country}"/>
                                 </FormattedString>
                             </Label.FormattedText>
                         </Label>
                     </StackLayout>
-
-                    <!--  Follow button  -->
-                    <buttons:SfButton
+                    
+                    <!--Follow button-->
+                    <buttons:SfButton x:Name="follow"
+                        Command="{Binding FollowCommand}" CommandParameter="{x:Reference follow}"
                         Grid.RowSpan="2"
                         Grid.Column="1"
-                        Margin="24,0,0,0"
-                        CornerRadius="24"
-                        FontSize="14"
-                        Style="{StaticResource GradientButtonStyle}"
-                        Text="FOLLOW"
                         VerticalOptions="End"
-                        WidthRequest="120">
-                        <buttons:SfButton.Triggers>
-                            <EventTrigger Event="Clicked">
-                                <triggers:ButtonTextTriggerAction />
-                            </EventTrigger>
-                        </buttons:SfButton.Triggers>
-                    </buttons:SfButton>
-
+                        Margin="24,0,0,0"
+                        Style="{StaticResource SfGradientButtonStyle}"
+                        Text="FOLLOW" />
                 </Grid>
 
                 <Grid
-                    Margin="16,0,16,32"
-                    ColumnDefinitions="Auto, *, Auto, *, Auto"
+                    RowSpacing="0"
                     ColumnSpacing="0"
                     HorizontalOptions="FillAndExpand"
-                    RowDefinitions="Auto, Auto"
-                    RowSpacing="0">
+                    Margin="16,0,16,32" >
 
-                    <!--  post count label  -->
-                    <Label
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!--post count label-->
+                    <Label 
                         Grid.Row="0"
                         Grid.Column="0"
-                        Style="{StaticResource TitleLabelStyle}"
-                        Text="{Binding PostsCount}" />
+                        Text="{Binding PostsCount}"
+                        Style="{StaticResource FollowerCountLabelStyle}"/>
 
-                    <!--  Post title label  -->
+                    <!--Post title label-->
                     <Label
                         Grid.Row="1"
                         Grid.Column="0"
-                        FontSize="12"
-                        Style="{StaticResource DescriptionLabelStyle}"
-                        Text="Posts" />
+                        Text="Posts"
+                        Style="{StaticResource FollowerTitleLabelStyle}"/>
 
                     <BoxView
                         Grid.RowSpan="2"
                         Grid.Column="1"
-                        BackgroundColor="{DynamicResource Gray-400}"
                         HeightRequest="24"
-                        HorizontalOptions="Center"
-                        Style="{StaticResource VerticalSeparatorStyle}" />
+                        Style="{StaticResource BoxViewStyle}"/>
 
-                    <!--  Followers count label  -->
-                    <Label
+                    <!--Followers count label-->
+                    <Label 
                         Grid.Row="0"
                         Grid.Column="2"
-                        Style="{StaticResource TitleLabelStyle}"
-                        Text="{Binding FollowersCount}" />
+                        Text="{Binding FollowersCount}"
+                        Style="{StaticResource FollowerCountLabelStyle}"/>
 
-                    <!--  Followers title label  -->
+                    <!--Followers title label-->
                     <Label
                         Grid.Row="1"
                         Grid.Column="2"
-                        FontSize="12"
-                        Style="{StaticResource DescriptionLabelStyle}"
-                        Text="Followers" />
+                        Text="Followers"
+                        Style="{StaticResource FollowerTitleLabelStyle}"/>
 
                     <BoxView
                         Grid.RowSpan="2"
                         Grid.Column="3"
-                        BackgroundColor="{DynamicResource Gray-400}"
                         HeightRequest="24"
-                        HorizontalOptions="Center"
-                        Style="{StaticResource VerticalSeparatorStyle}" />
+                        Style="{StaticResource BoxViewStyle}"/>
 
-                    <!--  Following count label  -->
-                    <Label
+                    <!--Following count label-->
+                    <Label 
                         Grid.Row="0"
                         Grid.Column="4"
                         HorizontalOptions="Center"
-                        Style="{StaticResource TitleLabelStyle}"
-                        Text="{Binding FollowingCount}" />
+                        Text="{Binding FollowingCount}"
+                        Style="{StaticResource FollowerCountLabelStyle}"/>
 
-                    <!--  Following title label  -->
+                    <!--Following title label-->
                     <Label
                         Grid.Row="1"
                         Grid.Column="4"
-                        FontSize="12"
-                        Style="{StaticResource DescriptionLabelStyle}"
-                        Text="Following" />
+                        Text="Following"
+                        Style="{StaticResource FollowerTitleLabelStyle}"/>
 
                 </Grid>
 
-                <!--  Interest title label  -->
-                <Label
-                    Margin="16,0,0,0"
-                    FontSize="12"
+                <!--Interest title label-->
+                <Label                     
+                    Text="INTERESTS" 
+                    FontSize="12" 
+                    FontFamily="{StaticResource Montserrat-SemiBold}"
+                    LineHeight="{OnPlatform Default=-1, Android=1.5}"
+                    TextColor="{DynamicResource Gray-800}"
                     HorizontalOptions="Start"
                     HorizontalTextAlignment="Start"
-                    Style="{StaticResource TitleLabelStyle}"
-                    Text="INTERESTS"
-                    TextColor="{DynamicResource Gray-800}" />
+                    Margin="16,0,0,0" />
 
-                <listView:SfListView
-                    Margin="16,0,0,32"
+                <listView:SfListView                    
+                    Margin="0,0,0,32"
+                    HeightRequest="100"
+                    ItemSpacing="0"
                     Padding="0"
                     AutoFitMode="DynamicHeight"
                     ColumnSpacing="0"
-                    HeightRequest="100"
                     HorizontalOptions="FillAndExpand"
-                    IsScrollBarVisible="False"
-                    ItemSpacing="0"
                     ItemsSource="{Binding Interests}"
-                    Orientation="Horizontal"
                     RowSpacing="0"
-                    SelectionBackgroundColor="Transparent"
-                    TapCommand="{Binding ProfileSelectedCommand}">
+                    IsScrollBarVisible="False"
+                    Orientation="Horizontal"
+                    TapCommand="{Binding ProfileSelectedCommand}"
+                    SelectionBackgroundColor="Transparent">
 
                     <listView:SfListView.ItemTemplate>
-                        <DataTemplate>
-                            <local:ProfileTemplate ParentBindingContext="{Binding Path=BindingContext, Source={x:Reference socialProfileWithInterests}}" />
+                        <DataTemplate >
+                            <local:ProfileTemplate/>
                         </DataTemplate>
                     </listView:SfListView.ItemTemplate>
                 </listView:SfListView>
 
-                <!--  Photo title label  -->
+                <!--Photo title label-->
                 <Label
-                    Margin="16,0,0,16"
-                    FontSize="12"
-                    HorizontalOptions="Start"
-                    HorizontalTextAlignment="Start"
-                    Style="{StaticResource TitleLabelStyle}"
                     Text="PHOTOS"
-                    TextColor="{DynamicResource Gray-800}" />
+                    FontSize="12" 
+                    FontFamily="{StaticResource Montserrat-SemiBold}" 
+                    LineHeight="{OnPlatform Default=-1, Android=1.5}" 
+                    Margin="16,0,0,16" 
+                    HorizontalOptions="Start" 
+                    HorizontalTextAlignment="Start"                     
+                    TextColor="{DynamicResource Gray-800}"/>
 
-                <listView:SfListView
-                    x:Name="listView"
+                <listView:SfListView                    
+                    ItemsSource="{Binding Pictures}"
+                    ItemSize="90"
                     Margin="16,0,0,16"
-                    Padding="0,0,16,0"
+                    ItemSpacing="4" 
                     AutoFitMode="Height"
                     IsScrollBarVisible="False"
-                    ItemSize="90"
-                    ItemSpacing="4"
-                    ItemsSource="{Binding Pictures}"
-                    SelectionBackgroundColor="Transparent">
+                    Padding="0,0,16,0"
+                    SelectionBackgroundColor="Transparent"
+                    TapCommand="{Binding ImageTapCommand}">
 
                     <listView:SfListView.Behaviors>
-                        <listviewBahavior:SfListViewExtendHeightBehavior />
+                        <listviewBahavior:SfListViewExtendHeightBehavior/>
                     </listView:SfListView.Behaviors>
 
                     <listView:SfListView.ItemTemplate>
                         <DataTemplate>
-                            <syncEffectsView:SfEffectsView
-                                RippleColor="{DynamicResource Gray-300}"
-                                TouchDownEffects="Ripple"
-                                TouchUpCommand="{Binding Path=BindingContext.ImageTapCommand, Source={x:Reference socialProfileWithInterests}}"
-                                TouchUpCommandParameter="{Binding}">
-                                <Grid BackgroundColor="{DynamicResource Gray-F0}">
-                                    <!--  Photos  -->
-                                    <Image
-                                        Aspect="AspectFill"
-                                        BackgroundColor="{DynamicResource Gray-200}"
-                                        HeightRequest="90"
-                                        Source="{Binding ImagePath}"
-                                        WidthRequest="104" />
-                                </Grid>
-                            </syncEffectsView:SfEffectsView>
+                            <Grid BackgroundColor="{DynamicResource Gray-F0}">
+                                <!--Photos-->
+                                <Image 
+                                    Source="{Binding ImagePath}" 
+                                    Aspect="AspectFill"
+                                    HeightRequest="90"
+                                    BackgroundColor="{DynamicResource Gray-200}"
+                                    WidthRequest="104"/>
+                            </Grid>
                         </DataTemplate>
                     </listView:SfListView.ItemTemplate>
 
                     <listView:SfListView.LayoutManager>
-                        <listView:GridLayout SpanCount="{core:OnPlatformOrientationIntValue PhonePortrait=3, PhoneLandscape=5, TabletPortrait=6, TabletLandscape=10, Desktop=10}" />
+                        <listView:GridLayout SpanCount="{core:OnPlatformOrientationIntValue PhonePortrait=3,PhoneLandscape=5,TabletPortrait=6,TabletLandscape=10,Desktop=10}"/>
                     </listView:SfListView.LayoutManager>
 
                 </listView:SfListView>

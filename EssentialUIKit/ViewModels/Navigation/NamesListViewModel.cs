@@ -1,7 +1,7 @@
-﻿using System.Collections.ObjectModel;
-using System.Runtime.Serialization;
+﻿using Xamarin.Forms;
 using EssentialUIKit.Models.Navigation;
-using Xamarin.Forms;
+using System.Collections.ObjectModel;
+using System.Runtime.Serialization;
 using Xamarin.Forms.Internals;
 
 namespace EssentialUIKit.ViewModels.Navigation
@@ -26,6 +26,7 @@ namespace EssentialUIKit.ViewModels.Navigation
         /// </summary>
         public NamesListViewModel()
         {
+
         }
         #endregion
 

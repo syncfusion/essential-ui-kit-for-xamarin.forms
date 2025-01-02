@@ -6,17 +6,30 @@
     xmlns:behavior="clr-namespace:EssentialUIKit.Behaviors"
     xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
     xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms"
     xmlns:controls="clr-namespace:EssentialUIKit.Controls"
+    xmlns:converters="clr-namespace:EssentialUIKit.Converters"
     xmlns:expander="clr-namespace:Syncfusion.XForms.Expander;assembly=Syncfusion.Expander.XForms"
-    xmlns:template="clr-namespace:EssentialUIKit.Views.Templates"
     xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Dashboard"
     x:Name="stockOverviewPage"
-    BackgroundColor="{DynamicResource Gray-Bg}"
-    NavigationPage.HasNavigationBar="False">
+    NavigationPage.HasNavigationBar="False"
+    Style="{StaticResource ContentPageStyle}">
 
     <ContentPage.BindingContext>
         <viewModel:StockOverviewViewModel />
     </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <converters:IntToDateFormatConverter x:Key="labelFormatConverter" />
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
     <ContentPage.ControlTemplate>
         <ControlTemplate>
@@ -25,16 +38,16 @@
                 <!--  Title View  -->
                 <controls:TitleView
                     Title="Stock"
-                    FontFamily="Montserrat-Medium"
+                    FontFamily="{StaticResource Montserrat-Medium}"
                     FontSize="16">
                     <controls:TitleView.LeadingView>
 
                         <buttons:SfButton
-                            Command="{Binding Path=BindingContext.MenuCommand, Source={x:Reference stockOverviewPage}}"
-                            FontSize="22"
+                            Command="{TemplateBinding BindingContext.menuCommand}"
+                            CornerRadius="4"
                             HorizontalOptions="Start"
                             Style="{StaticResource IconButtonStyle}"
-                            Text="{StaticResource BurgerMenu}" />
+                            Text="{StaticResource Menu}" />
 
                     </controls:TitleView.LeadingView>
 
@@ -42,7 +55,7 @@
 
                         <border:SfBorder
                             BackgroundColor="{DynamicResource Gray-200}"
-                            BorderColor="{DynamicResource Gray-Bg}"
+                            BorderColor="{DynamicResource Gray-White}"
                             Style="{StaticResource ProfileBorderStyle}">
                             <Image HeightRequest="40" WidthRequest="40">
                                 <Image.Source>
@@ -51,9 +64,6 @@
                                         CachingEnabled="true"
                                         Uri="{Binding Path=BindingContext.ProfileImage, Source={x:Reference stockOverviewPage}}" />
                                 </Image.Source>
-                                <Image.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding ProfileSelectedCommand}" CommandParameter="{Binding}" />
-                                </Image.GestureRecognizers>
                             </Image>
                         </border:SfBorder>
 
@@ -61,10 +71,6 @@
                 </controls:TitleView>
 
                 <ContentPresenter />
-
-                <StackLayout.BindingContext>
-                    <viewModel:StockOverviewViewModel />
-                </StackLayout.BindingContext>
 
             </StackLayout>
         </ControlTemplate>
@@ -80,7 +86,7 @@
                 VerticalOptions="FillAndExpand">
 
                 <Label
-                    FontFamily="Montserrat-Bold"
+                    FontFamily="{StaticResource Montserrat-Bold}"
                     FontSize="20"
                     LineHeight="1.25"
                     Text="18 September"
@@ -95,14 +101,11 @@
                         <DataTemplate>
 
                             <controls:CustomShadowFrame
-                                Margin="4"
+                                Margin="0"
                                 Padding="0"
-                                BackgroundColor="{DynamicResource GrayShadowColor}"
-                                BorderColor="{DynamicResource GrayShadowColor}"
+                                BorderColor="{DynamicResource Gray-200}"
                                 BorderWidth="2"
-                                CornerRadius="4"
-                                HasShadow="True"
-                                Radius="4">
+                                HasShadow="True">
 
                                 <expander:SfExpander
                                     x:Name="expander"
@@ -110,17 +113,18 @@
                                     AnimationEasing="Linear"
                                     HeaderBackgroundColor="Transparent"
                                     HeaderIconPosition="None"
-                                    IsExpanded="{Binding IsSelected}">
-
+                                    IsExpanded="{Binding IsExpandable}">
                                     <expander:SfExpander.Header>
-                                        <Grid
-                                            Margin="2"
-                                            Padding="16"
-                                            RowDefinitions="Auto, Auto">
+                                        <Grid Padding="16" Margin="2">
+
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
 
                                             <Label
                                                 x:Name="categoryLabel"
-                                                FontFamily="Montserrat-Bold"
+                                                FontFamily="{StaticResource Montserrat-Bold}"
                                                 FontSize="14"
                                                 HorizontalOptions="Start"
                                                 HorizontalTextAlignment="Center"
@@ -131,7 +135,7 @@
 
                                             <Label
                                                 Grid.Column="1"
-                                                FontFamily="Montserrat-SemiBold"
+                                                FontFamily="{StaticResource Montserrat-SemiBold}"
                                                 FontSize="16"
                                                 HorizontalOptions="EndAndExpand"
                                                 LineHeight="1.25"
@@ -146,7 +150,7 @@
 
                                             <Label
                                                 Grid.Row="1"
-                                                FontFamily="Montserrat-Medium"
+                                                FontFamily="{StaticResource Montserrat-Medium}"
                                                 FontSize="12"
                                                 HorizontalOptions="Start"
                                                 HorizontalTextAlignment="Center"
@@ -158,7 +162,7 @@
                                             <Label
                                                 Grid.Row="1"
                                                 Grid.Column="1"
-                                                FontFamily="Montserrat-SemiBold"
+                                                FontFamily="{StaticResource Montserrat-SemiBold}"
                                                 FontSize="14"
                                                 HorizontalOptions="EndAndExpand"
                                                 LineHeight="1.25"
@@ -168,58 +172,133 @@
                                     </expander:SfExpander.Header>
 
                                     <expander:SfExpander.Content>
-                                        <StackLayout BackgroundColor="{StaticResource GrayShadowColor}" Spacing="8">
+                                        <StackLayout BackgroundColor="{StaticResource Gray-White}" Spacing="8">
 
                                             <BoxView HeightRequest="1" Color="{DynamicResource Gray-200}" />
 
                                             <!--  Size variant buttons  -->
                                             <buttons:SfSegmentedControl
                                                 x:Name="SegmentControl"
-                                                FontFamily="Montserrat-SemiBold"
-                                                FontSize="14"
                                                 ItemsSource="{Binding DataVariants}"
-                                                SegmentBackgroundColor="{DynamicResource GrayShadowColor}"
-                                                SegmentBorderColor="{DynamicResource GrayShadowColor}"
-                                                SegmentCornerRadius="16"
-                                                SegmentHeight="32"
-                                                SegmentPadding="16"
-                                                SegmentWidth="32"
-                                                SelectedIndex="1"
-                                                Style="{StaticResource SegmentedControlStyle}"
+                                                SelectedIndex="2"
+                                                Style="{StaticResource SfSegmentedControlStyle}"
                                                 VerticalOptions="FillAndExpand">
-                                                <buttons:SfSegmentedControl.SelectionIndicatorSettings>
-                                                    <buttons:SelectionIndicatorSettings
-                                                        CornerRadius="16"
-                                                        StrokeThickness="0"
-                                                        Color="{DynamicResource PrimaryColor}" />
-                                                </buttons:SfSegmentedControl.SelectionIndicatorSettings>
                                                 <buttons:SfSegmentedControl.Behaviors>
-                                                    <behavior:SegmentedControlSelectionBehavior
-                                                        Command="{Binding BindingContext.DataVariantCommand, Source={x:Reference stockOverviewPage}}"
-                                                        CommandParameter="{Binding .}"
-                                                        ParentBindingContext="{Binding Path=BindingContext, Source={x:Reference stockOverviewPage}}" />
+                                                    <behavior:SegmentedControlSelectionBehavior Command="{Binding BindingContext.DataVariantCommand, Source={x:Reference stockOverviewPage}}" CommandParameter="{Binding .}"  ParentBindingContext="{Binding Path=BindingContext, Source={x:Reference stockOverviewPage}}"  />
                                                 </buttons:SfSegmentedControl.Behaviors>
                                             </buttons:SfSegmentedControl>
 
                                             <BoxView HeightRequest="1" Color="{DynamicResource Gray-200}" />
 
-                                            <template:StockOverviewChartTemplate />
+                                            <chart:SfChart
+                                                Margin="8"
+                                                HeightRequest="245"
+                                                HorizontalOptions="FillAndExpand"
+                                                VerticalOptions="FillAndExpand">
+                                                <chart:SfChart.PrimaryAxis>
+                                                    <chart:DateTimeAxis>
+                                                        <chart:DateTimeAxis.LabelStyle>
+                                                            <chart:ChartAxisLabelStyle
+                                                                Margin="{OnPlatform UWP=0,
+                                                                                    Default='4,-10,0,0'}"
+                                                                FontSize="12"
+                                                                LabelAlignment="End"
+                                                                LabelFormat="{Binding Source={x:Reference SegmentControl}, Path=SelectedIndex, Converter={StaticResource labelFormatConverter}}"
+                                                                TextColor="{DynamicResource Gray-700}" />
+                                                        </chart:DateTimeAxis.LabelStyle>
+
+                                                        <chart:DateTimeAxis.MajorTickStyle>
+                                                            <chart:ChartAxisTickStyle
+                                                                StrokeColor="{DynamicResource Gray-200}"
+                                                                StrokeWidth="1"
+                                                                TickSize="26" />
+                                                        </chart:DateTimeAxis.MajorTickStyle>
+
+                                                        <chart:DateTimeAxis.AxisLineStyle>
+                                                            <chart:ChartLineStyle StrokeColor="{DynamicResource Gray-300}" StrokeWidth="1" />
+                                                        </chart:DateTimeAxis.AxisLineStyle>
+
+                                                        <chart:DateTimeAxis.MajorGridLineStyle>
+                                                            <chart:ChartLineStyle StrokeColor="{DynamicResource Gray-200}" StrokeWidth="1" />
+                                                        </chart:DateTimeAxis.MajorGridLineStyle>
+                                                    </chart:DateTimeAxis>
+                                                </chart:SfChart.PrimaryAxis>
+
+                                                <chart:SfChart.SecondaryAxis>
+                                                    <chart:NumericalAxis
+                                                        EdgeLabelsDrawingMode="Hide"
+                                                        Interval="600"
+                                                        Minimum="4000"
+                                                        OpposedPosition="True">
+                                                        <chart:NumericalAxis.LabelStyle>
+                                                            <chart:ChartAxisLabelStyle
+                                                                Margin="{OnPlatform Default='-38,8',
+                                                                                    UWP=0}"
+                                                                FontSize="12"
+                                                                LabelAlignment="End"
+                                                                TextColor="{DynamicResource Gray-700}" />
+                                                        </chart:NumericalAxis.LabelStyle>
+
+                                                        <chart:NumericalAxis.MajorTickStyle>
+                                                            <chart:ChartAxisTickStyle
+                                                                StrokeColor="{DynamicResource Gray-200}"
+                                                                StrokeWidth="1"
+                                                                TickSize="41" />
+                                                        </chart:NumericalAxis.MajorTickStyle>
+
+                                                        <chart:NumericalAxis.AxisLineStyle>
+                                                            <chart:ChartLineStyle StrokeColor="{DynamicResource Gray-200}" StrokeWidth="1" />
+                                                        </chart:NumericalAxis.AxisLineStyle>
+
+                                                        <chart:NumericalAxis.MajorGridLineStyle>
+                                                            <chart:ChartLineStyle StrokeColor="{DynamicResource Gray-200}" StrokeWidth="1" />
+                                                        </chart:NumericalAxis.MajorGridLineStyle>
+                                                    </chart:NumericalAxis>
+                                                </chart:SfChart.SecondaryAxis>
+
+                                                <chart:SfChart.Series>
+                                                    <chart:AreaSeries
+                                                        ItemsSource="{Binding ChartData, Mode=TwoWay}"
+                                                        StrokeColor="#4bd963"
+                                                        StrokeWidth="2"
+                                                        XBindingPath="XValue"
+                                                        YBindingPath="YValue" />
+                                                </chart:SfChart.Series>
+
+                                                <chart:SfChart.ColorModel>
+                                                    <chart:ChartColorModel Palette="Custom">
+                                                        <chart:ChartColorModel.CustomGradientColors>
+                                                            <chart:ChartGradientColor StartPoint="0.5,1" EndPoint="0.5,0">
+                                                                <chart:ChartGradientColor.GradientStops>
+                                                                    <chart:ChartGradientStop Offset="0" Color="#104bd963" />
+                                                                    <chart:ChartGradientStop Offset="1" Color="#BB4bd963" />
+                                                                </chart:ChartGradientColor.GradientStops>
+                                                            </chart:ChartGradientColor>
+                                                        </chart:ChartColorModel.CustomGradientColors>
+                                                    </chart:ChartColorModel>
+                                                </chart:SfChart.ColorModel>
+
+                                            </chart:SfChart>
 
                                         </StackLayout>
                                     </expander:SfExpander.Content>
-
                                     <expander:SfExpander.Behaviors>
                                         <behavior:ExpanderCommandBehavior
-                                            ChildElement="{Binding Source={x:Reference stockOverviewPage}}"
+                                            ChildElement="{Binding Source={x:Reference stackLayout}}"
                                             Command="{Binding BindingContext.SelectionCommand, Source={x:Reference stockOverviewPage}}"
                                             CommandParameter="{Binding .}" />
                                     </expander:SfExpander.Behaviors>
+
                                 </expander:SfExpander>
+
                             </controls:CustomShadowFrame>
+
                         </DataTemplate>
                     </BindableLayout.ItemTemplate>
                 </StackLayout>
+
             </StackLayout>
+
         </ScrollView>
     </ContentPage.Content>
 </ContentPage>

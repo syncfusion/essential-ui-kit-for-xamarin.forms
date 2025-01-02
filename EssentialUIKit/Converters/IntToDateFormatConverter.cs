@@ -28,13 +28,13 @@ namespace EssentialUIKit.Converters
                     {
                         return "dd-MMM";
                     }
-
                 case 2:
                 case 3:
                 case 4:
                     {
                         return "MMM";
                     }
+
             }
 
             return "MMM";
@@ -52,5 +52,6 @@ namespace EssentialUIKit.Converters
         {
             return true;
         }
+
     }
 }

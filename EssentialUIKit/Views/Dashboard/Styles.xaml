@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ResourceDictionary
+    x:Class="EssentialUIKit.Views.Dashboard.Styles"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:converter="clr-namespace:EssentialUIKit.Converters"
+    xmlns:graphics="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms">
+
+    <x:String x:Key="Menu">&#xe72e;</x:String>
+    <x:String x:Key="Bell">&#xe700;</x:String>
+    
+    <x:String x:Key="DropDownButtonIcon">&#xe70b;</x:String>
+
+    <Color x:Key="Transparent">Transparent</Color>
+    <Color x:Key="TappedBackgroundColor">#eaeaea</Color>
+    <Color x:Key="Green">#7ed321</Color>
+    <Color x:Key="GradientStart">#373668</Color>
+    <Color x:Key="GradientEnd">#24243b</Color>
+    <Color x:Key="primary-lighter">#edcacd</Color>
+    <Color x:Key="PrimaryColor">#f54e5e</Color>
+    <Color x:Key="Liliac">#d483fc</Color>
+    <Color x:Key="Purpleish-Blue">#5d4cf7</Color>
+    <Color x:Key="Link">#567cd7</Color>
+    <Color x:Key="Bright-Cyan">#3cdeff</Color>
+    <Color x:Key="Lemon-Lime">#bdff27</Color>
+
+    <converter:DynamicResourceToColorConverter x:Key="DynamicResourceToColorConverter" />
+
+    <Style x:Key="ContentPageStyle" TargetType="ContentPage">
+        <Setter Property="BackgroundColor" Value="{OnIdiom Default={DynamicResource Gray-White}, Desktop={DynamicResource Gray-100}, Converter={StaticResource DynamicResourceToColorConverter}}" />
+    </Style>
+
+    <!--  Common style for SfSegmentedControl  -->
+    <Style x:Key="SfSegmentedControlStyle" TargetType="buttons:SfSegmentedControl">
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="FontFamily" Value="Montserrat-Bold" />
+        <Setter Property="FontColor" Value="{DynamicResource Gray-900}" />
+        <Setter Property="SelectionTextColor" Value="{DynamicResource Gray-White}" />
+        <Setter Property="BackgroundColor" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="SegmentBackgroundColor" Value="{DynamicResource Gray-White}" />
+        <Setter Property="SegmentBorderColor" Value="{DynamicResource Gray-White}" />
+        <Setter Property="SegmentBorderThickness" Value="0" />
+        <Setter Property="SegmentCornerRadius" Value="16" />
+        <Setter Property="SegmentHeight" Value="32" />
+        <Setter Property="SegmentWidth" Value="32" />
+        <Setter Property="SegmentPadding" Value="16" />
+        <Setter Property="SelectionAnimationDuration" Value="0" />
+        <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+        <Setter Property="SelectionIndicatorSettings">
+            <Setter.Value>
+                <buttons:SelectionIndicatorSettings
+                    CornerRadius="16"
+                    StrokeThickness="0"
+                    Color="{DynamicResource PrimaryColor}" />
+            </Setter.Value>
+        </Setter>
+
+    </Style>
+
+    <!--  Common style for profile border style  -->
+    <Style x:Key="ProfileBorderStyle" TargetType="border:SfBorder">
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="BorderWidth" Value="1" />
+        <Setter Property="BorderColor" Value="{DynamicResource Gray-White}" />
+        <Setter Property="CornerRadius" Value="20" />
+    </Style>
+
+    <!--  Common style for icon buttons  -->
+    <Style x:Key="IconButtonStyle" TargetType="buttons:SfButton">
+        <Setter Property="TextColor" Value="{DynamicResource Gray-600}" />
+        <Setter Property="BackgroundColor" Value="{StaticResource Transparent}" />
+        <Setter Property="FontFamily" Value="{StaticResource FontIcons}" />
+        <Setter Property="FontSize" Value="22" />
+        <Setter Property="HorizontalTextAlignment" Value="Center" />
+        <Setter Property="VerticalTextAlignment" Value="Center" />
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="HeightRequest" Value="40" />
+        <Setter Property="WidthRequest" Value="40" />
+    </Style>
+
+    <Style x:Key="LabelStyle" TargetType="Label">
+        <Setter Property="FontFamily" Value="{StaticResource Montserrat-SemiBold}" />
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="TextColor" Value="{DynamicResource Gray-900}"/>
+        <Setter Property="LineHeight" Value="{OnPlatform Default=1.25, iOS=-1}"/>
+    </Style>
+
+    <Style x:Key="SfGradientStyle" TargetType="graphics:SfGradientView">
+        <Setter Property="Opacity" Value="1.0" />
+        <Setter Property="VerticalOptions" Value="FillAndExpand" />
+        <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+        <Setter Property="BackgroundBrush">
+            <Setter.Value>
+                <graphics:SfLinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <graphics:SfLinearGradientBrush.GradientStops>
+                        <graphics:SfGradientStop Offset="1.0" Color="{StaticResource GradientEnd}" />
+                        <graphics:SfGradientStop Offset="0.0" Color="{StaticResource GradientStart}" />
+                    </graphics:SfLinearGradientBrush.GradientStops>
+                </graphics:SfLinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="IconButton" TargetType="buttons:SfButton">
+        <Setter Property="TextColor" Value="{DynamicResource Gray-600}" />
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="WidthRequest" Value="38" />
+        <Setter Property="HeightRequest" Value="38" />
+        <Setter Property="CornerRadius" Value="4" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="HorizontalOptions" Value="End" />
+        <Setter Property="BackgroundColor" Value="Transparent" />
+        <Setter Property="FontFamily" Value="{StaticResource FontIcons}" />
+    </Style>
+
+    <!-- Common style for seperators -->
+    <Style x:Key="SeparatorStyle" TargetType="BoxView">
+        <Setter Property="HeightRequest" Value="1" />
+        <Setter Property="BackgroundColor" Value="{DynamicResource Gray-200}" />
+    </Style>
+
+</ResourceDictionary>

@@ -3,19 +3,31 @@
     x:Class="EssentialUIKit.Views.Catalog.CategoryTilePage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:behavior="clr-namespace:EssentialUIKit.Behaviors"
     xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
     xmlns:controls="clr-namespace:EssentialUIKit.Controls"
     xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
     xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
-    xmlns:syncEffectsView="clr-namespace:Syncfusion.XForms.EffectsView;assembly=Syncfusion.Core.XForms"
     x:Name="categoryPage"
     Title="Categories"
-    BackgroundColor="{DynamicResource Gray-Bg}"
+    BackgroundColor="{DynamicResource Gray-White}"
     NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
     <ContentPage.Content>
 
-        <Grid RowDefinitions="Auto, *">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
 
             <!--  Title View  -->
             <controls:TitleView Title="Categories" Grid.Row="0">
@@ -24,6 +36,7 @@
                         x:Name="backButton"
                         Command="{Binding BindingContext.BackButtonCommand, Source={x:Reference CategoryTile}}"
                         CommandParameter="{x:Reference backButton}"
+                        CornerRadius="4"
                         Style="{StaticResource IconButtonStyle}"
                         Text="{StaticResource Back}" />
                 </controls:TitleView.LeadingView>
@@ -31,8 +44,9 @@
                     <StackLayout HorizontalOptions="End" Orientation="Horizontal">
                         <buttons:SfButton
                             Command="{Binding BindingContext.NotificationCommand, Source={x:Reference CategoryTile}}"
+                            CornerRadius="4"
                             Style="{StaticResource IconButtonStyle}"
-                            Text="{StaticResource Notification}" />
+                            Text="{StaticResource Bell}" />
                     </StackLayout>
                 </controls:TitleView.TrailingView>
             </controls:TitleView>
@@ -46,46 +60,54 @@
                 HorizontalOptions="FillAndExpand"
                 ItemSpacing="8"
                 ItemsSource="{Binding Categories}"
-                Style="{StaticResource TransparentSelectionListView}">
+                Style="{StaticResource SfListViewStyle}">
+
+                <listView:SfListView.Behaviors>
+                    <behavior:SfListViewTapBehavior Command="{Binding Path=BindingContext.CategorySelectedCommand, Source={x:Reference categoryPage}}" />
+                </listView:SfListView.Behaviors>
 
                 <listView:SfListView.ItemTemplate>
                     <DataTemplate>
-                        <syncEffectsView:SfEffectsView
-                            RippleColor="{DynamicResource Gray-300}"
-                            TouchDownEffects="Ripple"
-                            TouchUpCommand="{Binding Path=BindingContext.CategorySelectedCommand, Source={x:Reference categoryPage}}"
-                            TouchUpCommandParameter="{Binding}">
-                            <Grid RowDefinitions="Auto, Auto" RowSpacing="8">
+                        <Grid RowSpacing="8">
 
-                                <!--  Category Image  -->
-                                <Image
-                                    Grid.Row="0"
-                                    Aspect="AspectFill"
-                                    BackgroundColor="{DynamicResource Gray-200}"
-                                    HeightRequest="{OnIdiom Phone=150,
-                                                            Tablet=240,
-                                                            Desktop=120}"
-                                    WidthRequest="{OnIdiom Phone=160,
-                                                           Tablet=224,
-                                                           Desktop=200}">
-                                    <Image.Source>
-                                        <UriImageSource
-                                            CacheValidity="14"
-                                            CachingEnabled="true"
-                                            Uri="{Binding Icon}" />
-                                    </Image.Source>
-                                </Image>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
 
-                                <!--  Category Name  -->
-                                <Label
-                                    Grid.Row="1"
-                                    Margin="0,0,0,8"
-                                    FontSize="14"
-                                    Style="{StaticResource TitleLabelStyle}"
-                                    Text="{Binding Name}" />
+                            <!--  Category Image  -->
+                            <Image
+                                Grid.Row="0"
+                                Aspect="AspectFill"
+                                BackgroundColor="{DynamicResource Gray-200}"
+                                HeightRequest="{OnIdiom Phone=150,
+                                                        Tablet=240,
+                                                        Desktop=120}"
+                                WidthRequest="{OnIdiom Phone=160,
+                                                       Tablet=224,
+                                                       Desktop=200}">
+                                <Image.Source>
+                                    <UriImageSource
+                                        CacheValidity="14"
+                                        CachingEnabled="true"
+                                        Uri="{Binding Icon}" />
+                                </Image.Source>
+                            </Image>
 
-                            </Grid>
-                        </syncEffectsView:SfEffectsView>
+                            <!--  Category Name  -->
+                            <Label
+                                Grid.Row="1"
+                                Margin="0,0,0,8"
+                                FontFamily="{StaticResource Montserrat-SemiBold}"
+                                FontSize="14"
+                                HorizontalOptions="Center"
+                                HorizontalTextAlignment="Center"
+                                LineHeight="{OnPlatform Default=-1,
+                                                        Android=1.5}"
+                                Text="{Binding Name}"
+                                TextColor="{DynamicResource Gray-900}" />
+
+                        </Grid>
                     </DataTemplate>
                 </listView:SfListView.ItemTemplate>
 

@@ -69,7 +69,7 @@
 
                         <!--  Label to display the title of this page  -->
                         <Label
-                            FontFamily="Montserrat-SemiBold"
+                            FontFamily="{StaticResource Montserrat-SemiBold}"
                             FontSize="20"
                             HorizontalTextAlignment="Center"
                             Style="{StaticResource CommonLabelStyle}"
@@ -79,7 +79,7 @@
                         <Label
                             Grid.Row="1"
                             Margin="0,8"
-                            FontFamily="Montserrat-Medium"
+                            FontFamily="{StaticResource Montserrat-Medium}"
                             HorizontalTextAlignment="Center"
                             Style="{StaticResource CommonLabelStyle}"
                             Text="Let's get to work" />
@@ -105,7 +105,7 @@
                             x:Name="ForgotPasswordLabel"
                             Grid.Row="4"
                             Margin="0,16"
-                            FontFamily="Montserrat-SemiBold"
+                            FontFamily="{StaticResource Montserrat-SemiBold}"
                             FontSize="12"
                             HorizontalOptions="End"
                             Text="FORGOT PASSWORD?"
@@ -126,7 +126,7 @@
 
                         <Label
                             Grid.Row="6"
-                            FontFamily="Montserrat-Medium"
+                            FontFamily="{StaticResource Montserrat-Medium}"
                             HorizontalTextAlignment="Center"
                             Style="{StaticResource CommonLabelStyle}"
                             Text="Or create an account using social media" />
@@ -145,13 +145,13 @@
                                     Orientation="Horizontal"
                                     VerticalOptions="Center">
                                     <Label
-                                        FontFamily="FontIcons"
+                                        FontFamily="{StaticResource FontIcons}"
                                         FontSize="18"
                                         Text="&#xe735;"
                                         TextColor="{DynamicResource Gray-White}"
                                         VerticalTextAlignment="Center" />
                                     <Label
-                                        FontFamily="Montserrat-Medium"
+                                        FontFamily="{StaticResource Montserrat-Medium}"
                                         FontSize="16"
                                         Text="Login with Facebook"
                                         TextColor="{DynamicResource Gray-White}" />
@@ -175,7 +175,7 @@
                         </StackLayout.Padding>
 
                         <Label
-                            FontFamily="Montserrat-Medium"
+                            FontFamily="{StaticResource Montserrat-Medium}"
                             HorizontalOptions="CenterAndExpand"
                             HorizontalTextAlignment="Center"
                             Style="{StaticResource CommonLabelStyle}"

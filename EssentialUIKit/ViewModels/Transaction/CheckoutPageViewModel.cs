@@ -1,9 +1,8 @@
 ﻿using System.Collections.ObjectModel;
-using System.Reflection;
-using System.Runtime.Serialization;
-using System.Runtime.Serialization.Json;
-using EssentialUIKit.Models;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using EssentialUIKit.Models.Transaction;
+using EssentialUIKit.Models;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 
@@ -13,12 +12,9 @@ namespace EssentialUIKit.ViewModels.Transaction
     /// ViewModel for Checkout page.
     /// </summary>
     [Preserve(AllMembers = true)]
-    [DataContract]
     public class CheckoutPageViewModel : BaseViewModel
     {
         #region Fields
-
-        private static CheckoutPageViewModel checkoutPageViewModel;
 
         private ObservableCollection<Customer> deliveryAddress;
 
@@ -32,16 +28,6 @@ namespace EssentialUIKit.ViewModels.Transaction
 
         private double discountPercent;
 
-        private Command editCommand;
-
-        private Command addAddressCommand;
-
-        private Command placeOrderCommand;
-
-        private Command paymentOptionCommand;
-
-        private Command applyCouponCommand;
-
         #endregion
 
         #region Constructor
@@ -49,8 +35,69 @@ namespace EssentialUIKit.ViewModels.Transaction
         /// <summary>
         /// Initializes a new instance for the <see cref="CheckoutPageViewModel" /> class.
         /// </summary>
-        static CheckoutPageViewModel()
+        public CheckoutPageViewModel()
         {
+            this.DeliveryAddress = new ObservableCollection<Customer>
+            {
+                new Customer
+                {
+                    CustomerId = 1, CustomerName = "John Doe", AddressType = "Home", Address = "410 Terry Ave N, USA",
+                    MobileNumber = "+1-202-555-0101"
+                },
+                new Customer
+                {
+                    CustomerId = 1, CustomerName = "John Doe", AddressType = "Office",
+                    Address = "388 Fort Worth, Texas, United States", MobileNumber = "+1-356-636-8572"
+                },
+            };
+
+            this.PaymentModes = new ObservableCollection<Payment>
+            {
+                new Payment
+                {
+                    PaymentMode = "Goldman Sachs Bank Credit Card", CardNumber = "48** **** **** 9876",
+                    CardTypeIcon = "Card.png"
+                },
+                new Payment {PaymentMode = "Wells Fargo Bank Credit Card"},
+                new Payment {PaymentMode = "Debit / Credit Card"},
+                new Payment {PaymentMode = "NetBanking"},
+                new Payment {PaymentMode = "Cash on Delivery"},
+                new Payment {PaymentMode = "Wallet"},
+            };
+
+            this.CartDetails = new ObservableCollection<Product>
+            {
+                new Product
+                {
+                    PreviewImage = "Image1.png", Name = "Full-Length Skirt",
+                    Summary =
+                        "This plaid, cotton skirt will keep you warm in the air-conditioned office or outside on cooler days.",
+                    SellerName = "New Fashion Company", ActualPrice = 245, DiscountPercent = 30, TotalQuantity = 1
+                },
+                new Product
+                {
+                    PreviewImage = "Image2.png", Name = "Peasant Blouse",
+                    Summary =
+                        "Look your best this fall in this V-neck, pleated peasant blouse with full sleeves. Comes in white, chocolate, forest green, and more.",
+                    SellerName = "New Fashion Company", ActualPrice = 245, DiscountPercent = 30, TotalQuantity = 1
+                }
+            };
+
+            double percent = 0;
+            foreach (var item in this.CartDetails)
+            {
+                this.TotalPrice += (item.ActualPrice * item.TotalQuantity);
+                this.DiscountPrice += (item.DiscountPrice * item.TotalQuantity);
+                percent += item.DiscountPercent;
+            }
+
+            this.DiscountPercent = percent > 0 ? percent / this.CartDetails.Count : 0;
+
+            this.EditCommand = new Command(this.EditClicked);
+            this.AddAddressCommand = new Command(this.AddAddressClicked);
+            this.PlaceOrderCommand = new Command(this.PlaceOrderClicked);
+            this.PaymentOptionCommand = new Command(PaymentOptionClicked);
+            this.ApplyCouponCommand = new Command(this.ApplyCouponClicked);
         }
 
         #endregion
@@ -58,15 +105,8 @@ namespace EssentialUIKit.ViewModels.Transaction
         #region Public properties
 
         /// <summary>
-        /// Gets or sets the value of my cards page view model.
-        /// </summary>
-        public static CheckoutPageViewModel BindingContext =>
-            checkoutPageViewModel = PopulateData<CheckoutPageViewModel>("transaction.json");
-
-        /// <summary>
         /// Gets or sets the property that has been bound with SfListView, which displays the delivery address.
         /// </summary>
-        [DataMember(Name = "deliveryAddress")]
         public ObservableCollection<Customer> DeliveryAddress
         {
             get { return this.deliveryAddress; }
@@ -78,14 +118,14 @@ namespace EssentialUIKit.ViewModels.Transaction
                     return;
                 }
 
-                this.SetProperty(ref this.deliveryAddress, value);
+                this.deliveryAddress = value;
+                this.NotifyPropertyChanged();
             }
         }
 
         /// <summary>
         /// Gets or sets the property that has been bound with SfListView, which displays the payment modes.
         /// </summary>
-        [DataMember(Name = "paymentModes")]
         public ObservableCollection<Payment> PaymentModes
         {
             get { return this.paymentModes; }
@@ -97,20 +137,17 @@ namespace EssentialUIKit.ViewModels.Transaction
                     return;
                 }
 
-                this.SetProperty(ref this.paymentModes, value);
+                this.paymentModes = value;
+                this.NotifyPropertyChanged();
             }
         }
 
         /// <summary>
         /// Gets or sets the property that has been bound with a list view, which displays the cart details.
         /// </summary>
-        [DataMember(Name = "priceDetails")]
         public ObservableCollection<Product> CartDetails
         {
-            get
-            {
-                return this.cartDetails;
-            }
+            get { return this.cartDetails; }
 
             set
             {
@@ -120,8 +157,7 @@ namespace EssentialUIKit.ViewModels.Transaction
                 }
 
                 this.cartDetails = value;
-                this.CalculatePrice();
-                this.SetProperty(ref this.cartDetails, value);
+                this.NotifyPropertyChanged();
             }
         }
 
@@ -140,7 +176,7 @@ namespace EssentialUIKit.ViewModels.Transaction
                 }
 
                 this.totalPrice = value;
-                this.SetProperty(ref this.totalPrice, value);
+                this.NotifyPropertyChanged();
             }
         }
 
@@ -158,7 +194,8 @@ namespace EssentialUIKit.ViewModels.Transaction
                     return;
                 }
 
-                this.SetProperty(ref this.discountPrice, value);
+                this.discountPrice = value;
+                this.NotifyPropertyChanged();
             }
         }
 
@@ -167,10 +204,7 @@ namespace EssentialUIKit.ViewModels.Transaction
         /// </summary>
         public double DiscountPercent
         {
-            get
-            {
-                return this.discountPercent;
-            }
+            get { return this.discountPercent; }
 
             set
             {
@@ -179,7 +213,8 @@ namespace EssentialUIKit.ViewModels.Transaction
                     return;
                 }
 
-                this.SetProperty(ref this.discountPercent, value);
+                this.discountPercent = value;
+                this.NotifyPropertyChanged();
             }
         }
 
@@ -190,97 +225,31 @@ namespace EssentialUIKit.ViewModels.Transaction
         /// <summary>
         /// Gets or sets the command that will be executed when the Edit button is clicked.
         /// </summary>
-        public Command EditCommand
-        {
-            get
-            {
-                return this.editCommand ?? (this.editCommand = new Command(this.EditClicked));
-            }
-        }
+        public Command EditCommand { get; set; }
 
         /// <summary>
         /// Gets or sets the command that will be executed when the Add new address button is clicked.
         /// </summary>
-        public Command AddAddressCommand
-        {
-            get
-            {
-                return this.addAddressCommand ?? (this.addAddressCommand = new Command(this.AddAddressClicked));
-            }
-        }
+        public Command AddAddressCommand { get; set; }
 
         /// <summary>
         /// Gets or sets the command that will be executed when the Edit button is clicked.
         /// </summary>
-        public Command PlaceOrderCommand
-        {
-            get
-            {
-                return this.placeOrderCommand ?? (this.placeOrderCommand = new Command(this.PlaceOrderClicked));
-            }
-        }
+        public Command PlaceOrderCommand { get; set; }
 
         /// <summary>
         /// Gets or sets the command that will be executed when the payment option button is clicked.
         /// </summary>
-        public Command PaymentOptionCommand
-        {
-            get
-            {
-                return this.paymentOptionCommand ?? (this.paymentOptionCommand = new Command(this.PaymentOptionClicked));
-            }
-        }
+        public Command PaymentOptionCommand { get; set; }
 
         /// <summary>
         /// Gets or sets the command that will be executed when the apply coupon button is clicked.
         /// </summary>
-        public Command ApplyCouponCommand
-        {
-            get
-            {
-                return this.applyCouponCommand ?? (this.applyCouponCommand = new Command(this.ApplyCouponClicked));
-            }
-        }
+        public Command ApplyCouponCommand { get; set; }
 
         #endregion
 
         #region Methods
-
-        /// <summary>
-        /// Populates the data for view model from json file.
-        /// </summary>
-        /// <typeparam name="T">Type of view model.</typeparam>
-        /// <param name="fileName">Json file to fetch data.</param>
-        /// <returns>Returns the view model object.</returns>
-        private static T PopulateData<T>(string fileName)
-        {
-            var file = "EssentialUIKit.Data." + fileName;
-
-            var assembly = typeof(App).GetTypeInfo().Assembly;
-
-            T data;
-
-            using (var stream = assembly.GetManifestResourceStream(file))
-            {
-                var serializer = new DataContractJsonSerializer(typeof(T));
-                data = (T)serializer.ReadObject(stream);
-            }
-
-            return data;
-        }
-
-        public void CalculatePrice()
-        {
-            double percent = 0;
-            foreach (var item in this.CartDetails)
-            {
-                this.TotalPrice += item.ActualPrice * item.TotalQuantity;
-                this.DiscountPrice += item.DiscountPrice * item.TotalQuantity;
-                percent += item.DiscountPercent;
-            }
-
-            this.DiscountPercent = percent > 0 ? percent / this.CartDetails.Count : 0;
-        }
 
         /// <summary>
         /// Invoked when the Edit button is clicked.

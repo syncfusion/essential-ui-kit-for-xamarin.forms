@@ -1,9 +1,9 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Windows.Input;
-using EssentialUIKit.Validators;
-using EssentialUIKit.Validators.Rules;
-using EssentialUIKit.ViewModels.Forms;
+using EssentialUIKit.Models.ContactUs;
+using Syncfusion.SfMaps.XForms;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 
@@ -13,29 +13,13 @@ namespace EssentialUIKit.ViewModels.ContactUs
     /// ViewModel for contact us page.
     /// </summary>
     [Preserve(AllMembers = true)]
-    public class ContactUsViewModel : LoginViewModel
+    public class ContactUsViewModel : BaseViewModel
     {
         #region Fields
 
-        private string mapMarkerLatitude;
-
-        private string mapMarkerLongitude;
-
-        private string mapMarkerImage;
-
-        private string mapMarkerCloseImage;
-
-        private string mapMarkerHeader;
-
-        private string mapMarkerAddress;
-
-        private string mapMarkerPhoneNumber;
-
-        private string mapMarkerEmailId;
+        private ObservableCollection<MapMarker> customMarkers;
 
         private Point geoCoordinate;
-
-        private ValidatableObject<string> name;
 
         #endregion
 
@@ -46,17 +30,8 @@ namespace EssentialUIKit.ViewModels.ContactUs
         /// </summary>
         public ContactUsViewModel()
         {
-            this.InitializeProperties();
-            this.AddValidationRules();
             this.SendCommand = new Command(this.Send);
-            this.MapMarkerImage = "Pin.png";
-            this.MapMarkerLatitude = "40.133808";
-            this.MapMarkerLongitude = "-75.516279";
-            this.MapMarkerHeader = "Sipes Inc";
-            this.MapMarkerAddress = "7654 Cleveland street, Phoenixville, PA 19460";
-            this.MapMarkerEmailId = "dopuyi@hostguru.info";
-            this.MapMarkerPhoneNumber = "+1-202-555-0101";
-            this.MapMarkerCloseImage = "Close.png";
+            this.CustomMarkers = new ObservableCollection<MapMarker>();
             this.GetPinLocation();
         }
 
@@ -74,130 +49,19 @@ namespace EssentialUIKit.ViewModels.ContactUs
         #region Properties
 
         /// <summary>
-        /// Gets or sets a value of map marker latitude.
+        /// Gets or sets the CustomMarkers collection.
         /// </summary>
-        public string MapMarkerLatitude
+        public ObservableCollection<MapMarker> CustomMarkers
         {
             get
             {
-                return this.mapMarkerLatitude;
+                return this.customMarkers;
             }
 
             set
             {
-                this.SetProperty(ref this.mapMarkerLatitude, value);
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets a value of map marker longitude.
-        /// </summary>
-        public string MapMarkerLongitude
-        {
-            get
-            {
-                return this.mapMarkerLongitude;
-            }
-
-            set
-            {
-                this.SetProperty(ref this.mapMarkerLongitude, value);
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets a value for map marker template image.
-        /// </summary>
-        public string MapMarkerImage
-        {
-            get
-            {
-                return this.mapMarkerImage;
-            }
-
-            set
-            {
-                this.SetProperty(ref this.mapMarkerImage, value);
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets a value of map marker address.
-        /// </summary>
-        public string MapMarkerAddress
-        {
-            get
-            {
-                return this.mapMarkerAddress;
-            }
-
-            set
-            {
-                this.SetProperty(ref this.mapMarkerAddress, value);
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets a value of map marker phone number.
-        /// </summary>
-        public string MapMarkerPhoneNumber
-        {
-            get
-            {
-                return this.mapMarkerPhoneNumber;
-            }
-
-            set
-            {
-                this.SetProperty(ref this.mapMarkerPhoneNumber, value);
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets a value of map marker header.
-        /// </summary>
-        public string MapMarkerHeader
-        {
-            get
-            {
-                return this.mapMarkerHeader;
-            }
-
-            set
-            {
-                this.SetProperty(ref this.mapMarkerHeader, value);
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets a value for map marker email id.
-        /// </summary>
-        public string MapMarkerEmailId
-        {
-            get
-            {
-                return this.mapMarkerEmailId;
-            }
-
-            set
-            {
-                this.SetProperty(ref this.mapMarkerEmailId, value);
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets a value for map marker close image.
-        /// </summary>
-        public string MapMarkerCloseImage
-        {
-            get
-            {
-                return this.mapMarkerCloseImage;
-            }
-
-            set
-            {
-                this.SetProperty(ref this.mapMarkerCloseImage, value);
+                this.customMarkers = value;
+                this.NotifyPropertyChanged();
             }
         }
 
@@ -213,45 +77,14 @@ namespace EssentialUIKit.ViewModels.ContactUs
 
             set
             {
-                this.SetProperty(ref this.geoCoordinate, value);
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the property that is bound with an entry that gets the name from user.
-        /// </summary>
-        public ValidatableObject<string> Name
-        {
-            get
-            {
-                return this.name;
-            }
-
-            set
-            {
-                if (this.name == value)
-                {
-                    return;
-                }
-
-                this.SetProperty(ref this.name, value);
+                this.geoCoordinate = value;
+                this.NotifyPropertyChanged();
             }
         }
 
         #endregion
-
+                     
         #region Methods
-
-        /// <summary>
-        /// Check the entry is null or empty
-        /// </summary>
-        /// <returns>Returns the fields are valid or not</returns>
-        public bool AreFieldsValid()
-        {
-            bool isEmailValid = this.Email.Validate();
-            bool isNameValid = this.Name.Validate();
-            return isEmailValid && isNameValid;
-        }
 
         /// <summary>
         /// Invoked when the send button is clicked.
@@ -259,10 +92,7 @@ namespace EssentialUIKit.ViewModels.ContactUs
         /// <param name="obj">The Object</param>
         private void Send(object obj)
         {
-            if (this.AreFieldsValid())
-            {
-                // Do Something
-            }
+            // Do something
         }
 
         /// <summary>
@@ -270,23 +100,23 @@ namespace EssentialUIKit.ViewModels.ContactUs
         /// </summary>
         private void GetPinLocation()
         {
-            this.GeoCoordinate = new Point(Convert.ToDouble(this.MapMarkerLatitude, CultureInfo.CurrentCulture), Convert.ToDouble(this.MapMarkerLongitude, CultureInfo.CurrentCulture));
-        }
+            this.CustomMarkers.Add(
+                new LocationMarker
+                {
+                    PinImage = "Pin.png",
+                    Header = "Sipes Inc",
+                    Address = "7654 Cleveland street, Phoenixville, PA 19460",
+                    EmailId = "dopuyi@hostguru.info",
+                    PhoneNumber = "+1-202-555-0101",
+                    CloseImage = "Close.png",
+                    Latitude = "40.133808",
+                    Longitude = "-75.516279"
+                });
 
-        /// <summary>
-        /// Initializing the properties.
-        /// </summary>
-        private void InitializeProperties()
-        {
-            this.Name = new ValidatableObject<string>();
-        }
-
-        /// <summary>
-        /// Validation rule for password
-        /// </summary>
-        private void AddValidationRules()
-        {
-            this.Name.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = "Name Required" });
+            foreach (var marker in this.CustomMarkers)
+            {
+                this.GeoCoordinate = new Point(Convert.ToDouble(marker.Latitude, CultureInfo.CurrentCulture), Convert.ToDouble(marker.Longitude, CultureInfo.CurrentCulture));
+            }
         }
 
         #endregion

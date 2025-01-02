@@ -3,23 +3,32 @@
     x:Class="EssentialUIKit.Views.Templates.ProductTileTemplate"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
     xmlns:converter="clr-namespace:EssentialUIKit.Converters"
     xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
     x:Name="productTileTemplate">
 
     <Grid.Resources>
         <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
             <converter:BooleanToStringConverter x:Key="boolToStringConverter" />
             <converter:BooleanToColorConverter x:Key="boolToColorConverter" />
         </ResourceDictionary>
     </Grid.Resources>
 
-    <Grid
-        Margin="0"
-        ColumnDefinitions="4*, 1*"
-        RowDefinitions="Auto, Auto, Auto"
-        RowSpacing="0">
+    <Grid Margin="8, 0, 8, 0" RowSpacing="0">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="4*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
 
         <!--  Product Image  -->
         <Image
@@ -54,50 +63,61 @@
             Grid.Row="1"
             Grid.Column="0"
             Grid.ColumnSpan="2"
-            Margin="8,0,0,4"
+            Margin="0,0,0,4"
+            FontFamily="{StaticResource Montserrat-SemiBold}"
             FontSize="14"
             HorizontalOptions="StartAndExpand"
             LineBreakMode="TailTruncation"
+            LineHeight="{OnPlatform Android=1.5,
+                                    Default=-1}"
             MaxLines="1"
-            Style="{StaticResource TitleLabelStyle}"
-            Text="{Binding Name}" />
+            Style="{StaticResource LabelStyle}"
+            Text="{Binding Name}"
+            TextColor="{DynamicResource Gray-900}" />
 
         <StackLayout
             Grid.Row="2"
             Grid.Column="0"
-            Margin="8,0,0,8"
+            Margin="0,0,0,8"
             Orientation="Horizontal"
             Spacing="2">
 
             <!--  Product Price  -->
             <Label
-                FontFamily="Montserrat-SemiBold"
+                FontFamily="{StaticResource Montserrat-SemiBold}"
                 FontSize="20"
+                HorizontalOptions="Start"
                 LineHeight="{OnPlatform Android=1.25,
                                         Default=-1}"
-                Style="{StaticResource SimpleLabelStyle}"
+                Style="{StaticResource LabelStyle}"
                 Text="{Binding DiscountPrice, StringFormat='${0:0 }'}"
-                TextColor="{DynamicResource PrimaryColor}" />
+                TextColor="{DynamicResource PrimaryColor}"
+                VerticalOptions="CenterAndExpand"
+                VerticalTextAlignment="Center" />
 
             <Label
                 Margin="0,6,0,6"
-                Style="{StaticResource SimpleLabelStyle}"
+                FontFamily="{StaticResource Montserrat-Medium}"
+                FontSize="12"
+                HorizontalOptions="Start"
+                Style="{StaticResource LabelStyle}"
                 Text="{Binding ActualPrice, StringFormat='${0:0.00}'}"
-                TextDecorations="Strikethrough" />
+                TextDecorations="Strikethrough"
+                VerticalOptions="Center"
+                VerticalTextAlignment="Center" />
 
         </StackLayout>
 
         <!--  Favourite Icon  -->
-        <buttons:SfButton
+        <Button
             Grid.Row="2"
             Grid.Column="1"
             Margin="0,0,0,8"
             Padding="0"
             Command="{Binding ParentBindingContext.AddFavouriteCommand, Source={x:Reference productTileTemplate}}"
             CommandParameter="{Binding}"
-            FontSize="16"
-            HeightRequest="-1"
-            Style="{StaticResource IconButtonStyle}"
+            FontSize="18"
+            Style="{StaticResource FavouriteButtonStyle}"
             Text="{Binding IsFavourite, Converter={StaticResource boolToStringConverter}, ConverterParameter=1}"
             TextColor="{Binding IsFavourite, Converter={x:StaticResource boolToColorConverter}, ConverterParameter=4}" />
 

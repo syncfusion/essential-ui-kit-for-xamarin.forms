@@ -1,7 +1,6 @@
-﻿using System.Collections.ObjectModel;
-using System.Reflection;
-using System.Runtime.Serialization;
-using System.Runtime.Serialization.Json;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using EssentialUIKit.Models.Feedback;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
@@ -12,25 +11,94 @@ namespace EssentialUIKit.ViewModels.Feedback
     /// ViewModel for feedback page.
     /// </summary>
     [Preserve(AllMembers = true)]
-    [DataContract]
-    public class FeedbackViewModel : BaseViewModel
+    public class FeedbackViewModel
     {
-        #region Fields  
-
-        private static FeedbackViewModel feedbackViewModel;
-
-        private Command filterCommand;
-
-        private Command itemSelectedCommand;
-
-        private Command sortCommand;
-
-        #endregion
-
         #region Constructor
 
         public FeedbackViewModel()
         {
+            var randomNum = new Random(0123456789);
+            this.FeedbackInfo = new ObservableCollection<Review>
+            {
+                new Review
+                {
+                    CustomerName = "Jessica Park",
+                    Comment = "These boots are stunning and I look stunning in them.",
+                    ReviewedDate = DateTime.Now.AddDays(randomNum.Next(0, 1000)),
+                    CustomerImage = App.BaseImageUrl + "ProfileImage" + randomNum.Next(1, 19) + ".png",
+                    Rating = randomNum.Next(0, 5),
+                    Images = new List<string>
+                    {
+                        App.BaseImageUrl + "ReviewShoe.png",
+                        App.BaseImageUrl + "ReviewShoe.png"
+                    }
+                },
+                new Review
+                {
+                    CustomerName = "Alice",
+                    Comment = "Greatest purchase I have ever made in my life. No lie.",
+                    ReviewedDate = DateTime.Now.AddDays(randomNum.Next(0, 1000)),
+                    CustomerImage = App.BaseImageUrl + "ProfileImage" + randomNum.Next(1, 19) + ".png",
+                    Rating = randomNum.Next(0, 5)
+                },
+                new Review
+                {
+                    CustomerName = "John",
+                    Comment = "Absolutely love them! Can’t stop wearing!",
+                    ReviewedDate = DateTime.Now.AddDays(randomNum.Next(0, 1000)),
+                    CustomerImage = App.BaseImageUrl + "ProfileImage" + randomNum.Next(1, 19) + ".png",
+                    Rating = randomNum.Next(0, 5)
+                },
+                new Review
+                {
+                    CustomerName = "Lisa",
+                    Comment = "These boots are very much comfortable for wearing.",
+                    ReviewedDate = DateTime.Now.AddDays(randomNum.Next(0, 1000)),
+                    CustomerImage = App.BaseImageUrl + "ProfileImage" + randomNum.Next(1, 19) + ".png",
+                    Rating = randomNum.Next(0, 5),
+                    Images = new List<string>
+                    {
+                        App.BaseImageUrl + "ReviewShoe.png",
+                        App.BaseImageUrl + "ReviewShoe.png",
+                        App.BaseImageUrl + "ReviewShoe.png"
+                    }
+                },
+                new Review
+                {
+                    CustomerName = "Rebacca",
+                    Comment = "Absolutely love them! Can’t stop wearing!",
+                    ReviewedDate = DateTime.Now.AddDays(randomNum.Next(0, 1000)),
+                    CustomerImage = App.BaseImageUrl + "ProfileImage" + randomNum.Next(1, 19) + ".png",
+                    Rating = randomNum.Next(0, 5)
+                },
+                new Review
+                {
+                    CustomerName = "Jessica Park",
+                    Comment = "Happy purchasing!",
+                    ReviewedDate = DateTime.Now.AddDays(randomNum.Next(0, 1000)),
+                    CustomerImage = App.BaseImageUrl + "ProfileImage" + randomNum.Next(1, 19) + ".png",
+                    Rating = randomNum.Next(4, 5)
+                },
+                new Review
+                {
+                    CustomerName = "Alice",
+                    Comment = "Happy buying!",
+                    ReviewedDate = DateTime.Now.AddDays(randomNum.Next(0, 1000)),
+                    CustomerImage = App.BaseImageUrl + "ProfileImage" + randomNum.Next(1, 19) + ".png",
+                    Rating = randomNum.Next(0, 5),
+                    Images = new List<string>
+                    {
+                        App.BaseImageUrl + "ReviewShoe.png",
+                        App.BaseImageUrl + "ReviewShoe.png",
+                        App.BaseImageUrl + "ReviewShoe.png",
+                        App.BaseImageUrl + "ReviewShoe.png"
+                    }
+                }
+            };
+
+            this.FilterCommand = new Command(this.OnFilterTapped);
+            this.SortCommand = new Command(this.OnSortTapped);
+            this.ItemSelectedCommand = new Command(this.ItemSelected);
         }
 
         #endregion
@@ -38,76 +106,28 @@ namespace EssentialUIKit.ViewModels.Feedback
         #region Properties
 
         /// <summary>
-        /// Gets or sets the value of feedback view model.
-        /// </summary>
-        public static FeedbackViewModel BindingContext =>
-            feedbackViewModel = PopulateData<FeedbackViewModel>("feedback.json");
-
-        /// <summary>
         /// Gets or sets the value for feedback info.
         /// </summary>
-        [DataMember(Name = "feedbackInfo")]
         public ObservableCollection<Review> FeedbackInfo { get; set; }
 
         /// <summary>
-        /// Gets the value for filter command.
+        /// Gets or sets the value for filter command.
         /// </summary>
-        public Command FilterCommand
-        {
-            get
-            {
-                return this.filterCommand ?? (this.filterCommand = new Command(this.OnFilterTapped));
-            }
-        }
+        public Command FilterCommand { get; set; }
 
         /// <summary>
-        /// Gets the value for sort command.
+        /// Gets or sets the value for sort command.
         /// </summary>
-        public Command SortCommand
-        {
-            get
-            {
-                return this.sortCommand ?? (this.sortCommand = new Command(this.OnSortTapped));
-            }
-        }
+        public Command SortCommand { get; set; }
 
         /// <summary>
-        /// Gets the command that will be executed when an item is selected.
+        /// Gets or sets the command that will be executed when an item is selected.
         /// </summary>
-        public Command ItemSelectedCommand
-        {
-            get
-            {
-                return this.itemSelectedCommand ?? (this.itemSelectedCommand = new Command(this.ItemSelected));
-            }
-        }
+        public Command ItemSelectedCommand { get; set; }
 
         #endregion
 
         #region Methods
-
-        /// <summary>
-        /// Populates the data for view model from json file.
-        /// </summary>
-        /// <typeparam name="T">Type of view model.</typeparam>
-        /// <param name="fileName">Json file to fetch data.</param>
-        /// <returns>Returns the view model object.</returns>
-        private static T PopulateData<T>(string fileName)
-        {
-            var file = "EssentialUIKit.Data." + fileName;
-
-            var assembly = typeof(App).GetTypeInfo().Assembly;
-
-            T data;
-
-            using (var stream = assembly.GetManifestResourceStream(file))
-            {
-                var serializer = new DataContractJsonSerializer(typeof(T));
-                data = (T)serializer.ReadObject(stream);
-            }
-
-            return data;
-        }
 
         /// <summary>
         /// Invoked when the sort button is clicked.

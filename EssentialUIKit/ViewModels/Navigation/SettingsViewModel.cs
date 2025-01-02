@@ -7,8 +7,9 @@ namespace EssentialUIKit.ViewModels.Navigation
     /// Viewmodel of settings page
     /// </summary>
     [Preserve(AllMembers = true)]
-    public class SettingsViewModel : BaseViewModel
+    public class SettingsViewModel
     {
+
         /// <summary>
         /// Initializes a new instance of the <see cref="T:EssentialUIKit.ViewModels.Navigation.SettingsViewModel"/> class.
         /// </summary>
@@ -40,7 +41,6 @@ namespace EssentialUIKit.ViewModels.Navigation
         /// <param name="obj">The Object.</param>
         private void DownloadQualityTapped(object obj)
         {
-            // Do something
         }
 
         /// <summary>
@@ -49,7 +49,6 @@ namespace EssentialUIKit.ViewModels.Navigation
         /// <param name="obj">The Object.</param>
         private void ShowHiddenFilesTapped(object obj)
         {
-            // Do something
         }
 
         /// <summary>
@@ -58,7 +57,6 @@ namespace EssentialUIKit.ViewModels.Navigation
         /// <param name="obj">The Object.</param>
         private void PrivacyPolicyTapped(object obj)
         {
-            // Do something
         }
     }
 }

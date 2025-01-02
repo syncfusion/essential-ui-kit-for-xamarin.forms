@@ -1,5 +1,4 @@
-﻿using EssentialUIKit.ViewModels.Article;
-using Xamarin.Forms.Internals;
+﻿using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
 
 namespace EssentialUIKit.Views.Article
@@ -16,8 +15,7 @@ namespace EssentialUIKit.Views.Article
         /// </summary>
         public ArticleWithCommentsPage()
         {
-            this.InitializeComponent();
-            this.BindingContext = ArticleWithCommentsPageViewModel.BindingContext;
+            InitializeComponent();
         }
     }
 }

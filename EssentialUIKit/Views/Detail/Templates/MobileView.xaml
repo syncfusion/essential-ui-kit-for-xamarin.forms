@@ -4,54 +4,53 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
-    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
-    xmlns:control="clr-namespace:EssentialUIKit.Controls"
     xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
     xmlns:rating="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms"
-    x:Name="FeedbackMobileView"
     BackgroundColor="{DynamicResource Gray-White}">
 
-    <ContentView.Content>
-        <Grid RowDefinitions="Auto, *, Auto" RowSpacing="0">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentView.Resources>
 
-            <control:TitleView Title="Details" Grid.Row="0">
-                <control:TitleView.LeadingView>
-                    <!--  Back button command  -->
-                    <buttons:SfButton
-                        x:Name="backButton"
-                        Command="{Binding Path=BindingContext.BackButtonCommand, Source={x:Reference FeedbackMobileView}}"
-                        CommandParameter="{x:Reference backButton}"
-                        Style="{StaticResource IconButtonStyle}"
-                        Text="{StaticResource Back}" />
-                </control:TitleView.LeadingView>
-            </control:TitleView>
+    <ContentView.Content>
+        <Grid>
 
             <!--  Product Image  -->
             <Image
                 x:Name="ProductImage"
-                Grid.Row="1"
-                Grid.RowSpan="2"
                 Aspect="{core:OnPlatformOrientationAspect PhonePortrait=AspectFill,
                                                           PhoneLandscape=AspectFit}"
                 BackgroundColor="{DynamicResource Gray-200}" />
 
-            <Grid Grid.Row="2" VerticalOptions="EndAndExpand">
+            <Grid VerticalOptions="EndAndExpand">
                 <BoxView BackgroundColor="{DynamicResource Gray-Black}" Opacity="0.7" />
 
                 <Grid
                     Padding="16"
-                    ColumnDefinitions="Auto, *"
                     ColumnSpacing="16"
-                    RowDefinitions="Auto, Auto"
                     RowSpacing="8"
                     VerticalOptions="EndAndExpand">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
 
                     <!--  Profile Image  -->
                     <border:SfBorder
                         BorderWidth="0"
                         CornerRadius="24"
                         HeightRequest="48"
-                        Style="{StaticResource ProfileBorderStyle}"
+                        Style="{StaticResource CommonSfBorderStyle}"
                         WidthRequest="48">
                         <Image x:Name="ProfileImage" BackgroundColor="{DynamicResource Gray-200}" />
                     </border:SfBorder>
@@ -64,15 +63,17 @@
                         <StackLayout Spacing="0" VerticalOptions="Start">
                             <!--  Customer Name  -->
                             <Label
-                                HorizontalOptions="Start"
-                                Style="{StaticResource TitleLabelStyle}"
+                                FontFamily="{StaticResource Montserrat-SemiBold}"
+                                FontSize="16"
+                                Style="{StaticResource CommonLabelStyle}"
                                 Text="Jane Deo"
                                 TextColor="{DynamicResource Gray-White}" />
 
                             <!--  Commented Date  -->
                             <Label
-                                FontFamily="Montserrat-Regular"
-                                Style="{StaticResource SimpleLabelStyle}"
+                                FontFamily="{StaticResource Montserrat-Regular}"
+                                FontSize="12"
+                                Style="{StaticResource CommonLabelStyle}"
                                 Text="29 Dec, 2018"
                                 TextColor="{DynamicResource Gray-White}" />
 
@@ -81,10 +82,8 @@
                         <!--  Product Rating  -->
                         <rating:SfRating
                             HorizontalOptions="EndAndExpand"
-                            ItemSize="13"
-                            ItemSpacing="1"
                             RatingSettings="{StaticResource CommonRatingSettings}"
-                            Style="{StaticResource RatingStyle}"
+                            Style="{StaticResource CommonSfRatingStyle}"
                             VerticalOptions="Start"
                             Value="5" />
 
@@ -94,9 +93,9 @@
                     <Label
                         Grid.Row="1"
                         Grid.ColumnSpan="2"
-                        HorizontalOptions="Start"
-                        HorizontalTextAlignment="Start"
-                        Style="{StaticResource DescriptionLabelStyle}"
+                        FontFamily="{StaticResource Montserrat-Medium}"
+                        FontSize="14"
+                        Style="{StaticResource CommonLabelStyle}"
                         Text="These boots are stunning and I look stunning in them."
                         TextColor="{DynamicResource Gray-White}" />
 

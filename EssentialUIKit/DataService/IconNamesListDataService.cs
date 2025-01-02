@@ -1,6 +1,6 @@
-﻿using System.Reflection;
+﻿using EssentialUIKit.ViewModels.Navigation;
+using System.Reflection;
 using System.Runtime.Serialization.Json;
-using EssentialUIKit.ViewModels.Navigation;
 using Xamarin.Forms.Internals;
 
 namespace EssentialUIKit.DataService
@@ -13,7 +13,7 @@ namespace EssentialUIKit.DataService
     {
         #region fields 
 
-        private static IconNamesListDataService iconNamesListDataService;
+        private static IconNamesListDataService instance;
 
         private IconNamesListViewModel iconNamesListViewModel;
 
@@ -24,7 +24,7 @@ namespace EssentialUIKit.DataService
         /// <summary>
         /// Gets an instance of the <see cref="IconNamesListDataService"/>.
         /// </summary>
-        public static IconNamesListDataService Instance => iconNamesListDataService ?? (iconNamesListDataService = new IconNamesListDataService());
+        public static IconNamesListDataService Instance => instance ?? (instance = new IconNamesListDataService());
 
         /// <summary>
         /// Gets or sets the value of icon name list page view model.
@@ -49,17 +49,18 @@ namespace EssentialUIKit.DataService
 
             var assembly = typeof(App).GetTypeInfo().Assembly;
 
-            T data;
+            T obj;
 
             using (var stream = assembly.GetManifestResourceStream(file))
             {
                 var serializer = new DataContractJsonSerializer(typeof(T));
-                data = (T)serializer.ReadObject(stream);
+                obj = (T)serializer.ReadObject(stream);
             }
 
-            return data;
+            return obj;
         }
 
         #endregion
+
     }
 }

@@ -38,7 +38,7 @@ namespace EssentialUIKit.Behaviors
         /// </summary>
         public ICommand Command
         {
-            get { return (ICommand)this.GetValue(CommandProperty); }
+            get { return (ICommand)GetValue(CommandProperty); }
             set { this.SetValue(CommandProperty, value); }
         }
 
@@ -120,15 +120,15 @@ namespace EssentialUIKit.Behaviors
                 return;
             }
 
-            var context = this.ParentBindingContext as StockOverviewViewModel;
-            if (context != null)
+            var context = ParentBindingContext as StockOverviewViewModel;
+            if ( context != null )
             {
                 context.SelectedDataVariantIndex = e.Index;
             }
 
-            if (this.Command.CanExecute(this.CommandParameter))
+            if (this.Command.CanExecute(CommandParameter))
             {
-                this.Command.Execute(this.CommandParameter);
+                this.Command.Execute(CommandParameter);
             }
         }
 

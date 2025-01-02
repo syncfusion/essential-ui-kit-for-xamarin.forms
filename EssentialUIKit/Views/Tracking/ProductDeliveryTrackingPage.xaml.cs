@@ -9,14 +9,14 @@ namespace EssentialUIKit.Views.Tracking
     /// </summary>
     [Preserve(AllMembers = true)]
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ProductDeliveryTrackingPage
+    public partial class ProductDeliveryTrackingPage 
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ProductDeliveryTrackingPage" /> class.
         /// </summary>
         public ProductDeliveryTrackingPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
             this.BindingContext = ProductDeliveryTrackingDataService.Instance.ProductDeliveryTrackingViewModel;
         }
     }

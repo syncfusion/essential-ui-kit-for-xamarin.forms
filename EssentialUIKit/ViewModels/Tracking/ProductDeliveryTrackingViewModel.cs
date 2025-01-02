@@ -1,4 +1,6 @@
 ﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
 using EssentialUIKit.Models.Tracking;
 using Xamarin.Forms.Internals;
@@ -43,7 +45,8 @@ namespace EssentialUIKit.ViewModels.Tracking
 
             set
             {
-                this.SetProperty(ref this.productDeliveryTrackings, value);
+                this.productDeliveryTrackings = value;
+                this.NotifyPropertyChanged();
             }
         }
 
@@ -55,12 +58,13 @@ namespace EssentialUIKit.ViewModels.Tracking
         {
             get
             {
-                return App.ImageServerPath + this.productImage;
+                return App.BaseImageUrl + this.productImage;
             }
 
             set
             {
-                this.SetProperty(ref this.productImage, value);
+                this.productImage = value;
+                this.NotifyPropertyChanged();
             }
         }
 
@@ -77,7 +81,8 @@ namespace EssentialUIKit.ViewModels.Tracking
 
             set
             {
-                this.SetProperty(ref this.productName, value);
+                this.productName = value;
+                this.NotifyPropertyChanged();
             }
         }
 
@@ -94,7 +99,8 @@ namespace EssentialUIKit.ViewModels.Tracking
 
             set
             {
-                this.SetProperty(ref this.description, value);
+                this.description = value;
+                this.NotifyPropertyChanged();
             }
         }
 
@@ -111,7 +117,8 @@ namespace EssentialUIKit.ViewModels.Tracking
 
             set
             {
-                this.SetProperty(ref this.status, value);
+                this.status = value;
+                this.NotifyPropertyChanged();
             }
         }
 
@@ -128,7 +135,8 @@ namespace EssentialUIKit.ViewModels.Tracking
 
             set
             {
-                this.SetProperty(ref this.orderId, value);
+                this.orderId = value;
+                this.NotifyPropertyChanged();
             }
         }
 

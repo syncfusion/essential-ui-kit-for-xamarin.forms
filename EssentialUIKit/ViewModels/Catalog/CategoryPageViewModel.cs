@@ -19,7 +19,11 @@ namespace EssentialUIKit.ViewModels.Catalog
 
         private Command categorySelectedCommand;
 
+        private Command expandingCommand;
+
         private Command notificationCommand;
+
+        private Command backButtonCommand;
 
         #endregion
 
@@ -31,11 +35,7 @@ namespace EssentialUIKit.ViewModels.Catalog
         [DataMember(Name = "categories")]
         public ObservableCollection<Category> Categories
         {
-            get
-            {
-                return this.categories;
-            }
-
+            get { return this.categories; }
             set
             {
                 if (this.categories == value)
@@ -43,7 +43,8 @@ namespace EssentialUIKit.ViewModels.Catalog
                     return;
                 }
 
-                this.SetProperty(ref this.categories, value);
+                this.categories = value;
+                this.NotifyPropertyChanged();
             }
         }
 
@@ -52,19 +53,27 @@ namespace EssentialUIKit.ViewModels.Catalog
         #region Command
 
         /// <summary>
-        /// Gets the command that will be executed when the Category is selected.
+        /// Gets or sets the command that will be executed when the Category is selected.
         /// </summary>
         public Command CategorySelectedCommand
         {
-            get { return this.categorySelectedCommand ?? (this.categorySelectedCommand = new Command(this.CategorySelected)); }
+            get { return categorySelectedCommand ?? (categorySelectedCommand = new Command(CategorySelected)); }
         }
 
         /// <summary>
-        /// Gets the command that will be executed when the Notification button is clicked.
+        /// Gets or sets the command that will be executed when the Notification button is clicked.
         /// </summary>
         public Command NotificationCommand
         {
-            get { return this.notificationCommand ?? (this.notificationCommand = new Command(this.NotificationClicked)); }
+            get { return notificationCommand ?? (notificationCommand = new Command(this.NotificationClicked)); }
+        }
+
+        /// <summary>
+        /// Gets or sets the command is executed when the back button is clicked.
+        /// </summary>
+        public Command BackButtonCommand
+        { 
+          get { return backButtonCommand ?? (this.backButtonCommand = new Command(this.BackButtonClicked)); }
         }
 
         #endregion
@@ -77,7 +86,7 @@ namespace EssentialUIKit.ViewModels.Catalog
         /// <param name="obj">The Object</param>
         private void CategorySelected(object obj)
         {
-            // Do Something
+            //Do Something
         }
 
         /// <summary>
@@ -85,6 +94,15 @@ namespace EssentialUIKit.ViewModels.Catalog
         /// </summary>
         /// <param name="obj">The Object</param>
         private void NotificationClicked(object obj)
+        {
+            // Do something
+        }
+
+        /// <summary>
+        /// Invoked when an back button is clicked.
+        /// </summary>
+        /// <param name="obj">The Object</param>
+        private void BackButtonClicked(object obj)
         {
             // Do something
         }

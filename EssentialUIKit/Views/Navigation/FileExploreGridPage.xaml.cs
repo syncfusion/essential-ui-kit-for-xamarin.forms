@@ -1,7 +1,8 @@
-﻿using EssentialUIKit.DataService;
-using Syncfusion.ListView.XForms;
+﻿using System;
+using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
+using EssentialUIKit.DataService;
 
 namespace EssentialUIKit.Views.Navigation
 {
@@ -10,14 +11,14 @@ namespace EssentialUIKit.Views.Navigation
     /// </summary>
     [Preserve(AllMembers = true)]
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class FileExploreGridPage
+    public partial class FileExploreGridPage 
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="FileExploreGridPage" /> class.
         /// </summary>
-        public FileExploreGridPage()
+        public FileExploreGridPage() 
         {
-            this.InitializeComponent();
+            InitializeComponent();
             this.BindingContext = FileExploreDataService.Instance.FileExploreViewModel;
         }
 
@@ -30,20 +31,82 @@ namespace EssentialUIKit.Views.Navigation
         {
             base.OnSizeAllocated(width, height);
 
-            if (width < height)
+            if (width > height)
             {
-                if (this.FileExploreGrid.LayoutManager is GridLayout)
+                if (Search.IsVisible)
                 {
-                    (this.FileExploreGrid.LayoutManager as GridLayout).SpanCount = 3;
+                    Search.WidthRequest = width;
                 }
             }
-            else
+        }
+
+        /// <summary>
+        /// Invoked when search button is clicked.
+        /// </summary>
+        /// <param name="sender">The Sender</param>
+        /// <param name="e">Event Args</param>
+        private void SearchButton_Clicked(object sender, EventArgs e)
+        {
+            this.Search.IsVisible = true;
+            this.Title.IsVisible = false;
+
+            if (this.TitleView != null)
             {
-                if (this.FileExploreGrid.LayoutManager is GridLayout)
-                {
-                    (this.FileExploreGrid.LayoutManager as GridLayout).SpanCount = 5;
-                }
+                double opacity;
+
+                // Animating Width of the search box, from 0 to full width when it added to the view.
+                var expandAnimation = new Animation(
+                    property =>
+                    {
+                        Search.WidthRequest = property;
+                        opacity = property / TitleView.Width;
+                        Search.Opacity = opacity;
+                    }, 0, TitleView.Width, Easing.Linear);
+                expandAnimation.Commit(Search, "Expand", 16, 250, Easing.Linear, (p, q) => this.SearchExpandAnimationCompleted());
             }
+        }
+
+        /// <summary>
+        /// Invoked when back to title button is clicked.
+        /// </summary>
+        /// <param name="sender">The Sender</param>
+        /// <param name="e">Event Args</param>
+        private void BackToTitle_Clicked(object sender, EventArgs e)
+        {
+            this.SearchButton.IsVisible = true;
+            if (this.TitleView != null)
+            {
+                double opacity;
+
+                // Animating Width of the search box, from full width to 0 before it removed from view.
+                var shrinkAnimation = new Animation(property =>
+                {
+                    Search.WidthRequest = property;
+                    opacity = property / TitleView.Width;
+                    Search.Opacity = opacity;
+                },
+                TitleView.Width, 0, Easing.Linear);
+                shrinkAnimation.Commit(Search, "Shrink", 16, 250, Easing.Linear, (p, q) => this.SearchBoxAnimationCompleted());
+            }
+
+            SearchEntry.Text = string.Empty;
+        }
+
+        /// <summary>
+        /// Invokes when search box Animation completed.
+        /// </summary>
+        private void SearchBoxAnimationCompleted()
+        {
+            this.Search.IsVisible = false;
+            this.Title.IsVisible = true;
+        }
+
+        /// <summary>
+        /// Invokes when search expand Animation completed.
+        /// </summary>
+        private void SearchExpandAnimationCompleted()
+        {
+            this.SearchEntry.Focus();
         }
     }
 }

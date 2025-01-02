@@ -1,7 +1,4 @@
 ﻿using System.Collections.ObjectModel;
-using System.Reflection;
-using System.Runtime.Serialization;
-using System.Runtime.Serialization.Json;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using Model = EssentialUIKit.Models.Catalog.Travel;
@@ -12,12 +9,9 @@ namespace EssentialUIKit.ViewModels.Catalog
     /// ViewModel for navigation travel page.
     /// </summary> 
     [Preserve(AllMembers = true)]
-    [DataContract]
     public class NavigationTravelPageViewModel : BaseViewModel
     {
         #region Fields
-
-        private static NavigationTravelPageViewModel navigationTravelPageViewModel;
 
         private ObservableCollection<Model> travelPlaces;
 
@@ -31,14 +25,6 @@ namespace EssentialUIKit.ViewModels.Catalog
 
         private int selectedIndex;
 
-        private Command viewAllCommand;
-
-        private Command travelPlacesCommand;
-
-        private Command topDestinationsCommand;
-
-        private Command bestPlacesCommand;
-
         #endregion
 
         #region Constructor
@@ -46,8 +32,92 @@ namespace EssentialUIKit.ViewModels.Catalog
         /// <summary>
         /// Initializes a new instance for the <see cref="NavigationTravelPageViewModel" /> class.
         /// </summary>
-        static NavigationTravelPageViewModel()
+        public NavigationTravelPageViewModel()
         {
+            this.TravelPlaces = new ObservableCollection<Model>
+            {
+                new Model
+                {
+                    ImagePath = App.BaseImageUrl + "Surf-hotel-in-dubai.jpeg",
+                    Place = "Dubai",
+                    Details = "A melting pot of cultures, Dubai is the most advanced city in the Arab world. Lined with luxury resorts, there are activities for every interest, from camel racing to fossil cliffs to extravagant shopping opportunities."
+                },
+                new Model
+                {
+                    ImagePath = App.BaseImageUrl + "Mount-fuji.jpeg",
+                    Place = "Mount Fuji",
+                    Details = "Japan’s most famous, holy mountain dominates the landscape of three prefectures—when you can see it. Fuji-san is shy and often obscured by clouds, but take the slow train through Shizuoka, or go shopping at the grand Gotemba outlet mall and you might get lucky."
+                },
+                new Model
+                {
+                    ImagePath = App.BaseImageUrl + "London.jpeg",
+                    Place = "London",
+                    Details = "The bustling capital of the United Kingdom has enough historical landmarks, architectural beauties, and free museums to keep even the pickiest traveler occupied for days, if not weeks."
+                },
+                new Model
+                {
+                    ImagePath = App.BaseImageUrl + "Singapore.jpeg",
+                    Place = "Singapore",
+                    Details = "At only 725 sq. km., Singapore is one of the smallest countries in the world, but it packs a major punch in terms of reasons to visit."
+                }
+            };
+
+            this.TopDestinations = new ObservableCollection<Model>
+            {
+                new Model
+                {
+                    ImagePath = App.BaseImageUrl + "Venice.jpeg",
+                    Place = "Venice, Italy",
+                    Details = "Venice is arguably the most beautiful city in the world. The world seems to agree, sending 30 million tourists to walk its cobblestone streets, cross its ornate bridges, and sail down its elegant canals every year."
+                },
+                new Model
+                {
+                    ImagePath = App.BaseImageUrl + "Santorini-greece.jpeg",
+                    Place = "Santorini, Greece",
+                    Details = "The result of volcanic eruptions that devastated ancient civilizations, Santorini, locally known as Thira, is now a tourism must-do. The white buildings and blue roofs of Oia town are an icon of Greece itself."
+                },
+                new Model
+                {
+                    ImagePath = App.BaseImageUrl + "Salt-Pond-Bay-Thailand.jpeg",
+                    Place = "Maya Beach, Thailand",
+                    Details = "The crystal blue waters of this cove were made famous by the 2000 movie The Beach. Surrounded by dramatic cliffs and a white-sand beach, Maya Beach is a popular day trip."
+                },
+                new Model
+                {
+                    ImagePath = App.BaseImageUrl + "Gran-via-Valencia.jpeg",
+                    Place = "Madrid, Spain",
+                    Details = "The capital of Spain tends to be overlooked in favor of the colorful Barcelona, but this city has a glamor of its own."
+                },
+            };
+
+            this.BestPlaces = new ObservableCollection<Model>
+            {
+                new Model
+                {
+                    ImagePath = App.BaseImageUrl + "Salt-Pond-Bay-Thailand.jpeg",
+                    Place = "Maya Bay, Thailand"
+                },
+                new Model
+                {
+                    ImagePath = App.BaseImageUrl + "Gran-via-Valencia.jpeg",
+                    Place = "Madrid, Spain"
+                },
+                new Model
+                {
+                    ImagePath = App.BaseImageUrl + "Venice.jpeg",
+                    Place = "Venice, Italy"
+                },
+                new Model
+                {
+                    ImagePath = App.BaseImageUrl + "Santorini-greece.jpeg",
+                    Place = "Santorini, Greece"
+                },
+            };
+
+            this.TravelPlacesCommand = new Command(this.TravelPlacesClicked);
+            this.TopDestinationsCommand = new Command(this.TopDestinationsClicked);
+            this.BestPlacesCommand = new Command(this.BestPlacesClicked);
+            this.ItemSelectedCommand = new Command(this.ItemSelected);
         }
 
         #endregion
@@ -55,15 +125,8 @@ namespace EssentialUIKit.ViewModels.Catalog
         #region Public Properties
 
         /// <summary>
-        /// Gets or sets the value of navigation travel page view model.
-        /// </summary>
-        public static NavigationTravelPageViewModel BindingContext =>
-            navigationTravelPageViewModel = PopulateData<NavigationTravelPageViewModel>("catalog.json");
-
-        /// <summary>
         /// Gets or sets the property that has been bound with the rotator view, which displays the travel places and details.
         /// </summary>
-        [DataMember(Name = "travelPlacesList")]
         public ObservableCollection<Model> TravelPlaces
         {
             get
@@ -78,14 +141,14 @@ namespace EssentialUIKit.ViewModels.Catalog
                     return;
                 }
 
-                this.SetProperty(ref this.travelPlaces, value);
+                this.travelPlaces = value;
+                this.NotifyPropertyChanged();
             }
         }
 
         /// <summary>
         /// Gets or sets the property which displays top destinations, details and price.
         /// </summary>
-        [DataMember(Name = "topDestinationsList")]
         public ObservableCollection<Model> TopDestinations
         {
             get
@@ -100,14 +163,14 @@ namespace EssentialUIKit.ViewModels.Catalog
                     return;
                 }
 
-                this.SetProperty(ref this.topDestinations, value);
+                this.topDestinations = value;
+                this.NotifyPropertyChanged();
             }
         }
 
         /// <summary>
         /// Gets or sets the property which displays the names and images of best places.
         /// </summary>
-        [DataMember(Name = "bestPlacesList")]
         public ObservableCollection<Model> BestPlaces
         {
             get
@@ -122,7 +185,8 @@ namespace EssentialUIKit.ViewModels.Catalog
                     return;
                 }
 
-                this.SetProperty(ref this.bestPlaces, value);
+                this.bestPlaces = value;
+                this.NotifyPropertyChanged();
             }
         }
 
@@ -131,16 +195,15 @@ namespace EssentialUIKit.ViewModels.Catalog
         /// </summary>
         public int SelectedIndex
         {
-            get { return this.selectedIndex; }
-
+            get { return selectedIndex; }
             set
             {
-                if (this.selectedIndex == value)
+                if (selectedIndex == value)
                 {
                     return;
                 }
-
-                this.SetProperty(ref this.selectedIndex, value);
+                selectedIndex = value;
+                this.NotifyPropertyChanged();
             }
         }
 
@@ -151,35 +214,22 @@ namespace EssentialUIKit.ViewModels.Catalog
         /// <summary>
         /// Gets or sets the command that will executed when the travel places item is clicked.
         /// </summary>
-        public Command TravelPlacesCommand
-        {
-            get
-            {
-                return this.travelPlacesCommand ?? (this.travelPlacesCommand = new Command(this.TravelPlacesClicked));
-            }
-        }
+        public Command TravelPlacesCommand { get; set; }
 
         /// <summary>
         /// Gets or sets the command that will executed when the top destinations item is clicked.
         /// </summary>
-        public Command TopDestinationsCommand
-        {
-            get
-            {
-                return this.topDestinationsCommand ?? (this.topDestinationsCommand = new Command(this.TopDestinationsClicked));
-            }
-        }
+        public Command TopDestinationsCommand { get; set; }
 
         /// <summary>
         /// Gets or sets the command that will executed when the best places item is clicked.
         /// </summary>
-        public Command BestPlacesCommand
-        {
-            get
-            {
-                return this.bestPlacesCommand ?? (this.bestPlacesCommand = new Command(this.BestPlacesClicked));
-            }
-        }
+        public Command BestPlacesCommand { get; set; }
+
+        /// <summary>
+        /// Gets or sets the command that will be executed when an item is selected.
+        /// </summary>
+        public Command ItemSelectedCommand { get; set; }
 
         /// <summary>
         /// Gets or sets the command that will be executed when the favourite button is clicked.
@@ -192,9 +242,9 @@ namespace EssentialUIKit.ViewModels.Catalog
             }
         }
 
-        /// <summary>
+        // <summary>
         /// Gets or sets the command that will be executed when carousel view item is swiped.
-        /// </summary> 
+        /// </summary>   
         public Command SelectionCommand
         {
             get
@@ -203,43 +253,9 @@ namespace EssentialUIKit.ViewModels.Catalog
             }
         }
 
-        /// <summary>
-        /// Gets or sets the command that will be executed when ViewAll Command is tapped.
-        /// </summary>
-        public Command ViewAllCommand
-        {
-            get
-            {
-                return this.viewAllCommand ?? (this.viewAllCommand = new Command(this.ViewAllClicked));
-            }
-        }
-
         #endregion
 
         #region Methods
-
-        /// <summary>
-        /// Populates the data for view model from json file.
-        /// </summary>
-        /// <typeparam name="T">Type of view model.</typeparam>
-        /// <param name="fileName">Json file to fetch data.</param>
-        /// <returns>Returns the view model object.</returns>
-        private static T PopulateData<T>(string fileName)
-        {
-            var file = "EssentialUIKit.Data." + fileName;
-
-            var assembly = typeof(App).GetTypeInfo().Assembly;
-
-            T data;
-
-            using (var stream = assembly.GetManifestResourceStream(file))
-            {
-                var serializer = new DataContractJsonSerializer(typeof(T));
-                data = (T)serializer.ReadObject(stream);
-            }
-
-            return data;
-        }
 
         /// <summary>
         /// Invoked when the the travel places item is clicked.
@@ -269,15 +285,22 @@ namespace EssentialUIKit.ViewModels.Catalog
         }
 
         /// <summary>
+        /// Invoked when an item is selected.
+        /// </summary>
+        /// <param name="obj">The Object</param>
+        private void ItemSelected(object obj)
+        {
+            // Do something
+        }
+
+        /// <summary>
         /// Invoked when the favourite button is clicked.
         /// </summary>
         /// <param name="obj">The Object</param>
         private void AddFavouriteClicked(object obj)
         {
             if (obj is Model travel)
-            {
                 travel.IsFavourite = !travel.IsFavourite;
-            }
         }
 
         /// <summary>
@@ -288,16 +311,6 @@ namespace EssentialUIKit.ViewModels.Catalog
         {
             this.SelectedIndex = this.TravelPlaces.IndexOf(obj);
         }
-
-        /// <summary>
-        /// Invoked when ViewAll item is clicked.
-        /// </summary>
-        /// <param name="obj">The rotator item</param>
-        private void ViewAllClicked(object obj)
-        {
-            // Do something
-        }
-
         #endregion
     }
 }

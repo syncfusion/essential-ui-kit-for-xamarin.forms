@@ -8,13 +8,12 @@
     xmlns:viewModels="clr-namespace:EssentialUIKit.AppLayout.ViewModels;assembly=EssentialUIKit"
     xmlns:views="clr-namespace:EssentialUIKit.AppLayout.Views;assembly=EssentialUIKit"
     Title="{StaticResource HomePageTitle}"
-    BackgroundColor="{DynamicResource Gray-Bg}"
     Style="{StaticResource ContentPageStyle}">
 
     <ContentPage.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="AppLayoutStyles.xaml" />
+                <ResourceDictionary Source="Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <Style TargetType="gradient:SfGradientView">
                 <Setter Property="BackgroundBrush">
@@ -45,7 +44,6 @@
             x:Name="listView"
             Grid.Row="0"
             Grid.RowSpan="2"
-            BackgroundColor="Transparent"
             HasUnevenRows="True"
             ItemsSource="{Binding Templates}"
             ScrollChanged="ListView_OnScrollChanged"
@@ -56,11 +54,17 @@
                 <DataTemplate>
                     <ViewCell>
                         <!--  The image at the left will be rendered with some space.  -->
-                        <Grid
-                            Margin="0,16,16,8"
-                            ColumnDefinitions="Auto, Auto"
-                            RowDefinitions="Auto, Auto, Auto"
-                            RowSpacing="8">
+                        <Grid Margin="0,16,16,8" RowSpacing="8">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
 
                             <Image
                                 Grid.RowSpan="3"
@@ -86,10 +90,10 @@
                                     <Frame.Content>
                                         <Label
                                             Margin="5,1"
-                                            FontFamily="Montserrat-Medium"
+                                            FontFamily="{StaticResource Montserrat-Medium}"
                                             FontSize="10"
                                             Text="{Binding UpdateType}"
-                                            TextColor="{DynamicResource Gray-Bg}" />
+                                            TextColor="{DynamicResource Gray-White}" />
                                     </Frame.Content>
                                 </Frame>
                             </StackLayout>
@@ -128,18 +132,28 @@
                     <Grid
                         Grid.Row="1"
                         Grid.RowSpan="2"
-                        ColumnDefinitions="45*, 55*"
                         ColumnSpacing="0"
                         HeightRequest="200"
                         Opacity="0.9"
-                        RowDefinitions="10*, Auto, Auto, 5*, Auto, 10*"
                         RowSpacing="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="10*" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="5*" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="10*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="45*" />
+                            <ColumnDefinition Width="55*" />
+                        </Grid.ColumnDefinitions>
 
                         <Label
                             x:Name="BrandName"
                             Grid.Row="1"
                             Grid.Column="1"
-                            FontFamily="Montserrat-Regular"
+                            FontFamily="{StaticResource Montserrat-Regular}"
                             FontSize="Micro"
                             HorizontalOptions="StartAndExpand"
                             Text="Syncfusion's"
@@ -156,7 +170,7 @@
                             x:Name="HeaderText"
                             Grid.Row="2"
                             Grid.Column="1"
-                            FontFamily="Montserrat-Regular"
+                            FontFamily="{StaticResource Montserrat-Regular}"
                             FontSize="16"
                             HorizontalOptions="StartAndExpand"
                             Text="{StaticResource HomePageTitle}"
@@ -167,7 +181,7 @@
                             Grid.Row="4"
                             Grid.ColumnSpan="2"
                             Margin="10,0,10,0"
-                            FontFamily="Montserrat-Regular"
+                            FontFamily="{StaticResource Montserrat-Regular}"
                             FontSize="15"
                             HorizontalOptions="CenterAndExpand"
                             HorizontalTextAlignment="Center"
@@ -198,34 +212,28 @@
                     <Frame
                         Grid.Row="2"
                         Padding="0"
-                        BackgroundColor="{DynamicResource Gray-Bg}"
+                        BackgroundColor="{DynamicResource Gray-White}"
                         CornerRadius="{OnPlatform 20,
                                                   iOS=10}"
                         HasShadow="False" />
 
-                    <StackLayout
-                        Grid.Row="1"
-                        HorizontalOptions="EndAndExpand"
-                        Orientation="Horizontal"
-                        Spacing="0">
+                    <StackLayout Grid.Row="1" Spacing="0" Orientation="Horizontal" HorizontalOptions="EndAndExpand">
                         <Button
-                            x:Name="CodeViewerIcon"
-                            Clicked="GotoCodeViewer"
-                            FontSize="18"
-                            Style="{StaticResource ActionBarSettingIconStyle}"
+                            x:Name="CodeViewerIcon" 
                             Text="&#xe753;"
-                            VerticalOptions="Start"
-                            WidthRequest="35" />
+                            FontSize="16"
+                            Clicked="GotoCodeViewer"
+                            Style="{StaticResource ActionBarSettingIconStyle}"
+                            VerticalOptions="Start" />
 
                         <Button
-                            x:Name="SettingsIcon"
-                            Clicked="ShowSettings"
-                            FontSize="18"
+                            x:Name="SettingsIcon" 
+                            Clicked="ShowSettings" 
                             Style="{StaticResource ActionBarSettingIconStyle}"
                             VerticalOptions="Start" />
                     </StackLayout>
 
-
+                   
 
                 </Grid>
             </ListView.Header>
@@ -253,21 +261,15 @@
                 Text="{StaticResource HomePageTitle}"
                 VerticalOptions="CenterAndExpand" />
 
-            <StackLayout
-                Grid.Row="1"
-                HorizontalOptions="End"
-                Orientation="Horizontal"
-                Spacing="0">
+            <StackLayout Grid.Row="1" Spacing="0" Orientation="Horizontal" HorizontalOptions="End">
                 <Button
+                    Text="&#xe753;" FontSize="16"
                     Clicked="GotoCodeViewer"
-                    FontSize="18"
                     Style="{StaticResource ActionBarSettingIconStyle}"
-                    Text="&#xe753;"
                     VerticalOptions="Start" />
 
                 <Button
                     Clicked="ShowSettings"
-                    FontSize="18"
                     Style="{StaticResource ActionBarSettingIconStyle}"
                     VerticalOptions="CenterAndExpand" />
             </StackLayout>
@@ -275,7 +277,7 @@
             <Frame
                 Grid.Row="2"
                 Padding="0"
-                BackgroundColor="{DynamicResource Gray-Bg}"
+                BackgroundColor="{DynamicResource Gray-White}"
                 CornerRadius="{OnPlatform 20,
                                           iOS=10}"
                 HasShadow="False" />

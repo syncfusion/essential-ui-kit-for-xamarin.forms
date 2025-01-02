@@ -71,16 +71,15 @@ namespace EssentialUIKit.UWP
                     typeof(Syncfusion.XForms.UWP.PopupLayout.SfPopupLayoutRenderer).GetTypeInfo().Assembly,
                     typeof(Syncfusion.XForms.UWP.Expander.SfExpanderRenderer).GetTypeInfo().Assembly,
                     typeof(Syncfusion.XForms.UWP.Cards.SfCardViewRenderer).GetTypeInfo().Assembly,
-                    typeof(Syncfusion.XForms.Pickers.UWP.SfDatePickerRenderer).GetTypeInfo().Assembly,
                     typeof(Syncfusion.XForms.UWP.BadgeView.SfBadgeViewRenderer).GetTypeInfo().Assembly,
                     typeof(Syncfusion.XForms.UWP.Buttons.SfSegmentedControlRenderer).GetTypeInfo().Assembly,
                     typeof(Syncfusion.SfMaps.XForms.UWP.SfMapsRenderer).GetTypeInfo().Assembly,
-                    typeof(Syncfusion.XForms.UWP.ProgressBar.SfLinearProgressRenderer).GetTypeInfo().Assembly,
+                    typeof(Syncfusion.XForms.UWP.ProgressBar.SfLinearProgressRenderer).GetTypeInfo().Assembly
                 };
                 Xamarin.Forms.Forms.SetFlags("CollectionView_Experimental");
                 Xamarin.Forms.Forms.Init(e, assembliesToInclude);
 
-                if (e?.PreviousExecutionState == ApplicationExecutionState.Terminated)
+                if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
                 {
                     // TODO: Load state from previously suspended application
                 }
@@ -94,7 +93,7 @@ namespace EssentialUIKit.UWP
                 // When the navigation stack isn't restored navigate to the first page,
                 // configuring the new page by passing required information as a navigation
                 // parameter
-                rootFrame.Navigate(typeof(MainPage), e?.Arguments);
+                rootFrame.Navigate(typeof(MainPage), e.Arguments);
             }
 
             //// Ensure the current window is active

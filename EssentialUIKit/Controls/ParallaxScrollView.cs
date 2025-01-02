@@ -1,4 +1,7 @@
-﻿using Xamarin.Forms;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 
 namespace EssentialUIKit.Controls
@@ -33,9 +36,9 @@ namespace EssentialUIKit.Controls
         /// <summary>
         /// Initialize the parallx scroll view.
         /// </summary>
-        public ParallaxScrollView()
+        public ParallaxScrollView ()
         {
-            this.Scrolled += (sender, e) => this.Parallax();
+            Scrolled += (sender, e) => this.Parallax();
         }
 
         #endregion
@@ -47,8 +50,8 @@ namespace EssentialUIKit.Controls
         /// </summary>
         public View ParallaxHeaderView
         {
-            get => (View)this.GetValue(ParallaxHeaderViewProperty);
-            set => this.SetValue(ParallaxHeaderViewProperty, value);
+            get => (View)GetValue(ParallaxHeaderViewProperty);
+            set => SetValue(ParallaxHeaderViewProperty, value);
         }
 
         #endregion
@@ -58,30 +61,26 @@ namespace EssentialUIKit.Controls
         /// <summary>
         /// Invoked when scroll the view.
         /// </summary>
-        public void Parallax()
+        public void Parallax ()
         {
-            if (this.ParallaxHeaderView == null)
-            {
+            if ( this.ParallaxHeaderView == null )
                 return;
-            }
 
-            if (this.height <= 0)
-            {
-                this.height = this.ParallaxHeaderView.Height;
-            }
+            if ( height <= 0 )
+                height = this.ParallaxHeaderView.Height;
 
-            var y = -(int)((float)this.ScrollY / 2.0f);
+            var y = -(int)( (float)ScrollY / 2.0f );
 
-            if (y < 0)
+            if ( y < 0 )
             {
                 this.ParallaxHeaderView.Scale = 1;
                 this.ParallaxHeaderView.TranslationY = y;
             }
-            else if (Device.RuntimePlatform == "iOS")
+            else if ( Device.RuntimePlatform == "iOS" )
             {
-                var newHeight = this.height + (this.ScrollY * -1);
-                this.ParallaxHeaderView.Scale = newHeight / this.height;
-                this.ParallaxHeaderView.TranslationY = -(this.ScrollY / 2);
+                var newHeight = height + ( ScrollY * -1 );
+                this.ParallaxHeaderView.Scale = newHeight / height;
+                this.ParallaxHeaderView.TranslationY = -( ScrollY / 2 );
             }
             else
             {

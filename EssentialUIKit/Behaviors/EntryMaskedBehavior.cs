@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using EssentialUIKit.Controls;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 
@@ -12,19 +15,7 @@ namespace EssentialUIKit.Behaviors
     {
         #region Fields
 
-        /// <summary>
-        /// Property used to bind mask for entry to validate the user input. 
-        /// </summary>
-        public static readonly BindableProperty MaskProperty =
-          BindableProperty.Create(nameof(Mask), typeof(string), typeof(EntryMaskedBehavior), string.Empty, BindingMode.Default, null, OnMaskChanged);
-
-        /// <summary>
-        /// Property used to set prefix text for entry field. 
-        /// </summary>
-        public static readonly BindableProperty PrefixProperty =
-          BindableProperty.Create(nameof(Prefix), typeof(string), typeof(EntryMaskedBehavior), string.Empty, BindingMode.Default, null, OnPrefixChanged);
-
-        private IDictionary<int, char> positions;
+        IDictionary<int, char> positions;
 
         #endregion
 
@@ -35,39 +26,33 @@ namespace EssentialUIKit.Behaviors
         /// </summary>
         public string Mask
         {
-            get { return (string)this.GetValue(MaskProperty); }
+            get { return (string)GetValue(MaskProperty); }
             set { this.SetValue(MaskProperty, value); }
         }
 
+        /// <summary>
+        /// Property used to bind mask for entry to validate the user input. 
+        /// </summary>
+        public static readonly BindableProperty MaskProperty =
+          BindableProperty.Create(nameof(Mask), typeof(string), typeof(EntryMaskedBehavior), "",BindingMode.Default,
+              null, OnMaskChanged);
+
         public string Prefix
         {
-            get { return (string)this.GetValue(PrefixProperty); }
+            get { return (string)GetValue(PrefixProperty); }
             set { this.SetValue(PrefixProperty, value); }
         }
+
+        /// <summary>
+        /// Property used to set prefix text for entry field. 
+        /// </summary>
+        public static readonly BindableProperty PrefixProperty =
+          BindableProperty.Create(nameof(Prefix), typeof(string), typeof(EntryMaskedBehavior), "", BindingMode.Default,
+              null, OnPrefixChanged);
 
         #endregion
 
         #region Methods
-
-        protected override void OnAttachedTo(Entry entry)
-        {
-            if (entry != null)
-            {
-                entry.TextChanged += this.OnEntryTextChanged;
-                entry.Focused += this.OnEntryFocused;
-                base.OnAttachedTo(entry);
-            }
-        }
-
-        protected override void OnDetachingFrom(Entry entry)
-        {
-            if (entry != null)
-            {
-                entry.TextChanged -= this.OnEntryTextChanged;
-                entry.Focused -= this.OnEntryFocused;
-                base.OnDetachingFrom(entry);
-            }
-        }
 
         private static void OnMaskChanged(BindableObject bindable, object oldValue, object newValue)
         {
@@ -78,29 +63,39 @@ namespace EssentialUIKit.Behaviors
         {
         }
 
-        private void OnEntryFocused(object sender, FocusEventArgs e)
+        protected override void OnAttachedTo(Entry entry)
         {
-            (sender as Entry).Text = this.Prefix;
+            entry.TextChanged += OnEntryTextChanged;
+            entry.Focused += OnEntryFocused;
+            base.OnAttachedTo(entry);
         }
 
-        private void SetPositions()
+        private void OnEntryFocused(object sender, FocusEventArgs e)
         {
-            if (string.IsNullOrEmpty(this.Mask))
+            (sender as Entry).Text = Prefix;
+        }
+
+        protected override void OnDetachingFrom(Entry entry)
+        {
+            entry.TextChanged -= OnEntryTextChanged;
+            entry.Focused -= OnEntryFocused;
+            base.OnDetachingFrom(entry);
+        }
+
+        void SetPositions()
+        {
+            if (string.IsNullOrEmpty(Mask))
             {
-                this.positions = null;
+                positions = null;
                 return;
             }
 
             var list = new Dictionary<int, char>();
-            for (var i = 0; i < this.Mask.Length; i++)
-            {
-                if (this.Mask[i] != 'X')
-                {
-                    list.Add(i, this.Mask[i]);
-                }
-            }
+            for (var i = 0; i < Mask.Length; i++)
+                if (Mask[i] != 'X')
+                    list.Add(i, Mask[i]);
 
-            this.positions = list;
+            positions = list;
         }
 
         private void OnEntryTextChanged(object sender, TextChangedEventArgs args)
@@ -109,33 +104,25 @@ namespace EssentialUIKit.Behaviors
 
             var text = entry.Text;
 
-            if (string.IsNullOrWhiteSpace(text) || this.positions == null)
-            {
+            if (string.IsNullOrWhiteSpace(text) || positions == null)
                 return;
-            }
 
-            if (text.Length > this.Mask.Length)
+            if (text.Length > Mask.Length)
             {
                 entry.Text = text.Remove(text.Length - 1);
                 return;
             }
 
-            foreach (var position in this.positions)
-            {
+            foreach (var position in positions)
                 if (text.Length >= position.Key + 1)
                 {
                     var value = position.Value.ToString();
                     if (text.Substring(position.Key, 1) != value)
-                    {
                         text = text.Insert(position.Key, value);
-                    }
                 }
-            }
 
             if (entry.Text != text)
-            {
                 entry.Text = text;
-            }
         }
 
         #endregion

@@ -1,6 +1,6 @@
 ﻿using Xamarin.Forms;
-using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
+using Xamarin.Forms.Internals;
 
 namespace EssentialUIKit.Views.Detail
 {
@@ -13,7 +13,7 @@ namespace EssentialUIKit.Views.Detail
         /// </summary>
         public RoomBookingPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
     }
 }

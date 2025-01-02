@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Syncfusion.SfChart.XForms;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using Xamarin.Forms.Internals;
 
@@ -11,8 +12,8 @@ namespace EssentialUIKit.Models.Dashboard
     public class HealthCare : INotifyPropertyChanged
     {
         #region Field
-
-        private IReadOnlyCollection<ChartModel> chartData;
+        
+        private ObservableCollection<ChartDataPoint> chartData;
 
         #endregion
 
@@ -45,21 +46,21 @@ namespace EssentialUIKit.Models.Dashboard
         /// <summary>
         /// Gets or sets the property that has been bound with SfChart Control, which displays the health care data visualization.
         /// </summary>
-        public IReadOnlyCollection<ChartModel> ChartData
+        public ObservableCollection<ChartDataPoint> ChartData
         {
             get
             {
-                return this.chartData;
+                return chartData;
             }
 
             set
             {
-                if (this.chartData == value)
+                if (chartData == value)
                 {
                     return;
                 }
 
-                this.chartData = value;
+                chartData = value;
                 this.OnPropertyChanged("ChartData");
             }
         }
@@ -81,7 +82,7 @@ namespace EssentialUIKit.Models.Dashboard
         /// <summary>
         /// The PropertyChanged event occurs when changing the value of property.
         /// </summary>
-        /// <param name="property">Property name</param>
+        /// <param name="propertyName">Property name</param>
         protected void OnPropertyChanged(string property)
         {
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));

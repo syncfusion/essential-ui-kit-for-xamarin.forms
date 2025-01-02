@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="EssentialUIKit.Views.ECommerce.CategoryView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms"
+    Margin="0,0,0,15"
+    Padding="58,0,58,0"
+    BackgroundColor="{DynamicResource Gray-White}"
+    VerticalOptions="Center">
+
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentView.Resources>
+
+    <StackLayout
+        BindableLayout.ItemsSource="{Binding Categories}"
+        HorizontalOptions="Center"
+        Orientation="Horizontal">
+        <BindableLayout.ItemTemplate>
+            <DataTemplate>
+                <combobox:SfComboBox
+                    DataSource="{Binding SubCategories}"
+                    HeightRequest="40"
+                    HorizontalOptions="Center"
+                    ShowBorder="False"
+                    Style="{StaticResource SfComboBoxStyle}"
+                    Text="{Binding Name}"
+                    TextColor="{DynamicResource Gray-900}">
+                    <combobox:SfComboBox.DropDownButtonSettings>
+                        <combobox:DropDownButtonSettings Width="25" Height="25" />
+                    </combobox:SfComboBox.DropDownButtonSettings>
+                </combobox:SfComboBox>
+            </DataTemplate>
+        </BindableLayout.ItemTemplate>
+    </StackLayout>
+
+</ContentView>

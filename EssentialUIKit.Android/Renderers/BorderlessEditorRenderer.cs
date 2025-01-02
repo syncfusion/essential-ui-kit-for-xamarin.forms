@@ -14,15 +14,13 @@ namespace EssentialUIKit.Droid
     {
         #region Constructor
 
-        public BorderlessEditorRenderer()
-            : base(Application.Context)
+        public BorderlessEditorRenderer() : base(Application.Context)
         {
         }
 
         #endregion
 
         #region Methods
-
         /// <summary>
         /// Used to set the transparent color for editor control background property.
         /// </summary>

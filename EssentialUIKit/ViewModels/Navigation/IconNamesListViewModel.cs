@@ -1,7 +1,7 @@
-﻿using System.Collections.ObjectModel;
-using System.Runtime.Serialization;
+﻿using Xamarin.Forms;
 using EssentialUIKit.Models.Navigation;
-using Xamarin.Forms;
+using System.Collections.ObjectModel;
+using System.Runtime.Serialization;
 using Xamarin.Forms.Internals;
 
 namespace EssentialUIKit.ViewModels.Navigation
@@ -28,6 +28,7 @@ namespace EssentialUIKit.ViewModels.Navigation
         /// </summary>
         public IconNamesListViewModel()
         {
+
         }
         #endregion
 
@@ -45,7 +46,7 @@ namespace EssentialUIKit.ViewModels.Navigation
         }
 
         /// <summary>
-        /// Gets the next command that will be executed when an item is selected.
+        /// Gets or sets the next command that will be executed when an item is selected.
         /// </summary>   
         public Command NextCommand
         {
@@ -80,7 +81,7 @@ namespace EssentialUIKit.ViewModels.Navigation
         /// <param name="obj">The Object</param>
         private void NextClicked(object obj)
         {
-            // Do something
+            //Do something
         }
 
         #endregion

@@ -1,10 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using EssentialUIKit.Models.Catalog;
+using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Runtime.Serialization;
-using System.Runtime.Serialization.Json;
-using EssentialUIKit.Models.Catalog;
-using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 
 namespace EssentialUIKit.ViewModels.Catalog
@@ -18,27 +15,21 @@ namespace EssentialUIKit.ViewModels.Catalog
     {
         #region Fields
 
-        private static EventListViewModel eventListViewModel;
-
         private List<EventList> eventItems;
 
         private List<EventList> popularEventItems;
 
         private List<EventList> upcomingEventItems;
 
-        private int selectedIndex;
+        public int selectedIndex;
 
-        private string searchText;
+        public string searchText;
 
-        private string allListSearchText;
+        public string allListSearchText;
 
-        private string upcomingListSearchText;
+        public string upcomingListSearchText;
 
-        private string popularListSearchText;
-
-        private Command menuCommand;
-
-        private Command itemTappedCommand;
+        public string popularListSearchText;
 
         #endregion
 
@@ -47,24 +38,37 @@ namespace EssentialUIKit.ViewModels.Catalog
         /// <summary>
         /// Initializes a new instance for the <see cref="EventListViewModel" /> class.
         /// </summary>
+         
         public EventListViewModel()
         {
-        }
+            this.EventItems = new List<EventList>()
+            {
+                 new EventList { ImagePath = App.BaseImageUrl +"Event-Image-two.png" , EventMonth="Dec",
+                                   EventName="Build Your Base, New York", EventDate="24", IsUpcoming=true, 
+                                   EventTime="2:00 PM - 6:00 PM"},
+                 new EventList {  ImagePath = App.BaseImageUrl +"Event-Image.png" , EventMonth="Dec",
+                                   EventName="Ignite Music, New York", EventDate="22",IsPopular=true,
+                                   EventTime="7:00 PM - 11:00 PM"},
+                 new EventList { ImagePath =  App.BaseImageUrl +"Event-Image-three.png" , EventMonth="Dec",
+                                   EventName="John Weds Jane, New York", EventDate="27", IsUpcoming=true,
+                                   EventTime="10:00 AM - 2:00 PM"},
+                 new EventList { ImagePath = App.BaseImageUrl +"Event-Image-one.png", EventMonth="Dec",
+                                   EventName="BigSounds, New York", EventDate="23",IsPopular=true,
+                                   EventTime="9:00 PM - 1:00 PM"}
+            };
 
+            this.PopularEventItems = EventItems.Where(item => item.IsUpcoming == true).ToList();
+
+            this.UpcomingEventItems = EventItems.Where(item => item.IsPopular == true).ToList();
+
+        }
         #endregion
 
         #region Properties
 
         /// <summary>
-        /// Gets or sets the value of event list view model.
-        /// </summary>
-        public static EventListViewModel BindingContext =>
-            eventListViewModel = PopulateData<EventListViewModel>("catalog.json");
-
-        /// <summary>
         /// Gets or sets the event items collection.
         /// </summary>
-        [DataMember(Name = "eventItems")]
         public List<EventList> EventItems
         {
             get
@@ -74,39 +78,42 @@ namespace EssentialUIKit.ViewModels.Catalog
 
             set
             {
-                this.SetProperty(ref this.eventItems, value);
+                this.eventItems = value;
+                this.NotifyPropertyChanged();
             }
         }
 
         /// <summary>
-        /// Gets the upcoming events collection.
+        /// Gets or sets the upcoming events collection.
         /// </summary>
         public List<EventList> UpcomingEventItems
         {
             get
             {
-                return this.upcomingEventItems = this.EventItems.Where(item => item.IsUpcoming == true).ToList();
+                return this.upcomingEventItems;
             }
 
-            private set
+            set
             {
-                this.SetProperty(ref this.upcomingEventItems, value);
+                this.upcomingEventItems = value;
+                this.NotifyPropertyChanged();
             }
         }
 
         /// <summary>
-        /// Gets the popular events collection.
+        /// Gets or sets the popular events collection.
         /// </summary>
         public List<EventList> PopularEventItems
         {
             get
             {
-                return this.popularEventItems = this.EventItems.Where(item => item.IsPopular == true).ToList();
+                return this.popularEventItems;
             }
 
-            private set
+            set
             {
-                this.SetProperty(ref this.popularEventItems, value);
+                this.popularEventItems = value;
+                this.NotifyPropertyChanged();
             }
         }
 
@@ -123,7 +130,8 @@ namespace EssentialUIKit.ViewModels.Catalog
             set
             {
                 this.selectedIndex = value;
-                this.SearchText = string.Empty;
+                SearchText = string.Empty;
+
             }
         }
 
@@ -139,8 +147,9 @@ namespace EssentialUIKit.ViewModels.Catalog
 
             set
             {
-                this.UpdateSelectedText();
-                this.SetProperty(ref this.searchText, value);
+                this.searchText = value;
+                UpdateSelectedText();
+                this.NotifyPropertyChanged();
             }
         }
 
@@ -156,7 +165,8 @@ namespace EssentialUIKit.ViewModels.Catalog
 
             set
             {
-                this.SetProperty(ref this.allListSearchText, value);
+                allListSearchText = value;
+                this.NotifyPropertyChanged();
             }
         }
 
@@ -172,7 +182,8 @@ namespace EssentialUIKit.ViewModels.Catalog
 
             set
             {
-                this.SetProperty(ref this.upcomingListSearchText, value);
+                upcomingListSearchText = value;
+                this.NotifyPropertyChanged();
             }
         }
 
@@ -188,33 +199,8 @@ namespace EssentialUIKit.ViewModels.Catalog
 
             set
             {
-                this.SetProperty(ref this.popularListSearchText, value);
-            }
-        }
-
-        #endregion
-
-        #region Command
-
-        /// <summary>
-        /// Gets the command that is executed when the item is selected.
-        /// </summary>
-        public Command ItemTappedCommand
-        {
-            get
-            {
-                return this.itemTappedCommand ?? (this.itemTappedCommand = new Command(this.ItemSelected));
-            }
-        }
-
-        /// <summary>
-        /// Gets the command that is executed when the menu button is clicked.
-        /// </summary>
-        public Command MenuCommand
-        {
-            get
-            {
-                return this.menuCommand ?? (this.menuCommand = new Command(this.MenuButtonClicked));
+                popularListSearchText = value;
+                this.NotifyPropertyChanged();
             }
         }
 
@@ -222,66 +208,23 @@ namespace EssentialUIKit.ViewModels.Catalog
 
         #region Methods
 
-        /// <summary>
-        /// Populates the data for view model from json file.
-        /// </summary>
-        /// <typeparam name="T">Type of view model.</typeparam>
-        /// <param name="fileName">Json file to fetch data.</param>
-        /// <returns>Returns the view model object.</returns>
-        private static T PopulateData<T>(string fileName)
-        {
-            var file = "EssentialUIKit.Data." + fileName;
-
-            var assembly = typeof(App).GetTypeInfo().Assembly;
-
-            T data;
-
-            using (var stream = assembly.GetManifestResourceStream(file))
-            {
-                var serializer = new DataContractJsonSerializer(typeof(T));
-                data = (T)serializer.ReadObject(stream);
-            }
-
-            return data;
-        }
-
-        /// <summary>
-        /// Invoked when item is clicked.
-        /// </summary>
-        private void ItemSelected(object obj)
-        {
-            // Do something
-        }
-
-        /// <summary>
-        /// Invoked when menu button is changed.
-        /// </summary>
-        private void MenuButtonClicked(object obj)
-        {
-            // Do something
-        }
-
-        /// <summary>
-        /// Invoked when search text is changed.
-        /// </summary>
         private void UpdateSelectedText()
         {
-            switch (this.selectedIndex)
+            switch (selectedIndex)
             {
                 case 0:
-                    this.AllListSearchText = this.searchText;
+                    AllListSearchText = searchText;
                     break;
 
                 case 1:
-                    this.UpcomingListSearchText = this.searchText;
+                    UpcomingListSearchText = searchText;
                     break;
 
                 case 2:
-                    this.PopularListSearchText = this.searchText;
+                    PopularListSearchText = searchText;
                     break;
             }
         }
-
         #endregion
     }
 }

@@ -1,5 +1,4 @@
-﻿using EssentialUIKit.ViewModels.History;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
 
@@ -14,8 +13,7 @@ namespace EssentialUIKit.Views.History
     {
         public TransactionHistoryPage()
         {
-            this.InitializeComponent();
-            this.BindingContext = TransactionHistoryViewModel.BindingContext;
+            InitializeComponent();
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using EssentialUIKit.ViewModels.Transaction;
-using Xamarin.Forms.Internals;
+﻿using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
 
 namespace EssentialUIKit.Views.Transaction
@@ -16,8 +15,7 @@ namespace EssentialUIKit.Views.Transaction
         /// </summary>
         public PaymentPage()
         {
-            this.InitializeComponent();
-            this.BindingContext = CheckoutPageViewModel.BindingContext;
+            InitializeComponent();
         }
     }
 }

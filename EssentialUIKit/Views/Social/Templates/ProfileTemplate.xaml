@@ -4,48 +4,39 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
-    xmlns:syncEffectsView="clr-namespace:Syncfusion.XForms.EffectsView;assembly=Syncfusion.Core.XForms"
-    x:Name="profileTemplate">
+    >
 
     <ViewCell.View>
-
-        <StackLayout Margin="0,16,16,0" Spacing="0">
+        
+        <StackLayout Margin="0,16,16,0" Spacing="0">       
 
             <border:SfBorder
-                Margin="0,0,0,4"
-                BorderColor="{DynamicResource Gray-Bg}"
-                BorderWidth="1"
+                BorderColor="Transparent"
+                BorderWidth="0"
                 CornerRadius="35"
-                HeightRequest="64"
+                HeightRequest="64"                
+                Margin="0,0,0,4"
                 HorizontalOptions="Center"
                 WidthRequest="64">
 
-                <syncEffectsView:SfEffectsView
-                    RippleColor="{DynamicResource Gray-300}"
-                    TouchDownEffects="Ripple"
-                    TouchUpCommand="{Binding Path=ParentBindingContext.ProfileSelectedCommand, Source={x:Reference profileTemplate}}"
-                    TouchUpCommandParameter="{Binding}">
-
-                    <!--  Image of the profile  -->
-                    <Image
-                        Aspect="AspectFill"
-                        BackgroundColor="{DynamicResource Gray-200}"
-                        HeightRequest="64"
-                        HorizontalOptions="Center"
-                        WidthRequest="64">
-                        <Image.Source>
-                            <UriImageSource
-                                CacheValidity="14"
-                                CachingEnabled="true"
-                                Uri="{Binding ImagePath}" />
-                        </Image.Source>
-                    </Image>
-                </syncEffectsView:SfEffectsView>
+                <!--  Image of the profile  -->
+                <Image
+                    Aspect="AspectFill"
+                    BackgroundColor="{DynamicResource Gray-200}"
+                    HeightRequest="64"
+                    HorizontalOptions="Center"
+                    WidthRequest="64">
+                    <Image.Source>
+                        <UriImageSource Uri="{Binding ImagePath}" 
+			                                 CacheValidity="14" 
+			                                 CachingEnabled="true"/>
+                    </Image.Source>
+                </Image>
             </border:SfBorder>
 
             <!--  Profile name  -->
             <Label
-                FontFamily="Montserrat-Medium"
+                FontFamily="{StaticResource Montserrat-Medium}"
                 FontSize="12"
                 HorizontalOptions="Center"
                 HorizontalTextAlignment="Center"

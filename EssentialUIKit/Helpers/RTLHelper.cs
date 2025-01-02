@@ -17,20 +17,20 @@ namespace EssentialUIKit.Helpers
         /// <summary>
         /// Gets or sets the MarginProperty.
         /// </summary>
-        public static readonly BindableProperty MarginProperty = BindableProperty.CreateAttached(
-            "Margin", typeof(Thickness), typeof(RTLHelper), ZeroThickness, propertyChanged: OnMarginPropertyChanged);
+        public static readonly BindableProperty MarginProperty = BindableProperty.CreateAttached("Margin",
+            typeof(Thickness), typeof(RTLHelper), ZeroThickness, propertyChanged: OnMarginPropertyChanged);
 
         /// <summary>
         /// Gets or sets the PaddingProperty.
         /// </summary>
-        public static readonly BindableProperty PaddingProperty = BindableProperty.CreateAttached(
-            "Padding", typeof(Thickness), typeof(RTLHelper), ZeroThickness, propertyChanged: OnPaddingPropertyChanged);
+        public static readonly BindableProperty PaddingProperty = BindableProperty.CreateAttached("Padding",
+            typeof(Thickness), typeof(RTLHelper), ZeroThickness, propertyChanged: OnPaddingPropertyChanged);
 
         /// <summary>
         /// Gets or sets the CornerRadiusProperty.
         /// </summary>
-        public static readonly BindableProperty CornerRadiusProperty = BindableProperty.CreateAttached(
-            "CornerRadius", typeof(Thickness), typeof(RTLHelper), ZeroThickness, propertyChanged: OnCornerRadiusPropertyChanged);
+        public static readonly BindableProperty CornerRadiusProperty = BindableProperty.CreateAttached("CornerRadius",
+            typeof(Thickness), typeof(RTLHelper), ZeroThickness, propertyChanged: OnCornerRadiusPropertyChanged);
 
         #endregion
 
@@ -39,7 +39,7 @@ namespace EssentialUIKit.Helpers
         /// <summary>
         /// Field to hold the zero thickness.
         /// </summary>
-        private static readonly Thickness ZeroThickness = 0;
+        private static readonly Thickness ZeroThickness = new Thickness();
 
         #endregion
 
@@ -134,13 +134,10 @@ namespace EssentialUIKit.Helpers
         /// <param name="newValue">the new value</param>
         private static void OnMarginPropertyChanged(BindableObject bindable, object oldValue, object newValue)
         {
-            if (!(bindable is View view))
-            {
-                return;
-            }
+            if (!(bindable is View view)) return;
 
-            var previousMargin = (Thickness)oldValue;
-            var currentMargin = (Thickness)newValue;
+            var previousMargin = (Thickness) oldValue;
+            var currentMargin = (Thickness) newValue;
 
             UpdateMargin(view);
 
@@ -165,10 +162,7 @@ namespace EssentialUIKit.Helpers
         /// <param name="newValue">the new value</param>
         private static void OnPaddingPropertyChanged(BindableObject bindable, object oldValue, object newValue)
         {
-            if (!(bindable is Layout layout))
-            {
-                return;
-            }
+            if (!(bindable is Layout layout)) return;
 
             var previousPadding = (Thickness)oldValue;
             var currentPadding = (Thickness)newValue;
@@ -196,10 +190,7 @@ namespace EssentialUIKit.Helpers
         /// <param name="newValue">the new value</param>
         private static void OnCornerRadiusPropertyChanged(BindableObject bindable, object oldValue, object newValue)
         {
-            if (!(bindable is View view))
-            {
-                return;
-            }
+            if (!(bindable is View view)) return;
 
             var previousCornerRadius = (Thickness)oldValue;
             var currentCornerRadius = (Thickness)newValue;
@@ -225,7 +216,7 @@ namespace EssentialUIKit.Helpers
         /// <param name="view">The view</param>
         private static void UpdateMargin(VisualElement view)
         {
-            var controller = (IVisualElementController)view;
+            var controller = (IVisualElementController) view;
             var margin = GetMargin(view);
 
             if (margin != ZeroThickness)
@@ -267,6 +258,7 @@ namespace EssentialUIKit.Helpers
             }
         }
 
+        
         /// <summary>
         /// Updates the value of the corner radius when flow direction is changed.
         /// </summary>
@@ -280,7 +272,8 @@ namespace EssentialUIKit.Helpers
             {
                 if (controller.EffectiveFlowDirection == EffectiveFlowDirection.RightToLeft)
                 {
-                    cornerRadius = new Thickness(cornerRadius.Top, cornerRadius.Left, cornerRadius.Bottom, cornerRadius.Right);
+                    cornerRadius = new Thickness(cornerRadius.Top, cornerRadius.Left, cornerRadius.Bottom,
+                        cornerRadius.Right);
                 }
 
                 if (view is SfCardView)
@@ -305,6 +298,7 @@ namespace EssentialUIKit.Helpers
             }
         }
 
+       
         /// <summary>
         /// Updates the margin when flow direction is changed .
         /// </summary>

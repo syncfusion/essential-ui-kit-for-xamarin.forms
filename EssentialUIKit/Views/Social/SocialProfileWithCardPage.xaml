@@ -6,75 +6,57 @@
     xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
     xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
     xmlns:control="clr-namespace:EssentialUIKit.Controls"
-    xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
     xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
-    xmlns:listviewBahavior="clr-namespace:EssentialUIKit.Behaviors"
     xmlns:local="clr-namespace:EssentialUIKit.Views.Social.Templates"
-    xmlns:syncEffectsView="clr-namespace:Syncfusion.XForms.EffectsView;assembly=Syncfusion.Core.XForms"
-    xmlns:triggers="clr-namespace:EssentialUIKit.Triggers"
-    x:Name="socialProfileWithCard"
-    BackgroundColor="{DynamicResource Gray-Bg}"
+    xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Social"
+    BackgroundColor="{DynamicResource Gray-White}"
     NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <!--  Binding context for social profile with card page  -->
+    <ContentPage.BindingContext>
+        <viewModel:SocialProfileViewModel />
+    </ContentPage.BindingContext>
 
     <ContentPage.Content>
         <ScrollView>
-            <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto" RowSpacing="0">
+            <Grid RowSpacing="0">
 
-                <!--  Title View  -->
-                <Grid
-                    Grid.Row="0"
-                    HeightRequest="50"
-                    RowSpacing="0">
-
-                    <buttons:SfButton
-                        x:Name="backButton"
-                        Margin="4,0"
-                        Command="{Binding BackButtonCommand}"
-                        CommandParameter="{x:Reference backButton}"
-                        HorizontalOptions="Start"
-                        Style="{StaticResource IconButtonStyle}"
-                        Text="{StaticResource Back}" />
-
-                    <Label
-                        FontFamily="Montserrat-Medium"
-                        Style="{StaticResource TitleLabelStyle}"
-                        Text="Profile Page"
-                        VerticalOptions="Center" />
-
-                    <buttons:SfButton
-                        Margin="8,0"
-                        Command="{Binding SettingsCommand}"
-                        HorizontalOptions="End"
-                        Style="{StaticResource IconButtonStyle}"
-                        Text="{StaticResource Settings}" />
-
-                </Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
 
                 <control:CustomShadowFrame
-                    Grid.Row="1"
-                    Margin="16,0,16,32"
-                    Style="{StaticResource CustomShadowFrameStyle}">
+                    Grid.Row="0"
+                    Margin="16,16,16,32"
+                    Style="{StaticResource ShadowFrameStyle}">
 
                     <border:SfBorder
                         BorderColor="Transparent"
                         BorderWidth="0"
-                        CornerRadius="4">
-                        <StackLayout
-                            Margin="0"
-                            Padding="0"
-                            Spacing="0">
+                        CornerRadius="12">
+
+                        <StackLayout Spacing="0">
 
                             <!--  Header image path  -->
                             <Image
                                 Aspect="Fill"
-                                BackgroundColor="{DynamicResource GrayShadowColor}"
+                                BackgroundColor="{DynamicResource Gray-200}"
                                 HeightRequest="120"
-                                HorizontalOptions="FillAndExpand">
+                                HorizontalOptions="Fill">
                                 <Image.Source>
-                                    <UriImageSource
-                                        CacheValidity="14"
-                                        CachingEnabled="true"
-                                        Uri="{Binding HeaderImagePath}" />
+                                    <UriImageSource Uri="{Binding HeaderImagePath}" 
+			                                 CacheValidity="14" 
+			                                 CachingEnabled="true"/>
                                 </Image.Source>
                             </Image>
 
@@ -96,38 +78,30 @@
                                     HeightRequest="80"
                                     WidthRequest="80">
                                     <Image.Source>
-                                        <UriImageSource
-                                            CacheValidity="14"
-                                            CachingEnabled="true"
-                                            Uri="{Binding ProfileImage}" />
+                                        <UriImageSource Uri="{Binding ProfileImage}" 
+			                                 CacheValidity="14" 
+			                                 CachingEnabled="true"/>
                                     </Image.Source>
                                 </Image>
 
                             </border:SfBorder>
 
                             <!--  Profile name  -->
-                            <Label
-                                FontSize="20"
-                                Style="{StaticResource TitleLabelStyle}"
-                                Text="{Binding ProfileName}" />
+                            <Label Style="{StaticResource HeaderLabelStyle}" Text="{Binding ProfileName}" />
 
                             <StackLayout
                                 Margin="0,0,0,16"
-                                BackgroundColor="Transparent"
                                 HorizontalOptions="CenterAndExpand"
                                 Orientation="Horizontal"
                                 Spacing="5">
 
                                 <!--  Designation label  -->
-                                <Label
-                                    FontSize="12"
-                                    Style="{StaticResource DescriptionLabelStyle}"
-                                    Text="{Binding Designation}" />
+                                <Label Style="{StaticResource ContentLabelStyle}" Text="{Binding Designation}" />
 
-                                <BoxView HorizontalOptions="Center" Style="{StaticResource VerticalSeparatorStyle}" />
+                                <BoxView Style="{StaticResource BoxViewStyle}" />
 
                                 <!--  state and country label  -->
-                                <Label FontSize="12" Style="{StaticResource DescriptionLabelStyle}">
+                                <Label Style="{StaticResource ContentLabelStyle}">
                                     <Label.FormattedText>
                                         <FormattedString>
                                             <Span Text="{Binding State}" />
@@ -140,38 +114,32 @@
                             </StackLayout>
 
                             <!--  Follow button  -->
-                            <buttons:SfButton
+                            <buttons:SfButton x:Name="follow"
+                                Command="{Binding FollowCommand}" CommandParameter="{x:Reference follow}"
                                 Margin="0,0,0,16"
-                                CornerRadius="24"
-                                FontSize="14"
-                                Style="{StaticResource GradientButtonStyle}"
-                                Text="FOLLOW"
-                                WidthRequest="120">
-                                <buttons:SfButton.Triggers>
-                                    <EventTrigger Event="Clicked">
-                                        <triggers:ButtonTextTriggerAction />
-                                    </EventTrigger>
-                                </buttons:SfButton.Triggers>
-                            </buttons:SfButton>
+                                Style="{StaticResource SfGradientButtonStyle}"
+                                Text="FOLLOW" />
 
                             <!--  About title label  -->
                             <Label
                                 Margin="{OnPlatform Default='16,0,0,4',
                                                     UWP='0,0,0,4'}"
+                                FontFamily="{StaticResource Montserrat-SemiBold}"
                                 FontSize="14"
                                 HorizontalOptions="StartAndExpand"
                                 HorizontalTextAlignment="Start"
-                                Style="{StaticResource TitleLabelStyle}"
-                                Text="About" />
+                                LineHeight="{OnPlatform Default=-1,
+                                                        Android=1.5}"
+                                Text="About"
+                                TextColor="{DynamicResource Gray-900}" />
 
                             <!--  About label  -->
                             <Label
                                 Margin="{OnPlatform Default='16,0,16,24',
                                                     UWP='0,0,16,24'}"
-                                FontSize="12"
                                 HorizontalOptions="Start"
                                 HorizontalTextAlignment="Start"
-                                Style="{StaticResource DescriptionLabelStyle}"
+                                Style="{StaticResource ContentLabelStyle}"
                                 Text="{Binding About}" />
 
                         </StackLayout>
@@ -180,22 +148,24 @@
 
                 <!--  Interest title label  -->
                 <Label
-                    Grid.Row="2"
+                    Grid.Row="1"
                     Margin="16,0,0,0"
+                    FontFamily="{StaticResource Montserrat-SemiBold}"
                     FontSize="12"
                     HorizontalOptions="Start"
                     HorizontalTextAlignment="Start"
-                    Style="{StaticResource TitleLabelStyle}"
+                    LineHeight="{OnPlatform Default=-1,
+                                            Android=1.5}"
                     Text="INTERESTS"
                     TextColor="{DynamicResource Gray-800}" />
 
                 <listView:SfListView
-                    Grid.Row="3"
-                    Margin="16,0,0,24"
+                    Grid.Row="2"
+                    Margin="0"                    
                     Padding="0"
                     AutoFitMode="DynamicHeight"
                     ColumnSpacing="0"
-                    HeightRequest="100"
+                    HeightRequest="200"
                     HorizontalOptions="FillAndExpand"
                     IsScrollBarVisible="False"
                     ItemSpacing="0"
@@ -207,68 +177,11 @@
 
                     <listView:SfListView.ItemTemplate>
                         <DataTemplate>
-                            <local:ProfileTemplate ParentBindingContext="{Binding Path=BindingContext, Source={x:Reference socialProfileWithCard}}" />
+                            <local:ProfileTemplate />
                         </DataTemplate>
                     </listView:SfListView.ItemTemplate>
                 </listView:SfListView>
 
-                <!--  Photos title  -->
-                <Label
-                    Grid.Row="4"
-                    Margin="16,0,16,16"
-                    FontSize="12"
-                    HorizontalOptions="Start"
-                    Style="{StaticResource TitleLabelStyle}"
-                    Text="PHOTOS"
-                    TextColor="{DynamicResource Gray-800}" />
-
-                <listView:SfListView
-                    x:Name="listView"
-                    Grid.Row="5"
-                    Margin="16,0,0,0"
-                    AutoFitMode="Height"
-                    IsScrollBarVisible="False"
-                    ItemSpacing="0,0,16,16"
-                    ItemsSource="{Binding Pictures}"
-                    SelectionBackgroundColor="Transparent">
-
-                    <listView:SfListView.Behaviors>
-                        <listviewBahavior:SfListViewExtendHeightBehavior />
-                    </listView:SfListView.Behaviors>
-
-                    <listView:SfListView.ItemTemplate>
-                        <DataTemplate>
-                            <syncEffectsView:SfEffectsView
-                                RippleColor="{DynamicResource Gray-300}"
-                                TouchDownEffects="Ripple"
-                                TouchUpCommand="{Binding Path=BindingContext.ImageTapCommand, Source={x:Reference socialProfileWithCard}}"
-                                TouchUpCommandParameter="{Binding}">
-                                <Grid>
-
-                                    <!--  Photos  -->
-                                    <Image
-                                        Aspect="AspectFill"
-                                        BackgroundColor="{DynamicResource Gray-200}"
-                                        HeightRequest="90"
-                                        WidthRequest="104">
-                                        <Image.Source>
-                                            <UriImageSource
-                                                CacheValidity="14"
-                                                CachingEnabled="true"
-                                                Uri="{Binding ImagePath}" />
-                                        </Image.Source>
-                                    </Image>
-
-                                </Grid>
-                            </syncEffectsView:SfEffectsView>
-                        </DataTemplate>
-                    </listView:SfListView.ItemTemplate>
-
-                    <listView:SfListView.LayoutManager>
-                        <listView:GridLayout SpanCount="{core:OnPlatformOrientationIntValue PhonePortrait=3, PhoneLandscape=5, TabletPortrait=6, TabletLandscape=10, Desktop=10}" />
-                    </listView:SfListView.LayoutManager>
-
-                </listView:SfListView>
             </Grid>
         </ScrollView>
     </ContentPage.Content>

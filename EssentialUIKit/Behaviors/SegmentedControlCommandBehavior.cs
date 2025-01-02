@@ -37,7 +37,7 @@ namespace EssentialUIKit.Behaviors
         /// </summary>
         public ICommand Command
         {
-            get { return (ICommand)this.GetValue(CommandProperty); }
+            get { return (ICommand)GetValue(CommandProperty); }
             set { this.SetValue(CommandProperty, value); }
         }
 
@@ -119,9 +119,9 @@ namespace EssentialUIKit.Behaviors
                 return;
             }
 
-            if (this.Command.CanExecute(this.CommandParameter))
+            if (this.Command.CanExecute(CommandParameter))
             {
-                this.Command.Execute(this.CommandParameter);
+                this.Command.Execute(CommandParameter);
             }
         }
 

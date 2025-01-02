@@ -27,6 +27,7 @@ namespace EssentialUIKit.Models.Navigation
         /// <summary>
         /// Gets or sets the composer.
         /// </summary>
+
         [DataMember(Name = "composer")]
         public string Composer { get; set; }
 
@@ -38,7 +39,7 @@ namespace EssentialUIKit.Models.Navigation
         {
             get
             {
-                return App.ImageServerPath + this.songImage;
+                return App.BaseImageUrl + this.songImage;
             }
 
             set

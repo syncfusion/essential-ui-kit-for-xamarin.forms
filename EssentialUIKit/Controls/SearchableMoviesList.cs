@@ -20,7 +20,7 @@ namespace EssentialUIKit.Controls
             if (base.FilterContacts(obj))
             {
                 var taskInfo = obj as Models.Navigation.Movie;
-                if (taskInfo == null || string.IsNullOrEmpty(taskInfo.MovieName) || string.IsNullOrEmpty(taskInfo.MovieYear))
+                if (taskInfo == null|| string.IsNullOrEmpty(taskInfo.MovieName) || string.IsNullOrEmpty(taskInfo.MovieYear))
                 {
                     return false;
                 }

@@ -1,4 +1,5 @@
-﻿using EssentialUIKit.DataService;
+﻿using System;
+using EssentialUIKit.DataService;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
@@ -11,7 +12,7 @@ namespace EssentialUIKit.Views.Navigation
     {
         public MoviesPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
             this.BindingContext = MoviesDataService.Instance.MoviesPageViewModel;
         }
     }

@@ -1,5 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using Syncfusion.SfChart.XForms;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using Xamarin.Forms.Internals;
 
 namespace EssentialUIKit.Models.Dashboard
@@ -12,9 +15,9 @@ namespace EssentialUIKit.Models.Dashboard
     {
         #region Field
 
-        private bool isSelected;
+        private bool isExpandable;
 
-        private IReadOnlyCollection<ChartModel> chartData;
+        private ObservableCollection<ChartDataPoint> chartData;
 
         #endregion
 
@@ -52,21 +55,21 @@ namespace EssentialUIKit.Models.Dashboard
         /// <summary>
         /// Gets or sets the property that has been bound with SfChart Control, which displays the items source for Stock.
         /// </summary>
-        public IReadOnlyCollection<ChartModel> ChartData
+        public ObservableCollection<ChartDataPoint> ChartData
         {
             get
             {
-                return this.chartData;
+                return chartData;
             }
 
             set
             {
-                if (this.chartData == value)
+                if (chartData == value)
                 {
                     return;
                 }
 
-                this.chartData = value;
+                chartData = value;
                 this.OnPropertyChanged("ChartData");
             }
         }
@@ -74,24 +77,24 @@ namespace EssentialUIKit.Models.Dashboard
         /// <summary>
         /// Gets or sets the property that has been bound with SfSegmented Control, which displays the Stock data variants.
         /// </summary>
-        public IReadOnlyList<string> DataVariants { get; set; }
+        public List<string> DataVariants { get; set; }
 
-        public bool IsSelected
+        public bool IsExpandable
         {
             get
             {
-                return this.isSelected;
+                return isExpandable;
             }
 
             set
             {
-                if (this.isSelected == value)
+                if (isExpandable == value)
                 {
                     return;
                 }
 
-                this.isSelected = value;
-                this.OnPropertyChanged("IsSelected");
+                isExpandable = value;
+                this.OnPropertyChanged("IsExpandable");
             }
         }
 
@@ -102,7 +105,7 @@ namespace EssentialUIKit.Models.Dashboard
         /// <summary>
         /// The PropertyChanged event occurs when changing the value of property.
         /// </summary>
-        /// <param name="property">Property name</param>
+        /// <param name="propertyName">Property name</param>
         protected void OnPropertyChanged(string property)
         {
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));

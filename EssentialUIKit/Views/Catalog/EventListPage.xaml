@@ -1,134 +1,107 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage
-    x:Class="EssentialUIKit.Views.Catalog.EventListPage"
-    xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
-    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
-    xmlns:controls="clr-namespace:EssentialUIKit.Controls"
-    xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
-    xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
-    xmlns:syncEffectsView="clr-namespace:Syncfusion.XForms.EffectsView;assembly=Syncfusion.Core.XForms"
-    xmlns:tabView="clr-namespace:Syncfusion.XForms.TabView;assembly=Syncfusion.SfTabView.XForms"
-    xmlns:template="clr-namespace:EssentialUIKit.Views.Templates" 
-    xmlns:behaviors="clr-namespace:EssentialUIKit.Behaviors"
-    x:Name="eventListPage"
-    BackgroundColor="{DynamicResource Gray-Bg}"
-    NavigationPage.HasNavigationBar="False">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+             xmlns:controls="clr-namespace:EssentialUIKit.Controls"
+             xmlns:tabView="clr-namespace:Syncfusion.XForms.TabView;assembly=Syncfusion.SfTabView.XForms"
+             xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Catalog"
+             xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+             xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
+             xmlns:template="clr-namespace:EssentialUIKit.Views.Templates"
+             x:Class="EssentialUIKit.Views.Catalog.EventListPage"
+             BackgroundColor="{DynamicResource Gray-White}"
+             NavigationPage.HasNavigationBar="False"
+             x:Name="eventListPage">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.BindingContext>
+        <viewModel:EventListViewModel />
+    </ContentPage.BindingContext>
 
     <ContentPage.Content>
-        <Grid RowDefinitions="Auto, Auto, *" RowSpacing="0">
+        <Grid RowSpacing="0" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-            <StackLayout
-                x:Name="TitleView"
-                Grid.Row="0"
-                Padding="8"
-                BackgroundColor="{DynamicResource Gray-Bg}"
-                HorizontalOptions="FillAndExpand"
-                Orientation="Horizontal"
-                Spacing="0">
+            <StackLayout x:Name="TitleView"  Padding="8,8" Grid.Row="0" HeightRequest="50"
+                         BackgroundColor="{DynamicResource Gray-White}" Spacing="0"
+                         HorizontalOptions="FillAndExpand" Orientation="Horizontal">
 
-                <StackLayout
-                    x:Name="TitleLayout"
-                    HorizontalOptions="FillAndExpand"
-                    IsVisible="True"
-                    Orientation="Horizontal"
-                    Spacing="0"
-                    VerticalOptions="FillAndExpand">
+                <StackLayout x:Name="Title" HorizontalOptions="FillAndExpand"  IsVisible="True"
+                             Orientation="Horizontal"  VerticalOptions="FillAndExpand"  Spacing="0">
 
                     <!--  Back button command  -->
-                    <buttons:SfButton
-                        x:Name="backButton"
-                        Command="{Binding BackButtonCommand}"
-                        CommandParameter="{x:Reference backButton}"
-                        Style="{StaticResource IconButtonStyle}"
-                        Text="{StaticResource Back}" />
+                    <buttons:SfButton  x:Name="backButton"  Command="{Binding BackButtonCommand}"
+                                       CommandParameter="{x:Reference backButton}" CornerRadius="4"
+                                       Style="{StaticResource IconButtonStyle}" Text="{StaticResource Back}"/>
 
-                    <!--  Event list page Title  -->
-                    <Label
-                        Margin="16,0"
-                        FontFamily="Montserrat-Medium"
-                        HorizontalOptions="CenterAndExpand"
-                        Style="{StaticResource TitleLabelStyle}"
-                        Text="Events"
-                        VerticalOptions="Center"
-                        VerticalTextAlignment="Center" />
+                    <!--   Event list page Title  -->
+                    <Label  Margin="16,0" FontFamily="{StaticResource Montserrat-Medium}" FontSize="16"
+                            HorizontalOptions="CenterAndExpand" TextColor="{DynamicResource Gray-900}"
+                            LineHeight="1.25"  Text="Events"  VerticalOptions="Center" VerticalTextAlignment="Center" />
 
                 </StackLayout>
 
-                <StackLayout
-                    x:Name="Search"
-                    HorizontalOptions="EndAndExpand"
-                    IsVisible="False"
-                    Orientation="Horizontal"
-                    Spacing="0">
+                <StackLayout  x:Name="Search" HorizontalOptions="EndAndExpand" IsVisible="False"
+                                Orientation="Horizontal" Spacing="0">
 
                     <!--  Back to title layout  -->
-                    <buttons:SfButton
-                        x:Name="BackToTitle"
-                        Padding="0"
-                        CornerRadius="4"
-                        HeightRequest="38"
-                        Style="{StaticResource IconButtonStyle}"
-                        Text="{StaticResource Back}"
-                        WidthRequest="38">
-                        <buttons:SfButton.Behaviors>
-                            <behaviors:SearchBarAnimationBehavior AnimationType="shrink" />
-                        </buttons:SfButton.Behaviors>
-                    </buttons:SfButton>
+                    <buttons:SfButton x:Name="BackToTitle" Clicked="BackToTitle_Clicked"  Text="{StaticResource Back}"
+                                      Style="{StaticResource NavigationBarButtonStyle}" />
 
                     <!--  Rounded Search Entry  -->
-                    <border:SfBorder Style="{StaticResource ThemeBorderStyle}">
-                        <controls:BorderlessEntry
-                            x:Name="SearchEntry"
-                            BindingContext="{x:Reference EventList}"
-                            HorizontalOptions="FillAndExpand"
-                            Placeholder="Search here"
-                            Style="{StaticResource BorderlessEntryStyle}"
-                            Text="{Binding SearchText, Mode=TwoWay}" />
+                    <border:SfBorder Style="{StaticResource SfBorderStyle}">
+                        <controls:BorderlessEntry x:Name="SearchEntry" 
+                                                  Text="{Binding SearchText, Mode=TwoWay}" Placeholder="Search here"
+                                                  HorizontalOptions="FillAndExpand"  Style="{StaticResource SearchEntryStyle}"/>
                     </border:SfBorder>
                 </StackLayout>
 
                 <!--  Search Button  -->
-                <buttons:SfButton
-                    x:Name="SearchButton"
-                    IsVisible="True"
-                    Style="{StaticResource IconButtonStyle}"
-                    Text="{StaticResource Search}">
-                    <buttons:SfButton.Behaviors>
-                        <behaviors:SearchBarAnimationBehavior AnimationType="expand" />
-                    </buttons:SfButton.Behaviors>
-                </buttons:SfButton>
+                <buttons:SfButton  x:Name="SearchButton" IsVisible="True" Clicked="SearchButton_Clicked" Style="{StaticResource IconButtonStyle }"
+                                   Text="{StaticResource Search}" />
             </StackLayout>
 
-            <BoxView Grid.Row="1" Style="{StaticResource HorizontalSeparatorStyle}" />
+            <BoxView Grid.Row="1" Style="{StaticResource SeparatorStyle}"/>
 
             <StackLayout Grid.Row="2">
 
                 <!--  Tab view  -->
                 <tabView:SfTabView x:Name="tabView" SelectedIndex="{Binding SelectedIndex}">
                     <tabView:SfTabView.SelectionIndicatorSettings>
-                        <tabView:SelectionIndicatorSettings StrokeThickness="3" Color="{DynamicResource PrimaryColor}" />
+                        <tabView:SelectionIndicatorSettings Color="{DynamicResource PrimaryColor}"
+                                                            StrokeThickness="3"/>
 
                     </tabView:SfTabView.SelectionIndicatorSettings>
                     <!--  Tab view for All  -->
-                    <tabView:SfTabItem
-                        Title="All"
-                        SelectionColor="{DynamicResource PrimaryColor}"
-                        TitleFontColor="{DynamicResource Gray-700}"
-                        TitleFontFamily="Montserrat-SemiBold"
-                        TitleFontSize="14">
+                    <tabView:SfTabItem  Title="All" SelectionColor="{DynamicResource PrimaryColor}" 
+                                        TitleFontFamily="{StaticResource Montserrat-SemiBold}"
+                                        TitleFontSize="14" 
+                                        TitleFontColor="{DynamicResource Gray-700}">
 
                         <tabView:SfTabItem.Content>
 
-                            <StackLayout Padding="{OnIdiom Phone=0, Default='8,0'}">
+                            <StackLayout  Padding="{OnIdiom Phone=0,Default='8,0'}">
                                 <controls:SearchableEventList
-                                    x:Name="EventList"
+                                    x:Name="EventList" 
                                     AutoFitMode="DynamicHeight"
                                     IsScrollBarVisible="false"
-                                    ItemsSource="{Binding EventItems}"
+                                    ItemSpacing="16"
                                     SearchText="{Binding AllListSearchText}"
+                                    ItemsSource="{Binding EventItems}"
                                     SelectionBackgroundColor="Transparent"
+                                    TapCommand="{Binding ItemTappedCommand}"
                                     VerticalOptions="FillAndExpand">
 
                                     <controls:SearchableEventList.ItemTemplate>
@@ -137,29 +110,17 @@
                                                 <!--  View of each card item  -->
                                                 <StackLayout>
                                                     <controls:CustomShadowFrame
-                                                        Margin="16"
-                                                        Padding="0"
-                                                        BackgroundColor="{DynamicResource GrayShadowColor}"
-                                                        BorderColor="{DynamicResource GrayShadowColor}"
-                                                        BorderWidth="1"
-                                                        CornerRadius="4"
-                                                        HasShadow="True"
-                                                        HorizontalOptions="FillAndExpand"
-                                                        Radius="4"
-                                                        VerticalOptions="FillAndExpand">
-                                                        <syncEffectsView:SfEffectsView
-                                                            RippleColor="{DynamicResource Gray-300}"
-                                                            TouchDownEffects="Ripple"
-                                                            TouchUpCommand="{Binding Path=BindingContext.ItemTappedCommand, Source={x:Reference eventListPage}}"
-                                                            TouchUpCommandParameter="{Binding}">
-                                                            <border:SfBorder
-                                                                BorderColor="Transparent"
-                                                                BorderWidth="0"
-                                                                CornerRadius="4">
-                                                                <template:EventListTemplate ParentBindingContext="{Binding Path=BindingContext, Source={x:Reference eventListPage}}" />
-                                                            </border:SfBorder>
-                                                        </syncEffectsView:SfEffectsView>
-                                                    </controls:CustomShadowFrame>
+                                                         Margin="4"
+                                                         Padding="0"
+                                                         BackgroundColor="{DynamicResource Gray-White}"
+                                                         BorderColor="{DynamicResource Gray-White}"
+                                                         BorderWidth="1"
+                                                         CornerRadius="4"
+                                                         HasShadow="True"
+                                                         HorizontalOptions="FillAndExpand"
+                                                         VerticalOptions="FillAndExpand">
+                                                        <template:EventListTemplate />
+                                                    </controls:CustomShadowFrame >
                                                 </StackLayout>
                                             </ViewCell>
                                         </DataTemplate>
@@ -177,21 +138,20 @@
                     </tabView:SfTabItem>
 
                     <!--  Tab view for upcoming  -->
-                    <tabView:SfTabItem
-                        Title="Upcoming"
-                        SelectionColor="{DynamicResource PrimaryColor}"
-                        TitleFontColor="{DynamicResource Gray-700}"
-                        TitleFontFamily="Montserrat-SemiBold"
-                        TitleFontSize="14">
+                    <tabView:SfTabItem Title="Upcoming" SelectionColor="{DynamicResource PrimaryColor}"
+                                           TitleFontFamily="{StaticResource Montserrat-SemiBold}"
+                                           TitleFontSize="14"
+                                           TitleFontColor="{DynamicResource Gray-700}">
                         <tabView:SfTabItem.Content>
-                            <StackLayout Padding="{OnIdiom Phone=0, Default='8,0'}">
+                            <StackLayout Padding="{OnIdiom Phone=0,Default='8,0'}">
 
-                                <controls:SearchableEventList
-                                    AutoFitMode="DynamicHeight"
+                                <controls:SearchableEventList  AutoFitMode="DynamicHeight"  
                                     IsScrollBarVisible="false"
+                                    ItemSpacing="16"
                                     ItemsSource="{Binding PopularEventItems}"
                                     SearchText="{Binding UpcomingListSearchText}"
                                     SelectionBackgroundColor="Transparent"
+                                    TapCommand="{Binding ItemTappedCommand}"
                                     VerticalOptions="FillAndExpand">
 
                                     <controls:SearchableEventList.ItemTemplate>
@@ -200,28 +160,16 @@
                                                 <!--  View of each card item  -->
                                                 <StackLayout>
                                                     <controls:CustomShadowFrame
-                                                        Margin="16"
-                                                        Padding="0"
-                                                        BackgroundColor="{DynamicResource GrayShadowColor}"
-                                                        BorderColor="{DynamicResource GrayShadowColor}"
-                                                        BorderWidth="1"
-                                                        CornerRadius="4"
-                                                        HasShadow="True"
-                                                        HorizontalOptions="FillAndExpand"
-                                                        Radius="4"
-                                                        VerticalOptions="FillAndExpand">
-                                                        <syncEffectsView:SfEffectsView
-                                                            RippleColor="{DynamicResource Gray-300}"
-                                                            TouchDownEffects="Ripple"
-                                                            TouchUpCommand="{Binding Path=BindingContext.ItemTappedCommand, Source={x:Reference eventListPage}}"
-                                                            TouchUpCommandParameter="{Binding}">
-                                                            <border:SfBorder
-                                                                BorderColor="Transparent"
-                                                                BorderWidth="0"
-                                                                CornerRadius="4">
-                                                                <template:EventListTemplate ParentBindingContext="{Binding Path=BindingContext, Source={x:Reference eventListPage}}" />
-                                                            </border:SfBorder>
-                                                        </syncEffectsView:SfEffectsView>
+                                                         Margin="4"
+                                                         Padding="0"
+                                                         BackgroundColor="{DynamicResource Gray-White}"
+                                                         BorderColor="{DynamicResource Gray-White}"
+                                                         BorderWidth="1"
+                                                         CornerRadius="4"
+                                                         HasShadow="True"
+                                                         HorizontalOptions="FillAndExpand"
+                                                         VerticalOptions="FillAndExpand">
+                                                        <template:EventListTemplate />
                                                     </controls:CustomShadowFrame>
                                                 </StackLayout>
                                             </ViewCell>
@@ -230,7 +178,7 @@
 
                                     <!--  Layout to customize number of columns in SfListView  -->
                                     <listView:SfListView.LayoutManager>
-                                        <listView:GridLayout SpanCount="{core:OnPlatformOrientationIntValue PhonePortrait=1, PhoneLandscape=2, TabletPortrait=2, TabletLandscape=2, Desktop=2}" />
+                                        <listView:GridLayout SpanCount="{core:OnPlatformOrientationIntValue PhonePortrait=1, PhoneLandscape=1, TabletPortrait=2, TabletLandscape=2, Desktop=2}" />
                                     </listView:SfListView.LayoutManager>
 
                                 </controls:SearchableEventList>
@@ -239,49 +187,37 @@
                     </tabView:SfTabItem>
 
                     <!--  Tab view for popular  -->
-                    <tabView:SfTabItem
-                        Title="Popular"
-                        SelectionColor="{DynamicResource PrimaryColor}"
-                        TitleFontColor="{DynamicResource Gray-700}"
-                        TitleFontFamily="Montserrat-SemiBold"
-                        TitleFontSize="14">
+                    <tabView:SfTabItem Title="Popular" SelectionColor="{DynamicResource PrimaryColor}"
+                                           TitleFontFamily="{StaticResource Montserrat-SemiBold}"
+                                           TitleFontSize="14"
+                                           TitleFontColor="{DynamicResource Gray-700}">
                         <tabView:SfTabItem.Content>
-                            <StackLayout Padding="{OnIdiom Phone=0, Default='8,0'}">
-                                <controls:SearchableEventList
-                                    AutoFitMode="DynamicHeight"
-                                    IsScrollBarVisible="false"
-                                    ItemsSource="{Binding UpcomingEventItems}"
-                                    SearchText="{Binding PopularListSearchText}"
-                                    SelectionBackgroundColor="Transparent"
-                                    VerticalOptions="FillAndExpand">
+                            <StackLayout Padding="{OnIdiom Phone=0,Default='8,0'}">
+                                <controls:SearchableEventList                                       
+                                       AutoFitMode="DynamicHeight"
+                                       IsScrollBarVisible="false"
+                                       ItemSpacing="16"
+                                        SearchText="{Binding PopularListSearchText}"
+                                       ItemsSource="{Binding UpcomingEventItems}"
+                                       SelectionBackgroundColor="Transparent"
+                                       TapCommand="{Binding ItemTappedCommand}"
+                                       VerticalOptions="FillAndExpand">
                                     <controls:SearchableEventList.ItemTemplate>
                                         <DataTemplate>
                                             <ViewCell>
                                                 <!--  View of each card item  -->
                                                 <StackLayout>
                                                     <controls:CustomShadowFrame
-                                                        Margin="16"
-                                                        Padding="0"
-                                                        BackgroundColor="{DynamicResource GrayShadowColor}"
-                                                        BorderColor="{DynamicResource GrayShadowColor}"
-                                                        BorderWidth="1"
-                                                        CornerRadius="4"
-                                                        HasShadow="True"
-                                                        HorizontalOptions="FillAndExpand"
-                                                        Radius="4"
-                                                        VerticalOptions="FillAndExpand">
-                                                        <syncEffectsView:SfEffectsView
-                                                            RippleColor="{DynamicResource Gray-300}"
-                                                            TouchDownEffects="Ripple"
-                                                            TouchUpCommand="{Binding Path=BindingContext.ItemTappedCommand, Source={x:Reference eventListPage}}"
-                                                            TouchUpCommandParameter="{Binding}">
-                                                            <border:SfBorder
-                                                                BorderColor="Transparent"
-                                                                BorderWidth="0"
-                                                                CornerRadius="4">
-                                                                <template:EventListTemplate ParentBindingContext="{Binding Path=BindingContext, Source={x:Reference eventListPage}}" />
-                                                            </border:SfBorder>
-                                                        </syncEffectsView:SfEffectsView>
+                                                         Margin="4" 
+                                                         Padding="0" 
+                                                         BackgroundColor="{DynamicResource Gray-White}"
+                                                         BorderColor="{DynamicResource Gray-White}"
+                                                         BorderWidth="1"
+                                                         CornerRadius="4"
+                                                         HasShadow="True"
+                                                         HorizontalOptions="FillAndExpand"
+                                                         VerticalOptions="FillAndExpand">
+                                                        <template:EventListTemplate />
                                                     </controls:CustomShadowFrame>
                                                 </StackLayout>
                                             </ViewCell>

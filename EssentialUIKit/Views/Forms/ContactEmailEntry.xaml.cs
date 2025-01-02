@@ -8,7 +8,7 @@ namespace EssentialUIKit.Views.Forms
     {
         public ContactEmailEntry()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
     }
 }

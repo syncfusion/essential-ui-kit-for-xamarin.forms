@@ -1,13 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<Shell
-    x:Class="EssentialUIKit.AppLayout.AppShell"
-    xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:views="clr-namespace:EssentialUIKit.AppLayout.Views;assembly=EssentialUIKit"
-    BackgroundColor="#304088"
-    FlyoutBehavior="Disabled"
-    NavBarIsVisible="True">
-
-    <views:HomePage />
+<Shell xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:views="clr-namespace:EssentialUIKit.AppLayout.Views;assembly=EssentialUIKit"
+             x:Class="EssentialUIKit.AppLayout.AppShell" 
+             FlyoutBehavior="Disabled" BackgroundColor="#304088"
+             NavBarIsVisible="True">
+    
+    <views:HomePage/>
 
 </Shell>

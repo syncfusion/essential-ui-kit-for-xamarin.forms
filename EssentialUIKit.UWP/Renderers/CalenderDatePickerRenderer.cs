@@ -18,7 +18,7 @@ namespace EssentialUIKit.UWP
         {
             base.OnElementChanged(e);
 
-            if (this.Control == null && e?.NewElement != null)
+            if (this.Control == null && e.NewElement != null)
             {
                 Windows.UI.Xaml.Controls.CalendarDatePicker datePicker = new Windows.UI.Xaml.Controls.CalendarDatePicker();
                 datePicker.BorderThickness = new Windows.UI.Xaml.Thickness(0);

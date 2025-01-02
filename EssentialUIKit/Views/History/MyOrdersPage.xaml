@@ -4,14 +4,10 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
-    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
-    xmlns:control="clr-namespace:EssentialUIKit.Controls"
     xmlns:converter="clr-namespace:EssentialUIKit.Converters"
     xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
-    xmlns:syncEffectsView="clr-namespace:Syncfusion.XForms.EffectsView;assembly=Syncfusion.Core.XForms"
     xmlns:tabView="clr-namespace:Syncfusion.XForms.TabView;assembly=Syncfusion.SfTabView.XForms"
     xmlns:view="clr-namespace:EssentialUIKit.Views.History"
-    x:Name="myOrdersPage"
     BackgroundColor="{DynamicResource Gray-100}"
     NavigationPage.HasNavigationBar="False">
 
@@ -21,32 +17,9 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <ContentPage.ControlTemplate>
-        <ControlTemplate>
-            <StackLayout Spacing="0">
-                <!--  Title View  -->
-                <control:TitleView Title="My Orders">
-                    <control:TitleView.LeadingView>
-                        <buttons:SfButton
-                            x:Name="backButton"
-                            Command="{Binding BindingContext.BackButtonCommand, Source={x:Reference myOrderList}}"
-                            CommandParameter="{x:Reference backButton}"
-                            CornerRadius="20"
-                            Style="{StaticResource IconButtonStyle}"
-                            Text="{StaticResource Back}" />
-                    </control:TitleView.LeadingView>
-
-                </control:TitleView>
-
-                <ContentPresenter />
-            </StackLayout>
-        </ControlTemplate>
-    </ContentPage.ControlTemplate>
-
-
     <ContentPage.Content>
 
-        <tabView:SfTabView BackgroundColor="{DynamicResource Gray-Bg}" VisibleHeaderCount="4">
+        <tabView:SfTabView BackgroundColor="{DynamicResource Gray-White}" VisibleHeaderCount="4">
             <tabView:SfTabView.SelectionIndicatorSettings>
                 <tabView:SelectionIndicatorSettings StrokeThickness="3" Color="{DynamicResource PrimaryColor}" />
 
@@ -55,7 +28,7 @@
                 Title="All Orders"
                 SelectionColor="{DynamicResource PrimaryColor}"
                 TitleFontColor="{DynamicResource Gray-700}"
-                TitleFontFamily="Montserrat-Medium"
+                TitleFontFamily="{StaticResource Montserrat-Medium}"
                 TitleFontSize="14">
                 <tabView:SfTabItem.Content>
 
@@ -66,124 +39,122 @@
                         BackgroundColor="{DynamicResource Gray-100}"
                         ItemsSource="{Binding OrderDetails}"
                         SelectionMode="None"
+                        TapCommand="{Binding ItemSelectedCommand}"
                         VerticalOptions="Start">
 
                         <listView:SfListView.ItemTemplate>
                             <DataTemplate>
-                                <syncEffectsView:SfEffectsView
+                                <Grid
                                     Margin="0,16,0,0"
-                                    RippleColor="{DynamicResource Gray-300}"
-                                    TouchDownEffects="Ripple"
-                                    TouchUpCommand="{Binding Path=BindingContext.ItemSelectedCommand, Source={x:Reference myOrdersPage}}"
-                                    TouchUpCommandParameter="{Binding}">
-                                    <Grid
-                                        BackgroundColor="{DynamicResource Gray-Bg}"
-                                        ColumnDefinitions="Auto, *"
-                                        ColumnSpacing="0"
-                                        RowSpacing="0">
+                                    BackgroundColor="{DynamicResource Gray-White}"
+                                    ColumnSpacing="0"
+                                    RowSpacing="0">
 
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="{OnIdiom Default=1, Phone=0}" />
-                                        </Grid.RowDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="{OnIdiom Default=1, Phone=0}" />
+                                    </Grid.RowDefinitions>
 
-                                        <!--  Product image  -->
-                                        <Image
-                                            Grid.Row="0"
-                                            Grid.RowSpan="4"
-                                            Grid.Column="0"
-                                            Margin="16,8,16,16"
-                                            Aspect="Fill"
-                                            BackgroundColor="{DynamicResource Gray-200}"
-                                            HeightRequest="80"
-                                            WidthRequest="80">
-                                            <Image.Source>
-                                                <UriImageSource
-                                                    CacheValidity="14"
-                                                    CachingEnabled="true"
-                                                    Uri="{Binding ProductImage}" />
-                                            </Image.Source>
-                                        </Image>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
 
-                                        <!--  Product name  -->
+                                    <!--  Product image  -->
+                                    <Image
+                                        Grid.Row="0"
+                                        Grid.RowSpan="4"
+                                        Grid.Column="0"
+                                        Margin="16,8,16,16"
+                                        Aspect="Fill"
+                                        BackgroundColor="{DynamicResource Gray-200}"
+                                        HeightRequest="80"
+                                        WidthRequest="80">
+                                        <Image.Source>
+                                            <UriImageSource
+                                                CacheValidity="14"
+                                                CachingEnabled="true"
+                                                Uri="{Binding ProductImage}" />
+                                        </Image.Source>
+                                    </Image>
+
+                                    <!--  Product name  -->
+                                    <Label
+                                        Grid.Row="0"
+                                        Grid.Column="1"
+                                        Margin="0,8,0,4"
+                                        FontFamily="{StaticResource Montserrat-SemiBold}"
+                                        FontSize="14"
+                                        HorizontalOptions="StartAndExpand"
+                                        LineBreakMode="TailTruncation"
+                                        LineHeight="1.5"
+                                        MaxLines="1"
+                                        Text="{Binding Name}"
+                                        TextColor="{DynamicResource Gray-900}" />
+
+                                    <!--  Description label  -->
+                                    <Label
+                                        Grid.Row="1"
+                                        Grid.Column="1"
+                                        Margin="0,0,0,8"
+                                        FontFamily="{StaticResource Montserrat-Medium}"
+                                        FontSize="12"
+                                        HorizontalOptions="StartAndExpand"
+                                        LineHeight="1.5"
+                                        Text="{Binding Description}"
+                                        TextColor="{DynamicResource Gray-700}" />
+
+                                    <StackLayout
+                                        Grid.Row="2"
+                                        Grid.Column="1"
+                                        Margin="0,4,0,0"
+                                        Padding="0"
+                                        HorizontalOptions="Start"
+                                        Orientation="Horizontal"
+                                        Spacing="0"
+                                        VerticalOptions="Start">
+
+                                        <!--  Order ID  -->
                                         <Label
-                                            Grid.Row="0"
-                                            Grid.Column="1"
-                                            Margin="0,8,0,4"
-                                            FontFamily="Montserrat-SemiBold"
-                                            FontSize="14"
-                                            HorizontalOptions="StartAndExpand"
-                                            LineBreakMode="TailTruncation"
-                                            LineHeight="1.5"
-                                            MaxLines="1"
-                                            Text="{Binding Name}"
-                                            TextColor="{DynamicResource Gray-900}" />
-
-                                        <!--  Description label  -->
-                                        <Label
-                                            Grid.Row="1"
-                                            Grid.Column="1"
-                                            Margin="0,0,0,8"
-                                            FontFamily="Montserrat-Medium"
+                                            Margin="0"
+                                            FontFamily="{StaticResource Montserrat-Medium}"
                                             FontSize="12"
-                                            HorizontalOptions="StartAndExpand"
-                                            LineHeight="1.5"
-                                            Text="{Binding Description}"
-                                            TextColor="{DynamicResource Gray-700}" />
+                                            Text="{Binding OrderID, StringFormat='Order ID: {0}'}"
+                                            VerticalOptions="Center" />
 
-                                        <StackLayout
-                                            Grid.Row="2"
-                                            Grid.Column="1"
-                                            Margin="0,4,0,0"
+                                        <!--  Order status  -->
+
+                                        <border:SfBorder
+                                            Margin="8,0"
                                             Padding="0"
+                                            BorderColor="Transparent"
+                                            CornerRadius="12"
+                                            HasShadow="False"
+                                            HeightRequest="24"
                                             HorizontalOptions="Start"
-                                            Orientation="Horizontal"
-                                            Spacing="0"
-                                            VerticalOptions="Start">
+                                            WidthRequest="96">
 
-                                            <!--  Order ID  -->
-                                            <Label
-                                                Margin="0"
-                                                FontFamily="Montserrat-Medium"
-                                                FontSize="12"
-                                                Text="{Binding OrderID, StringFormat='Order ID: {0}'}"
-                                                TextColor="{StaticResource Gray-700}"
-                                                VerticalOptions="Center" />
+                                            <border:SfBorder.Content>
+                                                <Grid>
+                                                    <BoxView BackgroundColor="{Binding Status, Converter={x:StaticResource StringToColorConverter}, ConverterParameter=0}" Opacity="0.07" />
 
-                                            <!--  Order status  -->
+                                                    <Label
+                                                        FontFamily="{StaticResource Montserrat-SemiBold}"
+                                                        FontSize="12"
+                                                        HorizontalOptions="CenterAndExpand"
+                                                        Text="{Binding Status}"
+                                                        TextColor="{Binding Status, Converter={x:StaticResource StringToColorConverter}, ConverterParameter=0}"
+                                                        VerticalOptions="Center" />
+                                                </Grid>
+                                            </border:SfBorder.Content>
+                                        </border:SfBorder>
 
-                                            <border:SfBorder
-                                                Margin="8,0"
-                                                Padding="0"
-                                                BorderColor="Transparent"
-                                                CornerRadius="12"
-                                                HasShadow="False"
-                                                HeightRequest="24"
-                                                HorizontalOptions="Start"
-                                                WidthRequest="96">
+                                    </StackLayout>
 
-                                                <border:SfBorder.Content>
-                                                    <Grid>
-                                                        <BoxView BackgroundColor="{Binding Status, Converter={x:StaticResource StringToColorConverter}, ConverterParameter=0}" Opacity="0.07" />
-
-                                                        <Label
-                                                            FontFamily="Montserrat-SemiBold"
-                                                            FontSize="12"
-                                                            HorizontalOptions="CenterAndExpand"
-                                                            Text="{Binding Status}"
-                                                            TextColor="{Binding Status, Converter={x:StaticResource StringToColorConverter}, ConverterParameter=0}"
-                                                            VerticalOptions="Center" />
-                                                    </Grid>
-                                                </border:SfBorder.Content>
-                                            </border:SfBorder>
-
-                                        </StackLayout>
-
-                                    </Grid>
-                                </syncEffectsView:SfEffectsView>
+                                </Grid>
                             </DataTemplate>
                         </listView:SfListView.ItemTemplate>
 
@@ -195,7 +166,7 @@
                 Title="Requested"
                 SelectionColor="{DynamicResource PrimaryColor}"
                 TitleFontColor="{DynamicResource Gray-700}"
-                TitleFontFamily="Montserrat-Medium"
+                TitleFontFamily="{StaticResource Montserrat-Medium}"
                 TitleFontSize="14">
                 <tabView:SfTabItem.Content>
                     <view:MyOrdersView />
@@ -203,10 +174,10 @@
             </tabView:SfTabItem>
 
             <tabView:SfTabItem
-                Title="Completed"
+                Title="Complete"
                 SelectionColor="{DynamicResource PrimaryColor}"
                 TitleFontColor="{DynamicResource Gray-700}"
-                TitleFontFamily="Montserrat-Medium"
+                TitleFontFamily="{StaticResource Montserrat-Medium}"
                 TitleFontSize="14">
                 <tabView:SfTabItem.Content>
                     <view:MyOrdersView />
@@ -217,7 +188,7 @@
                 Title="Cancelled"
                 SelectionColor="{DynamicResource PrimaryColor}"
                 TitleFontColor="{DynamicResource Gray-700}"
-                TitleFontFamily="Montserrat-Medium"
+                TitleFontFamily="{StaticResource Montserrat-Medium}"
                 TitleFontSize="14">
                 <tabView:SfTabItem.Content>
                     <view:MyOrdersView />

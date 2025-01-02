@@ -12,7 +12,7 @@ namespace EssentialUIKit.Views.Chat
     {
         public OutgoingImageTemplate()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
     }
 }

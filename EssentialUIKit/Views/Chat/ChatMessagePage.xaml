@@ -10,23 +10,27 @@
     xmlns:converter="clr-namespace:EssentialUIKit.Converters"
     xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
     xmlns:local="clr-namespace:EssentialUIKit.Views.Chat"
-    BackgroundColor="{DynamicResource Gray-100}"
+    xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Chat"
+    BackgroundImage="ChatMessageBackground.png"
     NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Resources>
         <ResourceDictionary>
             <converter:DateTimeToStringConverter x:Key="DateTimeToStringConverter" />
             <local:MessageDataTemplateSelector x:Key="MessageDataTemplateSelector" />
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </ContentPage.Resources>
+
+    <ContentPage.BindingContext>
+        <viewModel:ChatMessageViewModel />
+    </ContentPage.BindingContext>
 
     <ContentPage.Content>
 
         <Grid>
-            <Image
-                Aspect="AspectFill"
-                Opacity="0.06"
-                Source="ChatMessageBackground.png" />
             <ScrollView>
 
                 <!--  List view to show the recent chat history  -->
@@ -51,7 +55,7 @@
                         <DataTemplate>
                             <Label
                                 Margin="0,16,0,0"
-                                FontFamily="Montserrat-Medium"
+                                FontFamily="{StaticResource Montserrat-Medium}"
                                 FontSize="12"
                                 HorizontalTextAlignment="Center"
                                 LineHeight="1.5"
@@ -63,111 +67,111 @@
                     <!--  Navigation bar  -->
                     <listView:SfListView.HeaderTemplate>
                         <DataTemplate>
-                            <Grid RowDefinitions="Auto, Auto" RowSpacing="0">
-                                <StackLayout
-                                    Padding="4,10,10,10"
-                                    BackgroundColor="{DynamicResource Gray-Bg}"
-                                    HorizontalOptions="FillAndExpand"
-                                    Orientation="Horizontal"
-                                    Spacing="0"
-                                    VerticalOptions="Fill">
+                            <StackLayout
+                                Padding="10"
+                                BackgroundColor="{DynamicResource Gray-White}"
+                                HorizontalOptions="FillAndExpand"
+                                Orientation="Horizontal"
+                                Spacing="0"
+                                VerticalOptions="Fill">
 
-                                    <!--  Back Button  -->
-                                    <buttons:SfButton
-                                        Command="{Binding BackButtonCommand}"
-                                        Style="{StaticResource IconButtonStyle}"
-                                        Text="{StaticResource Back}" />
+                                <!--  Back Button  -->
+                                <buttons:SfButton
+                                    Command="{Binding BackCommand}"
+                                    Style="{StaticResource NavigationBarButtonStyle}"
+                                    Text="{StaticResource Back}" />
 
-                                    <!--  Rounded Profile Image  -->
-                                    <border:SfBorder
-                                        Margin="8,0"
-                                        BackgroundColor="{DynamicResource Gray-200}"
-                                        Style="{StaticResource ProfileBorderStyle}">
-                                        <Image HeightRequest="35" WidthRequest="35">
-                                            <Image.Source>
-                                                <UriImageSource
-                                                    CacheValidity="14"
-                                                    CachingEnabled="true"
-                                                    Uri="{Binding ProfileImage}" />
-                                            </Image.Source>
-                                        </Image>
-                                    </border:SfBorder>
-
-                                    <!--  Profile Name  -->
-                                    <Label
-                                        HorizontalOptions="FillAndExpand"
-                                        HorizontalTextAlignment="Start"
-                                        Style="{StaticResource TitleLabelStyle}"
-                                        Text="{Binding ProfileName}"
-                                        VerticalOptions="Center"
-                                        VerticalTextAlignment="Center">
-                                        <Label.GestureRecognizers>
-                                            <TapGestureRecognizer Command="{Binding ProfileCommand}" />
-                                        </Label.GestureRecognizers>
-                                    </Label>
-
-                                    <!--  Video call button  -->
-                                    <buttons:SfButton
-                                        Command="{Binding MakeVideoCall}"
-                                        Style="{StaticResource IconButtonStyle}"
-                                        Text="{StaticResource VideoCall}" />
-
-                                    <!--  Voice call button  -->
-                                    <buttons:SfButton
-                                        Command="{Binding MakeVoiceCall}"
-                                        Style="{StaticResource IconButtonStyle}"
-                                        Text="{StaticResource Phone}" />
-
-                                    <!--  Menu Button  -->
-                                    <buttons:SfButton
-                                        Command="{Binding MenuCommand}"
-                                        Style="{StaticResource IconButtonStyle}"
-                                        Text="{StaticResource More}" />
-
-                                </StackLayout>
-                                <BoxView
-                                    Grid.Row="1"
+                                <!--  Rounded Profile Image  -->
+                                <border:SfBorder
+                                    Margin="8,0"
                                     BackgroundColor="{DynamicResource Gray-200}"
-                                    HeightRequest="1" />
-                            </Grid>
+                                    Style="{StaticResource ProfileBorderStyle}">
+                                    <Image
+                                        HeightRequest="35"
+                                        WidthRequest="35">
+                                        <Image.Source>
+                                            <UriImageSource Uri="{Binding ProfileImage}" 
+			                                 CacheValidity="14" 
+			                                 CachingEnabled="true"/>
+                                        </Image.Source>
+                                    </Image>
+                                </border:SfBorder>
+
+                                <!--  Profile Name  -->
+                                <Label
+                                    FontFamily="{StaticResource Montserrat-SemiBold}"
+                                    FontSize="16"
+                                    HorizontalOptions="FillAndExpand"
+                                    Text="{Binding ProfileName}"
+                                    TextColor="{DynamicResource Gray-900}"
+                                    VerticalOptions="Center"
+                                    VerticalTextAlignment="Center">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding ProfileCommand}" />
+                                    </Label.GestureRecognizers>
+                                </Label>
+
+                                <!--  Video call button  -->
+                                <buttons:SfButton
+                                    Command="{Binding MakeVideoCall}"
+                                    Style="{StaticResource NavigationBarButtonStyle}"
+                                    Text="{StaticResource VideoCall}" />
+
+                                <!--  Voice call button  -->
+                                <buttons:SfButton
+                                    Command="{Binding MakeVoiceCall}"
+                                    Style="{StaticResource NavigationBarButtonStyle}"
+                                    Text="{StaticResource VoiceCall}" />
+
+                                <!--  Menu Button  -->
+                                <buttons:SfButton
+                                    Command="{Binding MenuCommand}"
+                                    Style="{StaticResource NavigationBarButtonStyle}"
+                                    Text="{StaticResource Menu}" />
+
+                            </StackLayout>
                         </DataTemplate>
                     </listView:SfListView.HeaderTemplate>
 
                     <!--  New text entry in the chat conversation  -->
                     <listView:SfListView.FooterTemplate>
                         <DataTemplate>
-                            <Grid
-                                Padding="16,5,16,24"
-                                ColumnDefinitions="*, Auto"
-                                ColumnSpacing="16"
-                                RowDefinitions="Auto">
+                            <Grid Padding="16,5,16,24" ColumnSpacing="16">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
 
                                 <!--  Rounded Border  -->
-                                <border:SfBorder
-                                    Padding="5,0"
-                                    BorderColor="{DynamicResource Gray-Bg}"
-                                    BorderWidth="0"
-                                    CornerRadius="25"
-                                    HasShadow="True"
-                                    Style="{DynamicResource ThemeBorderStyle}">
+                                <border:SfBorder Padding="5,0" Style="{DynamicResource SfBorderStyle}">
 
-                                    <Grid
-                                        ColumnDefinitions="*, Auto, Auto"
-                                        ColumnSpacing="0"
-                                        RowDefinitions="Auto">
+                                    <Grid ColumnSpacing="0">
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
 
                                         <!--  Extendable editor  -->
                                         <controls:BorderlessEditor
-                                            Margin="5,0"
                                             Placeholder="Type here"
-                                            Style="{StaticResource BorderlessEditorStyle}"
+                                            Style="{StaticResource ChatMessageEditorStyle}"
                                             Text="{Binding NewMessage}" />
 
                                         <!--  Camera Button  -->
                                         <buttons:SfButton
                                             Grid.Column="1"
                                             Command="{Binding ShowCamera}"
-                                            Style="{StaticResource IconButtonStyle}"
+                                            Style="{StaticResource NavigationBarButtonStyle}"
                                             Text="{StaticResource Camera}"
                                             VerticalOptions="End" />
 
@@ -175,7 +179,7 @@
                                         <buttons:SfButton
                                             Grid.Column="2"
                                             Command="{Binding SendAttachment}"
-                                            Style="{StaticResource IconButtonStyle}"
+                                            Style="{StaticResource NavigationBarButtonStyle}"
                                             Text="{StaticResource Attachment}"
                                             VerticalOptions="End" />
 
@@ -185,14 +189,26 @@
                                 <!--  Send Button  -->
                                 <buttons:SfButton
                                     Grid.Column="1"
-                                    Padding="0,2,2,0"
                                     BackgroundColor="{DynamicResource PrimaryColor}"
                                     Command="{Binding SendCommand}"
+                                    CornerRadius="20"
+                                    HeightRequest="40"
                                     HorizontalOptions="End"
-                                    Style="{StaticResource IconButtonStyle}"
-                                    Text="{StaticResource Send}"
-                                    TextColor="{DynamicResource Gray-White}"
-                                    VerticalOptions="End" />
+                                    Style="{StaticResource NavigationBarButtonStyle}"
+                                    VerticalOptions="End"
+                                    WidthRequest="40">
+                                    <buttons:SfButton.Content>
+                                        <Label
+                                            Margin="0,2,2,0"
+                                            FontFamily="{StaticResource FontIcons}"
+                                            FontSize="18"
+                                            HorizontalOptions="Center"
+                                            Text="{StaticResource Send}"
+                                            TextColor="{DynamicResource Gray-White}"
+                                            VerticalOptions="Center"
+                                            VerticalTextAlignment="Center" />
+                                    </buttons:SfButton.Content>
+                                </buttons:SfButton>
 
                             </Grid>
                         </DataTemplate>

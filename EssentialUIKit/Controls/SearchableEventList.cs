@@ -25,12 +25,10 @@ namespace EssentialUIKit.Controls
                 {
                     return false;
                 }
-
                 return taskInfo.EventName.ToUpperInvariant().Contains(this.SearchText.ToUpperInvariant())
                        || taskInfo.EventMonth.ToUpperInvariant().Contains(this.SearchText.ToUpperInvariant())
                        || taskInfo.EventDate.ToUpperInvariant().Contains(this.SearchText.ToUpperInvariant());
             }
-
             return false;
         }
         #endregion

@@ -42,7 +42,7 @@
                 Grid.Row="0"
                 Grid.ColumnSpan="2"
                 Margin="16,16,16,12"
-                FontFamily="Montserrat-SemiBold"
+                FontFamily="{StaticResource Montserrat-SemiBold}"
                 FontSize="16"
                 LineHeight="{OnPlatform Android=1.25,
                                         Default=-1}"
@@ -53,19 +53,19 @@
                 Grid.Row="1"
                 Grid.ColumnSpan="2"
                 HeightRequest="1"
-                Style="{StaticResource HorizontalSeparatorStyle}" />
+                Style="{StaticResource BoxViewStyle}" />
             <!--  Total MRP  -->
             <Label
                 Grid.Row="2"
                 Margin="16,4,16,0"
-                FontFamily="Montserrat-Medium"
+                FontFamily="{StaticResource Montserrat-Medium}"
                 Style="{StaticResource PriceLabelStyle}"
                 Text="Total MRP" />
             <Label
                 Grid.Row="2"
                 Grid.Column="1"
                 Margin="16,4,16,0"
-                FontFamily="Montserrat-Medium"
+                FontFamily="{StaticResource Montserrat-Medium}"
                 HorizontalOptions="EndAndExpand"
                 HorizontalTextAlignment="End"
                 Style="{StaticResource PriceLabelStyle}"
@@ -73,14 +73,14 @@
             <!--  Discount Percent  -->
             <Label
                 Grid.Row="3"
-                FontFamily="Montserrat-Medium"
+                FontFamily="{DynamicResource Montserrat-Medium}"
                 FontSize="12"
                 Style="{StaticResource PriceLabelStyle}"
                 Text="Discount" />
             <Label
                 Grid.Row="3"
                 Grid.Column="1"
-                FontFamily="Montserrat-Medium"
+                FontFamily="{DynamicResource Montserrat-Medium}"
                 FontSize="12"
                 HorizontalOptions="EndAndExpand"
                 HorizontalTextAlignment="End"
@@ -89,7 +89,7 @@
             <!--  Coupon Discount  -->
             <Label
                 Grid.Row="4"
-                FontFamily="Montserrat-Medium"
+                FontFamily="{DynamicResource Montserrat-Medium}"
                 FontSize="12"
                 HorizontalOptions="StartAndExpand"
                 Style="{StaticResource PriceLabelStyle}"
@@ -106,7 +106,7 @@
                 <buttons:SfButton.Content>
                     <Label
                         Margin="0"
-                        FontFamily="Montserrat-SemiBold"
+                        FontFamily="{StaticResource Montserrat-SemiBold}"
                         FontSize="12"
                         HorizontalOptions="Fill"
                         HorizontalTextAlignment="Center"
@@ -119,14 +119,14 @@
             <Label
                 Grid.Row="5"
                 Margin="16,0,16,4"
-                FontFamily="Montserrat-Medium"
+                FontFamily="{StaticResource Montserrat-Medium}"
                 Style="{StaticResource PriceLabelStyle}"
                 Text="Delivery Charges" />
             <Label
                 Grid.Row="5"
                 Grid.Column="1"
                 Margin="16,0,16,4"
-                FontFamily="Montserrat-Medium"
+                FontFamily="{DynamicResource Montserrat-Medium}"
                 FontSize="12"
                 HorizontalOptions="EndAndExpand"
                 HorizontalTextAlignment="End"
@@ -138,12 +138,12 @@
                 Grid.Row="6"
                 Grid.ColumnSpan="2"
                 HeightRequest="1"
-                Style="{StaticResource HorizontalSeparatorStyle}" />
+                Style="{StaticResource BoxViewStyle}" />
             <!--  Total price  -->
             <Label
                 Grid.Row="7"
                 Margin="16,12,16,16"
-                FontFamily="Montserrat-SemiBold"
+                FontFamily="{StaticResource Montserrat-SemiBold}"
                 FontSize="16"
                 LineHeight="{OnPlatform Android=1.25,
                                         Default=-1}"
@@ -154,7 +154,7 @@
                 Grid.Row="7"
                 Grid.Column="1"
                 Margin="16,12,16,16"
-                FontFamily="Montserrat-SemiBold"
+                FontFamily="{StaticResource Montserrat-SemiBold}"
                 FontSize="16"
                 HorizontalOptions="EndAndExpand"
                 HorizontalTextAlignment="End"
@@ -173,7 +173,7 @@
             BorderWidth="0"
             Command="{Binding PlaceOrderCommand}"
             CornerRadius="20"
-            FontFamily="Montserrat-SemiBold"
+            FontFamily="{StaticResource Montserrat-SemiBold}"
             HeightRequest="40"
             HorizontalOptions="{OnIdiom Default=FillAndExpand,
                                         Phone=CenterAndExpand,

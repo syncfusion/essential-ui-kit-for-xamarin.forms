@@ -12,17 +12,16 @@ namespace EssentialUIKit.Droid
     {
         private int previousScrollPosition;
 
-        public ParallaxListViewRenderer(Context context)
-            : base(context)
+        public ParallaxListViewRenderer(Context context) : base(context)
         {
         }
 
         protected override void OnElementChanged(ElementChangedEventArgs<ListView> e)
         {
             base.OnElementChanged(e);
-            if (e?.NewElement != null)
+            if (e.NewElement != null)
             {
-                (e.NewElement as ParallaxListView).WidthInPixel = this.Context.Resources.DisplayMetrics.WidthPixels;
+                (e.NewElement as ParallaxListView).WidthInPixel = Context.Resources.DisplayMetrics.WidthPixels;
                 if (this.Control != null)
                 {
                     this.Control.Scroll += (sender, arg) =>
@@ -30,10 +29,10 @@ namespace EssentialUIKit.Droid
                         var topView = arg.View.GetChildAt(0);
                         if (this.Control.FirstVisiblePosition == 0)
                         {
-                            this.previousScrollPosition = topView.Top;
+                            previousScrollPosition = topView.Top;
                         }
 
-                        ParallaxListView.OnScrollChanged(this.Element, new ScrollChangedEventArgs(this.previousScrollPosition));
+                        ParallaxListView.OnScrollChanged(Element, new ScrollChangedEventArgs(previousScrollPosition));
                     };
                 }
             }

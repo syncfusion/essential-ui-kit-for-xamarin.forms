@@ -8,14 +8,14 @@ namespace EssentialUIKit.Views.Dashboard
     /// </summary>
     [Preserve(AllMembers = true)]
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class CompanyHistoryTemplates
+    public partial class CompanyHistoryTemplates 
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CompanyHistoryTemplates" /> class.
         /// </summary>
         public CompanyHistoryTemplates()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
     }
 }

@@ -9,8 +9,7 @@ namespace EssentialUIKit.Droid
 {
     public class BorderlessEntryRenderer : EntryRenderer
     {
-        public BorderlessEntryRenderer()
-            : base(Application.Context)
+        public BorderlessEntryRenderer() : base(Application.Context)
         {
         }
 
@@ -21,8 +20,8 @@ namespace EssentialUIKit.Droid
             if (this.Control != null)
             {
                 this.Control.SetBackground(null);
-                this.Control.Gravity = GravityFlags.CenterVertical;
-                this.Control.SetPadding(0, 0, 0, 0);
+                Control.Gravity = GravityFlags.CenterVertical;
+                Control.SetPadding(0, 0, 0, 0);
             }
         }
     }

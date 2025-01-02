@@ -14,24 +14,25 @@ namespace EssentialUIKit.Views.Templates
         /// <summary>
         /// Bindable property to set the parent bindingcontext.
         /// </summary>
-        public static readonly BindableProperty ParentBindingContextProperty =
-         BindableProperty.Create(nameof(ParentBindingContext), typeof(object), typeof(ArticleTileTemplate), null);
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ArticleTileTemplate"/> class.
-        /// </summary>
-        public ArticleTileTemplate()
-        {
-            this.InitializeComponent();
-        }
+        public static BindableProperty ParentBindingContextProperty =
+         BindableProperty.Create(nameof(ParentBindingContext), typeof(object),
+         typeof(ArticleTileTemplate), null);
 
         /// <summary>
         /// Gets or sets the parent bindingcontext.
         /// </summary>
         public object ParentBindingContext
         {
-            get { return this.GetValue(ParentBindingContextProperty); }
-            set { this.SetValue(ParentBindingContextProperty, value); }
+            get { return GetValue(ParentBindingContextProperty); }
+            set { SetValue(ParentBindingContextProperty, value); }
         }
-    }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ArticleTileTemplate"/> class.
+        /// </summary>
+        public ArticleTileTemplate ()
+		{
+			InitializeComponent ();
+		}
+	}
 }

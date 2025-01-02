@@ -1,6 +1,6 @@
-﻿using EssentialUIKit.DataService;
-using Xamarin.Forms.Internals;
+﻿using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
+using EssentialUIKit.DataService;
 
 namespace EssentialUIKit.Views.Navigation
 {
@@ -16,7 +16,7 @@ namespace EssentialUIKit.Views.Navigation
         /// </summary>
         public AppUsagePage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
             this.BindingContext = AppUsageDataService.Instance.AppUsageViewModel;
         }
     }

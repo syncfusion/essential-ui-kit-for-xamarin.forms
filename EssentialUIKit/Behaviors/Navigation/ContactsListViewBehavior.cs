@@ -1,7 +1,7 @@
-﻿using System.Globalization;
-using Syncfusion.DataSource;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 using Xamarin.Forms.Internals;
+using Syncfusion.DataSource;
+using System.Globalization;
 
 namespace EssentialUIKit.Behaviors.Navigation
 {
@@ -18,22 +18,22 @@ namespace EssentialUIKit.Behaviors.Navigation
         #endregion
 
         #region Overrides
-
         /// <summary>
         /// Invoked when adding the SfListView to view.
         /// </summary>
         /// <param name="bindable">The SfListView</param>
+
         protected override void OnAttachedTo(Syncfusion.ListView.XForms.SfListView bindable)
         {
             if (bindable != null)
             {
-                this.listView = bindable;
-                this.listView.DataSource.GroupDescriptors.Add(new GroupDescriptor()
+                listView = bindable;
+                listView.DataSource.GroupDescriptors.Add(new GroupDescriptor()
                 {
                     PropertyName = "Name",
                     KeySelector = (object obj1) =>
                     {
-                        var item = obj1 as Models.Navigation.Contact;
+                        var item = (obj1 as Models.Navigation.Contact);
                         return item.Name[0].ToString(CultureInfo.CurrentCulture);
                     },
                 });
@@ -45,9 +45,10 @@ namespace EssentialUIKit.Behaviors.Navigation
         /// Invoked when the list view is detached. 
         /// </summary>
         /// <param name="bindable">The SfListView</param>
+
         protected override void OnDetachingFrom(Syncfusion.ListView.XForms.SfListView bindable)
         {
-            this.listView = null;
+            listView = null;
             base.OnDetachingFrom(bindable);
         }
 

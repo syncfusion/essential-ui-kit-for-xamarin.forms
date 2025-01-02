@@ -15,7 +15,7 @@ namespace EssentialUIKit.Views.Chat
         /// </summary>
         public OutgoingTextTemplate()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
     }
 }

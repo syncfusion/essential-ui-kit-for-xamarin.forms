@@ -18,7 +18,7 @@ namespace EssentialUIKit.Views.ContactUs
         /// </summary>
         public ContactUsPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         /// <summary>
@@ -34,16 +34,16 @@ namespace EssentialUIKit.Views.ContactUs
                 if (Device.Idiom == TargetIdiom.Desktop || Device.Idiom == TargetIdiom.Tablet)
                 {
                     this.frameWidth = width / 2;
-                    this.MainStack.Orientation = StackOrientation.Horizontal;
-                    this.MainFrame.VerticalOptions = LayoutOptions.FillAndExpand;
-                    this.MainFrame.Margin = new Thickness(0);
-                    this.MainFrame.CornerRadius = 0;
-                    this.MainFrame.HasShadow = false;
-                    this.MainFrameStack.VerticalOptions = LayoutOptions.StartAndExpand;
+                    MainStack.Orientation = StackOrientation.Horizontal;
+                    MainFrame.VerticalOptions = LayoutOptions.FillAndExpand;
+                    MainFrame.Margin = new Thickness(0);
+                    MainFrame.CornerRadius = 0;
+                    MainFrame.HasShadow = false;
+                    MainFrameStack.VerticalOptions = LayoutOptions.StartAndExpand;
                     if (this.frameWidth > 0)
                     {
-                        this.MainFrame.WidthRequest = this.frameWidth;
-                        this.Map.WidthRequest = this.frameWidth;
+                        MainFrame.WidthRequest = this.frameWidth;
+                        Map.WidthRequest = this.frameWidth;
                     }
                 }
                 else
@@ -66,25 +66,25 @@ namespace EssentialUIKit.Views.ContactUs
         {
             if (Device.Idiom == TargetIdiom.Tablet)
             {
-                this.MainFrame.HeightRequest = height / 2;
-                this.Map.HeightRequest = height / 2;
-                this.MainStack.Orientation = StackOrientation.Vertical;
-                this.MainFrame.VerticalOptions = LayoutOptions.End;
-                this.MainFrame.Margin = new Thickness(0);
-                this.MainFrame.CornerRadius = 0;
-                this.MainFrame.HasShadow = false;
-                this.MainFrameStack.VerticalOptions = LayoutOptions.StartAndExpand;
-                this.MainFrameStack.Margin = new Thickness(20, 0, 20, 0);
+                MainFrame.HeightRequest = height / 2;
+                Map.HeightRequest = height / 2;
+                MainStack.Orientation = StackOrientation.Vertical;
+                MainFrame.VerticalOptions = LayoutOptions.End;
+                MainFrame.Margin = new Thickness(0);
+                MainFrame.CornerRadius = 0;
+                MainFrame.HasShadow = false;
+                MainFrameStack.VerticalOptions = LayoutOptions.StartAndExpand;
+                MainFrameStack.Margin = new Thickness(20, 0, 20, 0);
             }
             else
             {
-                this.MainStack.Orientation = StackOrientation.Vertical;
-                this.MainFrame.VerticalOptions = LayoutOptions.End;
-                this.MainFrame.Margin = new Thickness(15, -50, 15, 15);
-                this.MainFrameStack.VerticalOptions = LayoutOptions.EndAndExpand;
-                this.MainFrame.CornerRadius = 5;
-                this.MainFrame.HasShadow = true;
-                this.MainFrameStack.Margin = new Thickness(0);
+                MainStack.Orientation = StackOrientation.Vertical;
+                MainFrame.VerticalOptions = LayoutOptions.End;
+                MainFrame.Margin = new Thickness(15, -50, 15, 15);
+                MainFrameStack.VerticalOptions = LayoutOptions.EndAndExpand;
+                MainFrame.CornerRadius = 5;
+                MainFrame.HasShadow = true;
+                MainFrameStack.Margin = new Thickness(0);
             }
         }
     }

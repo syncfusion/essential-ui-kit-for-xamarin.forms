@@ -13,8 +13,8 @@ namespace EssentialUIKit.DataService
     {
         #region fields
 
-        private static CartDataService cartDataService;
-
+        private static CartDataService instance;
+       
         private CartPageViewModel cartPageViewModel;
 
         #endregion
@@ -35,13 +35,13 @@ namespace EssentialUIKit.DataService
         /// <summary>
         /// Gets an instance of the <see cref="CartDataService"/>.
         /// </summary>
-        public static CartDataService Instance => cartDataService ?? (cartDataService = new CartDataService());
+        public static CartDataService Instance => instance ?? (instance = new CartDataService());
 
         /// <summary>
         /// Gets or sets the value of cart page view model.
         /// </summary>
         public CartPageViewModel CartPageViewModel =>
-            this.cartPageViewModel = PopulateData<CartPageViewModel>("ecommerce.json");
+            (this.cartPageViewModel = PopulateData<CartPageViewModel>("ecommerce.json"));
 
         #endregion
 
@@ -59,15 +59,15 @@ namespace EssentialUIKit.DataService
 
             var assembly = typeof(App).GetTypeInfo().Assembly;
 
-            T data;
+            T obj;
 
             using (var stream = assembly.GetManifestResourceStream(file))
             {
                 var serializer = new DataContractJsonSerializer(typeof(T));
-                data = (T)serializer.ReadObject(stream);
+                obj = (T)serializer.ReadObject(stream);
             }
 
-            return data;
+            return obj;
         }
 
         #endregion

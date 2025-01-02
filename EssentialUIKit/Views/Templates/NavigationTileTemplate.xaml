@@ -2,15 +2,24 @@
 <Grid
     x:Class="EssentialUIKit.Views.Templates.NavigationTileTemplate"
     xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:button="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
-    xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Navigation">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <Grid.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Grid.Resources>
 
     <Grid
         BackgroundColor="{DynamicResource PlaceholderColor}"
         ColumnSpacing="0"
-        RowDefinitions="150, *"
         RowSpacing="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="150" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
 
         <!--  Image of an item  -->
         <Image
@@ -33,20 +42,22 @@
 
             <!--  Name of an item  -->
             <Label
-                HorizontalOptions="Start"
-                Style="{StaticResource TitleLabelStyle}"
-                Text="{Binding ItemName}" />
+                FontFamily="{StaticResource Montserrat-SemiBold}"
+                FontSize="16"
+                LineHeight="{OnPlatform Android=1.5,
+                                        Default=-1}"
+                Text="{Binding ItemName}"
+                TextColor="{DynamicResource Gray-900}" />
 
             <!--  Description about an item  -->
             <Label
                 Margin="0,4,0,8"
+                FontFamily="{StaticResource Montserrat-Medium}"
                 FontSize="12"
-                HorizontalOptions="Start"
-                HorizontalTextAlignment="Start"
                 LineHeight="{OnPlatform Android=1.25,
                                         Default=-1}"
-                Style="{StaticResource DescriptionLabelStyle}"
-                Text="{Binding ItemDescription}" />
+                Text="{Binding ItemDescription}"
+                TextColor="{DynamicResource Gray-700}" />
             <StackLayout
                 HorizontalOptions="FillAndExpand"
                 Orientation="Horizontal"
@@ -56,14 +67,10 @@
                 <!--  Average rating from the overall rating  -->
                 <Label
                     Margin="0,0,4,0"
-                    FontFamily="FontIcons"
-                    FontSize="16"
-                    Text="{StaticResource Rating}"
-                    TextColor="{DynamicResource PrimaryColor}"
-                    VerticalOptions="Center"
+                    Style="{StaticResource RatingLabelStyle}"
                     WidthRequest="16" />
                 <Label
-                    FontFamily="Montserrat-Regular"
+                    FontFamily="{StaticResource Montserrat-Regular}"
                     FontSize="12"
                     LineHeight="{OnPlatform Android=1.5,
                                             Default=-1}"
@@ -80,21 +87,9 @@
                 </Label>
 
                 <!--  Navigation icon  -->
-                <button:SfButton
-                    BackgroundColor="Transparent"
-                    Command="{Binding ItemTappedCommand}"
-                    CornerRadius="4"
-                    FontFamily="FontIcons"
-                    FontSize="14"
+                <Label
                     HorizontalOptions="EndAndExpand"
-                    Text="{StaticResource ArrowRight}"
-                    TextColor="{DynamicResource Gray-600}"
-                    VerticalOptions="Center">
-                    <button:SfButton.BindingContext>
-                        <viewModel:NavigationViewModel />
-                    </button:SfButton.BindingContext>
-                </button:SfButton>
-
+                    Style="{StaticResource RightArrowLabelStyle}" />
             </StackLayout>
         </StackLayout>
     </Grid>

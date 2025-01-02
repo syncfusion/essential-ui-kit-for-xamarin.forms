@@ -1,6 +1,6 @@
-﻿using System.Collections.ObjectModel;
+﻿using EssentialUIKit.Models.Dashboard;
+using System.Collections.ObjectModel;
 using System.Runtime.Serialization;
-using EssentialUIKit.Models.Dashboard;
 using Xamarin.Forms.Internals;
 
 namespace EssentialUIKit.ViewModels.Dashboard
@@ -29,7 +29,7 @@ namespace EssentialUIKit.ViewModels.Dashboard
         /// Gets or sets a collction of value to be displayed in Daily timeline page.
         /// </summary>
         [DataMember(Name = "dailyTimeline")]
-        public ObservableCollection<Timeline> DailyTimeline { get; set; }
+        public ObservableCollection<Event> DailyTimeline { get; set; }
 
         #endregion
     }

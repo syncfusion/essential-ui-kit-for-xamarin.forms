@@ -39,7 +39,7 @@
 
             <Label
                 Grid.Column="0"
-                FontFamily="Montserrat-SemiBold"
+                FontFamily="{StaticResource Montserrat-SemiBold}"
                 FontSize="16"
                 LineHeight="{OnPlatform Android=1.25,
                                         Default=-1}"
@@ -51,7 +51,7 @@
             <!--  Total Price Label  -->
             <Label
                 Grid.Column="1"
-                FontFamily="Montserrat-SemiBold"
+                FontFamily="{StaticResource Montserrat-SemiBold}"
                 FontSize="16"
                 HorizontalOptions="EndAndExpand"
                 HorizontalTextAlignment="End"
@@ -66,7 +66,7 @@
                 Grid.Row="1"
                 Grid.ColumnSpan="2"
                 HeightRequest="1"
-                Style="{StaticResource HorizontalSeparatorStyle}" />
+                Style="{StaticResource BoxViewStyle}" />
 
         </Grid>
 
@@ -116,7 +116,7 @@
                             Grid.Column="1"
                             helper:RTLHelper.Margin="{OnIdiom Default='0,16,0,0',
                                                               Phone='10,2,0,2'}"
-                            FontFamily="Montserrat-Medium"
+                            FontFamily="{StaticResource Montserrat-Medium}"
                             FontSize="14"
                             HorizontalOptions="StartAndExpand"
                             Style="{StaticResource LabelStyle}">
@@ -140,7 +140,7 @@
                             BorderWidth="0"
                             Command="{Binding BindingContext.EditCommand, Source={x:Reference RadioGroup}}"
                             CornerRadius="4"
-                            FontFamily="Montserrat-SemiBold"
+                            FontFamily="{StaticResource Montserrat-SemiBold}"
                             FontSize="14"
                             HeightRequest="{OnIdiom Desktop=18,
                                                     Default=35}"
@@ -158,7 +158,7 @@
                             Grid.Column="1"
                             helper:RTLHelper.Margin="{OnIdiom Default='0',
                                                               Phone='10,0,0,0'}"
-                            FontFamily="Montserrat-Medium"
+                            FontFamily="{StaticResource Montserrat-Medium}"
                             FontSize="12"
                             LineHeight="{OnPlatform Android=1.25,
                                                     Default=-1}"
@@ -172,7 +172,7 @@
                             Grid.Column="1"
                             helper:RTLHelper.Margin="{OnIdiom Default='0',
                                                               Phone='10,8,0,16'}"
-                            FontFamily="Montserrat-Medium"
+                            FontFamily="{StaticResource Montserrat-Medium}"
                             FontSize="12"
                             HorizontalOptions="StartAndExpand"
                             Style="{StaticResource LabelStyle}">
@@ -188,7 +188,7 @@
                         <BoxView
                             Grid.Row="3"
                             Grid.ColumnSpan="4"
-                            Style="{StaticResource HorizontalSeparatorStyle}"
+                            Style="{StaticResource BoxViewStyle}"
                             VerticalOptions="End" />
 
                     </Grid>

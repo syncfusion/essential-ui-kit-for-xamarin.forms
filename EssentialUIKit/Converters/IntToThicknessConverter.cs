@@ -24,11 +24,7 @@ namespace EssentialUIKit.Converters
             if (value != null)
             {
                 int itemCount;
-                if (int.TryParse(value.ToString(), out itemCount))
-                {
-                    // Do Nothing
-                }
-
+                int.TryParse(value.ToString(), out itemCount);
                 if (itemCount >= 0)
                 {
                     return new Thickness(0, -15, 0, 0);

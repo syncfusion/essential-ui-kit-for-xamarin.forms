@@ -1,8 +1,8 @@
 ﻿using System.Collections.ObjectModel;
 using System.Runtime.Serialization;
-using EssentialUIKit.Models.Notification;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
+using EssentialUIKit.Models.Notification;
 
 namespace EssentialUIKit.ViewModels.Notification
 {
@@ -17,9 +17,9 @@ namespace EssentialUIKit.ViewModels.Notification
 
         private Command<object> itemTappedCommand;
 
-        private Command<object> menuCommand;
+        private Command<object> backCommand;
 
-        private Command<object> markAllCommand;
+        private Command<object> menuCommand;
 
         #endregion
 
@@ -30,6 +30,7 @@ namespace EssentialUIKit.ViewModels.Notification
         /// </summary>
         public TaskNotificationViewModel()
         {
+
         }
 
         #endregion
@@ -48,6 +49,17 @@ namespace EssentialUIKit.ViewModels.Notification
         }
 
         /// <summary>
+        /// Gets the command that will be executed when back button is selected.
+        /// </summary>
+        public Command<object> BackCommand
+        {
+            get
+            {
+                return this.backCommand ?? (this.backCommand = new Command<object>(this.BackButtonClicked));
+            }
+        }
+
+        /// <summary>
         /// Gets the command that will be executed when menu button is selected.
         /// </summary>
         public Command<object> MenuCommand
@@ -55,17 +67,6 @@ namespace EssentialUIKit.ViewModels.Notification
             get
             {
                 return this.menuCommand ?? (this.menuCommand = new Command<object>(this.MenuButtonClicked));
-            }
-        }
-
-        /// <summary>
-        /// Gets the command that will be executed when an mark all as read is selected.
-        /// </summary>
-        public Command<object> MarkAllCommand
-        {
-            get
-            {
-                return this.markAllCommand ?? (this.markAllCommand = new Command<object>(this.MarkAllClicked));
             }
         }
 
@@ -86,6 +87,16 @@ namespace EssentialUIKit.ViewModels.Notification
         private void ItemSelected(object selectedItem)
         {
             ((selectedItem as Syncfusion.ListView.XForms.ItemTappedEventArgs)?.ItemData as TaskNotificationsListModel).IsRead = true;
+            // Do something
+        }
+
+        /// <summary>
+        /// Invoked when back button is clicked in the task notification page.
+        /// </summary>
+        /// <param name="obj">The object.</param>
+        private void BackButtonClicked(object obj)
+        {
+            // Do something
         }
 
         /// <summary>
@@ -93,15 +104,6 @@ namespace EssentialUIKit.ViewModels.Notification
         /// </summary>
         /// <param name="obj">The object.</param>
         private void MenuButtonClicked(object obj)
-        {
-            // Do something
-        }
-
-        /// <summary>
-        /// Invoked when mark all as read button is clicked in the task notification page.
-        /// </summary>
-        /// <param name="obj">The object.</param>
-        private void MarkAllClicked(object obj)
         {
             // Do something
         }

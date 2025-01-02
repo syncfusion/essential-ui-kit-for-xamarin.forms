@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Runtime.Serialization;
 using Xamarin.Forms.Internals;
 
 namespace EssentialUIKit.Models.Catalog
@@ -9,14 +8,11 @@ namespace EssentialUIKit.Models.Catalog
     /// Model for navigation travel page.
     /// </summary>
     [Preserve(AllMembers = true)]
-    [DataContract]
     public class Travel : INotifyPropertyChanged
     {
         #region Fields
 
         private bool isFavourite;
-
-        private string imagePath;
 
         #endregion
 
@@ -34,36 +30,21 @@ namespace EssentialUIKit.Models.Catalog
         /// <summary>
         /// Gets or sets the travel place image path.
         /// </summary>
-        [DataMember(Name = "imagePath")]
-        public string ImagePath
-        {
-            get
-            {
-                return App.ImageServerPath + this.imagePath;
-            }
-
-            set
-            {
-                this.imagePath = value;
-            }
-        }
+        public string ImagePath { get; set; }
 
         /// <summary>
         /// Gets or sets the travel place name.
         /// </summary>
-        [DataMember(Name = "place")]
         public string Place { get; set; }
 
         /// <summary>
         /// Gets or sets the travel place details.
         /// </summary>
-        [DataMember(Name = "details")]
         public string Details { get; set; }
 
         /// <summary>
         /// Gets or sets the price of travel place.
         /// </summary>
-        [DataMember(Name = "price")]
         public string Price { get; set; }
 
         /// <summary>
@@ -79,7 +60,7 @@ namespace EssentialUIKit.Models.Catalog
             set
             {
                 this.isFavourite = value;
-                this.NotifyPropertyChanged(nameof(this.IsFavourite));
+                this.NotifyPropertyChanged(nameof(IsFavourite));
             }
         }
 

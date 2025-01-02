@@ -1,6 +1,5 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Runtime.Serialization;
 using Xamarin.Forms.Internals;
 
 namespace EssentialUIKit.Models.Chat
@@ -9,7 +8,6 @@ namespace EssentialUIKit.Models.Chat
     /// Model for chat message 
     /// </summary>
     [Preserve(AllMembers = true)]
-    [DataContract]
     public class ChatMessage : INotifyPropertyChanged
     {
         #region Fields
@@ -36,7 +34,6 @@ namespace EssentialUIKit.Models.Chat
         /// <summary>
         /// Gets or sets the message.
         /// </summary>
-        [DataMember(Name = "message")]
         public string Message
         {
             get
@@ -54,7 +51,6 @@ namespace EssentialUIKit.Models.Chat
         /// <summary>
         /// Gets or sets the message sent/received time.
         /// </summary>
-        [DataMember(Name = "time")]
         public DateTime Time
         {
             get
@@ -72,7 +68,6 @@ namespace EssentialUIKit.Models.Chat
         /// <summary>
         /// Gets or sets the profile image.
         /// </summary>
-        [DataMember(Name = "imagePath")]
         public string ImagePath
         {
             get
@@ -82,7 +77,7 @@ namespace EssentialUIKit.Models.Chat
 
             set
             {
-                this.imagePath = App.ImageServerPath + value;
+                this.imagePath = value;
                 this.OnPropertyChanged("ImagePath");
             }
         }
@@ -90,11 +85,10 @@ namespace EssentialUIKit.Models.Chat
         /// <summary>
         /// Gets or sets a value indicating whether the message is received or sent.
         /// </summary>
-        [DataMember(Name = "isReceived")]
         public bool IsReceived { get; set; }
 
         #endregion
-
+        
         #region Methods
 
         /// <summary>

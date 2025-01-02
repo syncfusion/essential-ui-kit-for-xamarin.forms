@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
 using System.Runtime.Serialization.Json;
-using EssentialUIKit.ViewModels.Navigation;
 using Xamarin.Forms.Internals;
+using EssentialUIKit.ViewModels.Navigation;
 
 namespace EssentialUIKit.DataService
 {
@@ -13,7 +13,7 @@ namespace EssentialUIKit.DataService
     {
         #region fields 
 
-        private static FileExploreDataService fileExploreDataService;
+        private static FileExploreDataService instance;
 
         private FileExploreViewModel fileExploreViewModel;
 
@@ -24,7 +24,7 @@ namespace EssentialUIKit.DataService
         /// <summary>
         /// Gets an instance of the <see cref="FileExploreDataService"/>.
         /// </summary>
-        public static FileExploreDataService Instance => fileExploreDataService ?? (fileExploreDataService = new FileExploreDataService());
+        public static FileExploreDataService Instance => instance ?? (instance = new FileExploreDataService());
 
         /// <summary>
         /// Gets or sets the value of file explorer list view model.
@@ -49,15 +49,15 @@ namespace EssentialUIKit.DataService
 
             var assembly = typeof(App).GetTypeInfo().Assembly;
 
-            T data;
+            T obj;
 
             using (var stream = assembly.GetManifestResourceStream(file))
             {
                 var serializer = new DataContractJsonSerializer(typeof(T));
-                data = (T)serializer.ReadObject(stream);
+                obj = (T)serializer.ReadObject(stream);
             }
 
-            return data;
+            return obj;
         }
 
         #endregion

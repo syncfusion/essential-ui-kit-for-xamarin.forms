@@ -37,7 +37,7 @@
             <!--  Label to display header  -->
             <Label
                 Margin="0,30,0,8"
-                FontFamily="Montserrat-SemiBold"
+                FontFamily="{StaticResource Montserrat-SemiBold}"
                 FontSize="14"
                 HorizontalOptions="Center"
                 HorizontalTextAlignment="Center"
@@ -49,7 +49,7 @@
 
             <!--  Label to display content  -->
             <Label
-                FontFamily="Montserrat-Medium"
+                FontFamily="{StaticResource Montserrat-Medium}"
                 FontSize="16"
                 HorizontalOptions="Center"
                 Opacity="0"

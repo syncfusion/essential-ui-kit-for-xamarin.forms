@@ -1,5 +1,4 @@
-﻿using EssentialUIKit.ViewModels.Profile;
-using Xamarin.Forms.Internals;
+﻿using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
 
 namespace EssentialUIKit.Views.Profile
@@ -13,8 +12,8 @@ namespace EssentialUIKit.Views.Profile
     {
         public ContactProfilePage()
         {
-            this.InitializeComponent();
-            this.BindingContext = ContactProfileViewModel.BindingContext;
+            InitializeComponent();
+            this.ProfileImage.Source = App.BaseImageUrl + "ContactProfileImage.png";
         }
     }
 }

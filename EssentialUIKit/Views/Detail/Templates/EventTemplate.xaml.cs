@@ -8,11 +8,11 @@ namespace EssentialUIKit.Views.Detail.Templates
     /// </summary>
     [Preserve(AllMembers = true)]
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class EventTemplate
+    public partial class EventTemplate 
     {
         public EventTemplate()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
     }
 }

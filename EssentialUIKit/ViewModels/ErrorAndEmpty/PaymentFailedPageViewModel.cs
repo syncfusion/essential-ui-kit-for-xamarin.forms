@@ -1,6 +1,6 @@
-﻿using System.Reflection;
-using System.Runtime.Serialization;
-using System.Runtime.Serialization.Json;
+﻿using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 
@@ -10,20 +10,15 @@ namespace EssentialUIKit.ViewModels.ErrorAndEmpty
     /// ViewModel for payment failed page.
     /// </summary>
     [Preserve(AllMembers = true)]
-    [DataContract]
     public class PaymentFailedPageViewModel : BaseViewModel
     {
         #region Fields
-
-        private static PaymentFailedPageViewModel paymentFailedPageViewModel;
 
         private string imagePath;
 
         private string header;
 
         private string content;
-
-        private Command tryAgain;
 
         #endregion
 
@@ -34,22 +29,28 @@ namespace EssentialUIKit.ViewModels.ErrorAndEmpty
         /// </summary>
         public PaymentFailedPageViewModel()
         {
+            this.ImagePath = "PaymentFailed.svg";
+            this.Header = "PAYMENT FAILED";
+            this.Content = "An error occurred while processing your payment";
+            this.TryAgainCommand = new Command(this.TryAgain);
         }
+
+        #endregion
+
+        #region Commands
+
+        /// <summary>
+        /// Gets or sets the command that is executed when the Try again button is clicked.
+        /// </summary>
+        public ICommand TryAgainCommand { get; set; }
 
         #endregion
 
         #region Properties
 
         /// <summary>
-        /// Gets or sets the value of payment page view model.
-        /// </summary>
-        public static PaymentFailedPageViewModel BindingContext =>
-            paymentFailedPageViewModel = PopulateData<PaymentFailedPageViewModel>("errorAndEmpty.json");
-
-        /// <summary>
         /// Gets or sets the ImagePath.
         /// </summary>
-        [DataMember(Name = "paymentFailedImagePath")]
         public string ImagePath
         {
             get
@@ -59,14 +60,14 @@ namespace EssentialUIKit.ViewModels.ErrorAndEmpty
 
             set
             {
-                this.SetProperty(ref this.imagePath, value);
+                this.imagePath = value;
+                this.NotifyPropertyChanged();
             }
         }
 
         /// <summary>
         /// Gets or sets the Header.
         /// </summary>
-        [DataMember(Name = "paymentFailedHeader")]
         public string Header
         {
             get
@@ -76,14 +77,14 @@ namespace EssentialUIKit.ViewModels.ErrorAndEmpty
 
             set
             {
-                this.SetProperty(ref this.header, value);
+                this.header = value;
+                this.NotifyPropertyChanged();
             }
         }
 
         /// <summary>
         /// Gets or sets the Content.
         /// </summary>
-        [DataMember(Name = "paymentFailedContent")]
         public string Content
         {
             get
@@ -93,51 +94,14 @@ namespace EssentialUIKit.ViewModels.ErrorAndEmpty
 
             set
             {
-                this.SetProperty(ref this.content, value);
-            }
-        }
-
-        #endregion
-
-        #region Commands
-
-        /// <summary>
-        /// Gets the command that is executed when the Try again button is clicked.
-        /// </summary>
-        public Command TryAgainCommand
-        {
-            get
-            {
-                return this.tryAgain ?? (this.tryAgain = new Command(this.TryAgain));
+                this.content = value;
+                this.NotifyPropertyChanged();
             }
         }
 
         #endregion
 
         #region Methods
-
-        /// <summary>
-        /// Populates the data for view model from json file.
-        /// </summary>
-        /// <typeparam name="T">Type of view model.</typeparam>
-        /// <param name="fileName">Json file to fetch data.</param>
-        /// <returns>Returns the view model object.</returns>
-        private static T PopulateData<T>(string fileName)
-        {
-            var file = "EssentialUIKit.Data." + fileName;
-
-            var assembly = typeof(App).GetTypeInfo().Assembly;
-
-            T data;
-
-            using (var stream = assembly.GetManifestResourceStream(file))
-            {
-                var serializer = new DataContractJsonSerializer(typeof(T));
-                data = (T)serializer.ReadObject(stream);
-            }
-
-            return data;
-        }
 
         /// <summary>
         /// Invoked when the Try again button is clicked.

@@ -4,49 +4,56 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
-    xmlns:controls="clr-namespace:EssentialUIKit.Controls"
+    xmlns:cards="clr-namespace:Syncfusion.XForms.Cards;assembly=Syncfusion.Cards.XForms"
     xmlns:helper="clr-namespace:EssentialUIKit.Helpers">
 
     <ViewCell.View>
 
         <!--  Incoming image template  -->
-        <controls:CustomShadowFrame
-            Padding="0"
-            helper:RTLHelper.Margin="22, 12, 38, 4"
-            BackgroundColor="{DynamicResource GrayShadowColor}"
+        <cards:SfCardView
+            helper:RTLHelper.CornerRadius="0, 5, 5, 5"
+            helper:RTLHelper.Margin="22, 12, 38, 0"
+            BackgroundColor="{DynamicResource Gray-White}"
             BorderWidth="0"
-            CornerRadius="4"
-            HasShadow="True"
+            HasShadow="False"
             HorizontalOptions="Start">
 
-            <controls:CustomShadowFrame.Content>
+            <cards:SfCardView.Resources>
+                <ResourceDictionary>
+                    <ResourceDictionary.MergedDictionaries>
+                        <ResourceDictionary Source="../Styles.xaml" />
+                    </ResourceDictionary.MergedDictionaries>
+                </ResourceDictionary>
+            </cards:SfCardView.Resources>
+
+            <cards:SfCardView.Content>
                 <Grid Padding="2" VerticalOptions="FillAndExpand">
 
                     <border:SfBorder BorderWidth="0" CornerRadius="5">
                         <!--  Image  -->
                         <Image
-                            BackgroundColor="{DynamicResource Gray-200}"
                             HeightRequest="100"
                             HorizontalOptions="Start"
+							BackgroundColor="{DynamicResource Gray-200}" 
                             Source="{Binding ImagePath}"
                             VerticalOptions="Fill"
                             WidthRequest="100" />
                     </border:SfBorder>
-
+					
                     <!--  Time  -->
                     <Label
                         Margin="5,0"
-                        FontFamily="Montserrat-Medium"
+                        FontFamily="{StaticResource Montserrat-Medium}"
                         FontSize="12"
                         HorizontalOptions="End"
                         Text="{Binding Time, StringFormat='{0:h:mm tt}'}"
-                        TextColor="{DynamicResource Gray-700}"
+                        TextColor="{DynamicResource Gray-White}"
                         VerticalOptions="End" />
 
                 </Grid>
-            </controls:CustomShadowFrame.Content>
+            </cards:SfCardView.Content>
 
-        </controls:CustomShadowFrame>
+        </cards:SfCardView>
 
     </ViewCell.View>
 </ViewCell>

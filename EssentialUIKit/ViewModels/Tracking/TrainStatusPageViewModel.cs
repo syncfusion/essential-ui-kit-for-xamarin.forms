@@ -19,7 +19,7 @@ namespace EssentialUIKit.ViewModels.Tracking
     {
         #region Fields
 
-        private ObservableCollection<TrainStationModel> stationInfoCollection;
+        private ObservableCollection<Station> stationInfoCollection;
         private string nextStationTime;
         private double trainStartTimeDiff;
         private StepStatus lastStationStatus;
@@ -53,7 +53,7 @@ namespace EssentialUIKit.ViewModels.Tracking
         /// Gets or sets the station info collection.
         /// </summary>
         [DataMember(Name = "stationinfo")]
-        public ObservableCollection<TrainStationModel> StationInfoCollection
+        public ObservableCollection<Station> StationInfoCollection
         {
             get
             {
@@ -128,8 +128,10 @@ namespace EssentialUIKit.ViewModels.Tracking
         {
             get
             {
-                DateTime stringDuration = Convert.ToDateTime(this.StringDuration, CultureInfo.CurrentCulture);
-                return stringDuration != DateTime.MinValue ? stringDuration : this.duration;
+                DateTime stringDuration = Convert.ToDateTime(this.StringDuration, 
+                    CultureInfo.CurrentCulture);
+                return DateTime.MinValue != stringDuration? stringDuration : this.duration;
+
             }
 
             set
@@ -163,11 +165,7 @@ namespace EssentialUIKit.ViewModels.Tracking
         public void UpdateStatus()
         {
             DateTime toStartTime;
-            if (DateTime.TryParse("7:15:00 AM", out toStartTime))
-            {
-                // Do Nothing
-            }
-
+            DateTime.TryParse("7:15:00 AM", out toStartTime);
             this.trainStartTimeDiff = DateTime.Now.Subtract(toStartTime).TotalSeconds;
 
             foreach (var stationInfo in this.StationInfoCollection)
@@ -182,38 +180,27 @@ namespace EssentialUIKit.ViewModels.Tracking
                 stationInfo.ProgressedDistance = station.ProgressedDistance;
                 stationInfo.Status = station.Status;
             }
-        }
-
+        }        
+        
         /// <summary>
         /// This method is used to create the station information
         /// </summary>
-        /// <param name="name">The name</param>
-        /// <param name="toArrival">To arrival</param>
-        /// <param name="toDistance">To distance</param>
+        /// <param name="name">String value</param>
+        /// <param name="toArrival">String value</param>
+        /// <param name="toDistance">Double value</param>
         /// <returns>Date time</returns>
-        public TrainStationModel CreateStationInfo(string name, string toArrival, double toDistance)
+        public Station CreateStationInfo(string name, string toArrival, double toDistance)
         {
             DateTime dateTimeArr;
 
             DateTime toStartTime;
-            if (DateTime.TryParse("7:00:00 AM", out toStartTime))
-            {
-                // Do Nothing
-            }
-
+            DateTime.TryParse("7:00:00 AM", out toStartTime);
             DateTime toEndTime;
-            if (DateTime.TryParse("7:00:00 PM", out toEndTime))
-            {
-                // Do Nothing
-            }
+            DateTime.TryParse("7:00:00 PM", out toEndTime);
 
             StepStatus currentStatus = StepStatus.NotStarted;
 
-            if (DateTime.TryParse(toArrival, out dateTimeArr))
-            {
-                // Do Nothing
-            }
-
+            DateTime.TryParse(toArrival, out dateTimeArr);
             dateTimeArr = this.SetTrainTiming(dateTimeArr);
 
             if (this.lastStationStatus == StepStatus.Completed)
@@ -228,7 +215,7 @@ namespace EssentialUIKit.ViewModels.Tracking
 
             this.lastStationStatus = currentStatus;
 
-            var station = new TrainStationModel()
+            var station = new Station()
             {
                 Name = name,
                 Arrival = dateTimeArr.TimeOfDay.ToString().Remove(5),
@@ -236,13 +223,13 @@ namespace EssentialUIKit.ViewModels.Tracking
                 ArrivalDateTime = dateTimeArr,
                 DepartureDateTime = dateTimeArr.AddMinutes(2),
                 Distance = "Station at " + toDistance.ToString(CultureInfo.CurrentCulture) + " km",
-                Status = currentStatus,
+                Status = currentStatus
             };
 
             if (station.Status == StepStatus.Completed)
             {
                 station.ProgressedDistance = 100;
-            }
+            }           
 
             return station;
         }

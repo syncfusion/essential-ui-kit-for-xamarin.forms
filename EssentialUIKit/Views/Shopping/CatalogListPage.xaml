@@ -83,8 +83,8 @@
                 IsStickyHeader="False"
                 ItemSize="170"
                 ItemSpacing="8,8,0,8"
-                ItemsSource="{Binding Products}" BackgroundColor="{DynamicResource Gray-White}"
-                Style="{StaticResource TransparentSelectionListView}">
+                ItemsSource="{Binding Products}"
+                Style="{StaticResource SfListViewStyle}">
 
                 <listView:SfListView.Behaviors>
                     <commonBehavior:SfListViewTapBehavior Command="{Binding Path=BindingContext.ItemSelectedCommand, Source={x:Reference catalogListPage}}" />
@@ -134,7 +134,7 @@
                             <Label
                                 Grid.Column="1"
                                 Margin="0,0,0,8"
-                                FontFamily="Montserrat-SemiBold"
+                                FontFamily="{StaticResource Montserrat-SemiBold}"
                                 LineBreakMode="TailTruncation"
                                 MaxLines="1"
                                 Style="{StaticResource LabelStyle}"
@@ -160,7 +160,7 @@
                                 Grid.Row="1"
                                 Grid.Column="1"
                                 Margin="0,0,0,8"
-                                FontFamily="Montserrat-Medium"
+                                FontFamily="{StaticResource Montserrat-Medium}"
                                 FontSize="12"
                                 LineBreakMode="TailTruncation"
                                 LineHeight="{OnPlatform Android=1.25,
@@ -178,7 +178,7 @@
 
                                 <!--  Product Price  -->
                                 <Label
-                                    FontFamily="Montserrat-SemiBold"
+                                    FontFamily="{StaticResource Montserrat-SemiBold}"
                                     FontSize="20"
                                     HorizontalOptions="Start"
                                     LineHeight="{OnPlatform Android=1.25,
@@ -191,7 +191,7 @@
 
                                 <Label
                                     Margin="0,6,0,6"
-                                    FontFamily="Montserrat-Medium"
+                                    FontFamily="{StaticResource Montserrat-Medium}"
                                     FontSize="12"
                                     HorizontalOptions="Start"
                                     Style="{StaticResource LabelStyle}"
@@ -207,7 +207,7 @@
                                 Grid.Row="3"
                                 Grid.Column="1"
                                 RatingSettings="{StaticResource RatingSettings}"
-                                Style="{StaticResource RatingStyle}"
+                                Style="{StaticResource SfRatingStyle}"
                                 Value="{Binding OverallRating}" />
                         </Grid>
                     </DataTemplate>

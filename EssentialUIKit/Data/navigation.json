@@ -3,49 +3,49 @@
     {
       "albumName": "Favourites",
       "albumImage": "Album1.png",
-      "imagesCount": "178",
+      "photosCount": "178",
       "category": "MY ALBUM"
     },
     {
       "albumName": "WhatsApp",
       "albumImage": "Album2.png",
-      "imagesCount": "187",
+      "photosCount": "187",
       "category": "MY ALBUM"
     },
     {
       "albumName": "Work",
       "albumImage": "Album3.png",
-      "imagesCount": "156",
+      "photosCount": "156",
       "category": "MY ALBUM"
     },
     {
       "albumName": "Facebook",
       "albumImage": "Album4.png",
-      "imagesCount": "67",
+      "photosCount": "67",
       "category": "MY ALBUM"
     },
     {
       "albumName": "People",
       "albumImage": "Album5.png",
-      "imagesCount": "18",
+      "photosCount": "18",
       "category": "OTHER ALBUM"
     },
     {
       "albumName": "Place",
       "albumImage": "Album6.png",
-      "imagesCount": "96",
+      "photosCount": "96",
       "category": "OTHER ALBUM"
     },
     {
       "albumName": "Wildlife",
       "albumImage": "Album7.png",
-      "imagesCount": "134",
+      "photosCount": "134",
       "category": "OTHER ALBUM"
     },
     {
       "albumName": "Food",
       "albumImage": "Album8.png",
-      "imagesCount": "104",
+      "photosCount": "104",
       "category": "OTHER ALBUM"
     }
   ],

@@ -1,5 +1,4 @@
-﻿using EssentialUIKit.ViewModels.Feedback;
-using Xamarin.Forms.Internals;
+﻿using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
 
 namespace EssentialUIKit.Views.Feedback
@@ -13,8 +12,7 @@ namespace EssentialUIKit.Views.Feedback
     {
         public FeedbackPage()
         {
-            this.InitializeComponent();
-            this.BindingContext = FeedbackViewModel.BindingContext;
+            InitializeComponent();
         }
     }
 }

@@ -67,7 +67,7 @@
     <Style x:Key="IconButtonStyle" TargetType="buttons:SfButton">
         <Setter Property="TextColor" Value="{DynamicResource Gray-600}" />
         <Setter Property="BackgroundColor" Value="{StaticResource Transparent}" />
-        <Setter Property="FontFamily" Value="FontIcons" />
+        <Setter Property="FontFamily" Value="{StaticResource FontIcons}" />
         <Setter Property="FontSize" Value="18" />
         <Setter Property="HorizontalTextAlignment" Value="Center" />
         <Setter Property="VerticalTextAlignment" Value="Center" />
@@ -105,7 +105,7 @@
         <Setter Property="FontAttributes" Value="Bold" />
         <Setter Property="WidthRequest" Value="245" />
         <Setter Property="HeightRequest" Value="40" />
-        <Setter Property="FontFamily" Value="Montserrat-SemiBold" />
+        <Setter Property="FontFamily" Value="{StaticResource Montserrat-SemiBold}" />
         <Setter Property="BackgroundColor" Value="{StaticResource Gray-White}" />
         <Setter Property="TextColor" Value="{DynamicResource PrimaryColor}" />
     </Style>
@@ -130,14 +130,14 @@
         <Setter Property="HorizontalTextAlignment" Value="Center" />
         <Setter Property="FontSize" Value="20" />
         <Setter Property="LineHeight" Value="1.25" />
-        <Setter Property="FontFamily" Value="Montserrat-SemiBold" />
+        <Setter Property="FontFamily" Value="{StaticResource Montserrat-SemiBold}" />
         <Setter Property="TextColor" Value="{DynamicResource Gray-900}" />
     </Style>
 
     <!--  Style for description label  -->
     <Style x:Key="PaymentDescriptionLabelStyle" TargetType="Label">
         <Setter Property="TextColor" Value="{DynamicResource Gray-900}" />
-        <Setter Property="FontFamily" Value="Montserrat-Medium" />
+        <Setter Property="FontFamily" Value="{StaticResource Montserrat-Medium}" />
         <Setter Property="FontSize" Value="16" />
         <Setter Property="HorizontalTextAlignment" Value="Center" />
         <Setter Property="HorizontalOptions" Value="Center" />
@@ -150,7 +150,7 @@
         <Setter Property="VerticalOptions" Value="Start" />
         <Setter Property="Margin" Value="0,24" />
         <Setter Property="TextColor" Value="{DynamicResource Gray-White}" />
-        <Setter Property="FontFamily" Value="Montserrat-SemiBold" />
+        <Setter Property="FontFamily" Value="{StaticResource Montserrat-SemiBold}" />
         <Setter Property="FontSize" Value="16" />
         <Setter Property="HeightRequest" Value="40" />
         <Setter Property="CornerRadius" Value="20" />
@@ -249,7 +249,7 @@
     <Style x:Key="IconLabelStyle" TargetType="Label">
         <Setter Property="TextColor" Value="{DynamicResource Gray-600}" />
         <Setter Property="BackgroundColor" Value="Transparent" />
-        <Setter Property="FontFamily" Value="FontIcons" />
+        <Setter Property="FontFamily" Value="{StaticResource FontIcons}" />
         <Setter Property="FontSize" Value="18" />
         <Setter Property="HorizontalTextAlignment" Value="Center" />
         <Setter Property="VerticalTextAlignment" Value="Center" />
@@ -305,7 +305,7 @@
             </Setter.Value>
         </Setter>
         <Setter Property="TextColor" Value="{DynamicResource Gray-White}" />
-        <Setter Property="FontFamily" Value="Montserrat-SemiBold" />
+        <Setter Property="FontFamily" Value="{StaticResource Montserrat-SemiBold}" />
         <Setter Property="BorderWidth" Value="0" />
         <Setter Property="FontSize" Value="16" />
         <Setter Property="HeightRequest" Value="40" />
@@ -317,7 +317,7 @@
     <Style x:Key="SfFlatButtonStyle" TargetType="buttons:SfButton">
         <Setter Property="BackgroundColor" Value="Transparent" />
         <Setter Property="TextColor" Value="{DynamicResource PrimaryColor}" />
-        <Setter Property="FontFamily" Value="Montserrat-SemiBold" />
+        <Setter Property="FontFamily" Value="{StaticResource Montserrat-SemiBold}" />
         <Setter Property="FontSize" Value="14" />
         <Setter Property="VerticalTextAlignment" Value="Center" />
     </Style>
@@ -402,12 +402,64 @@
 
     </Style>
 
-    
+    <!--  Common style for SfListView  -->
+    <Style x:Key="SfListViewStyle" TargetType="listView:SfListView">
+        <Setter Property="BackgroundColor" Value="{DynamicResource Gray-White}" />
+        <Setter Property="FocusBorderThickness" Value="0" />
+        <Setter Property="SelectionBackgroundColor" Value="Transparent" />
+        <Setter Property="IsScrollBarVisible" Value="False" />
+        <Setter Property="VerticalOptions" Value="FillAndExpand" />
+    </Style>
+
+    <!--  Common style for BoxView  -->
+    <Style x:Key="BoxViewStyle" TargetType="BoxView">
+        <Setter Property="Color" Value="{DynamicResource Gray-200}" />
+        <Setter Property="VerticalOptions" Value="Center" />
+    </Style>
 
     <rating:SfRatingSettings
         x:Key="RatingSettings"
         RatedFill="{StaticResource OrangeyYellow}"
         RatedStroke="{StaticResource OrangeyYellow}" />
+
+    <!--  Common style for SfRating  -->
+    <Style x:Key="SfRatingStyle" TargetType="rating:SfRating">
+        <Setter Property="ItemCount" Value="5" />
+        <Setter Property="ReadOnly" Value="True" />
+        <Setter Property="ItemSize" Value="14" />
+        <Setter Property="ItemSpacing" Value="0" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="HorizontalOptions" Value="Start" />
+    </Style>
+
+    <!--  Common style for SfComboBox  -->
+    <Style x:Key="SfComboBoxStyle" TargetType="combobox:SfComboBox">
+        <Setter Property="DropDownTextColor" Value="{DynamicResource Gray-900}" />
+        <Setter Property="TextSize" Value="16" />
+        <Setter Property="DropDownTextSize" Value="16" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="FontFamily" Value="Montserrat-Regular" />
+        <Setter Property="DropDownItemFontFamily" Value="Montserrat-Regular" />
+    </Style>
+
+    <!--  Common style for Sort ComboBox  -->
+    <Style
+        x:Key="SortComboBoxStyle"
+        BasedOn="{StaticResource SfComboBoxStyle}"
+        TargetType="combobox:SfComboBox">
+        <Setter Property="HorizontalOptions" Value="Start" />
+        <Setter Property="BorderColor" Value="{DynamicResource Gray-300}" />
+        <Setter Property="HeightRequest" Value="40" />
+        <Setter Property="WidthRequest" Value="246" />
+    </Style>
+
+    <Style
+        x:Key="CartComboBoxStyle"
+        BasedOn="{StaticResource SfComboBoxStyle}"
+        TargetType="combobox:SfComboBox">
+        <Setter Property="WidthRequest" Value="84" />
+        <Setter Property="HeightRequest" Value="32" />
+    </Style>
 
     <combobox:DropDownButtonSettings
         x:Key="DropDownButtonSettings"
@@ -432,7 +484,7 @@
         BasedOn="{StaticResource SfRadioButtonStyle}"
         TargetType="buttons:SfRadioButton">
         <Setter Property="FontSize" Value="14" />
-        <Setter Property="FontFamily" Value="Montserrat-SemiBold" />
+        <Setter Property="FontFamily" Value="{StaticResource Montserrat-SemiBold}" />
     </Style>
 
     <!--  Header Template for Catalog SfListView  -->
@@ -459,13 +511,13 @@
                         Spacing="8"
                         VerticalOptions="Center">
                         <Label
-                            FontFamily="FontIcons"
+                            FontFamily="{StaticResource FontIcons}"
                             FontSize="18"
                             Style="{StaticResource OptionButtonLabelStyle}"
                             Text="{StaticResource Filter}"
                             VerticalTextAlignment="End" />
                         <Label
-                            FontFamily="Montserrat-SemiBold"
+                            FontFamily="{StaticResource Montserrat-SemiBold}"
                             Style="{StaticResource OptionButtonLabelStyle}"
                             Text="Filter"
                             VerticalTextAlignment="Center" />
@@ -484,13 +536,13 @@
                         Orientation="Horizontal"
                         Spacing="8">
                         <Label
-                            FontFamily="FontIcons"
+                            FontFamily="{StaticResource FontIcons}"
                             FontSize="18"
                             Style="{StaticResource OptionButtonLabelStyle}"
                             Text="{StaticResource Sort}"
                             VerticalTextAlignment="End" />
                         <Label
-                            FontFamily="Montserrat-SemiBold"
+                            FontFamily="{StaticResource Montserrat-SemiBold}"
                             Style="{StaticResource OptionButtonLabelStyle}"
                             Text="Sorting" />
                     </StackLayout>
@@ -504,7 +556,8 @@
         <combobox:SfComboBox
             x:Name="comboBox"
             DataSource="{Binding SortOptions}"
-            SelectedValue="{Binding SortOptions[0]}">
+            SelectedValue="{Binding SortOptions[0]}"
+            Style="{StaticResource SortComboBoxStyle}">
 
             <combobox:SfComboBox.CustomView>
                 <Grid>
@@ -527,7 +580,8 @@
             x:Name="comboBox"
             Margin="15"
             DataSource="{Binding SortOptions}"
-            SelectedValue="{Binding SortOptions[0]}">
+            SelectedValue="{Binding SortOptions[0]}"
+            Style="{StaticResource SortComboBoxStyle}">
 
             <combobox:SfComboBox.CustomView>
                 <Grid>
@@ -556,7 +610,7 @@
             <ContentPresenter />
             <Label
                 Grid.Column="1"
-                FontFamily="Montserrat-SemiBold"
+                FontFamily="{StaticResource Montserrat-SemiBold}"
                 FontSize="14"
                 HorizontalOptions="{OnIdiom Default=EndAndExpand,
                                             Desktop=End}"
@@ -577,7 +631,7 @@
 
     <Style x:Key="FavouriteButtonStyle" TargetType="Button">
         <Setter Property="BackgroundColor" Value="Transparent" />
-        <Setter Property="FontFamily" Value="FontIcons" />
+        <Setter Property="FontFamily" Value="{StaticResource FontIcons}" />
         <Setter Property="FontSize" Value="16" />
         <Setter Property="HeightRequest" Value="32" />
         <Setter Property="HorizontalOptions" Value="End" />
@@ -601,7 +655,7 @@
     <!--  Common style for action bar labels  -->
     <Style x:Key="ActionBarLabelStyle" TargetType="Label">
         <Setter Property="TextColor" Value="{DynamicResource Gray-White}" />
-        <Setter Property="FontFamily" Value="Montserrat-Regular" />
+        <Setter Property="FontFamily" Value="{StaticResource Montserrat-Regular}" />
         <Setter Property="FontSize" Value="16" />
     </Style>
 

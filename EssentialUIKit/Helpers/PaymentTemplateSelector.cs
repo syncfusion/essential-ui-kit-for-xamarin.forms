@@ -27,7 +27,7 @@ namespace EssentialUIKit.Helpers
         #region Methods
 
         /// <summary>
-        /// This methoid returns the DataTemplate based on selection.
+        /// Returns Xamarin.Forms.DataTemplate.
         /// </summary>
         /// <param name="item">The Model</param>
         /// <param name="container">The bindable object</param>
@@ -35,7 +35,7 @@ namespace EssentialUIKit.Helpers
         {
             var payment = item as Payment;
 
-            if (payment != null && payment.CardNumber != null)
+            if( payment != null && payment.CardNumber != null )
             {
                 return this.CardTemplate;
             }

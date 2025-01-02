@@ -3,23 +3,26 @@
     x:Class="EssentialUIKit.Views.ContactUs.ContactUsPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:behaviour="clr-namespace:EssentialUIKit.Behaviors.Forms"
     xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
     xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
     xmlns:converter="clr-namespace:EssentialUIKit.Converters"
     xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
     xmlns:customControls="clr-namespace:EssentialUIKit.Controls"
-    xmlns:local="clr-namespace:EssentialUIKit.Views.Forms"
     xmlns:maps="clr-namespace:Syncfusion.SfMaps.XForms;assembly=Syncfusion.SfMaps.XForms"
     xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.ContactUs"
-    BackgroundColor="{DynamicResource Gray-Bg}"
+    BackgroundColor="{DynamicResource Gray-White}"
     NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Resources>
         <ResourceDictionary>
+
             <converter:BooleanToColorConverter x:Key="BooleanToColorConverter" />
-            <converter:InverseBoolConverter x:Key="InverseBoolConverter" />
-            <converter:NameValidationConverter x:Key="FirstValidationErrorConverter" />
+            <converter:StringToBooleanConverter x:Key="StringToBooleanConverter" />
+
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
         </ResourceDictionary>
     </ContentPage.Resources>
 
@@ -36,18 +39,17 @@
                 <!--  Map for locating the location  -->
                 <maps:SfMaps
                     x:Name="Map"
-                    BackgroundColor="{DynamicResource Gray-Bg}"
+                    BackgroundColor="{DynamicResource Gray-White}"
                     HeightRequest="315"
                     HorizontalOptions="FillAndExpand"
                     VerticalOptions="FillAndExpand"
                     ZoomLevel="15">
 
                     <maps:SfMaps.Layers>
-                        <maps:ImageryLayer GeoCoordinates="{Binding GeoCoordinate}" ResetOnDoubleTap="False">
-
-                            <maps:ImageryLayer.Markers>
-                                <maps:MapMarker Latitude="{Binding MapMarkerLatitude}" Longitude="{Binding MapMarkerLongitude}" />
-                            </maps:ImageryLayer.Markers>
+                        <maps:ImageryLayer
+                            GeoCoordinates="{Binding GeoCoordinate}"
+                            Markers="{Binding CustomMarkers}"
+                            ResetOnDoubleTap="False">
 
                             <!--  Template for customizing the address popup  -->
                             <maps:ImageryLayer.MarkerTemplate>
@@ -57,8 +59,8 @@
                                         <Frame
                                             Margin="0"
                                             Padding="16,0,9,0"
-                                            BackgroundColor="{DynamicResource Gray-Bg}"
-                                            BorderColor="{DynamicResource Gray-Bg}"
+                                            BackgroundColor="{DynamicResource Gray-White}"
+                                            BorderColor="{DynamicResource Gray-White}"
                                             CornerRadius="5"
                                             HasShadow="True"
                                             HorizontalOptions="Center"
@@ -73,36 +75,31 @@
                                                 <!--  Pin location header  -->
                                                 <Label
                                                     Margin="0,16,0,4"
-                                                    HorizontalOptions="Start"
-                                                    Style="{StaticResource TitleLabelStyle}"
-                                                    Text="{Binding Path=BindingContext.MapMarkerHeader, Source={x:Reference Map}}" />
+                                                    FontFamily="{StaticResource Montserrat-SemiBold}"
+                                                    FontSize="16"
+                                                    LineHeight="{OnPlatform Android=1.5,
+                                                                            Default=-1}"
+                                                    Text="{Binding Header}"
+                                                    TextColor="{DynamicResource Gray-900}" />
 
                                                 <!--  Pin location address  -->
                                                 <Label
-                                                    Margin="0,0,0,6"
-                                                    FontFamily="Montserrat-Regular"
-                                                    Style="{StaticResource SimpleLabelStyle}"
-                                                    Text="{Binding Path=BindingContext.MapMarkerAddress, Source={x:Reference Map}}"
-                                                    VerticalOptions="Start"
-                                                    VerticalTextAlignment="Start" />
+                                                    FontSize="12"
+                                                    Style="{StaticResource labelStyle}"
+                                                    Text="{Binding Address}" />
 
                                                 <!--  Pin location email id  -->
                                                 <Label
-                                                    Margin="0,0,0,6"
-                                                    FontFamily="Montserrat-Regular"
-                                                    Style="{StaticResource SimpleLabelStyle}"
-                                                    Text="{Binding Path=BindingContext.MapMarkerEmailId, Source={x:Reference Map}}"
-                                                    VerticalOptions="Start"
-                                                    VerticalTextAlignment="Start" />
+                                                    FontSize="12"
+                                                    Style="{StaticResource labelStyle}"
+                                                    Text="{Binding EmailId}" />
 
                                                 <!--  Pin location phone number  -->
                                                 <Label
-                                                    Margin="0,0,0,14"
-                                                    FontFamily="Montserrat-Regular"
-                                                    Style="{StaticResource SimpleLabelStyle}"
-                                                    Text="{Binding Path=BindingContext.MapMarkerPhoneNumber, Source={x:Reference Map}}"
-                                                    VerticalOptions="Start"
-                                                    VerticalTextAlignment="Start" />
+                                                    Margin="0,0,0,16"
+                                                    FontSize="12"
+                                                    Style="{StaticResource labelStyle}"
+                                                    Text="{Binding PhoneNumber}" />
                                             </StackLayout>
                                         </Frame>
 
@@ -111,8 +108,8 @@
                                             Margin="10,5,0,0"
                                             HeightRequest="25"
                                             HorizontalOptions="StartAndExpand"
-                                            Source="{Binding Path=BindingContext.MapMarkerImage, Source={x:Reference Map}}"
-                                            WidthRequest="25" />
+                                            WidthRequest="25" 
+                                            Source="{Binding PinImage}" />
                                     </StackLayout>
                                 </DataTemplate>
                             </maps:ImageryLayer.MarkerTemplate>
@@ -124,8 +121,8 @@
                 <Frame
                     x:Name="MainFrame"
                     Padding="0"
-                    BackgroundColor="{DynamicResource Gray-Bg}"
-                    BorderColor="{DynamicResource Gray-Bg}"
+                    BackgroundColor="{DynamicResource Gray-White}"
+                    BorderColor="{DynamicResource Gray-White}"
                     HorizontalOptions="FillAndExpand">
 
                     <StackLayout
@@ -140,72 +137,67 @@
                                                                          TabletPortrait='0,32,0,16',
                                                                          TabletLandscape='0,32,0,16',
                                                                          Desktop='0,48,0,16'}"
+                            FontFamily="{StaticResource Montserrat-SemiBold}"
                             FontSize="20"
                             HorizontalOptions="FillAndExpand"
+                            HorizontalTextAlignment="Center"
                             LineHeight="{OnPlatform Android=1.25,
                                                     Default=-1}"
-                            Style="{StaticResource TitleLabelStyle}"
                             Text="Get in Touch"
+                            TextColor="{DynamicResource Gray-900}"
                             VerticalTextAlignment="Center" />
 
-                        <StackLayout>
-                            <border:SfBorder
-                                Padding="12,0"
-                                BorderColor="{Binding Source={x:Reference name}, Path=IsFocused, Converter={StaticResource BooleanToColorConverter}, ConverterParameter=3}"
-                                CornerRadius="3"
+                        <border:SfBorder Style="{StaticResource SfBorderStyle}">
+                            <!--  Entry to get name from user  -->
+                            <customControls:BorderlessEntry
                                 HeightRequest="40"
-                                HorizontalOptions="FillAndExpand">
-                                <Grid ColumnDefinitions="*, Auto">
-
-                                    <!--  Entry to get name from user  -->
-                                    <customControls:BorderlessEntry
-                                        x:Name="name"
-                                        HeightRequest="40"
-                                        Placeholder="Name"
-                                        Style="{StaticResource BorderlessEntryStyle}"
-                                        Text="{Binding Name.Value}">
-                                        <Entry.Behaviors>
-                                            <behaviour:EntryLineValidationBehaviour IsValid="{Binding Name.IsValid}" />
-                                        </Entry.Behaviors>
-                                    </customControls:BorderlessEntry>
-
-                                    <!--  Label to display error icon  -->
-                                    <Label
-                                        Grid.Column="1"
-                                        Margin="0"
-                                        IsVisible="{Binding Path=IsVisible, Source={x:Reference NameValidationLabel}}"
-                                        Style="{StaticResource ErrorIconLabelStyle}"
-                                        Text="{StaticResource Error}" />
-
-                                </Grid>
-                            </border:SfBorder>
-
-                            <!--  Label to display error message  -->
-                            <Label
-                                x:Name="NameValidationLabel"
-                                Margin="15,-5,0,0"
-                                IsVisible="{Binding Name.IsValid, Converter={StaticResource InverseBoolConverter}}"
-                                Style="{StaticResource SimpleLabelStyle}"
-                                Text="{Binding Name.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
-                                TextColor="{DynamicResource Red}"
-                                VerticalOptions="FillAndExpand" />
-
-                        </StackLayout>
-
-                        <local:ContactEmailEntry />
+                                Placeholder="Name"
+                                Style="{StaticResource BorderlessEntryStyle}"
+                                VerticalOptions="Center" />
+                        </border:SfBorder>
 
                         <border:SfBorder
-                            Padding="8,0,0,0"
-                            BorderColor="{Binding Source={x:Reference message}, Path=IsFocused, Converter={StaticResource BooleanToColorConverter}, ConverterParameter=3}"
-                            CornerRadius="3"
-                            HeightRequest="120"
-                            HorizontalOptions="FillAndExpand">
+                            x:Name="EmailBorder"
+                            BorderColor="{Binding Path=IsVisible, Source={x:Reference WarningImage}, Converter={x:StaticResource BooleanToColorConverter}, ConverterParameter=2}"
+                            Style="{x:StaticResource SfBorderStyle}">
+                            <StackLayout Orientation="Horizontal" Spacing="0">
+
+                                <!--  Entry to get email id from user  -->
+                                <customControls:BorderlessEntry
+                                    x:Name="EmailEntry"
+                                    HeightRequest="40"
+                                    HorizontalOptions="FillAndExpand"
+                                    Placeholder="Email" Keyboard="Email"
+                                    Style="{StaticResource BorderlessEntryStyle}"
+                                    VerticalOptions="CenterAndExpand" />
+
+                                <Label
+                                    x:Name="WarningImage"
+                                    Margin="0,0,5,0"
+                                    FontFamily="{StaticResource FontIcons}"
+                                    FontSize="{OnIdiom Desktop=14,
+                                                       Tablet=14,
+                                                       Phone=12}"
+                                    HorizontalOptions="End"
+                                    IsVisible="{Binding Path=IsVisible, Source={x:Reference ValidationLabel}}"
+                                    Text="&#xe707;"
+                                    TextColor="{DynamicResource Red}"
+                                    VerticalOptions="CenterAndExpand" />
+                            </StackLayout>
+                        </border:SfBorder>
+
+                        <Label
+                            x:Name="ValidationLabel"
+                            Margin="0,-10,0,0"
+                            FontSize="12"
+                            HorizontalOptions="FillAndExpand"
+                            IsVisible="{Binding Path=IsFocused, Source={x:Reference EmailEntry}, Converter={StaticResource StringToBooleanConverter}, ConverterParameter={x:Reference EmailEntry}}"
+                            Text="Please enter the valid e-mail"
+                            TextColor="{DynamicResource Red}" />
+
+                        <border:SfBorder HeightRequest="120" Style="{StaticResource SfBorderStyle}">
                             <!--  Editor to get message from user  -->
                             <customControls:BorderlessEditor
-                                x:Name="message"
-                                BackgroundColor="{DynamicResource Gray-Bg}"
-                                FontFamily="Montserrat-Regular"
-                                FontSize="16"
                                 HeightRequest="120"
                                 Placeholder="Message"
                                 PlaceholderColor="{DynamicResource Gray-700}"
@@ -224,9 +216,8 @@
                         <!--  Send Button  -->
                         <buttons:SfButton
                             Command="{Binding SendCommand}"
-                            Style="{StaticResource GradientButtonStyle}"
-                            Text="SEND"
-                            WidthRequest="150" />
+                            Style="{StaticResource SfGradientButtonStyle}"
+                            Text="SEND" />
 
                     </StackLayout>
                 </Frame>

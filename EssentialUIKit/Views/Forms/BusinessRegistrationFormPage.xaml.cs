@@ -16,7 +16,7 @@ namespace EssentialUIKit.Views.Forms
         /// </summary>
         public BusinessRegistrationFormPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
     }
 }
