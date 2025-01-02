@@ -13,7 +13,7 @@ namespace EssentialUIKit.DataService
     {
         #region fields
 
-        private static CategoryDataService categoryDataService;
+        private static CategoryDataService instance;
 
         private CategoryPageViewModel categoryPageViewModel;
 
@@ -35,7 +35,7 @@ namespace EssentialUIKit.DataService
         /// <summary>
         /// Gets an instance of the <see cref="CategoryDataService"/>.
         /// </summary>
-        public static CategoryDataService Instance => categoryDataService ?? (categoryDataService = new CategoryDataService());
+        public static CategoryDataService Instance => instance ?? (instance = new CategoryDataService());
 
         /// <summary>
         /// Gets or sets the value of category page view model.
@@ -60,15 +60,15 @@ namespace EssentialUIKit.DataService
 
             var assembly = typeof(App).GetTypeInfo().Assembly;
 
-            T data;
+            T obj;
 
             using (var stream = assembly.GetManifestResourceStream(file))
             {
                 var serializer = new DataContractJsonSerializer(typeof(T));
-                data = (T)serializer.ReadObject(stream);
+                obj = (T)serializer.ReadObject(stream);
             }
 
-            return data;
+            return obj;
         }
 
         #endregion

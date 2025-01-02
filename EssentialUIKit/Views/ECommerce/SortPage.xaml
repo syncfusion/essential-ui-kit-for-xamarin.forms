@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="EssentialUIKit.Views.ECommerce.SortPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:EssentialUIKit.Controls"
+    xmlns:local="clr-namespace:EssentialUIKit.Views.ECommerce"
+    xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.ECommerce"
+    Title="Sort"
+    BackgroundColor="{DynamicResource Gray-White}"
+    NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <!--  Binding context for Sort Page  -->
+    <ContentPage.BindingContext>
+        <viewModel:CatalogPageViewModel />
+    </ContentPage.BindingContext>
+
+    <StackLayout Spacing="0">
+
+        <!--  Title View  -->
+        <controls:TitleView Title="Sort" />
+
+        <local:SortView />
+
+    </StackLayout>
+
+</ContentPage>

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 
@@ -33,6 +35,16 @@ namespace EssentialUIKit.Behaviors.Detail
         }
 
         /// <summary>
+        /// Invoked when appearing the page.
+        /// </summary>
+        /// <param name="sender">Content Page</param>
+        /// <param name="e">Event Args</param>
+        private void Bindable_Appearing(object sender, EventArgs e)
+        {
+           // Do something
+        }
+
+        /// <summary>
         /// Invoked when exit from the page.
         /// </summary>
         /// <param name="bindableContentPage">Content Page</param>
@@ -43,16 +55,6 @@ namespace EssentialUIKit.Behaviors.Detail
                 base.OnDetachingFrom(bindableContentPage);
                 bindableContentPage.Appearing -= this.Bindable_Appearing;
             }
-        }
-
-        /// <summary>
-        /// Invoked when appearing the page.
-        /// </summary>
-        /// <param name="sender">Content Page</param>
-        /// <param name="e">Event Args</param>
-        private void Bindable_Appearing(object sender, EventArgs e)
-        {
-            // Do something
         }
 
         #endregion

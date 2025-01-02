@@ -1,10 +1,8 @@
-﻿using System.Collections.ObjectModel;
-using System.Reflection;
-using System.Runtime.Serialization;
-using System.Runtime.Serialization.Json;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
+using System.Collections.ObjectModel;
+using Syncfusion.XForms.Buttons;
 using Xamarin.Forms.Internals;
-using Model = EssentialUIKit.Models.Story;
+using Model = EssentialUIKit.Models.Article;
 
 namespace EssentialUIKit.ViewModels.Catalog
 {
@@ -12,94 +10,101 @@ namespace EssentialUIKit.ViewModels.Catalog
     /// ViewModel for Article card type page.
     /// </summary> 
     [Preserve(AllMembers = true)]
-    [DataContract]
     public class ArticleCardViewModel : BaseViewModel
     {
-        #region fields
+        #region Fields
 
-        private static ArticleCardViewModel articleCardViewModel;
-
-        private Command bookmarkCommand;
-
-        private Command addFavouriteCommand;
-
-        private Command shareCommand;
-
-        private Command itemTappedCommand;
-
-        #endregion
-
-        #region Constructor
-
-        /// <summary>
-        /// Initializes a new instance for the <see cref="ArticleCardViewModel" />
-        /// </summary>
-        public ArticleCardViewModel()
-        {
-        }
+        private Command<object> itemTappedCommand;
 
         #endregion
 
         #region Properties
 
         /// <summary>
-        /// Gets or sets the value of article card view model.
-        /// </summary>
-        public static ArticleCardViewModel BindingContext =>
-            articleCardViewModel = PopulateData<ArticleCardViewModel>("catalog.json");
-
-        /// <summary>
         /// Gets or sets a collction of value to be displayed in articles card page.
         /// </summary>
-        [DataMember(Name = "articles")]
         public ObservableCollection<Model> Articles { get; set; }
+
+        /// <summary>
+        /// Gets the command that will be executed when an item is selected.
+        /// </summary>
+        public Command<object> ItemTappedCommand
+        {
+            get
+            {
+                return this.itemTappedCommand ?? (this.itemTappedCommand = new Command<object>(this.NavigateToNextPage));
+            }
+        }
 
         #endregion
 
-        #region commands
+        #region Constructor
 
-        /// <summary>
-        /// Gets the command is executed when the bookmark button is clicked.
-        /// </summary>
-        public Command BookmarkCommand
+        public ArticleCardViewModel()
         {
-            get
-            {
-                return this.bookmarkCommand ?? (this.bookmarkCommand = new Command(this.BookmarkButtonClicked));
-            }
-        }
+            
+            this.BookmarkCommand = new Command(this.BookmarkButtonClicked);
+            this.AddFavouriteCommand = new Command(this.FavouriteButtonClicked);
+            this.ShareCommand = new Command(this.ShareButtonClicked);
 
-        /// <summary>
-        /// Gets the command is executed when the favourite button is clicked.
-        /// </summary>
-        public Command AddFavouriteCommand
-        {
-            get
+            this.Articles = new ObservableCollection<Model>()
             {
-                return this.addFavouriteCommand ?? (this.addFavouriteCommand = new Command(this.FavouriteButtonClicked));
-            }
-        }
-
-        /// <summary>
-        /// Gets the command is executed when the share button is clicked.
-        /// </summary>
-        public Command ShareCommand
-        {
-            get
-            {
-                return this.shareCommand ?? (this.shareCommand = new Command(this.ShareButtonClicked));
-            }
-        }
-
-        /// <summary>
-        /// Gets the command is executed when the item  is clicked.
-        /// </summary>
-        public Command ItemTappedCommand
-        {
-            get
-            {
-                return this.itemTappedCommand ?? (this.itemTappedCommand = new Command(this.NavigateToNextPage));
-            }
+                new Model
+                {
+                    Name = "Better Brainstorming by Hand",
+                    Author = "John Doe",
+                    Date = "Apr 16",
+                    AverageReadingTime = "5 min read",
+                    ImagePath= App.BaseImageUrl + "ArticleParallaxHeaderImage.png",
+                    BookmarkedCount= 157,
+                    FavouritesCount= 100,
+                    SharedCount = 170
+                },
+                new Model
+                {
+                    Name = "Holistic Approach to UI Design",
+                    Author = "John Doe",
+                    Date = "Apr 28",
+                    AverageReadingTime = "5 min read",
+                    ImagePath= App.BaseImageUrl + "Event-Image.png",
+                    BookmarkedCount= 123,
+                    FavouritesCount= 60,
+                    SharedCount = 100
+                },
+                new Model
+                {
+                    Name = "Learning to Reset",
+                    Author = "John Doe",
+                    Date = "Aug 16",
+                    AverageReadingTime = "5 min read",
+                    ImagePath= App.BaseImageUrl + "ArticleImage2.png",
+                    BookmarkedCount= 213,
+                    FavouritesCount= 250,
+                    SharedCount = 210
+                },
+                new Model
+                {
+                    Name = "Music",
+                    Author = "John Doe",
+                    Date = "Aug 25",
+                    AverageReadingTime = "5 min read",
+                    ImagePath= App.BaseImageUrl + "ArticleImage7.jpg",
+                    BookmarkedCount= 263,
+                    FavouritesCount= 350,
+                    SharedCount = 300
+                },
+                new Model
+                {
+                    Name = "Guiding Your Flock to Success",
+                    Author = "John Doe",
+                    Date = "Apr 16",
+                    ImagePath= App.BaseImageUrl + "ArticleImage4.png",
+                    AverageReadingTime = "5 min read",
+                    BookmarkedCount= 113,
+                    FavouritesCount= 90,
+                    SharedCount = 190
+                },
+            };
         }
 
         #endregion
@@ -107,32 +112,9 @@ namespace EssentialUIKit.ViewModels.Catalog
         #region Methods
 
         /// <summary>
-        /// Populates the data for view model from json file.
-        /// </summary>
-        /// <typeparam name="T">Type of view model.</typeparam>
-        /// <param name="fileName">Json file to fetch data.</param>
-        /// <returns>Returns the view model object.</returns>
-        private static T PopulateData<T>(string fileName)
-        {
-            var file = "EssentialUIKit.Data." + fileName;
-
-            var assembly = typeof(App).GetTypeInfo().Assembly;
-
-            T data;
-
-            using (var stream = assembly.GetManifestResourceStream(file))
-            {
-                var serializer = new DataContractJsonSerializer(typeof(T));
-                data = (T)serializer.ReadObject(stream);
-            }
-
-            return data;
-        }
-
-        /// <summary>
         /// Invoked when an item is selected from the articles card list page.
         /// </summary>
-        /// <param name="obj">Selected item from the list view.</param>
+        /// <param name="selectedItem">Selected item from the list view.</param>
         private void NavigateToNextPage(object obj)
         {
             // Do something
@@ -148,28 +130,54 @@ namespace EssentialUIKit.ViewModels.Catalog
             {
                 (obj as Model).IsFavourite = (obj as Model).IsFavourite ? false : true;
             }
+            else
+            {
+                var button = obj as SfButton;
+                if (button != null)
+                {
+                    button.Text = (button.Text == "\ue701") ? "\ue732" : "\ue701";
+                }
+            }
         }
 
-        /// <summary>
-        /// Invoked when the bookmark button clicked
-        /// </summary>
-        /// <param name="obj">The object</param>
-        private void BookmarkButtonClicked(object obj)
+        public void BookmarkButtonClicked(object obj)
         {
             if (obj != null && (obj is Model))
             {
                 (obj as Model).IsBookmarked = (obj as Model).IsBookmarked ? false : true;
             }
+            else
+            {
+                var button = obj as SfButton;
+                if (button != null)
+                {
+                    button.Text = (button.Text == "\ue72f") ? "\ue734" : "\ue72f";
+                }
+            }
         }
 
-        /// <summary>
-        /// Invoked when the share button clicked
-        /// </summary>
-        /// <param name="obj">The object</param>
         private void ShareButtonClicked(object obj)
         {
             // Do Something.
         }
+        #endregion
+
+        #region commands
+
+        /// <summary>
+        /// Gets or sets the command is executed when the bookmark button is clicked.
+        /// </summary>
+        public Command BookmarkCommand { get; set; }
+
+        /// <summary>
+        /// Gets or sets the command is executed when the favourite button is clicked.
+        /// </summary>
+        public Command AddFavouriteCommand { get; set; }
+
+        /// <summary>
+        /// Gets or sets the command is executed when the share button is clicked.
+        /// </summary>
+        public Command ShareCommand { get; set; }
 
         #endregion
     }

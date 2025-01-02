@@ -3,47 +3,54 @@
     x:Class="EssentialUIKit.Views.Chat.OutgoingTextTemplate"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:controls="clr-namespace:EssentialUIKit.Controls"
+    xmlns:cards="clr-namespace:Syncfusion.XForms.Cards;assembly=Syncfusion.Cards.XForms"
     xmlns:helper="clr-namespace:EssentialUIKit.Helpers">
 
     <ViewCell.View>
 
-        <controls:CustomShadowFrame
-            Padding="0"
-            helper:RTLHelper.Margin="38, 12, 22, 4"
+        <cards:SfCardView
+            helper:RTLHelper.CornerRadius="10, 0, 10, 10"
+            helper:RTLHelper.Margin="38, 12, 22, 0"
             BackgroundColor="{DynamicResource PrimaryLight}"
             BorderWidth="0"
-            CornerRadius="4"
-            HasShadow="True"
+            HasShadow="False"
             HorizontalOptions="End">
 
-            <controls:CustomShadowFrame.Content>
+            <cards:SfCardView.Resources>
+                <ResourceDictionary>
+                    <ResourceDictionary.MergedDictionaries>
+                        <ResourceDictionary Source="../Styles.xaml" />
+                    </ResourceDictionary.MergedDictionaries>
+                </ResourceDictionary>
+            </cards:SfCardView.Resources>
+
+            <cards:SfCardView.Content>
                 <StackLayout Margin="8" VerticalOptions="FillAndExpand">
 
                     <!--  Message Text  -->
                     <Label
-                        FontFamily="Montserrat-Medium"
+                        FontFamily="{StaticResource Montserrat-Medium}"
                         FontSize="12"
                         HorizontalOptions="End"
                         LineHeight="1.25"
                         Text="{Binding Message}"
-                        TextColor="{DynamicResource Gray-Black}"
+                        TextColor="{DynamicResource Gray-900}"
                         VerticalOptions="Center" />
 
                     <!--  Time  -->
                     <Label
-                        FontFamily="Montserrat-Medium"
+                        FontFamily="{StaticResource Montserrat-Medium}"
                         FontSize="12"
                         HorizontalOptions="End"
                         LineHeight="1.25"
                         Text="{Binding Time, StringFormat='{0:h:mm tt}'}"
-                        TextColor="{DynamicResource Gray-Black}"
+                        TextColor="{DynamicResource Gray-700}"
                         VerticalOptions="Center" />
 
                 </StackLayout>
-            </controls:CustomShadowFrame.Content>
+            </cards:SfCardView.Content>
 
-        </controls:CustomShadowFrame>
+        </cards:SfCardView>
 
     </ViewCell.View>
 

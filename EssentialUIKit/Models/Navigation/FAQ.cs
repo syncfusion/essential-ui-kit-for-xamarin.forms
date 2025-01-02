@@ -26,5 +26,6 @@ namespace EssentialUIKit.Models.Navigation
         public List<string> Answer { get; set; }
 
         #endregion
+
     }
 }

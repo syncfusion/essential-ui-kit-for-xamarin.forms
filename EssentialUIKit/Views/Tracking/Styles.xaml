@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ResourceDictionary 
+    xmlns="http://xamarin.com/schemas/2014/forms"  
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    x:Class="EssentialUIKit.Views.Tracking.Styles"         
+    xmlns:progressBar="clr-namespace:Syncfusion.XForms.ProgressBar;assembly=Syncfusion.SfProgressBar.XForms"
+    xmlns:converter="clr-namespace:EssentialUIKit.Converters"
+    xmlns:gradient="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms">
+
+    <converter:DatetimeToColorConverter x:Key="DatetimeToColorConverter"/>
+
+    <x:String x:Key="Arrow">&#xe728;</x:String>
+
+    <!--Common header label style-->
+    <Style TargetType="Label" x:Key="HeaderLabelStyle">
+        <Setter Property="TextColor" Value="{DynamicResource Gray-900}"/>
+        <Setter Property="FontFamily" Value="{DynamicResource Montserrat-SemiBold}"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontAttributes" Value="Bold"/>
+    </Style>
+
+    <!--Common step view style-->
+    <Style TargetType="progressBar:StepView">
+        <Setter Property="ProgressValue" Value="{Binding ProgressedDistance}"/>
+        <Setter Property="Status" Value="{Binding Status}"/>
+    </Style>
+
+    <!--Common station span style -->
+    <Style TargetType="Span" x:Key="StationSpan">
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="FontFamily" Value="{DynamicResource Montserrat-SemiBold}"/>
+        <Setter Property="FontAttributes" Value="Bold"/>
+        <Setter Property="TextColor" Value="{DynamicResource Gray-900}"/>
+    </Style>
+
+    <!--Common distance span style-->
+    <Style TargetType="Span" x:Key="DistanceSpan">
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="FontFamily" Value="{DynamicResource Montserrat-SemiBold}"/>
+        <Setter Property="TextColor" Value="{DynamicResource Gray-700}"/>
+    </Style>
+
+    <!--Common arrival span style-->
+    <Style TargetType="Span" x:Key="ArraivalSpan">
+        <Setter Property="FontSize" Value="16"/>        
+        <Setter Property="FontAttributes" Value="Bold"/>
+        <Setter Property="TextColor" Value="{DynamicResource Gray-900}"/>
+    </Style>
+
+    <!--Common departure span style-->
+    <Style TargetType="Span" x:Key="DepartureSpan">
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="FontAttributes" Value="Bold"/>
+        <Setter Property="TextColor" Value="{DynamicResource Gray-900}"/>
+    </Style>
+
+    <!--Common arrival time span style-->
+    <Style TargetType="Span" x:Key="ArraivalTimeSpan">
+        <Setter Property="Text" Value="On Time"/>
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="TextColor" Value="{Binding ArrivalDateTime, Converter={StaticResource DatetimeToColorConverter} }"/>
+    </Style>
+
+    <!--Common departure time span style-->
+    <Style TargetType="Span" x:Key="DepartureTimeSpan">
+        <Setter Property="Text" Value="On Time"/>
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="TextColor" Value="{Binding DepartureDateTime, Converter={StaticResource DatetimeToColorConverter} }"/>
+    </Style>   
+
+    <!--Common space span style-->
+    <Style TargetType="Span" x:Key="SpaceSpan">
+        <Setter Property="Text" Value="&#10;"/>
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="TextColor" Value="Transparent"/>
+    </Style>
+
+    <!--Common white space span style-->
+    <Style TargetType="Span" x:Key="WhiteSpaceSpan">
+        <Setter Property="Text" Value="--------"/>
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="TextColor" Value="Transparent"/>
+    </Style>       
+
+    <!--Common gradient style-->
+    <Style x:Key="SfGradientStyle" TargetType="gradient:SfGradientView">
+        <Setter Property="BackgroundBrush">
+            <Setter.Value>
+                <gradient:SfLinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <gradient:SfLinearGradientBrush.GradientStops>
+                        <gradient:SfGradientStop Color="{DynamicResource Secondary}" Offset="0.0" />
+                        <gradient:SfGradientStop Color="{DynamicResource SecondaryGradient}" Offset="1.0" />
+                    </gradient:SfLinearGradientBrush.GradientStops>
+                </gradient:SfLinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+     <!--  Common label style  -->
+    <Style x:Key="LabelStyle" TargetType="Label">
+        <Setter Property="LineHeight" Value="{OnPlatform Default=1.5, iOS=-1}" />
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="FontFamily" Value="{StaticResource Montserrat-Medium}" />
+        <Setter Property="HorizontalOptions" Value="StartAndExpand" />
+        <Setter Property="TextColor" Value="{StaticResource Gray-700}" />
+    </Style>
+
+    <!--  Common span style  -->
+    <Style x:Key="SpanStyle" TargetType="Span">
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="LineHeight" Value="{OnPlatform Default=1.25, iOS=-1}" />
+        <Setter Property="TextColor" Value="{StaticResource Gray-900}" />
+        <Setter Property="FontFamily" Value="{StaticResource Montserrat-SemiBold}" />
+    </Style>
+
+</ResourceDictionary>

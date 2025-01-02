@@ -3,26 +3,19 @@
     x:Class="EssentialUIKit.AppLayout.Views.TemplatePage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:Listview="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
     xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
     xmlns:controls="clr-namespace:EssentialUIKit.AppLayout.Controls;assembly=EssentialUIKit"
-    xmlns:converter="clr-namespace:EssentialUIKit.Converters"
-    xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
     xmlns:graphics="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
-    xmlns:syncEffectsView="clr-namespace:Syncfusion.XForms.EffectsView;assembly=Syncfusion.Core.XForms"
     xmlns:viewModels="clr-namespace:EssentialUIKit.AppLayout.ViewModels;assembly=EssentialUIKit"
     xmlns:views="clr-namespace:EssentialUIKit.AppLayout.Views;assembly=EssentialUIKit"
     Title="{Binding SelectedCategory.Name}"
-    BackgroundColor="{DynamicResource Gray-Bg}"
     Style="{StaticResource ContentPageStyle}">
 
     <ContentPage.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="AppLayoutStyles.xaml" />
+                <ResourceDictionary Source="Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
-
-            <converter:InverseBoolConverter x:Key="InverseBoolConverter" />
 
             <Style TargetType="graphics:SfGradientView">
                 <Setter Property="BackgroundBrush">
@@ -40,7 +33,7 @@
     </ContentPage.Resources>
 
     <ContentPage.BindingContext>
-        <viewModels:TemplatePageViewModel x:Name="templatePageViewModel" />
+        <viewModels:TemplatePageViewModel />
     </ContentPage.BindingContext>
 
     <Grid>
@@ -53,12 +46,11 @@
 
         <graphics:SfGradientView Grid.Row="0" Grid.RowSpan="3" />
 
-        <StackLayout
+        <StackLayout Spacing="0"
             x:Name="ActionBarContent"
             Grid.Row="1"
             HorizontalOptions="FillAndExpand"
             Orientation="Horizontal"
-            Spacing="0"
             VerticalOptions="FillAndExpand">
 
             <Button Clicked="BackButtonPressed" Style="{StaticResource ActionBarBackButtonStyle}" />
@@ -71,26 +63,16 @@
                 VerticalOptions="CenterAndExpand" />
 
             <Button
-                x:Name="GridIcon"
-                Clicked="GridIcon_Clicked"
-                FontSize="18"
-                Style="{StaticResource ActionBarSettingIconStyle}"
-                Text="&#xe733;"
-                VerticalOptions="CenterAndExpand"
-                WidthRequest="35" />
-            <Button
                 Clicked="GotoCodeViewer"
-                FontSize="18"
                 HorizontalOptions="End"
-                Style="{StaticResource ActionBarSettingIconStyle}"
                 Text="&#xe753;"
-                VerticalOptions="CenterAndExpand"
-                WidthRequest="35" />
+                FontSize="16"
+                Style="{StaticResource ActionBarSettingIconStyle}"
+                VerticalOptions="CenterAndExpand" />
 
             <Button
                 Clicked="ShowSettings"
                 HorizontalOptions="End"
-                FontSize="18"
                 Style="{StaticResource ActionBarSettingIconStyle}"
                 VerticalOptions="CenterAndExpand" />
         </StackLayout>
@@ -99,96 +81,60 @@
             Grid.Row="2"
             Grid.RowSpan="2"
             Padding="0,10,0,0"
-            BackgroundColor="{DynamicResource Gray-Bg}"
+            BackgroundColor="{DynamicResource Gray-White}"
             BorderWidth="0"
             CornerRadius="10,10,0,0">
 
-            <Listview:SfListView
+            <controls:ParallaxListView
                 x:Name="ListView"
-                Margin="8,0"
-                AutoFitMode="DynamicHeight"
-                BackgroundColor="Transparent"
-                ItemSize="10"
-                ListViewCachingStrategy="RecycleTemplate"
+                HasUnevenRows="True"
                 ItemsSource="{Binding SelectedCategory.Pages}"
-                SelectionBackgroundColor="Transparent"
-                SelectionMode="Single">
-                <Listview:SfListView.ItemTemplate>
+                RowHeight="96"
+                SelectionChanged="ListView_OnSelectionChanged"
+                SeparatorVisibility="None">
+                <ListView.ItemTemplate>
                     <DataTemplate>
-                        <syncEffectsView:SfEffectsView
-                            AnimationCompleted="SfEffectsView_AnimationCompleted"
-                            RippleColor="{DynamicResource Gray-300}"
-                            TouchDownEffects="Ripple">
-                            <Grid>
-                                <Grid
-                                    x:Name="itemsListView"
-                                    Margin="8,6"
-                                    IsVisible="{Binding IsItemsListView, Source={x:Reference templatePageViewModel}}"
-                                    RowDefinitions="Auto, Auto"
-                                    VerticalOptions="CenterAndExpand">
+                        <ViewCell>
+                            <Grid Margin="16" VerticalOptions="CenterAndExpand">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
 
-                                    <StackLayout Orientation="Horizontal">
+                                <StackLayout Orientation="Horizontal">
 
-                                        <Label Style="{StaticResource ItemTitleStyle}" VerticalOptions="StartAndExpand" />
+                                    <Label Style="{StaticResource ItemTitleStyle}" VerticalOptions="StartAndExpand" />
 
-                                        <Frame
-                                            Margin="0"
-                                            Padding="0"
-                                            BackgroundColor="#04B875"
-                                            CornerRadius="10"
-                                            HasShadow="False"
-                                            IsVisible="{Binding IsUpdate}">
-                                            <Frame.Content>
-                                                <Label
-                                                    Margin="5,1"
-                                                    FontFamily="Montserrat-Medium"
-                                                    FontSize="10"
-                                                    Text="{Binding UpdateType}"
-                                                    TextColor="{DynamicResource Gray-White}" />
-                                            </Frame.Content>
-                                        </Frame>
-                                    </StackLayout>
+                                    <Frame
+                                        Margin="0"
+                                        Padding="0"
+                                        BackgroundColor="#04B875"
+                                        CornerRadius="10"
+                                        HasShadow="False"
+                                        IsVisible="{Binding IsUpdate}">
+                                        <Frame.Content>
+                                            <Label
+                                                Margin="5,1"
+                                                FontFamily="{StaticResource Montserrat-Medium}"
+                                                FontSize="10"
+                                                Text="{Binding UpdateType}"
+                                                TextColor="{DynamicResource Gray-White}" />
+                                        </Frame.Content>
+                                    </Frame>
+                                </StackLayout>
 
-                                    <Label
-                                        Grid.Row="1"
-                                        Margin="0,5,0,0"
-                                        HorizontalOptions="StartAndExpand"
-                                        LineBreakMode="TailTruncation"
-                                        MaxLines="2"
-                                        Style="{StaticResource ItemDescriptionStyle}"
-                                        VerticalOptions="StartAndExpand" />
+                                <Label
+                                    Grid.Row="1"
+                                    HorizontalOptions="StartAndExpand"
+                                    Style="{StaticResource ItemDescriptionStyle}"
+                                    VerticalOptions="StartAndExpand" />
 
-                                </Grid>
-
-                                <Grid
-                                    x:Name="ItemsGridView"
-                                    HorizontalOptions="CenterAndExpand"
-                                    IsVisible="{Binding IsItemsGridView, Source={x:Reference templatePageViewModel}}"
-                                    RowDefinitions="Auto">
-
-                                    <Image
-                                        Aspect="AspectFit"
-                                        HeightRequest="260"
-                                        HorizontalOptions="StartAndExpand"
-                                        IsVisible="{Binding IsDarkTheme, Source={x:Reference templatePageViewModel}, Converter={StaticResource InverseBoolConverter}}"
-                                        Style="{StaticResource TemplateImageStyle}"
-                                        VerticalOptions="CenterAndExpand"
-                                        WidthRequest="180" />
-                                    <Image
-                                        Aspect="AspectFit"
-                                        HeightRequest="260"
-                                        HorizontalOptions="StartAndExpand"
-                                        IsVisible="{Binding IsDarkTheme, Source={x:Reference templatePageViewModel}}"
-                                        Style="{StaticResource TemplateDarkImageStyle}"
-                                        VerticalOptions="CenterAndExpand"
-                                        WidthRequest="180" />
-                                </Grid>
                             </Grid>
-                        </syncEffectsView:SfEffectsView>
+                        </ViewCell>
                     </DataTemplate>
-                </Listview:SfListView.ItemTemplate>
+                </ListView.ItemTemplate>
 
-            </Listview:SfListView>
+            </controls:ParallaxListView>
 
         </border:SfBorder>
 

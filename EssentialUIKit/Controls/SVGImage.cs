@@ -11,7 +11,7 @@ namespace EssentialUIKit.Controls
     /// This is a helper class to render the SVG files. 
     /// </summary>
     public class SVGImage : ContentView
-    {
+    {       
         // Bindable property to set the SVG image path
         public static readonly BindableProperty SourceProperty = BindableProperty.Create(
           nameof(Source), typeof(string), typeof(SVGImage), default(string), propertyChanged: RedrawCanvas);
@@ -32,7 +32,7 @@ namespace EssentialUIKit.Controls
             get => (string)this.GetValue(SourceProperty);
             set => this.SetValue(SourceProperty, value);
         }
-
+            
         /// <summary>
         /// Method to invaldate the canvas to update the image
         /// </summary>
@@ -41,8 +41,8 @@ namespace EssentialUIKit.Controls
         /// <param name="newValue">Updated state</param>
         public static void RedrawCanvas(BindableObject bindable, object oldValue, object newValue)
         {
-            SVGImage image = bindable as SVGImage;
-            image?.canvasView.InvalidateSurface();
+            SVGImage sVGImage = bindable as SVGImage;
+            sVGImage?.canvasView.InvalidateSurface();
         }
 
         /// <summary>
@@ -52,8 +52,8 @@ namespace EssentialUIKit.Controls
         /// <param name="args">The arguments</param>
         private void CanvasView_PaintSurface(object sender, SKPaintSurfaceEventArgs args)
         {
-            SKCanvas canvas = args.Surface.Canvas;
-            canvas.Clear();
+            SKCanvas skCanvas = args.Surface.Canvas;
+            skCanvas.Clear();
 
             if (string.IsNullOrEmpty(this.Source))
             {
@@ -61,22 +61,22 @@ namespace EssentialUIKit.Controls
             }
 
             // Get the assembly information to access the local image
-            Assembly assembly = typeof(SVGImage).Assembly;
+            var assembly = typeof(SVGImage).GetTypeInfo().Assembly.GetName();
 
             // Update the canvas with the SVG image
-            using (Stream stream = assembly.GetManifestResourceStream(assembly.GetName().Name + ".Images." + this.Source))
+            using (Stream stream = typeof(SVGImage).GetTypeInfo().Assembly.GetManifestResourceStream(assembly.Name + ".Images." + Source))
             {
-                SkiaSharp.Extended.Svg.SKSvg svg = new SkiaSharp.Extended.Svg.SKSvg();
-                svg.Load(stream);
+                SkiaSharp.Extended.Svg.SKSvg skSVG = new SkiaSharp.Extended.Svg.SKSvg();
+                skSVG.Load(stream);
                 SKImageInfo imageInfo = args.Info;
-                canvas.Translate(imageInfo.Width / 2f, imageInfo.Height / 2f);
-                SKRect rectBounds = svg.ViewBox;
+                skCanvas.Translate(imageInfo.Width / 2f, imageInfo.Height / 2f);
+                SKRect rectBounds = skSVG.ViewBox;
                 float xRatio = imageInfo.Width / rectBounds.Width;
                 float yRatio = imageInfo.Height / rectBounds.Height;
                 float minRatio = Math.Min(xRatio, yRatio);
-                canvas.Scale(minRatio);
-                canvas.Translate(-rectBounds.MidX, -rectBounds.MidY);
-                canvas.DrawPicture(svg.Picture);
+                skCanvas.Scale(minRatio);
+                skCanvas.Translate(-rectBounds.MidX, -rectBounds.MidY);
+                skCanvas.DrawPicture(skSVG.Picture);
             }
         }
     }

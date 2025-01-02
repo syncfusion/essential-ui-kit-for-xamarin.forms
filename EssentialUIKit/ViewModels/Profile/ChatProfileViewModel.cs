@@ -8,7 +8,7 @@ namespace EssentialUIKit.ViewModels.Profile
     /// ViewModel for profile page
     /// </summary>
     [Preserve(AllMembers = true)]
-    public class ChatProfileViewModel : BaseViewModel
+    public class ChatProfileViewModel
     {
         #region Constructor
 
@@ -62,7 +62,7 @@ namespace EssentialUIKit.ViewModels.Profile
         {
             Application.Current.Resources.TryGetValue("Gray-100", out var retVal);
             (obj as Grid).BackgroundColor = (Color)retVal;
-            await Task.Delay(100).ConfigureAwait(true);
+            await Task.Delay(100);
             (obj as Grid).BackgroundColor = Color.Transparent;
         }
 
@@ -74,7 +74,7 @@ namespace EssentialUIKit.ViewModels.Profile
         {
             Application.Current.Resources.TryGetValue("Gray-100", out var retVal);
             (obj as Grid).BackgroundColor = (Color)retVal;
-            await Task.Delay(100).ConfigureAwait(true);
+            await Task.Delay(100);
             (obj as Grid).BackgroundColor = Color.Transparent;
         }
 

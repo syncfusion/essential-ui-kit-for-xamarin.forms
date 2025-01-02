@@ -1,4 +1,7 @@
-﻿using System.Runtime.Serialization;
+﻿using System;
+using System.Collections.Generic;
+using System.Runtime.Serialization;
+using System.Text;
 using Xamarin.Forms.Internals;
 
 namespace EssentialUIKit.Models.Navigation
@@ -24,7 +27,7 @@ namespace EssentialUIKit.Models.Navigation
         public string BackgroundColor { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether it is selected or not.
+        /// Gets or sets the names selected.
         /// </summary>
         public bool IsSelected { get; set; }
 

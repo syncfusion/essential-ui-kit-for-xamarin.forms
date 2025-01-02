@@ -1,0 +1,186 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ResourceDictionary
+    x:Class="EssentialUIKit.Views.Chat.Styles"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:control="clr-namespace:EssentialUIKit.Controls"
+    xmlns:gradient="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms">
+
+    <Color x:Key="Transparent">Transparent</Color>
+
+    <!--  Font Icon Text  -->
+    <x:String x:Key="Back">&#xe709;</x:String>
+    <x:String x:Key="Search">&#xe705;</x:String>
+    <x:String x:Key="Menu">&#xe719;</x:String>
+    <x:String x:Key="VoiceCall">&#xe71c;</x:String>
+    <x:String x:Key="VideoCall">&#xe721;</x:String>
+    <x:String x:Key="Settings">&#xe715;</x:String>
+    <x:String x:Key="Camera">&#xe713;</x:String>
+    <x:String x:Key="Attachment">&#xe71e;</x:String>
+    <x:String x:Key="Send">&#xe71f;</x:String>
+    <x:String x:Key="Sent">&#xe717;</x:String>
+    <x:String x:Key="Received">&#xe71b;</x:String>
+    <x:String x:Key="Viewed">&#xe71b;</x:String>
+    <x:String x:Key="New">&#xe720;</x:String>
+    <x:String x:Key="Audio">&#xe722;</x:String>
+    <x:String x:Key="Photo">&#xe71d;</x:String>
+    <x:String x:Key="Video">&#xe718;</x:String>
+    <x:String x:Key="Contact">&#xe723;</x:String>
+    <x:String x:Key="Available">&#xe720;</x:String>
+    <x:String x:Key="Next">&#xe71a;</x:String>
+    <x:String x:Key="Mail">&#xe725;</x:String>
+    <x:String x:Key="Notification">&#xe700;</x:String>
+    <x:String x:Key="Help">&#xe72c;</x:String>
+    <x:String x:Key="Edit">&#xe727;</x:String>
+    <x:String x:Key="PhoneFill">&#xe72a;</x:String>
+
+    <!--  Common style for Navigation bar SfButton  -->
+    <Style x:Key="NavigationBarButtonStyle" TargetType="buttons:SfButton">
+        <Setter Property="TextColor" Value="{DynamicResource Gray-600}" />
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="WidthRequest" Value="38" />
+        <Setter Property="HeightRequest" Value="38" />
+        <Setter Property="CornerRadius" Value="4" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="HorizontalOptions" Value="Fill" />
+        <Setter Property="BackgroundColor" Value="Transparent" />
+        <Setter Property="BorderWidth" Value="0" />
+        <Setter Property="FontFamily" Value="{StaticResource FontIcons}" />
+    </Style>
+
+    <!--  Common style for swipe template content border control  -->
+    <Style x:Key="SwipeTemplateBorderStyle" TargetType="buttons:SfButton">
+        <Setter Property="HeightRequest" Value="32" />
+        <Setter Property="WidthRequest" Value="32" />
+        <Setter Property="BorderColor" Value="Transparent" />
+        <Setter Property="BorderWidth" Value="0" />
+        <Setter Property="CornerRadius" Value="16" />
+        <Setter Property="BackgroundColor" Value="{DynamicResource Gray-White}" />
+    </Style>
+
+    <!--  Common style for swipe template content button control  -->
+    <Style x:Key="SwipeTemplateButtonStyle" TargetType="Label">
+        <Setter Property="BackgroundColor" Value="Transparent" />
+        <Setter Property="TextColor" Value="{DynamicResource PrimaryGradient}" />
+        <Setter Property="HorizontalTextAlignment" Value="Center" />
+        <Setter Property="VerticalTextAlignment" Value="Center" />
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="FontFamily" Value="{StaticResource FontIcons}" />
+    </Style>
+
+    <!--  Common style for entries  -->
+    <Style x:Key="ChatSearchEntryStyle" TargetType="control:BorderlessEntry">
+        <Setter Property="PlaceholderColor" Value="{DynamicResource Gray-700}" />
+        <Setter Property="BackgroundColor" Value="Transparent" />
+        <Setter Property="TextColor" Value="{DynamicResource Gray-900}" />
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="ReturnType" Value="Done" />
+    </Style>
+
+    <!--  Common style for borders  -->
+    <Style x:Key="SfBorderStyle" TargetType="border:SfBorder">
+        <Setter Property="BackgroundColor" Value="{DynamicResource Gray-White}" />
+        <Setter Property="BorderColor" Value="Transparent" />
+        <Setter Property="CornerRadius" Value="25" />
+        <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+    </Style>
+
+    <!--  Common style for profile border style  -->
+    <Style x:Key="ProfileBorderStyle" TargetType="border:SfBorder">
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="BorderWidth" Value="1" />
+        <Setter Property="BorderColor" Value="{DynamicResource Gray-White}" />
+        <Setter Property="CornerRadius" Value="20" />
+    </Style>
+
+    <!--  Common style for message icon  -->
+    <Style x:Key="MessageIconStyle" TargetType="Label">
+        <Setter Property="TextColor" Value="{DynamicResource Gray-600}" />
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="LineBreakMode" Value="NoWrap" />
+        <Setter Property="FontFamily" Value="{StaticResource FontIcons}" />
+        <Setter Property="LineHeight" Value="{OnPlatform Default=1.5, iOS=-1}" />
+    </Style>
+
+    <!--  Common style for message text  -->
+    <Style x:Key="MessageTextStyle" TargetType="Label">
+        <Setter Property="TextColor" Value="{DynamicResource Gray-800}" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="LineBreakMode" Value="TailTruncation" />
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="LineHeight" Value="{OnPlatform Default=1.5, iOS=-1}" />
+        <Setter Property="FontFamily" Value="{StaticResource Montserrat-Medium}" />
+    </Style>
+
+    <!--  Common style for show time  -->
+    <Style x:Key="TimeTextStyle" TargetType="Label">
+        <Setter Property="TextColor" Value="{DynamicResource Gray-700}" />
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="LineBreakMode" Value="NoWrap" />
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="LineHeight" Value="{OnPlatform Default=1.5, iOS=-1}" />
+        <Setter Property="FontFamily" Value="{StaticResource Montserrat-Regular}" />
+    </Style>
+
+    <!--  Common style for Notification icon label  -->
+    <Style x:Key="NotificationIconStyle" TargetType="Label">
+        <Setter Property="TextColor" Value="{DynamicResource Gray-600}" />
+        <Setter Property="HorizontalOptions" Value="End" />
+        <Setter Property="HorizontalTextAlignment" Value="End" />
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="FontFamily" Value="{StaticResource FontIcons}" />
+    </Style>
+
+    <!--  Common style for chat message editor  -->
+    <Style x:Key="ChatMessageEditorStyle" TargetType="control:BorderlessEditor">
+        <Setter Property="TextColor" Value="{DynamicResource Gray-900}" />
+        <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="Margin" Value="5,0" />
+        <Setter Property="PlaceholderColor" Value="{DynamicResource Gray-700}" />
+    </Style>
+
+    <Style x:Key="ProfileLabelStyle" TargetType="Label">
+        <Setter Property="FontFamily" Value="{StaticResource Montserrat-Medium}" />
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="TextColor" Value="{DynamicResource Gray-900}" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="HorizontalOptions" Value="Start" />
+        <Setter Property="HorizontalTextAlignment" Value="Start" />
+        <Setter Property="LineHeight" Value="{OnPlatform Default=1.5, iOS=-1}" />
+    </Style>
+
+    <Style x:Key="ProfileIconLabelStyle" TargetType="Label">
+        <Setter Property="TextColor" Value="{DynamicResource Gray-600}" />
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="HorizontalTextAlignment" Value="Center" />
+        <Setter Property="FontFamily" Value="{StaticResource FontIcons}" />
+    </Style>
+
+    <Style x:Key="SeparatorStyle" TargetType="BoxView">
+        <Setter Property="HeightRequest" Value="1" />
+        <Setter Property="BackgroundColor" Value="{DynamicResource Gray-200}" />
+    </Style>
+
+    <Style x:Key="GradientViewStyle" TargetType="gradient:SfGradientView">
+        <Setter Property="BackgroundBrush">
+            <Setter.Value>
+                <gradient:SfLinearGradientBrush StartPoint="0, 0" EndPoint="1, 1">
+                    <gradient:SfLinearGradientBrush.GradientStops>
+                        <gradient:SfGradientStop Offset="0" Color="{DynamicResource PrimaryColor}" />
+                        <gradient:SfGradientStop Offset="1" Color="{DynamicResource PrimaryGradient}" />
+                    </gradient:SfLinearGradientBrush.GradientStops>
+                </gradient:SfLinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

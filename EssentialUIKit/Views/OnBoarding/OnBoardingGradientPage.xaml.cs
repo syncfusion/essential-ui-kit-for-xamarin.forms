@@ -15,7 +15,7 @@ namespace EssentialUIKit.Views.OnBoarding
         /// </summary>
         public OnBoardingGradientPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
     }
 }

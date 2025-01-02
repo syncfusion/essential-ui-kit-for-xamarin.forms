@@ -5,38 +5,29 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:behaviour="clr-namespace:EssentialUIKit.Behaviors"
     xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
-    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
-    xmlns:control="clr-namespace:EssentialUIKit.Controls"
     xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
-    x:Name="aboutUsScrollPage"
+    xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.About"
     Title="About Us"
-    BackgroundColor="{DynamicResource Gray-Bg}"
+    BackgroundColor="{DynamicResource Gray-White}"
     NavigationPage.HasNavigationBar="False">
-
-    <ContentPage.ControlTemplate>
-        <ControlTemplate>
-            <StackLayout Spacing="0">
-                <!--  Title View  -->
-                <control:TitleView Title="About Us">
-                    <!--  Back button command  -->
-                    <control:TitleView.LeadingView>
-                        <buttons:SfButton
-                            x:Name="backButton"
-                            Command="{Binding BindingContext.BackButtonCommand, Source={x:Reference aboutUsScrollPage}}"
-                            CommandParameter="{x:Reference backButton}"
-                            Style="{StaticResource IconButtonStyle}"
-                            Text="{StaticResource Back}" />
-                    </control:TitleView.LeadingView>
-                </control:TitleView>
-                <ContentPresenter />
-            </StackLayout>
-        </ControlTemplate>
-    </ContentPage.ControlTemplate>
-
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
 
         <ScrollView>
-            <Grid RowDefinitions="Auto, *" RowSpacing="0">
+            <Grid RowSpacing="0" VerticalOptions="Center">
+                <Grid.BindingContext>
+                    <viewModel:AboutUsViewModel />
+                </Grid.BindingContext>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
 
                 <!--  Background image  -->
                 <Image
@@ -58,20 +49,14 @@
                     <Label
                         Margin="0,24,0,16"
                         FontSize="20"
-                        LineHeight="{OnPlatform Android=1.25,
-                                                Default=-1}"
-                        Style="{StaticResource TitleLabelStyle}"
-                        Text="About Us"
-                        TextColor="#333942" />
+                        Style="{StaticResource HeaderLabelStyle}"
+                        Text="About Us" />
 
                     <!--  Product description  -->
                     <Label
                         Margin="16,0,16,0"
-                        HorizontalOptions="Start"
-                        HorizontalTextAlignment="Start"
                         Style="{StaticResource DescriptionLabelStyle}"
-                        Text="{Binding ProductDescription}"
-                        TextColor="#606a7b" />
+                        Text="{Binding ProductDescription}" />
                 </StackLayout>
 
                 <!--  Background image  -->
@@ -99,9 +84,7 @@
                             <Label
                                 Margin="0,60,0,5"
                                 FontSize="20"
-                                LineHeight="{OnPlatform Android=1.25,
-                                                        Default=-1}"
-                                Style="{StaticResource TitleLabelStyle}"
+                                Style="{StaticResource HeaderLabelStyle}"
                                 Text="Our Team"
                                 TextColor="{DynamicResource Gray-White}" />
                         </DataTemplate>
@@ -120,10 +103,7 @@
                                     CornerRadius="32"
                                     HorizontalOptions="Center"
                                     VerticalOptions="Center">
-                                    <Image
-                                        BackgroundColor="{DynamicResource Gray-200}"
-                                        HeightRequest="64"
-                                        WidthRequest="64">
+                                    <Image BackgroundColor="{DynamicResource Gray-200}" Style="{StaticResource AboutUsImageStyle}">
                                         <Image.Source>
                                             <UriImageSource
                                                 CacheValidity="14"
@@ -135,20 +115,18 @@
 
                                 <!--  Employee name  -->
                                 <Label
-                                    FontSize="14"
-                                    Style="{StaticResource TitleLabelStyle}"
+                                    FontFamily="{StaticResource Montserrat-SemiBold}"
+                                    HorizontalTextAlignment="Center"
+                                    Style="{StaticResource DescriptionLabelStyle}"
                                     Text="{Binding EmployeeName}"
-                                    TextColor="{DynamicResource Gray-White}" />
+                                    TextColor="White" />
 
                                 <!--  Designation  -->
                                 <Label
-                                    HorizontalOptions="Center"
                                     HorizontalTextAlignment="Center"
-                                    Style="{StaticResource SimpleLabelStyle}"
+                                    Style="{StaticResource VersionLabelStyle}"
                                     Text="{Binding Designation}"
-                                    TextColor="White"
-                                    VerticalOptions="Start"
-                                    VerticalTextAlignment="Start" />
+                                    TextColor="White" />
 
                             </StackLayout>
                         </DataTemplate>

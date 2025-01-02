@@ -1,4 +1,6 @@
 ﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using EssentialUIKit.Models.OnBoarding;
 using Xamarin.Forms;
@@ -10,7 +12,7 @@ namespace EssentialUIKit.ViewModels.OnBoarding
     /// ViewModel for on-boarding gradient page.
     /// </summary>
     [Preserve(AllMembers = true)]
-    public class OnBoardingGradientViewModel : BaseViewModel
+    public class OnBoardingGradientViewModel : INotifyPropertyChanged
     {
         #region Fields
 
@@ -37,25 +39,34 @@ namespace EssentialUIKit.ViewModels.OnBoarding
                 {
                     ImagePath = "ChooseGradient.svg",
                     Header = "CHOOSE",
-                    Content = "Pick the item that is right for you",
+                    Content = "Pick the item that is right for you"
                 },
                 new Boarding
                 {
                     ImagePath = "ConfirmGradient.svg",
                     Header = "ORDER CONFIRMED",
-                    Content = "Your order is confirmed and will be on its way soon",
+                    Content = "Your order is confirmed and will be on its way soon"
                 },
                 new Boarding
                 {
                     ImagePath = "DeliverGradient.svg",
                     Header = "DELIVERY",
-                    Content = "Your item will arrive soon. Email us if you have any issues",
-                },
+                    Content = "Your item will arrive soon. Email us if you have any issues"
+                }
             };
 
             this.SkipCommand = new Command(this.Skip);
             this.NextCommand = new Command(this.Next);
         }
+
+        #endregion
+        
+        #region Events
+
+        /// <summary>
+        /// The declaration of the property changed event.
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
 
         #endregion
 
@@ -72,11 +83,11 @@ namespace EssentialUIKit.ViewModels.OnBoarding
         public ICommand NextCommand { get; set; }
 
         #endregion
-
+        
         #region Properties
 
         /// <summary>
-        /// Gets the boardings collection.
+        /// Gets or sets the boardings collection.
         /// </summary>
         public ObservableCollection<Boarding> Boardings
         {
@@ -85,9 +96,10 @@ namespace EssentialUIKit.ViewModels.OnBoarding
                 return this.boardings;
             }
 
-            private set
+            set
             {
-                this.SetProperty(ref this.boardings, value);
+                this.boardings = value;
+                this.OnPropertyChanged();
             }
         }
 
@@ -105,7 +117,8 @@ namespace EssentialUIKit.ViewModels.OnBoarding
                     return;
                 }
 
-                this.SetProperty(ref this.nextButtonText, value);
+                this.nextButtonText = value;
+                this.OnPropertyChanged();
             }
         }
 
@@ -123,7 +136,8 @@ namespace EssentialUIKit.ViewModels.OnBoarding
                     return;
                 }
 
-                this.SetProperty(ref this.isSkipButtonVisible, value);
+                this.isSkipButtonVisible = value;
+                this.OnPropertyChanged();
             }
         }
 
@@ -141,7 +155,8 @@ namespace EssentialUIKit.ViewModels.OnBoarding
                     return;
                 }
 
-                this.SetProperty(ref this.selectedIndex, value);
+                this.selectedIndex = value;
+                this.OnPropertyChanged();
                 this.ValidateSelection();
             }
         }
@@ -150,9 +165,13 @@ namespace EssentialUIKit.ViewModels.OnBoarding
 
         #region Methods
 
-        private static void MoveToNextPage()
+        /// <summary>
+        /// The PropertyChanged event occurs when changing the value of property.
+        /// </summary>
+        /// <param name="propertyName">Property name</param>
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            // Move to next page
+            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         private bool ValidateAndUpdateSelectedIndex()
@@ -186,7 +205,7 @@ namespace EssentialUIKit.ViewModels.OnBoarding
         /// <param name="obj">The Object</param>
         private void Skip(object obj)
         {
-            MoveToNextPage();
+            this.MoveToNextPage();
         }
 
         /// <summary>
@@ -198,8 +217,13 @@ namespace EssentialUIKit.ViewModels.OnBoarding
             if (this.ValidateAndUpdateSelectedIndex())
             {
                 Application.Current.MainPage.Navigation.PopAsync();
-                MoveToNextPage();
+                this.MoveToNextPage();
             }
+        }
+
+        private void MoveToNextPage()
+        {
+            // Move to next page
         }
 
         #endregion

@@ -1,18 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage
-    x:Class="EssentialUIKit.Views.Transaction.MyCardsPage"
-    xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:ListView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
-    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
-    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
-    xmlns:cards="clr-namespace:Syncfusion.XForms.Cards;assembly=Syncfusion.Cards.XForms"
-    xmlns:controls="clr-namespace:EssentialUIKit.Controls"
-    xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
-    xmlns:gradient="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
-    x:Name="myCardsPage"
-    BackgroundColor="{DynamicResource Gray-100}"
-    NavigationPage.HasNavigationBar="False">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:cards="clr-namespace:Syncfusion.XForms.Cards;assembly=Syncfusion.Cards.XForms"
+             xmlns:controls="clr-namespace:EssentialUIKit.Controls"
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             xmlns:ListView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+             xmlns:ViewModel="clr-namespace:EssentialUIKit.ViewModels.Transaction"
+             xmlns:gradient="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
+             x:Class="EssentialUIKit.Views.Transaction.MyCardsPage"
+             BackgroundColor="{DynamicResource Gray-100}"
+             NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.BindingContext>
+        <ViewModel:MyCardsViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
     <ContentPage.ControlTemplate>
         <ControlTemplate>
@@ -22,8 +31,9 @@
                         <!--  Back button command  -->
                         <buttons:SfButton
                             x:Name="backButton"
-                            Command="{Binding BindingContext.BackButtonCommand, Source={x:Reference myCardsPage}}"
+                            Command="{Binding BackButtonCommand}"
                             CommandParameter="{x:Reference backButton}"
+                            CornerRadius="4"
                             Style="{StaticResource IconButtonStyle}"
                             Text="{StaticResource Back}" />
                     </controls:TitleView.LeadingView>
@@ -32,11 +42,11 @@
                         <!--  More button command  -->
                         <buttons:SfButton
                             x:Name="moreButton"
-                            Command="{Binding Path=BindingContext.MenuCommand, Source={x:Reference myCardsPage}}"
+                            Command="{Binding MoreButtonCommand}"
                             CommandParameter="{x:Reference moreButton}"
                             CornerRadius="4"
                             Style="{StaticResource IconButtonStyle}"
-                            Text="{StaticResource More}" />
+                            Text="{StaticResource MoreIcon}" />
                     </controls:TitleView.TrailingView>
 
                 </controls:TitleView>
@@ -46,170 +56,93 @@
     </ContentPage.ControlTemplate>
 
     <ContentPage.Content>
-        <Grid
-            ColumnSpacing="0"
-            RowDefinitions="*, Auto"
-            RowSpacing="0">
+        <Grid RowSpacing="0" ColumnSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
 
             <!--  ListView displaying saved cards  -->
-            <ListView:SfListView
-                x:Name="myCards"
-                AllowSwiping="True"
-                AutoFitMode="Height"
-                IsScrollBarVisible="False"
-                ItemSpacing="16,24,16,0"
-                ItemsSource="{Binding CardDetails}"
-                SelectionBackgroundColor="Transparent"
-                SelectionGesture="Tap"
-                SelectionMode="Single">
-                <ListView:SfListView.ItemTemplate>
-                    <DataTemplate>
-                        <controls:CustomShadowFrame
-                            Padding="0"
-                            BackgroundColor="{DynamicResource GrayShadowColor}"
-                            BorderWidth="0"
-                            CornerRadius="4"
-                            HasShadow="True"
-                            HeightRequest="180"
-                            HorizontalOptions="CenterAndExpand"
-                            Radius="4"
-                            WidthRequest="343">
-                            <controls:CustomShadowFrame.Content>
-                                <Grid>
-                                    <border:SfBorder BorderWidth="0" CornerRadius="4">
-                                        <gradient:SfGradientView>
-                                            <gradient:SfGradientView.BackgroundBrush>
-                                                <gradient:SfLinearGradientBrush>
-                                                    <gradient:SfLinearGradientBrush.GradientStops>
-                                                        <gradient:SfGradientStop Offset="0.0" Color="{Binding BackgroundGradientStart}" />
-                                                        <gradient:SfGradientStop Offset="1.0" Color="{Binding BackgroundGradientEnd}" />
-                                                    </gradient:SfLinearGradientBrush.GradientStops>
-                                                </gradient:SfLinearGradientBrush>
-                                            </gradient:SfGradientView.BackgroundBrush>
-                                        </gradient:SfGradientView>
-                                    </border:SfBorder>
+            <ListView:SfListView x:Name="myCards" AutoFitMode="Height" IsScrollBarVisible="False" ItemSpacing="16,24,16,0" 
+                                 SelectionGesture="Tap" SelectionBackgroundColor="Transparent" SelectionMode="Single" AllowSwiping="True" ItemsSource="{Binding CardDetails}">
+            <ListView:SfListView.ItemTemplate>
+                <DataTemplate>
+                            <cards:SfCardView CornerRadius="4" HasShadow="True" HeightRequest="180" WidthRequest="343" 
+                                              HorizontalOptions="CenterAndExpand">
+                                <cards:SfCardView.Content>
+                            <Grid>
+                                <gradient:SfGradientView>
+                                    <gradient:SfGradientView.BackgroundBrush>
+                                        <gradient:SfLinearGradientBrush>
+                                            <gradient:SfLinearGradientBrush.GradientStops>
+                                                <gradient:SfGradientStop Color="{Binding BackgroundGradientStart}" Offset="0.0"/>
+                                                <gradient:SfGradientStop Color="{Binding BackgroundGradientEnd}" Offset="1.0"/>
+                                            </gradient:SfLinearGradientBrush.GradientStops>
+                                        </gradient:SfLinearGradientBrush>
+                                    </gradient:SfGradientView.BackgroundBrush>
+                                </gradient:SfGradientView>
 
-                                    <Grid
-                                        Margin="16,20"
-                                        ColumnDefinitions="*, *, *"
-                                        RowDefinitions="Auto, Auto, *"
-                                        RowSpacing="27">
+                                <Grid RowSpacing="27" Margin="16,20" >
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
 
-                                        <!--  Card Type  -->
-                                        <Label
-                                            Grid.Row="0"
-                                            Grid.ColumnSpan="3"
-                                            Margin="0,3"
-                                            FontSize="14"
-                                            HorizontalOptions="Start"
-                                            Style="{StaticResource TitleLabelStyle}"
-                                            Text="{Binding CardType}"
-                                            TextColor="{DynamicResource Gray-White}"
-                                            VerticalOptions="Center" />
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
 
-                                        <!--  Icon displaying card type  -->
-                                        <Image
-                                            Grid.Row="0"
-                                            Grid.ColumnSpan="3"
-                                            HeightRequest="27"
-                                            HorizontalOptions="End"
-                                            Source="{Binding CardTypeIcon}"
-                                            VerticalOptions="Start"
-                                            WidthRequest="45" />
+                                        <!-- Card Type -->
+                                        <Label Grid.Row="0" Grid.ColumnSpan="3" HorizontalOptions="Start"  VerticalOptions="Center" 
+                                           Style="{StaticResource CardLabel}" Margin="0,3" Text="{Binding Type}"/>
 
-                                        <!--  Card Number  -->
-                                        <Label
-                                            Grid.Row="1"
-                                            Grid.ColumnSpan="3"
-                                            FontFamily="Montserrat-Medium"
-                                            FontSize="20"
-                                            HorizontalOptions="Start"
-                                            LineHeight="{OnPlatform Default=-1,
-                                                                    Android=1.5}"
-                                            Text="{Binding Number}"
-                                            TextColor="{DynamicResource Gray-White}" />
+                                        <!-- Icon displaying card type -->
+                                        <Image Grid.Row="0" Grid.ColumnSpan="3"  HeightRequest="27" HorizontalOptions="End"  VerticalOptions="Start"
+                                           WidthRequest="45" Source="{Binding CardTypeIcon}"/>
+                                        
+                                        <!-- Card Number -->
+                                        <Label Grid.Row="1" Grid.ColumnSpan="3" HorizontalOptions="Start" Text="{Binding Number}" FontSize="20"
+                                           FontFamily="{StaticResource Montserrat-Medium}" TextColor="{DynamicResource Gray-White}"
+                                           LineHeight="{OnPlatform Default=-1, Android=1.5}" />
 
                                         <Grid Grid.Row="2" Grid.ColumnSpan="3">
 
-                                            <!--  Card Holder Name  -->
-                                            <StackLayout Grid.Column="0" Spacing="0">
-                                                <Label
-                                                    FontFamily="Montserrat-Medium"
-                                                    FontSize="12"
-                                                    LineHeight="{OnPlatform Default=-1,
-                                                                            Android=1.5}"
-                                                    Text="Card Holder"
-                                                    TextColor="{DynamicResource Gray-White}" />
-                                                <Label
-                                                    FontSize="14"
-                                                    HorizontalOptions="Start"
-                                                    Style="{StaticResource TitleLabelStyle}"
-                                                    Text="{Binding Name}"
-                                                    TextColor="{DynamicResource Gray-White}" />
-                                            </StackLayout>
-
-                                            <!--  Card Expiry  -->
-                                            <StackLayout
-                                                Grid.Column="1"
-                                                HorizontalOptions="Center"
-                                                Spacing="0">
-                                                <Label
-                                                    FontFamily="Montserrat-Medium"
-                                                    FontSize="12"
-                                                    LineHeight="{OnPlatform Default=-1,
-                                                                            Android=1.5}"
-                                                    Text="Expires"
-                                                    TextColor="{DynamicResource Gray-White}" />
-                                                <Label
-                                                    FontSize="14"
-                                                    HorizontalOptions="Start"
-                                                    Style="{StaticResource TitleLabelStyle}"
-                                                    Text="{Binding Expiry}"
-                                                    TextColor="{DynamicResource Gray-White}" />
-                                            </StackLayout>
-
-                                            <!--  Card Cvv Number  -->
-                                            <StackLayout
-                                                Grid.Column="2"
-                                                HorizontalOptions="Center"
-                                                Spacing="0">
-                                                <Label
-                                                    FontFamily="Montserrat-Medium"
-                                                    FontSize="12"
-                                                    LineHeight="{OnPlatform Default=-1,
-                                                                            Android=1.5}"
-                                                    Text="CVV"
-                                                    TextColor="{DynamicResource Gray-White}" />
-                                                <Label
-                                                    FontSize="14"
-                                                    HorizontalOptions="Start"
-                                                    Style="{StaticResource TitleLabelStyle}"
-                                                    Text="{Binding CardCvv}"
-                                                    TextColor="{DynamicResource Gray-White}" />
-                                            </StackLayout>
-                                        </Grid>
+                                        <!--  Card Holder Name  -->
+                                        <StackLayout Grid.Column="0" Spacing="0">
+                                            <Label Text="Card Holder" FontSize="12" FontFamily="{StaticResource Montserrat-Medium}" 
+                                                   LineHeight="{OnPlatform Default=-1, Android=1.5}" TextColor="{DynamicResource Gray-White}"/>
+                                            <Label Text="{Binding Name}" Style="{StaticResource CardLabel}" />
+                                        </StackLayout>
+                                            
+                                        <!--  Card Expiry -->
+                                        <StackLayout Grid.Column="1" Spacing="0" HorizontalOptions="Center">
+                                            <Label Text="Expires" FontSize="12" FontFamily="{StaticResource Montserrat-Medium}" 
+                                                   LineHeight="{OnPlatform Default=-1, Android=1.5}" TextColor="{DynamicResource Gray-White}"/>
+                                            <Label Text="{Binding Expiry}" Style="{StaticResource CardLabel}" />
+                                        </StackLayout>
+                                            
+                                        <!--  Card Cvv Number  -->
+                                        <StackLayout Grid.Column="2" Spacing="0" HorizontalOptions="Center">
+                                            <Label Text="CVV" FontSize="12" FontFamily="{StaticResource Montserrat-Medium}" 
+                                                   LineHeight="{OnPlatform Default=-1, Android=1.5}" TextColor="{DynamicResource Gray-White}"/>
+                                            <Label Text="{Binding Cvv}" Style="{StaticResource CardLabel}" />
+                                        </StackLayout>
                                     </Grid>
                                 </Grid>
-                            </controls:CustomShadowFrame.Content>
-                        </controls:CustomShadowFrame>
-                    </DataTemplate>
-                </ListView:SfListView.ItemTemplate>
-                <ListView:SfListView.LayoutManager>
-                    <ListView:GridLayout SpanCount="{core:OnPlatformOrientationIntValue Desktop=3, PhonePortrait=1, PhoneLandscape=2, TabletPortrait=2, TabletLandscape=3}" />
-                </ListView:SfListView.LayoutManager>
+                            </Grid>
+                        </cards:SfCardView.Content>
+                    </cards:SfCardView>
+                        </DataTemplate>
+            </ListView:SfListView.ItemTemplate>
             </ListView:SfListView>
 
             <!--  Add Card button command  -->
-            <buttons:SfButton
-                x:Name="addCardButton"
-                Grid.Row="1"
-                Command="{Binding AddCardCommand}"
-                CommandParameter="{x:Reference addCardButton}"
-                CornerRadius="0"
-                HorizontalOptions="FillAndExpand"
-                Style="{StaticResource GradientButtonStyle}"
-                Text="ADD NEW CARD"
-                VerticalOptions="EndAndExpand" />
+            <buttons:SfButton x:Name="addCardButton" Style="{StaticResource MagentaButtonStyle}" Text="ADD NEW CARD" 
+                              Command="{Binding AddCardCommand}" CommandParameter="{x:Reference addCardButton}" Grid.Row="1"
+                              HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand" HeightRequest="40"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

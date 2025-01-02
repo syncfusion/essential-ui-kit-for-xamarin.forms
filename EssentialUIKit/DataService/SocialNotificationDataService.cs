@@ -13,7 +13,7 @@ namespace EssentialUIKit.DataService
     {
         #region fields
 
-        private static SocialNotificationDataService socialNotificationDataService;
+        private static SocialNotificationDataService _instance;
 
         private SocialNotificationViewModel notificationViewModel;
 
@@ -24,7 +24,7 @@ namespace EssentialUIKit.DataService
         /// <summary>
         /// Gets an instance of the <see cref="SocialNotificationDataService"/>.
         /// </summary>
-        public static SocialNotificationDataService Instance => socialNotificationDataService ?? (socialNotificationDataService = new SocialNotificationDataService());
+        public static SocialNotificationDataService Instance => _instance ?? (_instance = new SocialNotificationDataService());
 
         /// <summary>
         /// Gets or sets the value of notification view model.
@@ -49,15 +49,15 @@ namespace EssentialUIKit.DataService
 
             var assembly = typeof(App).GetTypeInfo().Assembly;
 
-            T data;
+            T obj;
 
             using (var stream = assembly.GetManifestResourceStream(file))
             {
                 var serializer = new DataContractJsonSerializer(typeof(T));
-                data = (T)serializer.ReadObject(stream);
+                obj = (T)serializer.ReadObject(stream);
             }
 
-            return data;
+            return obj;
         }
 
         #endregion

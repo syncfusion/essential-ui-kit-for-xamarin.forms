@@ -1,5 +1,6 @@
-﻿using System.Runtime.Serialization;
-using EssentialUIKit.ViewModels;
+﻿using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using System.Runtime.Serialization;
 using Xamarin.Forms.Internals;
 
 namespace EssentialUIKit.Models.Notification
@@ -9,7 +10,7 @@ namespace EssentialUIKit.Models.Notification
     /// </summary>
     [Preserve(AllMembers = true)]
     [DataContract]
-    public class TaskNotificationsListModel : BaseViewModel
+    public class TaskNotificationsListModel : INotifyPropertyChanged
     {
         #region Field
 
@@ -36,7 +37,7 @@ namespace EssentialUIKit.Models.Notification
         /// </summary>
         [DataMember(Name = "description")]
         public string Description { get; set; }
-
+        
         /// <summary>
         /// Gets or sets the detailed description.
         /// </summary>
@@ -61,9 +62,34 @@ namespace EssentialUIKit.Models.Notification
         [DataMember(Name = "isRead")]
         public bool IsRead
         {
-            get { return this.isRead; }
+            get { return isRead; }
+            set
+            {
+                isRead = value;
+                this.NotifyPropertyChanged();
+            }
+        }
 
-            set { this.SetProperty(ref this.isRead, value); }
+        #endregion
+
+        #region Event handler
+
+        /// <summary>
+        /// Occurs when the property is changed.
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        #endregion
+
+        #region Methods
+
+        /// <summary>
+        /// The PropertyChanged event occurs when changing the value of property.
+        /// </summary>
+        /// <param name="propertyName">The PropertyName</param>
+        protected void NotifyPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         #endregion

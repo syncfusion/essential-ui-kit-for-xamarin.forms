@@ -1,8 +1,5 @@
 using System;
 using System.Collections.ObjectModel;
-using System.Reflection;
-using System.Runtime.Serialization;
-using System.Runtime.Serialization.Json;
 using EssentialUIKit.Models.Chat;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
@@ -13,44 +10,49 @@ namespace EssentialUIKit.ViewModels.Chat
     /// ViewModel for chat message page.
     /// </summary>
     [Preserve(AllMembers = true)]
-    [DataContract]
     public class ChatMessageViewModel : BaseViewModel
     {
         #region Fields
 
-        private static ChatMessageViewModel chatMessageViewModel;
+        /// <summary>
+        /// Stores the message text in an array. 
+        /// </summary>
+        private readonly string[] descriptions = { "Hi, can you tell me the specifications of the Dell Inspiron 5370 laptop?",
+            " * Processor: Intel Core i5-8250U processor " +
+            "\n" + " * OS: Pre-loaded Windows 10 with lifetime validity" +
+            "\n" + " * Display: 13.3-inch FHD (1920 x 1080) LED display" +
+            "\n" + " * Memory: 8GB DDR RAM with Intel UHD 620 Graphics" +
+            "\n" + " * Battery: Lithium battery",
+            "How much battery life does it have with wifi and without?",
+            "Approximately 5 hours with wifi. About 7 hours without.",
+        };
 
-        private string profileName;
+        private string profileName = "Alex Russell";
 
         private string newMessage;
 
-        private string profileImage;
+        private string profileImage = App.BaseImageUrl + "ProfileImage3.png";
 
         private ObservableCollection<ChatMessage> chatMessageInfo = new ObservableCollection<ChatMessage>();
-
-        private Command makeVoiceCall;
-
-        private Command makeVideoCall;
-
-        private Command menuCommand;
-
-        private Command showCamera;
-
-        private Command sendAttachment;
-
-        private Command sendCommand;
-
-        private Command profileCommand;
-
+                
         #endregion
 
         #region Constructor
-
         /// <summary>
         /// Initializes a new instance of the <see cref="ChatMessageViewModel" /> class.
         /// </summary>
         public ChatMessageViewModel()
         {
+            this.MakeVoiceCall = new Command(this.VoiceCallClicked);
+            this.MakeVideoCall = new Command(this.VideoCallClicked);
+            this.MenuCommand = new Command(this.MenuClicked);
+            this.ShowCamera = new Command(this.CameraClicked);
+            this.SendAttachment = new Command(this.AttachmentClicked);
+            this.SendCommand = new Command(this.SendClicked);
+            this.BackCommand = new Command(this.BackButtonClicked);
+            this.ProfileCommand = new Command(this.ProfileClicked);
+
+            this.GenerateMessageInfo();
         }
 
         #endregion
@@ -58,15 +60,8 @@ namespace EssentialUIKit.ViewModels.Chat
         #region Public Properties
 
         /// <summary>
-        /// Gets or sets the value of Chat message view model.
-        /// </summary>
-        public static ChatMessageViewModel BindingContext =>
-            chatMessageViewModel = PopulateData<ChatMessageViewModel>("chat.json");
-
-        /// <summary>
         /// Gets or sets the profile name.
         /// </summary>
-        [DataMember(Name = "profileName")]
         public string ProfileName
         {
             get
@@ -76,31 +71,31 @@ namespace EssentialUIKit.ViewModels.Chat
 
             set
             {
-                this.SetProperty(ref this.profileName, value);
+                this.profileName = value;
+                this.NotifyPropertyChanged();
             }
         }
 
         /// <summary>
         /// Gets or sets the profile image.
         /// </summary>
-        [DataMember(Name = "image")]
         public string ProfileImage
         {
             get
             {
-                return App.ImageServerPath + this.profileImage;
+                return this.profileImage;
             }
 
             set
             {
-                this.SetProperty(ref this.profileImage, value);
+                this.profileImage = value;
+                this.NotifyPropertyChanged();
             }
         }
 
         /// <summary>
         /// Gets or sets a collection of chat messages.
         /// </summary>
-        [DataMember(Name = "chatMessageInfo")]
         public ObservableCollection<ChatMessage> ChatMessageInfo
         {
             get
@@ -110,7 +105,8 @@ namespace EssentialUIKit.ViewModels.Chat
 
             set
             {
-                this.SetProperty(ref this.chatMessageInfo, value);
+                this.chatMessageInfo = value;
+                this.NotifyPropertyChanged();
             }
         }
 
@@ -126,7 +122,8 @@ namespace EssentialUIKit.ViewModels.Chat
 
             set
             {
-                this.SetProperty(ref this.newMessage, value);
+                this.newMessage = value;
+                this.NotifyPropertyChanged();
             }
         }
 
@@ -135,95 +132,86 @@ namespace EssentialUIKit.ViewModels.Chat
         #region Commands
 
         /// <summary>
-        /// Gets the command that is executed when the profile name is clicked.
+        /// Gets or sets the command that is executed when the profile name is clicked.
         /// </summary>
-        public Command ProfileCommand
-        {
-            get { return this.profileCommand ?? (this.profileCommand = new Command(this.ProfileClicked)); }
-        }
+        public Command ProfileCommand { get; set; }
 
         /// <summary>
-        /// Gets the command that is executed when the voice call button is clicked.
+        /// Gets or sets the command that is executed when the voice call button is clicked.
         /// </summary>
-        public Command MakeVoiceCall
-        {
-            get { return this.makeVoiceCall ?? (this.makeVoiceCall = new Command(this.VoiceCallClicked)); }
-        }
+        public Command MakeVoiceCall { get; set; }
 
         /// <summary>
-        /// Gets the command that is executed when the video call button is clicked.
+        /// Gets or sets the command that is executed when the video call button is clicked.
         /// </summary>
-        public Command MakeVideoCall
-        {
-            get { return this.makeVideoCall ?? (this.makeVideoCall = new Command(this.VideoCallClicked)); }
-        }
+        public Command MakeVideoCall { get; set; }
 
         /// <summary>
-        /// Gets the command that is executed when the menu button is clicked.
+        /// Gets or sets the command that is executed when the menu button is clicked.
         /// </summary>
-        public Command MenuCommand
-        {
-            get { return this.menuCommand ?? (this.menuCommand = new Command(this.MenuClicked)); }
-        }
+        public Command MenuCommand { get; set; }
 
         /// <summary>
-        /// Gets the command that is executed when the camera button is clicked.
+        /// Gets or sets the command that is executed when the camera button is clicked.
         /// </summary>
-        public Command ShowCamera
-        {
-            get { return this.showCamera ?? (this.showCamera = new Command(this.CameraClicked)); }
-        }
+        public Command ShowCamera { get; set; }
 
         /// <summary>
-        /// Gets the command that is executed when the attachment button is clicked.
+        /// Gets or sets the command that is executed when the attachment button is clicked.
         /// </summary>
-        public Command SendAttachment
-        {
-            get { return this.sendAttachment ?? (this.sendAttachment = new Command(this.AttachmentClicked)); }
-        }
+        public Command SendAttachment { get; set; }
 
         /// <summary>
-        /// Gets the command that is executed when the send button is clicked.
+        /// Gets or sets the command that is executed when the send button is clicked.
         /// </summary>
-        public Command SendCommand
-        {
-            get { return this.sendCommand ?? (this.sendCommand = new Command(this.SendClicked)); }
-        }
+        public Command SendCommand { get; set; }
+
+        /// <summary>
+        /// Gets or sets the command that is executed when the back button is clicked.
+        /// </summary>
+        public Command BackCommand { get; set; }
 
         #endregion
-
+        
         #region Methods
 
         /// <summary>
-        /// Populates the data for view model from json file.
+        /// Initializes a collection and add it to the message items.
         /// </summary>
-        /// <typeparam name="T">Type of view model.</typeparam>
-        /// <param name="fileName">Json file to fetch data.</param>
-        /// <returns>Returns the view model object.</returns>
-        private static T PopulateData<T>(string fileName)
+        private void GenerateMessageInfo()
         {
-            var file = "EssentialUIKit.Data." + fileName;
-
-            var assembly = typeof(App).GetTypeInfo().Assembly;
-
-            T data;
-
-            using (var stream = assembly.GetManifestResourceStream(file))
+            var currentTime = DateTime.Now;
+            this.ChatMessageInfo = new ObservableCollection<ChatMessage>
             {
-                var serializer = new DataContractJsonSerializer(typeof(T));
-                data = (T)serializer.ReadObject(stream);
-            }
-
-            return data;
-        }
-
-        /// <summary>
-        /// Invoked when the Profile name is clicked.
-        /// </summary>
-        private void ProfileClicked(object obj)
-        {
-            // Do something
-        }
+                new ChatMessage
+                {
+                    Message = this.descriptions[0],
+                    Time = currentTime.AddMinutes(-2517),
+                    IsReceived = true,
+                },
+                new ChatMessage
+                {
+                    Message = this.descriptions[1],
+                    Time = currentTime.AddMinutes(-2408),
+                },
+                new ChatMessage
+                {
+                    ImagePath = App.BaseImageUrl + "Electronics.png",                    
+                    Time = currentTime.AddMinutes(-2405),
+                },
+                new ChatMessage
+                {
+                    Message = this.descriptions[2],
+                    Time = currentTime.AddMinutes(-1103),
+                    IsReceived = true,
+                },
+                new ChatMessage
+                {
+                    Message = this.descriptions[3],
+                    Time = currentTime.AddMinutes(-1006),
+                },
+            };
+        }   
 
         /// <summary>
         /// Invoked when the voice call button is clicked.
@@ -281,11 +269,28 @@ namespace EssentialUIKit.ViewModels.Chat
                 this.ChatMessageInfo.Add(new ChatMessage
                 {
                     Message = this.NewMessage,
-                    Time = DateTime.Now,
+                    Time = DateTime.Now
                 });
             }
 
             this.NewMessage = null;
+        }
+
+        /// <summary>
+        /// Invoked when the back button is clicked.
+        /// </summary>
+        /// <param name="obj">The object</param>
+        private void BackButtonClicked(object obj)
+        {
+            // Do something
+        }
+
+        /// <summary>
+        /// Invoked when the Profile name is clicked.
+        /// </summary>
+        private void ProfileClicked(object obj)
+        {
+            // Do something
         }
 
         #endregion

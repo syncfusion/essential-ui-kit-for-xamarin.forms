@@ -23,7 +23,7 @@
         <StackLayout Padding="{OnIdiom Default='16', Desktop='0,0,0,10'}" Orientation="Horizontal">
 
             <Label
-                FontFamily="Montserrat-SemiBold"
+                FontFamily="{StaticResource Montserrat-SemiBold}"
                 FontSize="16"
                 HorizontalOptions="StartAndExpand"
                 Style="{StaticResource LabelStyle}"
@@ -36,7 +36,7 @@
                 Command="{Binding LoadMoreCommand}"
                 CommandParameter="{x:Reference ShowButton}"
                 CornerRadius="4"
-                FontFamily="Montserrat-SemiBold"
+                FontFamily="{StaticResource Montserrat-SemiBold}"
                 FontSize="{OnIdiom Default=12,
                                    Desktop=14}"
                 HorizontalOptions="End"
@@ -57,7 +57,7 @@
             </buttons:SfButton>
 
         </StackLayout>
-        <BoxView HeightRequest="{OnIdiom Default=1, Desktop=0}" Style="{StaticResource HorizontalSeparatorStyle}" />
+        <BoxView HeightRequest="{OnIdiom Default=1, Desktop=0}" Style="{StaticResource BoxViewStyle}" />
     </StackLayout>
 
     <StackLayout x:Name="StackLayout" BindableLayout.ItemsSource="{Binding ProductDetail.Reviews}">
@@ -109,14 +109,14 @@
 
                                 <!--  Customer Name  -->
                                 <Label
-                                    FontFamily="Montserrat-SemiBold"
+                                    FontFamily="{StaticResource Montserrat-SemiBold}"
                                     Style="{StaticResource LabelStyle}"
                                     Text="{Binding CustomerName}"
                                     TextColor="{DynamicResource Gray-900}" />
 
                                 <!--  Commented Date  -->
                                 <Label
-                                    FontFamily="Montserrat-Regular"
+                                    FontFamily="{StaticResource Montserrat-Regular}"
                                     FontSize="12"
                                     Style="{StaticResource LabelStyle}"
                                     Text="{Binding ReviewedDate}" />
@@ -127,7 +127,7 @@
                                 HorizontalOptions="{OnIdiom Default=FillAndExpand,
                                                             Phone=EndAndExpand}"
                                 RatingSettings="{StaticResource RatingSettings}"
-                                Style="{StaticResource RatingStyle}"
+                                Style="{StaticResource SfRatingStyle}"
                                 VerticalOptions="Start"
                                 Value="{Binding Rating}" />
 
@@ -164,7 +164,7 @@
                             Grid.Row="2"
                             Grid.ColumnSpan="2"
                             Margin="0,0,0,16"
-                            FontFamily="Montserrat-Medium"
+                            FontFamily="{StaticResource Montserrat-Medium}"
                             FontSize="14"
                             LineHeight="{OnPlatform Android=1.25,
                                                     Default=-1}"
@@ -173,7 +173,7 @@
 
                     </Grid>
 
-                    <BoxView HeightRequest="{OnIdiom Default=1, Desktop=0}" Style="{StaticResource HorizontalSeparatorStyle}" />
+                    <BoxView HeightRequest="{OnIdiom Default=1, Desktop=0}" Style="{StaticResource BoxViewStyle}" />
 
                     <StackLayout.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding Path=BindingContext.ItemSelectedCommand, Source={x:Reference StackLayout}}" CommandParameter="{Binding .}" />

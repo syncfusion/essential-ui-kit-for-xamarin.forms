@@ -1,5 +1,4 @@
-﻿using EssentialUIKit.Validators;
-using EssentialUIKit.Validators.Rules;
+﻿using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 
@@ -13,7 +12,7 @@ namespace EssentialUIKit.ViewModels.Forms
     {
         #region Fields
 
-        private ValidatableObject<string> password;
+        private string password;
 
         #endregion
 
@@ -24,8 +23,6 @@ namespace EssentialUIKit.ViewModels.Forms
         /// </summary>
         public LoginPageViewModel()
         {
-            this.InitializeProperties();
-            this.AddValidationRules();
             this.LoginCommand = new Command(this.LoginClicked);
             this.SignUpCommand = new Command(this.SignUpClicked);
             this.ForgotPasswordCommand = new Command(this.ForgotPasswordClicked);
@@ -39,7 +36,7 @@ namespace EssentialUIKit.ViewModels.Forms
         /// <summary>
         /// Gets or sets the property that is bound with an entry that gets the password from user in the login page.
         /// </summary>
-        public ValidatableObject<string> Password
+        public string Password
         {
             get
             {
@@ -53,7 +50,8 @@ namespace EssentialUIKit.ViewModels.Forms
                     return;
                 }
 
-                this.SetProperty(ref this.password, value);
+                this.password = value;
+                this.NotifyPropertyChanged();
             }
         }
 
@@ -86,42 +84,12 @@ namespace EssentialUIKit.ViewModels.Forms
         #region methods
 
         /// <summary>
-        /// Check the password is null or empty
-        /// </summary>
-        /// <returns>Returns the fields are valid or not</returns>
-        public bool AreFieldsValid()
-        {
-            bool isEmailValid = this.Email.Validate();
-            bool isPasswordValid = this.Password.Validate();
-            return isEmailValid && isPasswordValid;
-        }
-
-        /// <summary>
-        /// Initializing the properties.
-        /// </summary>
-        private void InitializeProperties()
-        {
-            this.Password = new ValidatableObject<string>();
-        }
-
-        /// <summary>
-        /// Validation rule for password
-        /// </summary>
-        private void AddValidationRules()
-        {
-            this.Password.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = "Password Required" });
-        }
-
-        /// <summary>
         /// Invoked when the Log In button is clicked.
         /// </summary>
         /// <param name="obj">The Object</param>
         private void LoginClicked(object obj)
         {
-            if (this.AreFieldsValid())
-            {
-                // Do Something
-            }
+            // Do something
         }
 
         /// <summary>
@@ -130,16 +98,19 @@ namespace EssentialUIKit.ViewModels.Forms
         /// <param name="obj">The Object</param>
         private void SignUpClicked(object obj)
         {
-            // Do Something
+            // Do something
         }
 
         /// <summary>
         /// Invoked when the Forgot Password button is clicked.
         /// </summary>
         /// <param name="obj">The Object</param>
-        private void ForgotPasswordClicked(object obj)
+        private async void ForgotPasswordClicked(object obj)
         {
-            // Do something
+            var label = obj as Label;
+            label.BackgroundColor = Color.FromHex("#70FFFFFF");
+            await Task.Delay(100);
+            label.BackgroundColor = Color.Transparent;
         }
 
         /// <summary>

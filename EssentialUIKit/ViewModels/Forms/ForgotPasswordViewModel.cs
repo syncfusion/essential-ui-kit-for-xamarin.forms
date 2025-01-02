@@ -44,10 +44,7 @@ namespace EssentialUIKit.ViewModels.Forms
         /// <param name="obj">The Object</param>
         private void SendClicked(object obj)
         {
-            if (this.IsEmailFieldValid())
-            {
-                // Do something
-            }
+            // Do something
         }
 
         /// <summary>

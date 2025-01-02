@@ -47,7 +47,7 @@
                         Grid.Column="0"
                         Grid.ColumnSpan="2"
                         templateSelector:RTLHelper.Margin="42,0,0,0"
-                        FontFamily="Montserrat-Medium"
+                        FontFamily="{StaticResource Montserrat-Medium}"
                         FontSize="12"
                         HorizontalOptions="StartAndExpand"
                         Text="{Binding CardNumber}"
@@ -62,7 +62,7 @@
                         BorderColor="{DynamicResource Gray-300}"
                         CornerRadius="4">
                         <control:BorderlessEntry
-                            FontFamily="Montserrat-Regular"
+                            FontFamily="{StaticResource Montserrat-Regular}"
                             FontSize="16"
                             HeightRequest="{OnPlatform Default=40,
                                                        iOS=-1}"
@@ -96,7 +96,7 @@
                         Grid.Row="3"
                         Grid.ColumnSpan="2"
                         HeightRequest="1"
-                        Style="{StaticResource HorizontalSeparatorStyle}"
+                        Style="{StaticResource BoxViewStyle}"
                         VerticalOptions="End" />
 
                     <Grid.GestureRecognizers>
@@ -127,7 +127,7 @@
                     <BoxView
                         Grid.Row="1"
                         HeightRequest="1"
-                        Style="{StaticResource HorizontalSeparatorStyle}"
+                        Style="{StaticResource BoxViewStyle}"
                         VerticalOptions="End" />
 
                     <Grid.GestureRecognizers>
@@ -147,7 +147,7 @@
         <!--  Header  -->
         <Label
             Margin="16"
-            FontFamily="Montserrat-SemiBold"
+            FontFamily="{StaticResource Montserrat-SemiBold}"
             FontSize="16"
             LineHeight="{OnPlatform Android=1.25,
                                     Default=-1}"
@@ -156,7 +156,7 @@
             TextColor="{DynamicResource Gray-900}" />
 
         <!--  Separator  -->
-        <BoxView HeightRequest="1" Style="{StaticResource HorizontalSeparatorStyle}" />
+        <BoxView HeightRequest="1" Style="{StaticResource BoxViewStyle}" />
 
         <!--  Payment modes  -->
         <buttons:SfRadioGroup BindableLayout.ItemsSource="{Binding PaymentModes}" Spacing="0">

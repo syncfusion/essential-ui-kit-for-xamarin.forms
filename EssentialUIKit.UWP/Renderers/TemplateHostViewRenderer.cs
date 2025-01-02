@@ -20,7 +20,7 @@ namespace EssentialUIKit.UWP
         protected override void OnElementChanged(ElementChangedEventArgs<TemplateHostView> e)
         {
             base.OnElementChanged(e);
-            var pageView = e?.NewElement as TemplateHostView;
+            var pageView = e.NewElement as TemplateHostView;
 
             if (pageView != null)
             {

@@ -16,7 +16,7 @@ namespace EssentialUIKit.Views.Catalog
         /// </summary>
         public CatalogListPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
             this.BindingContext = CatalogDataService.Instance.CatalogPageViewModel;
         }
     }

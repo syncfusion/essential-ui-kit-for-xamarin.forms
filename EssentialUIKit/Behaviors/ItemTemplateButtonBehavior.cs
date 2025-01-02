@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Syncfusion.ListView.XForms;
+using Syncfusion.XForms.Buttons;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Syncfusion.ListView.XForms;
-using Syncfusion.XForms.Buttons;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 
@@ -26,19 +26,19 @@ namespace EssentialUIKit.Behaviors
         /// <summary>
         /// Bindable property to set the CommandParameterProperty, and it is a bindable property..
         /// </summary>
-        public static readonly BindableProperty CommandParameterProperty =
+        public static BindableProperty CommandParameterProperty =
          BindableProperty.Create(nameof(CommandParameter), typeof(object), typeof(ItemTemplateButtonBehavior));
 
         /// <summary>
         /// Bindable property to set the ParentEelementProperty, and it is a bindable property..
         /// </summary>
-        public static readonly BindableProperty ChildElementProperty =
+        public static BindableProperty ChildElementProperty =
          BindableProperty.Create(nameof(ChildElement), typeof(object), typeof(ItemTemplateButtonBehavior));
 
         /// <summary>
         /// Bindable property to set the ChildEelementProperty, and it is a bindable property..
         /// </summary>
-        public static readonly BindableProperty ParentElementProperty =
+        public static BindableProperty ParentElementProperty =
          BindableProperty.Create(nameof(ParentElement), typeof(object), typeof(ItemTemplateButtonBehavior));
 
         /// <summary>
@@ -60,7 +60,7 @@ namespace EssentialUIKit.Behaviors
         /// </summary>
         public ICommand Command
         {
-            get { return (ICommand)this.GetValue(CommandProperty); }
+            get { return (ICommand)GetValue(CommandProperty); }
             set { this.SetValue(CommandProperty, value); }
         }
 
@@ -69,7 +69,7 @@ namespace EssentialUIKit.Behaviors
         /// </summary>
         public object CommandParameter
         {
-            get { return this.GetValue(CommandParameterProperty); }
+            get { return GetValue(CommandParameterProperty); }
             set { this.SetValue(CommandParameterProperty, value); }
         }
 
@@ -78,7 +78,7 @@ namespace EssentialUIKit.Behaviors
         /// </summary>
         public object ParentElement
         {
-            get { return this.GetValue(ParentElementProperty); }
+            get { return GetValue(ParentElementProperty); }
             set { this.SetValue(ParentElementProperty, value); }
         }
 
@@ -87,7 +87,7 @@ namespace EssentialUIKit.Behaviors
         /// </summary>
         public object ChildElement
         {
-            get { return this.GetValue(ChildElementProperty); }
+            get { return GetValue(ChildElementProperty); }
             set { this.SetValue(ChildElementProperty, value); }
         }
 
@@ -98,85 +98,79 @@ namespace EssentialUIKit.Behaviors
         /// <summary>
         /// Invoked when adding sfbutton to view.
         /// </summary>
-        /// <param name="button">The button</param>
+        /// <param name="comboBox">The ComboBox</param>
         protected override void OnAttachedTo(SfButton button)
         {
             if (button != null)
             {
                 base.OnAttachedTo(button);
-                button.Clicked += this.Button_Clicked;
+                button.Clicked += Button_Clicked;
             }
         }
-
         /// <summary>
         /// Invoked when exit from the view.
         /// </summary>
-        /// <param name="button">The button</param>
+        /// <param name="comboBox">The comboBox</param>
         protected override void OnDetachingFrom(SfButton button)
         {
             if (button != null)
             {
                 base.OnDetachingFrom(button);
-                button.Clicked -= this.Button_Clicked;
+                button.Clicked -= Button_Clicked;
             }
         }
 
         /// <summary>
         /// Invoked when button is clicked.
         /// </summary>
-        /// <param name="sender">The sender</param>
+        /// <param name="comboBox">The comboBox</param>
         private async void Button_Clicked(object sender, EventArgs e)
         {
-            SfButton button = sender as SfButton;
-
+            SfButton sfButton = sender as SfButton;
+           
             // Animate the item when remove from list.
-            if (this.ParentElement != null && this.ChildElement != null)
+            if (ParentElement != null && ChildElement != null)
             {
                 StackLayout mainStack = null;
                 SfListView mainListview = null;
-                var selectedElement = this.ChildElement as Grid;
-                if (this.ParentElement is StackLayout)
+                var selectedElement = ChildElement as Grid;
+                if (ParentElement is StackLayout)
                 {
-                    mainStack = this.ParentElement as StackLayout;
-                    this.selectedIndex = mainStack.Children.IndexOf(selectedElement);
-                    this.childrenCount = mainStack.Children.Count;
+                    mainStack = ParentElement as StackLayout; 
+                    selectedIndex = mainStack.Children.IndexOf(selectedElement);
+                    childrenCount = mainStack.Children.Count;
                 }
-                else if (this.ParentElement is SfListView)
+                else if (ParentElement is SfListView)
                 {
-                    mainListview = this.ParentElement as SfListView;
-                    this.selectedIndex = mainListview.Children.IndexOf(selectedElement);
-                    this.childrenCount = mainListview.Children.Count;
+                    mainListview = ParentElement as SfListView;
+                    selectedIndex = mainListview.Children.IndexOf(selectedElement);
+                    childrenCount = mainListview.Children.Count;
                 }
-
                 if (mainStack != null || mainListview != null)
                 {
-                    await selectedElement.TranslateTo(-100, 0, 200).ConfigureAwait(true);
-                    await selectedElement.FadeTo(0, 20).ConfigureAwait(true);
+                    await selectedElement.TranslateTo(-100, 0, 100);
+                    await selectedElement.FadeTo(0, 20);
 
                     List<Task> animations = new List<Task>();
 
-                    for (int i = this.selectedIndex + 1; i < this.childrenCount; i++)
+                    for (int i = selectedIndex + 1; i < childrenCount; i++)
                     {
                         VisualElement elementToMove;
-                        elementToMove = mainStack == null ? mainListview.Children[i] : mainStack.Children[i];
+                        elementToMove = mainStack == null? mainListview.Children[i] : mainStack.Children[i];
                         var boundsToMoveTo = elementToMove.Bounds;
                         boundsToMoveTo.Top -= selectedElement.Height;
                         animations.Add(elementToMove.LayoutTo(boundsToMoveTo, 200, Easing.Linear));
                     }
-
-                    await selectedElement.FadeTo(0, 20).ConfigureAwait(true);
-                    await Task.WhenAll(animations).ConfigureAwait(true);
+                    await selectedElement.FadeTo(0, 20);
+                    await Task.WhenAll(animations);
                 }
             }
 
             if (this.Command == null)
-            {
                 return;
-            }
-
-            this.Command.Execute(button.CommandParameter);
+            this.Command.Execute(sfButton.CommandParameter);
         }
-
+        
         #endregion
     }
 }

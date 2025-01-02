@@ -3,46 +3,50 @@
     x:Class="EssentialUIKit.Views.Forms.EmailEntry"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:behaviour="clr-namespace:EssentialUIKit.Behaviors.Forms"
     xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
     xmlns:control="clr-namespace:EssentialUIKit.Controls"
     xmlns:converter="clr-namespace:EssentialUIKit.Converters">
 
     <ContentView.Resources>
         <ResourceDictionary>
-            <converter:InverseBoolConverter x:Key="InverseBoolConverter" />
-            <converter:NameValidationConverter x:Key="FirstValidationErrorConverter" />
-            <converter:BooleanToColorConverter x:Key="ColorConverter" />
+            <converter:StringToBooleanConverter x:Key="StringToBooleanConverter" />
+            <converter:ErrorValidationColorConverter x:Key="ErrorValidationColorConverter" PageVariantParameter="0" />
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </ContentView.Resources>
 
     <ContentView.Content>
         <StackLayout>
-            <border:SfBorder BorderColor="{Binding Path=IsFocused, Source={x:Reference Email}, Converter={x:StaticResource ColorConverter}, ConverterParameter=0}" Style="{StaticResource LoginFormBorderlessEntryBorderStyle}">
-
-                <Grid ColumnDefinitions="*, Auto">
+            <border:SfBorder BorderColor="{Binding Path=IsFocused, 
+                Source={x:Reference Email}, 
+                Converter={x:StaticResource ErrorValidationColorConverter}, 
+                ConverterParameter={x:Reference Email}}" 
+                             Style="{StaticResource SfBorderStyle}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
 
                     <control:BorderlessEntry
                         x:Name="Email"
-                        Margin="15,0"
-                        HeightRequest="40"
-                        Keyboard="Email"
-                        Placeholder="Email"
-                        PlaceholderColor="{StaticResource EntryPlaceholderColor}"
-                        Style="{StaticResource BorderlessEntryStyle}"
-                        Text="{Binding Email.Value}"
-                        TextColor="{StaticResource Gray-White}">
-                        <Entry.Behaviors>
-                            <behaviour:EntryLineValidationBehaviour IsValid="{Binding Email.IsValid}" />
-                        </Entry.Behaviors>
-
-                    </control:BorderlessEntry>
+                        Placeholder="Email" Keyboard="Email"
+                        Style="{StaticResource EntryStyle}"
+                        Text="{Binding Email}" />
 
                     <Label
-                        Grid.Column="1"
+                        Margin="15,0"
+                        FontFamily="{StaticResource FontIcons}"
+                        FontSize="18"
+                        HorizontalOptions="EndAndExpand"
+                        HorizontalTextAlignment="End"
                         IsVisible="{Binding Path=IsVisible, Source={x:Reference ValidationLabel}}"
-                        Style="{StaticResource ErrorIconLabelStyle}"
-                        Text="{StaticResource Error}" />
+                        Text="&#xe707;"
+                        TextColor="{DynamicResource Red}"
+                        VerticalOptions="Center" />
+
 
                 </Grid>
             </border:SfBorder>
@@ -51,9 +55,11 @@
                 x:Name="ValidationLabel"
                 Margin="15,-5,0,0"
                 FontSize="12"
-                IsVisible="{Binding Email.IsValid, Converter={StaticResource InverseBoolConverter}}"
-                Style="{StaticResource SimpleLabelStyle}"
-                Text="{Binding Email.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                IsVisible="{Binding Path=IsFocused, 
+                Source={x:Reference Email}, 
+                Converter={StaticResource StringToBooleanConverter}, 
+                ConverterParameter={x:Reference Email}}"
+                Text="Please enter the valid e-mail"
                 TextColor="{DynamicResource Red}"
                 VerticalOptions="FillAndExpand" />
 

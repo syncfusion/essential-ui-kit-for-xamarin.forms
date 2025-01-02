@@ -1,4 +1,7 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using EssentialUIKit.Models.Dashboard;
 using Xamarin.Forms.Internals;
 
 namespace EssentialUIKit.Models.Dashboard
@@ -14,7 +17,7 @@ namespace EssentialUIKit.Models.Dashboard
         /// <summary>
         /// To store the button checkable status.
         /// </summary>
-        private bool isSelected;
+        private bool enableButton = false;
 
         #endregion
 
@@ -26,6 +29,7 @@ namespace EssentialUIKit.Models.Dashboard
         public event PropertyChangedEventHandler PropertyChanged;
 
         #endregion
+
 
         #region Property
 
@@ -39,17 +43,13 @@ namespace EssentialUIKit.Models.Dashboard
         /// </summary>
         public string Icon { get; set; }
 
-        public bool IsSelected
+        public bool EnableButton
         {
-            get 
-            { 
-                return this.isSelected; 
-            }
-
+            get { return enableButton; }
             set
             {
-                this.isSelected = value;
-                this.OnPropertyChanged("IsSelected");
+                enableButton = value;
+                this.OnPropertyChanged("EnableButton");
             }
         }
 
@@ -60,12 +60,14 @@ namespace EssentialUIKit.Models.Dashboard
         /// <summary>
         /// The PropertyChanged event occurs when changing the value of property.
         /// </summary>
-        /// <param name="property">Property name</param>
+        /// <param name="propertyName">Property name</param>
         protected void OnPropertyChanged(string property)
         {
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
         }
 
         #endregion
+
+
     }
 }

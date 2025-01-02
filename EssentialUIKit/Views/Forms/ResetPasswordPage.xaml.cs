@@ -15,7 +15,7 @@ namespace EssentialUIKit.Views.Forms
         /// </summary>
         public ResetPasswordPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
     }
 }

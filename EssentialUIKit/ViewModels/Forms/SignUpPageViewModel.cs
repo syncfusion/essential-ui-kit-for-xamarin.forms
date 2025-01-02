@@ -1,6 +1,4 @@
-﻿using EssentialUIKit.Validators;
-using EssentialUIKit.Validators.Rules;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 
 namespace EssentialUIKit.ViewModels.Forms
@@ -13,9 +11,11 @@ namespace EssentialUIKit.ViewModels.Forms
     {
         #region Fields
 
-        private ValidatableObject<string> name;
+        private string name;
 
-        private ValidatablePair<string> password;
+        private string password;
+
+        private string confirmPassword;
 
         #endregion
 
@@ -26,11 +26,10 @@ namespace EssentialUIKit.ViewModels.Forms
         /// </summary>
         public SignUpPageViewModel()
         {
-            this.InitializeProperties();
-            this.AddValidationRules();
             this.LoginCommand = new Command(this.LoginClicked);
             this.SignUpCommand = new Command(this.SignUpClicked);
         }
+
         #endregion
 
         #region Property
@@ -38,7 +37,7 @@ namespace EssentialUIKit.ViewModels.Forms
         /// <summary>
         /// Gets or sets the property that bounds with an entry that gets the name from user in the Sign Up page.
         /// </summary>
-        public ValidatableObject<string> Name
+        public string Name
         {
             get
             {
@@ -52,14 +51,15 @@ namespace EssentialUIKit.ViewModels.Forms
                     return;
                 }
 
-                this.SetProperty(ref this.name, value);
+                this.name = value;
+                this.NotifyPropertyChanged();
             }
         }
 
         /// <summary>
         /// Gets or sets the property that bounds with an entry that gets the password from users in the Sign Up page.
         /// </summary>
-        public ValidatablePair<string> Password
+        public string Password
         {
             get
             {
@@ -73,9 +73,33 @@ namespace EssentialUIKit.ViewModels.Forms
                     return;
                 }
 
-                this.SetProperty(ref this.password, value);
+                this.password = value;
+                this.NotifyPropertyChanged();
             }
         }
+
+        /// <summary>
+        /// Gets or sets the property that bounds with an entry that gets the password confirmation from users in the Sign Up page.
+        /// </summary>
+        public string ConfirmPassword
+        {
+            get
+            {
+                return this.confirmPassword;
+            }
+
+            set
+            {
+                if (this.confirmPassword == value)
+                {
+                    return;
+                }
+
+                this.confirmPassword = value;
+                this.NotifyPropertyChanged();
+            }
+        }
+
         #endregion
 
         #region Command
@@ -89,40 +113,10 @@ namespace EssentialUIKit.ViewModels.Forms
         /// Gets or sets the command that is executed when the Sign Up button is clicked.
         /// </summary>
         public Command SignUpCommand { get; set; }
+
         #endregion
 
         #region Methods
-
-        /// <summary>
-        /// Initialize whether fieldsvalue are true or false.
-        /// </summary>
-        /// <returns>true or false </returns>
-        public bool AreFieldsValid()
-        {
-            bool isEmail = this.Email.Validate();
-            bool isNameValid = this.Name.Validate();
-            bool isPasswordValid = this.Password.Validate();
-            return isPasswordValid && isNameValid && isEmail;
-        }
-
-        /// <summary>
-        /// Initializing the properties.
-        /// </summary>
-        private void InitializeProperties()
-        {
-            this.Name = new ValidatableObject<string>();
-            this.Password = new ValidatablePair<string>();
-        }
-
-        /// <summary>
-        /// this method contains the validation rules
-        /// </summary>
-        private void AddValidationRules()
-        {
-            this.Name.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = "Name Required" });
-            this.Password.Item1.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = "Password Required" });
-            this.Password.Item2.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = "Re-enter Password" });
-        }
 
         /// <summary>
         /// Invoked when the Log in button is clicked.
@@ -139,10 +133,7 @@ namespace EssentialUIKit.ViewModels.Forms
         /// <param name="obj">The Object</param>
         private void SignUpClicked(object obj)
         {
-            if (this.AreFieldsValid())
-            {
-                // Do something
-            }
+            // Do something
         }
 
         #endregion

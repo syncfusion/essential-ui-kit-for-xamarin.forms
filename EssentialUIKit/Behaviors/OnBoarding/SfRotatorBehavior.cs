@@ -26,11 +26,68 @@ namespace EssentialUIKit.Behaviors.OnBoarding
         #region Methods
 
         /// <summary>
+        /// Invoke when initialize animate to view.
+        /// </summary>
+        /// <param name="rotator">The SfRotator</param>
+        /// <param name="selectedIndex">Selected Index</param>
+        public void Animation(SfRotator rotator, double selectedIndex)
+        {
+            if ( rotator != null && rotator.ItemsSource != null && rotator.ItemsSource.Count() > 0 )
+            {
+                int itemsCount = rotator.ItemsSource.Count();
+                int.TryParse(selectedIndex.ToString(CultureInfo.CurrentCulture), out int index);
+
+                var viewModel = rotator.BindingContext as OnBoardingAnimationViewModel;
+                if ( selectedIndex == itemsCount - 1 )
+                {
+                    viewModel.NextButtonText = "DONE";
+                    viewModel.IsSkipButtonVisible = false;
+                }
+                else
+                {
+                    viewModel.NextButtonText = "NEXT";
+                    viewModel.IsSkipButtonVisible = true;
+                }
+
+                if ( Device.RuntimePlatform != Device.UWP )
+                {
+                    var items = ( rotator.ItemsSource as IEnumerable<object> ).ToList();
+
+                    // Start animation to selected view.
+                    var currentItem = items[index];
+                    var childElement = ( ( ( currentItem as Boarding ).RotatorItem as ContentView ).Children[0] as StackLayout ).Children.ToList();
+                    if ( childElement != null && childElement.Count > 0 )
+                    {
+                        this.StartAnimation(childElement, currentItem as Boarding);
+                    }
+
+                    // Set default value to previous view.
+                    if ( index != this.previousIndex )
+                    {
+                        var previousItem = items[this.previousIndex];
+                        var previousChildElement = ( ( ( previousItem as Boarding ).RotatorItem as ContentView ).Children[0] as StackLayout ).Children.ToList();
+                        if ( previousChildElement != null && previousChildElement.Count > 0 )
+                        {
+                            previousChildElement[0].FadeTo(0, 250);
+                            previousChildElement[1].FadeTo(0, 250);
+                            previousChildElement[1].TranslateTo(0, 60, 250);
+                            previousChildElement[1].ScaleTo(1, 0);
+                            previousChildElement[2].FadeTo(0, 250);
+                            previousChildElement[2].TranslateTo(0, 60, 250);
+                        }
+                    }
+
+                    this.previousIndex = index;
+                }
+            }
+        }
+
+        /// <summary>
         /// Animation start to view.
         /// </summary>
         /// <param name="childElement">The Child Element</param>
         /// <param name="item">The Item</param>
-        public static async void StartAnimation(List<View> childElement, Boarding item)
+        public async void StartAnimation(List<View> childElement, Boarding item)
         {
             if (childElement != null && item != null)
             {
@@ -44,69 +101,9 @@ namespace EssentialUIKit.Behaviors.OnBoarding
                 var animation = new Animation();
                 var scaleDownAnimation = new Animation(v => childElement[0].Scale = v, 0.5, 1, Easing.SinIn);
                 animation.Add(0, 1, scaleDownAnimation);
-                animation.Commit((item as Boarding).RotatorView as ContentView, "animation", 16, 500);
+                animation.Commit((item as Boarding).RotatorItem as ContentView, "animation", 16, 500);
 
-                await Task.WhenAll(fadeAnimationTaskDescriptionTime, fadeAnimationtaskTitleTime, translateAnimation, scaleAnimationTitle, translateDescriptionAnimation).ConfigureAwait(true);
-            }
-        }
-
-        /// <summary>
-        /// Invoke when initialize animate to view.
-        /// </summary>
-        /// <param name="rotator">The SfRotator</param>
-        /// <param name="selectedIndex">Selected Index</param>
-        public void Animation(SfRotator rotator, double selectedIndex)
-        {
-            if (rotator != null && rotator.ItemsSource != null && rotator.ItemsSource.Any())
-            {
-                int itemsCount = rotator.ItemsSource.Count();
-                if (int.TryParse(selectedIndex.ToString(CultureInfo.CurrentCulture), out int index))
-                {
-                    // Do Nothing
-                }
-
-                var viewModel = rotator.BindingContext as OnBoardingAnimationViewModel;
-                if (selectedIndex == itemsCount - 1)
-                {
-                    viewModel.NextButtonText = "DONE";
-                    viewModel.IsSkipButtonVisible = false;
-                }
-                else
-                {
-                    viewModel.NextButtonText = "NEXT";
-                    viewModel.IsSkipButtonVisible = true;
-                }
-
-                if (Device.RuntimePlatform != Device.UWP)
-                {
-                    var items = (rotator.ItemsSource as IEnumerable<object>).ToList();
-
-                    // Start animation to selected view.
-                    var currentItem = items[index];
-                    var childElement = (((currentItem as Boarding).RotatorView as ContentView).Children[0] as StackLayout).Children.ToList();
-                    if (childElement != null && childElement.Count > 0)
-                    {
-                        StartAnimation(childElement, currentItem as Boarding);
-                    }
-
-                    // Set default value to previous view.
-                    if (index != this.previousIndex)
-                    {
-                        var previousItem = items[this.previousIndex];
-                        var previousChildElement = (((previousItem as Boarding).RotatorView as ContentView).Children[0] as StackLayout).Children.ToList();
-                        if (previousChildElement != null && previousChildElement.Count > 0)
-                        {
-                            previousChildElement[0].FadeTo(0, 250);
-                            previousChildElement[1].FadeTo(0, 250);
-                            previousChildElement[1].TranslateTo(0, 60, 250);
-                            previousChildElement[1].ScaleTo(1, 0);
-                            previousChildElement[2].FadeTo(0, 250);
-                            previousChildElement[2].TranslateTo(0, 60, 250);
-                        }
-                    }
-
-                    this.previousIndex = index;
-                }
+                await Task.WhenAll(fadeAnimationTaskDescriptionTime, fadeAnimationtaskTitleTime, translateAnimation, scaleAnimationTitle, translateDescriptionAnimation);
             }
         }
 
@@ -127,7 +124,7 @@ namespace EssentialUIKit.Behaviors.OnBoarding
         /// <summary>
         /// Invoke when exit from the view.
         /// </summary>
-        /// <param name="rotator">The Rotator</param>
+        /// <param name="rotator"></param>
         protected override void OnDetachingFrom(SfRotator rotator)
         {
             if (rotator != null)
@@ -145,7 +142,7 @@ namespace EssentialUIKit.Behaviors.OnBoarding
         /// <param name="e">The event args</param>
         private void Rotator_BindingContextChanged(object sender, EventArgs e)
         {
-            Task.Delay(500).ContinueWith(t => this.Animation(sender as SfRotator, 0), TaskScheduler.Current);
+            Task.Delay(500).ContinueWith(t => this.Animation(sender as SfRotator, 0));
         }
 
         /// <summary>
@@ -157,7 +154,7 @@ namespace EssentialUIKit.Behaviors.OnBoarding
         {
             SfRotator rotator = sender as SfRotator;
             this.Animation(rotator, e.Index);
-        }
+        }        
     }
 
     #endregion

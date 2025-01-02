@@ -3,7 +3,6 @@
     x:Class="EssentialUIKit.Views.Templates.ProductListTemplate"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
     xmlns:converter="clr-namespace:EssentialUIKit.Converters"
     xmlns:helper="clr-namespace:EssentialUIKit.Helpers"
     xmlns:rating="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms"
@@ -11,29 +10,38 @@
 
     <Grid.Resources>
         <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
             <converter:BooleanToStringConverter x:Key="boolToStringConverter" />
             <converter:BooleanToColorConverter x:Key="boolToColorConverter" />
         </ResourceDictionary>
     </Grid.Resources>
 
     <Grid
-        Margin="0"
+        Margin="0,0,0,8"
         ColumnSpacing="0"
         HorizontalOptions="FillAndExpand"
-        RowDefinitions="Auto, Auto, Auto, Auto"
         RowSpacing="0"
         VerticalOptions="FillAndExpand">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="{OnIdiom Default=Auto, Desktop=0.2*}" />
             <ColumnDefinition Width="{OnIdiom Default=*, Desktop=*}" />
-            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="32" />
         </Grid.ColumnDefinitions>
 
         <!--  Product Image  -->
         <Image
             Grid.RowSpan="4"
-            Margin="16,0"
+            Margin="8,0,16,0"
             Aspect="Fill"
             BackgroundColor="{DynamicResource Gray-F0}"
             HeightRequest="{OnIdiom Default=150,
@@ -52,40 +60,39 @@
         <Label
             Grid.Column="1"
             Margin="0,0,0,8"
-            FontSize="14"
-            HorizontalOptions="Start"
+            FontFamily="{StaticResource Montserrat-SemiBold}"
             LineBreakMode="TailTruncation"
             MaxLines="1"
-            Style="{StaticResource TitleLabelStyle}"
+            Style="{StaticResource LabelStyle}"
             Text="{Binding Name}"
-            VerticalOptions="Center" />
+            TextColor="{DynamicResource Gray-900}" />
 
         <!--  Favourite Icon  -->
-        <buttons:SfButton
+        <Button
             Grid.Column="2"
             Margin="0,0,0,8"
             Padding="0"
-            helper:RTLHelper.Margin="{OnIdiom Phone='0,0,8,0',
+            helper:RTLHelper.Margin="{OnIdiom Phone='0,0,0,0',
                                               Tablet='0,0,4,0',
                                               Desktop='0,0,8,0'}"
             Command="{Binding ParentBindingContext.AddFavouriteCommand, Source={x:Reference productListTemplate}}"
             CommandParameter="{Binding}"
-            HeightRequest="-1"
-            Style="{StaticResource IconButtonStyle}"
+            Style="{StaticResource FavouriteButtonStyle}"
             Text="{Binding IsFavourite, Converter={StaticResource boolToStringConverter}, ConverterParameter=1}"
-            TextColor="{Binding IsFavourite, Converter={x:StaticResource boolToColorConverter}, ConverterParameter=4}"
-            WidthRequest="-1" />
+            TextColor="{Binding IsFavourite, Converter={x:StaticResource boolToColorConverter}, ConverterParameter=4}" />
 
         <!--  Product Description  -->
         <Label
             Grid.Row="1"
             Grid.Column="1"
             Margin="0,0,0,8"
+            FontFamily="{StaticResource Montserrat-Medium}"
+            FontSize="12"
             LineBreakMode="TailTruncation"
             LineHeight="{OnPlatform Android=1.25,
                                     Default=-1}"
             MaxLines="2"
-            Style="{StaticResource SimpleLabelStyle}"
+            Style="{StaticResource LabelStyle}"
             Text="{Binding Summary}" />
 
         <StackLayout
@@ -97,19 +104,27 @@
 
             <!--  Product Price  -->
             <Label
-                FontFamily="Montserrat-SemiBold"
+                FontFamily="{StaticResource Montserrat-SemiBold}"
                 FontSize="20"
+                HorizontalOptions="Start"
                 LineHeight="{OnPlatform Android=1.25,
                                         Default=-1}"
-                Style="{StaticResource SimpleLabelStyle}"
+                Style="{StaticResource LabelStyle}"
                 Text="{Binding DiscountPrice, StringFormat='${0:0 }'}"
-                TextColor="{DynamicResource PrimaryColor}" />
+                TextColor="{DynamicResource PrimaryColor}"
+                VerticalOptions="CenterAndExpand"
+                VerticalTextAlignment="Center" />
 
             <Label
                 Margin="0,6,0,6"
-                Style="{StaticResource SimpleLabelStyle}"
+                FontFamily="{StaticResource Montserrat-Medium}"
+                FontSize="12"
+                HorizontalOptions="Start"
+                Style="{StaticResource LabelStyle}"
                 Text="{Binding ActualPrice, StringFormat='${0:0.00}'}"
-                TextDecorations="Strikethrough" />
+                TextDecorations="Strikethrough"
+                VerticalOptions="Center"
+                VerticalTextAlignment="Center" />
 
         </StackLayout>
 
@@ -117,10 +132,8 @@
         <rating:SfRating
             Grid.Row="3"
             Grid.Column="1"
-            ItemSize="13"
-            ItemSpacing="1"
-            RatingSettings="{StaticResource CommonRatingSettings}"
-            Style="{StaticResource RatingStyle}"
+            RatingSettings="{StaticResource RatingSettings}"
+            Style="{StaticResource SfRatingStyle}"
             Value="{Binding OverallRating}" />
     </Grid>
 </Grid>

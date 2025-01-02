@@ -1,5 +1,4 @@
-﻿using EssentialUIKit.ViewModels.About;
-using Xamarin.Forms.Internals;
+﻿using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
 
 namespace EssentialUIKit.Views.AboutUs
@@ -16,8 +15,7 @@ namespace EssentialUIKit.Views.AboutUs
         /// </summary>
         public AboutUsSimplePage()
         {
-            this.InitializeComponent();
-            this.BindingContext = AboutUsViewModel.BindingContext;
+            InitializeComponent();
         }
     }
 }

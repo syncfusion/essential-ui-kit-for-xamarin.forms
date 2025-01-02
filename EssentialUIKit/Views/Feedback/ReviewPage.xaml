@@ -3,7 +3,6 @@
     x:Class="EssentialUIKit.Views.Feedback.ReviewPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
     xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
     xmlns:control="clr-namespace:EssentialUIKit.Controls"
     xmlns:rating="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms"
@@ -11,38 +10,50 @@
     BackgroundColor="{DynamicResource Gray-100}"
     NavigationPage.HasNavigationBar="False">
 
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
     <!--  Binding Context for OverAllFeedback Page  -->
     <ContentPage.BindingContext>
         <viewModel:ReviewPageViewModel />
     </ContentPage.BindingContext>
 
     <ContentPage.Content>
-        <ScrollView x:Name="reviewPage">
+        <ScrollView>
 
             <StackLayout Spacing="16">
 
-                <StackLayout BackgroundColor="{StaticResource Gray-Bg}">
+                <StackLayout Padding="16" BackgroundColor="{StaticResource Gray-White}">
 
-                    <control:TitleView Title="Write a Review" Grid.Row="0">
-                        <control:TitleView.LeadingView>
-                            <buttons:SfButton
-                                x:Name="backButton"
-                                Command="{Binding BindingContext.BackButtonCommand, Source={x:Reference backButton}}"
-                                CommandParameter="{x:Reference backButton}"
-                                Style="{StaticResource IconButtonStyle}"
-                                Text="{StaticResource Back}" />
-                        </control:TitleView.LeadingView>
-                    </control:TitleView>
+                    <!--  Title  -->
+                    <Label
+                        FontFamily="{StaticResource Montserrat-Medium}"
+                        FontSize="16"
+                        HorizontalOptions="CenterAndExpand"
+                        Style="{StaticResource LabelStyle}"
+                        Text="Write A Review"
+                        TextColor="{DynamicResource Gray-900}" />
 
                 </StackLayout>
 
                 <Grid
                     Padding="16"
-                    BackgroundColor="{DynamicResource Gray-Bg}"
-                    ColumnDefinitions="Auto, Auto"
+                    BackgroundColor="{DynamicResource Gray-White}"
                     ColumnSpacing="0"
-                    RowDefinitions="Auto, Auto"
                     RowSpacing="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
 
                     <!--  Product image  -->
                     <Image
@@ -57,9 +68,11 @@
                     <Label
                         Grid.Column="1"
                         Margin="16,0,0,16"
-                        HorizontalOptions="Start"
-                        Style="{StaticResource TitleLabelStyle}"
-                        Text="Full-Length Skirt" />
+                        FontFamily="{StaticResource Montserrat-SemiBold}"
+                        FontSize="16"
+                        Style="{StaticResource LabelStyle}"
+                        Text="Full-Length Skirt"
+                        TextColor="{DynamicResource Gray-900}" />
 
                     <!--  Rating for the product  -->
                     <rating:SfRating
@@ -69,74 +82,75 @@
                         HorizontalOptions="StartAndExpand"
                         ItemSize="27"
                         ItemSpacing="5"
-                        RatingSettings="{StaticResource CommonRatingSettings}"
+                        RatingSettings="{StaticResource RatingSettings}"
                         ReadOnly="False"
-                        Style="{StaticResource RatingStyle}"
+                        Style="{StaticResource SfRatingStyle}"
                         VerticalOptions="Start" />
 
                 </Grid>
 
-                <Grid
-                    BackgroundColor="{DynamicResource Gray-Bg}"
-                    RowDefinitions="Auto, Auto, Auto"
-                    RowSpacing="0">
+                <Grid BackgroundColor="{DynamicResource Gray-White}" RowSpacing="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
 
                     <Label
                         Margin="16"
-                        HorizontalOptions="Start"
-                        Style="{StaticResource TitleLabelStyle}"
-                        Text="Add Photo or Video" />
+                        FontFamily="{StaticResource Montserrat-SemiBold}"
+                        FontSize="16"
+                        Style="{StaticResource LabelStyle}"
+                        Text="Add Photo or Video"
+                        TextColor="{DynamicResource Gray-900}" />
 
-                    <BoxView Grid.Row="1" Style="{StaticResource HorizontalSeparatorStyle}" />
+                    <BoxView Grid.Row="1" Style="{StaticResource BoxViewStyle}" />
 
                     <!--  Button to upload product photos  -->
-                    <border:SfBorder
-                        x:Name="dashedBorder"
+                    <buttons:SfButton
+                        x:Name="UploadButton"
                         Grid.Row="2"
                         Margin="0,24"
-                        BorderColor="{DynamicResource Gray-300}"
-                        BorderWidth="2"
+                        BorderWidth="1"
+                        Command="{Binding UploadCommand}"
+                        CommandParameter="{x:Reference UploadButton}"
                         CornerRadius="4"
                         HeightRequest="70"
-                        HorizontalOptions="Center"
-                        WidthRequest="167">
-                        <buttons:SfButton
-                            x:Name="UploadButton"
-                            BackgroundColor="Transparent"
-                            BorderWidth="1"
-                            Command="{Binding UploadCommand}"
-                            CommandParameter="{x:Reference UploadButton}"
-                            CornerRadius="4"
-                            Style="{StaticResource SimpleButtonStyle}"
-                            TextColor="{DynamicResource Gray-700}">
-                            <Label
-                                Style="{StaticResource DescriptionLabelStyle}"
-                                Text="Click here to upload"
-                                VerticalOptions="Center" />
-                        </buttons:SfButton>
-                    </border:SfBorder>
+                        Style="{StaticResource SfButtonStyle}"
+                        WidthRequest="165">
+                        <Label
+                            FontFamily="{StaticResource Montserrat-Medium}"
+                            FontSize="14"
+                            HorizontalOptions="Center"
+                            HorizontalTextAlignment="Center"
+                            Style="{StaticResource LabelStyle}"
+                            Text="Click here to upload" />
+                    </buttons:SfButton>
 
                 </Grid>
 
-                <Grid
-                    BackgroundColor="{DynamicResource Gray-Bg}"
-                    RowDefinitions="Auto, Auto, Auto"
-                    RowSpacing="0">
+                <Grid BackgroundColor="{DynamicResource Gray-White}" RowSpacing="0">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
 
                     <Label
                         Margin="16"
-                        HorizontalOptions="Start"
-                        Style="{StaticResource TitleLabelStyle}"
-                        Text="Write your Review" />
+                        FontFamily="{StaticResource Montserrat-SemiBold}"
+                        Style="{StaticResource LabelStyle}"
+                        Text="Write your Review"
+                        TextColor="{DynamicResource Gray-900}" />
 
-                    <BoxView Grid.Row="1" Style="{StaticResource HorizontalSeparatorStyle}" />
+                    <BoxView Grid.Row="1" Style="{StaticResource BoxViewStyle}" />
 
                     <!--  Editor to write review  -->
                     <control:BorderlessEditor
                         Grid.Row="2"
                         Margin="16,0"
-                        BackgroundColor="{DynamicResource Gray-Bg}"
-                        FontFamily="Montserrat-Medium"
+                        FontFamily="{StaticResource Montserrat-Medium}"
                         FontSize="12"
                         HeightRequest="100"
                         HorizontalOptions="FillAndExpand"
@@ -151,11 +165,16 @@
                 <buttons:SfButton
                     x:Name="SubmitButton"
                     Margin="0,8,0,24"
+                    BorderWidth="0"
                     Command="{Binding SubmitCommand}"
                     CommandParameter="{x:Reference SubmitButton}"
+                    CornerRadius="20"
+                    FontFamily="{StaticResource Montserrat-SemiBold}"
+                    FontSize="16"
+                    HeightRequest="40"
                     HorizontalOptions="{OnIdiom Default=EndAndExpand,
                                                 Phone=CenterAndExpand}"
-                    Style="{StaticResource GradientButtonStyle}"
+                    Style="{StaticResource SubmitButtonStyle}"
                     Text="SUBMIT"
                     WidthRequest="200" />
             </StackLayout>

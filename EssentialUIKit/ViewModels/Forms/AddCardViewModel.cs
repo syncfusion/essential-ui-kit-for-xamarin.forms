@@ -1,7 +1,4 @@
-﻿using System;
-using EssentialUIKit.Validators;
-using EssentialUIKit.Validators.Rules;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 
 namespace EssentialUIKit.ViewModels.Forms
@@ -14,15 +11,13 @@ namespace EssentialUIKit.ViewModels.Forms
     {
         #region Fields
 
-        private ValidatableObject<string> cardNumber;
+        private string cardNumber;
 
-        private ValidatableObject<string> expireDate;
+        private string expireDate;
 
-        private ValidatableObject<string> cvv;
+        private string cvv;
 
-        private ValidatableObject<string> name;
-
-        private DateTime date = DateTime.Now;
+        private string name;
 
         private bool isChecked;
 
@@ -30,24 +25,19 @@ namespace EssentialUIKit.ViewModels.Forms
 
         #region Constrctor
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="AddCardViewModel" /> class
-        /// </summary>
         public AddCardViewModel()
         {
-            this.InitializeProperties();
-            this.AddValidationRules();
             this.AddCardCommand = new Command(this.AddCardClicked);
         }
 
         #endregion
-
+        
         #region Properties
 
         /// <summary>
         /// Gets or sets the property that bounds with an entry that gets the card number from user.
         /// </summary>
-        public ValidatableObject<string> CardNumber
+        public string CardNumber
         {
             get
             {
@@ -61,14 +51,15 @@ namespace EssentialUIKit.ViewModels.Forms
                     return;
                 }
 
-                this.SetProperty(ref this.cardNumber, value);
+                this.cardNumber = value;
+                this.NotifyPropertyChanged();
             }
         }
 
         /// <summary>
         /// Gets or sets the property that bounds with an entry that gets the expire date from user.
         /// </summary>
-        public ValidatableObject<string> ExpireDate
+        public string ExpireDate
         {
             get
             {
@@ -82,14 +73,15 @@ namespace EssentialUIKit.ViewModels.Forms
                     return;
                 }
 
-                this.SetProperty(ref this.expireDate, value);
+                this.expireDate = value;
+                this.NotifyPropertyChanged();
             }
         }
 
         /// <summary>
         /// Gets or sets the property that bounds with an entry that gets the cvv number from user.
         /// </summary>
-        public ValidatableObject<string> CVV
+        public string CVV
         {
             get
             {
@@ -103,14 +95,15 @@ namespace EssentialUIKit.ViewModels.Forms
                     return;
                 }
 
-                this.SetProperty(ref this.cvv, value);
+                this.cvv = value;
+                this.NotifyPropertyChanged();
             }
         }
 
         /// <summary>
         /// Gets or sets the property that bounds with an entry that gets the name from user.
         /// </summary>
-        public ValidatableObject<string> Name
+        public string Name
         {
             get
             {
@@ -124,28 +117,8 @@ namespace EssentialUIKit.ViewModels.Forms
                     return;
                 }
 
-                this.SetProperty(ref this.name, value);
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the property that bounds with a date picker that gets the date from user in the Add Card page.
-        /// </summary>
-        public DateTime Date
-        {
-            get
-            {
-                return this.date;
-            }
-
-            set
-            {
-                if (this.date == value)
-                {
-                    return;
-                }
-
-                this.SetProperty(ref this.date, value);
+                this.name = value;
+                this.NotifyPropertyChanged();
             }
         }
 
@@ -166,12 +139,13 @@ namespace EssentialUIKit.ViewModels.Forms
                     return;
                 }
 
-                this.SetProperty(ref this.isChecked, value);
+                this.isChecked = value;
+                this.NotifyPropertyChanged();
             }
         }
 
         #endregion
-
+        
         #region Command
 
         /// <summary>
@@ -184,50 +158,12 @@ namespace EssentialUIKit.ViewModels.Forms
         #region Methods
 
         /// <summary>
-        /// Check the card is valid or not.
-        /// </summary>
-        /// <returns>returns bool value</returns>
-        public bool IsCardValid()
-        {
-            bool isNameValid = this.Name.Validate();
-            bool isNumberValid = this.CardNumber.Validate();
-            bool isCvvValid = this.CVV.Validate();
-            bool isExpireValid = this.ExpireDate.Validate();
-            return isNameValid && isNumberValid && isCvvValid && isExpireValid;
-        }
-
-        /// <summary>
-        /// Intialize the property of name.
-        /// </summary>
-        private void InitializeProperties()
-        {
-            this.Name = new ValidatableObject<string>();
-            this.CardNumber = new ValidatableObject<string>();
-            this.CVV = new ValidatableObject<string>();
-            this.ExpireDate = new ValidatableObject<string>();
-        }
-
-        /// <summary>
-        /// Invoked when validation for name
-        /// </summary>
-        private void AddValidationRules()
-        {
-            this.Name.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = "Name Required" });
-            this.CardNumber.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = "Card Number Required" });
-            this.CVV.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = "CVV Required" });
-            this.ExpireDate.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = "Select Expiry" });
-        }
-
-        /// <summary>
         /// Invoked when the add card button is clicked.
         /// </summary>
         /// <param name="obj">The Object</param>
         private void AddCardClicked(object obj)
         {
-            if (this.IsCardValid())
-            {
-                // Do something
-            }
+            // Do something
         }
 
         #endregion

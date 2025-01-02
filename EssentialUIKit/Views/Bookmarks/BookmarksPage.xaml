@@ -7,30 +7,31 @@
     xmlns:controls="clr-namespace:EssentialUIKit.Controls"
     xmlns:converter="clr-namespace:EssentialUIKit.Converters"
     xmlns:template="clr-namespace:EssentialUIKit.Views.Templates"
+    xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Bookmarks"
     x:Name="bookmarksPage"
-    BackgroundColor="{DynamicResource Gray-Bg}"
+    BackgroundColor="{DynamicResource Gray-White}"
     NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Resources>
         <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
             <converter:BooleanToStringConverter x:Key="BoolToStringConverter" />
+
         </ResourceDictionary>
     </ContentPage.Resources>
+
+    <ContentPage.BindingContext>
+        <viewModel:BookmarksViewModel />
+    </ContentPage.BindingContext>
 
     <ContentPage.ControlTemplate>
         <ControlTemplate>
             <StackLayout Spacing="0">
                 <!--  Title View  -->
-                <controls:TitleView Title="Bookmarks">
-                    <controls:TitleView.LeadingView>
-                        <buttons:SfButton
-                            x:Name="backButton"
-                            Command="{Binding BindingContext.BackButtonCommand, Source={x:Reference StackLayout}}"
-                            CommandParameter="{x:Reference backButton}"
-                            Style="{StaticResource IconButtonStyle}"
-                            Text="{StaticResource Back}" />
-                    </controls:TitleView.LeadingView>
-                </controls:TitleView>
+                <controls:TitleView Title="Bookmarks" BackgroundColor="{DynamicResource Gray-White}" />
                 <ContentPresenter />
             </StackLayout>
         </ControlTemplate>
@@ -42,7 +43,7 @@
             <!--  Featured blog list  -->
             <StackLayout
                 x:Name="StackLayout"
-                Padding="0,16"
+                Padding="16"
                 BindableLayout.ItemsSource="{Binding LatestStories}"
                 Spacing="16">
                 <BindableLayout.ItemTemplate>

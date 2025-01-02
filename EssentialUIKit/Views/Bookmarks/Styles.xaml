@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary
+    x:Class="EssentialUIKit.Views.Bookmarks.Styles"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms"
+    xmlns:control="clr-namespace:EssentialUIKit.Controls"
+    xmlns:converter="clr-namespace:EssentialUIKit.Converters"
+    xmlns:graphics="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms">
+
+    <Color x:Key="Transparent">Transparent</Color>
+    <x:String x:Key="DropDownButtonIcon">&#xe70b;</x:String>
+    <x:String x:Key="Cart">&#xe708;</x:String>
+    <x:String x:Key="Delete">&#xe716;</x:String>
+    <x:String x:Key="Back">&#xe709;</x:String>
+
+    <converter:DynamicResourceToColorConverter x:Key="DynamicResourceToColorConverter" />
+
+    <Style TargetType="control:TitleView">
+        <Setter Property="BackgroundColor" Value="{DynamicResource Gray-White}" />
+    </Style>
+
+    <!--  Common style for labels  -->
+    <Style x:Key="CommonLabelStyle" TargetType="Label">
+        <Setter Property="TextColor" Value="{DynamicResource Gray-700}" />
+        <Setter Property="FontFamily" Value="Montserrat-Regular" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="LineHeight" Value="{OnPlatform Android=1.5, Default=-1}" />
+        <Setter Property="HorizontalTextAlignment" Value="Start" />
+        <Setter Property="VerticalTextAlignment" Value="Center" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="HorizontalOptions" Value="Start" />
+    </Style>
+
+    <!--  Common style for price labels  -->
+    <Style
+        x:Key="PriceLabelStyle"
+        BasedOn="{StaticResource CommonLabelStyle}"
+        TargetType="Label">
+        <Setter Property="HorizontalOptions" Value="StartAndExpand" />
+        <Setter Property="Margin" Value="16,0" />
+        <Setter Property="FontSize" Value="12" />
+    </Style>
+
+    <!--  Common style for BoxView  -->
+    <Style x:Key="BoxViewStyle" TargetType="BoxView">
+        <Setter Property="Color" Value="{DynamicResource Gray-200}" />
+        <Setter Property="VerticalOptions" Value="Center" />
+    </Style>
+
+    <!--  Common style for SfButtons  -->
+    <Style x:Key="SfButtonStyle" TargetType="buttons:SfButton">
+        <Setter Property="BackgroundColor" Value="Transparent" />
+        <Setter Property="TextColor" Value="{DynamicResource Gray-700}" />
+        <Setter Property="FontFamily" Value="Montserrat-Regular" />
+        <Setter Property="FontSize" Value="16" />
+    </Style>
+
+    <!--  Common style for Magenta buttons  -->
+    <Style
+        x:Key="MagentaButtonStyle"
+        BasedOn="{StaticResource SfButtonStyle}"
+        TargetType="buttons:SfButton">
+        <Setter Property="BackgroundGradient">
+            <Setter.Value>
+                <graphics:SfLinearGradientBrush>
+                    <graphics:SfLinearGradientBrush.GradientStops>
+                        <graphics:SfGradientStop Offset="0" Color="{DynamicResource PrimaryColor}" />
+                        <graphics:SfGradientStop Offset="1" Color="{DynamicResource PrimaryGradient}" />
+                    </graphics:SfLinearGradientBrush.GradientStops>
+                </graphics:SfLinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="TextColor" Value="{DynamicResource Gray-White}" />
+        <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="HeightRequest" Value="48" />
+    </Style>
+
+    <!--  Common style for labels  -->
+    <Style x:Key="LabelStyle" TargetType="Label">
+        <Setter Property="TextColor" Value="{DynamicResource Gray-700}" />
+        <Setter Property="FontFamily" Value="Montserrat-Regular" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="LineHeight" Value="{OnPlatform Android=1.5, Default=-1}" />
+        <Setter Property="HorizontalTextAlignment" Value="Start" />
+        <Setter Property="VerticalTextAlignment" Value="Center" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="HorizontalOptions" Value="Start" />
+    </Style>
+
+    <!--  Common style for SfComboBox  -->
+    <Style x:Key="SfComboBoxStyle" TargetType="combobox:SfComboBox">
+        <Setter Property="DropDownTextColor" Value="{DynamicResource Gray-900}" />
+        <Setter Property="TextSize" Value="16" />
+        <Setter Property="DropDownTextSize" Value="16" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="FontFamily" Value="Montserrat-Regular" />
+        <Setter Property="DropDownItemFontFamily" Value="Montserrat-Regular" />
+    </Style>
+
+    <Style
+        x:Key="CartComboBoxStyle"
+        BasedOn="{StaticResource SfComboBoxStyle}"
+        TargetType="combobox:SfComboBox">
+        <Setter Property="WidthRequest" Value="84" />
+        <Setter Property="HeightRequest" Value="32" />
+    </Style>
+
+    <!--  Common style for icon buttons  -->
+    <Style x:Key="IconButtonStyle" TargetType="buttons:SfButton">
+        <Setter Property="TextColor" Value="{DynamicResource Gray-600}" />
+        <Setter Property="BackgroundColor" Value="{StaticResource Transparent}" />
+        <Setter Property="FontFamily" Value="{StaticResource FontIcons}" />
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="HorizontalTextAlignment" Value="Center" />
+        <Setter Property="VerticalTextAlignment" Value="Center" />
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="HeightRequest" Value="40" />
+        <Setter Property="WidthRequest" Value="40" />
+    </Style>
+
+    <!--  Common style for Navigation bar SfButton  -->
+    <Style x:Key="BookmarkIconStyle" TargetType="buttons:SfButton">
+        <Setter Property="TextColor" Value="{DynamicResource Gray-600}" />
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="BackgroundColor" Value="Transparent" />
+        <Setter Property="BorderWidth" Value="0" />
+        <Setter Property="FontFamily" Value="{StaticResource FontIcons}" />
+    </Style>
+
+</ResourceDictionary>

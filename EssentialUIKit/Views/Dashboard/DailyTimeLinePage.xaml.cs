@@ -16,7 +16,7 @@ namespace EssentialUIKit.Views.Dashboard
         /// </summary>
         public DailyTimelinePage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
             this.BindingContext = DailyTimelineDataService.Instance.DailyTimelineViewModel;
         }
     }

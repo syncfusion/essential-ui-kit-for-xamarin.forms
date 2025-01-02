@@ -1,5 +1,4 @@
-﻿using EssentialUIKit.ViewModels.Catalog;
-using Xamarin.Forms.Internals;
+﻿using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
 
 namespace EssentialUIKit.Views.Catalog
@@ -16,8 +15,7 @@ namespace EssentialUIKit.Views.Catalog
         /// </summary>
         public ArticleListPage()
         {
-            this.InitializeComponent();
-            this.BindingContext = ArticleListViewModel.BindingContext;
+            InitializeComponent();
         }
     }
 }

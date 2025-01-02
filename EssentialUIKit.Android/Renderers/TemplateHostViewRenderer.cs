@@ -11,8 +11,7 @@ namespace EssentialUIKit.Droid.Renderers
 {
     public class TemplateHostViewRenderer : ViewRenderer
     {
-        public TemplateHostViewRenderer(Context context)
-            : base(context)
+        public TemplateHostViewRenderer(Context context) : base(context)
         {
         }
 
@@ -56,11 +55,9 @@ namespace EssentialUIKit.Droid.Renderers
         {
             base.OnElementChanged(e);
 
-            var pageView = e?.NewElement as TemplateHostView;
+            var pageView = e.NewElement as TemplateHostView;
 
-#pragma warning disable CA2000 // Dispose objects before losing scope
             var nativePage = this.GetNativeView(pageView?.Template, pageView);
-#pragma warning restore CA2000 // Dispose objects before losing scope
 
             if (nativePage != null)
             {
@@ -68,9 +65,7 @@ namespace EssentialUIKit.Droid.Renderers
             }
             else
             {
-#pragma warning disable CA2000 // Dispose objects before losing scope
                 this.SetNativeControl(new TextView(this.Context) { Text = "There is no loaded page" });
-#pragma warning restore CA2000 // Dispose objects before losing scope
             }
         }
 

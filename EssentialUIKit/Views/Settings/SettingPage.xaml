@@ -11,16 +11,23 @@
     BackgroundColor="{DynamicResource Gray-100}"
     NavigationPage.HasNavigationBar="False">
 
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary Source="Styles.xaml" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
     <ContentPage.ControlTemplate>
         <ControlTemplate>
             <StackLayout Spacing="0">
                 <!--  Title View  -->
-                <controls:TitleView Title="Settings">
+                <controls:TitleView Title="Settings" BackgroundColor="{DynamicResource Gray-White} ">
                     <controls:TitleView.LeadingView>
                         <buttons:SfButton
                             x:Name="backButton"
                             Command="{TemplateBinding BindingContext.BackButtonCommand}"
                             CommandParameter="{x:Reference backButton}"
+                            CornerRadius="4"
                             Style="{StaticResource IconButtonStyle}"
                             Text="{StaticResource Back}" />
                     </controls:TitleView.LeadingView>
@@ -40,9 +47,10 @@
 
                 <!--  Header label for account setting  -->
                 <Label
-                    Margin="16,24,0,16"
-                    FontFamily="Montserrat-SemiBold"
+                    Margin="16,0,0,0"
+                    FontFamily="{StaticResource Montserrat-SemiBold}"
                     FontSize="12"
+                    HeightRequest="50"
                     HorizontalOptions="FillAndExpand"
                     LineHeight="{OnPlatform Default=-1,
                                             Android=1.25}"
@@ -51,15 +59,19 @@
                     VerticalOptions="Center"
                     VerticalTextAlignment="Center" />
 
+
                 <!--  Grid for Edit profile label and navigation bar icon  -->
                 <controls:TapAnimationGrid
-                    BackgroundColor="{DynamicResource Gray-Bg}"
-                    ColumnDefinitions="Auto, *, Auto"
+                    BackgroundColor="{DynamicResource Gray-White}"
                     ColumnSpacing="0"
                     Command="{Binding EditProfileCommand}"
                     RowSpacing="0"
                     Tapped="False">
-
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
                     <!--  Edit profile icon  -->
                     <Label
                         Grid.Column="0"
@@ -69,30 +81,28 @@
                     <!--  Edit profile label  -->
                     <Label
                         Grid.Column="1"
-                        Margin="16,12"
-                        FontFamily="Montserrat-Medium"
-                        HorizontalOptions="Start"
-                        Style="{StaticResource TitleLabelStyle}"
-                        Text="Edit Profile"
-                        VerticalOptions="Center" />
+                        Style="{StaticResource LabelStyle}"
+                        Text="Edit Profile" />
                     <!--  Navigation icon  -->
                     <Label
                         Grid.Column="2"
-                        Margin="16,8"
                         Style="{StaticResource IconLabelStyle}"
                         Text="{StaticResource Next}" />
                 </controls:TapAnimationGrid>
-                <BoxView Style="{StaticResource HorizontalSeparatorStyle}" />
+                <BoxView Style="{StaticResource SeparatorStyle}" />
 
                 <!--  Grid for Change password label and navigation bar icon  -->
                 <controls:TapAnimationGrid
-                    BackgroundColor="{DynamicResource Gray-Bg}"
-                    ColumnDefinitions="Auto, *, Auto"
+                    BackgroundColor="{DynamicResource Gray-White}"
                     ColumnSpacing="0"
                     Command="{Binding ChangePasswordCommand}"
                     RowSpacing="0"
                     Tapped="False">
-
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
                     <!--  Change password icon  -->
                     <Label
                         Grid.Column="0"
@@ -102,30 +112,28 @@
                     <!--  Change password label  -->
                     <Label
                         Grid.Column="1"
-                        Margin="16,12"
-                        FontFamily="Montserrat-Medium"
-                        HorizontalOptions="Start"
-                        Style="{StaticResource TitleLabelStyle}"
-                        Text="Change Password"
-                        VerticalOptions="Center" />
+                        Style="{StaticResource LabelStyle}"
+                        Text="Change Password" />
                     <!--  Navigation icon  -->
                     <Label
                         Grid.Column="2"
-                        Margin="16,8"
                         Style="{StaticResource IconLabelStyle}"
                         Text="{StaticResource Next}" />
                 </controls:TapAnimationGrid>
-                <BoxView Style="{StaticResource HorizontalSeparatorStyle}" />
+                <BoxView Style="{StaticResource SeparatorStyle}" />
 
                 <!--  Grid for Account link label and navigation bar icon  -->
                 <controls:TapAnimationGrid
-                    BackgroundColor="{DynamicResource Gray-Bg}"
-                    ColumnDefinitions="Auto, *, Auto"
+                    BackgroundColor="{DynamicResource Gray-White}"
                     ColumnSpacing="0"
                     Command="{Binding LinkAccountCommand}"
                     RowSpacing="0"
                     Tapped="False">
-
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
                     <!--  Link account icon  -->
                     <Label
                         Grid.Column="0"
@@ -135,27 +143,22 @@
                     <!--  Link account label  -->
                     <Label
                         Grid.Column="1"
-                        Margin="16,12"
-                        FontFamily="Montserrat-Medium"
-                        HorizontalOptions="Start"
-                        Style="{StaticResource TitleLabelStyle}"
-                        Text="Link Account"
-                        VerticalOptions="Center" />
+                        Style="{StaticResource LabelStyle}"
+                        Text="Link Account" />
                     <!--  Navigation icon  -->
                     <Label
                         Grid.Column="2"
-                        Margin="16,8"
                         Style="{StaticResource IconLabelStyle}"
-                        Text="{StaticResource Next}" />
+                        Text="{StaticResource Next}"/>
                 </controls:TapAnimationGrid>
-
-                <BoxView Style="{StaticResource HorizontalSeparatorStyle}" />
+                <BoxView BackgroundColor="{DynamicResource Gray-100}" HeightRequest="20" />
 
                 <!--  Header lable for notifications  -->
                 <Label
-                    Margin="16,40,0,16"
-                    FontFamily="Montserrat-SemiBold"
+                    Margin="16,0,0,0"
+                    FontFamily="{StaticResource Montserrat-SemiBold}"
                     FontSize="12"
+                    HeightRequest="50"
                     HorizontalOptions="FillAndExpand"
                     LineHeight="{OnPlatform Default=-1,
                                             Android=1.25}"
@@ -166,26 +169,25 @@
 
                 <!--  Grid for Notifications label and switch  -->
                 <Grid
-                    BackgroundColor="{DynamicResource Gray-Bg}"
-                    ColumnDefinitions="Auto, *, Auto"
+                    BackgroundColor="{DynamicResource Gray-White}"
                     ColumnSpacing="0"
                     RowSpacing="0">
-
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
                     <!--  Notifications icon  -->
                     <Label
                         Grid.Column="0"
                         Margin="16,0,0,0"
                         Style="{StaticResource IconLabelStyle}"
-                        Text="{StaticResource Notification}" />
+                        Text="{StaticResource Bell}" />
                     <!--  Notification label  -->
                     <Label
                         Grid.Column="1"
-                        Margin="16,12"
-                        FontFamily="Montserrat-Medium"
-                        HorizontalOptions="Start"
-                        Style="{StaticResource TitleLabelStyle}"
-                        Text="Notifications"
-                        VerticalOptions="Center" />
+                        Style="{StaticResource LabelStyle}"
+                        Text="Notifications" />
                     <!--  Notifications switch  -->
                     <buttons:SfSwitch
                         Grid.Column="2"
@@ -201,7 +203,7 @@
                                             <Setter.Value>
                                                 <buttons:CupertinoSwitchSettings
                                                     x:TypeArguments="buttons:OnState"
-                                                    ThumbBorderColor="{DynamicResource Gray-White}"
+                                                    ThumbBorderColor="{DynamicResource Gray-200}"
                                                     ThumbColor="{DynamicResource Gray-White}"
                                                     TrackBorderColor="{DynamicResource Gray-200}"
                                                     TrackColor="{DynamicResource PrimaryColor}" />
@@ -215,10 +217,10 @@
                                             <Setter.Value>
                                                 <buttons:CupertinoSwitchSettings
                                                     x:TypeArguments="buttons:OffState"
-                                                    ThumbBorderColor="{DynamicResource Gray-300}"
+                                                    ThumbBorderColor="{DynamicResource Gray-200}"
                                                     ThumbColor="{DynamicResource Gray-White}"
-                                                    TrackBorderColor="{DynamicResource Gray-300}"
-                                                    TrackColor="{DynamicResource Gray-300}" />
+                                                    TrackBorderColor="{DynamicResource Gray-200}"
+                                                    TrackColor="{DynamicResource Gray-200}" />
                                             </Setter.Value>
                                         </Setter>
                                     </VisualState.Setters>
@@ -227,30 +229,29 @@
                         </VisualStateManager.VisualStateGroups>
                     </buttons:SfSwitch>
                 </Grid>
-                <BoxView Style="{StaticResource HorizontalSeparatorStyle}" />
+                <BoxView Style="{StaticResource SeparatorStyle}" />
 
                 <!--  Grid for Email notifications and switch  -->
                 <Grid
-                    BackgroundColor="{DynamicResource Gray-Bg}"
-                    ColumnDefinitions="Auto, *, Auto"
+                    BackgroundColor="{DynamicResource Gray-White}"
                     ColumnSpacing="0"
                     RowSpacing="0">
-
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
                     <!--  Email notification icon  -->
                     <Label
                         Grid.Column="0"
                         Margin="16,0,0,0"
                         Style="{StaticResource IconLabelStyle}"
-                        Text="{StaticResource Account}" />
+                        Text="{StaticResource Mail}" />
                     <!--  Email notification label  -->
                     <Label
                         Grid.Column="1"
-                        Margin="16,12"
-                        FontFamily="Montserrat-Medium"
-                        HorizontalOptions="Start"
-                        Style="{StaticResource TitleLabelStyle}"
-                        Text="Email Notifications"
-                        VerticalOptions="Center" />
+                        Style="{StaticResource LabelStyle}"
+                        Text="Email Notifications" />
                     <!--  Email notification switch  -->
                     <buttons:SfSwitch
                         Grid.Column="2"
@@ -266,7 +267,7 @@
                                             <Setter.Value>
                                                 <buttons:CupertinoSwitchSettings
                                                     x:TypeArguments="buttons:OnState"
-                                                    ThumbBorderColor="{DynamicResource Gray-White}"
+                                                    ThumbBorderColor="{DynamicResource Gray-200}"
                                                     ThumbColor="{DynamicResource Gray-White}"
                                                     TrackBorderColor="{DynamicResource Gray-200}"
                                                     TrackColor="{DynamicResource PrimaryColor}" />
@@ -280,10 +281,10 @@
                                             <Setter.Value>
                                                 <buttons:CupertinoSwitchSettings
                                                     x:TypeArguments="buttons:OffState"
-                                                    ThumbBorderColor="{DynamicResource Gray-300}"
+                                                    ThumbBorderColor="{DynamicResource Gray-200}"
                                                     ThumbColor="{DynamicResource Gray-White}"
-                                                    TrackBorderColor="{DynamicResource Gray-300}"
-                                                    TrackColor="{DynamicResource Gray-300}" />
+                                                    TrackBorderColor="{DynamicResource Gray-200}"
+                                                    TrackColor="{DynamicResource Gray-200}" />
                                             </Setter.Value>
                                         </Setter>
                                     </VisualState.Setters>
@@ -292,14 +293,14 @@
                         </VisualStateManager.VisualStateGroups>
                     </buttons:SfSwitch>
                 </Grid>
-
-                <BoxView Style="{StaticResource HorizontalSeparatorStyle}" />
+                <BoxView BackgroundColor="{DynamicResource Gray-100}" HeightRequest="20" />
 
                 <!--  Header label for Support setting  -->
                 <Label
-                    Margin="16,40,0,16"
-                    FontFamily="Montserrat-SemiBold"
+                    Margin="16,0,0,0"
+                    FontFamily="{StaticResource Montserrat-SemiBold}"
                     FontSize="12"
+                    HeightRequest="50"
                     HorizontalOptions="FillAndExpand"
                     LineHeight="{OnPlatform Default=-1,
                                             Android=1.25}"
@@ -310,13 +311,16 @@
 
                 <!--  Grid for Help label and navigation bar icon  -->
                 <controls:TapAnimationGrid
-                    BackgroundColor="{DynamicResource Gray-Bg}"
-                    ColumnDefinitions="Auto, *, Auto"
+                    BackgroundColor="{DynamicResource Gray-White}"
                     ColumnSpacing="0"
                     Command="{Binding HelpCommand}"
                     RowSpacing="0"
                     Tapped="False">
-
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
                     <!--  help icon  -->
                     <Label
                         Grid.Column="0"
@@ -326,30 +330,28 @@
                     <!--  Help text label  -->
                     <Label
                         Grid.Column="1"
-                        Margin="16,12"
-                        FontFamily="Montserrat-Medium"
-                        HorizontalOptions="Start"
-                        Style="{StaticResource TitleLabelStyle}"
-                        Text="Help"
-                        VerticalOptions="Center" />
+                        Style="{StaticResource LabelStyle}"
+                        Text="Help" />
                     <!--  Navigation icon  -->
                     <Label
                         Grid.Column="2"
-                        Margin="16,8"
                         Style="{StaticResource IconLabelStyle}"
                         Text="{StaticResource Next}" />
                 </controls:TapAnimationGrid>
-                <BoxView Style="{StaticResource HorizontalSeparatorStyle}" />
+                <BoxView Style="{StaticResource SeparatorStyle}" />
 
                 <!--  Grid for Terms of service label and navigation bar icon  -->
                 <controls:TapAnimationGrid
-                    BackgroundColor="{DynamicResource Gray-Bg}"
-                    ColumnDefinitions="Auto, *, Auto"
+                    BackgroundColor="{DynamicResource Gray-White}"
                     ColumnSpacing="0"
                     Command="{Binding TermsCommand}"
                     RowSpacing="0"
                     Tapped="False">
-
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
                     <!--  Terms of service icon  -->
                     <Label
                         Grid.Column="0"
@@ -359,30 +361,28 @@
                     <!--  Terms of service label  -->
                     <Label
                         Grid.Column="1"
-                        Margin="16,12"
-                        FontFamily="Montserrat-Medium"
-                        HorizontalOptions="Start"
-                        Style="{StaticResource TitleLabelStyle}"
-                        Text="Terms of Service"
-                        VerticalOptions="Center" />
+                        Style="{StaticResource LabelStyle}"
+                        Text="Terms of Service" />
                     <!--  Navigation icon  -->
                     <Label
                         Grid.Column="2"
-                        Margin="16,8"
                         Style="{StaticResource IconLabelStyle}"
                         Text="{StaticResource Next}" />
                 </controls:TapAnimationGrid>
-                <BoxView Style="{StaticResource HorizontalSeparatorStyle}" />
+                <BoxView Style="{StaticResource SeparatorStyle}" />
 
                 <!--  Grid for Privacy policy label and navigation bar icon  -->
                 <controls:TapAnimationGrid
-                    BackgroundColor="{DynamicResource Gray-Bg}"
-                    ColumnDefinitions="Auto, *, Auto"
+                    BackgroundColor="{DynamicResource Gray-White}"
                     ColumnSpacing="0"
                     Command="{Binding PolicyCommand}"
                     RowSpacing="0"
                     Tapped="False">
-
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
                     <!--  Privacy policy icon  -->
                     <Label
                         Grid.Column="0"
@@ -392,30 +392,28 @@
                     <!--  Privacy policy text label  -->
                     <Label
                         Grid.Column="1"
-                        Margin="16,12"
-                        FontFamily="Montserrat-Medium"
-                        HorizontalOptions="Start"
-                        Style="{StaticResource TitleLabelStyle}"
-                        Text="Privacy and Policy"
-                        VerticalOptions="Center" />
+                        Style="{StaticResource LabelStyle}"
+                        Text="Privacy and Policy" />
                     <!--  Navigation icon  -->
                     <Label
                         Grid.Column="2"
-                        Margin="16,8"
                         Style="{StaticResource IconLabelStyle}"
                         Text="{StaticResource Next}" />
                 </controls:TapAnimationGrid>
-                <BoxView Style="{StaticResource HorizontalSeparatorStyle}" />
+                <BoxView Style="{StaticResource SeparatorStyle}" />
 
                 <!--  Grid for FAQs label and navigation bar icon  -->
                 <controls:TapAnimationGrid
-                    BackgroundColor="{DynamicResource Gray-Bg}"
-                    ColumnDefinitions="Auto, *, Auto"
+                    BackgroundColor="{DynamicResource Gray-White}"
                     ColumnSpacing="0"
                     Command="{Binding FAQCommand}"
                     RowSpacing="0"
                     Tapped="False">
-
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
                     <!--  FAQs icon  -->
                     <Label
                         Grid.Column="0"
@@ -425,28 +423,27 @@
                     <!--  FAQs text label  -->
                     <Label
                         Grid.Column="1"
-                        Margin="16,12"
-                        FontFamily="Montserrat-Medium"
-                        HorizontalOptions="Start"
-                        Style="{StaticResource TitleLabelStyle}"
-                        Text="FAQs"
-                        VerticalOptions="Center" />
+                        Style="{StaticResource LabelStyle}"
+                        Text="FAQs" />
                     <!--  Navigation icon  -->
                     <Label
                         Grid.Column="2"
-                        Margin="16,8"
                         Style="{StaticResource IconLabelStyle}"
                         Text="{StaticResource Next}" />
                 </controls:TapAnimationGrid>
 
-                <BoxView Style="{StaticResource HorizontalSeparatorStyle}" />
-
                 <!--  Logout button  -->
                 <buttons:SfButton
                     Margin="0,24,0,32"
-                    Command="{Binding LogoutCommand}"
-                    Style="{StaticResource GradientButtonStyle}"
+                    BackgroundColor="{DynamicResource PrimaryColor}"
+                    BorderColor="{DynamicResource PrimaryColor}"
+                    BorderWidth="1"
+                    FontFamily="{StaticResource Montserrat-SemiBold}"
+                    HeightRequest="40"
+                    HorizontalOptions="Center"
+                    Style="{StaticResource RoundButtonStyle}"
                     Text="LOG OUT"
+                    TextColor="{DynamicResource Gray-White}"
                     WidthRequest="245" />
 
             </StackLayout>

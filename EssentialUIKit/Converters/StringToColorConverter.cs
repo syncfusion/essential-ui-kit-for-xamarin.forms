@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
+using System.Text;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 
@@ -49,24 +51,6 @@ namespace EssentialUIKit.Converters
                         {
                             Application.Current.Resources.TryGetValue("Green", out var retGreen);
                             return retGreen;
-                        }
-                    }
-
-                case "1":
-                    {
-                        if ((string)value == "NotStarted")
-                        {
-                            Application.Current.Resources.TryGetValue("Gray-700", out var gray700);
-                            return (Color)gray700;
-                        }
-                        else if (((string)value == "InProgress") || ((string)value == "Completed"))
-                        {
-                            Application.Current.Resources.TryGetValue("Gray-900", out var gray900);
-                            return (Color)gray900;
-                        }
-                        else
-                        {
-                            return Color.Transparent;
                         }
                     }
 

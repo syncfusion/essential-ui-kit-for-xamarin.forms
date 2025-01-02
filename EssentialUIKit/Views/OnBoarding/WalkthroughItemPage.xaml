@@ -5,6 +5,13 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
     NavigationPage.HasNavigationBar="False">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentView.Resources>
     <ContentView.Content>
         <StackLayout
             BackgroundColor="Transparent"
@@ -30,28 +37,27 @@
             <!--  Label to display header  -->
             <Label
                 Margin="0,30,0,8"
+                FontFamily="{StaticResource Montserrat-SemiBold}"
                 FontSize="14"
-                LineHeight="{OnPlatform Android=1.25,
-                                        Default=-1}"
+                HorizontalOptions="Center"
+                HorizontalTextAlignment="Center"
                 Opacity="{OnPlatform Default=0,
                                      UWP=1}"
-                Style="{StaticResource TitleLabelStyle}"
+                Style="{StaticResource LabelStyle}"
                 Text="{Binding Header}"
-                TextColor="{DynamicResource Gray-White}"
                 TranslationY="{OnPlatform Default=60,
                                           UWP=0}"
                 VerticalTextAlignment="Center" />
 
             <!--  Label to display content  -->
             <Label
+                FontFamily="{StaticResource Montserrat-Medium}"
                 FontSize="16"
-                LineHeight="{OnPlatform Android=1.25,
-                                        Default=-1}"
+                HorizontalOptions="Center"
                 Opacity="{OnPlatform Default=0,
                                      UWP=1}"
-                Style="{StaticResource DescriptionLabelStyle}"
+                Style="{StaticResource LabelStyle}"
                 Text="{Binding Content}"
-                TextColor="{DynamicResource Gray-White}"
                 TranslationY="{OnPlatform Default=60,
                                           UWP=0}" />
 

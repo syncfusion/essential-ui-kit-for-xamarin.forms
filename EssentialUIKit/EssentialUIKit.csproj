@@ -9,38 +9,33 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
 
-  <PropertyGroup>
-    <CodeAnalysisRuleSet>StyleCop.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-
   <ItemGroup>
+    <PackageReference Include="NETStandard.Library" Version="2.0.3" />
     <PackageReference Include="Microsoft.AppCenter.Analytics" Version="2.0.0" />
     <PackageReference Include="Microsoft.AppCenter.Crashes" Version="2.0.0" />
     <PackageReference Include="SkiaSharp.Extended" Version="1.60.0" />
     <PackageReference Include="SkiaSharp.Svg" Version="1.60.0" />
     <PackageReference Include="SkiaSharp.Views.Forms" Version="1.68.0" />
-    <PackageReference Include="Syncfusion.Xamarin.Buttons" Version="18.4.0.31" />
-    <PackageReference Include="Syncfusion.Xamarin.Cards" Version="18.4.0.31" />
-    <PackageReference Include="Syncfusion.Xamarin.DataSource" Version="18.4.0.31" />
-    <PackageReference Include="Syncfusion.Xamarin.GridCommon" Version="18.4.0.31" />
-    <PackageReference Include="Syncfusion.Xamarin.SfCalendar" Version="18.4.0.31" />
-    <PackageReference Include="Syncfusion.Xamarin.SfChart" Version="18.4.0.31" />
-    <PackageReference Include="Syncfusion.Xamarin.SfComboBox" Version="18.4.0.31" />
-    <PackageReference Include="Syncfusion.Xamarin.SfGauge" Version="18.4.0.31" />
-    <PackageReference Include="Syncfusion.Xamarin.SfListView" Version="18.4.0.31" />
-    <PackageReference Include="Syncfusion.Xamarin.SfMaps" Version="18.4.0.31" />
-    <PackageReference Include="Syncfusion.Xamarin.SfParallaxView" Version="18.4.0.31" />
-    <PackageReference Include="Syncfusion.Xamarin.SfPicker" Version="18.4.0.31" />
-    <PackageReference Include="Syncfusion.Xamarin.SfProgressBar" Version="18.4.0.31" />
-    <PackageReference Include="Syncfusion.Xamarin.SfRating" Version="18.4.0.31" />
-    <PackageReference Include="Syncfusion.Xamarin.SfRotator" Version="18.4.0.31" />
-    <PackageReference Include="Syncfusion.Xamarin.SfPopupLayout" Version="18.4.0.31" />
-    <PackageReference Include="Syncfusion.Xamarin.Expander" Version="18.4.0.31" />
-    <PackageReference Include="Syncfusion.Xamarin.SfBadgeView" Version="18.4.0.31" />
-    <PackageReference Include="Syncfusion.Xamarin.SfTabView" Version="18.4.0.31" />
-    <PackageReference Include="Xamarin.Essentials" Version="1.6.0" />
-    <PackageReference Include="Xamarin.Forms" Version="4.8.0.1821" />
-    <PackageReference Include="Syncfusion.Xamarin.Core" Version="18.4.0.31" />
+    <PackageReference Include="Syncfusion.Xamarin.Buttons" Version="17.4.0.44" />
+    <PackageReference Include="Syncfusion.Xamarin.Cards" Version="17.4.0.44" />
+    <PackageReference Include="Syncfusion.Xamarin.DataSource" Version="17.4.0.44" />
+    <PackageReference Include="Syncfusion.Xamarin.GridCommon" Version="17.4.0.44" />
+    <PackageReference Include="Syncfusion.Xamarin.SfCalendar" Version="17.4.0.44" />
+    <PackageReference Include="Syncfusion.Xamarin.SfChart" Version="17.4.0.44" />
+    <PackageReference Include="Syncfusion.Xamarin.SfComboBox" Version="17.4.0.44" />
+    <PackageReference Include="Syncfusion.Xamarin.SfGauge" Version="17.4.0.44" />
+    <PackageReference Include="Syncfusion.Xamarin.SfListView" Version="17.4.0.44" />
+    <PackageReference Include="Syncfusion.Xamarin.SfMaps" Version="17.4.0.44" />
+    <PackageReference Include="Syncfusion.Xamarin.SfParallaxView" Version="17.4.0.44" />
+    <PackageReference Include="Syncfusion.Xamarin.SfProgressBar" Version="17.4.0.44" />
+    <PackageReference Include="Syncfusion.Xamarin.SfRating" Version="17.4.0.44" />
+    <PackageReference Include="Syncfusion.Xamarin.SfRotator" Version="17.4.0.44" />
+    <PackageReference Include="Syncfusion.Xamarin.SfPopupLayout" Version="17.4.0.44" />
+    <PackageReference Include="Syncfusion.Xamarin.Expander" Version="17.4.0.44" />
+    <PackageReference Include="Syncfusion.Xamarin.SfBadgeView" Version="17.4.0.44" />
+    <PackageReference Include="Syncfusion.Xamarin.SfTabView" Version="17.4.0.44" />
+    <PackageReference Include="Xamarin.Forms" Version="4.3.0.991250" />
+    <PackageReference Include="Syncfusion.Xamarin.Core" Version="17.4.0.44" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="AppLayout\Icons\bookmark.png" />
@@ -54,23 +49,12 @@
     <None Remove="AppLayout\Icons\social.png" />
     <None Remove="AppLayout\Icons\transaction.png" />
     <None Remove="AppLayout\TemplateList.xml" />
-    <None Remove="Data\chat.json" />
-    <None Remove="Data\about.json" />
-    <None Remove="Data\article.json" />
-    <None Remove="Data\bookmark.json" />
-    <None Remove="Data\catalog.json" />
     <None Remove="Data\deliverytracking.json" />
     <None Remove="DataService\trainstatus.json" />
-    <None Remove="Data\detail.json" />
     <None Remove="Data\ecommerce.json" />
-    <None Remove="Data\feedback.json" />
-    <None Remove="Data\errorAndEmpty.json" />
     <None Remove="Data\navigation.json" />
     <None Remove="Data\notification.json" />
-    <None Remove="Data\profile.json" />
-    <None Remove="Data\social.json" />
     <None Remove="Data\timeline.json" />
-    <None Remove="Data\transaction.json" />
     <None Remove="Images\CaloriesEaten.svg" />
     <None Remove="Images\ChooseGradient.svg" />
     <None Remove="Images\ConfirmGradient.svg" />
@@ -91,417 +75,6 @@
     <None Remove="Images\SleepDuration.svg" />
     <None Remove="Images\SomethingWentWrong.svg" />
     <None Remove="Images\WaterConsumed.svg" />
-    <None Remove="Resources\Fonts\Montserrat-Bold.ttf" />
-    <None Remove="Resources\Fonts\Montserrat-Medium.ttf" />
-    <None Remove="Resources\Fonts\Montserrat-Regular.ttf" />
-    <None Remove="Resources\Fonts\Montserrat-SemiBold.ttf" />
-    <None Remove="Resources\Fonts\UIFontIcons.ttf" />
-    <None Remove="TemplateImage\AboutUsSimplePage.png" />
-    <None Remove="TemplateImage\AboutUsWithCardsPage.png" />
-    <None Remove="TemplateImage\AboutUsWithScrollPage.png" />
-    <None Remove="TemplateImage\AddCardPage.png" />
-    <None Remove="TemplateImage\AddContactPage.png" />
-    <None Remove="TemplateImage\AddProfilePage.png" />
-    <None Remove="TemplateImage\AppUsagePage.png" />
-    <None Remove="TemplateImage\ArticleBookmarkPage.png" />
-    <None Remove="TemplateImage\ArticleCardPage.png" />
-    <None Remove="TemplateImage\ArticleDetailPage.png" />
-    <None Remove="TemplateImage\ArticleListPage.png" />
-    <None Remove="TemplateImage\ArticleParallaxHeaderPage.png" />
-    <None Remove="TemplateImage\ArticleTilePage.png" />
-    <None Remove="TemplateImage\ArticleWithCommentsPage.png" />
-    <None Remove="TemplateImage\BottomNavigationPage.png" />
-    <None Remove="TemplateImage\BusinessRegistrationFormPage.png" />
-    <None Remove="TemplateImage\CartPage.png" />
-    <None Remove="TemplateImage\CatalogListPage.png" />
-    <None Remove="TemplateImage\CatalogTilePage.png" />
-    <None Remove="TemplateImage\CategoryTilePage.png" />
-    <None Remove="TemplateImage\ChatPage.png" />
-    <None Remove="TemplateImage\ChatProfilePage.png" />
-    <None Remove="TemplateImage\CheckoutPage.png" />
-    <None Remove="TemplateImage\CompanyHistoryPage.png" />
-    <None Remove="TemplateImage\ContactProfilePage.png" />
-    <None Remove="TemplateImage\ContactsPage.png" />
-    <None Remove="TemplateImage\ContactUsPage.png" />
-    <None Remove="TemplateImage\DailyCaloriesReportPage.png" />
-    <None Remove="TemplateImage\DailyTimelinePage.png" />
-    <None Remove="TemplateImage\DarkTheme\AboutUsSimplePage.png" />
-    <None Remove="TemplateImage\DarkTheme\AboutUsWithCardsPage.png" />
-    <None Remove="TemplateImage\DarkTheme\AboutUsWithScrollPage.png" />
-    <None Remove="TemplateImage\DarkTheme\AddCardPage.png" />
-    <None Remove="TemplateImage\DarkTheme\AddContactPage.png" />
-    <None Remove="TemplateImage\DarkTheme\AddProfilePage.png" />
-    <None Remove="TemplateImage\DarkTheme\AppUsagePage.png" />
-    <None Remove="TemplateImage\DarkTheme\ArticleBookmarkPage.png" />
-    <None Remove="TemplateImage\DarkTheme\ArticleCardPage.png" />
-    <None Remove="TemplateImage\DarkTheme\ArticleDetailPage.png" />
-    <None Remove="TemplateImage\DarkTheme\ArticleListPage.png" />
-    <None Remove="TemplateImage\DarkTheme\ArticleParallaxHeaderPage.png" />
-    <None Remove="TemplateImage\DarkTheme\ArticleTilePage.png" />
-    <None Remove="TemplateImage\DarkTheme\ArticleWithCommentsPage.png" />
-    <None Remove="TemplateImage\DarkTheme\BottomNavigationPage.png" />
-    <None Remove="TemplateImage\DarkTheme\BusinessRegistrationFormPage.png" />
-    <None Remove="TemplateImage\DarkTheme\CardPaymentPage.png" />
-    <None Remove="TemplateImage\DarkTheme\CartPage.png" />
-    <None Remove="TemplateImage\DarkTheme\CatalogListPage.png" />
-    <None Remove="TemplateImage\DarkTheme\CatalogTilePage.png" />
-    <None Remove="TemplateImage\DarkTheme\CategoryTilePage.png" />
-    <None Remove="TemplateImage\DarkTheme\ChatPage.png" />
-    <None Remove="TemplateImage\DarkTheme\ChatProfilePage.png" />
-    <None Remove="TemplateImage\DarkTheme\CheckoutPage.png" />
-    <None Remove="TemplateImage\DarkTheme\CompanyHistoryPage.png" />
-    <None Remove="TemplateImage\DarkTheme\ContactProfilePage.png" />
-    <None Remove="TemplateImage\DarkTheme\ContactsPage.png" />
-    <None Remove="TemplateImage\DarkTheme\ContactUsPage.png" />
-    <None Remove="TemplateImage\DarkTheme\DailyCaloriesReportPage.png" />
-    <None Remove="TemplateImage\DarkTheme\DailyTimelinePage.png" />
-    <None Remove="TemplateImage\DarkTheme\DataTablePage.png" />
-    <None Remove="TemplateImage\DarkTheme\DocumentsListPage.png" />
-    <None Remove="TemplateImage\DarkTheme\ECommerceNotificationPage.png" />
-    <None Remove="TemplateImage\DarkTheme\EmptyCartPage.png" />
-    <None Remove="TemplateImage\DarkTheme\EventDetailPage.png" />
-    <None Remove="TemplateImage\DarkTheme\EventListPage.png" />
-    <None Remove="TemplateImage\DarkTheme\FAQPage.png" />
-    <None Remove="TemplateImage\DarkTheme\FeedbackDetailPage.png" />
-    <None Remove="TemplateImage\DarkTheme\FeedbackPage.png" />
-    <None Remove="TemplateImage\DarkTheme\FileExploreGridPage.png" />
-    <None Remove="TemplateImage\DarkTheme\FileExploreListPage.png" />
-    <None Remove="TemplateImage\DarkTheme\GradientForgotPasswordPage.png" />
-    <None Remove="TemplateImage\DarkTheme\GradientLoginPage.png" />
-    <None Remove="TemplateImage\DarkTheme\GradientResetPasswordPage.png" />
-    <None Remove="TemplateImage\DarkTheme\GradientSignUpPage.png" />
-    <None Remove="TemplateImage\DarkTheme\HealthCarePage.png" />
-    <None Remove="TemplateImage\DarkTheme\HealthProfilePage.png" />
-    <None Remove="TemplateImage\DarkTheme\HelpPage.png" />
-    <None Remove="TemplateImage\DarkTheme\IconNamesListPage.png" />
-    <None Remove="TemplateImage\DarkTheme\LocationDeniedPage.png" />
-    <None Remove="TemplateImage\DarkTheme\Login Tabbed.png" />
-    <None Remove="TemplateImage\DarkTheme\LoginWithSocialIconPage.png" />
-    <None Remove="TemplateImage\DarkTheme\MasterPage.png" />
-    <None Remove="TemplateImage\DarkTheme\MoviesListPage.png" />
-    <None Remove="TemplateImage\DarkTheme\MoviesPage.png" />
-    <None Remove="TemplateImage\DarkTheme\MyAddressPage.png" />
-    <None Remove="TemplateImage\DarkTheme\MyArticlePage.png" />
-    <None Remove="TemplateImage\DarkTheme\MyCardsPage.png" />
-    <None Remove="TemplateImage\DarkTheme\MyOrdersPage.png" />
-    <None Remove="TemplateImage\DarkTheme\MyWalletPage.png" />
-    <None Remove="TemplateImage\DarkTheme\NamesListPage.png" />
-    <None Remove="TemplateImage\DarkTheme\NavigationListCardPage.png" />
-    <None Remove="TemplateImage\DarkTheme\NavigationTileCardPage.png" />
-    <None Remove="TemplateImage\DarkTheme\NavigationTravelPage.png" />
-    <None Remove="TemplateImage\DarkTheme\NoCreditsPage.png" />
-    <None Remove="TemplateImage\DarkTheme\NoInternetConnectionPage.png" />
-    <None Remove="TemplateImage\DarkTheme\NoItemPage.png" />
-    <None Remove="TemplateImage\DarkTheme\NoPhotosPage.png" />
-    <None Remove="TemplateImage\DarkTheme\NoTasksPage.png" />
-    <None Remove="TemplateImage\DarkTheme\NotEnoughCreditPage.png" />
-    <None Remove="TemplateImage\DarkTheme\NoVideosPage.png" />
-    <None Remove="TemplateImage\DarkTheme\OnBoardingAnimationPage.png" />
-    <None Remove="TemplateImage\DarkTheme\PaymentFailedPage.png" />
-    <None Remove="TemplateImage\DarkTheme\PaymentFailurePage.png" />
-    <None Remove="TemplateImage\DarkTheme\PaymentSuccessPage.png" />
-    <None Remove="TemplateImage\DarkTheme\ProductDeliveryTrackingPage.png" />
-    <None Remove="TemplateImage\DarkTheme\ProductDetailPage.png" />
-    <None Remove="TemplateImage\DarkTheme\ProductHomePage.png" />
-    <None Remove="TemplateImage\DarkTheme\ProfilePage.png" />
-    <None Remove="TemplateImage\DarkTheme\RecentChatPage.png" />
-    <None Remove="TemplateImage\DarkTheme\RestaurantPage.png" />
-    <None Remove="TemplateImage\DarkTheme\ReviewPage.png" />
-    <None Remove="TemplateImage\DarkTheme\RoomBookingPage.png" />
-    <None Remove="TemplateImage\DarkTheme\SelectableNamePage.png" />
-    <None Remove="TemplateImage\DarkTheme\SettingPage.png" />
-    <None Remove="TemplateImage\DarkTheme\SimpleForgotPasswordPage.png" />
-    <None Remove="TemplateImage\DarkTheme\SimpleLoginPage.png" />
-    <None Remove="TemplateImage\DarkTheme\SimpleResetPasswordPage.png" />
-    <None Remove="TemplateImage\DarkTheme\SimpleSignUpPage.png" />
-    <None Remove="TemplateImage\DarkTheme\SocialNotificationPage.png" />
-    <None Remove="TemplateImage\DarkTheme\SocialProfileWithCardPage.png" />
-    <None Remove="TemplateImage\DarkTheme\SocialProfileWithConnectionsPage.png" />
-    <None Remove="TemplateImage\DarkTheme\SocialProfileWithInterestsPage.png" />
-    <None Remove="TemplateImage\DarkTheme\SocialProfileWithMessagePage.png" />
-    <None Remove="TemplateImage\DarkTheme\SomethingWentWrongPage.png" />
-    <None Remove="TemplateImage\DarkTheme\SongsPage.png" />
-    <None Remove="TemplateImage\DarkTheme\SongsPlayListPage.png" />
-    <None Remove="TemplateImage\DarkTheme\StockOverViewPage.png" />
-    <None Remove="TemplateImage\DarkTheme\SuggestionPage.png" />
-    <None Remove="TemplateImage\DarkTheme\TabbedForm.png" />
-    <None Remove="TemplateImage\DarkTheme\TaskNotificationPage.png" />
-    <None Remove="TemplateImage\DarkTheme\TransactionHistoryPage.png" />
-    <None Remove="TemplateImage\DarkTheme\WishlistPage.png" />
-    <None Remove="TemplateImage\DataTablePage.png" />
-    <None Remove="TemplateImage\DocumentsListPage.png" />
-    <None Remove="TemplateImage\ECommerceNotificationPage.png" />
-    <None Remove="TemplateImage\EmptyCartPage.png" />
-    <None Remove="TemplateImage\EventDetailPage.png" />
-    <None Remove="TemplateImage\EventListPage.png" />
-    <None Remove="TemplateImage\FAQPage.png" />
-    <None Remove="TemplateImage\FeedbackDetailPage.png" />
-    <None Remove="TemplateImage\FeedbackPage.png" />
-    <None Remove="TemplateImage\FileExploreGridPage.png" />
-    <None Remove="TemplateImage\FileExploreListPage.png" />
-    <None Remove="TemplateImage\GradientForgotPasswordPage.png" />
-    <None Remove="TemplateImage\GradientLoginPage.png" />
-    <None Remove="TemplateImage\GradientResetPasswordPage.png" />
-    <None Remove="TemplateImage\GradientSignUpPage.png" />
-    <None Remove="TemplateImage\HealthCarePage.png" />
-    <None Remove="TemplateImage\HealthProfilePage.png" />
-    <None Remove="TemplateImage\HelpPage.png" />
-    <None Remove="TemplateImage\IconNamesListPage.png" />
-    <None Remove="TemplateImage\LightTheme\AboutUsSimplePage.png" />
-    <None Remove="TemplateImage\LightTheme\CardPaymentPage.png" />
-    <None Remove="TemplateImage\LightTheme\TabbedForm.png" />
-    <None Remove="TemplateImage\LocationDeniedPage.png" />
-    <None Remove="TemplateImage\LoginWithSocialIconPage.png" />
-    <None Remove="TemplateImage\MasterPage.png" />
-    <None Remove="TemplateImage\MoviesListPage.png" />
-    <None Remove="TemplateImage\MoviesPage.png" />
-    <None Remove="TemplateImage\MyAddressPage.png" />
-    <None Remove="TemplateImage\MyArticlePage.png" />
-    <None Remove="TemplateImage\MyCardsPage.png" />
-    <None Remove="TemplateImage\MyOrdersPage.png" />
-    <None Remove="TemplateImage\MyWalletPage.png" />
-    <None Remove="TemplateImage\NamesListPage.png" />
-    <None Remove="TemplateImage\NavigationListCardPage.png" />
-    <None Remove="TemplateImage\NavigationTileCardPage.png" />
-    <None Remove="TemplateImage\NavigationTravelPage.png" />
-    <None Remove="TemplateImage\NoCreditsPage.png" />
-    <None Remove="TemplateImage\NoInternetConnectionPage.png" />
-    <None Remove="TemplateImage\NoItemPage.png" />
-    <None Remove="TemplateImage\NoPhotosPage.png" />
-    <None Remove="TemplateImage\NoTasksPage.png" />
-    <None Remove="TemplateImage\NotEnoughCreditPage.png" />
-    <None Remove="TemplateImage\NoVideosPage.png" />
-    <None Remove="TemplateImage\OnBoardingAnimationPage.png" />
-    <None Remove="TemplateImage\PaymentFailedPage.png" />
-    <None Remove="TemplateImage\PaymentFailurePage.png" />
-    <None Remove="TemplateImage\PaymentSuccessPage.png" />
-    <None Remove="TemplateImage\ProductDeliveryTrackingPage.png" />
-    <None Remove="TemplateImage\ProductDetailPage.png" />
-    <None Remove="TemplateImage\ProductHomePage.png" />
-    <None Remove="TemplateImage\ProfilePage.png" />
-    <None Remove="TemplateImage\RecentChatPage.png" />
-    <None Remove="TemplateImage\RestaurantPage.png" />
-    <None Remove="TemplateImage\ReviewPage.png" />
-    <None Remove="TemplateImage\RoomBookingPage.png" />
-    <None Remove="TemplateImage\SelectableNamePage.png" />
-    <None Remove="TemplateImage\SettingPage.png" />
-    <None Remove="TemplateImage\SimpleForgotPasswordPage.png" />
-    <None Remove="TemplateImage\SimpleLoginPage.png" />
-    <None Remove="TemplateImage\SimpleResetPasswordPage.png" />
-    <None Remove="TemplateImage\SimpleSignUpPage.png" />
-    <None Remove="TemplateImage\SocialNotificationPage.png" />
-    <None Remove="TemplateImage\SocialProfileWithCardPage.png" />
-    <None Remove="TemplateImage\SocialProfileWithConnectionsPage.png" />
-    <None Remove="TemplateImage\SocialProfileWithInterestsPage.png" />
-    <None Remove="TemplateImage\SocialProfileWithMessagePage.png" />
-    <None Remove="TemplateImage\SomethingWentWrongPage.png" />
-    <None Remove="TemplateImage\SongsPage.png" />
-    <None Remove="TemplateImage\SongsPlayListPage.png" />
-    <None Remove="TemplateImage\StockOverViewPage.png" />
-    <None Remove="TemplateImage\SuggestionPage.png" />
-    <None Remove="TemplateImage\TabbedForm.png" />
-    <None Remove="TemplateImage\TaskNotificationPage.png" />
-    <None Remove="TemplateImage\TransactionHistoryPage.png" />
-    <None Remove="TemplateImage\WishlistPage.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Data\about.json" />
-    <EmbeddedResource Include="Data\bookmark.json" />
-    <EmbeddedResource Include="Data\feedback.json" />
-    <EmbeddedResource Include="Data\catalog.json" />
-    <EmbeddedResource Include="Data\errorAndEmpty.json" />
-    <EmbeddedResource Include="Data\social.json" />
-    <EmbeddedResource Include="Data\article.json" />
-    <EmbeddedResource Include="Resources\Fonts\Montserrat-Bold.ttf" />
-    <EmbeddedResource Include="Resources\Fonts\Montserrat-Medium.ttf" />
-    <EmbeddedResource Include="Resources\Fonts\Montserrat-Regular.ttf" />
-    <EmbeddedResource Include="Resources\Fonts\Montserrat-SemiBold.ttf" />
-    <EmbeddedResource Include="Resources\Fonts\UIFontIcons.ttf" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\AboutUsSimplePage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\AboutUsWithCardsPage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\AboutUsWithScrollPage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\AddCardPage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\AddContactPage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\AddProfilePage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\AppUsagePage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\ArticleBookmarkPage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\ArticleCardPage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\ArticleDetailPage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\ArticleListPage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\ArticleParallaxHeaderPage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\ArticleTilePage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\ArticleWithCommentsPage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\BottomNavigationPage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\BusinessRegistrationFormPage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\CardPaymentPage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\CartPage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\CatalogListPage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\CatalogTilePage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\CategoryTilePage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\ChatPage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\ChatProfilePage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\CheckoutPage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\CompanyHistoryPage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\ContactProfilePage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\ContactsPage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\ContactUsPage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\DailyCaloriesReportPage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\DailyTimelinePage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\DataTablePage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\DocumentsListPage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\ECommerceNotificationPage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\EmptyCartPage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\EventDetailPage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\EventListPage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\FAQPage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\FeedbackDetailPage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\FeedbackPage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\FileExploreGridPage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\FileExploreListPage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\GradientForgotPasswordPage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\GradientLoginPage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\GradientResetPasswordPage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\GradientSignUpPage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\HealthCarePage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\HealthProfilePage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\HelpPage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\IconNamesListPage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\LocationDeniedPage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\Login Tabbed.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\LoginWithSocialIconPage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\MasterPage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\MoviesListPage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\MoviesPage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\MyAddressPage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\MyArticlePage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\MyCardsPage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\MyOrdersPage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\MyWalletPage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\NamesListPage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\NavigationListCardPage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\NavigationTileCardPage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\NavigationTravelPage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\NoCreditsPage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\NoInternetConnectionPage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\NoItemPage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\NoPhotosPage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\NoTasksPage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\NotEnoughCreditPage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\NoVideosPage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\OnBoardingAnimationPage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\PaymentFailedPage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\PaymentFailurePage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\PaymentSuccessPage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\ProductDeliveryTrackingPage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\ProductDetailPage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\ProductHomePage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\ProfilePage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\RecentChatPage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\RestaurantPage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\ReviewPage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\RoomBookingPage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\SelectableNamePage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\SettingsPage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\SimpleForgotPasswordPage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\SimpleLoginPage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\SimpleResetPasswordPage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\SimpleSignUpPage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\SocialNotificationPage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\SocialProfileWithCardPage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\SocialProfileWithConnectionsPage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\SocialProfileWithInterestsPage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\SocialProfileWithMessagePage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\SomethingWentWrongPage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\SongsPage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\SongsPlayListPage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\StockOverViewPage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\SuggestionPage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\TabbedForm.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\TaskNotificationPage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\TransactionHistoryPage.png" />
-    <EmbeddedResource Include="TemplateImage\DarkTheme\WishlistPage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\AboutUsSimplePage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\AboutUsWithCardsPage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\AboutUsWithScrollPage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\AddCardPage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\AddContactPage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\AddProfilePage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\AppUsagePage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\ArticleBookmarkPage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\ArticleCardPage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\ArticleDetailPage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\ArticleListPage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\ArticleParallaxHeaderPage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\ArticleTilePage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\ArticleWithCommentsPage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\BottomNavigationPage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\BusinessRegistrationFormPage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\CardPaymentPage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\CartPage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\CatalogListPage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\CatalogTilePage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\CategoryTilePage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\ChatPage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\ChatProfilePage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\CheckoutPage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\CompanyHistoryPage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\ContactProfilePage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\ContactsPage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\ContactUsPage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\DailyCaloriesReportPage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\DailyTimelinePage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\DataTablePage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\DocumentsListPage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\ECommerceNotificationPage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\EmptyCartPage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\EventDetailPage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\EventListPage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\FAQPage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\FeedbackDetailPage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\FeedbackPage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\FileExploreGridPage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\FileExploreListPage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\GradientForgotPasswordPage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\GradientLoginPage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\GradientResetPasswordPage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\GradientSignUpPage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\HealthCarePage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\HealthProfilePage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\HelpPage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\IconNamesListPage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\LocationDeniedPage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\LoginWithSocialIconPage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\MasterPage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\MoviesListPage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\MoviesPage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\MyAddressPage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\MyArticlePage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\MyCardsPage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\MyOrdersPage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\MyWalletPage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\NamesListPage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\NavigationListCardPage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\NavigationTileCardPage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\NavigationTravelPage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\NoCreditsPage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\NoInternetConnectionPage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\NoItemPage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\NoPhotosPage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\NoTasksPage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\NotEnoughCreditPage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\NoVideosPage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\OnBoardingAnimationPage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\PaymentFailurePage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\PaymentSuccessPage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\PaymentFailedPage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\ProductDeliveryTrackingPage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\ProductDetailPage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\ProductHomePage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\ProfilePage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\RecentChatPage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\RestaurantPage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\ReviewPage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\RoomBookingPage.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="AppLayout\Icons\about-us.png" />
@@ -527,16 +100,12 @@
     <EmbeddedResource Include="AppLayout\Icons\tracking.png" />
     <EmbeddedResource Include="AppLayout\Icons\transaction.png" />
     <EmbeddedResource Include="AppLayout\TemplateList.xml" />
-    <EmbeddedResource Include="Data\chat.json" />
     <EmbeddedResource Include="Data\deliverytracking.json" />
-    <EmbeddedResource Include="Data\detail.json" />
     <EmbeddedResource Include="Data\notification.json" />
-    <EmbeddedResource Include="Data\profile.json" />
     <EmbeddedResource Include="Data\timeline.json" />
     <EmbeddedResource Include="Data\trainstatus.json" />
     <EmbeddedResource Include="Data\ecommerce.json" />
     <EmbeddedResource Include="Data\navigation.json" />
-    <EmbeddedResource Include="Data\transaction.json" />
     <EmbeddedResource Include="Images\CaloriesEaten.svg" />
     <EmbeddedResource Include="Images\ChooseGradient.svg" />
     <EmbeddedResource Include="Images\ConfirmGradient.svg" />
@@ -557,26 +126,6 @@
     <EmbeddedResource Include="Images\SleepDuration.svg" />
     <EmbeddedResource Include="Images\SomethingWentWrong.svg" />
     <EmbeddedResource Include="Images\WaterConsumed.svg" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\SelectableNamePage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\SettingsPage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\SimpleForgotPasswordPage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\SimpleLoginPage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\SimpleResetPasswordPage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\SimpleSignUpPage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\SocialNotificationPage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\SocialProfileWithCardPage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\SocialProfileWithConnectionsPage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\SocialProfileWithInterestsPage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\SocialProfileWithMessagePage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\SomethingWentWrongPage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\SongsPage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\SongsPlayListPage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\StockOverViewPage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\SuggestionPage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\TabbedForm.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\TaskNotificationPage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\TransactionHistoryPage.png" />
-    <EmbeddedResource Include="TemplateImage\LightTheme\WishlistPage.png" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="AppLayout\Views\Styles.xaml.cs">
@@ -731,24 +280,6 @@
 	</Compile>
 	<Compile Update="Views\Social\Templates\ProfileTemplate.xaml.cs">
 	  <DependentUpon>ProfileTemplate.xaml</DependentUpon>
-	</Compile>
-	<Compile Update="Views\Templates\EcommerceNotificationTemplate.xaml.cs">
-	  <DependentUpon>EcommerceNotificationTemplate.xaml</DependentUpon>
-	</Compile>
-	<Compile Update="Views\Templates\RestaurantCardTemplate.xaml.cs">
-	  <DependentUpon>RestaurantCardTemplate.xaml</DependentUpon>
-	</Compile>
-	<Compile Update="Views\Templates\TaskNotificationTemplate.xaml.cs">
-	  <DependentUpon>TaskNotificationTemplate.xaml</DependentUpon>
-	</Compile>
-	<Compile Update="Views\Templates\StockOverviewChartTemplate.xaml.cs">
-	  <DependentUpon>StockOverviewChartTemplate.xaml</DependentUpon>
-	</Compile>
-	<Compile Update="Views\Templates\RecentChatTemplate.xaml.cs">
-	  <DependentUpon>RecentChatTemplate.xaml</DependentUpon>
-	</Compile>
-	<Compile Update="Views\Templates\BottomNavigationAlbumTemplate.xaml.cs">
-	  <DependentUpon>BottomNavigationAlbumTemplate.xaml</DependentUpon>
 	</Compile>
 	<Compile Update="Views\Templates\Styles.xaml.cs">
 	  <DependentUpon>%(Filename)</DependentUpon>

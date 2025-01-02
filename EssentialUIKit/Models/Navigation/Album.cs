@@ -26,7 +26,7 @@ namespace EssentialUIKit.Models.Navigation
         {
             get
             {
-                return App.ImageServerPath + this.albumImage;
+                return App.BaseImageUrl + this.albumImage;
             }
 
             set
@@ -38,8 +38,8 @@ namespace EssentialUIKit.Models.Navigation
         /// <summary>
         /// Gets the total photos.
         /// </summary>
-        [DataMember(Name = "imagesCount")]
-        public string ImagesCount { get; internal set; }
+        [DataMember(Name = "photosCount")]
+        public string PhotosCount { get; internal set; }
 
         /// <summary>
         /// Gets or sets the category.

@@ -4,107 +4,45 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:behavior="clr-namespace:EssentialUIKit.Behaviors"
-    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
-    xmlns:controls="clr-namespace:EssentialUIKit.Controls"
     xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
     xmlns:local="clr-namespace:EssentialUIKit.Views.Feedback"
     xmlns:template="clr-namespace:EssentialUIKit.Views.Templates"
-    BackgroundColor="{DynamicResource Gray-Bg}"
+    xmlns:viewmodel="clr-namespace:EssentialUIKit.ViewModels.Feedback"
+    BackgroundColor="{DynamicResource Gray-White}"
     NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Resources>
         <ResourceDictionary>
-
-            <DataTemplate x:Key="HeaderTemplate">
-
-                <StackLayout
-                    Padding="16,8,8,0"
-                    HorizontalOptions="End"
-                    Orientation="Horizontal"
-                    Spacing="8">
-
-                    <!--  Filter label and icon  -->
-                    <buttons:SfButton
-                        BackgroundColor="Transparent"
-                        BorderWidth="0"
-                        Command="{Binding FilterCommand}"
-                        CornerRadius="4"
-                        HeightRequest="32"
-                        TextColor="{DynamicResource Gray-700}">
-                        <buttons:SfButton.Content>
-                            <StackLayout
-                                Padding="8,5,8,6"
-                                Orientation="Horizontal"
-                                Spacing="8">
-
-                                <Label
-                                    HorizontalOptions="End"
-                                    Style="{StaticResource IconLabelStyle}"
-                                    Text="{StaticResource Filter}" />
-
-                                <Label
-                                    FontFamily="Montserrat-SemiBold"
-                                    FontSize="14"
-                                    HorizontalOptions="End"
-                                    Style="{StaticResource SimpleLabelStyle}"
-                                    Text="Filter" />
-                            </StackLayout>
-                        </buttons:SfButton.Content>
-                    </buttons:SfButton>
-
-                    <!--  Sort label and icon  -->
-                    <buttons:SfButton
-                        BackgroundColor="Transparent"
-                        BorderWidth="0"
-                        Command="{Binding SortCommand}"
-                        CornerRadius="4"
-                        HeightRequest="32"
-                        TextColor="{DynamicResource Gray-700}">
-                        <buttons:SfButton.Content>
-                            <StackLayout
-                                Padding="8,5,8,6"
-                                Orientation="Horizontal"
-                                Spacing="8">
-
-                                <Label
-                                    HorizontalOptions="End"
-                                    Style="{StaticResource IconLabelStyle}"
-                                    Text="{StaticResource Sort}" />
-
-                                <Label
-                                    FontFamily="Montserrat-SemiBold"
-                                    FontSize="14"
-                                    HorizontalOptions="End"
-                                    Style="{StaticResource SimpleLabelStyle}"
-                                    Text="Sorting" />
-                            </StackLayout>
-                        </buttons:SfButton.Content>
-                    </buttons:SfButton>
-
-                </StackLayout>
-            </DataTemplate>
-
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <ContentPage.Content>
-        <StackLayout x:Name="stacklayout" Spacing="0">
+    <!--  Binding Context for OverAllFeedback Page  -->
+    <ContentPage.BindingContext>
+        <viewmodel:FeedbackViewModel />
+    </ContentPage.BindingContext>
 
-            <controls:TitleView Title="Reviews" Grid.Row="0">
-                <controls:TitleView.LeadingView>
-                    <buttons:SfButton
-                        x:Name="backButton"
-                        Command="{Binding BindingContext.BackButtonCommand, Source={x:Reference stacklayout}}"
-                        CommandParameter="{x:Reference backButton}"
-                        Style="{StaticResource IconButtonStyle}"
-                        Text="{StaticResource Back}" />
-                </controls:TitleView.LeadingView>
-            </controls:TitleView>
+    <ContentPage.Content>
+        <StackLayout Spacing="0">
+
+            <!--  Title  -->
+            <Label
+                Margin="0,16"
+                FontFamily="{StaticResource Montserrat-Medium}"
+                FontSize="16"
+                HorizontalOptions="CenterAndExpand"
+                Style="{StaticResource LabelStyle}"
+                Text="Reviews"
+                TextColor="{DynamicResource Gray-900}" />
+
+            <BoxView Style="{StaticResource BoxViewStyle}" />
 
             <!--  List view to show the feedback given by the customers  -->
             <listView:SfListView
                 AutoFitMode="Height"
-                BackgroundColor="{DynamicResource Gray-Bg}"
+                BackgroundColor="{DynamicResource Gray-White}"
                 HeaderTemplate="{StaticResource HeaderTemplate}"
                 IsScrollBarVisible="False"
                 ItemsSource="{Binding FeedbackInfo}"
@@ -124,7 +62,7 @@
                                 Margin="0,8,0,8"
                                 HeightRequest="{OnIdiom Default=1,
                                                         Desktop=0}"
-                                Style="{StaticResource HorizontalSeparatorStyle}" />
+                                Style="{StaticResource BoxViewStyle}" />
                         </StackLayout>
                         <!--<local:FeedbackTemplate />-->
                     </DataTemplate>

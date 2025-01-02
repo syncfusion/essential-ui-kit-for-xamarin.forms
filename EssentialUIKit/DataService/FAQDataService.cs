@@ -1,6 +1,6 @@
-﻿using System.Reflection;
+﻿using EssentialUIKit.ViewModels.Navigation;
+using System.Reflection;
 using System.Runtime.Serialization.Json;
-using EssentialUIKit.ViewModels.Navigation;
 using Xamarin.Forms.Internals;
 
 namespace EssentialUIKit.DataService
@@ -13,9 +13,9 @@ namespace EssentialUIKit.DataService
     {
         #region fields
 
-        private static FAQDataService faqDataService;
+        private static FAQDataService instance;
 
-        private FAQViewModel faqViewModel;
+        private FAQViewModel FAQsViewModel;
 
         #endregion
 
@@ -24,14 +24,14 @@ namespace EssentialUIKit.DataService
         /// <summary>
         /// Gets an instance of the <see cref="FAQDataService"/>.
         /// </summary>
-        public static FAQDataService Instance => faqDataService ?? (faqDataService = new FAQDataService());
+        public static FAQDataService Instance => instance ?? (instance = new FAQDataService());
 
         /// <summary>
         /// Gets or sets the value of FAQ page view model.
         /// </summary>
         public FAQViewModel FAQViewModel =>
-            this.faqViewModel ??
-            (this.faqViewModel = PopulateData<FAQViewModel>("navigation.json"));
+            this.FAQsViewModel ??
+            (this.FAQsViewModel = PopulateData<FAQViewModel>("navigation.json"));
 
         #endregion
 
@@ -49,15 +49,15 @@ namespace EssentialUIKit.DataService
 
             var assembly = typeof(App).GetTypeInfo().Assembly;
 
-            T data;
+            T obj;
 
             using (var stream = assembly.GetManifestResourceStream(file))
             {
                 var serializer = new DataContractJsonSerializer(typeof(T));
-                data = (T)serializer.ReadObject(stream);
+                obj = (T)serializer.ReadObject(stream);
             }
 
-            return data;
+            return obj;
         }
 
         #endregion

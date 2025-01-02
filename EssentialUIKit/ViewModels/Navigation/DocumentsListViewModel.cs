@@ -1,8 +1,8 @@
 ﻿using System.Collections.ObjectModel;
 using System.Runtime.Serialization;
-using EssentialUIKit.Models.Navigation;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
+using EssentialUIKit.Models.Navigation;
 
 namespace EssentialUIKit.ViewModels.Navigation
 {
@@ -17,8 +17,6 @@ namespace EssentialUIKit.ViewModels.Navigation
 
         private Command<object> itemTappedCommand;
 
-        private Command<object> menuCommand;
-
         #endregion
 
         #region Constructor
@@ -28,6 +26,7 @@ namespace EssentialUIKit.ViewModels.Navigation
         /// </summary>
         public DocumentsViewModel()
         {
+
         }
 
         #endregion
@@ -42,17 +41,6 @@ namespace EssentialUIKit.ViewModels.Navigation
             get
             {
                 return this.itemTappedCommand ?? (this.itemTappedCommand = new Command<object>(this.NavigateToNextPage));
-            }
-        }
-
-        /// <summary>
-        /// Gets the command that will be executed when an menu button is selected.
-        /// </summary>
-        public Command<object> MenuCommand
-        {
-            get
-            {
-                return this.menuCommand ?? (this.menuCommand = new Command<object>(this.MenuButtonClicked));
             }
         }
 
@@ -75,14 +63,6 @@ namespace EssentialUIKit.ViewModels.Navigation
             // Do something
         }
 
-        /// <summary>
-        /// Invoked when the more button clicked
-        /// </summary>
-        /// <param name="obj">The object</param>
-        private void MenuButtonClicked(object obj)
-        {
-            // Do something
-        }
         #endregion
     }
 }

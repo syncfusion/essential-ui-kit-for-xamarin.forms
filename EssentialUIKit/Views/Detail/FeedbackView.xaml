@@ -5,19 +5,29 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
     xmlns:template="clr-namespace:EssentialUIKit.Views.Templates"
-    BackgroundColor="{DynamicResource Gray-Bg}"
+    BackgroundColor="{DynamicResource Gray-White}"
     Spacing="0"
     VerticalOptions="Start">
+
+    <StackLayout.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </StackLayout.Resources>
 
     <StackLayout Spacing="0">
         <!--  Rating and Reviews Header  -->
         <StackLayout Padding="{OnIdiom Default='16', Desktop='0,0,0,10'}" Orientation="Horizontal">
 
             <Label
+                FontFamily="{StaticResource Montserrat-SemiBold}"
+                FontSize="16"
                 HorizontalOptions="StartAndExpand"
-                Style="{StaticResource TitleLabelStyle}"
+                Style="{StaticResource LabelStyle}"
                 Text="Rating and Reviews"
-                VerticalOptions="Center" />
+                TextColor="{DynamicResource Gray-900}" />
 
             <!--  See all review button  -->
             <buttons:SfButton
@@ -25,27 +35,30 @@
                 Padding="0"
                 Command="{Binding LoadMoreCommand}"
                 CommandParameter="{x:Reference ShowButton}"
+                CornerRadius="4"
+                FontFamily="{StaticResource Montserrat-SemiBold}"
                 FontSize="{OnIdiom Default=12,
                                    Desktop=14}"
                 HorizontalOptions="End"
                 IsVisible="{OnIdiom Default=True,
                                     Desktop=False}"
-                Style="{StaticResource TransparentButtonStyle}"
+                Style="{StaticResource SfButtonStyle}"
                 Text="SHOW LESS"
+                TextColor="{DynamicResource HyperLink}"
                 VerticalOptions="Center" />
 
         </StackLayout>
-        <BoxView HeightRequest="{OnIdiom Default=1, Desktop=0}" Style="{StaticResource HorizontalSeparatorStyle}" />
+        <BoxView HeightRequest="{OnIdiom Default=1, Desktop=0}" Style="{StaticResource BoxViewStyle}" />
     </StackLayout>
 
-    <StackLayout x:Name="StackLayout" BindableLayout.ItemsSource="{Binding Reviews}">
+    <StackLayout x:Name="StackLayout" BindableLayout.ItemsSource="{Binding ProductDetail.Reviews}">
         <BindableLayout.ItemTemplate>
             <DataTemplate>
                 <StackLayout Spacing="0">
 
                     <template:ReviewTemplate Padding="16,8,16,0" ColumnSpacing="0" />
 
-                    <BoxView HeightRequest="{OnIdiom Default=1, Desktop=0}" Style="{StaticResource HorizontalSeparatorStyle}" />
+                    <BoxView HeightRequest="{OnIdiom Default=1, Desktop=0}" Style="{StaticResource BoxViewStyle}" />
 
                     <StackLayout.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding Path=BindingContext.ItemSelectedCommand, Source={x:Reference StackLayout}}" CommandParameter="{Binding .}" />
@@ -60,10 +73,13 @@
     <buttons:SfButton
         Margin="0,10,0,0"
         Command="{Binding LoadMoreCommand}"
+        FontSize="16"
+        HorizontalOptions="Start"
         IsVisible="{OnIdiom Default=False,
                             Desktop=True}"
-        Style="{StaticResource TransparentButtonStyle}"
+        Style="{StaticResource SfButtonStyle}"
         Text="See all 532 reviews"
+        TextColor="{DynamicResource HyperLink}"
         VerticalOptions="Center"
         WidthRequest="152" />
 

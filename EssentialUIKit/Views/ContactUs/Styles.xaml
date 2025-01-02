@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ResourceDictionary
+    x:Class="EssentialUIKit.Views.ContactUs.Styles"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+    xmlns:control="clr-namespace:EssentialUIKit.Controls"
+    xmlns:gradient="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms">
+
+    <!--  Common style for borders  -->
+    <Style x:Key="SfBorderStyle" TargetType="border:SfBorder">
+        <Setter Property="HeightRequest" Value="40" />
+        <Setter Property="BorderColor" Value="{DynamicResource Gray-300}" />
+        <Setter Property="CornerRadius" Value="3" />
+        <Setter Property="Padding" Value="8,0,0,0" />
+        <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+        
+    </Style>
+
+
+    <!--  Common style for buttons  -->
+    <Style x:Key="SfGradientButtonStyle" TargetType="buttons:SfButton">
+        <Setter Property="TextColor" Value="{DynamicResource Gray-White}" />
+        <Setter Property="FontFamily" Value="{StaticResource Montserrat-SemiBold}" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="HeightRequest" Value="40" />
+        <Setter Property="CornerRadius" Value="24" />
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="WidthRequest" Value="150" />
+        <Setter Property="VerticalTextAlignment" Value="Center" />
+      
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundGradient">
+                                <Setter.Value>
+                                    <gradient:SfLinearGradientBrush StartPoint="0, 0" EndPoint="1, 1">
+                                        <gradient:SfLinearGradientBrush.GradientStops>
+                                            <gradient:SfGradientStop Offset="0" Color="{DynamicResource PrimaryColor}" />
+                                            <gradient:SfGradientStop Offset="1" Color="{DynamicResource PrimaryGradient}" />
+                                        </gradient:SfLinearGradientBrush.GradientStops>
+                                    </gradient:SfLinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState x:Name="Pressed">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundGradient">
+                                <Setter.Value>
+                                    <gradient:SfLinearGradientBrush StartPoint="0, 0" EndPoint="1, 1">
+                                        <gradient:SfLinearGradientBrush.GradientStops>
+                                            <gradient:SfGradientStop Offset="0" Color="{DynamicResource PrimaryColor}" />
+                                            <gradient:SfGradientStop Offset="1" Color="{DynamicResource PrimaryGradient}" />
+                                        </gradient:SfLinearGradientBrush.GradientStops>
+                                    </gradient:SfLinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
+    </Style>
+
+    <!--  Common borderless entry style  -->
+    <Style x:Key="BorderlessEntryStyle" TargetType="control:BorderlessEntry">
+        <Setter Property="PlaceholderColor" Value="{DynamicResource Gray-700}" />
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="TextColor" Value="{DynamicResource Gray-900}" />
+    </Style>
+
+    <!--  Common label style  -->
+    <Style x:Key="labelStyle" TargetType="Label">
+        <Setter Property="FontFamily" Value="{DynamicResource Montserrat-Regular}" />
+        <Setter Property="TextColor" Value="{DynamicResource Gray-700}" />
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="LineHeight" Value="{OnPlatform Android=1.25,Default=-1}"/>
+        <Setter Property="Margin" Value="0,0,0,6"/>
+    </Style>
+
+</ResourceDictionary>

@@ -17,7 +17,7 @@ namespace EssentialUIKit.Views.Notification
         /// </summary>
         public SocialNotificationPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
             this.BindingContext = SocialNotificationDataService.Instance.SocialNotificationViewModel;
         }
     }

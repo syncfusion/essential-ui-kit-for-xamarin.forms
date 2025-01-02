@@ -19,7 +19,7 @@ namespace EssentialUIKit.Models.Dashboard
         /// Gets or sets the property that has been displays the nutrients.
         /// </summary>
         public string Nutrient { get; set; }
-
+        
         /// <summary>
         /// Gets or sets the property that has been bound with button which displays the card items.
         /// </summary>

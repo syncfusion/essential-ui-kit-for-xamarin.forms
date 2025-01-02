@@ -2,29 +2,7 @@
 <ResourceDictionary
     x:Class="EssentialUIKit.Themes.LightTheme"
     xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:styles="clr-namespace:EssentialUIKit.Styles">
-
-    <ResourceDictionary.MergedDictionaries>
-        <styles:ButtonStyles />
-        <styles:LabelStyles />
-        <styles:BorderStyles />
-        <styles:ComboBoxStyles />
-        <styles:ListViewStyles />
-        <styles:RatingStyles />
-        <styles:BoxViewStyles />
-        <styles:AvatarViewStyles />
-        <styles:EntryStyles />
-        <styles:FontIcons />
-        <styles:Colors />
-        <styles:EditorStyles />
-        <styles:FrameStyles />
-        <styles:GradientViewStyles />
-        <styles:RadioButtonStyles />
-        <styles:SegmentedControlStyles />
-        <styles:TextInputLayoutStyles />
-        <styles:CheckBoxStyles />
-    </ResourceDictionary.MergedDictionaries>
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
     <Color x:Key="PrimaryColor">#f54e5e</Color>
     <Color x:Key="PrimaryDarkColor">#d0424f</Color>
@@ -51,8 +29,45 @@
     <Color x:Key="Gray-900">#333942</Color>
     <Color x:Key="Gray-Black">#000000</Color>
     <Color x:Key="Gray-White">#ffffff</Color>
-    <Color x:Key="Gray-Bg">#ffffff</Color>
-    <Color x:Key="GrayShadowColor">#ffffff</Color>
-    <Color x:Key="GrayShadowBackgroundColor">#f6f7f8</Color>
+
+    <OnPlatform x:Key="FontIcons" x:TypeArguments="x:String">
+        <OnPlatform.Platforms>
+            <On Platform="Android" Value="UIFontIcons.ttf#UIFontIcons" />
+            <On Platform="iOS" Value="UIFontIcons" />
+            <On Platform="UWP" Value="Assets/UIFontIcons.ttf#UIFontIcons" />
+        </OnPlatform.Platforms>
+    </OnPlatform>
+
+    <OnPlatform x:Key="Montserrat-SemiBold" x:TypeArguments="x:String">
+        <OnPlatform.Platforms>
+            <On Platform="Android" Value="Montserrat-SemiBold.ttf#Montserrat-SemiBold" />
+            <On Platform="iOS" Value="Montserrat-SemiBold" />
+            <On Platform="UWP" Value="Assets/Montserrat-SemiBold.ttf#Montserrat-SemiBold" />
+        </OnPlatform.Platforms>
+    </OnPlatform>
+
+    <OnPlatform x:Key="Montserrat-Regular" x:TypeArguments="x:String">
+        <OnPlatform.Platforms>
+            <On Platform="Android" Value="Montserrat-Regular.ttf#Montserrat-Regular" />
+            <On Platform="iOS" Value="Montserrat-Regular" />
+            <On Platform="UWP" Value="Assets/Montserrat-Regular.ttf#Montserrat-Regular" />
+        </OnPlatform.Platforms>
+    </OnPlatform>
+
+    <OnPlatform x:Key="Montserrat-Medium" x:TypeArguments="x:String">
+        <OnPlatform.Platforms>
+            <On Platform="Android" Value="Montserrat-Medium.ttf#Montserrat-Medium" />
+            <On Platform="iOS" Value="Montserrat-Medium" />
+            <On Platform="UWP" Value="Assets/Montserrat-Medium.ttf#Montserrat-Medium" />
+        </OnPlatform.Platforms>
+    </OnPlatform>
+
+    <OnPlatform x:Key="Montserrat-Bold" x:TypeArguments="x:String">
+        <OnPlatform.Platforms>
+            <On Platform="Android" Value="Montserrat-Bold.ttf#Montserrat-Bold" />
+            <On Platform="iOS" Value="Montserrat-Bold" />
+            <On Platform="UWP" Value="Assets/Montserrat-Bold.ttf#Montserrat-Bold" />
+        </OnPlatform.Platforms>
+    </OnPlatform>
 
 </ResourceDictionary>

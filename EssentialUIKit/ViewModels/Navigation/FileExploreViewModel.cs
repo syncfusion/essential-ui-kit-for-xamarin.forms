@@ -1,8 +1,8 @@
 ﻿using System.Collections.ObjectModel;
 using System.Runtime.Serialization;
-using EssentialUIKit.Models.Navigation;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
+using EssentialUIKit.Models.Navigation;
 
 namespace EssentialUIKit.ViewModels.Navigation
 {
@@ -17,8 +17,6 @@ namespace EssentialUIKit.ViewModels.Navigation
 
         private Command<object> itemTappedCommand;
 
-        private Command<object> categoryCommand;
-
         #endregion
 
         #region Constructor
@@ -28,6 +26,7 @@ namespace EssentialUIKit.ViewModels.Navigation
         /// </summary>
         public FileExploreViewModel()
         {
+
         }
 
         #endregion
@@ -46,17 +45,6 @@ namespace EssentialUIKit.ViewModels.Navigation
         }
 
         /// <summary>
-        /// Gets the command that will be executed when an category button is selected.
-        /// </summary>
-        public Command<object> CategoryCommand
-        {
-            get
-            {
-                return this.categoryCommand ?? (this.categoryCommand = new Command<object>(this.CategorySelected));
-            }
-        }
-
-        /// <summary>
         /// Gets or sets a collction of value to be displayed in file explorer list page.
         /// </summary>
         [DataMember(Name = "fileExploreList")]
@@ -71,15 +59,6 @@ namespace EssentialUIKit.ViewModels.Navigation
         /// </summary>
         /// <param name="selectedItem">Selected item from the list view.</param>
         private void NavigateToNextPage(object selectedItem)
-        {
-            // Do something
-        }
-
-        /// <summary>
-        /// Invoked when an category is selected from the file explorer list.
-        /// </summary>
-        /// <param name="selectedItem">Selected item from the list view.</param>
-        private void CategorySelected(object selectedItem)
         {
             // Do something
         }

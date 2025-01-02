@@ -24,7 +24,7 @@ namespace EssentialUIKit.Views.Bookmarks
         /// </summary>
         public PriceDetailView()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         #endregion
@@ -36,7 +36,7 @@ namespace EssentialUIKit.Views.Bookmarks
         /// </summary>
         public string ActionText
         {
-            get { return (string)this.GetValue(ActionTextProperty); }
+            get { return (string)GetValue(ActionTextProperty); }
             set { this.SetValue(ActionTextProperty, value); }
         }
 

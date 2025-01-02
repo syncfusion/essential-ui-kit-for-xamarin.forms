@@ -16,7 +16,7 @@
                 <ResourceDictionary Source="Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <DataTemplate x:Key="ItemTemplate">
-                <ContentPresenter Content="{Binding RotatorView}" />
+                <ContentPresenter Content="{Binding RotatorItem}" />
             </DataTemplate>
         </ResourceDictionary>
     </ContentPage.Resources>
@@ -46,7 +46,7 @@
                 BackgroundColor="Transparent"
                 Command="{Binding SkipCommand}"
                 CornerRadius="20"
-                FontFamily="Montserrat-SemiBold"
+                FontFamily="{StaticResource Montserrat-SemiBold}"
                 HeightRequest="40"
                 HorizontalOptions="End"
                 IsVisible="{Binding IsSkipButtonVisible}"

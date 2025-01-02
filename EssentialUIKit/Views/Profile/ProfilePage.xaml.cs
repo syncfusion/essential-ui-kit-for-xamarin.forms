@@ -1,5 +1,4 @@
-﻿using EssentialUIKit.ViewModels.Profile;
-using Xamarin.Forms.Internals;
+﻿using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
 
 namespace EssentialUIKit.Views.Profile
@@ -16,8 +15,7 @@ namespace EssentialUIKit.Views.Profile
         /// </summary>
         public ProfilePage()
         {
-            this.InitializeComponent();
-            this.BindingContext = ProfileViewModel.BindingContext;
+            InitializeComponent();
         }
     }
 }

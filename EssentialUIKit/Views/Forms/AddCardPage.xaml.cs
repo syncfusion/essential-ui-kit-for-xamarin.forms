@@ -13,17 +13,7 @@ namespace EssentialUIKit.Views.Forms
     {
         public AddCardPage()
         {
-            this.InitializeComponent();
-        }
-
-        private void DatePicker_Clicked(object sender, System.EventArgs e)
-        {
-            datePicker.IsOpen = true;
-        }
-
-        private void DatePicker_OkButtonClicked(object sender, Syncfusion.XForms.Pickers.DateChangedEventArgs e)
-        {
-            pickerButton.Text = string.Format("{0:MM/yy}", e.NewValue);
+            InitializeComponent();
         }
     }
 }

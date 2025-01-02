@@ -1,27 +1,26 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage
-    x:Class="EssentialUIKit.AppLayout.Views.TemplateHostPage"
-    xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
-    xmlns:controls="clr-namespace:EssentialUIKit.AppLayout.Controls;assembly=EssentialUIKit"
-    xmlns:graphics="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
-    NavigationPage.HasBackButton="True"
-    Style="{StaticResource ContentPageStyle}">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:EssentialUIKit.AppLayout.Controls;assembly=EssentialUIKit"
+             xmlns:graphics="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
+             xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+             Style="{StaticResource ContentPageStyle}"
+             NavigationPage.HasBackButton="True"
+             x:Class="EssentialUIKit.AppLayout.Views.TemplateHostPage">
 
     <ContentPage.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="AppLayoutStyles.xaml" />
+                <ResourceDictionary Source="Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
-
-            <Style TargetType="graphics:SfGradientView">
+            
+            <Style  TargetType="graphics:SfGradientView" >
                 <Setter Property="BackgroundBrush">
                     <Setter.Value>
                         <graphics:SfLinearGradientBrush>
                             <graphics:SfLinearGradientBrush.GradientStops>
-                                <graphics:SfGradientStop Offset="0" Color="{DynamicResource PrimaryColor}" />
-                                <graphics:SfGradientStop Offset="1" Color="{DynamicResource PrimaryGradient}" />
+                                <graphics:SfGradientStop Offset="0" Color="{DynamicResource PrimaryColor}"/>
+                                <graphics:SfGradientStop Offset="1" Color="{DynamicResource PrimaryGradient}"/>
                             </graphics:SfLinearGradientBrush.GradientStops>
                         </graphics:SfLinearGradientBrush>
                     </Setter.Value>
@@ -32,41 +31,40 @@
 
     <Grid RowSpacing="0">
         <Grid.RowDefinitions>
-            <RowDefinition x:Name="iOSSafeArea" Height="0" />
-            <RowDefinition Height="55" />
-            <RowDefinition Height="10" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition />
+            <RowDefinition Height="0" x:Name="iOSSafeArea"/>
+            <RowDefinition Height="55"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <graphics:SfGradientView Grid.RowSpan="3" IsVisible="False" />
+        <graphics:SfGradientView Grid.RowSpan="3"/>
 
         <StackLayout
             x:Name="ActionBarContent"
-            Grid.Row="1"
-            HorizontalOptions="FillAndExpand"
-            IsVisible="False"
             Orientation="Horizontal"
-            VerticalOptions="FillAndExpand">
+            Grid.Row="1"
+            VerticalOptions="FillAndExpand"
+            HorizontalOptions="FillAndExpand">
 
-            <Button Clicked="BackButtonPressed" Style="{StaticResource ActionBarBackButtonStyle}" />
+            <Button
+                Style="{StaticResource ActionBarBackButtonStyle}"
+                Clicked="BackButtonPressed"/>
 
-            <Label
-                x:Name="TitleView"
-                Margin="-10,0,0,0"
-                HorizontalOptions="StartAndExpand"
-                Style="{StaticResource ActionBarLabelStyle}"
-                VerticalOptions="CenterAndExpand" />
+            <Label x:Name="Title"
+                   Margin="-10,0,0,0"
+                   Style="{StaticResource ActionBarLabelStyle}"
+                   HorizontalOptions="StartAndExpand"
+                   VerticalOptions="CenterAndExpand" />
         </StackLayout>
 
-        <border:SfBorder
-            x:Name="HostViewContainer"
-            Grid.Row="1"
-            Grid.RowSpan="4"
-            BorderWidth="0"
-            VerticalOptions="FillAndExpand">
+        <border:SfBorder Grid.Row="2" Grid.RowSpan="2" 
+                         VerticalOptions="FillAndExpand"
+                         x:Name="HostViewContainer"
+                         BorderWidth="0"
+                         CornerRadius="10,10,0,0">
             <!--<ScrollView x:Name="MainScrollView" >-->
-            <controls:TemplateHostView x:Name="TemplateHostView" />
+                <controls:TemplateHostView x:Name="TemplateHostView"/>
             <!--</ScrollView>-->
         </border:SfBorder>
     </Grid>

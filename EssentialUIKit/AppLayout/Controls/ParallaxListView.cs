@@ -8,8 +8,7 @@ namespace EssentialUIKit.AppLayout.Controls
     [Preserve(AllMembers = true)]
     public class ParallaxListView : ListView
     {
-        public ParallaxListView()
-            : base(ListViewCachingStrategy.RetainElement)
+        public ParallaxListView() : base(ListViewCachingStrategy.RetainElement)
         {
             if (Device.RuntimePlatform != Device.iOS)
             {
@@ -25,7 +24,7 @@ namespace EssentialUIKit.AppLayout.Controls
 
         public static void OnScrollChanged(object sender, ScrollChangedEventArgs e)
         {
-            ((ParallaxListView)sender)?.ScrollChanged?.Invoke((ParallaxListView)sender, e);
+                ((ParallaxListView)sender)?.ScrollChanged?.Invoke((ParallaxListView)sender, e);
         }
 
         public static void OnSelectionChanged(object sender, SelectedItemChangedEventArgs e)
@@ -34,7 +33,7 @@ namespace EssentialUIKit.AppLayout.Controls
             if (listView != null)
             {
                 listView.SelectionChanged(sender, e);
-                listView.SelectedItem = e?.SelectedItem;
+                listView.SelectedItem = e.SelectedItem;
                 listView.SelectedItem = null;
             }
         }

@@ -1,5 +1,5 @@
-﻿using EssentialUIKit.Models.Navigation;
-using Xamarin.Forms.Internals;
+﻿using Xamarin.Forms.Internals;
+using EssentialUIKit.Models.Navigation;
 
 namespace EssentialUIKit.Controls
 {
@@ -21,14 +21,14 @@ namespace EssentialUIKit.Controls
             if (base.FilterContacts(obj))
             {
                 var taskInfo = obj as File;
-                if (taskInfo == null || string.IsNullOrEmpty(taskInfo.FolderName) || string.IsNullOrEmpty(taskInfo.FolderItems)
+                if (taskInfo == null || string.IsNullOrEmpty(taskInfo.FolderName) || string.IsNullOrEmpty(taskInfo.Items) 
                     || string.IsNullOrEmpty(taskInfo.DateTime))
                 {
                     return false;
                 }
 
                 return taskInfo.FolderName.ToUpperInvariant().Contains(this.SearchText.ToUpperInvariant())
-                    || taskInfo.FolderItems.ToUpperInvariant().Contains(this.SearchText.ToUpperInvariant())
+                    || taskInfo.Items.ToUpperInvariant().Contains(this.SearchText.ToUpperInvariant()) 
                     || taskInfo.DateTime.ToUpperInvariant().Contains(this.SearchText.ToUpperInvariant());
             }
 

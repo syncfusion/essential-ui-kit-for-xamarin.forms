@@ -1,151 +1,118 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage
-    x:Class="EssentialUIKit.Views.Navigation.ContactsPage"
-    xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:behavior="clr-namespace:EssentialUIKit.Behaviors.Navigation;assembly=EssentialUIKit"
-    xmlns:behaviors="clr-namespace:EssentialUIKit.Behaviors"
-    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
-    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
-    xmlns:controls="clr-namespace:EssentialUIKit.Controls"
-    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-    xmlns:data="clr-namespace:Syncfusion.DataSource;assembly=Syncfusion.DataSource.Portable"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:sfavatar="clr-namespace:Syncfusion.XForms.AvatarView;assembly=Syncfusion.Core.XForms"
-    BackgroundColor="{DynamicResource Gray-Bg}"
-    NavigationPage.HasNavigationBar="False"
-    mc:Ignorable="d">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             xmlns:controls="clr-namespace:EssentialUIKit.Controls"
+             xmlns:sfavatar="clr-namespace:Syncfusion.XForms.AvatarView;assembly=Syncfusion.Core.XForms"
+             xmlns:behavior="clr-namespace:EssentialUIKit.Behaviors.Navigation;assembly=EssentialUIKit"
+             xmlns:data="clr-namespace:Syncfusion.DataSource;assembly=Syncfusion.DataSource.Portable"
+             mc:Ignorable="d"
+             x:Class="EssentialUIKit.Views.Navigation.ContactsPage"
+             BackgroundColor="{DynamicResource Gray-White}"
+             NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
     <ContentPage.Content>
 
-        <Grid
-            ColumnSpacing="0"
-            RowDefinitions="Auto, Auto, *"
-            RowSpacing="0">
+        <Grid RowSpacing="0" ColumnSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-            <StackLayout
-                x:Name="ContactsTitleView"
-                Grid.Row="0"
-                Padding="8"
-                BackgroundColor="{DynamicResource Gray-Bg}"
-                HorizontalOptions="FillAndExpand"
-                Orientation="Horizontal"
-                Spacing="0">
+            <StackLayout x:Name="ContactsTitleView"  Padding="8,8" Grid.Row="0" HeightRequest="64"
+                         BackgroundColor="{DynamicResource Gray-White}" Spacing="0"
+                         HorizontalOptions="FillAndExpand" Orientation="Horizontal">
 
-                <StackLayout
-                    x:Name="ContactsTitle"
-                    HorizontalOptions="FillAndExpand"
-                    IsVisible="True"
-                    Orientation="Horizontal"
-                    Spacing="0"
-                    VerticalOptions="FillAndExpand">
+                <StackLayout x:Name="ContactsTitle" HorizontalOptions="FillAndExpand"  IsVisible="True"
+                             Orientation="Horizontal"  VerticalOptions="FillAndExpand"  Spacing="0">
 
                     <!--  Back button command  -->
-                    <buttons:SfButton
-                        x:Name="backButton"
-                        Command="{Binding BackButtonCommand}"
-                        CommandParameter="{x:Reference backButton}"
-                        Style="{StaticResource IconButtonStyle}"
-                        Text="{StaticResource Back}" />
+                    <buttons:SfButton  x:Name="backButton"  Command="{Binding BackButtonCommand}"
+                                       CommandParameter="{x:Reference backButton}" CornerRadius="4"
+                                       Style="{StaticResource IconButtonStyle}" Text="{StaticResource Back}"/>
 
-                    <!--  Contacts List page Title  -->
-                    <Label
-                        Margin="16,0"
-                        FontFamily="Montserrat-Medium"
-                        HorizontalOptions="FillAndExpand"
-                        Style="{StaticResource TitleLabelStyle}"
-                        Text="Contacts List"
-                        VerticalOptions="Center"
-                        VerticalTextAlignment="Center" />
+                    <!--   Contacts List page Title  -->
+                    <Label  Margin="16,0" FontFamily="{StaticResource Montserrat-Medium}" FontSize="16"
+                            HorizontalOptions="CenterAndExpand" TextColor="{DynamicResource Gray-900}"
+                            LineHeight="1.25"  Text="Contacts List"  VerticalOptions="Center" VerticalTextAlignment="Center" />
 
                 </StackLayout>
 
-                <StackLayout
-                    x:Name="Search"
-                    HorizontalOptions="EndAndExpand"
-                    IsVisible="False"
-                    Orientation="Horizontal"
-                    Spacing="0">
+                <StackLayout  x:Name="Search" HorizontalOptions="EndAndExpand" IsVisible="False"
+                                Orientation="Horizontal" Spacing="0">
 
                     <!--  Back to title layout  -->
-                    <buttons:SfButton
-                        x:Name="BackToTitle"
-                        Style="{StaticResource IconButtonStyle}"
-                        Text="{StaticResource Back}">
-                        <buttons:SfButton.Behaviors>
-                            <behaviors:SearchBarAnimationBehavior AnimationType="shrink" />
-                        </buttons:SfButton.Behaviors>
-                    </buttons:SfButton>
+                    <buttons:SfButton x:Name="BackToTitle" Clicked="BackToTitle_Clicked"  Text="{StaticResource Back}"
+                                      Style="{StaticResource NavigationBarButtonStyle}" />
 
                     <!--  Rounded Search Entry  -->
-                    <border:SfBorder Style="{DynamicResource ThemeBorderStyle}">
-                        <controls:BorderlessEntry
-                            x:Name="SearchEntry"
-                            BindingContext="{x:Reference ContactList}"
-                            HorizontalOptions="FillAndExpand"
-                            Placeholder="Search here"
-                            Style="{StaticResource BorderlessEntryStyle}"
-                            Text="{Binding SearchText, Mode=TwoWay}" />
+                    <border:SfBorder Style="{DynamicResource SfBorderStyle}">
+                        <controls:BorderlessEntry x:Name="SearchEntry"  BindingContext="{x:Reference ContactList}"
+                                                  Text="{Binding SearchText, Mode=TwoWay}" Placeholder="Search here"
+                                                  HorizontalOptions="FillAndExpand"  Style="{StaticResource SearchEntryStyle}"/>
                     </border:SfBorder>
                 </StackLayout>
 
                 <!--  Search Button  -->
-                <buttons:SfButton
-                    x:Name="SearchButton"
-                    IsVisible="True"
-                    Style="{StaticResource IconButtonStyle}"
-                    Text="{StaticResource Search}">
-                    <buttons:SfButton.Behaviors>
-                        <behaviors:SearchBarAnimationBehavior AnimationType="expand" />
-                    </buttons:SfButton.Behaviors>
-                </buttons:SfButton>
+                <buttons:SfButton  x:Name="SearchButton" IsVisible="True" Clicked="SearchButton_Clicked" Style="{StaticResource IconButtonStyle }"
+                                   Text="{StaticResource Search}" />
             </StackLayout>
 
-            <!--  Seperator  -->
-            <BoxView Grid.Row="1" Style="{StaticResource HorizontalSeparatorStyle}" />
+            <!-- Seperator -->
+            <BoxView Grid.Row="1" Style="{StaticResource SeparatorStyle}"/>
 
             <StackLayout Grid.Row="2">
 
-                <controls:SearchableContactsList
-                    x:Name="ContactList"
-                    AllowSwiping="True"
-                    AutoFitMode="Height"
-                    IsScrollBarVisible="False"
-                    ItemSpacing="0"
-                    ItemsSource="{Binding ContactList}"
-                    SearchText="{Binding SearchText}"
-                    SelectionBackgroundColor="{DynamicResource Gray-200}"
-                    SelectionGesture="Tap"
-                    SelectionMode="Single"
-                    TapCommand="{Binding ItemTappedCommand}"
-                    VerticalOptions="FillAndExpand">
+                <controls:SearchableContactsList x:Name="ContactList"
+                                                 IsScrollBarVisible="False"
+                                                 AllowSwiping="True"
+                                                 AutoFitMode="Height"
+                                                 ItemSpacing="0"
+                                                 SelectionGesture="Tap"
+                                                 SelectionMode="Single"
+                                                 VerticalOptions="FillAndExpand"
+                                                 SearchText="{Binding SearchText}"
+                                                 TapCommand="{Binding ItemTappedCommand}"
+                                                 ItemsSource="{Binding ContactList}"
+                                                 SelectionBackgroundColor="{DynamicResource TappedBackgroundColor}">
 
                     <controls:SearchableContactsList.DataSource>
                         <data:DataSource>
                             <data:DataSource.SortDescriptors>
-                                <data:SortDescriptor Direction="Ascending" PropertyName="name" />
+                                <data:SortDescriptor PropertyName="name" Direction="Ascending"/>
                             </data:DataSource.SortDescriptors>
                         </data:DataSource>
                     </controls:SearchableContactsList.DataSource>
 
-                    <!--  Group Header  -->
+                    <!-- Group Header -->
                     <controls:SearchableContactsList.GroupHeaderTemplate>
                         <DataTemplate>
                             <ViewCell>
                                 <ViewCell.View>
-                                    <StackLayout
-                                        BackgroundColor="{DynamicResource Gray-100}"
-                                        HeightRequest="40"
-                                        Orientation="Horizontal"
-                                        Spacing="0">
+                                    <StackLayout Spacing="0" 
+                                                 Orientation="Horizontal" 
+                                                 HeightRequest="40" 
+                                                 BackgroundColor="{DynamicResource Gray-100}">
 
-                                        <Label
-                                            Margin="16,0"
-                                            FontFamily="Montserrat-Medium"
-                                            HorizontalOptions="Start"
-                                            Style="{StaticResource TitleLabelStyle}"
-                                            Text="{Binding Key}"
-                                            VerticalOptions="Center" />
+                                        <Label Text="{Binding Key}" 
+                                               FontSize="16" 
+                                               FontFamily="{StaticResource Montserrat-Medium}"
+                                               TextColor="{DynamicResource Gray-900}"
+                                               VerticalOptions="Center" 
+                                               HorizontalOptions="Start" 
+                                               Margin="16,0" />
 
                                     </StackLayout>
                                 </ViewCell.View>
@@ -154,42 +121,39 @@
                     </controls:SearchableContactsList.GroupHeaderTemplate>
 
                     <controls:SearchableContactsList.Behaviors>
-                        <behavior:ContactsListViewBehavior />
+                        <behavior:ContactsListViewBehavior/>
                     </controls:SearchableContactsList.Behaviors>
 
                     <controls:SearchableContactsList.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
                                 <ViewCell.View>
-                                    <Grid
-                                        ColumnDefinitions="Auto, *"
-                                        ColumnSpacing="0"
-                                        HeightRequest="56"
-                                        RowDefinitions="Auto, Auto"
-                                        RowSpacing="0">
+                                    <Grid RowSpacing="0" ColumnSpacing="0" HeightRequest="56">
 
-                                        <!--  Contact name avatar  -->
-                                        <sfavatar:SfAvatarView
-                                            Margin="16,8"
-                                            AvatarName="{Binding Name}"
-                                            BackgroundColor="{Binding BackgroundColor}"
-                                            Style="{StaticResource AvatarViewStyle}" />
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
 
-                                        <!--  Contact name  -->
-                                        <Label
-                                            Grid.Column="1"
-                                            Margin="0,16"
-                                            FontFamily="Montserrat-Medium"
-                                            HorizontalOptions="Start"
-                                            Style="{StaticResource TitleLabelStyle}"
-                                            Text="{Binding Name}"
-                                            VerticalOptions="Center" />
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
 
-                                        <!--  Seperator  -->
-                                        <BoxView
-                                            Grid.Row="1"
-                                            Grid.ColumnSpan="2"
-                                            Style="{StaticResource HorizontalSeparatorStyle}" />
+                                        <!-- Contact name avatar -->
+                                        <sfavatar:SfAvatarView Style="{StaticResource SfAvatarStyle}"
+                                                               Margin="16,8"
+                                                               AvatarName="{Binding Name}"
+                                                               BackgroundColor="{Binding BackgroundColor}" />
+
+                                        <!-- Contact name -->
+                                        <Label Grid.Column="1"
+                                               Text="{Binding Name}"
+                                               Margin="0,16"
+                                               Style="{StaticResource ContactsLabelStyle}" />
+
+                                        <!-- Seperator -->
+                                        <BoxView Grid.Row="1" Grid.ColumnSpan="2" Style="{StaticResource SeparatorStyle}" />
 
                                     </Grid>
                                 </ViewCell.View>

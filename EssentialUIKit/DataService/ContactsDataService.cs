@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
 using System.Runtime.Serialization.Json;
-using EssentialUIKit.ViewModels.Navigation;
 using Xamarin.Forms.Internals;
+using EssentialUIKit.ViewModels.Navigation;
 
 namespace EssentialUIKit.DataService
 {
@@ -13,7 +13,7 @@ namespace EssentialUIKit.DataService
     {
         #region fields 
 
-        private static ContactsDataService contactsDataService;
+        private static ContactsDataService instance;
 
         private ContactsViewModel contactsViewModel;
 
@@ -24,7 +24,7 @@ namespace EssentialUIKit.DataService
         /// <summary>
         /// Gets an instance of the <see cref="ContactsDataService"/>.
         /// </summary>
-        public static ContactsDataService Instance => contactsDataService ?? (contactsDataService = new ContactsDataService());
+        public static ContactsDataService Instance => instance ?? (instance = new ContactsDataService());
 
         /// <summary>
         /// Gets or sets the value of contacts page view model.
@@ -49,15 +49,15 @@ namespace EssentialUIKit.DataService
 
             var assembly = typeof(App).GetTypeInfo().Assembly;
 
-            T data;
+            T obj;
 
             using (var stream = assembly.GetManifestResourceStream(file))
             {
                 var serializer = new DataContractJsonSerializer(typeof(T));
-                data = (T)serializer.ReadObject(stream);
+                obj = (T)serializer.ReadObject(stream);
             }
 
-            return data;
+            return obj;
         }
 
         #endregion

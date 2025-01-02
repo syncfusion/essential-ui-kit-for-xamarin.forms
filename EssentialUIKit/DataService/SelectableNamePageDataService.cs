@@ -1,6 +1,6 @@
-﻿using System.Reflection;
+﻿using EssentialUIKit.ViewModels.Navigation;
+using System.Reflection;
 using System.Runtime.Serialization.Json;
-using EssentialUIKit.ViewModels.Navigation;
 using Xamarin.Forms.Internals;
 
 namespace EssentialUIKit.DataService
@@ -13,7 +13,7 @@ namespace EssentialUIKit.DataService
     {
         #region fields 
 
-        private static SelectableNamePageDataService selectableNamePageDataService;
+        private static SelectableNamePageDataService instance;
 
         private SelectableNamePageViewModel selectableNameViewModel;
 
@@ -24,12 +24,12 @@ namespace EssentialUIKit.DataService
         /// <summary>
         /// Gets an instance of the <see cref="SelectableNamePageDataService"/>.
         /// </summary>
-        public static SelectableNamePageDataService Instance => selectableNamePageDataService ?? (selectableNamePageDataService = new SelectableNamePageDataService());
+        public static SelectableNamePageDataService Instance => instance ?? (instance = new SelectableNamePageDataService());
 
         /// <summary>
         /// Gets or sets the value of selectable name list page view model.
         /// </summary>
-        public SelectableNamePageViewModel SelectableNamePage =>
+        public SelectableNamePageViewModel SelectableNamePage=>
             this.selectableNameViewModel ??
             (this.selectableNameViewModel = PopulateData<SelectableNamePageViewModel>("navigation.json"));
 
@@ -49,15 +49,15 @@ namespace EssentialUIKit.DataService
 
             var assembly = typeof(App).GetTypeInfo().Assembly;
 
-            T data;
+            T obj;
 
             using (var stream = assembly.GetManifestResourceStream(file))
             {
                 var serializer = new DataContractJsonSerializer(typeof(T));
-                data = (T)serializer.ReadObject(stream);
+                obj = (T)serializer.ReadObject(stream);
             }
 
-            return data;
+            return obj;
         }
 
         #endregion

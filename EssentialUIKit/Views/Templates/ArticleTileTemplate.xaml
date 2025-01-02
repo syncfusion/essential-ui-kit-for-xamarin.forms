@@ -5,104 +5,108 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
     xmlns:converter="clr-namespace:EssentialUIKit.Converters"
-    xmlns:syncEffectsView="clr-namespace:Syncfusion.XForms.EffectsView;assembly=Syncfusion.Core.XForms"
     x:Name="articleTileTemplate">
 
     <Grid.Resources>
         <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
             <converter:BooleanToStringConverter x:Key="boolToStringConverter" />
         </ResourceDictionary>
     </Grid.Resources>
 
+    <Grid RowSpacing="0">
 
-    <syncEffectsView:SfEffectsView
-        RippleColor="{DynamicResource Gray-300}"
-        TouchDownEffects="Ripple"
-        TouchUpCommand="{Binding Path=ParentBindingContext.ItemSelectedCommand, Source={x:Reference articleTileTemplate}}"
-        TouchUpCommandParameter="{Binding}">
-        <Grid
-            ColumnDefinitions="*, Auto"
-            RowDefinitions="Auto, *, Auto, Auto"
-            RowSpacing="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
 
-            <!--  Article Image  -->
-            <Image
-                Grid.Row="0"
-                Grid.Column="0"
-                Grid.ColumnSpan="2"
-                Aspect="AspectFill"
-                BackgroundColor="{DynamicResource Gray-200}"
-                HeightRequest="120">
-                <Image.Source>
-                    <UriImageSource
-                        CacheValidity="14"
-                        CachingEnabled="true"
-                        Uri="{Binding ImagePath}" />
-                </Image.Source>
-            </Image>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
 
-            <!--  Label for Article name  -->
-            <Label
-                Grid.Row="1"
-                Grid.ColumnSpan="2"
-                Margin="0,8"
-                FontSize="14"
-                HorizontalOptions="Start"
-                HorizontalTextAlignment="Start"
-                LineBreakMode="TailTruncation"
-                MaxLines="2"
-                Style="{StaticResource TitleLabelStyle}"
-                Text="{Binding Name}" />
+        <!--  Article Image  -->
+        <Image
+            Grid.Row="0"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            Aspect="AspectFill"
+            BackgroundColor="{DynamicResource Gray-200}"
+            HeightRequest="120">
+            <Image.Source>
+                <UriImageSource
+                    CacheValidity="14"
+                    CachingEnabled="true"
+                    Uri="{Binding ImagePath}" />
+            </Image.Source>
+        </Image>
 
-            <!--  Label for Article author  -->
-            <Label
-                Grid.Row="2"
-                Grid.ColumnSpan="2"
-                Margin="0"
-                FontFamily="Montserrat-Medium"
-                FontSize="12"
-                HorizontalOptions="Start"
-                LineHeight="{OnPlatform Default=-1,
-                                        Android=1.25}"
-                Text="{Binding Author}"
-                TextColor="{DynamicResource Gray-900}" />
+        <!--  Label for Article name  -->
+        <Label
+            Grid.Row="1"
+            Grid.ColumnSpan="2"
+            Margin="0,8"
+            FontFamily="{StaticResource Montserrat-SemiBold}"
+            FontSize="14"
+            HorizontalOptions="Start"
+            LineBreakMode="TailTruncation"
+            LineHeight="{OnPlatform Default=-1,
+                                    Android=1.25}"
+            MaxLines="2"
+            Text="{Binding Name}"
+            TextColor="{DynamicResource Gray-900}" />
 
-            <!--  Label for Article date  -->
-            <Label
-                Grid.Row="3"
-                Margin="0,2,0,8"
-                FontFamily="Montserrat-Regular"
-                FontSize="12"
-                HorizontalOptions="Start"
-                LineBreakMode="TailTruncation"
-                LineHeight="{OnPlatform Default=-1,
-                                        Android=1.25}"
-                TextColor="{DynamicResource Gray-700}"
-                VerticalOptions="Center"
-                VerticalTextAlignment="Center">
-                <Label.FormattedText>
-                    <FormattedString>
-                        <Span Text="{Binding Date}" />
-                        <Span Text=" | " />
-                        <Span Text="{Binding AverageReadingTime}" />
-                    </FormattedString>
-                </Label.FormattedText>
-            </Label>
+        <!--  Label for Article author  -->
+        <Label
+            Grid.Row="2"
+            Grid.ColumnSpan="2"
+            Margin="0"
+            FontFamily="{StaticResource Montserrat-Medium}"
+            FontSize="12"
+            HorizontalOptions="Start"
+            LineHeight="{OnPlatform Default=-1,
+                                    Android=1.25}"
+            Text="{Binding Author}"
+            TextColor="{DynamicResource Gray-900}" />
 
-            <!--  Bookmark Button  -->
-            <buttons:SfButton
-                Grid.Row="3"
-                Grid.Column="1"
-                Margin="0"
-                Padding="0"
-                Command="{Binding Path=ParentBindingContext.BookmarkCommand, Source={x:Reference articleTileTemplate}}"
-                CommandParameter="{Binding .}"
-                CornerRadius="4"
-                FontSize="16"
-                HeightRequest="-1"
-                Style="{StaticResource IconButtonStyle}"
-                Text="{Binding IsBookmarked, Converter={StaticResource boolToStringConverter}, ConverterParameter=0}"
-                WidthRequest="-1" />
-        </Grid>
-    </syncEffectsView:SfEffectsView>
+        <!--  Label for Article date  -->
+        <Label
+            Grid.Row="3"
+            Margin="0,2,0,8"
+            FontFamily="{StaticResource Montserrat-Regular}"
+            FontSize="12" LineBreakMode="TailTruncation"
+            HorizontalOptions="Start"
+            LineHeight="{OnPlatform Default=-1,
+                                    Android=1.25}"
+            TextColor="{DynamicResource Gray-700}"
+            VerticalOptions="Center"
+            VerticalTextAlignment="Center">
+            <Label.FormattedText>
+                <FormattedString>
+                    <Span Text="{Binding Date}" />
+                    <Span Text=" | " />
+                    <Span Text="{Binding AverageReadingTime}" />
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
+
+        <!--  Bookmark Button  -->
+        <buttons:SfButton
+            Grid.Row="3"
+            Grid.Column="1"
+            Margin="0"
+            Padding="0"
+            Command="{Binding Path=ParentBindingContext.BookmarkCommand, Source={x:Reference articleTileTemplate}}"
+            CommandParameter="{Binding .}"
+            CornerRadius="4"
+            FontSize="16"
+            Style="{StaticResource NavigationBarButtonStyle}"
+            Text="{Binding IsBookmarked, Converter={StaticResource boolToStringConverter}, ConverterParameter=0}"
+            WidthRequest="32" />
+    </Grid>
 </Grid>

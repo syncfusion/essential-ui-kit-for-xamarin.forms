@@ -10,31 +10,12 @@ namespace EssentialUIKit.Models.Dashboard
     [DataContract]
     public class TransactionChartData
     {
-        #region Constructor
-
-        /// <summary>
-        /// Method for transaction chart data.
-        /// </summary>
-        /// <param name="section">The section</param>
-        /// <param name="incomeValue">The income value</param>
-        /// <param name="expenseValue">The expense value</param>
-        /// <param name="difference">The difference</param>
-        public TransactionChartData(string section, double incomeValue, double expenseValue, double difference)
-        {
-            this.Section = section;
-            this.Income = incomeValue;
-            this.Expense = expenseValue;
-            this.Difference = difference;
-        }
-
-        #endregion
-
         #region Properties
 
         /// <summary>
         /// Gets or sets the X-value.
         /// </summary>
-        public string Section { get; set; }
+        public string XValue { get; set; }
 
         /// <summary>
         /// Gets or sets the income value.
@@ -49,7 +30,26 @@ namespace EssentialUIKit.Models.Dashboard
         /// <summary>
         /// Gets or sets the gap value for data.
         /// </summary>
-        public double Difference { get; set; }
+        public double GapValue { get; set; }
+
+        #endregion
+
+        #region Methods
+
+        /// <summary>
+        /// Method for transaction chart data.
+        /// </summary>
+        /// <param name="xValue"></param>
+        /// <param name="incomeValue"></param>
+        /// <param name="expenseValue"></param>
+        /// <param name="gap"></param>
+        public TransactionChartData(string xValue, double incomeValue, double expenseValue, double gap)
+        {
+            XValue = xValue;
+            Income = incomeValue;
+            Expense = expenseValue;
+            GapValue = gap;
+        }
 
         #endregion
     }

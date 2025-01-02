@@ -15,8 +15,8 @@ namespace EssentialUIKit.Views.Profile
         /// </summary>
         public ChatProfilePage()
         {
-            this.InitializeComponent();
-            this.ProfileImage.Source = App.ImageServerPath + "ProfileImage11.png";
+            InitializeComponent();
+            this.ProfileImage.Source = App.BaseImageUrl + "ProfileImage11.png";
         }
     }
 }

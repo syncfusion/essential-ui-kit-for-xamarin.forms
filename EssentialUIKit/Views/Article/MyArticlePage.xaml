@@ -8,10 +8,22 @@
     xmlns:controls="clr-namespace:EssentialUIKit.Controls"
     xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
     xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
-    xmlns:syncEffectsView="clr-namespace:Syncfusion.XForms.EffectsView;assembly=Syncfusion.Core.XForms"
+    xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Article"
     x:Name="myArticlePage"
-    BackgroundColor="{DynamicResource Gray-Bg}"
+    BackgroundColor="{DynamicResource Gray-White}"
     NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.BindingContext>
+        <viewModel:MyArticlePageViewModel />
+    </ContentPage.BindingContext>
 
     <ContentPage.ControlTemplate>
         <ControlTemplate>
@@ -19,17 +31,10 @@
 
                 <!--  Title View  -->
                 <controls:TitleView Title="My Books" Grid.Row="0">
-                    <controls:TitleView.LeadingView>
-                        <buttons:SfButton
-                            x:Name="backButton"
-                            Command="{Binding BindingContext.BackButtonCommand, Source={x:Reference CategoryTile}}"
-                            CommandParameter="{x:Reference backButton}"
-                            Style="{StaticResource IconButtonStyle}"
-                            Text="{StaticResource Back}" />
-                    </controls:TitleView.LeadingView>
                     <controls:TitleView.TrailingView>
                         <buttons:SfButton
                             Command="{TemplateBinding BindingContext.SearchCommand}"
+                            CornerRadius="4"
                             Style="{StaticResource IconButtonStyle}"
                             Text="{StaticResource Search}" />
                     </controls:TitleView.TrailingView>
@@ -51,27 +56,25 @@
             HorizontalOptions="FillAndExpand"
             ItemSpacing="8"
             ItemsSource="{Binding ArticleList}"
-            Style="{StaticResource TransparentSelectionListView}">
+            Style="{StaticResource SfListViewStyle}">
+
+            <listView:SfListView.Behaviors>
+                <behavior:SfListViewTapBehavior Command="{Binding Path=BindingContext.ArticleListIteSelectionCommand, Source={x:Reference myArticlePage}}" />
+            </listView:SfListView.Behaviors>
 
             <listView:SfListView.ItemTemplate>
                 <DataTemplate>
-                    <syncEffectsView:SfEffectsView
-                        RippleColor="{DynamicResource Gray-300}"
-                        TouchDownEffects="Ripple"
-                        TouchUpCommand="{Binding Path=BindingContext.ArticleListItemSelectionCommand, Source={x:Reference myArticlePage}}"
-                        TouchUpCommandParameter="{Binding}">
-                        <!--  Category Image  -->
-                        <Image
-                            Aspect="AspectFit"
-                            BackgroundColor="{DynamicResource Gray-Bg}"
-                            HeightRequest="{OnIdiom Phone=160,
-                                                    Tablet=240,
-                                                    Desktop=200}"
-                            Source="{Binding ImagePath}"
-                            WidthRequest="{OnIdiom Phone=112,
-                                                   Tablet=224,
-                                                   Desktop=120}" />
-                    </syncEffectsView:SfEffectsView>
+                    <!--  Category Image  -->
+                    <Image
+                        Aspect="AspectFill"
+                        BackgroundColor="{DynamicResource Gray-200}"
+                        HeightRequest="{OnIdiom Phone=160,
+                                                Tablet=240,
+                                                Desktop=200}"
+                        Source="{Binding ImagePath}"
+                        WidthRequest="{OnIdiom Phone=112,
+                                               Tablet=224,
+                                               Desktop=120}" />
                 </DataTemplate>
             </listView:SfListView.ItemTemplate>
 

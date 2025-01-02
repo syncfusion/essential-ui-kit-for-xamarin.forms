@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
 using System.Runtime.Serialization.Json;
-using EssentialUIKit.ViewModels.Navigation;
 using Xamarin.Forms.Internals;
+using EssentialUIKit.ViewModels.Navigation;
 
 namespace EssentialUIKit.DataService
 {
@@ -13,7 +13,7 @@ namespace EssentialUIKit.DataService
     {
         #region fields 
 
-        private static DocumentsListDataService documentsListDataService;
+        private static DocumentsListDataService instance;
 
         private DocumentsViewModel documentsViewModel;
 
@@ -24,7 +24,7 @@ namespace EssentialUIKit.DataService
         /// <summary>
         /// Gets an instance of the <see cref="DocumentsDataService"/>.
         /// </summary>
-        public static DocumentsListDataService Instance => documentsListDataService ?? (documentsListDataService = new DocumentsListDataService());
+        public static DocumentsListDataService Instance => instance ?? (instance = new DocumentsListDataService());
 
         /// <summary>
         /// Gets or sets the value of documents page view model.
@@ -47,14 +47,14 @@ namespace EssentialUIKit.DataService
         {
             var file = "EssentialUIKit.Data." + fileName;
             var assembly = typeof(App).GetTypeInfo().Assembly;
-            T data;
+            T obj;
             using (var stream = assembly.GetManifestResourceStream(file))
             {
                 var serializer = new DataContractJsonSerializer(typeof(T));
-                data = (T)serializer.ReadObject(stream);
+                obj = (T)serializer.ReadObject(stream);
             }
 
-            return data;
+            return obj;
         }
 
         #endregion

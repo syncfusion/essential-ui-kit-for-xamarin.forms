@@ -1,10 +1,11 @@
 ﻿using System.Collections.ObjectModel;
-using System.Reflection;
-using System.Runtime.Serialization;
-using System.Runtime.Serialization.Json;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
+using Model = EssentialUIKit.Models.Profile;
+using Syncfusion.XForms.Border;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
-using Model = EssentialUIKit.Models.UserProfile;
 
 namespace EssentialUIKit.ViewModels.Profile
 {
@@ -12,24 +13,11 @@ namespace EssentialUIKit.ViewModels.Profile
     /// ViewModel for Individual profile page
     /// </summary>
     [Preserve(AllMembers = true)]
-    [DataContract]
     public class ContactProfileViewModel : BaseViewModel
     {
         #region Field
-
-        private static ContactProfileViewModel contactProfileViewModel;
-
+        
         private ObservableCollection<Model> profileInfo;
-
-        private string profileImage;
-
-        private Command statusCommand;
-
-        private Command editCommand;
-
-        private Command viewAllCommand;
-
-        private Command mediaImageCommand;
 
         #endregion
 
@@ -40,6 +28,17 @@ namespace EssentialUIKit.ViewModels.Profile
         /// </summary>
         public ContactProfileViewModel()
         {
+            this.ProfileInfo = new ObservableCollection<Model>();
+
+            for (var i = 0; i < 6; i++)
+            {
+                this.ProfileInfo.Add(new Model { ImagePath = "ProfileImage1" + i + ".png" });
+            }
+
+            this.ProfileNameCommand = new Command(this.ProfileNameClicked);
+            this.EditCommand = new Command(this.EditButtonClicked);
+            this.ViewAllCommand = new Command(this.ViewAllButtonClicked);
+            this.MediaImageCommand = new Command(this.MediaImageClicked);
         }
 
         #endregion
@@ -47,15 +46,8 @@ namespace EssentialUIKit.ViewModels.Profile
         #region Public Property
 
         /// <summary>
-        /// Gets or sets the value of contact profile view model.
-        /// </summary>
-        public static ContactProfileViewModel BindingContext =>
-            contactProfileViewModel = PopulateData<ContactProfileViewModel>("profile.json");
-
-        /// <summary>
         /// Gets or sets a collection of profile info.
         /// </summary>
-        [DataMember(Name = "profileInfo")]
         public ObservableCollection<Model> ProfileInfo
         {
             get
@@ -65,18 +57,9 @@ namespace EssentialUIKit.ViewModels.Profile
 
             set
             {
-                this.SetProperty(ref this.profileInfo, value);
+                this.profileInfo = value;
+                this.NotifyPropertyChanged();
             }
-        }
-
-        /// <summary>
-        /// Gets or sets the image path.
-        /// </summary>
-        [DataMember(Name = "contactProfileImage")]
-        public string ProfileImage
-        {
-            get { return App.ImageServerPath + this.profileImage; }
-            set { this.profileImage = value; }
         }
 
         #endregion
@@ -84,83 +67,41 @@ namespace EssentialUIKit.ViewModels.Profile
         #region Command
 
         /// <summary>
-        /// Gets the command that is executed when the status of the profile is clicked.
+        /// Gets or sets the command that is executed when the profile name is clicked.
         /// </summary>
-        public Command StatusCommand
-        {
-            get
-            {
-                return this.statusCommand ?? (this.statusCommand = new Command(this.StatusClicked));
-            }
-        }
+        public Command ProfileNameCommand { get; set; }
 
         /// <summary>
-        /// Gets the command that is executed when the edit button is clicked.
+        /// Gets or sets the command that is executed when the edit button is clicked.
         /// </summary>
-        public Command EditCommand
-        {
-            get
-            {
-                return this.editCommand ?? (this.editCommand = new Command(this.EditButtonClicked));
-            }
-        }
+        public Command EditCommand { get; set; }
 
         /// <summary>
-        /// Gets the command that is executed when the view all button is clicked.
+        /// Gets or sets the command that is executed when the view all button is clicked.
         /// </summary>
-        public Command ViewAllCommand
-        {
-            get
-            {
-                return this.viewAllCommand ?? (this.viewAllCommand = new Command(this.ViewAllButtonClicked));
-            }
-        }
-
+        public Command ViewAllCommand { get; set; }
+        
         /// <summary>
-        /// Gets the command that is executed when the media image is clicked.
+        /// Gets or sets the command that is executed when the media image is clicked.
         /// </summary>
-        public Command MediaImageCommand
-        {
-            get
-            {
-                return this.mediaImageCommand ?? (this.mediaImageCommand = new Command(this.MediaImageClicked));
-            }
-        }
+        public Command MediaImageCommand { get; set; }
 
         #endregion
 
         #region Methods
 
         /// <summary>
-        /// Populates the data for view model from json file.
-        /// </summary>
-        /// <typeparam name="T">Type of view model.</typeparam>
-        /// <param name="fileName">Json file to fetch data.</param>
-        /// <returns>Returns the view model object.</returns>
-        private static T PopulateData<T>(string fileName)
-        {
-            var file = "EssentialUIKit.Data." + fileName;
-
-            var assembly = typeof(App).GetTypeInfo().Assembly;
-
-            T data;
-
-            using (var stream = assembly.GetManifestResourceStream(file))
-            {
-                var serializer = new DataContractJsonSerializer(typeof(T));
-                data = (T)serializer.ReadObject(stream);
-            }
-
-            return data;
-        }
-
-        /// <summary>
-        /// Invoked when the status of the profile is clicked.
+        /// Invoked when the profile name is clicked.
         /// </summary>
         /// <param name="obj">The object</param>
-        private void StatusClicked(object obj)
+        private async void ProfileNameClicked(object obj)
         {
-            // Do something
+            Application.Current.Resources.TryGetValue("Gray-100", out var retVal);
+            (obj as SfBorder).BackgroundColor = (Color)retVal;
+            await Task.Delay(100);
+
+            Application.Current.Resources.TryGetValue("Gray-White", out var oldVal);
+            (obj as SfBorder).BackgroundColor = (Color)oldVal;
         }
 
         /// <summary>

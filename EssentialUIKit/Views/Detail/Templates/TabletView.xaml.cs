@@ -12,8 +12,8 @@ namespace EssentialUIKit.Views.Detail.Templates
     {
         public TabletView()
         {
-            this.InitializeComponent();
-            this.ProductImage.Source = App.ImageServerPath + "ReviewShoe.png";
+            InitializeComponent();
+            this.ProductImage.Source = App.BaseImageUrl + "ReviewShoe.png";
         }
     }
 }

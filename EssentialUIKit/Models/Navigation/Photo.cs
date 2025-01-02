@@ -27,11 +27,11 @@ namespace EssentialUIKit.Models.Navigation
         /// </summary>
         /// <value>The image URL.</value>
         [DataMember(Name = "imageURL")]
-        public string GalleryImage
+        public string ImageURL
         {
             get
             {
-                return App.ImageServerPath + this.imageURL;
+                return App.BaseImageUrl + this.imageURL;
             }
 
             set
@@ -55,7 +55,7 @@ namespace EssentialUIKit.Models.Navigation
             get
             {
                 var date = Convert.ToDateTime(this.Date, CultureInfo.CurrentCulture);
-                return date != DateTime.MinValue
+                return DateTime.MinValue != date
                      ? date
                      : this.updatedDate;
             }

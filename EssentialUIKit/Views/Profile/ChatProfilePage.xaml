@@ -4,47 +4,46 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
-    xmlns:controls="clr-namespace:EssentialUIKit.Controls"
     xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Profile"
-    x:Name="profilePage"
     Title="Profile Page"
-    BackgroundColor="{DynamicResource Gray-Bg}"
+    BackgroundColor="{DynamicResource Gray-White}"
     NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
     <!--  Binding context for Profile Page  -->
     <ContentPage.BindingContext>
         <viewModel:ChatProfileViewModel />
     </ContentPage.BindingContext>
 
-    <ContentPage.ControlTemplate>
-        <ControlTemplate>
-            <StackLayout Spacing="0">
-                <!--  Title View  -->
-                <controls:TitleView Title="Profile">
-                    <controls:TitleView.LeadingView>
-                        <buttons:SfButton
-                            x:Name="backButton"
-                            Command="{Binding BindingContext.BackButtonCommand, Source={x:Reference profilePage}}"
-                            CommandParameter="{x:Reference backButton}"
-                            Style="{StaticResource IconButtonStyle}"
-                            Text="{StaticResource Back}" />
-                    </controls:TitleView.LeadingView>
-                </controls:TitleView>
-                <ContentPresenter />
-            </StackLayout>
-        </ControlTemplate>
-    </ContentPage.ControlTemplate>
-
     <ContentPage.Content>
         <ScrollView>
 
             <StackLayout Spacing="0">
 
+                <!--  Title  -->
+                <Grid Padding="10,20,10,10">
+                    <Label
+                        Grid.ColumnSpan="2"
+                        FontFamily="{StaticResource Montserrat-Medium}"
+                        HorizontalOptions="Center"
+                        Style="{StaticResource CommonProfileLabelStyle}"
+                        Text="Profile" />
+                </Grid>
+
+                <BoxView Style="{StaticResource SeparatorStyle}" />
+
                 <!--  Profile image with edit label  -->
                 <buttons:SfButton
                     Margin="0,10,0,0"
                     BackgroundColor="Transparent"
-                    BorderColor="{DynamicResource Gray-Bg}"
+                    BorderColor="{DynamicResource Gray-White}"
                     BorderWidth="2"
                     Command="{Binding EditCommand}"
                     CornerRadius="60"
@@ -63,7 +62,7 @@
                                 Opacity="0.6"
                                 VerticalOptions="End" />
                             <Label
-                                FontFamily="Montserrat-SemiBold"
+                                FontFamily="{StaticResource Montserrat-SemiBold}"
                                 FontSize="12"
                                 HeightRequest="32"
                                 HorizontalTextAlignment="Center"
@@ -78,17 +77,23 @@
                 <!--  Profile Name  -->
                 <Label
                     Margin="0,10,0,10"
-                    FontFamily="Montserrat-Bold"
-                    Style="{StaticResource TitleLabelStyle}"
+                    FontFamily="{StaticResource Montserrat-Bold}"
+                    FontSize="16"
+                    HorizontalOptions="Center"
                     Text="Julia Grant"
+                    TextColor="{DynamicResource Gray-900}"
                     VerticalOptions="Center" />
 
                 <!--  Grid for available label and navigation icon  -->
                 <Grid
                     x:Name="AvailableGrid"
                     Padding="16"
-                    ColumnDefinitions="Auto, *, Auto"
                     ColumnSpacing="16">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
 
                     <Grid.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding AvailableCommand}" CommandParameter="{x:Reference AvailableGrid}" />
@@ -96,81 +101,78 @@
 
                     <Label
                         Grid.Column="0"
-                        Style="{StaticResource IconLabelStyle}"
-                        Text="{StaticResource New}"
+                        Style="{StaticResource CommonProfileIconLabelStyle}"
+                        Text="{StaticResource Available}"
                         TextColor="{StaticResource Green}" />
 
                     <Label
                         Grid.Column="1"
-                        FontFamily="Montserrat-Medium"
-                        HorizontalOptions="Start"
-                        Style="{StaticResource TitleLabelStyle}"
-                        Text="Available"
-                        VerticalOptions="Center" />
+                        Style="{StaticResource CommonProfileLabelStyle}"
+                        Text="Available" />
 
                     <Label
                         Grid.Column="2"
                         HorizontalOptions="End"
-                        Style="{StaticResource IconLabelStyle}"
+                        Style="{StaticResource CommonProfileIconLabelStyle}"
                         Text="{StaticResource Next}" />
 
 
                 </Grid>
 
-                <BoxView Style="{StaticResource HorizontalSeparatorStyle}" />
+                <BoxView Style="{StaticResource SeparatorStyle}" />
 
                 <!--  Grid for mail id label and icon  -->
-                <Grid
-                    Padding="16"
-                    ColumnDefinitions="Auto, *"
-                    ColumnSpacing="16">
+                <Grid Padding="16" ColumnSpacing="16">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
 
                     <Label
                         Grid.Column="0"
-                        Style="{StaticResource IconLabelStyle}"
-                        Text="{StaticResource Account}" />
+                        Style="{StaticResource CommonProfileIconLabelStyle}"
+                        Text="{StaticResource Mail}" />
 
                     <Label
                         Grid.Column="1"
-                        FontFamily="Montserrat-Medium"
-                        HorizontalOptions="Start"
-                        Style="{StaticResource TitleLabelStyle}"
-                        Text="juliagrant@mail.com"
-                        VerticalOptions="Center" />
+                        Style="{StaticResource CommonProfileLabelStyle}"
+                        Text="juliagrant@mail.com" />
 
                 </Grid>
 
-                <BoxView Style="{StaticResource HorizontalSeparatorStyle}" />
+                <BoxView Style="{StaticResource SeparatorStyle}" />
 
                 <!--  Grid for mobile number label and icon  -->
-                <Grid
-                    Padding="16"
-                    ColumnDefinitions="Auto, *"
-                    ColumnSpacing="16">
+                <Grid Padding="16" ColumnSpacing="16">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
 
                     <Label
                         Grid.Column="0"
-                        Style="{StaticResource IconLabelStyle}"
-                        Text="{StaticResource Phone}" />
+                        Style="{StaticResource CommonProfileIconLabelStyle}"
+                        Text="{StaticResource VoiceCall}" />
 
                     <Label
                         Grid.Column="1"
-                        FontFamily="Montserrat-Medium"
-                        HorizontalOptions="Start"
-                        Style="{StaticResource TitleLabelStyle}"
-                        Text="+1-202-555-0101"
-                        VerticalOptions="Center" />
+                        Style="{StaticResource CommonProfileLabelStyle}"
+                        Text="+1-202-555-0101" />
 
                 </Grid>
 
-                <BoxView Style="{StaticResource HorizontalSeparatorStyle}" />
+                <BoxView Style="{StaticResource SeparatorStyle}" />
 
                 <!--  Grid for notification label and navigation icon  -->
                 <Grid
                     x:Name="NotificationGrid"
                     Padding="16"
-                    ColumnDefinitions="Auto, *, Auto"
                     ColumnSpacing="16">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
 
                     <Grid.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding NotificationCommand}" CommandParameter="{x:Reference NotificationGrid}" />
@@ -178,49 +180,44 @@
 
                     <Label
                         Grid.Column="0"
-                        Style="{StaticResource IconLabelStyle}"
+                        Style="{StaticResource CommonProfileIconLabelStyle}"
                         Text="{StaticResource Notification}" />
 
                     <Label
                         Grid.Column="1"
-                        FontFamily="Montserrat-Medium"
-                        HorizontalOptions="Start"
-                        Style="{StaticResource TitleLabelStyle}"
-                        Text="Notifications"
-                        VerticalOptions="Center" />
+                        Style="{StaticResource CommonProfileLabelStyle}"
+                        Text="Notifications" />
 
                     <Label
                         Grid.Column="2"
                         HorizontalOptions="End"
-                        Style="{StaticResource IconLabelStyle}"
+                        Style="{StaticResource CommonProfileIconLabelStyle}"
                         Text="{StaticResource Next}" />
 
                 </Grid>
 
-                <BoxView Style="{StaticResource HorizontalSeparatorStyle}" />
+                <BoxView Style="{StaticResource SeparatorStyle}" />
 
                 <!--  Grid for help label and icon  -->
-                <Grid
-                    Padding="16"
-                    ColumnDefinitions="Auto, *"
-                    ColumnSpacing="16">
+                <Grid Padding="16" ColumnSpacing="16">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
 
                     <Label
                         Grid.Column="0"
-                        Style="{StaticResource IconLabelStyle}"
+                        Style="{StaticResource CommonProfileIconLabelStyle}"
                         Text="{StaticResource Help}" />
 
                     <Label
                         Grid.Column="1"
-                        FontFamily="Montserrat-Medium"
-                        HorizontalOptions="Start"
-                        Style="{StaticResource TitleLabelStyle}"
-                        Text="Help"
-                        VerticalOptions="Center" />
+                        Style="{StaticResource CommonProfileLabelStyle}"
+                        Text="Help" />
 
                 </Grid>
 
-                <BoxView Style="{StaticResource HorizontalSeparatorStyle}" />
+                <BoxView Style="{StaticResource SeparatorStyle}" />
 
             </StackLayout>
 

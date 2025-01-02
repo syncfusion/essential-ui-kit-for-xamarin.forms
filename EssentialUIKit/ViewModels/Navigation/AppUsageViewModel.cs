@@ -1,8 +1,8 @@
 ﻿using System.Collections.ObjectModel;
 using System.Runtime.Serialization;
-using EssentialUIKit.Models.Navigation;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
+using EssentialUIKit.Models.Navigation;
 
 namespace EssentialUIKit.ViewModels.Navigation
 {
@@ -25,6 +25,7 @@ namespace EssentialUIKit.ViewModels.Navigation
         /// </summary>
         public AppUsageViewModel()
         {
+
         }
 
         #endregion

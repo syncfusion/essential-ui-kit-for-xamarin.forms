@@ -6,24 +6,27 @@
     xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
     xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
     xmlns:controls="clr-namespace:EssentialUIKit.Controls"
-    x:Name="profilePage"
+    xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Profile"
     BackgroundColor="{DynamicResource Gray-100}"
     NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.BindingContext>
+        <viewModel:ProfileViewModel />
+    </ContentPage.BindingContext>
 
     <ContentPage.ControlTemplate>
         <ControlTemplate>
             <StackLayout Spacing="0">
                 <!--  Title View  -->
-                <controls:TitleView Title="Profile">
-                    <controls:TitleView.LeadingView>
-                        <buttons:SfButton
-                            x:Name="backButton"
-                            Command="{Binding BindingContext.BackButtonCommand, Source={x:Reference profilePage}}"
-                            CommandParameter="{x:Reference backButton}"
-                            Style="{StaticResource IconButtonStyle}"
-                            Text="{StaticResource Back}" />
-                    </controls:TitleView.LeadingView>
-                </controls:TitleView>
+                <controls:TitleView Title="Profile" BackgroundColor="{DynamicResource Gray-White}" />
                 <ContentPresenter />
             </StackLayout>
         </ControlTemplate>
@@ -37,19 +40,26 @@
                 <Grid
                     Margin="0,16,0,0"
                     Padding="16,8"
-                    BackgroundColor="{DynamicResource Gray-Bg}"
-                    ColumnDefinitions="Auto, *, Auto"
+                    BackgroundColor="{DynamicResource Gray-White}"
                     ColumnSpacing="8"
                     HeightRequest="48"
-                    RowDefinitions="*, *"
                     RowSpacing="2">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
 
                     <!--  Rounded Profile Image  -->
                     <border:SfBorder
                         Grid.RowSpan="2"
                         BackgroundColor="{DynamicResource Gray-200}"
-                        BorderWidth="0"
-                        CornerRadius="24"
                         Style="{StaticResource ProfileBorderStyle}">
                         <Image HeightRequest="48" WidthRequest="48">
                             <Image.Source>
@@ -64,22 +74,22 @@
                     <!--  Profile Name  -->
                     <Label
                         Grid.Column="1"
-                        FontFamily="Montserrat-SemiBold"
+                        FontFamily="{StaticResource Montserrat-SemiBold}"
                         FontSize="14"
                         HorizontalOptions="Start"
+                        VerticalTextAlignment="End" 
                         LineBreakMode="TailTruncation"
                         LineHeight="{OnPlatform Default=-1,
                                                 Android=1.25}"
                         MaxLines="2"
                         Text="{Binding ProfileName}"
-                        TextColor="{DynamicResource Gray-900}"
-                        VerticalTextAlignment="End" />
+                        TextColor="{DynamicResource Gray-900}" />
 
                     <!--  Email  -->
                     <Label
                         Grid.Row="1"
                         Grid.Column="1"
-                        FontFamily="Montserrat-Medium"
+                        FontFamily="{StaticResource Montserrat-Medium}"
                         FontSize="12"
                         HorizontalOptions="Start"
                         LineBreakMode="TailTruncation"
@@ -96,27 +106,26 @@
                         Margin="8,0"
                         Padding="0"
                         Command="{Binding EditCommand}"
-                        FontSize="20"
-                        HeightRequest="-1"
-                        Style="{StaticResource IconButtonStyle}"
+                        HeightRequest="32"
+                        Style="{StaticResource ProfileButtonStyle}"
                         Text="{StaticResource Edit}"
-                        WidthRequest="-1" />
+                        WidthRequest="32" />
                 </Grid>
 
-                <BoxView Style="{StaticResource HorizontalSeparatorStyle}" />
+                <BoxView Style="{StaticResource SeparatorStyle}" />
 
                 <BoxView BackgroundColor="{DynamicResource Gray-100}" HeightRequest="16" />
 
                 <!--  Grid for Night mode label and switch  -->
-                <Grid BackgroundColor="{DynamicResource Gray-Bg}" ColumnDefinitions="*, Auto">
+                <Grid BackgroundColor="{DynamicResource Gray-White}">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
 
                     <!--  Night mode label  -->
-                    <Label
-                        Margin="16,12"
-                        FontFamily="Montserrat-Medium"
-                        HorizontalOptions="Start"
-                        Style="{StaticResource TitleLabelStyle}"
-                        Text="Night Mode" />
+                    <Label Style="{StaticResource ProfileLabelStyle}" Text="Night Mode" />
 
                     <!--  Night mode switch  -->
                     <buttons:SfSwitch
@@ -133,7 +142,7 @@
                                             <Setter.Value>
                                                 <buttons:CupertinoSwitchSettings
                                                     x:TypeArguments="buttons:OnState"
-                                                    ThumbBorderColor="{DynamicResource Gray-White}"
+                                                    ThumbBorderColor="{DynamicResource Gray-200}"
                                                     ThumbColor="{DynamicResource Gray-White}"
                                                     TrackBorderColor="{DynamicResource Gray-200}"
                                                     TrackColor="{DynamicResource PrimaryColor}" />
@@ -147,10 +156,10 @@
                                             <Setter.Value>
                                                 <buttons:CupertinoSwitchSettings
                                                     x:TypeArguments="buttons:OffState"
-                                                    ThumbBorderColor="{DynamicResource Gray-300}"
+                                                    ThumbBorderColor="{DynamicResource Gray-200}"
                                                     ThumbColor="{DynamicResource Gray-White}"
-                                                    TrackBorderColor="{DynamicResource Gray-300}"
-                                                    TrackColor="{DynamicResource Gray-300}" />
+                                                    TrackBorderColor="{DynamicResource Gray-200}"
+                                                    TrackColor="{DynamicResource Gray-White}" />
                                             </Setter.Value>
                                         </Setter>
                                     </VisualState.Setters>
@@ -160,63 +169,54 @@
                     </buttons:SfSwitch>
                 </Grid>
 
-                <BoxView Style="{StaticResource HorizontalSeparatorStyle}" />
+                <BoxView Style="{StaticResource SeparatorStyle}" />
 
                 <!--  Grid for Text size label and navigation bar icon  -->
-                <Grid
-                    x:Name="TextSizeGrid"
-                    BackgroundColor="{DynamicResource Gray-Bg}"
-                    ColumnDefinitions="*, Auto">
+                <Grid x:Name="TextSizeGrid" BackgroundColor="{DynamicResource Gray-White}">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
 
                     <Grid.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding TextSizeCommand}" CommandParameter="{x:Reference TextSizeGrid}" />
                     </Grid.GestureRecognizers>
 
                     <!--  Text size label  -->
-                    <Label
-                        Margin="16,12"
-                        FontFamily="Montserrat-Medium"
-                        HorizontalOptions="Start"
-                        Style="{StaticResource TitleLabelStyle}"
-                        Text="Text Size" />
+                    <Label Style="{StaticResource ProfileLabelStyle}" Text="Text Size" />
 
                     <!--  Text size navigation icon  -->
                     <Label
                         Grid.Column="1"
-                        Margin="16,8"
-                        Style="{StaticResource IconLabelStyle}"
+                        Style="{StaticResource ProfileIconLabelStyle}"
                         Text="{StaticResource Next}" />
                 </Grid>
 
-                <BoxView Style="{StaticResource HorizontalSeparatorStyle}" />
+                <BoxView Style="{StaticResource SeparatorStyle}" />
 
                 <!--  Grid for Settings label and navigation bar icon  -->
-                <Grid
-                    x:Name="SettingsGrid"
-                    BackgroundColor="{DynamicResource Gray-Bg}"
-                    ColumnDefinitions="*, Auto">
+                <Grid x:Name="SettingsGrid" BackgroundColor="{DynamicResource Gray-White}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
 
                     <Grid.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding SettingsCommand}" CommandParameter="{x:Reference SettingsGrid}" />
                     </Grid.GestureRecognizers>
 
                     <!--  Settings Label  -->
-                    <Label
-                        Margin="16,12"
-                        FontFamily="Montserrat-Medium"
-                        HorizontalOptions="Start"
-                        Style="{StaticResource TitleLabelStyle}"
-                        Text="Settings" />
+                    <Label Style="{StaticResource ProfileLabelStyle}" Text="Settings" />
 
                     <!--  Settings navigation icon  -->
                     <Label
                         Grid.Column="1"
-                        Margin="16,8"
-                        Style="{StaticResource IconLabelStyle}"
+                        Style="{StaticResource ProfileIconLabelStyle}"
                         Text="{StaticResource Next}" />
                 </Grid>
 
-                <BoxView Style="{StaticResource HorizontalSeparatorStyle}" />
+                <BoxView Style="{StaticResource SeparatorStyle}" />
 
             </StackLayout>
 

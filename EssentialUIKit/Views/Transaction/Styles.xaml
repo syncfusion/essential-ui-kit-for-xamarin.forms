@@ -1,0 +1,192 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary
+    x:Class="EssentialUIKit.Views.Transaction.Styles"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:control="clr-namespace:EssentialUIKit.Controls"
+    xmlns:gradient="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
+    xmlns:graphics="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms">
+
+    <Color x:Key="Transparent">Transparent</Color>
+
+    <x:String x:Key="MoreIcon">&#xe719;</x:String>
+    <x:String x:Key="Back">&#xe709;</x:String>
+
+    <Style TargetType="control:TitleView">
+        <Setter Property="BackgroundColor" Value="{DynamicResource Gray-White}" />
+    </Style>
+
+    <!--  Common style for labels  -->
+    <Style x:Key="CommonLabelStyle" TargetType="Label">
+        <Setter Property="TextColor" Value="{DynamicResource Gray-700}" />
+        <Setter Property="FontFamily" Value="Montserrat-Regular" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="LineHeight" Value="{OnPlatform Android=1.5, Default=-1}" />
+        <Setter Property="HorizontalTextAlignment" Value="Start" />
+        <Setter Property="VerticalTextAlignment" Value="Center" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="HorizontalOptions" Value="Start" />
+    </Style>
+
+    <!--  Common style for price labels  -->
+    <Style
+        x:Key="PriceLabelStyle"
+        BasedOn="{StaticResource CommonLabelStyle}"
+        TargetType="Label">
+        <Setter Property="HorizontalOptions" Value="StartAndExpand" />
+        <Setter Property="Margin" Value="16,0" />
+        <Setter Property="FontSize" Value="12" />
+    </Style>
+
+    <!--  Common style for BoxView  -->
+    <Style x:Key="BoxViewStyle" TargetType="BoxView">
+        <Setter Property="Color" Value="{DynamicResource Gray-200}" />
+        <Setter Property="VerticalOptions" Value="Center" />
+    </Style>
+
+    <!--  Common style for SfButtons  -->
+    <Style x:Key="SfButtonStyle" TargetType="buttons:SfButton">
+        <Setter Property="BackgroundColor" Value="Transparent" />
+        <Setter Property="TextColor" Value="{DynamicResource Gray-700}" />
+        <Setter Property="FontFamily" Value="Montserrat-Regular" />
+        <Setter Property="FontSize" Value="16" />
+    </Style>
+
+    <!--  Common style for Magenta buttons  -->
+    <Style
+        x:Key="MagentaButtonStyle"
+        BasedOn="{StaticResource SfButtonStyle}"
+        TargetType="buttons:SfButton">
+        <Setter Property="BackgroundGradient">
+            <Setter.Value>
+                <graphics:SfLinearGradientBrush>
+                    <graphics:SfLinearGradientBrush.GradientStops>
+                        <graphics:SfGradientStop Offset="0" Color="{DynamicResource PrimaryColor}" />
+                        <graphics:SfGradientStop Offset="1" Color="{DynamicResource PrimaryGradient}" />
+                    </graphics:SfLinearGradientBrush.GradientStops>
+                </graphics:SfLinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="TextColor" Value="{DynamicResource Gray-White}" />
+        <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="HeightRequest" Value="48" />
+    </Style>
+
+    <!--  Group key for Payment radio buttons  -->
+    <buttons:SfRadioGroupKey x:Key="PaymentOptionGroup" />
+
+    <!--  Common style for SfRadioButton  -->
+    <Style x:Key="SfRadioButtonStyle" TargetType="buttons:SfRadioButton">
+        <Setter Property="HorizontalTextAlignment" Value="Start" />
+        <Setter Property="HorizontalOptions" Value="Start" />
+        <Setter Property="CheckedColor" Value="{DynamicResource PrimaryColor}" />
+        <Setter Property="TextColor" Value="{DynamicResource Gray-900}" />
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="UncheckedColor" Value="{DynamicResource Gray-300}" />
+        <Setter Property="Margin" Value="16,0" />
+    </Style>
+
+    <!--  Common style for checkout page RadioButton  -->
+    <Style
+        x:Key="RadioButtonStyle"
+        BasedOn="{StaticResource SfRadioButtonStyle}"
+        TargetType="buttons:SfRadioButton">
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="FontFamily" Value="{StaticResource Montserrat-SemiBold}" />
+    </Style>
+
+    <!--  Style for header label  -->
+    <Style x:Key="LabelStyle" TargetType="Label">
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="HorizontalTextAlignment" Value="Center" />
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="LineHeight" Value="1.25" />
+        <Setter Property="FontFamily" Value="{StaticResource Montserrat-SemiBold}" />
+        <Setter Property="TextColor" Value="{DynamicResource Gray-900}" />
+    </Style>
+
+    <!--  Style for description label  -->
+    <Style x:Key="DescriptionLabelStyle" TargetType="Label">
+        <Setter Property="TextColor" Value="{DynamicResource Gray-900}" />
+        <Setter Property="FontFamily" Value="{StaticResource Montserrat-Medium}" />
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="HorizontalTextAlignment" Value="Center" />
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="LineHeight" Value="1.25" />
+    </Style>
+
+    <!--  Common style for buttons  -->
+    <Style x:Key="SfGradientButtonStyle" TargetType="buttons:SfButton">
+        <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+        <Setter Property="VerticalOptions" Value="Start" />
+        <Setter Property="Margin" Value="0,24" />
+        <Setter Property="TextColor" Value="{DynamicResource Gray-White}" />
+        <Setter Property="FontFamily" Value="{StaticResource Montserrat-SemiBold}" />
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="HeightRequest" Value="40" />
+        <Setter Property="CornerRadius" Value="20" />
+        <Setter Property="WidthRequest" Value="245" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="BorderWidth" Value="0" />
+        <Setter Property="VerticalTextAlignment" Value="Center" />
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundGradient">
+                                <Setter.Value>
+                                    <graphics:SfLinearGradientBrush StartPoint="0, 0" EndPoint="1, 1">
+                                        <graphics:SfLinearGradientBrush.GradientStops>
+                                            <graphics:SfGradientStop Offset="0" Color="{DynamicResource PrimaryColor}" />
+                                            <graphics:SfGradientStop Offset="1" Color="{DynamicResource PrimaryGradient}" />
+                                        </graphics:SfLinearGradientBrush.GradientStops>
+                                    </graphics:SfLinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState x:Name="Pressed">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundGradient">
+                                <Setter.Value>
+                                    <graphics:SfLinearGradientBrush StartPoint="0, 0" EndPoint="1, 1">
+                                        <graphics:SfLinearGradientBrush.GradientStops>
+                                            <graphics:SfGradientStop Offset="0" Color="{DynamicResource PrimaryColor}" />
+                                            <graphics:SfGradientStop Offset="1" Color="{DynamicResource PrimaryGradient}" />
+                                        </graphics:SfLinearGradientBrush.GradientStops>
+                                    </graphics:SfLinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
+    </Style>
+
+    <!--  Common style for icon buttons  -->
+    <Style x:Key="IconButtonStyle" TargetType="buttons:SfButton">
+        <Setter Property="TextColor" Value="{DynamicResource Gray-600}" />
+        <Setter Property="BackgroundColor" Value="{StaticResource Transparent}" />
+        <Setter Property="FontFamily" Value="{StaticResource FontIcons}" />
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="HorizontalTextAlignment" Value="Center" />
+        <Setter Property="VerticalTextAlignment" Value="Center" />
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="HeightRequest" Value="40" />
+        <Setter Property="WidthRequest" Value="40" />
+    </Style>
+
+    <Style x:Key="CardLabel" TargetType="Label">
+        <Setter Property="FontFamily" Value="{StaticResource Montserrat-SemiBold}"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="TextColor" Value="{DynamicResource Gray-White}"/>
+        <Setter Property="LineHeight" Value="{OnPlatform Default=-1, Android=1.5}"/>
+    </Style>
+
+</ResourceDictionary>

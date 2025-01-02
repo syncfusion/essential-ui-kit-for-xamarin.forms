@@ -15,7 +15,7 @@ namespace EssentialUIKit.Views.Detail
         /// </summary>
         public FeedbackView()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
     }
 }

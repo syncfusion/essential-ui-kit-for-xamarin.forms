@@ -5,11 +5,17 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
     xmlns:helper="clr-namespace:EssentialUIKit.Helpers"
-    BackgroundColor="{DynamicResource Gray-Bg}">
+    BackgroundColor="{DynamicResource Gray-White}">
 
     <ContentView.Resources>
         <ResourceDictionary>
+
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
             <buttons:SfRadioGroupKey x:Key="DeliveryAddressGroup" />
+
         </ResourceDictionary>
     </ContentView.Resources>
 
@@ -18,38 +24,49 @@
         <!--  Header  -->
         <Grid
             Padding="0,16,0,0"
-            BackgroundColor="{DynamicResource Gray-Bg}"
-            ColumnDefinitions="*, *"
-            RowDefinitions="Auto, 1, *"
+            BackgroundColor="{DynamicResource Gray-White}"
             RowSpacing="16">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="1" />
+            </Grid.RowDefinitions>
 
             <Label
                 Grid.Column="0"
-                Margin="16,0"
-                HorizontalOptions="Start"
+                FontFamily="{StaticResource Montserrat-SemiBold}"
+                FontSize="16"
                 LineHeight="{OnPlatform Android=1.25,
                                         Default=-1}"
-                Style="{StaticResource TitleLabelStyle}"
+                Style="{StaticResource PriceLabelStyle}"
                 Text="{OnIdiom Default='Delivery Address',
-                               Phone='Deliver To'}" />
+                               Phone='Deliver To'}"
+                TextColor="{DynamicResource Gray-900}" />
 
             <!--  Total Price Label  -->
             <Label
                 Grid.Column="1"
-                Margin="16,0"
+                FontFamily="{StaticResource Montserrat-SemiBold}"
+                FontSize="16"
                 HorizontalOptions="EndAndExpand"
                 HorizontalTextAlignment="End"
                 IsVisible="{OnIdiom Default=True,
                                     Phone=False}"
-                Style="{StaticResource TitleLabelStyle}"
-                Text="{Binding TotalPrice, StringFormat='Total: ${0}'}" />
+                Style="{StaticResource PriceLabelStyle}"
+                Text="{Binding TotalPrice, StringFormat='Total: ${0}'}"
+                TextColor="{DynamicResource Gray-900}" />
 
             <!--  Separator  -->
             <BoxView
                 Grid.Row="1"
                 Grid.ColumnSpan="2"
                 HeightRequest="1"
-                Style="{StaticResource HorizontalSeparatorStyle}" />
+                Style="{StaticResource BoxViewStyle}" />
 
         </Grid>
 
@@ -60,11 +77,14 @@
             Spacing="0">
             <BindableLayout.ItemTemplate>
                 <DataTemplate>
-                    <Grid
-                        RowDefinitions="Auto, *, Auto, 1"
-                        RowSpacing="0"
-                        VerticalOptions="{OnIdiom Default=Start,
-                                                  Desktop=Fill}">
+                    <Grid RowSpacing="0" VerticalOptions="{OnIdiom Default=Start, Desktop=Fill}">
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="1" />
+                        </Grid.RowDefinitions>
 
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
@@ -96,9 +116,10 @@
                             Grid.Column="1"
                             helper:RTLHelper.Margin="{OnIdiom Default='0,16,0,0',
                                                               Phone='10,2,0,2'}"
+                            FontFamily="{StaticResource Montserrat-Medium}"
+                            FontSize="14"
                             HorizontalOptions="StartAndExpand"
-                            Style="{StaticResource DescriptionLabelStyle}"
-                            VerticalOptions="Center">
+                            Style="{StaticResource CommonLabelStyle}">
                             <Label.FormattedText>
                                 <FormattedString>
                                     <Span Text="{Binding CustomerName}" TextColor="{DynamicResource Gray-900}" />
@@ -113,16 +134,25 @@
                         <!--  Edit/Change button  -->
                         <buttons:SfButton
                             Grid.Row="0"
-                            Grid.Column="3"
+                            Grid.Column="3" 
                             Margin="{OnIdiom Default='16,16,16,0',
                                              Phone='16,2,16,2'}"
+                            BorderWidth="0"
                             Command="{Binding BindingContext.EditCommand, Source={x:Reference RadioGroup}}"
+                            CornerRadius="4"                           
+                            HeightRequest="{OnIdiom Desktop=18,
+                                                    Default=35}"
                             HorizontalOptions="End"
-                            Style="{StaticResource TransparentButtonStyle}"
-                            Text="{OnIdiom Default=Edit,
-                                           Phone=Change}"
+                            Style="{StaticResource SfButtonStyle}"                           
                             WidthRequest="{OnIdiom Desktop=50,
-                                                   Default=94}" />
+                                                   Default=80}" >
+                            <buttons:SfButton.Content>
+                                <Label  Text="{OnIdiom Default=Edit, Phone=Change}"
+                                        TextColor="{StaticResource HyperLink}"  
+                                        FontFamily="{StaticResource Montserrat-SemiBold}"
+                                        FontSize="14" HorizontalOptions="Center" VerticalOptions="Center"/>
+                            </buttons:SfButton.Content>
+                        </buttons:SfButton>
 
                         <!--  Address Label  -->
                         <Label
@@ -130,10 +160,13 @@
                             Grid.Column="1"
                             helper:RTLHelper.Margin="{OnIdiom Default='0',
                                                               Phone='10,0,0,0'}"
+                            FontFamily="{StaticResource Montserrat-Medium}"
+                            FontSize="12"
                             LineHeight="{OnPlatform Android=1.25,
                                                     Default=-1}"
-                            Style="{StaticResource SimpleLabelStyle}"
-                            Text="{Binding Address}" />
+                            Style="{StaticResource CommonLabelStyle}"
+                            Text="{Binding Address}"
+                            TextColor="{DynamicResource Gray-700}" />
 
                         <!--  Mobile Number  -->
                         <Label
@@ -141,8 +174,10 @@
                             Grid.Column="1"
                             helper:RTLHelper.Margin="{OnIdiom Default='0',
                                                               Phone='10,8,0,16'}"
+                            FontFamily="{StaticResource Montserrat-Medium}"
+                            FontSize="12"
                             HorizontalOptions="StartAndExpand"
-                            Style="{StaticResource SimpleLabelStyle}">
+                            Style="{StaticResource CommonLabelStyle}">
                             <Label.FormattedText>
                                 <FormattedString>
                                     <Span Text="Mobile: " />
@@ -155,7 +190,7 @@
                         <BoxView
                             Grid.Row="3"
                             Grid.ColumnSpan="4"
-                            Style="{StaticResource HorizontalSeparatorStyle}"
+                            Style="{StaticResource BoxViewStyle}"
                             VerticalOptions="End" />
 
                     </Grid>
@@ -174,7 +209,7 @@
             HeightRequest="{OnIdiom Default=-1,
                                     Phone=0}"
             HorizontalOptions="Start"
-            Style="{StaticResource GradientButtonStyle}"
+            Style="{StaticResource MagentaButtonStyle}"
             Text="ADD NEW ADDRESS"
             WidthRequest="{OnIdiom Default=240,
                                    Phone=0}" />

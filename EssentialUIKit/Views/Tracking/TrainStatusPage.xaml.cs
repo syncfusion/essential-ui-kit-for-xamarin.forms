@@ -10,7 +10,7 @@ namespace EssentialUIKit.Views.Tracking
     {
         public TrainStatusPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
             this.BindingContext = TrainStatusDataService.Instance.TrainStatusPageViewModel;
             BindableLayout.SetItemsSource(this.trainProgress, (this.BindingContext as TrainStatusPageViewModel).StationInfoCollection);
         }

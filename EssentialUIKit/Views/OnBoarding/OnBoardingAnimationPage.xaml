@@ -12,8 +12,11 @@
     NavigationPage.HasNavigationBar="False">
     <ContentPage.Resources>
         <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
             <DataTemplate x:Key="ItemTemplate">
-                <ContentPresenter Content="{Binding RotatorView}" />
+                <ContentPresenter Content="{Binding RotatorItem}" />
             </DataTemplate>
         </ResourceDictionary>
     </ContentPage.Resources>
@@ -21,10 +24,16 @@
         <viewModel:OnBoardingAnimationViewModel />
     </ContentPage.BindingContext>
     <ContentPage.Content>
-        <Grid RowDefinitions="50, *, Auto">
+        <Grid>
+            <Grid.RowDefinitions>
+                <!--  Skip Button  -->
+                <RowDefinition Height="50" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
 
             <!--  Gradient view  -->
-            <gradient:SfGradientView Grid.RowSpan="3" Style="{StaticResource PinkGradientStyle}" />
+            <gradient:SfGradientView Grid.RowSpan="3" Style="{StaticResource SfGradientViewStyle}" />
 
             <!--  Skip button  -->
             <button:SfButton
@@ -34,14 +43,16 @@
                                                              AndroidPhoneLandscape='0,10,10,0',
                                                              iOSPhonePortrait='0,20,10,0',
                                                              iOSPhoneLandscape='0,10,10,0'}"
+                BackgroundColor="Transparent"
                 Command="{Binding SkipCommand}"
                 CornerRadius="20"
+                FontFamily="{StaticResource Montserrat-SemiBold}"
                 HeightRequest="40"
                 HorizontalOptions="End"
                 IsVisible="{Binding IsSkipButtonVisible}"
-                Style="{StaticResource TransparentButtonStyle}"
                 Text="Skip"
                 TextColor="{x:StaticResource Gray-White}"
+                VerticalOptions="StartAndExpand"
                 WidthRequest="80" />
 
             <!--  Rotator used to navigate the view  -->
@@ -75,16 +86,10 @@
             <button:SfButton
                 x:Name="NextButtonText"
                 Grid.Row="2"
-                Margin="0,10,0,24"
                 Command="{Binding NextCommand}"
                 CommandParameter="{x:Reference Rotator}"
-                CornerRadius="20"
-                HeightRequest="40"
-                HorizontalOptions="Center"
-                Style="{StaticResource SimpleButtonStyle}"
-                Text="{Binding NextButtonText}"
-                VerticalOptions="End"
-                WidthRequest="245" />
+                Style="{StaticResource SfButtonStyle}"
+                Text="{Binding NextButtonText}" />
         </Grid>
     </ContentPage.Content>
 </ContentPage>

@@ -9,49 +9,52 @@
     xmlns:template="clr-namespace:EssentialUIKit.Views.Templates"
     xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Detail"
     x:Name="detailPage"
-    BackgroundColor="{DynamicResource Gray-Bg}"
+    BackgroundColor="{DynamicResource Gray-White}"
     NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+
         <converter:BooleanToStringConverter x:Key="boolToStringConverter" />
     </ContentPage.Resources>
+
+    <ContentPage.BindingContext>
+        <viewModel:ArticleDetailPageViewModel />
+    </ContentPage.BindingContext>
 
     <ContentPage.ControlTemplate>
         <ControlTemplate>
             <StackLayout Spacing="0">
                 <!--  Title View  -->
                 <controls:TitleView Title="Brainstorm">
-                    <controls:TitleView.LeadingView>
-                        <buttons:SfButton
-                            x:Name="backButton"
-                            Command="{Binding BindingContext.BackButtonCommand, Source={x:Reference detailPage}}"
-                            CommandParameter="{x:Reference backButton}"
-                            Style="{StaticResource IconButtonStyle}"
-                            Text="{StaticResource Back}" />
-                    </controls:TitleView.LeadingView>
                     <controls:TitleView.TrailingView>
                         <StackLayout Orientation="Horizontal">
 
                             <!--  Favourite button  -->
                             <buttons:SfButton
                                 x:Name="favouriteButton"
-                                Command="{Binding Path=BindingContext.FavouriteCommand, Source={x:Reference detailPage}}"
-                                CommandParameter="{Binding}"
-                                Style="{StaticResource IconButtonStyle}"
-                                Text="{Binding IsFavourite, Converter={StaticResource boolToStringConverter}, ConverterParameter=1}" />
+                                Command="{TemplateBinding BindingContext.FavouriteCommand}"
+                                CommandParameter="{x:Reference favouriteButton}"
+                                CornerRadius="4"
+                                HeightRequest="40"
+                                Style="{StaticResource NavigationBarButtonStyle}"
+                                Text="{StaticResource Favourite}"
+                                WidthRequest="40" />
 
                             <!--  Bookmark button  -->
                             <buttons:SfButton
                                 x:Name="bookmarkButton"
-                                Command="{Binding Path=BindingContext.BookmarkCommand, Source={x:Reference detailPage}}"
-                                CommandParameter="{Binding}"
-                                Style="{StaticResource IconButtonStyle}"
-                                Text="{Binding IsBookmarked, Converter={StaticResource boolToStringConverter}, ConverterParameter=0}" />
-
-                            <StackLayout.BindingContext>
-                                <viewModel:ArticleDetailPageViewModel />
-                            </StackLayout.BindingContext>
-
+                                Command="{TemplateBinding BindingContext.BookmarkCommand}"
+                                CommandParameter="{x:Reference bookmarkButton}"
+                                CornerRadius="4"
+                                HeightRequest="40"
+                                Style="{StaticResource NavigationBarButtonStyle}"
+                                Text="{StaticResource ClearBookmark}"
+                                WidthRequest="40" />
                         </StackLayout>
                     </controls:TitleView.TrailingView>
                 </controls:TitleView>
@@ -70,7 +73,7 @@
                     <!--  Article Tile  -->
                     <Label
                         Margin="0,16,0,8"
-                        FontFamily="Montserrat-Bold"
+                        FontFamily="{StaticResource Montserrat-Bold}"
                         FontSize="20"
                         LineHeight="1.25"
                         Text="{Binding ArticleName}"
@@ -85,17 +88,17 @@
                         <Label.FormattedText>
                             <FormattedString>
                                 <Span
-                                    FontFamily="Montserrat-Medium"
+                                    FontFamily="{StaticResource Montserrat-Medium}"
                                     Text="{Binding ArticleAuthor}"
                                     TextColor="{DynamicResource Gray-900}" />
                                 <Span Text="    " />
                                 <Span
-                                    FontFamily="Montserrat-Regular"
+                                    FontFamily="{StaticResource Montserrat-Regular}"
                                     Text="{Binding ArticleDate}"
                                     TextColor="{DynamicResource Gray-700}" />
                                 <Span Text=" | " TextColor="{DynamicResource Gray-700}" />
                                 <Span
-                                    FontFamily="Montserrat-Regular"
+                                    FontFamily="{StaticResource Montserrat-Regular}"
                                     Text="{Binding ArticleReadingTime}"
                                     TextColor="{DynamicResource Gray-700}" />
                             </FormattedString>
@@ -104,9 +107,6 @@
 
                     <!--  Image of the blog  -->
                     <Image
-                        Margin="{OnIdiom Phone='-16,0',
-                                         Tablet='-48,0',
-                                         Desktop='-48,0'}"
                         Aspect="AspectFill"
                         BackgroundColor="{DynamicResource Gray-200}"
                         HeightRequest="210">
@@ -121,7 +121,7 @@
                     <!--  Article content  -->
                     <Label
                         Margin="0,16"
-                        FontFamily="Montserrat-Medium"
+                        FontFamily="{StaticResource Montserrat-Medium}"
                         FontSize="14"
                         LineHeight="1.5"
                         Text="{Binding ArticleContent}"
@@ -142,7 +142,7 @@
 
                     <!--  Description image name  -->
                     <Label
-                        FontFamily="Montserrat-Medium"
+                        FontFamily="{StaticResource Montserrat-Medium}"
                         FontSize="12"
                         HorizontalOptions="Center"
                         HorizontalTextAlignment="Center"
@@ -153,7 +153,7 @@
                     <!--  Subtitle of the blog  -->
                     <Label
                         Margin="0,24,0,8"
-                        FontFamily="Montserrat-SemiBold"
+                        FontFamily="{StaticResource Montserrat-SemiBold}"
                         FontSize="16"
                         LineHeight="1.25"
                         Text="{Binding SubTitle1}"
@@ -170,13 +170,13 @@
                                     <Label
                                         Margin="{OnPlatform Default='0, 3, 0, 0',
                                                             iOS='0, 10, 0, 0'}"
-                                        FontFamily="FontIcons"
+                                        FontFamily="{StaticResource FontIcons}"
                                         FontSize="14"
                                         Text="&#xe720;"
                                         TextColor="{DynamicResource Gray-500}" />
 
                                     <Label
-                                        FontFamily="Montserrat-Medium"
+                                        FontFamily="{StaticResource Montserrat-Medium}"
                                         FontSize="14"
                                         LineHeight="1.5"
                                         Text="{Binding Description}"
@@ -192,7 +192,7 @@
                 <!--  Related stroies label  -->
                 <Label
                     Margin="16,0"
-                    FontFamily="Montserrat-SemiBold"
+                    FontFamily="{StaticResource Montserrat-SemiBold}"
                     FontSize="12"
                     LineHeight="{OnPlatform Default=-1,
                                             Android=1.25}"
@@ -202,7 +202,7 @@
                 <!--  Related blog list  -->
                 <StackLayout
                     x:Name="stackLayout"
-                    Padding="0,16"
+                    Padding="16"
                     BindableLayout.ItemsSource="{Binding RelatedStories}"
                     Spacing="16">
                     <BindableLayout.ItemTemplate>

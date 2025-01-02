@@ -1,22 +1,28 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage
-    x:Class="EssentialUIKit.Views.Dashboard.DailyCaloriesReportPage"
-    xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:behaviors="clr-namespace:EssentialUIKit.Behaviors;assembly=EssentialUIKit"
-    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
-    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
-    xmlns:control="clr-namespace:EssentialUIKit.Controls"
-    xmlns:gauge="clr-namespace:Syncfusion.SfGauge.XForms;assembly=Syncfusion.SfGauge.XForms"
-    xmlns:gradient="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
-    xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
-    xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Dashboard"
-    BackgroundColor="{DynamicResource Gray-Bg}"
-    NavigationPage.HasNavigationBar="False">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModel="clr-namespace:EssentialUIKit.ViewModels.Dashboard"
+             xmlns:gradient="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
+             xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+             xmlns:cards="clr-namespace:Syncfusion.XForms.Cards;assembly=Syncfusion.Cards.XForms"
+             xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             xmlns:gauge="clr-namespace:Syncfusion.SfGauge.XForms;assembly=Syncfusion.SfGauge.XForms"
+             xmlns:behaviors="clr-namespace:EssentialUIKit.Behaviors;assembly=EssentialUIKit"
+             x:Class="EssentialUIKit.Views.Dashboard.DailyCaloriesReportPage"
+             NavigationPage.HasNavigationBar="False">
 
     <ContentPage.BindingContext>
         <viewModel:DailyCaloriesReportViewModel x:Name="CalorieViewModel" />
     </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
     <ContentPage.Content>
         <Grid>
@@ -24,8 +30,8 @@
                 <gradient:SfGradientView.BackgroundBrush>
                     <gradient:SfLinearGradientBrush>
                         <gradient:SfLinearGradientBrush.GradientStops>
-                            <gradient:SfGradientStop Offset="0" Color="{DynamicResource VioletGradientStart}" />
-                            <gradient:SfGradientStop Offset="1" Color="{DynamicResource VioletGradientEnd}" />
+                            <gradient:SfGradientStop Offset="0" Color="{DynamicResource GradientStart}" />
+                            <gradient:SfGradientStop Offset="1" Color="{DynamicResource GradientEnd}" />
                         </gradient:SfLinearGradientBrush.GradientStops>
                     </gradient:SfLinearGradientBrush>
                 </gradient:SfGradientView.BackgroundBrush>
@@ -33,10 +39,14 @@
 
             <ScrollView>
 
-                <Grid
-                    ColumnSpacing="0"
-                    RowDefinitions="Auto, Auto, Auto, *"
-                    RowSpacing="0">
+                <Grid ColumnSpacing="0" RowSpacing="0">
+
+                    <Grid.RowDefinitions >
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
 
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="{OnIdiom Desktop=1*, Tablet=1*, Phone=16}" />
@@ -44,87 +54,76 @@
                         <ColumnDefinition Width="{OnIdiom Desktop=1*, Tablet=1*, Phone=16}" />
                     </Grid.ColumnDefinitions>
 
-                    <Label
-                        Grid.Column="1"
-                        Margin="0,10"
-                        FontFamily="Montserrat-Medium"
-                        FontSize="16"
-                        HorizontalOptions="Center"
-                        Text="Health"
-                        TextColor="{StaticResource Gray-White}" />
+                    <Label Grid.Column="1"
+                           Text="Health"
+                           HorizontalOptions="Center"
+                           Margin="0,10"
+                           FontSize="16"
+                           FontFamily="{StaticResource Montserrat-Medium}"
+                           TextColor="{ StaticResource Gray-White}"/>
 
-                    <gauge:SfCircularGauge
-                        Grid.Row="1"
-                        Grid.Column="1"
-                        Margin="0,40"
-                        BackgroundColor="Transparent"
-                        HeightRequest="190"
-                        HorizontalOptions="Center"
-                        WidthRequest="190">
+                    <gauge:SfCircularGauge Grid.Row="1" 
+                                           Grid.Column="1" 
+                                           HeightRequest="190" 
+                                           WidthRequest="190"
+                                           BackgroundColor="Transparent" 
+                                           Margin="0, 40" 
+                                           HorizontalOptions="Center">
 
                         <gauge:SfCircularGauge.Headers>
-                            <gauge:Header
-                                ForegroundColor="{DynamicResource Gray-White}"
-                                Position="0.5,0.4"
-                                Text="1200"
-                                TextSize="24" />
-                            <gauge:Header
-                                ForegroundColor="{DynamicResource Gray-White}"
-                                Position="0.5, 0.55"
-                                Text="Calories consumed"
-                                TextSize="12" />
+                            <gauge:Header Text="1200" 
+                                          Position="0.5,0.4" 
+                                          ForegroundColor="{DynamicResource Gray-White}" 
+                                          TextSize="24" />
+                            <gauge:Header Text="Calories consumed" 
+                                          Position="0.5, 0.55"  
+                                          ForegroundColor="{DynamicResource Gray-White}" 
+                                          TextSize="12" />
                         </gauge:SfCircularGauge.Headers>
 
-                        <gauge:SfCircularGauge.Scales>
-                            <gauge:Scale
-                                x:Name="GaugeScale"
-                                EndValue="{Binding ScaleEndValue}"
-                                Pointers="{Binding Pointers}"
-                                ShowLabels="False"
-                                ShowRim="False"
-                                ShowTicks="False"
-                                StartAngle="0"
-                                SweepAngle="360" />
+                        <gauge:SfCircularGauge.Scales >
+                            <gauge:Scale x:Name="Scale" 
+                                         ShowLabels="False" 
+                                         ShowRim="False"  
+                                         ShowTicks="False"
+                                         StartAngle="0"
+                                         SweepAngle="360"/>
                         </gauge:SfCircularGauge.Scales>
 
                     </gauge:SfCircularGauge>
 
-                    <listView:SfListView
-                        x:Name="Sessions"
-                        Grid.Row="2"
-                        Grid.Column="1"
-                        Margin="0,0,0,24"
-                        AutoFitMode="None"
-                        HeightRequest="164"
-                        HorizontalOptions="CenterAndExpand"
-                        IsScrollBarVisible="False"
-                        ItemSize="80"
-                        ItemSpacing="4"
-                        ItemsSource="{Binding CardItems}"
-                        SelectionMode="None">
+                    <listView:SfListView x:Name="Sessions"
+                                         HorizontalOptions="CenterAndExpand"
+                                         Grid.Row="2"
+                                         Grid.Column="1" 
+                                         HeightRequest="164"
+                                         IsScrollBarVisible="False"
+                                         Margin="0,0,0,24"
+                                         ItemSize="80" 
+                                         SelectionMode="None" 
+                                         AutoFitMode="None" 
+                                         ItemSpacing="4" 
+                                         ItemsSource="{Binding CardItems}">
 
                         <listView:SfListView.ItemTemplate>
                             <DataTemplate>
-                                <Grid BackgroundColor="#3d3c6b" WidthRequest="80">
+                                <Grid WidthRequest="80" BackgroundColor="#3d3c6b">
 
-                                    <buttons:SfButton
-                                        Command="{Binding Path=BindingContext.SessionCommand, Source={x:Reference Sessions}}"
-                                        CommandParameter="{Binding .}"
-                                        CornerRadius="4"
-                                        Text="{Binding Session}">
+                                    <buttons:SfButton Text="{Binding Session}" 
+                                                      CornerRadius="4" 
+                                                      Command="{Binding Path=BindingContext.SessionCommand, Source={x:Reference Sessions}}"                                                     
+                                                      CommandParameter="{Binding BindingContext, Source={x:Reference Sessions}}" 
+                                                      Clicked="SessionButton_OnClicked">
 
                                         <buttons:SfButton.Triggers>
-                                            <DataTrigger
-                                                Binding="{Binding IsSelected}"
-                                                TargetType="buttons:SfButton"
-                                                Value="false">
-                                                <Setter Property="BackgroundColor" Value="Transparent" />
+                                            <DataTrigger TargetType="buttons:SfButton" 
+                                                         Binding="{Binding EnableButton}" 
+                                                         Value="false">
+                                                <Setter Property="BackgroundColor"  
+                                                        Value="Transparent" />
                                             </DataTrigger>
 
-                                            <DataTrigger
-                                                Binding="{Binding IsSelected}"
-                                                TargetType="buttons:SfButton"
-                                                Value="true">
+                                            <DataTrigger TargetType="buttons:SfButton" Binding="{Binding EnableButton}" Value="true">
                                                 <Setter Property="BackgroundGradient">
                                                     <Setter.Value>
                                                         <gradient:SfLinearGradientBrush>
@@ -139,24 +138,21 @@
                                         </buttons:SfButton.Triggers>
 
                                         <buttons:SfButton.Content>
-                                            <StackLayout Padding="0,12" Spacing="8">
+                                            <StackLayout Spacing="8" Padding="0,12">
 
-                                                <Label
-                                                    FontFamily="FontIcons"
-                                                    FontSize="32"
-                                                    HorizontalOptions="Center"
-                                                    Text="{Binding Icon}"
-                                                    TextColor="White"
-                                                    VerticalTextAlignment="Center" />
+                                                <Label Text="{Binding Icon}" 
+                                                       FontFamily="{StaticResource FontIcons}" 
+                                                       HorizontalOptions="Center"
+                                                       FontSize="32" 
+                                                       VerticalTextAlignment="Center"
+                                                       TextColor="White" />
 
-                                                <Label
-                                                    FontFamily="Montserrat-SemiBold"
-                                                    FontSize="12"
-                                                    HorizontalOptions="Center"
-                                                    LineHeight="{OnPlatform Android=1.25,
-                                                                            Default=-1}"
-                                                    Text="{Binding Session}"
-                                                    TextColor="{DynamicResource Gray-White}" />
+                                                <Label TextColor="{DynamicResource Gray-White}"
+                                                       LineHeight="{OnPlatform Android=1.25, Default=-1}" 
+                                                       FontFamily="{StaticResource Montserrat-SemiBold}"
+                                                       FontSize="12"
+                                                       Text="{Binding Session}" 
+                                                       HorizontalOptions="Center"/>
 
                                             </StackLayout>
                                         </buttons:SfButton.Content>
@@ -171,106 +167,77 @@
 
                     </listView:SfListView>
 
-                    <StackLayout
-                        Grid.Row="3"
-                        Grid.Column="0"
-                        Grid.ColumnSpan="3"
-                        BackgroundColor="{DynamicResource GrayShadowColor}"
-                        HeightRequest="{OnPlatform Android='200',
-                                                   UWP='300'}"
-                        Spacing="0"
-                        VerticalOptions="FillAndExpand">
+                    <StackLayout Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3"
+                                 VerticalOptions="FillAndExpand"
+                                 BackgroundColor="{StaticResource Gray-White}" Spacing="0"
+                                 HeightRequest="{OnPlatform Android='200',UWP='300'}">
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="{OnIdiom Phone=16, Default=1*}" />
-                                <ColumnDefinition Width="{OnIdiom Phone=*, Default=4*}" />
-                                <ColumnDefinition Width="{OnIdiom Phone=16, Default=1*}" />
+                                <ColumnDefinition Width="{OnIdiom Phone=16, Default=1*}"/>
+                                <ColumnDefinition Width="{OnIdiom Phone=*, Default=4*}"/>
+                                <ColumnDefinition Width="{OnIdiom Phone=16, Default=1*}"/>
                             </Grid.ColumnDefinitions>
 
-                            <control:CustomShadowFrame
-                                Grid.Column="1"
-                                Margin="0,-60,0,16"
-                                Padding="0"
-                                BackgroundColor="{DynamicResource GrayShadowColor}"
-                                BorderWidth="0"
-                                CornerRadius="4"
-                                HasShadow="True"
-                                HeightRequest="240"
-                                Radius="4">
+                            <cards:SfCardView CornerRadius="4" Grid.Column="1"
+                                          HeightRequest="245"
+                                          Margin="0,-60,0,16"
+                                          HasShadow="True">
+                                <listView:SfListView x:Name="SfListView" 
+                                                     VerticalOptions="FillAndExpand"
+                                                     HorizontalOptions="Center"
+                                                     Margin="0" HeightRequest="24"
+                                                     IsScrollBarVisible="False"
+                                                     SelectionMode="None" 
+                                                     AutoFitMode="None"          
+                                                     ItemSpacing="0" 
+                                                     ItemSize="120" 
+                                                     ItemsSource="{Binding BreakfastCalories}">
 
-                                <control:CustomShadowFrame.Content>
-                                    <border:SfBorder BorderWidth="0" CornerRadius="4">
-                                        <listView:SfListView
-                                            x:Name="SfListView"
-                                            Margin="0"
-                                            AutoFitMode="None"
-                                            HeightRequest="24"
-                                            HorizontalOptions="Center"
-                                            IsScrollBarVisible="False"
-                                            ItemSize="120"
-                                            ItemSpacing="0"
-                                            ItemsSource="{Binding SelectedCalorieItems}"
-                                            SelectionMode="None"
-                                            VerticalOptions="FillAndExpand">
+                                    <listView:SfListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <border:SfBorder BorderWidth="1" 
+                                                             BorderColor="{StaticResource Gray-200}">
 
-                                            <listView:SfListView.ItemTemplate>
-                                                <DataTemplate>
-                                                    <border:SfBorder BorderColor="{DynamicResource Gray-200}" BorderWidth="0.5">
+                                                <StackLayout Spacing="8" 
+                                                             HorizontalOptions="Center" 
+                                                             VerticalOptions="Center">
 
-                                                        <StackLayout
-                                                            HorizontalOptions="Center"
-                                                            Spacing="8"
-                                                            VerticalOptions="Center">
+                                                    <Label Margin="0" 
+                                                           FontSize="16" 
+                                                           TextColor="{StaticResource Gray-900}" 
+                                                           Style="{StaticResource LabelStyle}"  
+                                                           HorizontalOptions="Center"
+                                                           Text="{Binding Quantity}"/>
 
-                                                            <Label
-                                                                Margin="0"
-                                                                Style="{StaticResource TitleLabelStyle}"
-                                                                Text="{Binding Quantity}" />
+                                                    <Label  FontSize="12" 
+                                                            TextColor="{StaticResource Gray-700}" 
+                                                            HorizontalOptions="Center" 
+                                                            Text="{Binding Nutrient}" 
+                                                            Style="{StaticResource LabelStyle}"/>
 
-                                                            <Label
-                                                                FontSize="12"
-                                                                Style="{StaticResource TitleLabelStyle}"
-                                                                Text="{Binding Nutrient}"
-                                                                TextColor="{DynamicResource Gray-700}" />
+                                                    <BoxView  HeightRequest="4" 
+                                                              WidthRequest="48" 
+                                                              BackgroundColor="{Binding Indicator}"/>
 
-                                                            <BoxView
-                                                                BackgroundColor="{Binding Indicator}"
-                                                                HeightRequest="4"
-                                                                WidthRequest="48" />
+                                                </StackLayout>
 
-                                                        </StackLayout>
+                                            </border:SfBorder>
+                                        </DataTemplate>
+                                    </listView:SfListView.ItemTemplate>
 
-                                                    </border:SfBorder>
-                                                </DataTemplate>
-                                            </listView:SfListView.ItemTemplate>
+                                    <listView:SfListView.Behaviors>
+                                        <behaviors:SfListViewExtendHeightBehavior/>
+                                    </listView:SfListView.Behaviors>
 
-                                            <listView:SfListView.Behaviors>
-                                                <behaviors:SfListViewExtendHeightBehavior />
-                                            </listView:SfListView.Behaviors>
+                                    <listView:SfListView.LayoutManager>
+                                        <listView:GridLayout SpanCount="3" />
+                                    </listView:SfListView.LayoutManager>
 
-                                            <listView:SfListView.LayoutManager>
-                                                <listView:GridLayout SpanCount="3" />
-                                            </listView:SfListView.LayoutManager>
+                                </listView:SfListView>
 
-                                        </listView:SfListView>
-                                    </border:SfBorder>
-                                </control:CustomShadowFrame.Content>
-
-                            </control:CustomShadowFrame>
-
-                            <border:SfBorder
-                                Grid.Column="1"
-                                Margin="0,-60,0,16"
-                                Padding="0"
-                                BackgroundColor="Transparent"
-                                BorderColor="{DynamicResource GrayShadowColor}"
-                                BorderWidth="1"
-                                CornerRadius="4"
-                                HasShadow="False"
-                                WidthRequest="240" />
-
+                            </cards:SfCardView>
                         </Grid>
-                    </StackLayout>
+                    </StackLayout >
                 </Grid>
             </ScrollView>
         </Grid>

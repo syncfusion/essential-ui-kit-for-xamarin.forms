@@ -12,7 +12,7 @@ namespace EssentialUIKit.DataService
     public class SongsPlayListDataService
     {
         #region fields
-        private static SongsPlayListDataService songsPlayListDataService;
+        private static SongsPlayListDataService instance;
 
         private SongsPlayListViewModel songsPlayListViewModel;
 
@@ -23,7 +23,7 @@ namespace EssentialUIKit.DataService
         /// <summary>
         /// Gets an instance of the <see cref="SongsPlayListDataService"/>.
         /// </summary>
-        public static SongsPlayListDataService Instance => songsPlayListDataService ?? (songsPlayListDataService = new SongsPlayListDataService());
+        public static SongsPlayListDataService Instance => instance ?? (instance = new SongsPlayListDataService());
 
         /// <summary>
         /// Gets or sets the value of Song Play List view model.
@@ -48,15 +48,15 @@ namespace EssentialUIKit.DataService
 
             var assembly = typeof(App).GetTypeInfo().Assembly;
 
-            T data;
+            T obj;
 
             using (var stream = assembly.GetManifestResourceStream(file))
             {
                 var serializer = new DataContractJsonSerializer(typeof(T));
-                data = (T)serializer.ReadObject(stream);
+                obj = (T)serializer.ReadObject(stream);
             }
 
-            return data;
+            return obj;
         }
         #endregion
     }
