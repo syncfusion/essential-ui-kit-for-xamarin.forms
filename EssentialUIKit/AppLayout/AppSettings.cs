@@ -34,21 +34,6 @@ namespace EssentialUIKit
 
         public static AppSettings Instance { get; }
 
-        /// <summary>
-        /// Gets the AndroidSecretCode.
-        /// </summary>
-        public static string AndroidSecretCode => "88dda0e2-da50-466e-9aa5-36fc504d9ed3";
-
-        /// <summary>
-        /// Gets the iOSSecretCode.
-        /// </summary>
-        public static string IOSSecretCode => "b327e367-8f04-4efe-ad7a-85be8c828ec3";
-
-        /// <summary>
-        /// Gets the UWPSecretCode.
-        /// </summary>
-        public static string UWPSecretCode => "ca0577ad-4cd2-4258-a35b-465e8f4669d9";
-
         public bool IsSafeAreaEnabled { get; set; }
 
         public double SafeAreaHeight { get; set; }
