@@ -1,5 +1,5 @@
 # Essential UI Kit for Xamarin.Forms
-This [Essential UI Kit](https://www.syncfusion.com/essential-xamarin-ui-kit) repository contains elegantly designed XAML templates for Xamarin.Forms apps. These templates are compatible with Android, iOS, and UWP platforms, and use the MVVM design pattern to provide trouble-free integration.
+This [Essential UI Kit](https://www.syncfusion.com/essential-xamarin-ui-kit) repository state Xamarin support ended and point to Essential UI Kit for [.NET MAUI](https://www.syncfusion.com/essential-maui-ui-kit). These templates are compatible with Android, iOS, and UWP platforms, and use the MVVM design pattern to provide trouble-free integration.
 <p align="center"> <b> Install the app to preview the templates instantly </b> </p>
 <p align="center"> <a href='https://play.google.com/store/apps/details?id=com.syncfusion.xamarin.uikit&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' width="150" height="55"/></a> </p>
 
@@ -21,12 +21,6 @@ This [Essential UI Kit](https://www.syncfusion.com/essential-xamarin-ui-kit) rep
 * [License](#license)
 * [About Syncfusion](#about-syncfusion)
 
-## Build Status
-|CI Tool                    |Build Status|
-|---------------------------|---|
-| App Center, iOS | [![Build status](https://build.appcenter.ms/v0.1/apps/151354d9-ac30-41aa-9426-02df4423fded/branches/master/badge)](https://appcenter.ms)| 
-| App Center, Android | [![Build status](https://build.appcenter.ms/v0.1/apps/b94b713d-c55b-4fd3-9c36-67c5d638a47d/branches/master/badge)](https://appcenter.ms) |
-
 ## Key Features
 * Rich, elegant XAML layouts for most common scenarios.
 * Layouts optimized for phones, tablets, and desktop.
@@ -38,14 +32,10 @@ This [Essential UI Kit](https://www.syncfusion.com/essential-xamarin-ui-kit) rep
 * Right-to-left rendering support.
 
 ## Supported Platforms
-* Android 5.0 (or API level 21) and later versions.
-* iOS 9.0 and later versions.
-* UWP Build 17763 and later versions
-
-The required minimum version of Xamarin.Forms is 4.0.0.425677.
+* Current supported toolchain [.NET MAUI](https://www.syncfusion.com/maui-controls)
 
 ## System Requirements
-Refer to the [Xamarin system requirements](https://docs.microsoft.com/en-us/xamarin/cross-platform/get-started/requirements) documentation to learn more about the development environments.
+Refer to the [Xamarin system requirements](https://learn.microsoft.com/en-us/previous-versions/xamarin/cross-platform/get-started/requirementss) documentation to learn more about the development environments.
 
 ## The Visual Studio Extension
 The Visual Studio extension allows you to add the required templates quickly through a few clicks. The extension setup is available in the Visual Studio Marketplace with detailed information on how to add the templates.
@@ -128,6 +118,6 @@ The demo images and illustrations exhibited in this app are obtained from the fo
 **Note:**  This license by no means modifies the license under which 3rd party intellectual property is provided and that such intellectual property is deemed directly licensed from the 3rd party by the user. You are solely responsible for obtaining all 3rd party licenses directly from the provider. These licenses to any third party intellectual property must be independently obtained by Customer from the provider.
 
 ## About Syncfusion
-Founded in 2001 and headquartered in Research Triangle Park, N.C., Syncfusion has more than 20,000 customers and more than 1 million users, including large financial institutions, Fortune 500 companies, and global IT consultancies.
+Founded in 2001 and headquartered in Research Triangle Park, N.C., Syncfusion has 47K+ enterprise customers and 1M+ developers, including large financial institutions, Fortune 500 companies, and global IT consultancies.
 
-Today we provide 1,000+ controls and frameworks for web ([ASP.NET Core](https://www.syncfusion.com/aspnet-core-ui-controls), [ASP.NET MVC](https://www.syncfusion.com/aspnet-mvc-ui-controls), [ASP.NET WebForms](https://www.syncfusion.com/jquery/aspnet-web-forms-ui-controls), [JavaScript](https://www.syncfusion.com/javascript-ui-controls), [Angular](https://www.syncfusion.com/angular-ui-components), [React](https://www.syncfusion.com/react-ui-components), [Vue](https://www.syncfusion.com/vue-ui-components), and [Blazor](https://www.syncfusion.com/blazor-components), mobile ([Xamarin](https://www.syncfusion.com/xamarin-ui-controls),[Flutter](https://www.syncfusion.com/flutter-widgets), [UWP](https://www.syncfusion.com/uwp-ui-controls), and [JavaScript](https://www.syncfusion.com/javascript-ui-controls)), and desktop development ([WinForms](https://www.syncfusion.com/winforms-ui-controls), [WPF](https://www.syncfusion.com/products/wpf-ui-controls), and [UWP](https://www.syncfusion.com/uwp-ui-controls)). We provide ready-to deploy enterprise software for dashboards, reports, data integration, and big data processing. Many customers have saved millions in licensing fees by deploying our software.
+Today we provide 	1,600+ UI components [ASP.NET Core](https://www.syncfusion.com/aspnet-core-ui-controls), [ASP.NET MVC](https://www.syncfusion.com/aspnet-mvc-ui-controls), [JavaScript](https://www.syncfusion.com/javascript-ui-controls), [Angular](https://www.syncfusion.com/angular-components), [React](https://www.syncfusion.com/react-components), [Vue](https://www.syncfusion.com/vue-components), and [Blazor](https://www.syncfusion.com/blazor-components); mobile platforms like [.NET MAUI](https://www.syncfusion.com/maui-controls), [Flutter](https://www.syncfusion.com/flutter-widgets), [UWP](https://www.syncfusion.com/uwp-ui-controls), and [JavaScript](https://www.syncfusion.com/javascript-ui-controls), as well as desktop development with [.NET MAUI](https://www.syncfusion.com/maui-controls), [WinForms](https://www.syncfusion.com/winforms-ui-controls), [WPF](https://www.syncfusion.com/wpf-ui-controls), and [UWP](https://www.syncfusion.com/uwp-ui-controls), and [WinUI](https://www.syncfusion.com/winui-controls). We provide UI Component Suite, Document SDK, Code Studio, Agent Skills, MCP Servers. Many customers have saved millions in licensing fees by deploying our software.
